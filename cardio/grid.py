@@ -75,18 +75,16 @@ class GridController:
         self.grid = grid
         self.gridview = gridview
 
-    # def init_grid(self, )
-
     def add_card(self, linei: int, sloti: int, card: Card) -> None:
         self.grid[linei][sloti] = card
         self.gridview.update(self.grid)
         # FIXME Add the model to the view in creator rather than with each call?
 
     def handle_round(self) -> None:
-        for linei, opponenti in ((2, 1), (1,2)):
+        for linei, opponenti in ((2, 1), (1, 2)):
             for sloti in range(self.grid.width):
                 if self.grid[linei][sloti] is None:
-                    continue # No card in this slot
+                    continue  # No card in this slot
                 if self.grid[opponenti][sloti] is None:
                     # FIXME Damage the player behind
                     continue
@@ -97,7 +95,6 @@ class GridController:
         # FIXME Have some Slot class, which would enable to do something like
         # slot.is_empty() instead of checking for None?
 
-            
         # Activate player cards
         # Activate opponent
         # Activate from prepline
