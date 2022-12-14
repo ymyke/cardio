@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "cardio"
+version = "0.1.0"
+description = ""
+authors = ["ymyke <ymyke@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+windows-curses = "^2.3.1"
+pygcurse = "^1.0.1"
+pygame = "^2.1.2"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.12.0"
+ipykernel = "^6.19.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
