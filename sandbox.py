@@ -21,7 +21,7 @@ g = Grid(4)
 g[0][1] = Card("Steed", 2, 10)
 g[2][0] = Card("Cat", 1, 3)
 g[1][0] = Card("Dog", 2, 5)
-gv = SimpleView()
+gv = SimpleView(g)
 gc = GridController(g, gv)
 
 

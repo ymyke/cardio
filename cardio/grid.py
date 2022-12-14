@@ -57,17 +57,16 @@ class Grid:
 
 class GridView:
     # FIXME Make this an ABC with init and update methods?
-    # FIXME Should the view store a reference to the model?
-    def __init__(self) -> None:
-        pass
+    def __init__(self, gridmodel: Grid) -> None:
+        self.model = gridmodel
 
-    def update(self, gridmodel: Grid) -> None:
+    def update(self) -> None:
         pass
 
 
 class SimpleView(GridView):
-    def update(self, gridmodel: Grid) -> None:
-        print(str(gridmodel))
+    def update(self) -> None:
+        print(str(self.model))
 
 
 class GridController:
@@ -77,8 +76,7 @@ class GridController:
 
     def add_card(self, linei: int, sloti: int, card: Card) -> None:
         self.grid[linei][sloti] = card
-        self.gridview.update(self.grid)
-        # FIXME Add the model to the view in creator rather than with each call?
+        self.gridview.update()
 
     def handle_round(self) -> None:
         for linei, opponenti in ((2, 1), (1, 2)):
@@ -94,10 +92,11 @@ class GridController:
         # FIXME It becomes apparent here: Terms like opponent and player are overloaded.
         # FIXME Have some Slot class, which would enable to do something like
         # slot.is_empty() instead of checking for None?
+        # FIXME A card that is dead should be removed.
 
         # Activate player cards
         # Activate opponent
         # Activate from prepline
 
         # FIXME Check if game over
-        self.gridview.update(self.grid)
+        self.gridview.update()
