@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Tuple
 from cardio.card import Card
 
 
@@ -24,6 +24,15 @@ class Line:
 
     def add_card(self, sloti: int, card: Card) -> None:
         self[sloti] = card
+
+    def prepare(self) -> None:
+        pass
+
+    def activate(self) -> None:
+        for card in self.slots:
+            if card is None:
+                continue
+            card.activate()
 
 
 class Grid:
@@ -54,48 +63,17 @@ class Grid:
     def __iter__(self) -> object:
         return self.lines.__iter__()
 
+    def find_card_position(self, card: Card) -> Tuple[Optional[int], Optional[int]]:
+        for rowi, row in enumerate(self.lines):
+            for sloti in range(self.width):
+                if row[sloti] is card:
+                    return (rowi, sloti)
+        return (None, None)
 
-class GridView:
-    # FIXME Make this an ABC with init and update methods?
-    def __init__(self, gridmodel: Grid) -> None:
-        self.model = gridmodel
-
-    def update(self) -> None:
-        pass
-
-
-class SimpleView(GridView):
-    def update(self) -> None:
-        print(str(self.model))
-
-
-class GridController:
-    def __init__(self, grid: Grid, gridview: GridView) -> None:
-        self.grid = grid
-        self.gridview = gridview
-
-    def add_card(self, linei: int, sloti: int, card: Card) -> None:
-        self.grid[linei][sloti] = card
-        self.gridview.update()
-
-    def handle_round(self) -> None:
-        for linei, opponenti in ((2, 1), (1, 2)):
-            for sloti in range(self.grid.width):
-                if self.grid[linei][sloti] is None:
-                    continue  # No card in this slot
-                if self.grid[opponenti][sloti] is None:
-                    # FIXME Damage the player behind
-                    continue
-                self.grid[linei][sloti].attack(self.grid[opponenti][sloti])
-        
-        # FIXME Need some activate method instead of attack.
-        # FIXME Then need to add line 0 as well.
-        # FIXME It becomes apparent here: Terms like opponent and player are overloaded.
-        # FIXME A card that is dead should be removed.
-
-        # Activate player cards
-        # Activate opponent
-        # Activate from prepline
-
-        # FIXME Check if game over
-        self.gridview.update()
+    def find_opponent(self, card: Card) -> Optional[Card]:
+        rowi, sloti = self.find_card_position(card)
+        if rowi == 1:
+            return self.lines[2][sloti]
+        elif rowi == 2:
+            return self.lines[1][sloti]
+        return None
