@@ -24,6 +24,6 @@ def bootstrap(prefill: bool = False) -> None:
 
     if prefill:
         # Add some stuff:
-        grid[0][1] = Card("Steed", 2, 10)
-        grid[2][0] = Card("Cat", 1, 3)
-        grid[1][0] = Card("Dog", 2, 5)
+        grid[0][1] = Card(name="Steed", initial_power=2, initial_health=10)
+        grid[2][0] = Card(name="Cat", initial_power=1, initial_health=3)
+        grid[1][0] = Card(name="Dog", initial_power=2, initial_health=5)

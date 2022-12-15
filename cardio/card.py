@@ -8,8 +8,19 @@ from . import events
 @dataclass
 class Card:
     name: str
-    power: int
-    health: int
+    initial_power: int
+    initial_health: int
+
+    # Derived attributes:
+    power: int = 0
+    health: int = 0
+
+    def __post_init__(self) -> None:
+        self.reset()
+
+    def reset(self) -> None:
+        self.power = self.initial_power
+        self.health = self.initial_health
 
     def die(self) -> None:
         logging.debug("%s dies.", self.name)
