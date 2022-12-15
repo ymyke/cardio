@@ -42,8 +42,8 @@ class Grid:
         self.opponentline = Line(width)
         self.playerline = Line(width)
         self.lines = [self.prepline, self.opponentline, self.playerline]
-        # FIXME Should there be some CardSlot or some BaseCard or NoCard class for
-        # the empty spaces?
+        # QQ: Should there be some CardSlot or some BaseCard or NoCard class for the
+        # empty spaces?
 
     def __getitem__(self, linei):
         return self.lines[linei]
