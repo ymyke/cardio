@@ -87,11 +87,10 @@ class GridController:
                     # FIXME Damage the player behind
                     continue
                 self.grid[linei][sloti].attack(self.grid[opponenti][sloti])
-            # FIXME Need some activate method instead of attack.
-            # FIXME Then need to add line 0 as well.
+        
+        # FIXME Need some activate method instead of attack.
+        # FIXME Then need to add line 0 as well.
         # FIXME It becomes apparent here: Terms like opponent and player are overloaded.
-        # FIXME Have some Slot class, which would enable to do something like
-        # slot.is_empty() instead of checking for None?
         # FIXME A card that is dead should be removed.
 
         # Activate player cards

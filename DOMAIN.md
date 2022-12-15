@@ -13,6 +13,9 @@ Grid, e.g.:
 
 Card Slots
 - or similar?
+- Have some Slot class, which would enable to do something like `slot.is_empty()`
+  instead of checking for `None`?
+
 
 Cards
 - can be drawn, played, moved, can attack, ...
