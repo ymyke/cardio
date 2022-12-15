@@ -1,7 +1,8 @@
 from __future__ import annotations
+import logging
 from dataclasses import dataclass
 from . import session
-import logging
+from . import events
 
 
 @dataclass
@@ -10,20 +11,29 @@ class Card:
     power: int
     health: int
 
-    def loose_health(self, howmuch: int) -> None:
+    def die(self) -> None:
+        logging.debug("%s dies.", self.name)
+        self.health = 0
+        session.add_event(events.CardDied(self))
+        session.grid.remove_card(self)
+
+    def lose_health(self, howmuch: int) -> int:
         if howmuch >= self.health:
-            self.health = 0
-            # dies FIXME
-            logging.debug("%s dies.", self.name)
-            return
-        self.health -= howmuch
-        logging.debug("%s new health: %s", self.name, self.health)
+            howmuch = self.health
+            self.die()
+        else:
+            self.health -= howmuch
+            logging.debug("%s new health: %s", self.name, self.health)
+        return howmuch
         # FIXME Handle overflow damage to creature behind. Does that always happen? No
         # matter how the health got lost in the first place?
 
     def attack(self, opponent: Card) -> None:
         logging.debug("%s attacks %s", self.name, opponent.name)
-        opponent.loose_health(self.power)
+        e = events.CardAttacked(attacker=self, target=opponent, damage=0)
+        session.add_event(e)
+        howmuch = opponent.lose_health(self.power)
+        e.damage = howmuch
 
     def activate(self) -> None:
         logging.debug("%s becomes active", self.name)

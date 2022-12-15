@@ -1,8 +1,13 @@
 from typing import Optional
+from .events import Event
 
 grid = None
 view = None
 events = []
+
+
+def add_event(event: Event) -> None:
+    events.append(event)
 
 
 def bootstrap(prefill: bool = False) -> None:

@@ -1,4 +1,5 @@
 from typing import List, Optional, Tuple
+import logging
 from cardio.card import Card
 
 
@@ -15,8 +16,6 @@ class Line:
         return self.slots[sloti]
 
     def __setitem__(self, sloti, card: Card) -> None:
-        assert isinstance(card, Card)
-        assert self.slots[sloti] is None
         self.slots[sloti] = card
 
     def __iter__(self) -> object:
@@ -65,3 +64,9 @@ class Grid:
         elif rowi == 2:
             return self.lines[1][sloti]
         return None
+
+    def remove_card(self, card: Card) -> None:
+        rowi, sloti = self.find_card_position(card)
+        assert self[rowi][sloti] is card
+        self[rowi][sloti] = None
+        logging.debug("Removed card from [%s, %s]", rowi, sloti)
