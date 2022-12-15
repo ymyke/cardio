@@ -45,18 +45,6 @@ class Grid:
         # FIXME Should there be some CardSlot or some BaseCard or NoCard class for
         # the empty spaces?
 
-    def __repr__(self) -> str:
-        repr = ""
-        for i, line in enumerate(self):
-            repr += f"{i}   "
-            for slot in line.slots:
-                slotstr = ""
-                if slot is not None:
-                    slotstr = f"{slot.name[0:6]}|{slot.power}|{slot.health}"
-                repr += f"[{slotstr:13s}]"
-            repr += "\n"
-        return repr
-
     def __getitem__(self, linei):
         return self.lines[linei]
 
