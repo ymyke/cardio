@@ -60,9 +60,9 @@ class Grid:
     def find_opponent(self, card: Card) -> Optional[Card]:
         rowi, sloti = self.find_card_position(card)
         if rowi == 1:
-            return self.lines[2][sloti]
+            return self[2][sloti]
         elif rowi == 2:
-            return self.lines[1][sloti]
+            return self[1][sloti]
         return None
 
     def remove_card(self, card: Card) -> None:
