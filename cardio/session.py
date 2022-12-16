@@ -19,7 +19,7 @@ def bootstrap(prefill: bool = False) -> None:
     global grid
     global view
 
-    grid = Grid(4)
+    grid = Grid(4)  # QQ: What if the grid size changes in the game?
     view = SimpleView(grid)
 
     if prefill:
