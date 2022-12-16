@@ -14,6 +14,7 @@ def setup_grid(grid: Grid) -> None:
 
 def test_the_game():
     session.bootstrap()
+    session.view.non_blocking = True
     targetgrid = [[None for _ in range(4)] for _ in range(3)]
 
     targetgrid[0][1] = Card(
