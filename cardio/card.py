@@ -40,6 +40,7 @@ class Card:
         session.grid.remove_card(self)
 
     def lose_health(self, howmuch: int) -> int:
+        assert howmuch > 0
         if howmuch >= self.health:
             howmuch = self.health
             self.die()
@@ -52,6 +53,7 @@ class Card:
         logging.debug("%s gets attacked by %s", self.name, opponent.name)
         prep = self.get_prep_card()
         howmuch = self.lose_health(opponent.power)
+        session.view.get_attacked(self, opponent)
         if opponent.power > howmuch and prep is not None:
             logging.debug(
                 "%s gets overflow damage of %s", prep.name, opponent.power - howmuch
@@ -59,12 +61,17 @@ class Card:
             prep.lose_health(opponent.power - howmuch)
 
     def attack(self, opponent: Card) -> None:
+        if self.power == 0:
+            logging.debug("%s would attack but has 0 power, so doesn't", self.name)
+            return
         logging.debug("%s attacks %s", self.name, opponent.name)
-        # FIXME Some view update here? Maybe with a view event?
         opponent.get_attacked(self)
 
     def activate(self) -> None:
         logging.debug("%s becomes active", self.name)
         opponent = session.grid.find_opponent(self)
+        session.view.activate_card(self)
         if opponent is not None:
             self.attack(opponent)
+        else:
+            pass  # FIXME Apply damage to player/opponent
