@@ -19,9 +19,11 @@ class GridView:
 
 class SimpleView(GridView):
     frames: dict = {}
+    non_blocking: bool = False
 
     def update(self) -> None:
-        input()
+        if not self.non_blocking:
+            input()
         os.system("cls")
         repr = ""
         for i, line in enumerate(self.model):
