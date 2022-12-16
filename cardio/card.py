@@ -3,7 +3,6 @@ import logging
 from dataclasses import dataclass
 from typing import Optional
 from . import session
-from . import events
 
 
 @dataclass
@@ -31,10 +30,13 @@ class Card:
             raise RuntimeError("Trying to get sloti for card that is not on the grid.")
         return sloti
 
+    def get_prep_card(self) -> Optional[Card]:
+        """Get the card from the prepline of this cards slot."""
+        return session.grid.prepline[self.get_sloti()]
+
     def die(self) -> None:
         logging.debug("%s dies.", self.name)
         self.health = 0
-        session.add_event(events.CardDies(self))
         session.grid.remove_card(self)
 
     def lose_health(self, howmuch: int) -> int:
@@ -45,21 +47,21 @@ class Card:
             self.health -= howmuch
             logging.debug("%s new health: %s", self.name, self.health)
         return howmuch
-        # FIXME Handle overflow damage to creature behind. Does that always happen? No
-        # matter how the health got lost in the first place?
 
     def get_attacked(self, opponent: Card) -> None:
         logging.debug("%s gets attacked by %s", self.name, opponent.name)
-        sloti = self.get_sloti()
+        prep = self.get_prep_card()
         howmuch = self.lose_health(opponent.power)
-        if opponent.power > howmuch:
-            session.add_event(
-                events.OverflowDamage(damage=opponent.power - howmuch, sloti=sloti)
+        if opponent.power > howmuch and prep is not None:
+            logging.debug(
+                "%s gets overflow damage of %s", prep.name, opponent.power - howmuch
             )
+            prep.lose_health(opponent.power - howmuch)
 
     def attack(self, opponent: Card) -> None:
         logging.debug("%s attacks %s", self.name, opponent.name)
-        session.add_event(events.CardGetsAttacked(attacker=self, target=opponent))
+        # FIXME Some view update here? Maybe with a view event?
+        opponent.get_attacked(self)
 
     def activate(self) -> None:
         logging.debug("%s becomes active", self.name)

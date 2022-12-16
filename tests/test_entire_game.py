@@ -1,9 +1,9 @@
 import cardio.session as session
 from cardio.card import Card
 from cardio.grid import Grid
-import cardio.events as events
-import cardio.commands as commands
 import cardio.handlers as handlers
+
+# QQ: Could we use a special view that generates output that makes testing much easier?
 
 
 def setup_grid(grid: Grid) -> None:
@@ -24,11 +24,7 @@ def test_the_game():
     )
 
     setup_grid(session.grid)
-    handlers.handle_turn(commands.HandleTurn())
-    handlers.handle_turn(commands.HandleTurn())
+    handlers.handle_turn()
+    handlers.handle_turn()
 
     assert [[c for c in session.grid[row]] for row in range(3)] == targetgrid
-    assert [type(e) for e in session.events] == [events.CardGetsAttacked] * 4 + [
-        events.CardDies
-    ]
-    assert [getattr(e, "damage", None) for e in session.events] == [1, 2, 1, 1, None]

@@ -1,13 +1,8 @@
-from typing import Optional
-from .events import Event
-
 grid = None
 view = None
 events = []
 
-
-def add_event(event: Event) -> None:
-    events.append(event)
+# QQ: Should this rather be Game instead of session? Or should there be a Game class?
 
 
 def bootstrap(prefill: bool = False) -> None:
