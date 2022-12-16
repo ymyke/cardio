@@ -16,7 +16,9 @@ class Card:
     health: int = 0
 
     def __post_init__(self) -> None:
-        self.reset()
+        if self.power == 0 or self.health == 0:
+            # (This test allows to explicitly set power and health, e.g., for tests.)
+            self.reset()
 
     def reset(self) -> None:
         self.power = self.initial_power
