@@ -1,10 +1,32 @@
-# from allocation.domain import commands, events, model
 from . import session
 from . import commands
-from .card import Card
+from . import events
+
+# ---------- events ----------
 
 
-def handle_turn(cmd: commands.HandleTurn)->None:
+def gets_attacked(event: events.CardGetsAttacked) -> None:
+    event.target.get_attacked(event.attacker)
+    session.view.update()
+
+
+HANDLERS = {
+    events.CardGetsAttacked: [gets_attacked],
+}
+
+
+# ---------- commands ----------
+
+
+def handle_all_events() -> None:
+    while session.events:
+        e = session.events.pop(0)
+        handlers = HANDLERS.get(type(e), [])
+        for h in handlers:
+            h(e)
+
+
+def handle_turn(cmd: commands.HandleTurn) -> None:
 
     # for linei, opponenti in ((2, 1), (1, 2)):
     #     for sloti in range(self.grid.width):
@@ -22,15 +44,17 @@ def handle_turn(cmd: commands.HandleTurn)->None:
 
     # Activate player cards
     session.grid.playerline.activate()
+    handle_all_events()
     # Activate opponent cards
     session.grid.opponentline.activate()
+    handle_all_events()
     # Activate from prepline
     session.grid.prepline.prepare()
+    handle_all_events()
 
     # FIXME Check if game over
 
     session.view.update()  # FIXME Should be done automatically somewhere?
-
 
 
 # def add_card(cmd: commands.AddCard) -> None:

@@ -1,6 +1,7 @@
 from __future__ import annotations
 import logging
 from dataclasses import dataclass
+from typing import Optional
 from . import session
 from . import events
 
@@ -24,10 +25,16 @@ class Card:
         self.power = self.initial_power
         self.health = self.initial_health
 
+    def get_sloti(self) -> int:
+        sloti = session.grid.find_card_position(self)[1]
+        if sloti is None:
+            raise RuntimeError("Trying to get sloti for card that is not on the grid.")
+        return sloti
+
     def die(self) -> None:
         logging.debug("%s dies.", self.name)
         self.health = 0
-        session.add_event(events.CardDied(self))
+        session.add_event(events.CardDies(self))
         session.grid.remove_card(self)
 
     def lose_health(self, howmuch: int) -> int:
@@ -41,12 +48,18 @@ class Card:
         # FIXME Handle overflow damage to creature behind. Does that always happen? No
         # matter how the health got lost in the first place?
 
+    def get_attacked(self, opponent: Card) -> None:
+        logging.debug("%s gets attacked by %s", self.name, opponent.name)
+        sloti = self.get_sloti()
+        howmuch = self.lose_health(opponent.power)
+        if opponent.power > howmuch:
+            session.add_event(
+                events.OverflowDamage(damage=opponent.power - howmuch, sloti=sloti)
+            )
+
     def attack(self, opponent: Card) -> None:
         logging.debug("%s attacks %s", self.name, opponent.name)
-        e = events.CardAttacked(attacker=self, target=opponent, damage=0)
-        session.add_event(e)
-        howmuch = opponent.lose_health(self.power)
-        e.damage = howmuch
+        session.add_event(events.CardGetsAttacked(attacker=self, target=opponent))
 
     def activate(self) -> None:
         logging.debug("%s becomes active", self.name)

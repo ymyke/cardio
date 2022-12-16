@@ -28,7 +28,7 @@ def test_the_game():
     handlers.handle_turn(commands.HandleTurn())
 
     assert [[c for c in session.grid[row]] for row in range(3)] == targetgrid
-    assert [type(e) for e in session.events] == [events.CardAttacked] * 4 + [
-        events.CardDied
+    assert [type(e) for e in session.events] == [events.CardGetsAttacked] * 4 + [
+        events.CardDies
     ]
     assert [getattr(e, "damage", None) for e in session.events] == [1, 2, 1, 1, None]

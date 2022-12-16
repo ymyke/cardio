@@ -7,12 +7,21 @@ class Event:
 
 
 @dataclass
-class CardAttacked(Event):
+class CardGetsAttacked(Event):
     attacker: Card
     target: Card
-    damage: int
 
 
 @dataclass
-class CardDied(Event):
+class OverflowDamage(Event):
+    damage: int
+    sloti: int
+
+
+@dataclass
+class CardDies(Event):
     target: Card
+
+
+# FIXME These cards will all point to objects that can still change and don't reflect
+# the state at which the event was generated. Does that make sense???

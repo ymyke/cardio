@@ -9,3 +9,4 @@ logging.basicConfig(level=logging.DEBUG)
 session.bootstrap(prefill=True)
 
 handlers.handle_turn(commands.HandleTurn())
+handlers.handle_turn(commands.HandleTurn())
