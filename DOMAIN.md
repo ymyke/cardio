@@ -2,9 +2,9 @@ First up:
 - 1 fight between 2 cards.
 
 Grid, e.g.:
-↓↓↓↓
-☐☐☐☐
-☐☐☐☐
+↓↓↓↓  <- prepper
+☐☐☐☐  <- opponent
+☐☐☐☐  <- player
 - But can be flexible
 - Needs update function
 - PP: The grid controls the cards. The cards don't control themselves. The grid knows
@@ -24,10 +24,13 @@ Cards
 - Are sigils best modeled as something like side effects or similar? -- Also for stuff like overflow damage etc.?
 - Sigils:
   - can evolve! I.e., need to track their own states as to when played etc.
+- Important: A card in a deck is also something like a blueprint for a card that is on
+  the grid. Once it leaves the grid, the original values need to be restored!
+
 
 Card Blueprints
 - Used to instantiate concrete cards from. -- Are those templates or rather subclasses?
-  -- I think superclasses. 
+  -- I think subclasses. 
 
 Decks
 - Player
@@ -40,6 +43,7 @@ Decks
 
 BasePlayer
 - PlayerPlayer or OpponentPlayer
+- Or BaseAgent & PlayerAgent & OpponentAgent?
 
 OpponentPlayerBehavior
 - When he brings which cards into play.
