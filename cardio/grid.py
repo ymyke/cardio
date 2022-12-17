@@ -51,6 +51,7 @@ class Grid:
         return self.lines.__iter__()
 
     def find_card_position(self, card: Card) -> Tuple[Optional[int], Optional[int]]:
+        # FIXME Rename all row/rowi to line/linei
         for rowi, row in enumerate(self.lines):
             for sloti in range(self.width):
                 if row[sloti] is card:
