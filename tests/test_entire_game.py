@@ -28,4 +28,4 @@ def test_the_game():
     handlers.handle_turn()
     handlers.handle_turn()
 
-    assert [[c for c in session.grid[row]] for row in range(3)] == targetgrid
+    assert [[c for c in session.grid[linei]] for linei in range(3)] == targetgrid

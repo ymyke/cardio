@@ -39,11 +39,11 @@ class SimpleView(GridView):
         self.frames = {}
 
     def activate_card(self, card: Card) -> None:
-        rowi, sloti = self.model.find_card_position(card)
-        self.frames[f"{rowi}:{sloti}"] = "**"
+        linei, sloti = self.model.find_card_position(card)
+        self.frames[f"{linei}:{sloti}"] = "**"
         self.update()
 
     def get_attacked(self, target: Card, attacker: Card) -> None:
-        rowi, sloti = self.model.find_card_position(target)
-        self.frames[f"{rowi}:{sloti}"] = "><"
+        linei, sloti = self.model.find_card_position(target)
+        self.frames[f"{linei}:{sloti}"] = "><"
         self.update()

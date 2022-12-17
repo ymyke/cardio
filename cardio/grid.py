@@ -51,23 +51,22 @@ class Grid:
         return self.lines.__iter__()
 
     def find_card_position(self, card: Card) -> Tuple[Optional[int], Optional[int]]:
-        # FIXME Rename all row/rowi to line/linei
-        for rowi, row in enumerate(self.lines):
+        for linei, line in enumerate(self.lines):
             for sloti in range(self.width):
-                if row[sloti] is card:
-                    return (rowi, sloti)
+                if line[sloti] is card:
+                    return (linei, sloti)
         return (None, None)
 
     def find_opponent(self, card: Card) -> Optional[Card]:
-        rowi, sloti = self.find_card_position(card)
-        if rowi == 1:
+        linei, sloti = self.find_card_position(card)
+        if linei == 1:
             return self[2][sloti]
-        elif rowi == 2:
+        elif linei == 2:
             return self[1][sloti]
         return None
 
     def remove_card(self, card: Card) -> None:
-        rowi, sloti = self.find_card_position(card)
-        assert self[rowi][sloti] is card
-        self[rowi][sloti] = None
-        logging.debug("Removed card from [%s, %s]", rowi, sloti)
+        linei, sloti = self.find_card_position(card)
+        assert self[linei][sloti] is card
+        self[linei][sloti] = None
+        logging.debug("Removed card from [%s, %s]", linei, sloti)
