@@ -44,6 +44,7 @@ class Card:
     def get_opposing_agent(self) -> Agent:
         return session.computeragent if self.get_linei() == 2 else session.humanagent
         # QQ: Use enums or something instead of 0, 1, 2 for the lines?
+        # QQ: Should this be a grid function? (Also some of the other methods?)
 
     def die(self) -> None:
         logging.debug("%s dies.", self.name)
