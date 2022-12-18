@@ -8,6 +8,7 @@ class Agent:
     health: int
     initial_health: int
     lives: int
+    # FIXME: Score? Money? ...?
 
     def lose_health(self, howmuch: int) -> None:
         """Agent's health can go below zero, the number below zero denoting overflow

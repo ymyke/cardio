@@ -11,6 +11,7 @@ class Card:
     name: str
     initial_power: int
     initial_health: int
+    # FIXME How much blood needed?
 
     # Derived attributes:
     power: int = 0
@@ -101,5 +102,5 @@ class Card:
             )
             return
         logging.debug("Preparing %s, moving to computer line", self.name)
-        session.grid.move_card(self, to_linei=1, to_sloti=sloti) 
+        session.grid.move_card(self, to_linei=1, to_sloti=sloti)
         self.activate()
