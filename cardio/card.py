@@ -87,3 +87,19 @@ class Card:
             self.attack(opponent)
         elif self.power > 0:
             self.get_opposing_agent().lose_health(self.power)
+
+    def prepare(self) -> None:
+        linei, sloti = session.grid.find_card_position(self)
+        assert linei == 0 and sloti is not None
+        prep_to_card = session.grid[1][sloti]
+        # ^ QQ: Should this be a method like get_card() or something?
+        if prep_to_card is not None:
+            logging.debug(
+                "Preparing %s but the prep-to space is occupied by %s",
+                self.name,
+                prep_to_card.name,
+            )
+            return
+        logging.debug("Preparing %s, moving to computer line", self.name)
+        session.grid.move_card(self, to_linei=1, to_sloti=sloti) 
+        self.activate()

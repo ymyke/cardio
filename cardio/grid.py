@@ -15,7 +15,7 @@ class Line:
     def __getitem__(self, sloti: int) -> Optional[Card]:
         return self.slots[sloti]
 
-    def __setitem__(self, sloti, card: Card) -> None:
+    def __setitem__(self, sloti, card: Optional[Card]) -> None:
         self.slots[sloti] = card
 
     def __iter__(self) -> object:
@@ -25,7 +25,10 @@ class Line:
         self[sloti] = card
 
     def prepare(self) -> None:
-        pass
+        for card in self.slots:
+            if card is None:
+                continue
+            card.prepare()
 
     def activate(self) -> None:
         for card in self.slots:
@@ -71,3 +74,10 @@ class Grid:
         assert self[linei][sloti] is card
         self[linei][sloti] = None
         logging.debug("Removed card from [%s, %s]", linei, sloti)
+
+    def move_card(self, card: Card, to_linei: int, to_sloti: int) -> None:
+        from_linei, from_sloti = self.find_card_position(card)
+        assert self[to_linei][to_sloti] is None
+        # FIXME Use get_card() when/if we have it.
+        self[to_linei][to_sloti] = card
+        self[from_linei][from_sloti] = None
