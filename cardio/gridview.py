@@ -1,6 +1,10 @@
 import os
 from .card import Card
 from .grid import Grid
+from . import session
+
+# FIXME This is not nice: On one hand, the view has a link to the model as an attribute.
+# On the other, it accesses the session directly. Use only one of these mechanisms!
 
 
 class GridView:
@@ -11,6 +15,8 @@ class GridView:
     def update(self) -> None:
         pass
 
+    # FIXME Need to add more blueprint methods here.
+
 
 # QQ: Would it make things easier / more decoupled if the model would send certain view
 # events to the view which then get handled appropriately? E.g., AttackAnimation or
@@ -19,12 +25,10 @@ class GridView:
 
 class SimpleView(GridView):
     frames: dict = {}
+    msg: str = ""
     non_blocking: bool = False
 
     def update(self) -> None:
-        if not self.non_blocking:
-            input()
-        os.system("cls")
         repr = ""
         for i, line in enumerate(self.model):
             repr += f"{i}   "
@@ -36,7 +40,25 @@ class SimpleView(GridView):
                 repr += f"{frame[0]}{slotstr:13s}{frame[1]}"
             repr += "\n"
         print(repr)
+
+        print(
+            f"\nYour health: {session.humanagent.health} | His health: {session.computeragent.health}"
+        )
+
+        print(
+            f"\nYour lives: {session.humanagent.lives} | His lives: {session.computeragent.lives}"
+        )
+
+        if self.msg != "":
+            print(f"\n{self.msg}")
+
+        print()
+        if not self.non_blocking:
+            input()
+        os.system("cls")
+
         self.frames = {}
+        self.msg = ""
 
     def activate_card(self, card: Card) -> None:
         linei, sloti = self.model.find_card_position(card)
@@ -47,3 +69,10 @@ class SimpleView(GridView):
         linei, sloti = self.model.find_card_position(target)
         self.frames[f"{linei}:{sloti}"] = "><"
         self.update()
+
+    def human_wins_fight(self) -> None:
+        self.msg = "You won!"
+
+    def computer_wins_fight(self) -> None:
+        # QQ: Boss fights will work differently.
+        self.msg = "You lost!"
