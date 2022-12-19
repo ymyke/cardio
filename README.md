@@ -1,4 +1,8 @@
 
+# Todo
+
+- Write tests for all existing classes and all card characteristics and sigils.
+
 # Curses
 
 - https://inventwithpython.com/pygcurse/tutorial/
