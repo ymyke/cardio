@@ -5,7 +5,7 @@ import cardio.handlers as handlers
 
 logging.basicConfig(level=logging.DEBUG)
 
-session.bootstrap(prefill=True)
-session.view.non_blocking = True
-handlers.handle_turn()
-handlers.handle_turn()
+session.setup(prefill=True)
+# session.view.non_blocking = True
+
+handlers.play_game()
