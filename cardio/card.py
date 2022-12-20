@@ -82,7 +82,7 @@ class Card:
             return
 
         logging.debug(
-            "%s %s attacks %s %s",
+            "%s%s attacks %s %s",
             self.name,
             "".join(s.value.symbol for s in self.sigils),
             opponent.name,
