@@ -1,4 +1,4 @@
-from cardio import Card, Sigil, session, handlers
+from cardio import Card, Sigil, Agent, session, handlers
 
 
 def do_the_fight(humancard: Card, computercard: Card) -> None:
@@ -7,6 +7,8 @@ def do_the_fight(humancard: Card, computercard: Card) -> None:
     session.view.non_blocking = True
     session.grid[1][0] = computercard
     session.grid[2][0] = humancard
+    session.humanagent = Agent(name="Schnuzgi", health=5, initial_health=5, lives=1)
+    session.computeragent = Agent(name="Leshy", health=5, initial_health=5, lives=1)
     handlers.play_game()
 
 
@@ -66,6 +68,7 @@ def test_soaring():
     do_the_fight(hc, cc)
     assert hc.health == 10
     assert cc.health == 3
+    assert session.grid[1][0] is cc
     assert session.computeragent.lives == 0
 
 
@@ -85,6 +88,7 @@ def test_soaring_vs_airdefense():
     do_the_fight(hc, cc)
     assert hc.health == 16
     assert cc.health == 0
+    assert session.grid[1][0] is None
     assert session.computeragent.lives == 0
 
 
@@ -104,4 +108,20 @@ def test_soaring_and_instantdeath_vs_airdefense():
     do_the_fight(hc, cc)
     assert hc.health == 20
     assert cc.health == 0
+    assert session.grid[1][0] is None
+    assert session.computeragent.lives == 0
+
+
+def test_soaring_and_instantdeath_vs_no_airdefense():
+    hc = Card(
+        name="Human Card",
+        initial_power=1,
+        initial_health=20,
+        sigils=[Sigil.SOARING, Sigil.INSTANTDEATH],
+    )
+    cc = Card(name="Computer Card", initial_power=2, initial_health=3)
+    do_the_fight(hc, cc)
+    assert hc.health == 10
+    assert cc.health == 3
+    assert session.grid[1][0] is cc
     assert session.computeragent.lives == 0
