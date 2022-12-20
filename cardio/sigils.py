@@ -44,3 +44,4 @@ SigilList = List[Sigil]
 # - Poisonous? -> opponent gets poisoned and loses 1 health each round.
 # - Viral? -> line poisonous, but spreads?
 # - Pregnant? -> One-time fertility?
+# - Persevering? / Final Blow? -> hits one more time in dying.
