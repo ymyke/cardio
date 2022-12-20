@@ -1,8 +1,9 @@
 from __future__ import annotations
 import logging
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional
 from .agent import Agent
+from .sigils import Sigil, SigilList
 from . import session
 
 
@@ -12,10 +13,12 @@ class Card:
     initial_power: int
     initial_health: int
     # FIXME How much blood needed?
+    # FIXME Bones...
 
     # Derived attributes:
     power: int = 0
     health: int = 0
+    sigils: SigilList = field(default_factory=list)
 
     def __post_init__(self) -> None:
         if self.power == 0 or self.health == 0:
@@ -77,7 +80,29 @@ class Card:
         if self.power == 0:
             logging.debug("%s would attack but has 0 power, so doesn't", self.name)
             return
-        logging.debug("%s attacks %s", self.name, opponent.name)
+
+        logging.debug(
+            "%s %s attacks %s %s",
+            self.name,
+            "".join(s.value.symbol for s in self.sigils),
+            opponent.name,
+            "".join(s.value.symbol for s in opponent.sigils),
+        )
+
+        if Sigil.SOARING in self.sigils:
+            if Sigil.AIRDEFENSE in opponent.sigils:
+                if Sigil.INSTANTDEATH in self.sigils:
+                    opponent.die()
+                else:
+                    opponent.get_attacked(self)
+            else:
+                self.get_opposing_agent().lose_health(self.power)
+            return
+
+        if Sigil.INSTANTDEATH in self.sigils:
+            opponent.die()
+            return
+
         opponent.get_attacked(self)
 
     def activate(self) -> None:
@@ -88,6 +113,7 @@ class Card:
             self.attack(opponent)
         elif self.power > 0:
             self.get_opposing_agent().lose_health(self.power)
+            # ^ FIXME should this be in attack after all?
 
     def prepare(self) -> None:
         linei, sloti = session.grid.find_card_position(self)

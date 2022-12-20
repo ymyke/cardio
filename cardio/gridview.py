@@ -37,6 +37,8 @@ class SimpleView(GridView):
                 slotstr = ""
                 if slot is not None:
                     slotstr = f"{slot.name[0:6]}|{slot.power}|{slot.health}"
+                    sigilstr = "".join(s.value.symbol for s in slot.sigils)
+                    slotstr = slotstr + sigilstr
                 repr += f"{frame[0]}{slotstr:13s}{frame[1]}"
             repr += "\n"
         print(repr)

@@ -17,6 +17,7 @@ def setup(prefill: bool = False) -> None:
     from .gridview import SimpleView
     from .card import Card
     from .agent import Agent
+    from .sigils import Sigil
 
     global grid, view, humanagent, computeragent
 
@@ -26,7 +27,12 @@ def setup(prefill: bool = False) -> None:
     if prefill:
         # Add some stuff:
         grid[0][1] = Card(name="Steed", initial_power=2, initial_health=10)
-        grid[2][0] = Card(name="Cat", initial_power=1, initial_health=3)
+        grid[2][0] = Card(
+            name="Cat",
+            initial_power=1,
+            initial_health=3,
+            sigils=[Sigil.INSTANTDEATH, Sigil.SOARING],
+        )
         grid[1][0] = Card(name="Dog", initial_power=2, initial_health=5)
 
     humanagent = Agent(name="Schnuzgi", health=5, initial_health=5, lives=1)
