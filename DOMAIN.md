@@ -3,8 +3,9 @@ First up:
 
 Grid, e.g.:
 ↓↓↓↓  <- prepper
-☐☐☐☐  <- opponent
-☐☐☐☐  <- player
+☐☐☐☐  <- opponent -- better computer? because opponent has a different meaning already?
+☐☐☐☐  <- player -- better human?  
+// ^ FIXME Need to rename these?
 - But can be flexible
 - Needs update function
 - PP: The grid controls the cards. The cards don't control themselves. The grid knows
@@ -22,11 +23,23 @@ Cards
 - have scores, values, sigils, etc.
 - have meta information for curation, likes etc. -- maybe also stats?
 - Are sigils best modeled as something like side effects or similar? -- Also for stuff like overflow damage etc.?
-- Sigils:
-  - can evolve! I.e., need to track their own states as to when played etc.
 - Important: A card in a deck is also something like a blueprint for a card that is on
   the grid. Once it leaves the grid, the original values need to be restored!
+- Bones!!!
 
+Sigils
+- can evolve! I.e., need to track their own states as to when played etc. (???)
+- how to implement?
+  - callback hooks and sigil handlers?
+  - mixins?
+  - ...?
+
+
+Special behaviors
+- "Note that some cards have symbols in place of their Power, which represent a variable
+  number. For instance, the Worker Ant and Ant Queen have Ants power, which changes
+  depending on the number of ants in play. These symbols are defined as special
+  behaviours and not sigils."
 
 Card Blueprints
 - Used to instantiate concrete cards from. -- Are those templates or rather subclasses?
@@ -44,6 +57,7 @@ Decks
 BasePlayer
 - PlayerPlayer or OpponentPlayer
 - Or BaseAgent & PlayerAgent & OpponentAgent?
+- Or playeragent and computeragent?
 
 OpponentPlayerBehavior
 - When he brings which cards into play.
