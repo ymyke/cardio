@@ -10,7 +10,7 @@ def do_the_fight(humancard: Optional[Card], computercard: Optional[Card]) -> Non
     session.grid[2][0] = humancard
     session.humanagent = Agent(name="Human", health=5, initial_health=5, lives=1)
     session.computeragent = Agent(name="Computer", health=5, initial_health=5, lives=1)
-    handlers.play_game()
+    handlers.handle_fight()
 
 
 def test_vanilla_fight():

@@ -28,7 +28,7 @@ def test_the_game(caplog):
     )
 
     setup_grid(session.grid)
-    handlers.play_game()
+    handlers.handle_fight()
 
     assert [[c for c in session.grid[linei]] for linei in range(3)] == targetgrid
 

@@ -53,7 +53,7 @@ def test_game_hypo(mocker, slotlist):
     session.grid = grid
 
     before_nof_cards = len([c for slots in grid for c in slots if c is not None])
-    handlers.play_game()
+    handlers.handle_fight()
     after_nof_cards = len([c for slots in grid for c in slots if c is not None])
 
     assert after_nof_cards <= before_nof_cards

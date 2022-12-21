@@ -17,7 +17,7 @@ def handle_turn() -> None:
 #     self.gridview.update()
 
 
-def play_game() -> None:
+def handle_fight() -> None:
     while True:
         handle_turn()
         if session.humanagent.has_lost_life():

@@ -16,4 +16,4 @@ session.grid[2][0] = Card(
 )
 session.grid[1][0] = Card(name="Dog", initial_power=2, initial_health=5)
 
-handlers.play_game()
+handlers.handle_fight()
