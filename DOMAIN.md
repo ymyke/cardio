@@ -19,21 +19,12 @@ Card Slots
 
 
 Cards
-- can be drawn, played, moved, can attack, ...
-- have scores, values, sigils, etc.
 - have meta information for curation, likes etc. -- maybe also stats?
-- Are sigils best modeled as something like side effects or similar? -- Also for stuff like overflow damage etc.?
 - Important: A card in a deck is also something like a blueprint for a card that is on
   the grid. Once it leaves the grid, the original values need to be restored!
 - Bones!!!
 
 Sigils
-- can evolve! I.e., need to track their own states as to when played etc. (???)
-- how to implement?
-  - callback hooks and sigil handlers?
-  - mixins?
-  - ...?
-
 
 Special behaviors
 - "Note that some cards have symbols in place of their Power, which represent a variable
@@ -43,7 +34,7 @@ Special behaviors
 
 Card Blueprints
 - Used to instantiate concrete cards from. -- Are those templates or rather subclasses?
-  -- I think subclasses. 
+  -- I think templates. 
 
 Decks
 - Player
@@ -54,14 +45,19 @@ Decks
 - Enemy
   - Draw vs hand
 
-BasePlayer
-- PlayerPlayer or OpponentPlayer
-- Or BaseAgent & PlayerAgent & OpponentAgent?
-- Or playeragent and computeragent?
+Agents
 
-OpponentPlayerBehavior
+ComputerPlayerBehavior or -Strategy
 - When he brings which cards into play.
 - Maybe also when he does other things, e.g., if he also has items available.
+- A strategy could take some input parameters (initial deck, current grid, turn number,
+  ...) and return which cards will be played to which slot. Then the strategy can be as
+  constrained or free as necessary:
+  - Completely random strategy
+  - Adhering to rules or not (i.e., able to place any card anywhere)
+  - Needing to work with an initial deck
+  - Needing to adhere to placement rules such as blood sacrifices etc.
+  - ...
 
 Map
 
