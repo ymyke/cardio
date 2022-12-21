@@ -2,6 +2,7 @@
 # Todo
 
 - Write tests for all existing classes and all card characteristics and sigils.
+- Rename sigil to ink, seal, skill, mark, finesse, talent, special, ...?
 
 # Curses
 
