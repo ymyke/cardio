@@ -31,3 +31,7 @@ def play_game() -> None:
             # object right in the update_lives_and_health_after_death function but also
             # pass it to the view for some animation?
             break
+        if session.grid.is_empty():
+            # QQ: Should this also break when the grid is "powerless", i.e., no cards
+            # with >0 power?
+            break

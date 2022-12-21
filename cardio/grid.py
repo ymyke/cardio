@@ -53,6 +53,9 @@ class Grid:
     def __iter__(self) -> object:
         return self.lines.__iter__()
 
+    def is_empty(self) -> bool:
+        return all(c is None for l in self.lines for c in l.slots)
+
     def find_card_position(self, card: Card) -> Tuple[Optional[int], Optional[int]]:
         for linei, line in enumerate(self.lines):
             for sloti in range(self.width):
