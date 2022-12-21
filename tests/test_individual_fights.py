@@ -1,14 +1,15 @@
+from typing import Optional
 from cardio import Card, Sigil, Agent, session, handlers
 
 
-def do_the_fight(humancard: Card, computercard: Card) -> None:
+def do_the_fight(humancard: Optional[Card], computercard: Optional[Card]) -> None:
     # FIXME Deactivate view? Refactor to a fixture in conftest?
     session.setup()
     session.view.non_blocking = True
     session.grid[1][0] = computercard
     session.grid[2][0] = humancard
-    session.humanagent = Agent(name="Schnuzgi", health=5, initial_health=5, lives=1)
-    session.computeragent = Agent(name="Leshy", health=5, initial_health=5, lives=1)
+    session.humanagent = Agent(name="Human", health=5, initial_health=5, lives=1)
+    session.computeragent = Agent(name="Computer", health=5, initial_health=5, lives=1)
     handlers.play_game()
 
 
