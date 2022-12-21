@@ -67,6 +67,13 @@ class Card:
 
     def get_attacked(self, opponent: Card) -> None:
         logging.debug("%s gets attacked by %s", self.name, opponent.name)
+
+        if Sigil.SPINES in self.sigils:
+            logging.debug(
+                "%s causes 1 damage on %s with Spines", self.name, opponent.name
+            )
+            opponent.lose_health(1)
+
         prep = self.get_prep_card()
         howmuch = self.lose_health(opponent.power)
         session.view.get_attacked(self, opponent)

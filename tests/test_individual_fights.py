@@ -125,3 +125,29 @@ def test_soaring_and_instantdeath_vs_no_airdefense():
     assert cc.health == 3
     assert session.grid[1][0] is cc
     assert session.computeragent.lives == 0
+
+
+def test_spines():
+    hc = Card(name="Human Card", initial_power=2, initial_health=10)
+    cc = Card(
+        name="Computer Card", initial_power=2, initial_health=3, sigils=[Sigil.SPINES]
+    )
+    do_the_fight(hc, cc)
+    assert hc.health == 6
+    assert cc.health == 0
+    assert session.grid[1][0] is None
+    assert session.computeragent.lives == 0
+
+
+def test_spines_resulting_in_both_cards_dying_simultaneously():
+    hc = Card(name="Human Card", initial_power=1, initial_health=1)
+    cc = Card(
+        name="Computer Card", initial_power=0, initial_health=1, sigils=[Sigil.SPINES]
+    )
+    do_the_fight(hc, cc)
+    assert hc.health == 0
+    assert cc.health == 0
+    assert session.grid[1][0] is None
+    assert session.grid[2][0] is None
+    assert session.computeragent.lives == 1
+    assert session.humanagent.lives == 1
