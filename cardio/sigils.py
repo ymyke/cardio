@@ -45,3 +45,4 @@ SigilList = List[Sigil]
 # - Viral? -> line poisonous, but spreads?
 # - Pregnant? -> One-time fertility?
 # - Persevering? / Final Blow? -> hits one more time in dying.
+# - Healing? -> itself or others around it?
