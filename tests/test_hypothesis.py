@@ -38,7 +38,7 @@ def test_game_hypo(mocker, slotlist):
     assume(any(c.power > 0 for c in slotlist[4:] if c is not None))
     
     # Set up session:
-    session.setup(prefill=False)
+    session.setup()
     mocker.patch("cardio.session.view")  # Deactivate the view to improve performance
 
     # Set up the grid:
