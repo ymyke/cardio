@@ -74,3 +74,7 @@ Items
 
 Achievements / Badges
 - for the human player
+
+Random ideas
+- could cards gain experience with fights and other things and evolve over time (stats
+  would be permanent) but also die for real?
