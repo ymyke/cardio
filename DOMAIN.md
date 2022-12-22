@@ -69,3 +69,6 @@ Locations
 
 Items
 - also things like the totem? Or are they something else?
+
+Achievements / Badges
+- for the human player
