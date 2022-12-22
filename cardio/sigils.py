@@ -46,3 +46,9 @@ SigilList = List[Sigil]
 # - Pregnant? -> One-time fertility?
 # - Persevering? / Final Blow? -> hits one more time in dying.
 # - Healing? -> itself or others around it?
+# - Annihilator? -> Destroys a card for good. Not just for this fight but for the entire
+#   game. (Only makes sense for the human player maybe?)
+# - Bless and curse or similar? -> Affect cards negatively or positively for an entire
+#   run? E.g., poisoned or so, or added strength for cards left & right for longer than
+#   a fight? -- That could be a way to be more strategic around building a deck. In the
+#   negative cases, the player would try to get rid of a card. Or heal it?

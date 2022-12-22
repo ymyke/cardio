@@ -44,6 +44,10 @@ Decks
   - Hand
 - Enemy
   - Draw vs hand
+- Idea: What about if the human player had 2 decks he could build as he saw fit? So
+  whenever he got a new card he could chose whether to add it his A or his B deck. Then
+  he could build a squirell deck vs the rest on his own accord or go with some other
+  strategy.
 
 Agents
 
