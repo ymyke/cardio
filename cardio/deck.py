@@ -1,6 +1,6 @@
 """
 - Real deck: I have my deck, where all cards are in normal/initial state (with some
-  excpetions maybe such as the Boroboro or how it's called).
+  excpetions maybe such as the Ouroboros).
 - Fight deck & squirrel deck: At the beginning of a fight, a squirell deck is created
   and a copy of the above deck is created. The fight deck (?).
 - Hand: Then, the top x cards from the fight deck and the top 1 card from the squirrel
