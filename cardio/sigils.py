@@ -35,6 +35,7 @@ class Sigil(Enum):
         name="Air Defense",
         symbol="🚀",
         description="A card with Air Defense blocks opposing Soaring creatures.",
+        # QQ: Maybe REACHHIGH instead of AIRDEFENSE? With an arm symbol?
     )
 
 
