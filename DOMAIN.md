@@ -23,6 +23,8 @@ Cards
 - Important: A card in a deck is also something like a blueprint for a card that is on
   the grid. Once it leaves the grid, the original values need to be restored!
 - Bones!!!
+- Blood / cost!!!
+- Tribes???
 
 Sigils
 
