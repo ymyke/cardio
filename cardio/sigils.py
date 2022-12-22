@@ -53,3 +53,5 @@ SigilList = List[Sigil]
 #   run? E.g., poisoned or so, or added strength for cards left & right for longer than
 #   a fight? -- That could be a way to be more strategic around building a deck. In the
 #   negative cases, the player would try to get rid of a card. Or heal it?
+# - Recruit? -- Recruit one of the opponent's cards that you killed at the end of the
+#   fight.
