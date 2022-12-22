@@ -10,11 +10,9 @@
   different lists or something, but maybe not.)
 """
 
-from typing import Optional, List
+from typing import Optional
 import random
-from . import Card
-
-CardList = List[Card]  # FIXME Move this to card or elsewhere?
+from . import Card, CardList
 
 
 class Deck:

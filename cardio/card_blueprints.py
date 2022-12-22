@@ -1,6 +1,6 @@
 import copy
 from typing import List
-from . import Card, Sigil
+from . import Card, CardList, Sigil
 
 _BLUEPRINTS = [
     Card(name="Koala", initial_power=1, initial_health=3),
@@ -18,6 +18,5 @@ def create_card_from_blueprint(name: str) -> Card:
     return copy.deepcopy(found[0])
 
 
-def create_cards_from_blueprint(namelist: List[str]) -> List[Card]:
-    # FIXME Use CardList type? (But has to be moved somewhere else first?)
+def create_cards_from_blueprint(namelist: List[str]) -> CardList:
     return [create_card_from_blueprint(n) for n in namelist]

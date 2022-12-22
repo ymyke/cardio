@@ -1,7 +1,7 @@
 from __future__ import annotations
 import logging
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import Optional, List
 from .agent import Agent
 from .sigils import Sigil, SigilList
 from . import session
@@ -137,3 +137,8 @@ class Card:
         logging.debug("Preparing %s, moving to computer line", self.name)
         session.grid.move_card(self, to_linei=1, to_sloti=sloti)
         self.activate()
+
+
+# ----- Types -----
+
+CardList = List[Card]
