@@ -19,5 +19,5 @@ def create_card_from_blueprint(name: str) -> Card:
     return copy.deepcopy(found[0])
 
 
-def create_cards_from_blueprint(namelist: List[str]) -> CardList:
+def create_cards_from_blueprints(namelist: List[str]) -> CardList:
     return [create_card_from_blueprint(n) for n in namelist]
