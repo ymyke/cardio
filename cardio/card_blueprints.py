@@ -3,6 +3,7 @@ from typing import List
 from . import Card, CardList, Sigil
 
 _BLUEPRINTS = [
+    Card(name="Hamster", initial_power=0, initial_health=1),
     Card(name="Koala", initial_power=1, initial_health=3),
     Card(
         name="Porcupine", initial_power=1, initial_health=2, sigils=[Sigil.AIRDEFENSE]
