@@ -19,7 +19,7 @@ session.grid[1][0] = Card(name="Dog", initial_power=2, initial_health=5)
 handlers.handle_fight()
 
 
-#%%
+#%% -------------------- Lifecycle of decks in a run --------------------
 from cardio.card_blueprints import create_cards_from_blueprints, create_card_from_blueprint
 from cardio.deck import Deck
 
