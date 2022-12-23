@@ -2,6 +2,9 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import List
 
+# QQ: Maybe use a subclass such as TemporarySigil to implement things like temporary
+# buffs like the power buff thanks to the Leader sigil.
+
 
 @dataclass(frozen=True)
 class SigilSpec:
