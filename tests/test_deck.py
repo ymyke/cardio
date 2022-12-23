@@ -33,7 +33,7 @@ def test_add_card():
     assert d.cards[-1].name == "X"
 
 
-def test_drawcards():
+def test_draw_cards():
     d = Deck(create_some_cards())
     # Draw some:
     drawncards = d.draw_cards(2)
@@ -45,6 +45,13 @@ def test_drawcards():
     assert d.cards == []
     # Draw more:
     assert d.draw_cards(1) == []
+
+
+def test_draw_card():
+    d = Deck(create_some_cards())
+    drawncard = d.draw_card()
+    assert drawncard.name == "A"
+    assert [c.name for c in d.cards] == ["B", "C", "D"]
 
 
 def test_pick_card():

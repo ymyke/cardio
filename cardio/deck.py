@@ -33,7 +33,7 @@ class Deck:
         assert isinstance(card, Card)
         self.cards.append(card)
 
-    def draw_cards(self, howmany: int) -> Optional[CardList]:
+    def draw_cards(self, howmany: int) -> CardList:
         """Draw `howmany` cards from the left/beginning. Drawn cards are removed from
         the deck.
         """
@@ -41,6 +41,10 @@ class Deck:
         drawncards = self.cards[:howmany]
         del self.cards[:howmany]
         return drawncards
+
+    def draw_card(self) -> Card:
+        """Draw exactly 1 card."""
+        return self.draw_cards(1).pop()
 
     def pick_card(self, i: int) -> Card:
         """Pick sepcific card at position `i`, remove it from the deck and return it."""
