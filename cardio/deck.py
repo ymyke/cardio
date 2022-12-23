@@ -52,3 +52,8 @@ class Deck:
         card = self.cards[i]
         del self.cards[i]
         return card
+
+    def reset_cards(self) -> None:
+        """Reset all cards in deck."""
+        for card in self.cards:
+            card.reset()
