@@ -1,3 +1,14 @@
+"""Sigils
+
+Checklist when adding a new sigil:
+- Implement its logic in `Card` (and elsewhere, if necessary).
+- Check for possible interdependencies with other sigils and address those in the code
+  accordingly.
+- Add tests for sigil and all interdependencies.
+- Does the sigil add any kind of state to the card (or other cards or other parts of the
+  world) that would need to be reset (e.g., in `Card.reset`)?
+- Anything that needs to be saved?
+"""
 from dataclasses import dataclass
 from enum import Enum
 from typing import List
