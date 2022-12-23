@@ -115,7 +115,7 @@ class Card:
 
     def activate(self) -> None:
         logging.debug("%s becomes active", self.name)
-        opponent = session.grid.find_opponent(self)
+        opponent = session.grid.get_opposing_card(self)
         session.view.activate_card(self)
         if opponent is not None:
             self.attack(opponent)

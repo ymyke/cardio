@@ -63,8 +63,7 @@ class Grid:
                     return (linei, sloti)
         return (None, None)
 
-    def find_opponent(self, card: Card) -> Optional[Card]:
-        # FIXME Bad method name bc ambiguous
+    def get_opposing_card(self, card: Card) -> Optional[Card]:
         linei, sloti = self.find_card_position(card)
         if linei == 1:
             return self[2][sloti]
