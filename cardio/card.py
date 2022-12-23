@@ -54,6 +54,7 @@ class Card:
         logging.debug("%s dies.", self.name)
         self.health = 0
         session.grid.remove_card(self)
+        # FIXME Card must also be moved to a different deck?
 
     def lose_health(self, howmuch: int) -> int:
         assert howmuch > 0
