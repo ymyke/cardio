@@ -1,5 +1,8 @@
 import os
 
+# Later imports to prevent circular dependencies:
+# from . import Grid, SimpleView, Agent
+
 grid = None
 view = None
 humanagent = None
