@@ -69,3 +69,7 @@ SigilList = List[Sigil]
 #   negative cases, the player would try to get rid of a card. Or heal it?
 # - Recruit? -- Recruit one of the opponent's cards that you killed at the end of the
 #   fight.
+# - Hotblooded? -- Can be played at any time. (Doesn't really fit the basic gameplay
+#   model but might be a fun "real-time" element where you either press a key in time to
+#   interrupt the game flow or you missed it.)
+# - Quick? -- Strikes twice. Maybe at normal time and again after the opponent attacked.
