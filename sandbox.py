@@ -1,26 +1,36 @@
 # %%
 import logging
 from cardio import Card, Sigil, handlers, session
+from cardio.agent_strategies import Turn0OnlyStrategy
+
 logging.basicConfig(level=logging.DEBUG)
 
 session.setup()
 # session.view.non_blocking = True
 
-# Add some stuff:
-session.grid[0][1] = Card(name="Steed", initial_power=2, initial_health=10)
-session.grid[2][0] = Card(
-    name="Cat",
-    initial_power=1,
-    initial_health=3,
-    sigils=[Sigil.INSTANTDEATH, Sigil.SOARING],
+cs = Turn0OnlyStrategy(
+    [
+        ((0, 1), Card(name="Steed", initial_power=2, initial_health=10)),
+        ((1, 0), Card(name="Dog", initial_power=2, initial_health=5)),
+        (
+            (2, 0),
+            Card(
+                name="Cat",
+                initial_power=1,
+                initial_health=3,
+                sigils=[Sigil.INSTANTDEATH],
+            ),
+        ),
+    ]
 )
-session.grid[1][0] = Card(name="Dog", initial_power=2, initial_health=5)
-
-handlers.handle_fight()
+handlers.handle_fight(computerstrategy=cs)
 
 
 #%% -------------------- Lifecycle of decks in a run --------------------
-from cardio.card_blueprints import create_cards_from_blueprints, create_card_from_blueprint
+from cardio.card_blueprints import (
+    create_cards_from_blueprints,
+    create_card_from_blueprint,
+)
 from cardio.deck import Deck
 
 # Starter deck is for an entire run.
@@ -42,7 +52,7 @@ maindeck.add_card(create_card_from_blueprint("Weasel"))
 fightdeck = Deck()
 fightdeck.cards = maindeck.cards
 fightdeck.shuffle()
-hamsterdeck = Deck(create_cards_from_blueprints(["Hamster"]*10))
+hamsterdeck = Deck(create_cards_from_blueprints(["Hamster"] * 10))
 handdeck = Deck(fightdeck.draw_cards(3))
 handdeck.add_card(hamsterdeck.draw_card())
 useddeck = Deck()
@@ -51,5 +61,3 @@ useddeck = Deck()
 # stats/statuses that need to get reset will get reset:
 maindeck.cards = useddeck.cards + handdeck.cards + fightdeck.cards
 maindeck.reset_cards()
-
-
