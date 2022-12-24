@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 from typing import Tuple, List
 from . import Grid, Card
 
@@ -7,6 +7,7 @@ PositionAndCard = Tuple[Position, Card]
 
 
 class AgentStrategy(ABC):
+    @abstractmethod
     def play_cards(self, grid: Grid, turn_number: int) -> None:
         pass
 
