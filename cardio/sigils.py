@@ -73,3 +73,6 @@ SigilList = List[Sigil]
 #   model but might be a fun "real-time" element where you either press a key in time to
 #   interrupt the game flow or you missed it.)
 # - Quick? -- Strikes twice. Maybe at normal time and again after the opponent attacked.
+# - Hoarder? -- Draw another card when this card is played. (Different to the
+#   Inscryption Hoarder.)
+# - Echolot? -- Pick a specific card from the deck. (Like the Inscryption Hoarder.)
