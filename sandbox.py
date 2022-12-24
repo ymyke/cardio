@@ -53,10 +53,3 @@ maindeck.cards = useddeck.cards + handdeck.cards + fightdeck.cards
 maindeck.reset_cards()
 
 
-#%%
-from cardio import Agent
-a = Agent("A", 1, 1, 1)
-a = Agent("B", 1, 1, 1)
-# FIXME Check if they share the same deck attribute or not
-
-# %%
