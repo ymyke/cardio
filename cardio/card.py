@@ -1,10 +1,13 @@
 from __future__ import annotations
 import logging
 from dataclasses import dataclass, field
-from typing import Optional, List
-from .agent import Agent
+from typing import Optional, List, TYPE_CHECKING
 from .sigils import Sigil, SigilList
 from . import session
+
+if TYPE_CHECKING:
+    # To prevent circular imports. Should maybe be fixed somehow at some point.
+    from . import Agent
 
 
 @dataclass
