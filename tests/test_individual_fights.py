@@ -1,8 +1,8 @@
 from typing import Optional
-from cardio import Card, Sigil, Agent, session, handlers
+from cardio import Card, Skill, Agent, session, handlers
 from cardio.agent_strategies import Turn0OnlyStrategy
 
-# FIXME Should this rather be test_sigils?
+# FIXME Should this rather be test_skills?
 
 def do_the_fight(humancard: Optional[Card], computercard: Optional[Card]) -> None:
     # FIXME Deactivate view? Refactor to a fixture in conftest?
@@ -50,7 +50,7 @@ def test_instant_death():
         name="Human Card",
         initial_power=1,
         initial_health=10,
-        sigils=[Sigil.INSTANTDEATH],
+        skills=[Skill.INSTANTDEATH],
     )
     cc = Card(name="Computer Card", initial_power=2, initial_health=3)
     do_the_fight(hc, cc)
@@ -64,7 +64,7 @@ def test_soaring():
         name="Human Card",
         initial_power=1,
         initial_health=20,
-        sigils=[Sigil.SOARING],
+        skills=[Skill.SOARING],
     )
     cc = Card(name="Computer Card", initial_power=2, initial_health=3)
     do_the_fight(hc, cc)
@@ -79,13 +79,13 @@ def test_soaring_vs_airdefense():
         name="Human Card",
         initial_power=1,
         initial_health=20,
-        sigils=[Sigil.SOARING],
+        skills=[Skill.SOARING],
     )
     cc = Card(
         name="Computer Card",
         initial_power=2,
         initial_health=3,
-        sigils=[Sigil.AIRDEFENSE],
+        skills=[Skill.AIRDEFENSE],
     )
     do_the_fight(hc, cc)
     assert hc.health == 16
@@ -99,13 +99,13 @@ def test_soaring_and_instantdeath_vs_airdefense():
         name="Human Card",
         initial_power=1,
         initial_health=20,
-        sigils=[Sigil.SOARING, Sigil.INSTANTDEATH],
+        skills=[Skill.SOARING, Skill.INSTANTDEATH],
     )
     cc = Card(
         name="Computer Card",
         initial_power=2,
         initial_health=3,
-        sigils=[Sigil.AIRDEFENSE],
+        skills=[Skill.AIRDEFENSE],
     )
     do_the_fight(hc, cc)
     assert hc.health == 20
@@ -119,7 +119,7 @@ def test_soaring_and_instantdeath_vs_no_airdefense():
         name="Human Card",
         initial_power=1,
         initial_health=20,
-        sigils=[Sigil.SOARING, Sigil.INSTANTDEATH],
+        skills=[Skill.SOARING, Skill.INSTANTDEATH],
     )
     cc = Card(name="Computer Card", initial_power=2, initial_health=3)
     do_the_fight(hc, cc)
@@ -132,7 +132,7 @@ def test_soaring_and_instantdeath_vs_no_airdefense():
 def test_spines():
     hc = Card(name="Human Card", initial_power=2, initial_health=10)
     cc = Card(
-        name="Computer Card", initial_power=2, initial_health=3, sigils=[Sigil.SPINES]
+        name="Computer Card", initial_power=2, initial_health=3, skills=[Skill.SPINES]
     )
     do_the_fight(hc, cc)
     assert hc.health == 6
@@ -144,7 +144,7 @@ def test_spines():
 def test_spines_resulting_in_both_cards_dying_simultaneously():
     hc = Card(name="Human Card", initial_power=1, initial_health=1)
     cc = Card(
-        name="Computer Card", initial_power=0, initial_health=1, sigils=[Sigil.SPINES]
+        name="Computer Card", initial_power=0, initial_health=1, skills=[Skill.SPINES]
     )
     do_the_fight(hc, cc)
     assert hc.health == 0

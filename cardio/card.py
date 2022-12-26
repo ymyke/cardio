@@ -2,7 +2,7 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass, field
 from typing import Optional, List, TYPE_CHECKING
-from .sigils import Sigil, SigilList
+from .skills import Skill, SkillList
 from . import session
 
 if TYPE_CHECKING:
@@ -21,7 +21,7 @@ class Card:
     # Derived attributes:
     power: int = 0
     health: int = 0
-    sigils: SigilList = field(default_factory=list)
+    skills: SkillList = field(default_factory=list)
 
     def __post_init__(self) -> None:
         if self.power == 0 or self.health == 0:
@@ -72,7 +72,7 @@ class Card:
     def get_attacked(self, opponent: Card) -> None:
         logging.debug("%s gets attacked by %s", self.name, opponent.name)
 
-        if Sigil.SPINES in self.sigils:
+        if Skill.SPINES in self.skills:
             logging.debug(
                 "%s causes 1 damage on %s with Spines", self.name, opponent.name
             )
@@ -95,14 +95,14 @@ class Card:
         logging.debug(
             "%s%s attacks %s %s",
             self.name,
-            "".join(s.value.symbol for s in self.sigils),
+            "".join(s.value.symbol for s in self.skills),
             opponent.name,
-            "".join(s.value.symbol for s in opponent.sigils),
+            "".join(s.value.symbol for s in opponent.skills),
         )
 
-        if Sigil.SOARING in self.sigils:
-            if Sigil.AIRDEFENSE in opponent.sigils:
-                if Sigil.INSTANTDEATH in self.sigils:
+        if Skill.SOARING in self.skills:
+            if Skill.AIRDEFENSE in opponent.skills:
+                if Skill.INSTANTDEATH in self.skills:
                     opponent.die()
                 else:
                     opponent.get_attacked(self)
@@ -110,7 +110,7 @@ class Card:
                 self.get_opposing_agent().lose_health(self.power)
             return
 
-        if Sigil.INSTANTDEATH in self.sigils:
+        if Skill.INSTANTDEATH in self.skills:
             opponent.die()
             return
 
