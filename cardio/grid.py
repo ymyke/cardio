@@ -19,6 +19,16 @@ from cardio.card import Card
 # FIXME Get rid of Line
 # FIXME Use GridPos and maybe other helper types
 
+
+class GridPos(NamedTuple):
+    line: int
+    slot: int
+
+
+GridPosAndCard = Tuple[GridPos, Card]
+# FIXME Turn this also into a NamedTuple?
+
+
 class Line:
     """
 

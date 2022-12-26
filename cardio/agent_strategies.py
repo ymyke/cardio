@@ -1,15 +1,6 @@
 from abc import ABC, abstractmethod
-from typing import Tuple, List, NamedTuple, Optional
-from . import Grid, Card, Deck
-
-
-class GridPos(NamedTuple):
-    line: int
-    slot: int
-
-
-GridPosAndCard = Tuple[GridPos, Card]
-# FIXME Turn this also into a NamedTuple?
+from typing import List, Optional
+from . import Grid, Deck, GridPos, GridPosAndCard
 
 
 # FIXME This is maybe ComputerAgentStrategy bc it only applies to the computer agent,
