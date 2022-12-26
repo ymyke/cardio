@@ -33,15 +33,10 @@ def slotlist_strategy():
 def test_game_hypo(mocker, slotlist):
     # We want at least one card with power that is not in the prepper line in order to
     # prevent an endless loop when running the game:
-    # FIXME The requirement re the prepper line can be relaxed once there is code in
-    # place that makes cards from the prepper line.
     assume(any(c.power > 0 for c in slotlist[4:] if c is not None))
 
     session.setup()
     mocker.patch("cardio.session.view")  # Deactivate the view to improve performance
-
-    # FIXME No need to use the humanstrategy -- can do everything with the
-    # computerstrategy!!
 
     before_nof_cards = len([c for c in slotlist if c is not None])
     cs = Turn0OnlyStrategy([((i // 4, i % 4), c) for i, c in enumerate(slotlist)])
