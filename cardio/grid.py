@@ -11,10 +11,9 @@ Positions:
 
 """
 
-from typing import List, Optional, Tuple, NamedTuple
+from typing import List, Optional, NamedTuple
 import logging
 from cardio.card import Card
-
 
 # FIXME Use GridPos and maybe other helper types
 
@@ -52,6 +51,8 @@ class Grid:
                 if line[sloti] is card:
                     return GridPos(linei, sloti)
         return None
+
+    # FIXME Should there bet get_card and set_card methods?
 
     def get_opposing_card(self, card: Card) -> Optional[Card]:
         pos = self.find_card(card)
