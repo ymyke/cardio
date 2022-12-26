@@ -1,3 +1,4 @@
+settings.json
 poetry.lock
 __pycache__/
 .hypothesis/
