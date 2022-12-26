@@ -1,7 +1,7 @@
 # %%
 import logging
-from cardio import Card, Sigil, handlers, session
-from cardio.agent_strategies import Turn0OnlyStrategy
+from cardio import Card, handlers, session
+from cardio.agent_strategies import Turn0OnlyStrategy, GridPos, SimpleHumanStrategy
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -10,20 +10,12 @@ session.setup()
 
 cs = Turn0OnlyStrategy(
     [
-        ((0, 1), Card(name="Steed", initial_power=2, initial_health=10)),
-        ((1, 0), Card(name="Dog", initial_power=2, initial_health=5)),
-        (
-            (2, 0),
-            Card(
-                name="Cat",
-                initial_power=1,
-                initial_health=3,
-                sigils=[Sigil.INSTANTDEATH],
-            ),
-        ),
+        (GridPos(0, 1), Card(name="Steed", initial_power=2, initial_health=10)),
+        (GridPos(1, 0), Card(name="Dog", initial_power=2, initial_health=5)),
     ]
 )
-handlers.handle_fight(computerstrategy=cs)
+hs = SimpleHumanStrategy(session.grid)
+handlers.handle_fight(computerstrategy=cs, humanstrategy=hs)
 
 
 #%% -------------------- Lifecycle of decks in a run --------------------
