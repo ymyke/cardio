@@ -9,7 +9,7 @@ Grid, e.g.:
 - But can be flexible
 - Needs update function
 - PP: The grid controls the cards. The cards don't control themselves. The grid knows
-  where each card is. A card does not know where it is.(?) [QQ: What about a sigil that
+  where each card is. A card does not know where it is.(?) [QQ: What about a skill that
   affects cards/slots surrounding it???]
 
 Card Slots
@@ -26,7 +26,7 @@ Cards
 - Blood / cost!!!
 - Tribes???
 
-Sigils
+Skills
 
 Special behaviors
 - "Note that some cards have symbols in place of their Power, which represent a variable

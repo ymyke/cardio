@@ -1,12 +1,12 @@
 import copy
 from typing import List
-from . import Card, CardList, Sigil
+from . import Card, CardList, Skill
 
 _BLUEPRINTS = [
     Card(name="Hamster", initial_power=0, initial_health=1),
     Card(name="Koala", initial_power=1, initial_health=3),
     Card(
-        name="Porcupine", initial_power=1, initial_health=2, sigils=[Sigil.AIRDEFENSE]
+        name="Porcupine", initial_power=1, initial_health=2, skills=[Skill.AIRDEFENSE]
     ),
     Card(name="Lynx", initial_power=3, initial_health=2),
     Card(name="Weasel", initial_power=1, initial_health=1),
