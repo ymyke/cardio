@@ -33,16 +33,16 @@ class Card:
         self.health = self.initial_health
 
     def get_sloti(self) -> int:
-        sloti = session.grid.find_card_position(self)[1]
-        if sloti is None:
+        pos = session.grid.find_card(self)
+        if pos is None:
             raise RuntimeError("Trying to get sloti for card that is not on the grid.")
-        return sloti
+        return pos.slot
 
     def get_linei(self) -> int:
-        linei = session.grid.find_card_position(self)[0]
-        if linei is None:
+        pos = session.grid.find_card(self)
+        if pos is None:
             raise RuntimeError("Trying to get linei for card that is not on the grid.")
-        return linei
+        return pos.line
 
     def get_prep_card(self) -> Optional[Card]:
         """Get the card from the prepline of this cards slot."""
@@ -127,9 +127,9 @@ class Card:
             # ^ FIXME should this be in attack after all?
 
     def prepare(self) -> None:
-        linei, sloti = session.grid.find_card_position(self)
-        assert linei == 0 and sloti is not None
-        prep_to_card = session.grid[1][sloti]
+        pos = session.grid.find_card(self)
+        assert pos is not None and pos.line == 0
+        prep_to_card = session.grid[1][pos.slot]
         # ^ QQ: Should this be a method like get_card() or something?
         if prep_to_card is not None:
             logging.debug(
@@ -139,7 +139,7 @@ class Card:
             )
             return
         logging.debug("Preparing %s, moving to computer line", self.name)
-        session.grid.move_card(self, to_linei=1, to_sloti=sloti)
+        session.grid.move_card(self, to_linei=1, to_sloti=pos.slot)
         self.activate()
 
 

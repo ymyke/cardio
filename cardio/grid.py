@@ -46,34 +46,37 @@ class Grid:
     def is_empty(self) -> bool:
         return all(card is None for line in self.lines for card in line)
 
-    def find_card_position(self, card: Card) -> Tuple[Optional[int], Optional[int]]:
-        # FIXME Use GridPos
+    def find_card(self, card: Card) -> Optional[GridPos]:
         for linei, line in enumerate(self.lines):
             for sloti in range(self.width):
                 if line[sloti] is card:
-                    return (linei, sloti)
-        return (None, None)
+                    return GridPos(linei, sloti)
+        return None
 
     def get_opposing_card(self, card: Card) -> Optional[Card]:
-        linei, sloti = self.find_card_position(card)
-        if linei == 1:
-            return self[2][sloti]
-        elif linei == 2:
-            return self[1][sloti]
+        pos = self.find_card(card)
+        assert pos is not None
+        if pos.line == 1:
+            return self[2][pos.slot]
+        elif pos.line == 2:
+            return self[1][pos.slot]
         return None
 
     def remove_card(self, card: Card) -> None:
-        linei, sloti = self.find_card_position(card)
-        assert self[linei][sloti] is card
-        self[linei][sloti] = None
-        logging.debug("Removed card from [%s, %s]", linei, sloti)
+        pos = self.find_card(card)
+        assert pos is not None
+        assert self[pos.line][pos.slot] is card
+        self[pos.line][pos.slot] = None
+        logging.debug("Removed card from %s", pos)
 
     def move_card(self, card: Card, to_linei: int, to_sloti: int) -> None:
-        from_linei, from_sloti = self.find_card_position(card)
+        # FIXME Should this rather be to_pos?
+        from_pos = self.find_card(card)
+        assert from_pos is not None
         assert self[to_linei][to_sloti] is None
         # FIXME Use get_card() when/if we have it.
         self[to_linei][to_sloti] = card
-        self[from_linei][from_sloti] = None
+        self[from_pos.line][from_pos.slot] = None
 
     def activate_line(self, linei: int) -> None:
         assert linei in [1, 2]
@@ -85,3 +88,6 @@ class Grid:
         for card in self.lines[0]:
             if card is not None:
                 card.prepare()
+
+
+# FIXME Add more tests

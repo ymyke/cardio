@@ -63,13 +63,18 @@ class SimpleView(GridView):
         self.msg = ""
 
     def activate_card(self, card: Card) -> None:
-        linei, sloti = self.model.find_card_position(card)
-        self.frames[f"{linei}:{sloti}"] = "**"
+        pos = self.model.find_card(card)
+        if pos is None:
+            return
+        self.frames[f"{pos.line}:{pos.slot}"] = "**"
         self.update()
 
     def get_attacked(self, target: Card, attacker: Card) -> None:
-        linei, sloti = self.model.find_card_position(target)
-        self.frames[f"{linei}:{sloti}"] = "><"
+        pos = self.model.find_card(target)
+        # FIXME This test is necessary for one of the tests -- but why??
+        if pos is None:
+            return
+        self.frames[f"{pos.line}:{pos.slot}"] = "><"
         self.update()
 
     def human_wins_fight(self) -> None:

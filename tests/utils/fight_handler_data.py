@@ -1,3 +1,6 @@
+import logging
+
+
 def is_sublist(a, b):
     """Return True if all elements of `a` occur in the same order in `b` (as full
     elements or substrings).
@@ -6,6 +9,7 @@ def is_sublist(a, b):
     https://stackoverflow.com/questions/23667731/determine-if-all-elements-in-a-list-are-present-and-in-the-same-order-in-another
     """
     seq = iter(b)
+    x = None
     try:
         for x in a:
             while x not in next(seq):
@@ -14,6 +18,7 @@ def is_sublist(a, b):
             return True
     except StopIteration:
         pass
+    logging.error("Failed at '%s'", x)
     return False
 
 
@@ -37,7 +42,7 @@ log_test_simple_initial_setup = [
     "Dog attacks Cat",
     "Cat gets attacked by Dog",
     "Cat dies.",
-    "Removed card from [2, 0]",
+    "Removed card from GridPos(line=2, slot=0)",
     "Steed becomes active",
     "Player Schnuzgi loses 2 health, new health 1",
     "Dog becomes active",
@@ -46,7 +51,6 @@ log_test_simple_initial_setup = [
     "Player Schnuzgi loses 2 health, new health -3",
     "Player Schnuzgi loses 1 life, 0 life/lives left, 3 overflow damage",
 ]
-
 
 log_test_human_decks_managed_correctly = [
     "Handdeck size: 4 (Koala,Weasel,Lynx,Hamster)",
@@ -95,12 +99,12 @@ log_test_human_decks_managed_correctly = [
     "Hulk attacks Koala",
     "Koala gets attacked by Hulk",
     "Koala dies.",
-    "Removed card from [2, 0]",
+    "Removed card from GridPos(line=2, slot=0)",
     "Hulk becomes active",
     "Hulk attacks Weasel",
     "Weasel gets attacked by Hulk",
     "Weasel dies.",
-    "Removed card from [2, 1]",
+    "Removed card from GridPos(line=2, slot=1)",
     "Hulk becomes active",
     "Player Schnuzgi loses 2 health, new health 92",
     "Hulk becomes active",
@@ -123,7 +127,7 @@ log_test_human_decks_managed_correctly = [
     "Hulk attacks Lynx",
     "Lynx gets attacked by Hulk",
     "Lynx dies.",
-    "Removed card from [2, 0]",
+    "Removed card from GridPos(line=2, slot=0)",
     "Hulk becomes active",
     "Player Schnuzgi loses 2 health, new health 88",
     "Hulk becomes active",
@@ -146,7 +150,7 @@ log_test_human_decks_managed_correctly = [
     "Hulk attacks Hamster",
     "Hamster gets attacked by Hulk",
     "Hamster dies.",
-    "Removed card from [2, 0]",
+    "Removed card from GridPos(line=2, slot=0)",
     "Hulk becomes active",
     "Player Schnuzgi loses 2 health, new health 82",
     "Hulk becomes active",
@@ -169,7 +173,7 @@ log_test_human_decks_managed_correctly = [
     "Hulk attacks Hamster",
     "Hamster gets attacked by Hulk",
     "Hamster dies.",
-    "Removed card from [2, 0]",
+    "Removed card from GridPos(line=2, slot=0)",
     "Hulk becomes active",
     "Player Schnuzgi loses 2 health, new health 76",
     "Hulk becomes active",
@@ -194,7 +198,7 @@ log_test_human_decks_managed_correctly = [
     "Hulk attacks Porcupine 🚀",
     "Porcupine gets attacked by Hulk",
     "Porcupine dies.",
-    "Removed card from [2, 0]",
+    "Removed card from GridPos(line=2, slot=0)",
     "Hulk becomes active",
     "Player Schnuzgi loses 2 health, new health 70",
     "Hulk becomes active",
@@ -217,7 +221,7 @@ log_test_human_decks_managed_correctly = [
     "Hulk attacks Hamster",
     "Hamster gets attacked by Hulk",
     "Hamster dies.",
-    "Removed card from [2, 0]",
+    "Removed card from GridPos(line=2, slot=0)",
     "Hulk becomes active",
     "Player Schnuzgi loses 2 health, new health 64",
     "Hulk becomes active",
@@ -240,7 +244,7 @@ log_test_human_decks_managed_correctly = [
     "Hulk attacks Hamster",
     "Hamster gets attacked by Hulk",
     "Hamster dies.",
-    "Removed card from [2, 0]",
+    "Removed card from GridPos(line=2, slot=0)",
     "Hulk becomes active",
     "Player Schnuzgi loses 2 health, new health 58",
     "Hulk becomes active",
@@ -263,7 +267,7 @@ log_test_human_decks_managed_correctly = [
     "Hulk attacks Hamster",
     "Hamster gets attacked by Hulk",
     "Hamster dies.",
-    "Removed card from [2, 0]",
+    "Removed card from GridPos(line=2, slot=0)",
     "Hulk becomes active",
     "Player Schnuzgi loses 2 health, new health 52",
     "Hulk becomes active",
@@ -286,7 +290,7 @@ log_test_human_decks_managed_correctly = [
     "Hulk attacks Hamster",
     "Hamster gets attacked by Hulk",
     "Hamster dies.",
-    "Removed card from [2, 0]",
+    "Removed card from GridPos(line=2, slot=0)",
     "Hulk becomes active",
     "Player Schnuzgi loses 2 health, new health 46",
     "Hulk becomes active",
@@ -308,7 +312,7 @@ log_test_human_decks_managed_correctly = [
     "Hulk attacks Hamster",
     "Hamster gets attacked by Hulk",
     "Hamster dies.",
-    "Removed card from [2, 0]",
+    "Removed card from GridPos(line=2, slot=0)",
     "Hulk becomes active",
     "Player Schnuzgi loses 2 health, new health 40",
     "Hulk becomes active",
@@ -330,7 +334,7 @@ log_test_human_decks_managed_correctly = [
     "Hulk attacks Hamster",
     "Hamster gets attacked by Hulk",
     "Hamster dies.",
-    "Removed card from [2, 0]",
+    "Removed card from GridPos(line=2, slot=0)",
     "Hulk becomes active",
     "Player Schnuzgi loses 2 health, new health 34",
     "Hulk becomes active",
@@ -352,7 +356,7 @@ log_test_human_decks_managed_correctly = [
     "Hulk attacks Hamster",
     "Hamster gets attacked by Hulk",
     "Hamster dies.",
-    "Removed card from [2, 0]",
+    "Removed card from GridPos(line=2, slot=0)",
     "Hulk becomes active",
     "Player Schnuzgi loses 2 health, new health 28",
     "Hulk becomes active",
@@ -374,7 +378,7 @@ log_test_human_decks_managed_correctly = [
     "Hulk attacks Hamster",
     "Hamster gets attacked by Hulk",
     "Hamster dies.",
-    "Removed card from [2, 0]",
+    "Removed card from GridPos(line=2, slot=0)",
     "Hulk becomes active",
     "Player Schnuzgi loses 2 health, new health 22",
     "Hulk becomes active",
