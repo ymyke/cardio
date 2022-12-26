@@ -1,5 +1,6 @@
 import logging
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from .deck import Deck
 
 
 @dataclass
@@ -9,6 +10,9 @@ class Agent:
     initial_health: int
     lives: int
     # FIXME: Score? Money? ...?
+    deck: Deck = field(default_factory=lambda: Deck())
+    # QQ: Maybe ComputerAgent is a subclass of Agent which will ignore the deck but
+    # offer some strategy instead or in addition?
 
     def lose_health(self, howmuch: int) -> None:
         """Agent's health can go below zero, the number below zero denoting overflow

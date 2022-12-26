@@ -3,9 +3,9 @@
 from hypothesis import given, settings, HealthCheck, Verbosity, assume
 import hypothesis.strategies as st
 from cardio.card import Card
-from cardio.grid import Grid, Line
 import cardio.session as session
 import cardio.handlers as handlers
+from cardio.agent_strategies import Turn0OnlyStrategy
 
 
 def slotlist_strategy():
@@ -36,25 +36,17 @@ def test_game_hypo(mocker, slotlist):
     # FIXME The requirement re the prepper line can be relaxed once there is code in
     # place that makes cards from the prepper line.
     assume(any(c.power > 0 for c in slotlist[4:] if c is not None))
-    
-    # Set up session:
+
     session.setup()
     mocker.patch("cardio.session.view")  # Deactivate the view to improve performance
 
-    # Set up the grid:
-    grid = Grid()
-    grid.prepline = Line(4)
-    grid.prepline.slots = slotlist[:4]
-    grid.opponentline = Line(4)
-    grid.opponentline.slots = slotlist[4:8]
-    grid.playerline = Line(4)
-    grid.playerline.slots = slotlist[8:]
-    grid.lines = [grid.prepline, grid.opponentline, grid.playerline]
-    session.grid = grid
+    # FIXME No need to use the humanstrategy -- can do everything with the
+    # computerstrategy!!
 
-    before_nof_cards = len([c for slots in grid for c in slots if c is not None])
-    handlers.play_game()
-    after_nof_cards = len([c for slots in grid for c in slots if c is not None])
+    before_nof_cards = len([c for c in slotlist if c is not None])
+    cs = Turn0OnlyStrategy([((i // 4, i % 4), c) for i, c in enumerate(slotlist)])
+    handlers.handle_fight(computerstrategy=cs)
+    after_nof_cards = len([c for slots in session.grid for c in slots if c is not None])
 
     assert after_nof_cards <= before_nof_cards
     if after_nof_cards < before_nof_cards:

@@ -1,10 +1,13 @@
 from __future__ import annotations
 import logging
 from dataclasses import dataclass, field
-from typing import Optional
-from .agent import Agent
+from typing import Optional, List, TYPE_CHECKING
 from .sigils import Sigil, SigilList
 from . import session
+
+if TYPE_CHECKING:
+    # To prevent circular imports. Should maybe be fixed somehow at some point.
+    from . import Agent
 
 
 @dataclass
@@ -54,6 +57,7 @@ class Card:
         logging.debug("%s dies.", self.name)
         self.health = 0
         session.grid.remove_card(self)
+        # FIXME Card must also be moved to a different deck?
 
     def lose_health(self, howmuch: int) -> int:
         assert howmuch > 0
@@ -114,7 +118,7 @@ class Card:
 
     def activate(self) -> None:
         logging.debug("%s becomes active", self.name)
-        opponent = session.grid.find_opponent(self)
+        opponent = session.grid.get_opposing_card(self)
         session.view.activate_card(self)
         if opponent is not None:
             self.attack(opponent)
@@ -137,3 +141,8 @@ class Card:
         logging.debug("Preparing %s, moving to computer line", self.name)
         session.grid.move_card(self, to_linei=1, to_sloti=sloti)
         self.activate()
+
+
+# ----- Types -----
+
+CardList = List[Card]

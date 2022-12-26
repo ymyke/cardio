@@ -23,6 +23,8 @@ Cards
 - Important: A card in a deck is also something like a blueprint for a card that is on
   the grid. Once it leaves the grid, the original values need to be restored!
 - Bones!!!
+- Blood / cost!!!
+- Tribes???
 
 Sigils
 
@@ -44,6 +46,10 @@ Decks
   - Hand
 - Enemy
   - Draw vs hand
+- Idea: What about if the human player had 2 decks he could build as he saw fit? So
+  whenever he got a new card he could chose whether to add it his A or his B deck. Then
+  he could build a squirell deck vs the rest on his own accord or go with some other
+  strategy.
 
 Agents
 
@@ -65,3 +71,10 @@ Locations
 
 Items
 - also things like the totem? Or are they something else?
+
+Achievements / Badges
+- for the human player
+
+Random ideas
+- could cards gain experience with fights and other things and evolve over time (stats
+  would be permanent) but also die for real?
