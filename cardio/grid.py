@@ -1,4 +1,17 @@
-from typing import List, Optional, Tuple
+"""Grid class.
+
+Positions:
+
+- GridPos(line index, slot index)
+- Lines:
+    0: computer's prep line
+    1: computer's line
+    2: human's line
+- Slots: Each line has card slots 0, 1, 2, ... grid.with-1
+
+"""
+
+from typing import List, Optional, Tuple, NamedTuple
 import logging
 from cardio.card import Card
 
