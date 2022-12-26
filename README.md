@@ -9,7 +9,8 @@
 - Get rid of the decks and track the decks as states in the cards. Then there would just
   be a CardCollection with each agent. Card states would be: maindeck, hamsterdeck,
   hand, used or so. At the end of the fight, all hamster cards would be removed. (QQ:
-  Where would the hamster cards come from?)
+  Where would the hamster cards come from?) (Also, there would be no shuffle method any
+  longer but just a draw method which would draw random card(s) from a specific deck.)
 - Dependency chaos?
   - Draw all modules and their dependencies and think about them.
   - Should cards have a game attribute which they use to query the world (e.g., who the
