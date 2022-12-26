@@ -64,16 +64,19 @@ class SimpleView(GridView):
 
     def activate_card(self, card: Card) -> None:
         pos = self.model.find_card(card)
-        if pos is None:
-            return
+        assert pos is not None, (
+            f"{card.name} gets gets activated and "
+            "needs a view update but has no position on the grid"
+        )
         self.frames[f"{pos.line}:{pos.slot}"] = "**"
         self.update()
 
     def get_attacked(self, target: Card, attacker: Card) -> None:
         pos = self.model.find_card(target)
-        # FIXME This test is necessary for one of the tests -- but why??
-        if pos is None:
-            return
+        assert pos is not None, (
+            f"{target.name} gets attacked by {attacker.name} and "
+            "needs a view update but has no position on the grid"
+        )
         self.frames[f"{pos.line}:{pos.slot}"] = "><"
         self.update()
 

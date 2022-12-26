@@ -79,8 +79,8 @@ class Card:
             opponent.lose_health(1)
 
         prep = self.get_prep_card()
-        howmuch = self.lose_health(opponent.power)
         session.view.get_attacked(self, opponent)
+        howmuch = self.lose_health(opponent.power)
         if opponent.power > howmuch and prep is not None:
             logging.debug(
                 "%s gets overflow damage of %s", prep.name, opponent.power - howmuch
