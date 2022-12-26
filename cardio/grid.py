@@ -11,11 +11,9 @@ Positions:
 
 """
 
-from typing import List, Optional, NamedTuple
+from typing import List, Optional, Union, NamedTuple
 import logging
 from cardio.card import Card
-
-# FIXME Use GridPos and maybe other helper types
 
 
 class GridPos(NamedTuple):
@@ -70,13 +68,15 @@ class Grid:
         self[pos.line][pos.slot] = None
         logging.debug("Removed card from %s", pos)
 
-    def move_card(self, card: Card, to_linei: int, to_sloti: int) -> None:
-        # FIXME Should this rather be to_pos?
+    def move_card(self, card: Card, to_pos: Union[GridPos, tuple]) -> None:
+        """Accepts both a `GridPos` named tuple as well as a normal tuple as the
+        `to_pos`.
+        """
+        to_pos = GridPos(*to_pos)
         from_pos = self.find_card(card)
         assert from_pos is not None
-        assert self[to_linei][to_sloti] is None
-        # FIXME Use get_card() when/if we have it.
-        self[to_linei][to_sloti] = card
+        assert self[to_pos.line][to_pos.slot] is None
+        self[to_pos.line][to_pos.slot] = card
         self[from_pos.line][from_pos.slot] = None
 
     def activate_line(self, linei: int) -> None:
