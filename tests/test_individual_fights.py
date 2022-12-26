@@ -2,6 +2,7 @@ from typing import Optional
 from cardio import Card, Sigil, Agent, session, handlers
 from cardio.agent_strategies import Turn0OnlyStrategy
 
+# FIXME Should this rather be test_sigils?
 
 def do_the_fight(humancard: Optional[Card], computercard: Optional[Card]) -> None:
     # FIXME Deactivate view? Refactor to a fixture in conftest?
