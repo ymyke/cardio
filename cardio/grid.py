@@ -3,6 +3,9 @@ import logging
 from cardio.card import Card
 
 
+# FIXME Get rid of Line
+# FIXME Use GridPos and maybe other helper types
+
 class Line:
     """
 
