@@ -46,7 +46,7 @@ class Card:
 
     def get_prep_card(self) -> Optional[Card]:
         """Get the card from the prepline of this cards slot."""
-        return session.grid.prepline[self.get_sloti()]
+        return session.grid[0][self.get_sloti()]
 
     def get_opposing_agent(self) -> Agent:
         return session.computeragent if self.get_linei() == 2 else session.humanagent

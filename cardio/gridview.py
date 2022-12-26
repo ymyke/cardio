@@ -32,7 +32,7 @@ class SimpleView(GridView):
         repr = ""
         for i, line in enumerate(self.model):
             repr += f"{i}   "
-            for sloti, slot in enumerate(line.slots):
+            for sloti, slot in enumerate(line):
                 frame = self.frames.get(f"{i}:{sloti}", "[]")
                 slotstr = ""
                 if slot is not None:
