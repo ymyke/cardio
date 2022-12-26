@@ -25,6 +25,9 @@ class Deck:
             assert all(isinstance(c, Card) for c in cards)
             self.cards = cards
 
+    def is_empty(self) -> bool:
+        return len(self.cards) == 0
+
     def shuffle(self) -> None:
         random.shuffle(self.cards)
 
