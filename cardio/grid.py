@@ -89,6 +89,3 @@ class Grid:
         for card in self.lines[0]:
             if card is not None:
                 card.prepare()
-
-
-# FIXME Add more tests
