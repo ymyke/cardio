@@ -4,7 +4,6 @@
 - Add some draw_strategy param to the fight handler so the humanagent can be automated
   for tests? -- That way it would be warranted for both agents types to have
   strategties.
-- Get rid of the `Line`s.
 - Get rid of the grid (or most of it) and track positions in the cards directly?
 - Get rid of the decks and track the decks as states in the cards. Then there would just
   be a CardCollection with each agent. Card states would be: maindeck, hamsterdeck,
