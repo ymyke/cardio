@@ -1,3 +1,8 @@
+# Next up
+
+- Interactive UI
+- Blood costs (Or some other concept? Rations? Energy? Karma? ...?)
+- Bones (other name? Spirits? Essence? Soul? ...?)
 
 # Architectural considerations
 
