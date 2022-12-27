@@ -78,3 +78,8 @@ Achievements / Badges
 Random ideas
 - could cards gain experience with fights and other things and evolve over time (stats
   would be permanent) but also die for real?
+- Have a location that allows me to create new cards, combining health, power and
+  skills, and give them a name and keep them. -- Or some other mechanism to create new
+  cards?
+- New concepts even for health and power?
+- Terrain and weather conditions etc. that affect the cards?
