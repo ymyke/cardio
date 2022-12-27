@@ -10,6 +10,7 @@ python = "^3.9"
 windows-curses = "^2.3.1"
 pygcurse = "^1.0.1"
 pygame = "^2.1.2"
+asciimatics = "^1.14.0"
 
 
 [tool.poetry.group.dev.dependencies]
