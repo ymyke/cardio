@@ -32,7 +32,7 @@ class SimpleView(GridView):
         repr = ""
         for i, line in enumerate(self.model):
             repr += f"{i}   "
-            for sloti, slot in enumerate(line.slots):
+            for sloti, slot in enumerate(line):
                 frame = self.frames.get(f"{i}:{sloti}", "[]")
                 slotstr = ""
                 if slot is not None:
@@ -63,13 +63,21 @@ class SimpleView(GridView):
         self.msg = ""
 
     def activate_card(self, card: Card) -> None:
-        linei, sloti = self.model.find_card_position(card)
-        self.frames[f"{linei}:{sloti}"] = "**"
+        pos = self.model.find_card(card)
+        assert pos is not None, (
+            f"{card.name} gets gets activated and "
+            "needs a view update but has no position on the grid"
+        )
+        self.frames[f"{pos.line}:{pos.slot}"] = "**"
         self.update()
 
     def get_attacked(self, target: Card, attacker: Card) -> None:
-        linei, sloti = self.model.find_card_position(target)
-        self.frames[f"{linei}:{sloti}"] = "><"
+        pos = self.model.find_card(target)
+        assert pos is not None, (
+            f"{target.name} gets attacked by {attacker.name} and "
+            "needs a view update but has no position on the grid"
+        )
+        self.frames[f"{pos.line}:{pos.slot}"] = "><"
         self.update()
 
     def human_wins_fight(self) -> None:

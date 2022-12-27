@@ -26,6 +26,7 @@ def setup() -> None:
 
     global grid, view, humanagent, computeragent
     grid = Grid(4)  # QQ: What if the grid size changes in the game?
+    # FIXME ^ Grid needs to be setup in a fight. No grid outside of fights.
     view = SimpleView(grid)
 
     humanagent = Agent(name="Schnuzgi", health=5, initial_health=5, lives=1)

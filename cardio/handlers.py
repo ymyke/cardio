@@ -112,9 +112,9 @@ def handle_fight(
         log_decks([handdeck, fightdeck, hamsterdeck, useddeck])
 
         # Activate all cards:
-        session.grid.playerline.activate()
-        session.grid.opponentline.activate()
-        session.grid.prepline.prepare()
+        session.grid.activate_line(2)
+        session.grid.activate_line(1)
+        session.grid.prepare_line()
         session.view.update()
 
         if session.humanagent.has_lost_life():

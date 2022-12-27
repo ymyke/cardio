@@ -11,13 +11,9 @@ Positions:
 
 """
 
-from typing import List, Optional, Tuple, NamedTuple
+from typing import List, Optional, Union, NamedTuple
 import logging
 from cardio.card import Card
-
-
-# FIXME Get rid of Line
-# FIXME Use GridPos and maybe other helper types
 
 
 class GridPos(NamedTuple):
@@ -25,53 +21,18 @@ class GridPos(NamedTuple):
     slot: int
 
 
-GridPosAndCard = Tuple[GridPos, Card]
-# FIXME Turn this also into a NamedTuple?
-
-
-class Line:
-    """
-
-    Slots are counted 0, 1, 2, ... from left border.
-    """
-
-    def __init__(self, width: int) -> None:
-        self.slots: List[Optional[Card]] = [None] * width
-
-    def __getitem__(self, sloti: int) -> Optional[Card]:
-        return self.slots[sloti]
-
-    def __setitem__(self, sloti, card: Optional[Card]) -> None:
-        self.slots[sloti] = card
-
-    def __iter__(self) -> object:
-        return self.slots.__iter__()
-
-    def add_card(self, sloti: int, card: Card) -> None:
-        self[sloti] = card
-
-    def prepare(self) -> None:
-        for card in self.slots:
-            if card is None:
-                continue
-            card.prepare()
-
-    def activate(self) -> None:
-        for card in self.slots:
-            if card is None:
-                continue
-            card.activate()
+class GridPosAndCard(NamedTuple):
+    pos: GridPos
+    card = Card
 
 
 class Grid:
+    width: int
+    lines: List[List[Optional[Card]]]
+
     def __init__(self, width: int = 4) -> None:
         self.width = width
-        self.prepline = Line(width)
-        self.opponentline = Line(width)
-        self.playerline = Line(width)
-        self.lines = [self.prepline, self.opponentline, self.playerline]
-        # QQ: Should there be some CardSlot or some BaseCard or NoCard class for the
-        # empty spaces?
+        self.lines = [[None] * width for _ in range(3)]
 
     def __getitem__(self, linei):
         return self.lines[linei]
@@ -80,32 +41,51 @@ class Grid:
         return self.lines.__iter__()
 
     def is_empty(self) -> bool:
-        return all(c is None for l in self.lines for c in l.slots)
+        return all(card is None for line in self.lines for card in line)
 
-    def find_card_position(self, card: Card) -> Tuple[Optional[int], Optional[int]]:
+    def find_card(self, card: Card) -> Optional[GridPos]:
         for linei, line in enumerate(self.lines):
             for sloti in range(self.width):
                 if line[sloti] is card:
-                    return (linei, sloti)
-        return (None, None)
+                    return GridPos(linei, sloti)
+        return None
+
+    # FIXME Should there bet get_card and set_card methods?
 
     def get_opposing_card(self, card: Card) -> Optional[Card]:
-        linei, sloti = self.find_card_position(card)
-        if linei == 1:
-            return self[2][sloti]
-        elif linei == 2:
-            return self[1][sloti]
+        pos = self.find_card(card)
+        assert pos is not None
+        if pos.line == 1:
+            return self[2][pos.slot]
+        elif pos.line == 2:
+            return self[1][pos.slot]
         return None
 
     def remove_card(self, card: Card) -> None:
-        linei, sloti = self.find_card_position(card)
-        assert self[linei][sloti] is card
-        self[linei][sloti] = None
-        logging.debug("Removed card from [%s, %s]", linei, sloti)
+        pos = self.find_card(card)
+        assert pos is not None
+        assert self[pos.line][pos.slot] is card
+        self[pos.line][pos.slot] = None
+        logging.debug("Removed card from %s", pos)
 
-    def move_card(self, card: Card, to_linei: int, to_sloti: int) -> None:
-        from_linei, from_sloti = self.find_card_position(card)
-        assert self[to_linei][to_sloti] is None
-        # FIXME Use get_card() when/if we have it.
-        self[to_linei][to_sloti] = card
-        self[from_linei][from_sloti] = None
+    def move_card(self, card: Card, to_pos: Union[GridPos, tuple]) -> None:
+        """Accepts both a `GridPos` named tuple as well as a normal tuple as the
+        `to_pos`.
+        """
+        to_pos = GridPos(*to_pos)
+        from_pos = self.find_card(card)
+        assert from_pos is not None
+        assert self[to_pos.line][to_pos.slot] is None
+        self[to_pos.line][to_pos.slot] = card
+        self[from_pos.line][from_pos.slot] = None
+
+    def activate_line(self, linei: int) -> None:
+        assert linei in [1, 2]
+        for card in self.lines[linei]:
+            if card is not None:
+                card.activate()
+
+    def prepare_line(self) -> None:
+        for card in self.lines[0]:
+            if card is not None:
+                card.prepare()
