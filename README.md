@@ -34,3 +34,22 @@
 
 - https://inscryption.fandom.com/wiki/Cards
 - https://inscryption.fandom.com/wiki/Sigils
+
+# Asciimatics
+
+- Simple rendering: https://github.com/peterbrittain/asciimatics/blob/master/samples/rendering.py
+- How to cycle to different animation: https://github.com/peterbrittain/asciimatics/blob/master/samples/noise.py
+- Use bars for scores or other stuff? https://github.com/peterbrittain/asciimatics/blob/master/samples/bars.py
+- Use fireworks when won. 
+  - Maybe small explosions when a player is hit? Or fireworks, bc they also show where the hit is coming from?
+  - https://github.com/peterbrittain/asciimatics/blob/master/samples/particles.py
+- Use speechbubbles and the arrow character. https://github.com/peterbrittain/asciimatics/blob/master/samples/basics.py
+- Use widgets? https://github.com/peterbrittain/asciimatics/blob/master/samples/contact_list.py
+- use the "fall away" effect at the end or the fire effect for cards that die? https://github.com/peterbrittain/asciimatics/blob/master/samples/credits.py
+  - (Use figlet effect for new cards coming to the deck?)
+- Super fire effect: https://github.com/peterbrittain/asciimatics/blob/master/samples/fire.py
+- Use the mouse? https://github.com/peterbrittain/asciimatics/blob/master/samples/interactive.py
+- Advanced widgets:
+  - https://github.com/peterbrittain/asciimatics/blob/master/samples/forms.py
+  - https://github.com/peterbrittain/asciimatics/blob/master/samples/experimental.py
+- Use Kaleidoscope for start/welcome screen? or plasma? https://github.com/peterbrittain/asciimatics/blob/master/samples/plasma.py
