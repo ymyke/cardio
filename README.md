@@ -26,14 +26,17 @@
   unkillable, ...) and see if they work well with the current deck implementation.
 - Write tests for all existing classes and all card characteristics and sigils.
 
-# Curses
+# Other TUI projects
 
+- http://urwid.org/index.html
+- Curses
 - https://inventwithpython.com/pygcurse/tutorial/
 
 # Game related
 
 - https://inscryption.fandom.com/wiki/Cards
 - https://inscryption.fandom.com/wiki/Sigils
+- "Cardio was massively inspyred by Inscryption. Buy it and play it!"
 
 # Asciimatics
 
