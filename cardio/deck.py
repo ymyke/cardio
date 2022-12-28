@@ -1,15 +1,3 @@
-"""
-- Real deck: I have my deck, where all cards are in normal/initial state (with some
-  excpetions maybe such as the Ouroboros).
-- Fight deck & squirrel deck: At the beginning of a fight, a squirell deck is created
-  and a copy of the above deck is created. The fight deck (?).
-- Hand: Then, the top x cards from the fight deck and the top 1 card from the squirrel
-  deck are drawn to form my hand (deck).
-- Once the fight is over, the fight deck gets deleted. (After some changes have been
-  propagated to my real deck, if necessary.) (-- OR: The fight deck has a state or two
-  different lists or something, but maybe not.)
-"""
-
 from typing import Optional
 import random
 from . import Card, CardList
