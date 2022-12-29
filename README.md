@@ -28,6 +28,7 @@
 
 # Other TUI projects
 
+- https://textual.textualize.io/
 - http://urwid.org/index.html
 - Curses
 - https://inventwithpython.com/pygcurse/tutorial/
