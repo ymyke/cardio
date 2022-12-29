@@ -83,3 +83,8 @@ Random ideas
   cards?
 - New concepts even for health and power?
 - Terrain and weather conditions etc. that affect the cards?
+- Maybe you can lose cards for good in a run -- in a fight? Or as a downside risk when
+  going for a particularly strong upgrade? E.g., the stronger the upgrade the higher the
+  likelihood to lose the card? -- Then, a save game and game progress score would
+  somehow take into account a hash over the entire game to make sure the game has not
+  been tampered with? Then only authoritative scores are allowed in leaderboards etc.
