@@ -13,6 +13,8 @@ if TYPE_CHECKING:
 @dataclass
 class Card:
     name: str
+    # QQ: Could cards have an icon that gets displayed, e.g., top right of the card?
+    # QQ: Then only pick animal (and plant?) types that have an emoji?
     initial_power: int
     initial_health: int
     # FIXME How much blood needed?
