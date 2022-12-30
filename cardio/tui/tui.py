@@ -1,12 +1,12 @@
 from asciimatics.screen import Screen
 from asciimatics.scene import Scene
-from asciimatics.effects import Print
+from asciimatics.effects import Print, Background
 from asciimatics.renderers import StaticRenderer
 from asciimatics.widgets import PopUpDialog
 from asciimatics.exceptions import StopApplication
 from asciimatics.event import KeyboardEvent
 
-from cardio import GridPos
+from cardio import GridPos, Grid
 from cardio.card_blueprints import create_card_from_blueprint
 
 from cardio.tui.cards_renderer import render_card_in_grid
@@ -16,13 +16,13 @@ from cardio.tui.cards_renderer import render_card_in_grid
 GRID_WIDTH = 4
 
 
-class GameController(Scene):
-    def __init__(self, screen, game_state):
+class FightController(Scene):
+    def __init__(self, screen, grid: Grid):
         self._screen = screen
+        self._grid = grid
         self.cursor_pos = 0
         self.cursor_highlight = []
-        self._state = game_state
-        
+
         effects = (
             [
                 Print(
@@ -31,19 +31,23 @@ class GameController(Scene):
                     screen.height - 1,
                 ),
             ]
-            + render_card_in_grid(
-                screen, create_card_from_blueprint("Porcupine"), GridPos(0, 0)
-            )
-            + render_card_in_grid(
-                screen, create_card_from_blueprint("Koala"), GridPos(0, 1)
-            )
-            + render_card_in_grid(
-                screen, create_card_from_blueprint("Weasel"), GridPos(0, 2)
-            )
-            + render_card_in_grid(
-                screen, create_card_from_blueprint("Hamster"), GridPos(0, 3)
-            )
+            # + render_card_in_grid(
+            #     screen, create_card_from_blueprint("Porcupine"), GridPos(0, 0)
+            # )
+            # + render_card_in_grid(
+            #     screen, create_card_from_blueprint("Koala"), GridPos(0, 1)
+            # )
+            # + render_card_in_grid(
+            #     screen, create_card_from_blueprint("Weasel"), GridPos(0, 2)
+            # )
+            # + render_card_in_grid(
+            #     screen, create_card_from_blueprint("Hamster"), GridPos(0, 3)
+            # )
         )
+        for linei in range(3):
+            for sloti in range(4):
+                effects.extend(render_card_in_grid(screen, None, GridPos(linei, sloti)))
+
         super().__init__(effects, 0)
         self.update_cursor(0)
 
@@ -52,7 +56,7 @@ class GameController(Scene):
         for e in self.cursor_highlight:
             self.remove_effect(e)
         self.cursor_highlight = render_card_in_grid(
-            self._screen, None, GridPos(0, self.cursor_pos), highlight=True
+            self._screen, None, GridPos(2, self.cursor_pos), highlight=True
         )
         for e in self.cursor_highlight:
             self.add_effect(e)
@@ -72,12 +76,17 @@ class GameController(Scene):
             elif c == Screen.KEY_RIGHT:
                 self.update_cursor(min(GRID_WIDTH - 1, self.cursor_pos + 1))
             elif c == Screen.KEY_UP:
-                pass
+                e = Background(self._screen, 0)
+                self.add_effect(e)  # QQ: Is this how an update could work?
+                self.remove_effect(e)
             elif c == Screen.KEY_DOWN:
                 pass
+            elif c in (ord("n"), ord("N")):
+                pass  # FIXME Next turn
             elif c in (ord("h"), ord("H")):
                 self.add_effect(PopUpDialog(self._screen, "Yo!", ["OK"]))
                 # FIXME Why does this "eat" the first key?
+                # See https://github.com/peterbrittain/asciimatics/issues/362
             else:
                 # Not a recognised key - pass on to other handlers.
                 return event
@@ -87,8 +96,7 @@ class GameController(Scene):
 
 
 def demo(screen):
-    # game_state.update_screen(screen)
-    screen.play([GameController(screen, None)], stop_on_resize=True, allow_int=True)
+    screen.play([FightController(screen, None)], stop_on_resize=True, allow_int=True)
 
 
 Screen.wrapper(demo, catch_interrupt=False)
