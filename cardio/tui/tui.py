@@ -75,14 +75,6 @@ class GameController(Scene):
                 pass
             elif c == Screen.KEY_DOWN:
                 pass
-            # elif c in (ord("1"), ord("2"), ord("3"), ord("4")):
-            #     self._state.mode = c - ord("1")
-            # elif c in (ord("m"), ord("M")):
-            #     self._state.show_mini_map = not self._state.show_mini_map
-            #     if self._state.show_mini_map:
-            #         self.add_effect(self._mini_map)
-            #     else:
-            #         self.remove_effect(self._mini_map)
             elif c in (ord("h"), ord("H")):
                 self.add_effect(PopUpDialog(self._screen, "Yo!", ["OK"]))
                 # FIXME Why does this "eat" the first key?
