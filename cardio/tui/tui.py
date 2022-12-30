@@ -11,6 +11,8 @@ from cardio.card_blueprints import create_card_from_blueprint
 
 from cardio.tui.cards_renderer import render_card_in_grid
 
+# FIXME ^ How to make this relative?
+
 GRID_WIDTH = 4
 
 
@@ -18,7 +20,9 @@ class GameController(Scene):
     def __init__(self, screen, game_state):
         self._screen = screen
         self.cursor_pos = 0
+        self.cursor_highlight = []
         self._state = game_state
+        
         effects = (
             [
                 Print(
@@ -40,10 +44,8 @@ class GameController(Scene):
                 screen, create_card_from_blueprint("Hamster"), GridPos(0, 3)
             )
         )
-        self.cursor_highlight = render_card_in_grid(
-            screen, None, GridPos(0, self.cursor_pos), highlight=True
-        )
-        super(GameController, self).__init__(effects + self.cursor_highlight, 0)
+        super().__init__(effects, 0)
+        self.update_cursor(0)
 
     def update_cursor(self, new_pos: int):
         self.cursor_pos = new_pos
