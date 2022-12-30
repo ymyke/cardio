@@ -11,7 +11,7 @@ from cardio.card_blueprints import create_card_from_blueprint
 
 from cardio.tui.cards_renderer import render_card_in_grid
 
-# FIXME ^ How to make this relative?
+# FIXME ^ How to make this import relative?
 
 GRID_WIDTH = 4
 
