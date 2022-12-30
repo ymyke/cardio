@@ -1,108 +1,17 @@
-from typing import Optional, List
 from asciimatics.screen import Screen
 from asciimatics.scene import Scene
-from asciimatics.effects import Effect, Print, Background
-from asciimatics.renderers import FigletText, SpeechBubble, Box, StaticRenderer
-from asciimatics import constants
+from asciimatics.effects import Print
+from asciimatics.renderers import StaticRenderer
 from asciimatics.widgets import PopUpDialog
 from asciimatics.exceptions import StopApplication
 from asciimatics.event import KeyboardEvent
 
-from cardio import Card, GridPos
+from cardio import GridPos
 from cardio.card_blueprints import create_card_from_blueprint
 
+from cardio.tui.cards_renderer import render_card_in_grid
 
 GRID_WIDTH = 4
-
-
-def card_to_amstring(c: Card) -> str:
-    """Produce asciimatics string from card."""
-    s = f"""\
-{c.name}
-{"💪" * c.power}
-{"💓" * c.health}
-{"".join(s.value.symbol for s in c.skills)}
-"""
-    return s
-
-
-BOX_WIDTH = 20
-BOX_HEIGHT = 7
-BOX_PADDING = 2
-
-
-def render_card_at(
-    screen, card: Optional[Card], x: int, y: int, highlight: bool = False
-) -> List[Effect]:
-    """Render card and box at x, y screen position. Draws empty box if `card`
-    is `None`.
-    """
-    BOX_COLOR = Screen.COLOUR_YELLOW
-    effects = []
-    style = constants.DOUBLE_LINE if highlight else constants.SINGLE_LINE
-    pbox = Print(
-        screen=screen,
-        renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=style),
-        x=x,
-        y=y,
-        colour=BOX_COLOR,
-        transparent=True,
-    )
-    effects.append(pbox)
-    if card is not None:
-        pcard = Print(
-            screen=screen,
-            renderer=StaticRenderer(images=[card_to_amstring(card)]),
-            y=y + 1,
-            x=x + 2,
-        )
-        effects.append(pcard)
-    return effects
-
-
-def render_card_in_grid(
-    screen, card: Optional[Card], pos: GridPos, highlight: bool = False
-) -> List[Effect]:
-    """Render card at grid position."""
-    GRID_MARGIN_LEFT = 10
-    GRID_MARGIN_TOP = 10
-    return render_card_at(
-        screen,
-        card,
-        x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING),
-        y=GRID_MARGIN_TOP,
-        highlight=highlight,
-    )
-
-
-# class Grid(Effect):
-#     def __init__(self, screen, game_state):
-#         super().__init__(screen)
-#         # self._state = game_state  # FIXME Have the grid here? Or session/gamestate?
-#         self._x = self._screen.width - 10
-#         self._y = self._screen.height - 5
-
-#     def _update(self, frame_no):
-#         self._screen.print_at(
-#             "  ", self._x, self._y, Screen.COLOUR_RED, bg=Screen.COLOUR_RED
-#         )
-
-#         text = ">>" + str(frame_no)
-#         self._screen.print_at(text, self._x + 3, self._y + 3, Screen.COLOUR_GREEN)
-
-#     @property
-#     def frame_update_count(self):
-#         # No animation required.
-#         return 0
-
-#     @property
-#     def stop_frame(self):
-#         # No specific end point for this Effect.  Carry on running forever.
-#         return 0
-
-#     def reset(self):
-#         # Nothing special to do.  Just need this to satisfy the ABC.
-#         pass
 
 
 class GameController(Scene):
@@ -189,4 +98,3 @@ def demo(screen):
 
 
 Screen.wrapper(demo, catch_interrupt=False)
-
