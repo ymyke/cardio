@@ -92,3 +92,5 @@ Random ideas
   likelihood to lose the card? -- Then, a save game and game progress score would
   somehow take into account a hash over the entire game to make sure the game has not
   been tampered with? Then only authoritative scores are allowed in leaderboards etc.
+- Corveaux special ability/animal? Can consume ghosts/souls/spirits and release them as
+  blood/energy/...?
