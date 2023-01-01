@@ -53,6 +53,10 @@ Decks
 
 Agents
 
+Boss fights
+- Need a different model in Fight.handle_round_of_fight -- surely also elsewhere, e.g.
+  in Agent or so.
+
 ComputerPlayerBehavior or -Strategy
 - When he brings which cards into play.
 - Maybe also when he does other things, e.g., if he also has items available.
