@@ -1,7 +1,9 @@
 """Using asciimatics only for rendering and doing everything else manually."""
 
+import sys
 from asciimatics.screen import Screen
 from asciimatics.effects import Print
+from asciimatics import particles
 from asciimatics.renderers import StaticRenderer, Box
 from asciimatics.utilities import BoxTool
 import time
@@ -36,6 +38,15 @@ class ExtendedBox(BoxTool):
             super().style(style)
 
 
+def show_explosion(screen):
+    e = particles.ExplosionFlames(screen, 10, 10, 22)
+    for i in range(30):
+        e.update()
+        screen.refresh()
+        for _ in range(200000):
+            pass
+
+
 # print(Print(screen, Box(10,10), 10))
 # # for i in StaticRenderer(BoxTool(True, 0).box(10, 10)).rendered_text:
 # #     print(i)
@@ -43,6 +54,35 @@ class ExtendedBox(BoxTool):
 
 
 screen = Screen.open(unicode_aware=True)
+
+
+xx = render_card_in_grid(
+    screen, card_blueprints.create_card_from_blueprint("Hamster"), GridPos(3, 3)
+)
+for e in xx:
+    e.update(0)
+e = Print(screen, Box(10, 10), 10, 10)
+e.update(0)
+screen.refresh()
+time.sleep(1)
+
+
+show_explosion(screen)
+
+
+xx = render_card_in_grid(
+    screen, card_blueprints.create_card_from_blueprint("Hamster"), GridPos(3, 3)
+)
+for e in xx:
+    e.update(0)
+e = Print(screen, Box(10, 10), 10, 10)
+e.update(0)
+screen.refresh()
+time.sleep(1)
+
+
+sys.exit(0)
+
 
 xx = render_card_in_grid(
     screen, card_blueprints.create_card_from_blueprint("Hamster"), GridPos(3, 3)
@@ -75,8 +115,8 @@ screen.close()
 
 
 # FIXME:
-# - Can I do an explosion?
 # - Can I move cards?
+# - Can I draw an "*" that moves from the attacker to the target?
 # - Can I activate cards by moving them towards opponent and back?
 # - Can I encapsulate the code better?
 # - Can I remove health by blinking it first?
