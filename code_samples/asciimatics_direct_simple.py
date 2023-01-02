@@ -1,14 +1,15 @@
 """Using asciimatics only for rendering and doing everything else manually."""
 
+from typing import Union, List
 import sys
 from asciimatics.screen import Screen
-from asciimatics.effects import Print
+from asciimatics.effects import Print, Effect
 from asciimatics import particles
 from asciimatics.renderers import StaticRenderer, Box
 from asciimatics.utilities import BoxTool
 import time
 
-from cardio.tui.cards_renderer import render_card_in_grid
+from cardio.tui.cards_renderer import render_card_in_grid, clear_card_in_grid
 from cardio import Card, card_blueprints, GridPos
 
 
@@ -41,10 +42,46 @@ class ExtendedBox(BoxTool):
 def show_explosion(screen):
     e = particles.ExplosionFlames(screen, 10, 10, 22)
     for i in range(30):
-        e.update()
+        e.update()  # No parameter here b/c ExplosionFlames are no Effects
         screen.refresh()
         for _ in range(200000):
             pass
+
+
+def shake_card(screen):
+    card = card_blueprints.create_card_from_blueprint("Hamster")
+    carde = render_card_in_grid(screen, card, GridPos(3, 3))
+    for _ in range(4):
+        show_effects(screen, carde, 0.03)
+        clear_card_in_grid(screen, GridPos(3, 3))
+        card2 = render_card_in_grid(screen, card, GridPos(3, 3), xoffset=-1)
+        show_effects(screen, card2, 0.03)
+        clear_card_in_grid(screen, GridPos(3, 3), xoffset=-1)
+
+    show_effects(screen, carde)
+
+
+def flash_card(screen):
+    # Flashing the border:
+    # FIXME Try also w/ different colors and/or stars...
+    highlight = True
+    for i in range(10):
+        xx = render_card_in_grid(screen, None, GridPos(3, 3), highlight=highlight)
+        for e in xx:
+            e.update(0)
+            screen.refresh()
+        time.sleep(0.05)
+        highlight = not highlight
+
+
+def show_effects(screen, effects: Union[Effect, List[Effect]], pause: float = 0):
+    if not isinstance(effects, list):
+        effects = [effects]
+    for e in effects:
+        e.update(0)
+    screen.refresh()
+    if pause > 0:
+        time.sleep(pause)
 
 
 # print(Print(screen, Box(10,10), 10))
@@ -55,62 +92,25 @@ def show_explosion(screen):
 
 screen = Screen.open(unicode_aware=True)
 
+card = card_blueprints.create_card_from_blueprint("Hamster")
 
-xx = render_card_in_grid(
-    screen, card_blueprints.create_card_from_blueprint("Hamster"), GridPos(3, 3)
-)
-for e in xx:
-    e.update(0)
-e = Print(screen, Box(10, 10), 10, 10)
-e.update(0)
-screen.refresh()
+show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 4)))
+show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 3)))
+show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 2)))
+show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 1)))
+show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 0)))
+
 time.sleep(1)
 
+flash_card(screen)
+
+time.sleep(1)
 
 show_explosion(screen)
 
+# show_effects(screen, carde, 1)
 
-xx = render_card_in_grid(
-    screen, card_blueprints.create_card_from_blueprint("Hamster"), GridPos(3, 3)
-)
-for e in xx:
-    e.update(0)
-e = Print(screen, Box(10, 10), 10, 10)
-e.update(0)
-screen.refresh()
 time.sleep(1)
-
-
-sys.exit(0)
-
-
-xx = render_card_in_grid(
-    screen, card_blueprints.create_card_from_blueprint("Hamster"), GridPos(3, 3)
-)
-for e in xx:
-    e.update(0)
-e = Print(screen, Box(10, 10), 10, 10)
-e.update(0)
-screen.refresh()
-time.sleep(1)
-
-
-# # Flashing the border:
-# FIXME Try also w/ different colors and/or stars...
-# highlight = True
-# for i in range(10):
-#     xx = render_card_in_grid(screen, None, GridPos(3, 3), highlight=highlight)
-#     for e in xx:
-#         e.update(0)
-#         screen.refresh()
-#     time.sleep(0.05)
-#     highlight = not highlight
-
-
-screen.clear_buffer(Screen.COLOUR_WHITE, 0, 0, 12, 10, w=100, h=40)
-screen.refresh()
-time.sleep(1)
-
 screen.close()
 
 
@@ -119,5 +119,5 @@ screen.close()
 # - Can I draw an "*" that moves from the attacker to the target?
 # - Can I activate cards by moving them towards opponent and back?
 # - Can I encapsulate the code better?
-# - Can I remove health by blinking it first?
+# - Can I remove health by blinking it first? Or just blink to whole line?
 #       💓💓💓💓💓+7
