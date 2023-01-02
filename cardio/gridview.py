@@ -29,6 +29,7 @@ class SimpleView(GridView):
     non_blocking: bool = False
 
     def update(self) -> None:
+        # In a "real" UI, this should not really be necessary!?
         repr = ""
         for i, line in enumerate(self.model):
             repr += f"{i}   "
