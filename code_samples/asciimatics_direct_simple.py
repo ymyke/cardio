@@ -84,11 +84,7 @@ def show_effects(screen, effects: Union[Effect, List[Effect]], pause: float = 0)
         time.sleep(pause)
 
 
-# print(Print(screen, Box(10,10), 10))
-# # for i in StaticRenderer(BoxTool(True, 0).box(10, 10)).rendered_text:
-# #     print(i)
-# #     print()
-
+# --------------------
 
 screen = Screen.open(unicode_aware=True)
 
@@ -107,8 +103,6 @@ flash_card(screen)
 time.sleep(1)
 
 show_explosion(screen)
-
-# show_effects(screen, carde, 1)
 
 time.sleep(1)
 screen.close()
