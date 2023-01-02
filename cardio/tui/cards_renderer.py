@@ -54,14 +54,19 @@ def render_card_at(
 
 
 def render_card_in_grid(
-    screen, card: Optional[Card], pos: GridPos, highlight: bool = False
+    screen,
+    card: Optional[Card],
+    pos: GridPos,
+    highlight: bool = False,
+    xoffset: int = 0,
+    yoffset: int = 0,
 ) -> List[Effect]:
     """Render card at grid position."""
     return render_card_at(
         screen,
         card,
-        x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT),
-        y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP),
+        x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT) + xoffset,
+        y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP) + yoffset,
         highlight=highlight,
     )
 
@@ -79,15 +84,13 @@ def highlight_card_in_grid(screen, pos: GridPos):
     return [box]
 
 
-def clear_card_in_grid(screen, pos: GridPos):
-    txt = "." * BOX_WIDTH + "\n"
-    txt *= BOX_HEIGHT
-    pcard = Print(
-        screen=screen,
-        renderer=StaticRenderer(images=[txt]),
-        x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT),
-        y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP),
-        colour=5,
-        bg=5,
+def clear_card_in_grid(screen, pos: GridPos, xoffset: int = 0, yoffset: int = 0):
+    screen.clear_buffer(
+        Screen.COLOUR_WHITE,
+        0,
+        0,
+        x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT) + xoffset,
+        y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP) + yoffset,
+        w=BOX_WIDTH,
+        h=BOX_HEIGHT,
     )
-    return [pcard]
