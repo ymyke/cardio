@@ -28,6 +28,12 @@
 - Edge case: What if the grid is empty or powerless at some point during a fight? Who
   will win?
 
+# Game related
+
+- https://inscryption.fandom.com/wiki/Cards
+- https://inscryption.fandom.com/wiki/Sigils
+- "Cardio was massively inspyred by Inscryption. Buy it and play it!"
+
 # Other TUI projects
 
 - https://textual.textualize.io/
@@ -35,11 +41,18 @@
 - Curses
 - https://inventwithpython.com/pygcurse/tutorial/
 
-# Game related
 
-- https://inscryption.fandom.com/wiki/Cards
-- https://inscryption.fandom.com/wiki/Sigils
-- "Cardio was massively inspyred by Inscryption. Buy it and play it!"
+# UI Architecture options
+
+- Grow my own I: Using asciimatics only for rendering.
+- Grow my own II: Using https://github.com/Matthias1590/ConsoleDraw for output.
+- Check interactive sample in asciimatics.
+- Check https://github.com/a1usha/PyGol.
+- Should animations be something like the RayCaster effect?
+  - Could it have a reference to parameters that I could control from the outside? I.e.,
+	attacker and target?
+  - Cf https://stackoverflow.com/questions/68455609/how-to-run-an-asciimatics-animation-only-one-time-in-python
+
 
 # Asciimatics
 
