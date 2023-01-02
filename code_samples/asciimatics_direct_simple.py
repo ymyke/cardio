@@ -1,9 +1,8 @@
 """Using asciimatics only for rendering and doing everything else manually."""
 
-from asciimatics.screen import ManagedScreen, Screen
-from asciimatics.scene import Scene
-from asciimatics.effects import Cycle, Stars, Print
-from asciimatics.renderers import FigletText, StaticRenderer, Box
+from asciimatics.screen import Screen
+from asciimatics.effects import Print
+from asciimatics.renderers import StaticRenderer, Box
 from asciimatics.utilities import BoxTool
 import time
 
@@ -82,11 +81,3 @@ screen.close()
 # - Can I encapsulate the code better?
 # - Can I remove health by blinking it first?
 #       💓💓💓💓💓+7
-
-# with ManagedScreen() as screen:
-#     screen.print_at('Hello 🤯💓💗💖💞❤️', 0, 0)
-#     screen.refresh()
-#     time.sleep(1)
-#     screen.print_at('Ciao x!     ', 0, 0)
-#     screen.refresh()
-#     time.sleep(1)
