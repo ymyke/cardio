@@ -2,6 +2,7 @@
 import logging
 from cardio import Card, handlers, session
 from cardio.agent_strategies import Turn0OnlyStrategy, GridPos, SimpleHumanStrategy
+from cardio.fight import Fight
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -15,7 +16,13 @@ cs = Turn0OnlyStrategy(
     ]
 )
 hs = SimpleHumanStrategy(session.grid)
-handlers.handle_fight(computerstrategy=cs, humanstrategy=hs)
+# handlers.handle_fight(computerstrategy=cs, humanstrategy=hs)
+from cardio.tui import tui
+
+fight = Fight(grid=session.grid, computeragent=session.computeragent, humanagent=session.humanagent, computerstrategy=cs, humanstrategy=None)
+tui.start(session.grid, fight=fight)
+
+
 
 
 #%% -------------------- Lifecycle of decks in a run --------------------

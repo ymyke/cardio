@@ -6,9 +6,12 @@ from asciimatics import constants
 
 from cardio import Card, GridPos
 
+GRID_MARGIN_LEFT = 10
+GRID_MARGIN_TOP = 4
 BOX_WIDTH = 20
 BOX_HEIGHT = 7
-BOX_PADDING = 2
+BOX_PADDING_TOP = 0
+BOX_PADDING_LEFT = 2
 
 
 def card_to_amstring(c: Card) -> str:
@@ -37,7 +40,6 @@ def render_card_at(
         x=x,
         y=y,
         colour=BOX_COLOR,
-        transparent=True,
     )
     effects.append(pbox)
     if card is not None:
@@ -55,12 +57,37 @@ def render_card_in_grid(
     screen, card: Optional[Card], pos: GridPos, highlight: bool = False
 ) -> List[Effect]:
     """Render card at grid position."""
-    GRID_MARGIN_LEFT = 10
-    GRID_MARGIN_TOP = 10
     return render_card_at(
         screen,
         card,
-        x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING),
-        y=GRID_MARGIN_TOP,
+        x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT),
+        y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP),
         highlight=highlight,
     )
+
+
+def highlight_card_in_grid(screen, pos: GridPos):
+
+    box = Print(
+        screen=screen,
+        renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=constants.DOUBLE_LINE),
+        x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT),
+        y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP),
+        colour=Screen.COLOUR_RED,
+    )
+
+    return [box]
+
+
+def clear_card_in_grid(screen, pos: GridPos):
+    txt = "." * BOX_WIDTH + "\n"
+    txt *= BOX_HEIGHT
+    pcard = Print(
+        screen=screen,
+        renderer=StaticRenderer(images=[txt]),
+        x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT),
+        y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP),
+        colour=5,
+        bg=5,
+    )
+    return [pcard]
