@@ -1,8 +1,10 @@
-from typing import List, NamedTuple, Optional
+from typing import List, NamedTuple, Optional, Union
+import time
 from asciimatics.effects import Effect, Print
 from asciimatics.renderers import Box, StaticRenderer
 from asciimatics.screen import Screen
 from asciimatics import constants
+from asciimatics.utilities import BoxTool
 
 from cardio import Card, GridPos
 
@@ -11,7 +13,7 @@ GRID_MARGIN_TOP = 4
 BOX_WIDTH = 20
 BOX_HEIGHT = 7
 BOX_PADDING_TOP = 0
-BOX_PADDING_LEFT = 2
+BOX_PADDING_LEFT = 3
 
 
 class dPos(NamedTuple):
@@ -20,9 +22,10 @@ class dPos(NamedTuple):
 
 
 def gridpos2dpos(pos: GridPos) -> dPos:
+    agentgap = 3 if pos.line == 2 else 0
     return dPos(
         x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT),
-        y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP),
+        y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP) + agentgap,
     )
 
 
@@ -74,22 +77,19 @@ def render_card_in_grid(
     yoffset: int = 0,
 ) -> List[Effect]:
     """Render card at grid position."""
+    dpos = gridpos2dpos(pos)
     return render_card_at(
-        screen,
-        card,
-        x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT) + xoffset,
-        y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP) + yoffset,
-        highlight=highlight,
+        screen, card, x=dpos.x + xoffset, y=dpos.y + yoffset, highlight=highlight
     )
 
 
 def highlight_card_in_grid(screen, pos: GridPos):
-
+    dpos = gridpos2dpos(pos)
     box = Print(
         screen=screen,
         renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=constants.DOUBLE_LINE),
-        x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT),
-        y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP),
+        x=dpos.x,
+        y=dpos.y,
         colour=Screen.COLOUR_RED,
     )
 
@@ -112,4 +112,81 @@ def clear_card_in_grid(screen, pos: GridPos, xoffset: int = 0, yoffset: int = 0)
         y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP) + yoffset,
         w=BOX_WIDTH,
         h=BOX_HEIGHT,
+    )
+
+
+def show_effects(screen, effects: Union[Effect, List[Effect]], pause: float = 0):
+    if not isinstance(effects, list):
+        effects = [effects]
+    for e in effects:
+        e.update(0)
+    screen.refresh()
+    if pause > 0:
+        time.sleep(pause)
+
+
+class ExtendedBox(BoxTool):
+    @property
+    def style(self):
+        return self._style
+
+    @style.setter
+    def style(self, style):
+        self._style = style
+        if style == 11:
+            self.down_right = "·"
+            self.down_left = "·"
+            self.up_right = "·"
+            self.up_left = "·"
+            self.h = "·"
+            self.h_inside = "·"
+            self.v = "·"
+            self.v_inside = "·"
+            self.v_left = "·"
+            self.v_right = "·"
+            self.h_up = "·"
+            self.h_down = "·"
+            self.cross = "·"
+        elif style == 12 and not self.unicode_aware:
+            self.down_right = "+"
+            self.down_left = "+"
+            self.up_right = "+"
+            self.up_left = "+"
+            self.h = " "
+            self.h_inside = " "
+            self.v = ""
+            self.v_inside = ""
+            self.v_left = ""
+            self.v_right = ""
+            self.h_up = ""
+            self.h_down = ""
+            self.cross = ""
+        elif style == 12 and self.unicode_aware:
+            self.down_right = "┌"
+            self.down_left = "┐"
+            self.up_right = "└"
+            self.up_left = "┘"
+            self.h = " "
+            self.h_inside = " "
+            self.v = ""
+            self.v_inside = ""
+            self.v_left = ""
+            self.v_right = ""
+            self.h_up = ""
+            self.h_down = ""
+            self.cross = ""
+        else:
+            super(ExtendedBox, self.__class__).style.fset(self, style)
+
+
+def draw_slot_in_grid(screen, pos: GridPos):
+    dpos = gridpos2dpos(pos)
+    show_effects(
+        screen,
+        Print(
+            screen,
+            StaticRenderer([ExtendedBox(True, 11).box(BOX_WIDTH, BOX_HEIGHT)]),
+            x=dpos.x,
+            y=dpos.y,
+        ),
     )
