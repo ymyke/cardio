@@ -129,6 +129,23 @@ def flash_card(screen):
         highlight = not highlight
 
 
+def show_shoot(screen):
+    HIT = "🌟"
+    buffer = copy.deepcopy(screen._buffer._double_buffer)
+    show_effects(
+        screen, Print(screen=screen, renderer=StaticRenderer(images=[HIT]), y=30, x=60)
+    )
+    p = Path()
+    p.jump_to(60, 30)
+    p.move_straight_to(3, 3, 40)
+    for x, y in p._steps:
+        screen.clear_buffer(Screen.COLOUR_WHITE, 0, 0, x=x, y=y, w=1, h=1)
+        show_effects(
+            screen, Print(screen=screen, renderer=StaticRenderer(images=[HIT]), y=y, x=x)
+        )
+        screen._buffer._double_buffer = copy.deepcopy(buffer)
+
+
 def show_effects(screen, effects: Union[Effect, List[Effect]], pause: float = 0):
     if not isinstance(effects, list):
         effects = [effects]
@@ -154,6 +171,10 @@ show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 0)))
 
 show_explosion(screen, True)
 
+time.sleep(1)
+
+show_shoot(screen)
+
 show_move()
 
 flash_card(screen)
@@ -167,7 +188,6 @@ screen.close()
 
 
 # FIXME:
-# - Can I move cards?
 # - Can I draw an "*" that moves from the attacker to the target?
 # - Can I activate cards by moving them towards opponent and back?
 # - Can I encapsulate the code better?
