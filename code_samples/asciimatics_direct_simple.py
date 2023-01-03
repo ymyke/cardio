@@ -1,6 +1,6 @@
 """Using asciimatics only for rendering and doing everything else manually."""
 
-from typing import Union, List, Optional
+from typing import NamedTuple, Tuple, Union, List, Optional
 import sys
 import copy
 import time
@@ -13,6 +13,8 @@ from asciimatics.utilities import BoxTool
 from asciimatics.event import KeyboardEvent
 
 from cardio.tui.cards_renderer import (
+    dPos,
+    gridpos2dpos,
     render_card_in_grid,
     clear_card_in_grid,
     render_card_at,
@@ -188,9 +190,50 @@ def get_keycode(screen) -> Optional[int]:
 
 # def draw_card_at(card: Card, pos: Tuple[int, int]):
 
+
+class dCard:
+    # FIXME: Could/should this rather be a mixin for the cards? -- Then, a card could
+    # call its own get_attacked or activate methods when necessary.
+
+    # FIXME The card could find out by itself where it is and how to display itself
+    # appropriately. depening on whether it is in a deck (and which one) or in the grid
+    # or...
+    # Same for the grid, which would also be able to display empty slots.
+    # Cards could have animations for when they change from one state/place to another.
+    # Under such circumstances, it would make all the more sense to model decks not as
+    # decks but as states within cards.
+
+    # empty or not?
+    # highlight?
+    # offsets?
+
+    def __init__(
+        self,
+        screen: Screen,
+        card: Optional[Card],
+        pos: Union[GridPos, dPos, Tuple[int, int]],
+    ) -> None:
+        self.screen = screen
+        self.card = card
+        if isinstance(pos, GridPos):
+            self.x, self.y = gridpos2dpos(pos)
+        else:
+            self.x, self.y = pos
+
+    def draw(self):
+        show_effects(
+            self.screen, render_card_at(self.screen, self.card, self.x, self.y)
+        )
+
+
 # --------------------
 
 screen = Screen.open(unicode_aware=True)
+
+
+dc = dCard(screen, card_blueprints.create_card_from_blueprint("Koala"), (100, 30))
+dc.draw()
+
 
 card = card_blueprints.create_card_from_blueprint("Hamster")
 for linei in range(3):
