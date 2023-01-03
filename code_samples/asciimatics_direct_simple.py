@@ -31,7 +31,7 @@ class ExtendedBox(BoxTool):
     @style.setter
     def style(self, style):
         self._style = style
-        if style == 7:
+        if style == 11:
             self.down_right = "*"
             self.down_left = "*"
             self.up_right = "*"
@@ -45,8 +45,36 @@ class ExtendedBox(BoxTool):
             self.h_up = "*"
             self.h_down = "*"
             self.cross = "*"
+        elif style == 12 and not self.unicode_aware:
+            self.down_right = "+"
+            self.down_left = "+"
+            self.up_right = "+"
+            self.up_left = "+"
+            self.h = " "
+            self.h_inside = " "
+            self.v = ""
+            self.v_inside = ""
+            self.v_left = ""
+            self.v_right = ""
+            self.h_up = ""
+            self.h_down = ""
+            self.cross = ""
+        elif style == 12 and self.unicode_aware:
+            self.down_right = "┌"
+            self.down_left = "┐"
+            self.up_right = "└"
+            self.up_left = "┘"
+            self.h = " "
+            self.h_inside = " "
+            self.v = ""
+            self.v_inside = ""
+            self.v_left = ""
+            self.v_right = ""
+            self.h_up = ""
+            self.h_down = ""
+            self.cross = ""
         else:
-            super().style(style)  # FIXME This doesn't work yet
+            super(ExtendedBox, self.__class__).style.fset(self, style)
 
 
 class SmallExplosionFlames(particles.ExplosionFlames):
@@ -188,6 +216,21 @@ def get_keycode(screen) -> Optional[int]:
     return event.key_code
 
 
+def show_some_other_boxes(screen):
+    show_effects(
+        screen,
+        Print(screen, StaticRenderer([ExtendedBox(True, 11).box(20, 7)]), x=20, y=35),
+    )
+    show_effects(
+        screen,
+        Print(screen, StaticRenderer([ExtendedBox(True, 12).box(20, 7)]), x=42, y=35),
+    )
+    show_effects(
+        screen,
+        Print(screen, StaticRenderer([ExtendedBox(False, 12).box(20, 7)]), x=64, y=35),
+    )
+
+
 # def draw_card_at(card: Card, pos: Tuple[int, int]):
 
 
@@ -230,6 +273,7 @@ class dCard:
 
 screen = Screen.open(unicode_aware=True)
 
+show_some_other_boxes(screen)
 
 dc = dCard(screen, card_blueprints.create_card_from_blueprint("Koala"), (100, 30))
 dc.draw()
