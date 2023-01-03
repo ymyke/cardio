@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, NamedTuple, Optional
 from asciimatics.effects import Effect, Print
 from asciimatics.renderers import Box, StaticRenderer
 from asciimatics.screen import Screen
@@ -12,6 +12,18 @@ BOX_WIDTH = 20
 BOX_HEIGHT = 7
 BOX_PADDING_TOP = 0
 BOX_PADDING_LEFT = 2
+
+
+class dPos(NamedTuple):
+    x: int
+    y: int
+
+
+def gridpos2dpos(pos: GridPos) -> dPos:
+    return dPos(
+        x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT),
+        y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP),
+    )
 
 
 def card_to_amstring(c: Card) -> str:
@@ -89,7 +101,7 @@ def clear_card_at(screen, x, y):
 
 
 def clear_card_in_grid(screen, pos: GridPos, xoffset: int = 0, yoffset: int = 0):
-    # FIXME Use clear_card_at here 
+    # FIXME Use clear_card_at here
     # FIXME Add some from_grid and to_grid coordination mapping helper functions to this
     # module
     screen.clear_buffer(
