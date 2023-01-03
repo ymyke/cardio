@@ -84,6 +84,10 @@ def highlight_card_in_grid(screen, pos: GridPos):
     return [box]
 
 
+def clear_card_at(screen, x, y):
+    screen.clear_buffer(Screen.COLOUR_WHITE, 0, 0, x=x, y=y, w=BOX_WIDTH, h=BOX_HEIGHT)
+
+
 def clear_card_in_grid(screen, pos: GridPos, xoffset: int = 0, yoffset: int = 0):
     screen.clear_buffer(
         Screen.COLOUR_WHITE,
