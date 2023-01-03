@@ -100,6 +100,7 @@ def shake_card(screen):
 
 
 def show_move():
+    card = card_blueprints.create_card_from_blueprint("Hamster")
     show_effects(screen, render_card_at(screen, card, 10, 10))
     time.sleep(1)
     p = Path()
@@ -141,7 +142,8 @@ def show_shoot(screen):
     for x, y in p._steps:
         screen.clear_buffer(Screen.COLOUR_WHITE, 0, 0, x=x, y=y, w=1, h=1)
         show_effects(
-            screen, Print(screen=screen, renderer=StaticRenderer(images=[HIT]), y=y, x=x)
+            screen,
+            Print(screen=screen, renderer=StaticRenderer(images=[HIT]), y=y, x=x),
         )
         screen._buffer._double_buffer = copy.deepcopy(buffer)
 
@@ -156,39 +158,33 @@ def show_effects(screen, effects: Union[Effect, List[Effect]], pause: float = 0)
         time.sleep(pause)
 
 
+def show_all_effects(screen):
+    card = card_blueprints.create_card_from_blueprint("Hamster")
+    show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 4)))
+    show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 3)))
+    show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 2)))
+    show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 1)))
+    show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 0)))
+    time.sleep(1)
+    shake_card(screen)
+    show_explosion(screen, True)
+    time.sleep(1)
+    show_shoot(screen)
+    show_move()
+    flash_card(screen)
+    time.sleep(1)
+    show_explosion(screen)
+    time.sleep(1)
+
+
 # --------------------
 
 screen = Screen.open(unicode_aware=True)
-
-card = card_blueprints.create_card_from_blueprint("Hamster")
-
-
-show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 4)))
-show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 3)))
-show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 2)))
-show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 1)))
-show_effects(screen, render_card_in_grid(screen, card, GridPos(3, 0)))
-
-show_explosion(screen, True)
-
-time.sleep(1)
-
-show_shoot(screen)
-
-show_move()
-
-flash_card(screen)
-
-time.sleep(1)
-
-show_explosion(screen)
-
-time.sleep(1)
+show_all_effects(screen)
 screen.close()
 
 
 # FIXME:
-# - Can I draw an "*" that moves from the attacker to the target?
 # - Can I activate cards by moving them towards opponent and back?
 # - Can I encapsulate the code better?
 # - Can I remove health by blinking it first? Or just blink to whole line?
