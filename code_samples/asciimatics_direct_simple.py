@@ -1,6 +1,6 @@
 """Using asciimatics only for rendering and doing everything else manually."""
 
-from typing import Union, List
+from typing import Union, List, Optional
 import sys
 import copy
 import time
@@ -10,6 +10,7 @@ from asciimatics import particles
 from asciimatics.renderers import StaticRenderer, Box
 from asciimatics.paths import Path
 from asciimatics.utilities import BoxTool
+from asciimatics.event import KeyboardEvent
 
 from cardio.tui.cards_renderer import (
     render_card_in_grid,
@@ -177,15 +178,42 @@ def show_all_effects(screen):
     time.sleep(1)
 
 
+def get_keycode(screen) -> Optional[int]:
+    """Ignore all mouse events. Return key code."""
+    event = screen.get_event()
+    if not isinstance(event, KeyboardEvent):
+        return None
+    return event.key_code
+
+
+# def draw_card_at(card: Card, pos: Tuple[int, int]):
+
 # --------------------
 
 screen = Screen.open(unicode_aware=True)
-show_all_effects(screen)
+
+card = card_blueprints.create_card_from_blueprint("Hamster")
+for linei in range(3):
+    for sloti in range(4):
+        yoff = 1 if linei == 2 else 0
+        # draw_card(card, GridPos(linei, sloti))
+        show_effects(
+            screen,
+            render_card_in_grid(screen, card, GridPos(linei, sloti), yoffset=yoff),
+        )
+
+while get_keycode(screen) != ord("q"):
+    show_explosion(screen)
+
+
 screen.close()
 
 
 # FIXME:
+# - Can I build nice classes for VCard, VDeck, VDashboard, ...? (V = visual?)
+# - How to integrate this new code into the cardio code?
 # - Can I activate cards by moving them towards opponent and back?
 # - Can I encapsulate the code better?
 # - Can I remove health by blinking it first? Or just blink to whole line?
 #       💓💓💓💓💓+7
+# - Mark empty slots simply with + in the edges or so. Use ExtendedBox for that.
