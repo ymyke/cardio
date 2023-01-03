@@ -89,6 +89,9 @@ def clear_card_at(screen, x, y):
 
 
 def clear_card_in_grid(screen, pos: GridPos, xoffset: int = 0, yoffset: int = 0):
+    # FIXME Use clear_card_at here 
+    # FIXME Add some from_grid and to_grid coordination mapping helper functions to this
+    # module
     screen.clear_buffer(
         Screen.COLOUR_WHITE,
         0,
