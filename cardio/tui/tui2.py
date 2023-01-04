@@ -1,17 +1,24 @@
+import time
+import atexit
+import copy
 from typing import NamedTuple
-from cardio import session, Deck, GridPos
+from cardio import session, Deck, GridPos, Card
 from cardio.card_blueprints import create_cards_from_blueprints
 from asciimatics.screen import Screen
-from .cards_renderer import draw_slot_in_grid
+from asciimatics.paths import Path
+from .cards_renderer import draw_slot_in_grid, draw_drawdecks, draw_screen_resolution
+from . import cards_renderer
 
-# FIXME Set up and close screen object when loading/unloading.
 
 screen: Screen
 
 
-def start_screen() -> None:
+def start_screen(debug: bool = False) -> None:
     global screen
     screen = Screen.open(unicode_aware=True)
+    if debug:
+        draw_screen_resolution(screen)
+    atexit.register(close_screen)
 
 
 def close_screen() -> None:
@@ -79,29 +86,54 @@ def setup_decks() -> Decks:
     hamsterdeck = Deck(create_cards_from_blueprints(["Hamster"] * 10))
     return Decks(drawdeck, hamsterdeck, Deck(), Deck())
 
+
 # FIXME Add some border around the whole screen when the human presses "N" until he has
 # to do something again?
 
+
+def d_draw_card_to_handdeck(handdeck: Deck, card: Card, whichdeck: str):
+    # FIXME Maybe implement differently in the future when cards have states: can use
+    # those states for `whichdeck`.
+
+    starty = cards_renderer.DRAW_DECKS_Y
+    if whichdeck == "draw":
+        startx = cards_renderer.DRAW_DECKS_X
+    else:
+        startx = cards_renderer.DRAW_DECKS_X + cards_renderer.BOX_WIDTH + 2
+    buffer = copy.deepcopy(screen._buffer._double_buffer)
+    cards_renderer.show_effects(
+        screen, cards_renderer.render_card_at(screen, card, x=startx, y=starty)
+    )
+    p = Path()
+    p.jump_to(x=startx, y=starty)
+    to_pos = cards_renderer.gridpos2dpos(GridPos(4, len(handdeck.cards)))
+    p.move_straight_to(x=to_pos.x, y=to_pos.y, steps=5)
+    for x, y in p._steps:
+        screen._buffer._double_buffer = copy.deepcopy(buffer)
+        cards_renderer.show_effects(
+            screen, cards_renderer.render_card_at(screen, card, x, y)
+        )
+
+
 def handle_fight():
 
+    # --- Prepare the fight ---
     # Show empty grid:
     for linei in range(3):
         for sloti in range(4):
             draw_slot_in_grid(screen, GridPos(linei, sloti))
-    
+
     # FIXME Some pause here?
 
     # Set up human's decks and show the hand deck:
     decks = setup_decks()
-
+    draw_drawdecks(screen)
     for _ in range(3):
-        card = decks.handdeck.draw_card()
-        d_drawdeck_add_card(
-            card, "hand"
-        )  # FIXME Maybe implement differently in the future when cards have states: can use those states
+        card = decks.drawdeck.draw_card()
+        d_draw_card_to_handdeck(decks.handdeck, card, "draw")
         decks.handdeck.add_card(card)
     card = decks.hamsterdeck.draw_card()
-    d_drawdeck_add_card(card, "hamster")
+    d_draw_card_to_handdeck(decks.handdeck, card, "hamster")
     decks.handdeck.add_card(card)
 
     # --- Run the fight ---

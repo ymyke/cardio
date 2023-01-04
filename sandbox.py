@@ -19,8 +19,8 @@ hs = SimpleHumanStrategy(session.grid)
 # handlers.handle_fight(computerstrategy=cs, humanstrategy=hs)
 from cardio.tui import tui2
 
-fight = Fight(grid=session.grid, computeragent=session.computeragent, humanagent=session.humanagent, computerstrategy=cs, humanstrategy=None)
-tui2.start_screen()
+# fight = Fight(grid=session.grid, computeragent=session.computeragent, humanagent=session.humanagent, computerstrategy=cs, humanstrategy=None)
+tui2.start_screen(debug=True)
 tui2.handle_fight()
 tui2.close_screen()
 
