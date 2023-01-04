@@ -17,7 +17,7 @@ def demo(screen):
     scenes = []
 
     effects = [
-        Print(screen, ImageFile("code_samples/hamster_1f439.png", height=20), 2, 2),
+        Print(screen, ImageFile("code_samples/lighthouse_symbol.png", height=30), 2, 2),
     ]
     scenes.append(Scene(effects, -1))
     screen.play(scenes, stop_on_resize=True)
