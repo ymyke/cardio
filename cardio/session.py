@@ -31,7 +31,4 @@ def setup() -> None:
 
     humanagent = Agent(name="Schnuzgi", health=5, initial_health=5, lives=1)
     humanagent.deck = Deck(create_cards_from_blueprints(get_starterdeck_names()))
-
     computeragent = Agent(name="Yshl", health=5, initial_health=5, lives=1)
-
-    os.system("cls")
