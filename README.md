@@ -72,3 +72,9 @@
   - https://github.com/peterbrittain/asciimatics/blob/master/samples/forms.py
   - https://github.com/peterbrittain/asciimatics/blob/master/samples/experimental.py
 - Use Kaleidoscope for start/welcome screen? or plasma? https://github.com/peterbrittain/asciimatics/blob/master/samples/plasma.py
+
+
+# Fonts
+
+- Hack NF works well.
+- Is there a Consolas NF variant?
