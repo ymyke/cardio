@@ -14,6 +14,8 @@ BOX_WIDTH = 20
 BOX_HEIGHT = 7
 BOX_PADDING_TOP = 0
 BOX_PADDING_LEFT = 3
+DRAW_DECKS_X = 45
+DRAW_DECKS_Y = 40   # FIXME Make this relative to the lower border?
 
 
 class dPos(NamedTuple):
@@ -194,3 +196,60 @@ def draw_slot_in_grid(screen, pos: GridPos):
     )
     # (BLACK + BOLD produces dark gray,
     # cf https://github.com/peterbrittain/asciimatics/issues/363)
+
+
+def draw_screen_resolution(screen):
+    txt = f"{screen.width} x {screen.height}"
+    show_effects(
+        screen,
+        Print(
+            screen,
+            StaticRenderer(images=[txt]),
+            x=screen.width - len(txt),
+            y=screen.height - 1,
+        ),
+    )
+
+
+def draw_drawdecks(screen: Screen, counts=tuple):
+
+    drawcover = "    ⬆️⬆️⬆️⬆️⬆️⬆️⬆⬆️⬆️"
+    hamstercover = "      🐹🐹🐹"
+
+    show_effects(
+        screen,
+        [
+            Print(
+                screen=screen,
+                renderer=Box(
+                    BOX_WIDTH, BOX_HEIGHT, uni=True, style=constants.SINGLE_LINE
+                ),
+                x=DRAW_DECKS_X,
+                y=DRAW_DECKS_Y,
+                colour=Screen.COLOUR_YELLOW,
+            ),
+            Print(
+                screen=screen,
+                renderer=StaticRenderer(images=[drawcover]),
+                x=DRAW_DECKS_X + 1,
+                y=DRAW_DECKS_Y + BOX_HEIGHT//2,
+                colour=Screen.COLOUR_YELLOW,
+            ),
+            Print(
+                screen=screen,
+                renderer=Box(
+                    BOX_WIDTH, BOX_HEIGHT, uni=True, style=constants.SINGLE_LINE
+                ),
+                x=DRAW_DECKS_X + BOX_WIDTH + 2,
+                y=DRAW_DECKS_Y,
+                colour=Screen.COLOUR_YELLOW,
+            ),
+            Print(
+                screen=screen,
+                renderer=StaticRenderer(images=[hamstercover]),
+                x=DRAW_DECKS_X + BOX_WIDTH +2 + 1,
+                y=DRAW_DECKS_Y + BOX_HEIGHT//2,
+                colour=Screen.COLOUR_YELLOW,
+            ),
+        ],
+    )
