@@ -184,9 +184,13 @@ def draw_slot_in_grid(screen, pos: GridPos):
     show_effects(
         screen,
         Print(
-            screen,
-            StaticRenderer([ExtendedBox(True, 11).box(BOX_WIDTH, BOX_HEIGHT)]),
+            screen=screen,
+            renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=constants.SINGLE_LINE),
             x=dpos.x,
             y=dpos.y,
+            colour=Screen.COLOUR_BLACK,
+            attr=Screen.A_BOLD,
         ),
     )
+    # (BLACK + BOLD produces dark gray,
+    # cf https://github.com/peterbrittain/asciimatics/issues/363)
