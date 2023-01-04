@@ -231,6 +231,21 @@ def show_some_other_boxes(screen):
     )
 
 
+def moving_sprite():
+    from asciimatics.sprites import Arrow
+
+    p = Path()
+    p.jump_to(10, 10)
+    p.move_straight_to(140, 20, 60)
+    a = Arrow(screen, p)
+    for _ in p._steps:
+        a._update(0)
+        screen.refresh()
+        time.sleep(0.1)
+    # Note that the Sprite class doesn't redraw the background like my manual routines
+    # do.
+
+
 # def draw_card_at(card: Card, pos: Tuple[int, int]):
 
 
@@ -273,7 +288,6 @@ class dCard:
 
 screen = Screen.open(unicode_aware=True)
 
-show_some_other_boxes(screen)
 
 dc = dCard(screen, card_blueprints.create_card_from_blueprint("Koala"), (100, 30))
 dc.draw()
@@ -288,6 +302,9 @@ for linei in range(3):
             screen,
             render_card_in_grid(screen, card, GridPos(linei, sloti), yoffset=yoff),
         )
+
+
+show_some_other_boxes(screen)
 
 while get_keycode(screen) != ord("q"):
     show_explosion(screen)
