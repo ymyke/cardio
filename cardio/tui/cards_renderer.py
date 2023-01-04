@@ -22,7 +22,7 @@ class dPos(NamedTuple):
 
 
 def gridpos2dpos(pos: GridPos) -> dPos:
-    agentgap = 3 if pos.line == 2 else 0
+    agentgap = 3 if pos.line >= 2 else 0
     return dPos(
         x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT),
         y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP) + agentgap,
