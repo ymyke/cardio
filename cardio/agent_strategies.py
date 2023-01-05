@@ -7,6 +7,10 @@ from . import Grid, Deck, GridPos, GridPosAndCard
 # who can directly influence the grid.
 class AgentStrategy(ABC):
     @abstractmethod
+    def cards_to_be_played(self, grid: Grid, turn_number: int) -> None:
+        # FIXME Should `grid` be set in the initalizer? Same as in HumanAgentStrategy?
+        pass
+    @abstractmethod
     def play_cards(self, grid: Grid, turn_number: int) -> None:
         # FIXME Should `grid` be set in the initalizer? Same as in HumanAgentStrategy?
         pass
@@ -73,7 +77,11 @@ class Turn0OnlyStrategy(AgentStrategy):
         super().__init__()
         self.cards = cards
 
-    def play_cards(self, grid: Grid, turn_number: int) -> None:
+    def cards_to_be_played(self, grid: Grid, turn_number: int) -> List[GridPosAndCard]:
         if turn_number == 0:
-            for (linei, sloti), card in self.cards:
-                grid.lines[linei][sloti] = card
+            return self.cards
+        return []
+
+    def play_cards(self, grid: Grid, turn_number: int) -> None:
+        for (linei, sloti), card in self.cards_to_be_played(grid, turn_number):
+            grid.lines[linei][sloti] = card

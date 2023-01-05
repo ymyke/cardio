@@ -21,7 +21,7 @@ from cardio.tui import tui2
 
 # fight = Fight(grid=session.grid, computeragent=session.computeragent, humanagent=session.humanagent, computerstrategy=cs, humanstrategy=None)
 tui2.start_screen(debug=True)
-tui2.handle_fight()
+tui2.handle_fight(computerstrategy=cs)
 tui2.close_screen()
 
 

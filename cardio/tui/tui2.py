@@ -3,6 +3,7 @@ import atexit
 import copy
 from typing import NamedTuple
 from cardio import session, Deck, GridPos, Card
+from cardio.agent_strategies import AgentStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
 from asciimatics.screen import Screen
 from asciimatics.paths import Path
@@ -11,6 +12,9 @@ from . import cards_renderer
 
 
 screen: Screen
+# FIXME Should there be some viewsession module or something, which contains the screen
+# and maybe other important stuff and can get imported by all the view modules? So we
+# don't have to pass around screen...
 
 
 def start_screen(debug: bool = False) -> None:
@@ -39,10 +43,32 @@ def log_decks(decks: Decks):
     pass  # FIXME
 
 
-def handle_round_of_fight(round_num, decks: Decks):
+def d_play_computer_card(card: Card, to_pos: GridPos):
+    starty = -5
+    startx = 50  # FIXME Calc middle of the grid
+    buffer = copy.deepcopy(screen._buffer._double_buffer)
+    cards_renderer.show_effects(
+        screen, cards_renderer.render_card_at(screen, card, x=startx, y=starty)
+    )
+    p = Path()
+    p.jump_to(x=startx, y=starty)
+    to_pos = cards_renderer.gridpos2dpos(to_pos)
+    p.move_straight_to(x=to_pos.x, y=to_pos.y, steps=5)
+    for x, y in p._steps:
+        screen._buffer._double_buffer = copy.deepcopy(buffer)
+        cards_renderer.show_effects(
+            screen, cards_renderer.render_card_at(screen, card, x, y)
+        )
+
+
+def handle_round_of_fight(round_num, decks: Decks, computerstrategy: AgentStrategy):
     log_decks(decks)
 
     # Play computer cards and animate how they appear:
+    for pos, card in computerstrategy.cards_to_be_played(session.grid, round_num):
+        print(pos, card)
+        d_play_computer_card(card, pos)
+    computerstrategy.play_cards(session.grid, 0)  # Now also place them in the model
 
     # Let human draw a card:
     # (Loop for keys ←, →, ↑)
@@ -95,7 +121,9 @@ def d_draw_card_to_handdeck(handdeck: Deck, card: Card, whichdeck: str):
     # FIXME Maybe implement differently in the future when cards have states: can use
     # those states for `whichdeck`.
 
-    starty = cards_renderer.DRAW_DECKS_Y
+    starty = cards_renderer.DRAW_DECKS_Y - 2
+    # FIXME ^ When we put `-1` here, there will be a leftover `-` on the screen after
+    # moving the cards. How to get rid of that?
     if whichdeck == "draw":
         startx = cards_renderer.DRAW_DECKS_X
     else:
@@ -110,12 +138,13 @@ def d_draw_card_to_handdeck(handdeck: Deck, card: Card, whichdeck: str):
     p.move_straight_to(x=to_pos.x, y=to_pos.y, steps=5)
     for x, y in p._steps:
         screen._buffer._double_buffer = copy.deepcopy(buffer)
+        screen.refresh()
         cards_renderer.show_effects(
             screen, cards_renderer.render_card_at(screen, card, x, y)
         )
 
 
-def handle_fight():
+def handle_fight(computerstrategy: AgentStrategy):
 
     # --- Prepare the fight ---
     # Show empty grid:
@@ -127,20 +156,24 @@ def handle_fight():
 
     # Set up human's decks and show the hand deck:
     decks = setup_decks()
-    draw_drawdecks(screen)
+    draw_drawdecks(screen, [len(decks.drawdeck.cards), len(decks.hamsterdeck.cards)])
     for _ in range(3):
         card = decks.drawdeck.draw_card()
         d_draw_card_to_handdeck(decks.handdeck, card, "draw")
         decks.handdeck.add_card(card)
+
     card = decks.hamsterdeck.draw_card()
     d_draw_card_to_handdeck(decks.handdeck, card, "hamster")
     decks.handdeck.add_card(card)
+    draw_drawdecks(screen, [len(decks.drawdeck.cards), len(decks.hamsterdeck.cards)])
 
     # --- Run the fight ---
     fighting = True
     round_num = 0
     while fighting:
-        fighting = handle_round_of_fight(round_num, decks)
+        fighting = handle_round_of_fight(
+            round_num, decks, computerstrategy=computerstrategy
+        )
         round_num += 1
 
     # --- Clean up after fight ---

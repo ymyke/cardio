@@ -211,7 +211,7 @@ def draw_screen_resolution(screen):
     )
 
 
-def draw_drawdecks(screen: Screen, counts=tuple):
+def draw_drawdecks(screen: Screen, counts=list):
 
     drawcover = "    ⬆️⬆️⬆️⬆️⬆️⬆️⬆⬆️⬆️"
     hamstercover = "      🐹🐹🐹"
@@ -236,6 +236,13 @@ def draw_drawdecks(screen: Screen, counts=tuple):
                 colour=Screen.COLOUR_YELLOW,
             ),
             Print(
+                screen,
+                StaticRenderer([f"⠀{counts[0]}⠀"]),
+                x=DRAW_DECKS_X+1,
+                y=DRAW_DECKS_Y+BOX_HEIGHT-1,
+                colour=Screen.COLOUR_YELLOW
+            ),
+            Print(
                 screen=screen,
                 renderer=Box(
                     BOX_WIDTH, BOX_HEIGHT, uni=True, style=constants.SINGLE_LINE
@@ -251,5 +258,12 @@ def draw_drawdecks(screen: Screen, counts=tuple):
                 y=DRAW_DECKS_Y + BOX_HEIGHT//2,
                 colour=Screen.COLOUR_YELLOW,
             ),
+            Print(
+                screen,
+                StaticRenderer([f"⠀{counts[1]}⠀"]),
+                x=DRAW_DECKS_X+BOX_WIDTH+2+1,
+                y=DRAW_DECKS_Y+BOX_HEIGHT-1,
+                colour=Screen.COLOUR_YELLOW
+            )
         ],
     )
