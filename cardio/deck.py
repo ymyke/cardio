@@ -13,8 +13,11 @@ class Deck:
             assert all(isinstance(c, Card) for c in cards)
             self.cards = cards
 
+    def size(self) -> int:
+        return len(self.cards)
+    
     def is_empty(self) -> bool:
-        return len(self.cards) == 0
+        return self.size() == 0
 
     def shuffle(self) -> None:
         random.shuffle(self.cards)
