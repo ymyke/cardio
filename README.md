@@ -27,6 +27,7 @@
 - Write tests for all existing classes and all card characteristics and sigils.
 - Edge case: What if the grid is empty or powerless at some point during a fight? Who
   will win?
+- Display some help output in the lower right corner? Current state of the app, allowed keys, unrecognized keys, ...?
 
 # Game related
 
