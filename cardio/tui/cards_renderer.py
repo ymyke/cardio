@@ -84,6 +84,7 @@ def render_card_in_grid(
         screen, card, x=dpos.x + xoffset, y=dpos.y + yoffset, highlight=highlight
     )
 
+
 def render_highlight_card_at(screen, pos: dPos, highlight: bool = False):
     if highlight:
         style = constants.DOUBLE_LINE
@@ -109,6 +110,10 @@ def render_highlight_card_in_grid(screen, pos: GridPos):
 
 def highlight_card_at(screen, pos: dPos, highlight: bool = False):
     show_effects(screen, render_highlight_card_at(screen, pos, highlight))
+
+
+def highlight_card_in_grid(screen, pos: GridPos, highlight: bool = True):
+    highlight_card_at(screen, gridpos2dpos(pos), highlight)
 
 
 def clear_card_at(screen, x, y):
@@ -222,6 +227,11 @@ def draw_screen_resolution(screen):
             y=screen.height - 1,
         ),
     )
+
+
+def draw_handdeck_highlight(screen, slot: int, highlight:bool=True) -> None:
+    highlight_card_in_grid(screen, GridPos(4, slot), highlight)
+    # FIXME Call the highlight_card_in_grid directly rather than via this function?
 
 
 def draw_drawdeck_highlights(screen, highlights: Tuple[bool, bool]):

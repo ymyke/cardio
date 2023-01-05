@@ -1,3 +1,4 @@
+import logging
 import time
 import atexit
 import copy
@@ -13,6 +14,11 @@ from .cards_renderer import (
     draw_drawdecks,
     draw_screen_resolution,
     draw_drawdeck_highlights,
+    draw_handdeck_highlight,
+    highlight_card_in_grid,
+    gridpos2dpos,
+    BOX_HEIGHT,
+    BOX_WIDTH,
 )
 from . import cards_renderer
 
@@ -74,6 +80,8 @@ def get_keycode(screen) -> Optional[int]:
     if not isinstance(event, KeyboardEvent):
         return None
     return event.key_code
+    # FIXME Add a tiny sleep here (and some do_pause parameter) in case there is no key
+    # so the while loops don't load CPU that much?
 
 
 def handle_human_draws_new_card(decks: Decks) -> None:
@@ -81,17 +89,17 @@ def handle_human_draws_new_card(decks: Decks) -> None:
         highlights = [True, False]
     elif not decks.hamsterdeck.is_empty():
         highlights = [False, True]
-    else: # both empty
+    else:  # both empty
         return
 
     while True:
         draw_drawdeck_highlights(screen, highlights)
-        c = get_keycode(screen)
-        if c == Screen.KEY_LEFT and not decks.drawdeck.is_empty():
+        keycode = get_keycode(screen)
+        if keycode == Screen.KEY_LEFT and not decks.drawdeck.is_empty():
             highlights = [True, False]
-        elif c == Screen.KEY_RIGHT and not decks.hamsterdeck.is_empty():
+        elif keycode == Screen.KEY_RIGHT and not decks.hamsterdeck.is_empty():
             highlights = [False, True]
-        elif c == screen.KEY_UP:
+        elif keycode == screen.KEY_UP:
             if highlights[0]:
                 card = decks.drawdeck.draw_card()
                 d_draw_card_to_handdeck(decks.handdeck, card, "draw")
@@ -99,11 +107,92 @@ def handle_human_draws_new_card(decks: Decks) -> None:
                 card = decks.hamsterdeck.draw_card()
                 d_draw_card_to_handdeck(decks.handdeck, card, "hamster")
             decks.handdeck.add_card(card)
-            draw_drawdecks(
-                screen, [decks.drawdeck.size(), decks.hamsterdeck.size()]
-            )
+            draw_drawdecks(screen, [decks.drawdeck.size(), decks.hamsterdeck.size()])
             return
 
+
+def d_place_human_card(card: Card, from_slot: int, to_slot: int):
+    startpos = gridpos2dpos(GridPos(4, from_slot))
+    targetpos = gridpos2dpos(GridPos(2, to_slot))
+
+    buffer = copy.deepcopy(screen._buffer._double_buffer)
+    cards_renderer.show_effects(
+        screen, cards_renderer.render_card_at(screen, card, x=startpos.x, y=startpos.y)
+    )
+    p = Path()
+    p.jump_to(x=startpos.x, y=startpos.y)
+    p.move_straight_to(x=targetpos.x, y=targetpos.y, steps=10)
+    for x, y in p._steps:
+        screen._buffer._double_buffer = copy.deepcopy(buffer)
+        screen.refresh()
+        cards_renderer.show_effects(
+            screen, cards_renderer.render_card_at(screen, card, x, y)
+        )
+    # FIXME Refactor with other move function
+    # FIXME Make a small buffercontroller object
+
+
+def handle_human_places_card(decks: Decks, grid, card: Card, from_slot: int) -> bool:
+    buffer = copy.deepcopy(screen._buffer._double_buffer)
+    cursor = 0
+    while True:
+        screen._buffer._double_buffer = copy.deepcopy(buffer)
+        highlight_card_in_grid(screen, GridPos(2, cursor))
+
+        keycode = get_keycode(screen)
+        if keycode == Screen.KEY_LEFT:
+            cursor = max(0, cursor - 1)
+        elif keycode == Screen.KEY_RIGHT:
+            cursor = min(grid.width - 1, cursor + 1)
+        elif keycode == Screen.KEY_DOWN:
+            # FIXME Check if card can be placed at all
+            grid[2][cursor] = card
+            d_place_human_card(card, from_slot=from_slot, to_slot=cursor)
+            decks.useddeck.add_card(card)
+            logging.debug("Human plays %s in %s", card.name, cursor)
+            # screen._buffer._double_buffer = copy.deepcopy(buffer)
+            return True
+        elif keycode == Screen.KEY_ESCAPE:
+            screen._buffer._double_buffer = copy.deepcopy(buffer)
+            return False
+
+
+def handle_human_plays_card(decks: Decks) -> None:
+    # FIXME What if hand is empty?
+    buffer = copy.deepcopy(screen._buffer._double_buffer)
+    cursor = 0
+    while True:
+        screen._buffer._double_buffer = copy.deepcopy(buffer)
+        if not decks.handdeck.is_empty():
+            draw_handdeck_highlight(screen, cursor)
+
+        keycode = get_keycode(screen)
+        if keycode == Screen.KEY_LEFT:
+            cursor = max(0, cursor - 1)
+        elif keycode == Screen.KEY_RIGHT:
+            cursor = min(decks.handdeck.size() - 1, cursor + 1)
+        elif keycode == Screen.KEY_UP:
+            # FIXME Check if card is playable at all
+            card = decks.handdeck.pick_card(cursor)
+            res = handle_human_places_card(decks, session.grid, card, cursor)
+            if res:
+                cursor = min(decks.handdeck.size() - 1, cursor)
+            else:
+                # Otherwise, we return bc the process was aborted by the user and won't
+                # update the cursor.
+                # FIXME Implement this w an exception rather than the True/False
+                # mechanics?
+                pass
+            d_redraw_handdeck(decks.handdeck, cursor)
+            buffer = copy.deepcopy(screen._buffer._double_buffer)
+            # FIXME ^ Use some update_buffer method here once we have the
+            # buffercontroller object.
+            cursor = min(decks.handdeck.size() - 1, cursor)
+        elif keycode in (ord("i"), ord("I")):
+            pass  # FIXME Inventory!
+        elif keycode in (ord("n"), ord("N")):
+            screen._buffer._double_buffer = copy.deepcopy(buffer)
+            return
 
 
 def handle_round_of_fight(round_num, decks: Decks, computerstrategy: AgentStrategy):
@@ -119,8 +208,9 @@ def handle_round_of_fight(round_num, decks: Decks, computerstrategy: AgentStrate
     handle_human_draws_new_card(decks)
 
     # Let human play card(s) from handdeck or items in his collection:
-    # (Loop for keys ←, →, ↑, I, N)
-    # (If placing cards: loop for ←, →, ↓, ESC)
+    handle_human_plays_card(decks)
+
+    time.sleep(10)
 
     log_decks(decks)
 
@@ -159,6 +249,24 @@ def setup_decks() -> Decks:
 
 # FIXME Add some border around the whole screen when the human presses "N" until he has
 # to do something again?
+
+
+def d_redraw_handdeck(handdeck: Deck, from_index: int):
+    pos = gridpos2dpos(GridPos(4, from_index))
+    screen.clear_buffer(
+        Screen.COLOUR_WHITE,
+        0,
+        0,
+        x=pos.x,
+        y=pos.y,
+        w=screen.width - pos.x,
+        h=BOX_HEIGHT,
+    )
+    for i, card in list(enumerate(handdeck.cards))[from_index:]:
+        cards_renderer.show_effects(
+            screen, cards_renderer.render_card_in_grid(screen, card, GridPos(4, i))
+        )
+    screen.refresh()
 
 
 def d_draw_card_to_handdeck(handdeck: Deck, card: Card, whichdeck: str):
