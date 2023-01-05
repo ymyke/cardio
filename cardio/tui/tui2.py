@@ -54,7 +54,21 @@ class Decks(NamedTuple):
 
 
 def log_decks(decks: Decks):
-    pass  # FIXME
+    for deck, name in zip(
+        [decks.handdeck, decks.drawdeck, decks.hamsterdeck, decks.useddeck],
+        ["Hand", "Fight", "Hamster", "Used"],
+    ):
+        logging.debug(
+            "%sdeck size: %s (%s)",
+            name,
+            len(deck.cards),
+            ",".join([c.name for c in deck.cards]),
+        )
+
+
+def log_grid(grid):
+    for line in range(3):
+        logging.debug("Grid line 0: %s", ", ".join([str(c) for c in grid[line]]))
 
 
 def d_play_computer_card(card: Card, to_pos: GridPos):
@@ -213,9 +227,8 @@ def handle_round_of_fight(round_num, decks: Decks, computerstrategy: AgentStrate
     # Let human play card(s) from handdeck or items in his collection:
     handle_human_plays_card(decks)
 
-    time.sleep(10)
-
     log_decks(decks)
+    log_grid(session.grid)
 
     # Activate all cards:
     session.grid.activate_line(2)
