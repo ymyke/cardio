@@ -1,15 +1,22 @@
 import time
 import atexit
 import copy
-from typing import NamedTuple
+from typing import NamedTuple, Optional
 from cardio import session, Deck, GridPos, Card
 from cardio.agent_strategies import AgentStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
 from asciimatics.screen import Screen
 from asciimatics.paths import Path
-from .cards_renderer import draw_slot_in_grid, draw_drawdecks, draw_screen_resolution
+from asciimatics.event import KeyboardEvent
+from .cards_renderer import (
+    draw_slot_in_grid,
+    draw_drawdecks,
+    draw_screen_resolution,
+    draw_drawdeck_highlights,
+)
 from . import cards_renderer
 
+# FIXME How would a HumanAgentStrategy (aka automated human) be implemented here?
 
 screen: Screen
 # FIXME Should there be some viewsession module or something, which contains the screen
@@ -61,6 +68,44 @@ def d_play_computer_card(card: Card, to_pos: GridPos):
         )
 
 
+def get_keycode(screen) -> Optional[int]:
+    """Ignore all mouse events. Return key code."""
+    event = screen.get_event()
+    if not isinstance(event, KeyboardEvent):
+        return None
+    return event.key_code
+
+
+def handle_human_draws_new_card(decks: Decks) -> None:
+    if not decks.drawdeck.is_empty():
+        highlights = [True, False]
+    elif not decks.hamsterdeck.is_empty():
+        highlights = [False, True]
+    else: # both empty
+        return
+
+    while True:
+        draw_drawdeck_highlights(screen, highlights)
+        c = get_keycode(screen)
+        if c == Screen.KEY_LEFT and not decks.drawdeck.is_empty():
+            highlights = [True, False]
+        elif c == Screen.KEY_RIGHT and not decks.hamsterdeck.is_empty():
+            highlights = [False, True]
+        elif c == screen.KEY_UP:
+            if highlights[0]:
+                card = decks.drawdeck.draw_card()
+                d_draw_card_to_handdeck(decks.handdeck, card, "draw")
+            else:
+                card = decks.hamsterdeck.draw_card()
+                d_draw_card_to_handdeck(decks.handdeck, card, "hamster")
+            decks.handdeck.add_card(card)
+            draw_drawdecks(
+                screen, [decks.drawdeck.size(), decks.hamsterdeck.size()]
+            )
+            return
+
+
+
 def handle_round_of_fight(round_num, decks: Decks, computerstrategy: AgentStrategy):
     log_decks(decks)
 
@@ -71,8 +116,7 @@ def handle_round_of_fight(round_num, decks: Decks, computerstrategy: AgentStrate
     computerstrategy.play_cards(session.grid, 0)  # Now also place them in the model
 
     # Let human draw a card:
-    # (Loop for keys ←, →, ↑)
-    # And animate the card moving to the end of the hand deck.
+    handle_human_draws_new_card(decks)
 
     # Let human play card(s) from handdeck or items in his collection:
     # (Loop for keys ←, →, ↑, I, N)

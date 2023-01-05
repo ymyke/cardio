@@ -1,4 +1,4 @@
-from typing import List, NamedTuple, Optional, Union
+from typing import List, NamedTuple, Optional, Tuple, Union
 import time
 from asciimatics.effects import Effect, Print
 from asciimatics.renderers import Box, StaticRenderer
@@ -15,7 +15,7 @@ BOX_HEIGHT = 7
 BOX_PADDING_TOP = 0
 BOX_PADDING_LEFT = 3
 DRAW_DECKS_X = 45
-DRAW_DECKS_Y = 45   # FIXME Make this relative to the lower border?
+DRAW_DECKS_Y = 45  # FIXME Make this relative to the lower border?
 
 
 class dPos(NamedTuple):
@@ -84,18 +84,31 @@ def render_card_in_grid(
         screen, card, x=dpos.x + xoffset, y=dpos.y + yoffset, highlight=highlight
     )
 
+def render_highlight_card_at(screen, pos: dPos, highlight: bool = False):
+    if highlight:
+        style = constants.DOUBLE_LINE
+        color = Screen.COLOUR_BLUE
+    else:
+        style = constants.SINGLE_LINE
+        color = Screen.COLOUR_YELLOW
 
-def highlight_card_in_grid(screen, pos: GridPos):
-    dpos = gridpos2dpos(pos)
-    box = Print(
-        screen=screen,
-        renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=constants.DOUBLE_LINE),
-        x=dpos.x,
-        y=dpos.y,
-        colour=Screen.COLOUR_RED,
-    )
+    return [
+        Print(
+            screen=screen,
+            renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=style),
+            x=pos.x,
+            y=pos.y,
+            colour=color,
+        )
+    ]
 
-    return [box]
+
+def render_highlight_card_in_grid(screen, pos: GridPos):
+    return render_highlight_card_at(screen, gridpos2dpos(pos))
+
+
+def highlight_card_at(screen, pos: dPos, highlight: bool = False):
+    show_effects(screen, render_highlight_card_at(screen, pos, highlight))
 
 
 def clear_card_at(screen, x, y):
@@ -211,7 +224,15 @@ def draw_screen_resolution(screen):
     )
 
 
+def draw_drawdeck_highlights(screen, highlights: Tuple[bool, bool]):
+    highlight_card_at(screen, dPos(DRAW_DECKS_X, DRAW_DECKS_Y), highlights[0])
+    highlight_card_at(
+        screen, dPos(DRAW_DECKS_X + BOX_WIDTH + 2, DRAW_DECKS_Y), highlights[1]
+    )
+
+
 def draw_drawdecks(screen: Screen, counts=list):
+    # FIXME Should counts be Tuple[int, int]?
 
     drawcover = "    ⬆️⬆️⬆️⬆️⬆️⬆️⬆⬆️⬆️"
     hamstercover = "      🐹🐹🐹"
@@ -232,15 +253,15 @@ def draw_drawdecks(screen: Screen, counts=list):
                 screen=screen,
                 renderer=StaticRenderer(images=[drawcover]),
                 x=DRAW_DECKS_X + 1,
-                y=DRAW_DECKS_Y + BOX_HEIGHT//2,
+                y=DRAW_DECKS_Y + BOX_HEIGHT // 2,
                 colour=Screen.COLOUR_YELLOW,
             ),
             Print(
                 screen,
-                StaticRenderer([f"⠀{counts[0]}⠀"]),
-                x=DRAW_DECKS_X+1,
-                y=DRAW_DECKS_Y+BOX_HEIGHT-1,
-                colour=Screen.COLOUR_YELLOW
+                StaticRenderer([f"⠀{counts[0]}⠀⠀⠀"]),
+                x=DRAW_DECKS_X + 1,
+                y=DRAW_DECKS_Y + BOX_HEIGHT - 2,
+                colour=Screen.COLOUR_YELLOW,
             ),
             Print(
                 screen=screen,
@@ -254,16 +275,16 @@ def draw_drawdecks(screen: Screen, counts=list):
             Print(
                 screen=screen,
                 renderer=StaticRenderer(images=[hamstercover]),
-                x=DRAW_DECKS_X + BOX_WIDTH +2 + 1,
-                y=DRAW_DECKS_Y + BOX_HEIGHT//2,
+                x=DRAW_DECKS_X + BOX_WIDTH + 2 + 1,
+                y=DRAW_DECKS_Y + BOX_HEIGHT // 2,
                 colour=Screen.COLOUR_YELLOW,
             ),
             Print(
                 screen,
-                StaticRenderer([f"⠀{counts[1]}⠀"]),
-                x=DRAW_DECKS_X+BOX_WIDTH+2+1,
-                y=DRAW_DECKS_Y+BOX_HEIGHT-1,
-                colour=Screen.COLOUR_YELLOW
-            )
+                StaticRenderer([f"⠀{counts[1]}⠀⠀⠀"]),
+                x=DRAW_DECKS_X + BOX_WIDTH + 2 + 1,
+                y=DRAW_DECKS_Y + BOX_HEIGHT - 2,
+                colour=Screen.COLOUR_YELLOW,
+            ),
         ],
     )
