@@ -1,4 +1,5 @@
 import logging
+import sys
 import time
 import atexit
 import copy
@@ -79,6 +80,8 @@ def get_keycode(screen) -> Optional[int]:
     event = screen.get_event()
     if not isinstance(event, KeyboardEvent):
         return None
+    if event.key_code == ord("$"):
+        sys.exit(0)
     return event.key_code
     # FIXME Add a tiny sleep here (and some do_pause parameter) in case there is no key
     # so the while loops don't load CPU that much?
