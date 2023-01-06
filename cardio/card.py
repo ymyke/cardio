@@ -65,9 +65,15 @@ class Card:
         assert howmuch > 0
         if howmuch >= self.health:
             howmuch = self.health
+            # FIXME
+            from cardio.tui import tui2 
+            tui2.d_card_dies(self)  
             self.die()
         else:
             self.health -= howmuch
+            # FIXME
+            from cardio.tui import tui2
+            tui2.d_card_lost_health(self)
             logging.debug("%s new health: %s", self.name, self.health)
         return howmuch
 
@@ -81,7 +87,13 @@ class Card:
             opponent.lose_health(1)
 
         prep = self.get_prep_card()
-        session.view.get_attacked(self, opponent)
+        # session.view.get_attacked(self, opponent)
+        # FIXME  -- breaks tests
+        from cardio.tui import tui2
+        tui2.d_card_gets_attacked(self, opponent)
+        # (Needs to happen before the call to `lose_health` below, bc the card could
+        # die/vanish during that call, leading to a `None` reference on the grid and an
+        # error in the view update call.) 
         howmuch = self.lose_health(opponent.power)
         if opponent.power > howmuch and prep is not None:
             logging.debug(
@@ -121,12 +133,18 @@ class Card:
     def activate(self) -> None:
         logging.debug("%s becomes active", self.name)
         opponent = session.grid.get_opposing_card(self)
-        session.view.activate_card(self)
+        # session.view.activate_card(self)
+        # FIXME -- breaks tests
+        from cardio.tui import tui2
+        tui2.d_activate_card(self)
+        # FIXME ^ Should the view be an object again in the future or how should this
+        # work? 
         if opponent is not None:
             self.attack(opponent)
         elif self.power > 0:
             self.get_opposing_agent().lose_health(self.power)
             # ^ FIXME should this be in attack after all?
+        tui2.d_deactivate_card(self)
 
     def prepare(self) -> None:
         pos = session.grid.find_card(self)

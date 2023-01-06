@@ -1,4 +1,4 @@
-from typing import List, NamedTuple, Optional, Tuple, Union
+from typing import List, Literal, NamedTuple, Optional, Tuple, Union
 import time
 from asciimatics.effects import Effect, Print
 from asciimatics.renderers import Box, StaticRenderer
@@ -85,6 +85,11 @@ def render_card_in_grid(
     )
 
 
+def redraw_card_in_grid(screen, card, pos):
+    render_card_in_grid(screen, card, pos)
+    # FIXME Just call render_card_in_grid directly?
+
+
 def render_highlight_card_at(screen, pos: dPos, highlight: bool = False):
     if highlight:
         style = constants.DOUBLE_LINE
@@ -104,6 +109,47 @@ def render_highlight_card_at(screen, pos: dPos, highlight: bool = False):
     ]
 
 
+def activate_card_in_grid(screen, card, pos: GridPos, deactivate: bool = False) -> None:
+    import logging
+    logging.debug("activate_card_in_grid *** %s %s", card.name, pos)
+    yoffset = +2 if pos.line == 1 else -2
+    if deactivate:
+        clear_card_in_grid(screen, pos, yoffset=yoffset)
+        show_effects(screen, render_card_in_grid(screen, card, pos, yoffset=0))
+    else:
+        clear_card_in_grid(screen, pos, yoffset=0)
+        show_effects(screen, render_card_in_grid(screen, card, pos, yoffset=yoffset))
+    time.sleep(0.1)
+
+
+def shake_card_in_grid(
+    screen, card: Card, pos: GridPos, direction: Literal["h", "v"]
+) -> None:
+    if direction == "h":
+        offset = {"xoffset": -1}
+    else:
+        offset = {"yoffset": -1}
+    effects1 = render_card_in_grid(screen, card, pos)
+    for _ in range(4):
+        show_effects(screen, effects1, 0.03)
+        clear_card_in_grid(screen, pos)
+        effects2 = render_card_in_grid(screen, card, pos, **offset)
+        show_effects(screen, effects2, 0.03)
+        clear_card_in_grid(screen, pos, **offset)
+    show_effects(screen, effects1)
+
+
+def flash_card_in_grid(screen, pos: GridPos) -> None:
+    highlight = True
+    for _ in range(10):
+        show_effects(
+            screen,
+            render_card_in_grid(screen, None, pos, highlight=highlight),
+            pause=0.2,
+        )
+        highlight = not highlight
+
+
 def render_highlight_card_in_grid(screen, pos: GridPos):
     return render_highlight_card_at(screen, gridpos2dpos(pos))
 
@@ -121,18 +167,8 @@ def clear_card_at(screen, x, y):
 
 
 def clear_card_in_grid(screen, pos: GridPos, xoffset: int = 0, yoffset: int = 0):
-    # FIXME Use clear_card_at here
-    # FIXME Add some from_grid and to_grid coordination mapping helper functions to this
-    # module
-    screen.clear_buffer(
-        Screen.COLOUR_WHITE,
-        0,
-        0,
-        x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT) + xoffset,
-        y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP) + yoffset,
-        w=BOX_WIDTH,
-        h=BOX_HEIGHT,
-    )
+    dpos = gridpos2dpos(pos)
+    clear_card_at(screen, x=dpos.x + xoffset, y=dpos.y + yoffset)
 
 
 def show_effects(screen, effects: Union[Effect, List[Effect]], pause: float = 0):
@@ -229,7 +265,7 @@ def draw_screen_resolution(screen):
     )
 
 
-def draw_handdeck_highlight(screen, slot: int, highlight:bool=True) -> None:
+def draw_handdeck_highlight(screen, slot: int, highlight: bool = True) -> None:
     highlight_card_in_grid(screen, GridPos(4, slot), highlight)
     # FIXME Call the highlight_card_in_grid directly rather than via this function?
 

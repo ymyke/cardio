@@ -18,10 +18,22 @@ from .cards_renderer import (
     draw_handdeck_highlight,
     highlight_card_in_grid,
     gridpos2dpos,
-    BOX_HEIGHT,
-    BOX_WIDTH,
+    flash_card_in_grid,
+    shake_card_in_grid,
+    redraw_card_in_grid,
+    activate_card_in_grid,
+    BOX_HEIGHT,  # FIXME
+    BOX_WIDTH,  # FIXME
 )
 from . import cards_renderer
+
+# FIXME Todos:
+# - Finish fight, e.g. cards that die, ...
+# - Add other elements:
+#   - separator between grid and hand deck
+#   - score/health between human and computer
+#   - agent state
+# - useddeck?
 
 # FIXME How would a HumanAgentStrategy (aka automated human) be implemented here?
 
@@ -69,6 +81,49 @@ def log_decks(decks: Decks):
 def log_grid(grid):
     for line in range(3):
         logging.debug("Grid line 0: %s", ", ".join([str(c) for c in grid[line]]))
+
+
+def d_card_lost_health(card: Card) -> None:
+    redraw_card_in_grid(screen, card, session.grid.find_card(card))
+
+
+def d_card_dies(card: Card) -> None:
+    redraw_card_in_grid(screen, card, session.grid.find_card(card))
+
+
+def d_activate_card(card: Card) -> None:
+    logging.debug("d_activate_card %s", card.name)
+    pos = session.grid.find_card(card)
+    assert pos is not None, (
+        f"{card.name} gets gets activated and "
+        "needs a view update but has no position on the grid"
+    )
+    activate_card_in_grid(screen, card, pos)
+
+
+def d_deactivate_card(card: Card) -> None:
+    pos = session.grid.find_card(card)
+    assert pos is not None, (
+        f"{card.name} gets gets deactivated and "
+        "needs a view update but has no position on the grid"
+    )
+    activate_card_in_grid(screen, card, pos, deactivate=True)
+    # FIXME: This will break if the card dies between being activated and being
+    # deactivated. E.g. due to spine. Furthermore, this will break visually if a card is
+    # moved in between. Possible solutions: a) Contect mgr, b) return pos in
+    # d_activate_card and pass that pos to the call to d_deactivate_card (and rename to
+    # d_deactivate_card_in_gridpos or so?), ...? c) Maybe the little pause we have in
+    # d_activate_card is enough and there is no need for d_deactivate_card after all?
+
+
+def d_card_gets_attacked(target: Card, attacker: Card) -> None:
+    pos = session.grid.find_card(target)
+    assert pos is not None, (
+        f"{target.name} gets attacked by {attacker.name} and "
+        "needs a view update but has no position on the grid"
+    )
+    shake_card_in_grid(screen, target, pos, "h")
+    # redraw_card_in_grid(screen, target, pos)
 
 
 def d_play_computer_card(card: Card, to_pos: GridPos):
@@ -190,24 +245,27 @@ def handle_human_plays_card(decks: Decks) -> None:
             cursor = min(decks.handdeck.size() - 1, cursor + 1)
         elif keycode == Screen.KEY_UP:
             # FIXME Check if card is playable at all
-            card = decks.handdeck.pick_card(cursor)
+            # Don't pick the card yet (i.e., don't remove it from the deck yet) because
+            # the player might still abort the placing  of the card:
+            card = decks.handdeck.cards[cursor]
             res = handle_human_places_card(decks, session.grid, card, cursor)
             if res:
+                decks.handdeck.pick_card(cursor)
                 cursor = min(decks.handdeck.size() - 1, cursor)
+                d_redraw_handdeck(decks.handdeck, cursor)
+                buffer = copy.deepcopy(screen._buffer._double_buffer)
             else:
                 # Otherwise, we return bc the process was aborted by the user and won't
                 # update the cursor.
                 # FIXME Implement this w an exception rather than the True/False
                 # mechanics?
                 pass
-            d_redraw_handdeck(decks.handdeck, cursor)
-            buffer = copy.deepcopy(screen._buffer._double_buffer)
             # FIXME ^ Use some update_buffer method here once we have the
             # buffercontroller object.
             cursor = min(decks.handdeck.size() - 1, cursor)
         elif keycode in (ord("i"), ord("I")):
             pass  # FIXME Inventory!
-        elif keycode in (ord("n"), ord("N")):
+        elif keycode in (ord("c"), ord("C")):
             screen._buffer._double_buffer = copy.deepcopy(buffer)
             return
 
@@ -234,7 +292,7 @@ def handle_round_of_fight(round_num, decks: Decks, computerstrategy: AgentStrate
     session.grid.activate_line(2)
     session.grid.activate_line(1)
     session.grid.prepare_line()
-    session.view.update()  # FIXME
+    # session.view.update()  # FIXME
 
     if session.humanagent.has_lost_life():
         session.humanagent.update_lives_and_health_after_death()
@@ -251,6 +309,9 @@ def handle_round_of_fight(round_num, decks: Decks, computerstrategy: AgentStrate
         # QQ: Should this also break when the grid is "powerless", i.e., no cards
         # with >0 power?
         return False
+
+    log_grid(session.grid)
+    sys.exit(0)
 
     return True
 
@@ -356,3 +417,5 @@ def handle_fight(computerstrategy: AgentStrategy):
 # FIXME Check if anything should be taken over from handlers.
 # FIXME Check if anything should be taken over from tui.
 # FIXME Check if anything should be taken over from Fight.
+# FIXME Use something like the Fight class with calls to a view object -- similar to how
+# it is/was done in the Card class, e.g., when activating a class?
