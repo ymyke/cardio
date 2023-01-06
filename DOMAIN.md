@@ -95,3 +95,4 @@ Random ideas
   Can the TSM be used somehow to that end?
 - Corveaux special ability/animal? Can consume ghosts/souls/spirits and release them as
   blood/energy/...?
+- Have floor tiles with special effects? I.e., more strength if a create is on it?
