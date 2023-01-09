@@ -7,7 +7,7 @@ import time
 from asciimatics.screen import Screen
 from asciimatics.effects import Print, Effect
 from asciimatics import particles
-from asciimatics.renderers import StaticRenderer, Box
+from asciimatics.renderers import StaticRenderer, Box, Fire
 from asciimatics.paths import Path
 from asciimatics.utilities import BoxTool
 from asciimatics.event import KeyboardEvent
@@ -282,6 +282,23 @@ class dCard:
         show_effects(
             self.screen, render_card_at(self.screen, self.card, self.x, self.y)
         )
+
+
+def show_fire():
+    fire = Fire(
+        height=10,
+        width=22,
+        emitter="*" * 20,
+        intensity=0.7,
+        spot=30,
+        colours=screen.colours,
+        bg=screen.colours >= 256,
+    )
+    fireeffect = Print(screen, fire, 0, speed=1, transparent=False)
+    while True:
+        fireeffect.update(0)
+        screen.refresh()
+        time.sleep(0.02)
 
 
 # --------------------
