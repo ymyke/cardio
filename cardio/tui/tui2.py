@@ -29,9 +29,14 @@ from .cards_renderer import (
 from . import cards_renderer
 
 # FIXME Todos:
+# - Do cards that get prepped not get cleared from the prepline?
+# - Does the second round not work? E.g., with the Koala in slot 0? -- or does losing
+#   health for cards not work yet in the view?
 # - Finish fight, e.g. cards that die, ...
 # - Add other elements:
 #   - separator between grid and hand deck
+#   - Switch agent health to agent damage where the difference between the two must be
+#     visualized and indicates loss/win if it exceeds 5.
 #   - score/health between human and computer
 #   - agent state
 # - useddeck?
