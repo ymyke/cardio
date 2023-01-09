@@ -70,6 +70,7 @@ class Card:
             # FIXME
             from cardio.tui import tui2 
             tui2.d_card_dies(self)  
+            # FIXME Why is the view update done here and not in the `die` method?
             self.die()
         else:
             self.health -= howmuch
