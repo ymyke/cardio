@@ -320,8 +320,6 @@ def handle_round_of_fight(round_num, decks: Decks, computerstrategy: AgentStrate
         return False
 
     log_grid(session.grid)
-    sys.exit(0)
-
     return True
 
 
