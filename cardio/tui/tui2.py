@@ -35,6 +35,7 @@ from . import cards_renderer
 #   - score/health between human and computer
 #   - agent state
 # - useddeck?
+# - More animations needed for Spine and maybe other skills?
 
 # FIXME How would a HumanAgentStrategy (aka automated human) be implemented here?
 
