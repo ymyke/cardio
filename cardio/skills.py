@@ -7,6 +7,7 @@ Checklist when adding a new skill:
 - Add tests for skill and all interdependencies.
 - Does the skill add any kind of state to the card (or other cards or other parts of the
   world) that would need to be reset (e.g., in `Card.reset`)?
+- Does the skill need any new view animation that needs to be implemented and called?
 - Anything that needs to be saved?
 """
 from dataclasses import dataclass
