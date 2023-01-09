@@ -22,6 +22,7 @@ from .cards_renderer import (
     shake_card_in_grid,
     redraw_card_in_grid,
     activate_card_in_grid,
+    burn_card_in_grid,
     BOX_HEIGHT,  # FIXME
     BOX_WIDTH,  # FIXME
 )
@@ -88,7 +89,9 @@ def d_card_lost_health(card: Card) -> None:
 
 
 def d_card_dies(card: Card) -> None:
-    redraw_card_in_grid(screen, card, session.grid.find_card(card))
+    pos = session.grid.find_card(card)
+    assert pos is not None, "Trying to burn a card that is not in the grid"
+    burn_card_in_grid(screen, card, pos)
 
 
 def d_activate_card(card: Card) -> None:

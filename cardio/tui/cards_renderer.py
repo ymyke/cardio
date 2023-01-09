@@ -1,7 +1,8 @@
+import copy
 from typing import List, Literal, NamedTuple, Optional, Tuple, Union
 import time
 from asciimatics.effects import Effect, Print
-from asciimatics.renderers import Box, StaticRenderer
+from asciimatics.renderers import Box, StaticRenderer, Fire
 from asciimatics.screen import Screen
 from asciimatics import constants
 from asciimatics.utilities import BoxTool
@@ -120,6 +121,39 @@ def activate_card_in_grid(screen, card, pos: GridPos, deactivate: bool = False) 
         clear_card_in_grid(screen, pos, yoffset=0)
         show_effects(screen, render_card_in_grid(screen, card, pos, yoffset=yoffset))
     time.sleep(0.1)
+
+
+def burn_card_in_grid(screen, card, pos: GridPos) -> None:
+    dpos = gridpos2dpos(pos)
+    overheight = 4
+    overwidth = 2
+    fire = Fire(
+        height=BOX_HEIGHT + overheight,
+        width=BOX_WIDTH + overwidth,
+        emitter="*" * BOX_WIDTH,
+        intensity=0.8,
+        spot=30,
+        colours=screen.colours,
+        bg=screen.colours >= 256,
+    )
+    fireeffect = Print(
+        screen,
+        fire,
+        y=dpos.y - overheight,
+        x=dpos.x - overwidth // 2,
+        speed=1,
+        transparent=True,
+    )
+    buffer = copy.deepcopy(screen._buffer._double_buffer)
+    for i in range(25):
+        if i % 5 == 0:
+            fire._intensity *= .7
+        fireeffect.update(0)
+        screen.refresh()
+        time.sleep(0.02)
+        screen._buffer._double_buffer = copy.deepcopy(buffer)
+    clear_card_in_grid(screen, pos)
+    draw_slot_in_grid(screen, pos)
 
 
 def shake_card_in_grid(
