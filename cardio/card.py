@@ -162,6 +162,9 @@ class Card:
             )
             return
         logging.debug("Preparing %s, moving to computer line", self.name)
+        # FIXME
+        from cardio.tui import tui2
+        tui2.d_prepare_card(self)
         session.grid.move_card(self, to_pos=(1, pos.slot))
         self.activate()
 

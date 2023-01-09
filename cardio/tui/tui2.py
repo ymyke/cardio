@@ -18,6 +18,7 @@ from .cards_renderer import (
     draw_handdeck_highlight,
     highlight_card_in_grid,
     gridpos2dpos,
+    clear_card_in_grid,
     flash_card_in_grid,
     shake_card_in_grid,
     redraw_card_in_grid,
@@ -29,7 +30,6 @@ from .cards_renderer import (
 from . import cards_renderer
 
 # FIXME Todos:
-# - Do cards that get prepped not get cleared from the prepline?
 # - Does the second round not work? E.g., with the Koala in slot 0? -- or does losing
 #   health for cards not work yet in the view?
 # - Finish fight, e.g. cards that die, ...
@@ -98,6 +98,27 @@ def d_card_dies(card: Card) -> None:
     pos = session.grid.find_card(card)
     assert pos is not None, "Trying to burn a card that is not in the grid"
     burn_card_in_grid(screen, card, pos)
+
+
+def d_prepare_card(card: Card) -> None:
+    pos = session.grid.find_card(card)
+    assert pos is not None, "Trying to prepare a card that is not in the grid"
+    assert pos.line == 0, "Calling prepare on card that is not in prep line"
+    startpos = gridpos2dpos(GridPos(0, pos.slot))
+    targetpos = gridpos2dpos(GridPos(1, pos.slot))
+
+    clear_card_in_grid(screen, pos)
+    draw_slot_in_grid(screen, pos)
+    buffer = copy.deepcopy(screen._buffer._double_buffer)
+    p = Path()
+    p.jump_to(x=startpos.x, y=startpos.y + 1)
+    p.move_straight_to(x=targetpos.x, y=targetpos.y, steps=10)
+    for x, y in p._steps:
+        screen._buffer._double_buffer = copy.deepcopy(buffer)
+        screen.refresh()
+        cards_renderer.show_effects(
+            screen, cards_renderer.render_card_at(screen, card, x, y)
+        )
 
 
 def d_activate_card(card: Card) -> None:
@@ -209,7 +230,7 @@ def d_place_human_card(card: Card, from_slot: int, to_slot: int):
         cards_renderer.show_effects(
             screen, cards_renderer.render_card_at(screen, card, x, y)
         )
-    # FIXME Refactor with other move function
+    # FIXME Refactor with other move functions
     # FIXME Make a small buffercontroller object
 
 
