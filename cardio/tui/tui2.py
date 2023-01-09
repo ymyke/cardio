@@ -24,6 +24,7 @@ from .cards_renderer import (
     redraw_card_in_grid,
     activate_card_in_grid,
     burn_card_in_grid,
+    draw_grid_decks_separator,
     BOX_HEIGHT,  # FIXME
     BOX_WIDTH,  # FIXME
 )
@@ -32,7 +33,6 @@ from . import cards_renderer
 # FIXME Todos:
 # - Finish fight, e.g. cards that die, ...
 # - Add other elements:
-#   - separator between grid and hand deck
 #   - Switch agent health to agent damage where the difference between the two must be
 #     visualized and indicates loss/win if it exceeds 5.
 #   - score/health between human and computer
@@ -306,7 +306,7 @@ def handle_round_of_fight(round_num, decks: Decks, computerstrategy: AgentStrate
         print(pos, card)
         d_play_computer_card(card, pos)
     # Now also place them in the model:
-    computerstrategy.play_cards(session.grid, round_num)  
+    computerstrategy.play_cards(session.grid, round_num)
 
     # Let human draw a card:
     handle_human_draws_new_card(decks)
@@ -407,6 +407,8 @@ def handle_fight(computerstrategy: AgentStrategy):
     for linei in range(3):
         for sloti in range(4):
             draw_slot_in_grid(screen, GridPos(linei, sloti))
+    draw_grid_decks_separator(screen, 4)
+    # FIXME Parametrize the grid width properly everywhere here.
 
     # FIXME Some pause here?
 

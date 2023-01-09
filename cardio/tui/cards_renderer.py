@@ -369,3 +369,18 @@ def draw_drawdecks(screen: Screen, counts=list):
             ),
         ],
     )
+
+
+def draw_grid_decks_separator(screen, width: int) -> None:
+    dpos = gridpos2dpos(GridPos(4, 0))
+    show_effects(
+        screen,
+        Print(
+            screen,
+            StaticRenderer(["—" * ((BOX_WIDTH + BOX_PADDING_LEFT) * width + 4)]),
+            x=dpos.x - 2,
+            y=dpos.y - 3,
+            colour=Screen.COLOUR_BLACK,
+            attr=Screen.A_BOLD,
+        ),
+    )
