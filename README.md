@@ -22,6 +22,7 @@
 
 # Todo
 
+- Look for all `grid.*=None` and use `remove_card` instead.
 - Implement some skills that have an influence on the decks (e.g., fertility, Ouroboros,
   unkillable, ...) and see if they work well with the current deck implementation.
 - Write tests for all existing classes and all card characteristics and sigils.
