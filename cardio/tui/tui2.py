@@ -286,7 +286,7 @@ def handle_round_of_fight(round_num, decks: Decks, computerstrategy: AgentStrate
     for pos, card in computerstrategy.cards_to_be_played(session.grid, round_num):
         print(pos, card)
         d_play_computer_card(card, pos)
-    computerstrategy.play_cards(session.grid, 0)  # Now also place them in the model
+    computerstrategy.play_cards(session.grid, round_num)  # Now also place them in the model
 
     # Let human draw a card:
     handle_human_draws_new_card(decks)
