@@ -87,7 +87,7 @@ def log_decks(decks: Decks):
 
 def log_grid(grid):
     for line in range(3):
-        logging.debug("Grid line 0: %s", ", ".join([str(c) for c in grid[line]]))
+        logging.debug("Grid line %s: %s", line, ", ".join([str(c) for c in grid[line]]))
 
 
 def d_card_lost_health(card: Card) -> None:
