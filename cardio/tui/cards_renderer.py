@@ -87,8 +87,8 @@ def render_card_in_grid(
 
 
 def redraw_card_in_grid(screen, card, pos):
-    render_card_in_grid(screen, card, pos)
-    # FIXME Just call render_card_in_grid directly?
+    clear_card_in_grid(screen, pos)
+    show_effects(screen, render_card_in_grid(screen, card, pos))
 
 
 def render_highlight_card_at(screen, pos: dPos, highlight: bool = False):
@@ -112,6 +112,7 @@ def render_highlight_card_at(screen, pos: dPos, highlight: bool = False):
 
 def activate_card_in_grid(screen, card, pos: GridPos, deactivate: bool = False) -> None:
     import logging
+
     logging.debug("activate_card_in_grid *** %s %s", card.name, pos)
     yoffset = +2 if pos.line == 1 else -2
     if deactivate:
@@ -147,7 +148,7 @@ def burn_card_in_grid(screen, card, pos: GridPos) -> None:
     buffer = copy.deepcopy(screen._buffer._double_buffer)
     for i in range(25):
         if i % 5 == 0:
-            fire._intensity *= .7
+            fire._intensity *= 0.7
         fireeffect.update(0)
         screen.refresh()
         time.sleep(0.02)

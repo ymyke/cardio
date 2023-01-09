@@ -30,8 +30,6 @@ from .cards_renderer import (
 from . import cards_renderer
 
 # FIXME Todos:
-# - Does the second round not work? E.g., with the Koala in slot 0? -- or does losing
-#   health for cards not work yet in the view?
 # - Finish fight, e.g. cards that die, ...
 # - Add other elements:
 #   - separator between grid and hand deck
