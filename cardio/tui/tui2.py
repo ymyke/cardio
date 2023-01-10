@@ -448,3 +448,4 @@ def handle_fight(computerstrategy: AgentStrategy):
 # FIXME Check if anything should be taken over from Fight.
 # FIXME Use something like the Fight class with calls to a view object -- similar to how
 # it is/was done in the Card class, e.g., when activating a class?
+# FIXME Untangle what is UI/view from what is controller/business logic here.
