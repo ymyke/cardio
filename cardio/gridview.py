@@ -1,6 +1,6 @@
 import os
 from .card import Card
-from .grid import Grid
+from .grid import Grid, GridPos
 from . import session
 
 # FIXME This is not nice: On one hand, the view has a link to the model as an attribute.
@@ -8,19 +8,34 @@ from . import session
 
 
 class GridView:
-    # FIXME Make this an ABC with init and update methods?
-    def __init__(self, gridmodel: Grid) -> None:
-        self.model = gridmodel
+    """
+    - All the `card_` methods should be able to rely on the precondition that the `card`
+      is still in the grid when the method is called.
+    """
+
+    def __init__(self, grid: Grid) -> None:
+        self.grid = grid
+
+    def card_about_to_die(self, card: Card) -> None:
+        pass
+
+    def card_lost_health(self, card: Card) -> None:
+        pass
+
+    def card_getting_attacked(self, target: Card, attacker: Card) -> None:
+        pass
+
+    def card_activate(self, card: Card) -> None:
+        pass
+
+    def card_prepare(self, card: Card) -> None:
+        pass
+
+    def pos_card_deactivate(self, pos: GridPos) -> None:
+        pass
 
     def update(self) -> None:
         pass
-
-    # FIXME Need to add more blueprint methods here.
-
-
-# QQ: Would it make things easier / more decoupled if the model would send certain view
-# events to the view which then get handled appropriately? E.g., AttackAnimation or
-# OverflowAnimation or OverwhelmingAttackAnimation or LethalAttackAnimation or ...
 
 
 class SimpleView(GridView):
@@ -29,9 +44,8 @@ class SimpleView(GridView):
     non_blocking: bool = False
 
     def update(self) -> None:
-        # In a "real" UI, this should not really be necessary!?
         repr = ""
-        for i, line in enumerate(self.model):
+        for i, line in enumerate(self.grid):
             repr += f"{i}   "
             for sloti, slot in enumerate(line):
                 frame = self.frames.get(f"{i}:{sloti}", "[]")
@@ -63,8 +77,8 @@ class SimpleView(GridView):
         self.frames = {}
         self.msg = ""
 
-    def activate_card(self, card: Card) -> None:
-        pos = self.model.find_card(card)
+    def card_activate(self, card: Card) -> None:
+        pos = self.grid.find_card(card)
         assert pos is not None, (
             f"{card.name} gets gets activated and "
             "needs a view update but has no position on the grid"
@@ -72,8 +86,8 @@ class SimpleView(GridView):
         self.frames[f"{pos.line}:{pos.slot}"] = "**"
         self.update()
 
-    def get_attacked(self, target: Card, attacker: Card) -> None:
-        pos = self.model.find_card(target)
+    def card_getting_attacked(self, target: Card, attacker: Card) -> None:
+        pos = self.grid.find_card(target)
         assert pos is not None, (
             f"{target.name} gets attacked by {attacker.name} and "
             "needs a view update but has no position on the grid"
@@ -82,8 +96,10 @@ class SimpleView(GridView):
         self.update()
 
     def human_wins_fight(self) -> None:
+        # FIXME Still necessary?
         self.msg = "You won!"
 
     def computer_wins_fight(self) -> None:
+        # FIXME Still necessary?
         # QQ: Boss fights will work differently.
         self.msg = "You lost!"
