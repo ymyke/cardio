@@ -1,4 +1,3 @@
-import copy
 from typing import List, Literal, NamedTuple, Optional, Tuple, Union
 import time
 from asciimatics.effects import Effect, Print
@@ -6,7 +5,7 @@ from asciimatics.renderers import Box, StaticRenderer, Fire
 from asciimatics.screen import Screen
 from asciimatics import constants
 from asciimatics.utilities import BoxTool
-
+from .buffercopy import BufferCopy
 from cardio import Card, GridPos
 
 GRID_MARGIN_LEFT = 10
@@ -145,14 +144,14 @@ def burn_card_in_grid(screen, card, pos: GridPos) -> None:
         speed=1,
         transparent=True,
     )
-    buffer = copy.deepcopy(screen._buffer._double_buffer)
+    buffercopy = BufferCopy(screen)
     for i in range(25):
         if i % 5 == 0:
             fire._intensity *= 0.7
         fireeffect.update(0)
         screen.refresh()
         time.sleep(0.02)
-        screen._buffer._double_buffer = copy.deepcopy(buffer)
+        buffercopy.copyback()
     clear_card_in_grid(screen, pos)
     draw_slot_in_grid(screen, pos)
 
