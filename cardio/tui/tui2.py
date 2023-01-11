@@ -42,7 +42,7 @@ from .decks import Decks
 
 # FIXME How would a HumanAgentStrategy (aka automated human) be implemented here?
 
-
+# FIXME Should be TUIFightVnC
 class TUIViewAndController(FightViewAndController):
     def __init__(self, debug: bool = False, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
