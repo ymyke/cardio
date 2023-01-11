@@ -4,11 +4,11 @@ from typing import List, TYPE_CHECKING
 
 if TYPE_CHECKING:
     # Functional imports will happen later to prevent circular dependencies.
-    from . import Grid, GridView, Agent
+    from . import Grid, FightViewAndController, Agent
 
 
 grid: Grid
-view: GridView
+view: FightViewAndController
 humanagent: Agent
 computeragent: Agent
 

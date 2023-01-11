@@ -1,4 +1,6 @@
 import os
+from abc import ABC, abstractmethod
+from cardio.agent_strategies import AgentStrategy
 from .card import Card
 from .grid import Grid, GridPos
 from . import session
@@ -7,11 +9,13 @@ from . import session
 # On the other, it accesses the session directly. Use only one of these mechanisms!
 
 
-class GridView:
+class FightViewAndController(ABC):
     """
     - All the `card_` methods should be able to rely on the precondition that the `card`
       is still in the grid when the method is called.
     """
+
+    # --- Called by Card class ---
 
     def __init__(self, grid: Grid) -> None:
         self.grid = grid
@@ -38,8 +42,14 @@ class GridView:
         # FIXME Is this still necessary? Still used anywhere?
         pass
 
+    # --- Controller ---
 
-class SimpleView(GridView):
+    @abstractmethod
+    def handle_fight(self, computerstrategy: AgentStrategy) -> None:
+        pass
+
+
+class SimpleView(FightViewAndController):
     frames: dict = {}
     msg: str = ""
     non_blocking: bool = False
@@ -104,3 +114,6 @@ class SimpleView(GridView):
         # FIXME Still necessary?
         # QQ: Boss fights will work differently.
         self.msg = "You lost!"
+
+    def handle_fight(self, computerstrategy: AgentStrategy) -> None:
+        pass

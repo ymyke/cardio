@@ -4,7 +4,7 @@ import time
 import atexit
 import copy
 from typing import Literal, NamedTuple, Optional, Tuple
-from cardio import session, Deck, GridPos, Card, GridView
+from cardio import session, Deck, GridPos, Card, FightViewAndController
 from cardio.agent_strategies import AgentStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
 from asciimatics.screen import Screen
@@ -48,7 +48,7 @@ screen: Screen
 # don't have to pass around screen...
 
 
-class TUIView(GridView):
+class TUIView(FightViewAndController):
     def __init__(self, debug: bool = False, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.screen = Screen.open(unicode_aware=True)
