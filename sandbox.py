@@ -20,7 +20,7 @@ hs = SimpleHumanStrategy(session.grid)
 from cardio.tui import tui2
 
 # fight = Fight(grid=session.grid, computeragent=session.computeragent, humanagent=session.humanagent, computerstrategy=cs, humanstrategy=None)
-tv = tui2.TUIView(debug=True, grid=session.grid)
+tv = tui2.TUIViewAndController(debug=True, grid=session.grid)
 session.view = tv
 # tui2.start_screen(debug=True)
 tui2.handle_fight(computerstrategy=cs)

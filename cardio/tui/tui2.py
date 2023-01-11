@@ -42,13 +42,8 @@ from . import cards_renderer
 
 # FIXME How would a HumanAgentStrategy (aka automated human) be implemented here?
 
-screen: Screen
-# FIXME Should there be some viewsession module or something, which contains the screen
-# and maybe other important stuff and can get imported by all the view modules? So we
-# don't have to pass around screen...
 
-
-class TUIView(FightViewAndController):
+class TUIViewAndController(FightViewAndController):
     def __init__(self, debug: bool = False, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.screen = Screen.open(unicode_aware=True)
@@ -331,7 +326,9 @@ def handle_human_places_card(decks: Decks, grid, card: Card, from_slot: int) -> 
             # screen._buffer._double_buffer = copy.deepcopy(buffer)
             return True
         elif keycode == Screen.KEY_ESCAPE:
-            seesion.view.screen._buffer._double_buffer = copy.deepcopy(buffer) # FIXME UGLY!!
+            seesion.view.screen._buffer._double_buffer = copy.deepcopy(
+                buffer
+            )  # FIXME UGLY!!
             return False
 
 
