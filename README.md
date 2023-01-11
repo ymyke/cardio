@@ -1,5 +1,43 @@
 # Next up
 
+tui2.py:
+	view events
+		with a class that knows everything it needs to know, e.g. screen
+		→ then use these in card.py and anywhere else
+		→ maybe via session
+		→ have some abstract view similar to what we have already. gets imported by both card and tui2.
+	controller / business logic (game logic)
+card_renderer.py
+	ui primitives (parametrized via screen etc.)
+
+
+
+- Make the handlers work w/ the TUIView.
+- Move TUIView to its own module.
+- Refactor some more stuff from the handlers to TUIView.
+- Introduce some new class that encapsulates the handlers?
+  (similar to the Fight class we had before.)
+- Refactor so the handlers does not depend on card
+  renderers / primitives.
+- Make TUIView nicer.
+
+- Have TUIView and TUIController? Or is the latter part of the former?
+  - Or is there a View class and a Controller class and the TUIView inherits from both
+    and implements both interfaces?
+  - Controller just has 1 method maybe?
+
+- GridView should be renamed to BaseView or something.
+- Or will there by a FightView + FightController and similar pairs for other parts of
+  the game?
+
+- Check out performance: Esp. when running on battery power. -> Add some setting that
+  helps speed up / slow down the animations. Then do some self-timing e.g. on burning a
+  card that will automatically adjust that setting if necessary (i.e., animation takes
+  too long or too short).
+
+
+
+
 - Interactive UI
 - Blood costs (Or some other concept? Rations? Energy? Karma? ...?)
 - Bones (other name? Spirits? Essence? Soul? ...?)
