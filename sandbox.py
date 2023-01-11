@@ -23,7 +23,7 @@ from cardio.tui import tui2
 tv = tui2.TUIViewAndController(debug=True, grid=session.grid)
 session.view = tv
 # tui2.start_screen(debug=True)
-tui2.handle_fight(computerstrategy=cs)
+tv.handle_fight(computerstrategy=cs)
 tv.close()
 # tui2.close_screen()
 

@@ -43,6 +43,41 @@ from . import cards_renderer
 # FIXME How would a HumanAgentStrategy (aka automated human) be implemented here?
 
 
+class Decks(NamedTuple):
+    # QQ: Maybe unnecesary if I refactor decks implicitly via some `state` attribute in
+    # the card.
+    drawdeck: Deck
+    hamsterdeck: Deck
+    handdeck: Deck
+    useddeck: Deck
+
+
+def log_decks(decks: Decks):
+    for deck, name in zip(
+        [decks.handdeck, decks.drawdeck, decks.hamsterdeck, decks.useddeck],
+        ["Hand", "Fight", "Hamster", "Used"],
+    ):
+        logging.debug(
+            "%sdeck size: %s (%s)",
+            name,
+            len(deck.cards),
+            ",".join([c.name for c in deck.cards]),
+        )
+
+
+def log_grid(grid):
+    for line in range(3):
+        logging.debug("Grid line %s: %s", line, ", ".join([str(c) for c in grid[line]]))
+
+
+def setup_decks() -> Decks:
+    drawdeck = Deck()
+    drawdeck.cards = session.humanagent.deck.cards
+    drawdeck.shuffle()
+    hamsterdeck = Deck(create_cards_from_blueprints(["Hamster"] * 10))
+    return Decks(drawdeck, hamsterdeck, Deck(), Deck())
+
+
 class TUIViewAndController(FightViewAndController):
     def __init__(self, debug: bool = False, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
@@ -239,239 +274,197 @@ class TUIViewAndController(FightViewAndController):
         # FIXME Add a tiny sleep here (and some do_pause parameter) in case there is no
         # key so the while loops don't load CPU that much?
 
+    # --- Controller-type methods ---
 
-# ------------------------- end of TUIView ------------------------------------------
-
-
-class Decks(NamedTuple):
-    # QQ: Maybe unnecesary if I refactor decks implicitly via some `state` attribute in
-    # the card.
-    drawdeck: Deck
-    hamsterdeck: Deck
-    handdeck: Deck
-    useddeck: Deck
-
-
-def log_decks(decks: Decks):
-    for deck, name in zip(
-        [decks.handdeck, decks.drawdeck, decks.hamsterdeck, decks.useddeck],
-        ["Hand", "Fight", "Hamster", "Used"],
-    ):
-        logging.debug(
-            "%sdeck size: %s (%s)",
-            name,
-            len(deck.cards),
-            ",".join([c.name for c in deck.cards]),
-        )
-
-
-def log_grid(grid):
-    for line in range(3):
-        logging.debug("Grid line %s: %s", line, ", ".join([str(c) for c in grid[line]]))
-
-
-# FIXME How to implement the handlers in order to not need the session module or at
-# least not session.view?
-
-
-def handle_human_draws_new_card(decks: Decks) -> None:
-    if not decks.drawdeck.is_empty():
-        highlights = [True, False]
-    elif not decks.hamsterdeck.is_empty():
-        highlights = [False, True]
-    else:  # both empty
-        return
-
-    while True:
-        session.view.draw_drawdeck_highlights(highlights)
-        keycode = session.view.get_keycode()
-        if keycode == Screen.KEY_LEFT and not decks.drawdeck.is_empty():
+    def handle_human_draws_new_card(self, decks: Decks) -> None:
+        if not decks.drawdeck.is_empty():
             highlights = [True, False]
-        elif keycode == Screen.KEY_RIGHT and not decks.hamsterdeck.is_empty():
+        elif not decks.hamsterdeck.is_empty():
             highlights = [False, True]
-        elif keycode == Screen.KEY_UP:
-            if highlights[0]:
-                card = decks.drawdeck.draw_card()
-                session.view.draw_card_to_handdeck(decks.handdeck, card, "draw")
-            else:
-                card = decks.hamsterdeck.draw_card()
-                session.view.draw_card_to_handdeck(decks.handdeck, card, "hamster")
-            decks.handdeck.add_card(card)
-            session.view.draw_drawdecks(
-                (decks.drawdeck.size(), decks.hamsterdeck.size())
-            )
+        else:  # both empty
             return
 
+        while True:
+            self.draw_drawdeck_highlights(highlights)
+            keycode = self.get_keycode()
+            if keycode == Screen.KEY_LEFT and not decks.drawdeck.is_empty():
+                highlights = [True, False]
+            elif keycode == Screen.KEY_RIGHT and not decks.hamsterdeck.is_empty():
+                highlights = [False, True]
+            elif keycode == Screen.KEY_UP:
+                if highlights[0]:
+                    card = decks.drawdeck.draw_card()
+                    self.draw_card_to_handdeck(decks.handdeck, card, "draw")
+                else:
+                    card = decks.hamsterdeck.draw_card()
+                    self.draw_card_to_handdeck(decks.handdeck, card, "hamster")
+                decks.handdeck.add_card(card)
+                self.draw_drawdecks((decks.drawdeck.size(), decks.hamsterdeck.size()))
+                return
 
-def handle_human_places_card(decks: Decks, grid, card: Card, from_slot: int) -> bool:
-    buffer = copy.deepcopy(session.view.screen._buffer._double_buffer)  # FIXME UGLY!!
-    cursor = 0
-    while True:
-        session.view.screen._buffer._double_buffer = copy.deepcopy(
-            buffer
-        )  # FIXME UGLY!!
-        session.view.card_highlight(GridPos(2, cursor))
-
-        keycode = session.view.get_keycode()
-        if keycode == Screen.KEY_LEFT:
-            cursor = max(0, cursor - 1)
-        elif keycode == Screen.KEY_RIGHT:
-            cursor = min(grid.width - 1, cursor + 1)
-        elif keycode == Screen.KEY_DOWN:
-            # FIXME Check if card can be placed at all
-            grid[2][cursor] = card
-            session.view.place_human_card(card, from_slot=from_slot, to_slot=cursor)
-            decks.useddeck.add_card(card)
-            logging.debug("Human plays %s in %s", card.name, cursor)
-            # screen._buffer._double_buffer = copy.deepcopy(buffer)
-            return True
-        elif keycode == Screen.KEY_ESCAPE:
-            seesion.view.screen._buffer._double_buffer = copy.deepcopy(
+    def handle_human_places_card(
+        self, decks: Decks, grid, card: Card, from_slot: int
+    ) -> bool:
+        buffer = copy.deepcopy(
+            self.screen._buffer._double_buffer
+        )  # FIXME Use some buffer function
+        cursor = 0
+        while True:
+            self.screen._buffer._double_buffer = copy.deepcopy(
                 buffer
-            )  # FIXME UGLY!!
+            )  # FIXME Use some buffer function
+            self.card_highlight(GridPos(2, cursor))
+
+            keycode = self.get_keycode()
+            if keycode == Screen.KEY_LEFT:
+                cursor = max(0, cursor - 1)
+            elif keycode == Screen.KEY_RIGHT:
+                cursor = min(grid.width - 1, cursor + 1)
+            elif keycode == Screen.KEY_DOWN:
+                # FIXME Check if card can be placed at all
+                grid[2][cursor] = card
+                self.place_human_card(card, from_slot=from_slot, to_slot=cursor)
+                decks.useddeck.add_card(card)
+                logging.debug("Human plays %s in %s", card.name, cursor)
+                # screen._buffer._double_buffer = copy.deepcopy(buffer)
+                return True
+            elif keycode == Screen.KEY_ESCAPE:
+                self.screen._buffer._double_buffer = copy.deepcopy(
+                    buffer
+                )  # FIXME Use some buffer function
+                return False
+
+    def handle_human_plays_card(self, decks: Decks) -> None:
+        # FIXME What if hand is empty?
+        buffer = copy.deepcopy(
+            self.screen._buffer._double_buffer
+        )  # FIXME Use some buffer function
+        cursor = 0
+        while True:
+            self.screen._buffer._double_buffer = copy.deepcopy(
+                buffer
+            )  # FIXME Use some buffer function
+            if not decks.handdeck.is_empty():
+                self.draw_handdeck_highlight(cursor)
+
+            keycode = self.get_keycode()
+            if keycode == Screen.KEY_LEFT:
+                cursor = max(0, cursor - 1)
+            elif keycode == Screen.KEY_RIGHT:
+                cursor = min(decks.handdeck.size() - 1, cursor + 1)
+            elif keycode == Screen.KEY_UP:
+                # FIXME Check if card is playable at all
+                # Don't pick the card yet (i.e., don't remove it from the deck yet) because
+                # the player might still abort the placing  of the card:
+                card = decks.handdeck.cards[cursor]
+                res = self.handle_human_places_card(decks, session.grid, card, cursor)
+                if res:
+                    decks.handdeck.pick_card(cursor)
+                    cursor = min(decks.handdeck.size() - 1, cursor)
+                    self.redraw_handdeck(decks.handdeck, cursor)
+                    buffer = copy.deepcopy(
+                        self.screen._buffer._double_buffer
+                    )  # FIXME Use some buffer function
+                else:
+                    # Otherwise, we return bc the process was aborted by the user and won't
+                    # update the cursor.
+                    # FIXME Implement this w an exception rather than the True/False
+                    # mechanics?
+                    pass
+                # FIXME ^ Use some update_buffer method here once we have the
+                # buffercontroller object.
+                cursor = min(decks.handdeck.size() - 1, cursor)
+            elif keycode in (ord("i"), ord("I")):
+                pass  # FIXME Inventory!
+            elif keycode in (ord("c"), ord("C")):
+                self.screen._buffer._double_buffer = copy.deepcopy(
+                    buffer
+                )  # FIXME Use some buffer function
+                return
+
+    def handle_round_of_fight(
+        self, round_num: int, decks: Decks, computerstrategy: AgentStrategy
+    ) -> None:
+        log_decks(decks)
+
+        # Play computer cards and animate how they appear:
+        for pos, card in computerstrategy.cards_to_be_played(session.grid, round_num):
+            self.play_computer_card(card, pos)
+        # Now also place them in the model:
+        computerstrategy.play_cards(session.grid, round_num)
+
+        # Let human draw a card:
+        self.handle_human_draws_new_card(decks)
+
+        # Let human play card(s) from handdeck or items in his collection:
+        self.handle_human_plays_card(decks)
+
+        log_decks(decks)
+        log_grid(session.grid)
+
+        # Activate all cards:
+        session.grid.activate_line(2)
+        session.grid.activate_line(1)
+        session.grid.prepare_line()
+
+        if session.humanagent.has_lost_life():
+            session.humanagent.update_lives_and_health_after_death()
+            self.computer_wins_fight()
+            return False
+        if session.computeragent.has_lost_life():
+            overflow = session.computeragent.update_lives_and_health_after_death()
+            self.human_wins_fight()
+            # FIXME Do something w overflow damage here -- maybe just store it in the
+            # object right in the update_lives_and_health_after_death function but also
+            # pass it to the view for some animation?
+            return False
+        if session.grid.is_empty():
+            # QQ: Should this also break when the grid is "powerless", i.e., no cards
+            # with >0 power?
             return False
 
+        log_grid(session.grid)
+        return True
 
-def handle_human_plays_card(decks: Decks) -> None:
-    # FIXME What if hand is empty?
-    buffer = copy.deepcopy(session.view.screen._buffer._double_buffer)  # FIXME UGLY!!
-    cursor = 0
-    while True:
-        session.view.screen._buffer._double_buffer = copy.deepcopy(
-            buffer
-        )  # FIXME UGLY!!
-        if not decks.handdeck.is_empty():
-            session.view.draw_handdeck_highlight(cursor)
+    def handle_fight(self, computerstrategy: AgentStrategy) -> None:
 
-        keycode = session.view.get_keycode()
-        if keycode == Screen.KEY_LEFT:
-            cursor = max(0, cursor - 1)
-        elif keycode == Screen.KEY_RIGHT:
-            cursor = min(decks.handdeck.size() - 1, cursor + 1)
-        elif keycode == Screen.KEY_UP:
-            # FIXME Check if card is playable at all
-            # Don't pick the card yet (i.e., don't remove it from the deck yet) because
-            # the player might still abort the placing  of the card:
-            card = decks.handdeck.cards[cursor]
-            res = handle_human_places_card(decks, session.grid, card, cursor)
-            if res:
-                decks.handdeck.pick_card(cursor)
-                cursor = min(decks.handdeck.size() - 1, cursor)
-                session.view.redraw_handdeck(decks.handdeck, cursor)
-                buffer = copy.deepcopy(
-                    session.view.screen._buffer._double_buffer
-                )  # FIXME UGLY!!
-            else:
-                # Otherwise, we return bc the process was aborted by the user and won't
-                # update the cursor.
-                # FIXME Implement this w an exception rather than the True/False
-                # mechanics?
-                pass
-            # FIXME ^ Use some update_buffer method here once we have the
-            # buffercontroller object.
-            cursor = min(decks.handdeck.size() - 1, cursor)
-        elif keycode in (ord("i"), ord("I")):
-            pass  # FIXME Inventory!
-        elif keycode in (ord("c"), ord("C")):
-            session.view.screen._buffer._double_buffer = copy.deepcopy(
-                buffer
-            )  # FIXME UGLY!!
-            return
+        # --- Prepare the fight ---
+        # Show empty grid:
+        self.draw_empty_grid()
 
+        # Set up human's decks and show the hand deck:
+        decks = setup_decks()
+        self.draw_drawdecks((decks.drawdeck.size(), decks.hamsterdeck.size()))
+        for _ in range(3):
+            card = decks.drawdeck.draw_card()
+            self.draw_card_to_handdeck(decks.handdeck, card, "draw")
+            decks.handdeck.add_card(card)
 
-def handle_round_of_fight(round_num, decks: Decks, computerstrategy: AgentStrategy):
-    log_decks(decks)
+        card = decks.hamsterdeck.draw_card()
+        self.draw_card_to_handdeck(decks.handdeck, card, "hamster")
+        decks.handdeck.add_card(card)
+        self.draw_drawdecks((len(decks.drawdeck.cards), len(decks.hamsterdeck.cards)))
 
-    # Play computer cards and animate how they appear:
-    for pos, card in computerstrategy.cards_to_be_played(session.grid, round_num):
-        session.view.play_computer_card(card, pos)
-    # Now also place them in the model:
-    computerstrategy.play_cards(session.grid, round_num)
+        # --- Run the fight ---
+        fighting = True
+        round_num = 0
+        while fighting:
+            fighting = self.handle_round_of_fight(
+                round_num, decks, computerstrategy=computerstrategy
+            )
+            round_num += 1
 
-    # Let human draw a card:
-    handle_human_draws_new_card(decks)
-
-    # Let human play card(s) from handdeck or items in his collection:
-    handle_human_plays_card(decks)
-
-    log_decks(decks)
-    log_grid(session.grid)
-
-    # Activate all cards:
-    session.grid.activate_line(2)
-    session.grid.activate_line(1)
-    session.grid.prepare_line()
-    # session.view.update()  # FIXME
-
-    if session.humanagent.has_lost_life():
-        session.humanagent.update_lives_and_health_after_death()
-        session.view.computer_wins_fight()
-        return False
-    if session.computeragent.has_lost_life():
-        overflow = session.computeragent.update_lives_and_health_after_death()
-        session.view.human_wins_fight()
-        # FIXME Do something w overflow damage here -- maybe just store it in the
-        # object right in the update_lives_and_health_after_death function but also
-        # pass it to the view for some animation?
-        return False
-    if session.grid.is_empty():
-        # QQ: Should this also break when the grid is "powerless", i.e., no cards
-        # with >0 power?
-        return False
-
-    log_grid(session.grid)
-    return True
-
-
-def setup_decks() -> Decks:
-    drawdeck = Deck()
-    drawdeck.cards = session.humanagent.deck.cards
-    drawdeck.shuffle()
-    hamsterdeck = Deck(create_cards_from_blueprints(["Hamster"] * 10))
-    return Decks(drawdeck, hamsterdeck, Deck(), Deck())
+        # --- Clean up after fight ---
+        session.humanagent.deck.cards = [
+            c
+            for c in decks.useddeck.cards + decks.handdeck.cards + decks.drawdeck.cards
+            if c.name != "Hamster"
+        ]
+        session.humanagent.deck.reset_cards()
 
 
 # FIXME Add some border around the whole screen when the human presses "N" until he has
 # to do something again?
-
-
-def handle_fight(computerstrategy: AgentStrategy):
-
-    # --- Prepare the fight ---
-    # Show empty grid:
-    session.view.draw_empty_grid()
-
-    # Set up human's decks and show the hand deck:
-    decks = setup_decks()
-    session.view.draw_drawdecks((decks.drawdeck.size(), decks.hamsterdeck.size()))
-    for _ in range(3):
-        card = decks.drawdeck.draw_card()
-        session.view.draw_card_to_handdeck(decks.handdeck, card, "draw")
-        decks.handdeck.add_card(card)
-
-    card = decks.hamsterdeck.draw_card()
-    session.view.draw_card_to_handdeck(decks.handdeck, card, "hamster")
-    decks.handdeck.add_card(card)
-    session.view.draw_drawdecks(
-        (len(decks.drawdeck.cards), len(decks.hamsterdeck.cards))
-    )
-
-    # --- Run the fight ---
-    fighting = True
-    round_num = 0
-    while fighting:
-        fighting = handle_round_of_fight(
-            round_num, decks, computerstrategy=computerstrategy
-        )
-        round_num += 1
-
-    # --- Clean up after fight ---
-    session.humanagent.deck.cards = [
-        c
-        for c in decks.useddeck.cards + decks.handdeck.cards + decks.drawdeck.cards
-        if c.name != "Hamster"
-    ]
-    session.humanagent.deck.reset_cards()
 
 
 # FIXME Check if anything should be taken over from handlers.
