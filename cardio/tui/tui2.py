@@ -5,6 +5,7 @@ import copy
 from typing import Literal, Optional, Tuple
 from cardio import session, Deck, GridPos, Card, FightViewAndController
 from cardio.agent_strategies import AgentStrategy
+from cardio.card_blueprints import create_cards_from_blueprints
 from asciimatics.screen import Screen
 from asciimatics.paths import Path
 from asciimatics.event import KeyboardEvent
@@ -26,7 +27,8 @@ from .cards_renderer import (
     BOX_WIDTH,  # FIXME
 )
 from . import cards_renderer
-from .decks import Decks, setup_decks
+from .decks import Decks
+
 
 # FIXME Todos:
 # - Finish fight, e.g. cards that die, ...
@@ -203,7 +205,7 @@ class TUIViewAndController(FightViewAndController):
                 self.screen, cards_renderer.render_card_at(self.screen, card, x, y)
             )
 
-    def draw_empty_grid(self) -> None:
+    def _draw_empty_grid(self) -> None:
         for linei in range(3):
             for sloti in range(4):
                 draw_slot_in_grid(self.screen, GridPos(linei, sloti))
@@ -239,10 +241,10 @@ class TUIViewAndController(FightViewAndController):
 
     # --- Controller-type methods ---
 
-    def handle_human_draws_new_card(self, decks: Decks) -> None:
-        if not decks.drawdeck.is_empty():
+    def _handle_human_draws_new_card(self) -> None:
+        if not self.decks.drawdeck.is_empty():
             highlights = [True, False]
-        elif not decks.hamsterdeck.is_empty():
+        elif not self.decks.hamsterdeck.is_empty():
             highlights = [False, True]
         else:  # both empty
             return
@@ -250,24 +252,24 @@ class TUIViewAndController(FightViewAndController):
         while True:
             self.draw_drawdeck_highlights(highlights)
             keycode = self.get_keycode()
-            if keycode == Screen.KEY_LEFT and not decks.drawdeck.is_empty():
+            if keycode == Screen.KEY_LEFT and not self.decks.drawdeck.is_empty():
                 highlights = [True, False]
-            elif keycode == Screen.KEY_RIGHT and not decks.hamsterdeck.is_empty():
+            elif keycode == Screen.KEY_RIGHT and not self.decks.hamsterdeck.is_empty():
                 highlights = [False, True]
             elif keycode == Screen.KEY_UP:
                 if highlights[0]:
-                    card = decks.drawdeck.draw_card()
-                    self.draw_card_to_handdeck(decks.handdeck, card, "draw")
+                    card = self.decks.drawdeck.draw_card()
+                    self.draw_card_to_handdeck(self.decks.handdeck, card, "draw")
                 else:
-                    card = decks.hamsterdeck.draw_card()
-                    self.draw_card_to_handdeck(decks.handdeck, card, "hamster")
-                decks.handdeck.add_card(card)
-                self.draw_drawdecks((decks.drawdeck.size(), decks.hamsterdeck.size()))
+                    card = self.decks.hamsterdeck.draw_card()
+                    self.draw_card_to_handdeck(self.decks.handdeck, card, "hamster")
+                self.decks.handdeck.add_card(card)
+                self.draw_drawdecks(
+                    (self.decks.drawdeck.size(), self.decks.hamsterdeck.size())
+                )
                 return
 
-    def handle_human_places_card(
-        self, decks: Decks, grid, card: Card, from_slot: int
-    ) -> bool:
+    def _handle_human_places_card(self, card: Card, from_slot: int) -> bool:
         buffer = copy.deepcopy(
             self.screen._buffer._double_buffer
         )  # FIXME Use some buffer function
@@ -282,12 +284,12 @@ class TUIViewAndController(FightViewAndController):
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
-                cursor = min(grid.width - 1, cursor + 1)
+                cursor = min(session.grid.width - 1, cursor + 1)
             elif keycode == Screen.KEY_DOWN:
                 # FIXME Check if card can be placed at all
-                grid[2][cursor] = card
+                session.grid[2][cursor] = card
                 self.place_human_card(card, from_slot=from_slot, to_slot=cursor)
-                decks.useddeck.add_card(card)
+                self.decks.useddeck.add_card(card)
                 logging.debug("Human plays %s in %s", card.name, cursor)
                 # screen._buffer._double_buffer = copy.deepcopy(buffer)
                 return True
@@ -297,7 +299,7 @@ class TUIViewAndController(FightViewAndController):
                 )  # FIXME Use some buffer function
                 return False
 
-    def handle_human_plays_card(self, decks: Decks) -> None:
+    def _handle_human_plays_card(self) -> None:
         # FIXME What if hand is empty?
         buffer = copy.deepcopy(
             self.screen._buffer._double_buffer
@@ -307,24 +309,24 @@ class TUIViewAndController(FightViewAndController):
             self.screen._buffer._double_buffer = copy.deepcopy(
                 buffer
             )  # FIXME Use some buffer function
-            if not decks.handdeck.is_empty():
+            if not self.decks.handdeck.is_empty():
                 self.draw_handdeck_highlight(cursor)
 
             keycode = self.get_keycode()
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
-                cursor = min(decks.handdeck.size() - 1, cursor + 1)
+                cursor = min(self.decks.handdeck.size() - 1, cursor + 1)
             elif keycode == Screen.KEY_UP:
                 # FIXME Check if card is playable at all
                 # Don't pick the card yet (i.e., don't remove it from the deck yet) because
                 # the player might still abort the placing  of the card:
-                card = decks.handdeck.cards[cursor]
-                res = self.handle_human_places_card(decks, session.grid, card, cursor)
+                card = self.decks.handdeck.cards[cursor]
+                res = self._handle_human_places_card(card, cursor)
                 if res:
-                    decks.handdeck.pick_card(cursor)
-                    cursor = min(decks.handdeck.size() - 1, cursor)
-                    self.redraw_handdeck(decks.handdeck, cursor)
+                    self.decks.handdeck.pick_card(cursor)
+                    cursor = min(self.decks.handdeck.size() - 1, cursor)
+                    self.redraw_handdeck(self.decks.handdeck, cursor)
                     buffer = copy.deepcopy(
                         self.screen._buffer._double_buffer
                     )  # FIXME Use some buffer function
@@ -336,7 +338,7 @@ class TUIViewAndController(FightViewAndController):
                     pass
                 # FIXME ^ Use some update_buffer method here once we have the
                 # buffercontroller object.
-                cursor = min(decks.handdeck.size() - 1, cursor)
+                cursor = min(self.decks.handdeck.size() - 1, cursor)
             elif keycode in (ord("i"), ord("I")):
                 pass  # FIXME Inventory!
             elif keycode in (ord("c"), ord("C")):
@@ -345,24 +347,24 @@ class TUIViewAndController(FightViewAndController):
                 )  # FIXME Use some buffer function
                 return
 
-    def handle_round_of_fight(
-        self, round_num: int, decks: Decks, computerstrategy: AgentStrategy
-    ) -> None:
-        decks.log()
+    def _handle_round_of_fight(self) -> bool:
+        self.decks.log()
 
         # Play computer cards and animate how they appear:
-        for pos, card in computerstrategy.cards_to_be_played(session.grid, round_num):
+        for pos, card in self.computerstrategy.cards_to_be_played(
+            session.grid, self.round_num
+        ):
             self.play_computer_card(card, pos)
         # Now also place them in the model:
-        computerstrategy.play_cards(session.grid, round_num)
+        self.computerstrategy.play_cards(session.grid, self.round_num)
 
         # Let human draw a card:
-        self.handle_human_draws_new_card(decks)
+        self._handle_human_draws_new_card()
 
         # Let human play card(s) from handdeck or items in his collection:
-        self.handle_human_plays_card(decks)
+        self._handle_human_plays_card()
 
-        decks.log()
+        self.decks.log()
         session.grid.log()
 
         # Activate all cards:
@@ -389,38 +391,43 @@ class TUIViewAndController(FightViewAndController):
         session.grid.log()
         return True
 
-    def handle_fight(self, computerstrategy: AgentStrategy) -> None:
+    def _setup_and_draw_decks(self) -> None:
+        # Set up the 4 decks for the fight:
+        drawdeck = Deck()
+        drawdeck.cards = session.humanagent.deck.cards
+        drawdeck.shuffle()
+        hamsterdeck = Deck(create_cards_from_blueprints(["Hamster"] * 10))
+        self.decks = Decks(drawdeck, hamsterdeck, Deck(), Deck())
 
-        # --- Prepare the fight ---
-        # Show empty grid:
-        self.draw_empty_grid()
-
-        # Set up human's decks and show the hand deck:
-        decks = setup_decks()
-        self.draw_drawdecks((decks.drawdeck.size(), decks.hamsterdeck.size()))
+        # Draw the decks and how the first cards get drawn:
+        self.draw_drawdecks((self.decks.drawdeck.size(), self.decks.hamsterdeck.size()))
         for _ in range(3):
-            card = decks.drawdeck.draw_card()
-            self.draw_card_to_handdeck(decks.handdeck, card, "draw")
-            decks.handdeck.add_card(card)
+            card = self.decks.drawdeck.draw_card()
+            self.draw_card_to_handdeck(self.decks.handdeck, card, "draw")
+            self.decks.handdeck.add_card(card)
+        card = self.decks.hamsterdeck.draw_card()
+        self.draw_card_to_handdeck(self.decks.handdeck, card, "hamster")
+        self.decks.handdeck.add_card(card)
+        self.draw_drawdecks((self.decks.drawdeck.size(), self.decks.hamsterdeck.size()))
 
-        card = decks.hamsterdeck.draw_card()
-        self.draw_card_to_handdeck(decks.handdeck, card, "hamster")
-        decks.handdeck.add_card(card)
-        self.draw_drawdecks((len(decks.drawdeck.cards), len(decks.hamsterdeck.cards)))
+    def handle_fight(self, computerstrategy: AgentStrategy) -> None:
+        self.computerstrategy = computerstrategy  # FIXME Should this be in __init__?
+        self._draw_empty_grid()
+        self._setup_and_draw_decks()
 
-        # --- Run the fight ---
+        # Run the fight:
         fighting = True
-        round_num = 0
+        self.round_num = 0
         while fighting:
-            fighting = self.handle_round_of_fight(
-                round_num, decks, computerstrategy=computerstrategy
-            )
-            round_num += 1
+            fighting = self._handle_round_of_fight()
+            self.round_num += 1
 
         # --- Clean up after fight ---
         session.humanagent.deck.cards = [
             c
-            for c in decks.useddeck.cards + decks.handdeck.cards + decks.drawdeck.cards
+            for c in self.decks.useddeck.cards
+            + self.decks.handdeck.cards
+            + self.decks.drawdeck.cards
             if c.name != "Hamster"
         ]
         session.humanagent.deck.reset_cards()
