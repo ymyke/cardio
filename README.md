@@ -30,13 +30,9 @@ card_renderer.py
 - Or will there by a FightView + FightController and similar pairs for other parts of
   the game?
 
-- Check out performance: Esp. when running on battery power. -> Add some setting that
-  helps speed up / slow down the animations. Then do some self-timing e.g. on burning a
-  card that will automatically adjust that setting if necessary (i.e., animation takes
-  too long or too short).
-
-
-
+- I think ComputerStrategy should be part of ComputerAgent and ComputerAgent should be
+  part of the fightcontroller initiator, since it only has relevance in fights.
+  (- Also, maybe there is no need for a ComputerAgent class in the end?)
 
 - Interactive UI
 - Blood costs (Or some other concept? Rations? Energy? Karma? ...?)
@@ -57,6 +53,10 @@ card_renderer.py
   - Draw all modules and their dependencies and think about them.
   - Should cards have a game attribute which they use to query the world (e.g., who the
     opposing agent is) and to update the world (instead of the view directly)?
+- Check out performance of animations: Esp. when running on battery power. -> Add some
+  setting that helps speed up / slow down the animations. Then do some self-timing e.g.
+  on burning a card that will automatically adjust that setting if necessary (i.e.,
+  animation takes too long or too short).
 
 # Todo
 
