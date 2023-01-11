@@ -94,3 +94,9 @@ class Grid:
         for card in self.lines[0]:
             if card is not None:
                 card.prepare()
+
+    def log(self):
+        for line in range(3):
+            logging.debug(
+                "Grid line %s: %s", line, ", ".join([str(c) for c in self.lines[line]])
+            )

@@ -1,12 +1,10 @@
 import logging
 import sys
-import time
 import atexit
 import copy
-from typing import Literal, NamedTuple, Optional, Tuple
+from typing import Literal, Optional, Tuple
 from cardio import session, Deck, GridPos, Card, FightViewAndController
 from cardio.agent_strategies import AgentStrategy
-from cardio.card_blueprints import create_cards_from_blueprints
 from asciimatics.screen import Screen
 from asciimatics.paths import Path
 from asciimatics.event import KeyboardEvent
@@ -19,7 +17,6 @@ from .cards_renderer import (
     highlight_card_in_grid,
     gridpos2dpos,
     clear_card_in_grid,
-    flash_card_in_grid,
     shake_card_in_grid,
     redraw_card_in_grid,
     activate_card_in_grid,
@@ -29,6 +26,7 @@ from .cards_renderer import (
     BOX_WIDTH,  # FIXME
 )
 from . import cards_renderer
+from .decks import Decks, setup_decks
 
 # FIXME Todos:
 # - Finish fight, e.g. cards that die, ...
@@ -41,41 +39,6 @@ from . import cards_renderer
 # - More animations needed for Spine and maybe other skills?
 
 # FIXME How would a HumanAgentStrategy (aka automated human) be implemented here?
-
-
-class Decks(NamedTuple):
-    # QQ: Maybe unnecesary if I refactor decks implicitly via some `state` attribute in
-    # the card.
-    drawdeck: Deck
-    hamsterdeck: Deck
-    handdeck: Deck
-    useddeck: Deck
-
-
-def log_decks(decks: Decks):
-    for deck, name in zip(
-        [decks.handdeck, decks.drawdeck, decks.hamsterdeck, decks.useddeck],
-        ["Hand", "Fight", "Hamster", "Used"],
-    ):
-        logging.debug(
-            "%sdeck size: %s (%s)",
-            name,
-            len(deck.cards),
-            ",".join([c.name for c in deck.cards]),
-        )
-
-
-def log_grid(grid):
-    for line in range(3):
-        logging.debug("Grid line %s: %s", line, ", ".join([str(c) for c in grid[line]]))
-
-
-def setup_decks() -> Decks:
-    drawdeck = Deck()
-    drawdeck.cards = session.humanagent.deck.cards
-    drawdeck.shuffle()
-    hamsterdeck = Deck(create_cards_from_blueprints(["Hamster"] * 10))
-    return Decks(drawdeck, hamsterdeck, Deck(), Deck())
 
 
 class TUIViewAndController(FightViewAndController):
@@ -385,7 +348,7 @@ class TUIViewAndController(FightViewAndController):
     def handle_round_of_fight(
         self, round_num: int, decks: Decks, computerstrategy: AgentStrategy
     ) -> None:
-        log_decks(decks)
+        decks.log()
 
         # Play computer cards and animate how they appear:
         for pos, card in computerstrategy.cards_to_be_played(session.grid, round_num):
@@ -399,8 +362,8 @@ class TUIViewAndController(FightViewAndController):
         # Let human play card(s) from handdeck or items in his collection:
         self.handle_human_plays_card(decks)
 
-        log_decks(decks)
-        log_grid(session.grid)
+        decks.log()
+        session.grid.log()
 
         # Activate all cards:
         session.grid.activate_line(2)
@@ -423,7 +386,7 @@ class TUIViewAndController(FightViewAndController):
             # with >0 power?
             return False
 
-        log_grid(session.grid)
+        session.grid.log()
         return True
 
     def handle_fight(self, computerstrategy: AgentStrategy) -> None:
