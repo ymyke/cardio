@@ -35,6 +35,7 @@ class GridView:
         pass
 
     def update(self) -> None:
+        # FIXME Is this still necessary? Still used anywhere?
         pass
 
 
