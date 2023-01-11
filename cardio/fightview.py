@@ -19,6 +19,7 @@ class FightViewAndController(ABC):
 
     def __init__(self, grid: Grid) -> None:
         self.grid = grid
+        # FIXME Should we also set the computerstrategy here?
 
     def card_about_to_die(self, card: Card) -> None:
         pass
