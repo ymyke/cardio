@@ -4,7 +4,6 @@ from asciimatics.effects import Effect, Print
 from asciimatics.renderers import Box, StaticRenderer, Fire
 from asciimatics.screen import Screen
 from asciimatics import constants
-from asciimatics.utilities import BoxTool
 from asciimatics.paths import Path
 from .buffercopy import BufferCopy
 from cardio import Card, GridPos
@@ -214,60 +213,6 @@ def show_effects(screen, effects: Union[Effect, List[Effect]], pause: float = 0)
     screen.refresh()
     if pause > 0:
         time.sleep(pause)
-
-
-class ExtendedBox(BoxTool):
-    @property
-    def style(self):
-        return self._style
-
-    @style.setter
-    def style(self, style):
-        self._style = style
-        if style == 11:
-            self.down_right = "·"
-            self.down_left = "·"
-            self.up_right = "·"
-            self.up_left = "·"
-            self.h = "·"
-            self.h_inside = "·"
-            self.v = "·"
-            self.v_inside = "·"
-            self.v_left = "·"
-            self.v_right = "·"
-            self.h_up = "·"
-            self.h_down = "·"
-            self.cross = "·"
-        elif style == 12 and not self.unicode_aware:
-            self.down_right = "+"
-            self.down_left = "+"
-            self.up_right = "+"
-            self.up_left = "+"
-            self.h = " "
-            self.h_inside = " "
-            self.v = ""
-            self.v_inside = ""
-            self.v_left = ""
-            self.v_right = ""
-            self.h_up = ""
-            self.h_down = ""
-            self.cross = ""
-        elif style == 12 and self.unicode_aware:
-            self.down_right = "┌"
-            self.down_left = "┐"
-            self.up_right = "└"
-            self.up_left = "┘"
-            self.h = " "
-            self.h_inside = " "
-            self.v = ""
-            self.v_inside = ""
-            self.v_left = ""
-            self.v_right = ""
-            self.h_up = ""
-            self.h_down = ""
-            self.cross = ""
-        else:
-            super(ExtendedBox, self.__class__).style.fset(self, style)
 
 
 def draw_slot_in_grid(screen, pos: GridPos):
