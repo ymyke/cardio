@@ -15,7 +15,7 @@ BOX_HEIGHT = 7
 BOX_PADDING_TOP = 0
 BOX_PADDING_LEFT = 3
 DRAW_DECKS_X = 45
-DRAW_DECKS_Y = 45  # FIXME Make this relative to the lower border?
+DRAW_DECKS_Y = 45
 
 
 class dPos(NamedTuple):  # FIXME Call it tPos instead of dPos?
