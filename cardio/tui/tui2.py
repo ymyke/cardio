@@ -22,6 +22,7 @@ from .cards_renderer import (
     activate_card_in_grid,
     burn_card_in_grid,
     draw_grid_decks_separator,
+    move_card,
     BOX_HEIGHT,  # FIXME
     BOX_WIDTH,  # FIXME
 )
@@ -78,22 +79,14 @@ class TUIViewAndController(FightViewAndController):
         pos = self.grid.find_card(card)
         assert pos is not None, "Trying to prepare a card that is not in the grid"
         assert pos.line == 0, "Calling prepare on card that is not in prep line"
-        startpos = gridpos2dpos(GridPos(0, pos.slot))
-        targetpos = gridpos2dpos(GridPos(1, pos.slot))
-
         clear_card_in_grid(self.screen, pos)
         draw_slot_in_grid(self.screen, pos)
-        buffercopy = BufferCopy(self.screen)
-        p = Path()
-        p.jump_to(x=startpos.x, y=startpos.y + 1)
-        p.move_straight_to(x=targetpos.x, y=targetpos.y, steps=10)
-        for x, y in p._steps:
-            buffercopy.copyback()
-            self.screen.refresh()
-            cards_renderer.show_effects(
-                self.screen, cards_renderer.render_card_at(self.screen, card, x, y)
-            )
-        # FIXME Factor out move functionality
+        move_card(
+            self.screen,
+            card,
+            from_pos=GridPos(0, pos.slot),
+            to_pos=GridPos(1, pos.slot),
+        )
 
     def pos_card_deactivate(self, pos: GridPos) -> None:
         """Uses a position instead of a card because it could be that the card has died
@@ -109,48 +102,25 @@ class TUIViewAndController(FightViewAndController):
 
     def play_computer_card(self, card: Card, to_pos: GridPos) -> None:
         """Play a computer card to `to_pos`, which can be in line 0 or 1."""
-        starty = -5
-        startx = 50  # FIXME Calc middle of the grid
-        buffercopy = BufferCopy(self.screen)
-        cards_renderer.show_effects(
+        move_card(
             self.screen,
-            cards_renderer.render_card_at(self.screen, card, x=startx, y=starty),
+            card,
+            # from_pos is just some point off screen and roughly middle of the grid
+            from_pos=GridPos(-2, self.grid.width // 2),
+            to_pos=to_pos,
+            steps=5,
         )
-        p = Path()
-        p.jump_to(x=startx, y=starty)
-        to_pos = cards_renderer.gridpos2dpos(to_pos)
-        p.move_straight_to(x=to_pos.x, y=to_pos.y, steps=5)
-        for x, y in p._steps:
-            buffercopy.copyback()
-            cards_renderer.show_effects(
-                self.screen, cards_renderer.render_card_at(self.screen, card, x, y)
-            )
-        # FIXME Refactor to use move code
 
     def _place_human_card(self, card: Card, from_slot: int, to_slot: int) -> None:
         """Place a human card from the hand (`from_slot`) to the grid (`to_slot`). Line
         is implicitly always 2.
         """
-        startpos = gridpos2dpos(GridPos(4, from_slot))
-        targetpos = gridpos2dpos(GridPos(2, to_slot))
-
-        buffercopy = BufferCopy(self.screen)
-        cards_renderer.show_effects(
+        move_card(
             self.screen,
-            cards_renderer.render_card_at(
-                self.screen, card, x=startpos.x, y=startpos.y
-            ),
+            card,
+            from_pos=GridPos(4, from_slot),
+            to_pos=GridPos(2, to_slot),
         )
-        p = Path()
-        p.jump_to(x=startpos.x, y=startpos.y)
-        p.move_straight_to(x=targetpos.x, y=targetpos.y, steps=10)
-        for x, y in p._steps:
-            buffercopy.copyback()
-            self.screen.refresh()
-            cards_renderer.show_effects(
-                self.screen, cards_renderer.render_card_at(self.screen, card, x, y)
-            )
-        # FIXME Refactor with other move functions
 
     def _redraw_handdeck(self, handdeck: Deck, from_index: int) -> None:
         """Redraw hand from index `from_index`."""
@@ -409,7 +379,7 @@ class TUIViewAndController(FightViewAndController):
         session.humanagent.deck.reset_cards()
 
     def handle_fight(self, computerstrategy: AgentStrategy) -> None:
-        self.computerstrategy = computerstrategy  
+        self.computerstrategy = computerstrategy
         # ^ FIXME Should this be in __init__? And/or the entire ComputerAgent object,
         # which could contain the computerstrategy? It will be used for one fight only
         # anyway...

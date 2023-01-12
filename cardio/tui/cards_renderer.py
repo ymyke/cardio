@@ -5,6 +5,7 @@ from asciimatics.renderers import Box, StaticRenderer, Fire
 from asciimatics.screen import Screen
 from asciimatics import constants
 from asciimatics.utilities import BoxTool
+from asciimatics.paths import Path
 from .buffercopy import BufferCopy
 from cardio import Card, GridPos
 
@@ -18,7 +19,7 @@ DRAW_DECKS_X = 45
 DRAW_DECKS_Y = 45  # FIXME Make this relative to the lower border?
 
 
-class dPos(NamedTuple):
+class dPos(NamedTuple):  # FIXME Call it tPos instead of dPos?
     x: int
     y: int
 
@@ -383,3 +384,19 @@ def draw_grid_decks_separator(screen, width: int) -> None:
             attr=Screen.A_BOLD,
         ),
     )
+
+
+def move_card(screen, card: Card, from_pos: GridPos, to_pos: GridPos, steps=10) -> None:
+    startpos = gridpos2dpos(from_pos)
+    targetpos = gridpos2dpos(to_pos)
+    buffercopy = BufferCopy(screen)
+    show_effects(
+        screen,
+        render_card_at(screen, card, x=startpos.x, y=startpos.y),
+    )
+    p = Path()
+    p.jump_to(x=startpos.x, y=startpos.y)
+    p.move_straight_to(x=targetpos.x, y=targetpos.y, steps=steps)
+    for x, y in p._steps:
+        buffercopy.copyback()
+        show_effects(screen, render_card_at(screen, card, x, y))
