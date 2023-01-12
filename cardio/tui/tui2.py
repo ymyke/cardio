@@ -123,7 +123,9 @@ class TUIViewAndController(FightViewAndController):
     def _redraw_handdeck(self, handdeck: Deck, from_index: int) -> None:
         """Redraw hand from index `from_index`."""
         pos = gridpos2dpos(GridPos(4, from_index))
-        self.screen.clear_buffer(
+        self.screen.clear_buffer(   
+            # FIXME Add some primitive for this? Either in buffercopy/bufferutils or
+            # some clear_handdeck function in the primitives module?
             Screen.COLOUR_WHITE,
             0,
             0,
