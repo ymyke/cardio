@@ -46,5 +46,5 @@ def test_game_hypo(mocker, slotlist):
     assert after_nof_cards <= before_nof_cards
     if after_nof_cards < before_nof_cards:
         session.view.update.assert_called()
-        session.view.activate_card.assert_called()
-        session.view.get_attacked.assert_called()
+        session.view.card_activate.assert_called()
+        session.view.card_getting_attacked.assert_called()
