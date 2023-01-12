@@ -7,15 +7,7 @@ from asciimatics import constants
 from asciimatics.paths import Path
 from .buffercopy import BufferCopy
 from cardio import Card, GridPos
-
-GRID_MARGIN_LEFT = 10
-GRID_MARGIN_TOP = 4
-BOX_WIDTH = 20
-BOX_HEIGHT = 7
-BOX_PADDING_TOP = 0
-BOX_PADDING_LEFT = 3
-DRAW_DECKS_X = 45
-DRAW_DECKS_Y = 45
+from .constants import *
 
 
 class dPos(NamedTuple):  # FIXME Call it tPos instead of dPos?

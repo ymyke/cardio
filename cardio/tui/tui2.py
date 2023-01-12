@@ -23,9 +23,8 @@ from .cards_renderer import (
     burn_card_in_grid,
     draw_grid_decks_separator,
     move_card,
-    BOX_HEIGHT,  # FIXME
-    BOX_WIDTH,  # FIXME
 )
+from .constants import BOX_HEIGHT  # FIXME
 from . import cards_renderer
 from .decks import Decks
 from .buffercopy import BufferCopy
@@ -123,7 +122,7 @@ class TUIViewAndController(FightViewAndController):
     def _redraw_handdeck(self, handdeck: Deck, from_index: int) -> None:
         """Redraw hand from index `from_index`."""
         pos = gridpos2dpos(GridPos(4, from_index))
-        self.screen.clear_buffer(   
+        self.screen.clear_buffer(
             # FIXME Add some primitive for this? Either in buffercopy/bufferutils or
             # some clear_handdeck function in the primitives module?
             Screen.COLOUR_WHITE,
