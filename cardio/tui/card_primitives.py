@@ -1,26 +1,15 @@
-from typing import List, Literal, NamedTuple, Optional, Tuple, Union
 import time
-from asciimatics.effects import Effect, Print
-from asciimatics.renderers import Box, StaticRenderer, Fire
+from typing import Optional, List, Literal
+from asciimatics.effects import Print, Effect
 from asciimatics.screen import Screen
-from asciimatics import constants
+from asciimatics.renderers import Box, StaticRenderer, Fire
+from asciimatics.constants import SINGLE_LINE, DOUBLE_LINE
 from asciimatics.paths import Path
-from .buffercopy import BufferCopy
 from cardio import Card, GridPos
 from .constants import *
-
-
-class dPos(NamedTuple):  # FIXME Call it tPos instead of dPos?
-    x: int
-    y: int
-
-
-def gridpos2dpos(pos: GridPos) -> dPos:
-    agentgap = 3 if pos.line >= 2 else 0
-    return dPos(
-        x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT),
-        y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP) + agentgap,
-    )
+from .buffercopy import BufferCopy
+from .utils import gridpos2dpos, show_effects, dPos
+from .grid_primitives import draw_slot_in_grid
 
 
 def card_to_amstring(c: Card) -> str:
@@ -42,7 +31,7 @@ def render_card_at(
     """
     BOX_COLOR = Screen.COLOUR_YELLOW
     effects = []
-    style = constants.DOUBLE_LINE if highlight else constants.SINGLE_LINE
+    style = DOUBLE_LINE if highlight else SINGLE_LINE
     pbox = Print(
         screen=screen,
         renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=style),
@@ -84,10 +73,10 @@ def redraw_card_in_grid(screen, card, pos):
 
 def render_highlight_card_at(screen, pos: dPos, highlight: bool = False):
     if highlight:
-        style = constants.DOUBLE_LINE
+        style = DOUBLE_LINE
         color = Screen.COLOUR_BLUE
     else:
-        style = constants.SINGLE_LINE
+        style = SINGLE_LINE
         color = Screen.COLOUR_YELLOW
 
     return [
@@ -195,132 +184,6 @@ def clear_card_at(screen, x, y):
 def clear_card_in_grid(screen, pos: GridPos, xoffset: int = 0, yoffset: int = 0):
     dpos = gridpos2dpos(pos)
     clear_card_at(screen, x=dpos.x + xoffset, y=dpos.y + yoffset)
-
-
-def show_effects(screen, effects: Union[Effect, List[Effect]], pause: float = 0):
-    if not isinstance(effects, list):
-        effects = [effects]
-    for e in effects:
-        e.update(0)
-    screen.refresh()
-    if pause > 0:
-        time.sleep(pause)
-
-
-def draw_slot_in_grid(screen, pos: GridPos):
-    dpos = gridpos2dpos(pos)
-    show_effects(
-        screen,
-        Print(
-            screen=screen,
-            renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=constants.SINGLE_LINE),
-            x=dpos.x,
-            y=dpos.y,
-            colour=Screen.COLOUR_BLACK,
-            attr=Screen.A_BOLD,
-        ),
-    )
-    # (BLACK + BOLD produces dark gray,
-    # cf https://github.com/peterbrittain/asciimatics/issues/363)
-
-
-def draw_screen_resolution(screen):
-    txt = f"{screen.width} x {screen.height}"
-    show_effects(
-        screen,
-        Print(
-            screen,
-            StaticRenderer(images=[txt]),
-            x=screen.width - len(txt),
-            y=screen.height - 1,
-        ),
-    )
-
-
-def draw_handdeck_highlight(screen, slot: int, highlight: bool = True) -> None:
-    highlight_card_in_grid(screen, GridPos(4, slot), highlight)
-    # FIXME Call the highlight_card_in_grid directly rather than via this function?
-
-
-def draw_drawdeck_highlights(screen, highlights: Tuple[bool, bool]):
-    highlight_card_at(screen, dPos(DRAW_DECKS_X, DRAW_DECKS_Y), highlights[0])
-    highlight_card_at(
-        screen, dPos(DRAW_DECKS_X + BOX_WIDTH + 2, DRAW_DECKS_Y), highlights[1]
-    )
-
-
-def draw_drawdecks(screen: Screen, counts=list):
-    # FIXME Should counts be Tuple[int, int]?
-
-    drawcover = "    ⬆️⬆️⬆️⬆️⬆️⬆️⬆⬆️⬆️"
-    hamstercover = "      🐹🐹🐹"
-
-    show_effects(
-        screen,
-        [
-            Print(
-                screen=screen,
-                renderer=Box(
-                    BOX_WIDTH, BOX_HEIGHT, uni=True, style=constants.SINGLE_LINE
-                ),
-                x=DRAW_DECKS_X,
-                y=DRAW_DECKS_Y,
-                colour=Screen.COLOUR_YELLOW,
-            ),
-            Print(
-                screen=screen,
-                renderer=StaticRenderer(images=[drawcover]),
-                x=DRAW_DECKS_X + 1,
-                y=DRAW_DECKS_Y + BOX_HEIGHT // 2,
-                colour=Screen.COLOUR_YELLOW,
-            ),
-            Print(
-                screen,
-                StaticRenderer([f"⠀{counts[0]}⠀⠀⠀"]),
-                x=DRAW_DECKS_X + 1,
-                y=DRAW_DECKS_Y + BOX_HEIGHT - 2,
-                colour=Screen.COLOUR_YELLOW,
-            ),
-            Print(
-                screen=screen,
-                renderer=Box(
-                    BOX_WIDTH, BOX_HEIGHT, uni=True, style=constants.SINGLE_LINE
-                ),
-                x=DRAW_DECKS_X + BOX_WIDTH + 2,
-                y=DRAW_DECKS_Y,
-                colour=Screen.COLOUR_YELLOW,
-            ),
-            Print(
-                screen=screen,
-                renderer=StaticRenderer(images=[hamstercover]),
-                x=DRAW_DECKS_X + BOX_WIDTH + 2 + 1,
-                y=DRAW_DECKS_Y + BOX_HEIGHT // 2,
-                colour=Screen.COLOUR_YELLOW,
-            ),
-            Print(
-                screen,
-                StaticRenderer([f"⠀{counts[1]}⠀⠀⠀"]),
-                x=DRAW_DECKS_X + BOX_WIDTH + 2 + 1,
-                y=DRAW_DECKS_Y + BOX_HEIGHT - 2,
-                colour=Screen.COLOUR_YELLOW,
-            ),
-        ],
-    )
-
-
-def draw_grid_decks_separator(screen, width: int) -> None:
-    dpos = gridpos2dpos(GridPos(4, 0))
-    show_effects(
-        screen,
-        Print(
-            screen,
-            StaticRenderer(["—" * ((BOX_WIDTH + BOX_PADDING_LEFT) * width + 4)]),
-            x=dpos.x - 2,
-            y=dpos.y - 3,
-            colour=Screen.COLOUR_BLACK,
-            attr=Screen.A_BOLD,
-        ),
-    )
 
 
 def move_card(screen, card: Card, from_pos: GridPos, to_pos: GridPos, steps=10) -> None:

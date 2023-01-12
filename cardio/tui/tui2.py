@@ -8,24 +8,24 @@ from cardio.card_blueprints import create_cards_from_blueprints
 from asciimatics.screen import Screen
 from asciimatics.paths import Path
 from asciimatics.event import KeyboardEvent
-from .cards_renderer import (
-    draw_slot_in_grid,
-    draw_drawdecks,
-    draw_screen_resolution,
+from .constants import BOX_HEIGHT, BOX_WIDTH, DRAW_DECKS_X, DRAW_DECKS_Y  # FIXME
+from .card_primitives import (
+    burn_card_in_grid,
+    redraw_card_in_grid,
+    shake_card_in_grid,
+    activate_card_in_grid,
+    move_card,
+    render_card_at,
+    render_card_in_grid,
+    highlight_card_in_grid,
+)
+from .grid_primitives import draw_slot_in_grid, draw_grid_decks_separator
+from .decks_primitives import (
     draw_drawdeck_highlights,
     draw_handdeck_highlight,
-    highlight_card_in_grid,
-    gridpos2dpos,
-    clear_card_in_grid,
-    shake_card_in_grid,
-    redraw_card_in_grid,
-    activate_card_in_grid,
-    burn_card_in_grid,
-    draw_grid_decks_separator,
-    move_card,
+    draw_drawdecks,
 )
-from .constants import BOX_HEIGHT  # FIXME
-from . import cards_renderer
+from .utils import show_effects, draw_screen_resolution, gridpos2dpos
 from .decks import Decks
 from .buffercopy import BufferCopy
 
@@ -134,9 +134,8 @@ class TUIViewAndController(FightViewAndController):
             h=BOX_HEIGHT,
         )
         for i, card in list(enumerate(handdeck.cards))[from_index:]:
-            cards_renderer.show_effects(
-                self.screen,
-                cards_renderer.render_card_in_grid(self.screen, card, GridPos(4, i)),
+            show_effects(
+                self.screen, render_card_in_grid(self.screen, card, GridPos(4, i))
             )
         self.screen.refresh()
 
@@ -149,28 +148,27 @@ class TUIViewAndController(FightViewAndController):
         # FIXME Maybe implement differently in the future when cards have states: can
         # use those states for `whichdeck`.
 
-        starty = cards_renderer.DRAW_DECKS_Y - 2
+        starty = DRAW_DECKS_Y - 2
         # FIXME ^ When we put `-1` here, there will be a leftover `-` on the screen
         # after moving the cards. How to get rid of that?
         if whichdeck == "draw":
-            startx = cards_renderer.DRAW_DECKS_X
+            startx = DRAW_DECKS_X
         else:
-            startx = cards_renderer.DRAW_DECKS_X + cards_renderer.BOX_WIDTH + 2
+            startx = DRAW_DECKS_X + BOX_WIDTH + 2
         buffercopy = BufferCopy(self.screen)
-        cards_renderer.show_effects(
+        show_effects(
             self.screen,
-            cards_renderer.render_card_at(self.screen, card, x=startx, y=starty),
+            render_card_at(self.screen, card, x=startx, y=starty),
         )
+        # FIXME Use move_card here?
         p = Path()
         p.jump_to(x=startx, y=starty)
-        to_pos = cards_renderer.gridpos2dpos(GridPos(4, len(handdeck.cards)))
+        to_pos = gridpos2dpos(GridPos(4, len(handdeck.cards)))
         p.move_straight_to(x=to_pos.x, y=to_pos.y, steps=5)
         for x, y in p._steps:
             buffercopy.copyback()
             self.screen.refresh()
-            cards_renderer.show_effects(
-                self.screen, cards_renderer.render_card_at(self.screen, card, x, y)
-            )
+            show_effects(self.screen, render_card_at(self.screen, card, x, y))
 
     def _draw_empty_grid(self) -> None:
         for linei in range(3):
