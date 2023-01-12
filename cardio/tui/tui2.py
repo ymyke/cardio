@@ -79,8 +79,6 @@ class TUIViewAndController(FightViewAndController):
         pos = self.grid.find_card(card)
         assert pos is not None, "Trying to prepare a card that is not in the grid"
         assert pos.line == 0, "Calling prepare on card that is not in prep line"
-        clear_card_in_grid(self.screen, pos)
-        draw_slot_in_grid(self.screen, pos)
         move_card(
             self.screen,
             card,
