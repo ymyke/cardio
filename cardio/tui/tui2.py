@@ -401,3 +401,5 @@ class TUIViewAndController(FightViewAndController):
 # FIXME Check if anything should be taken over from Fight.
 # FIXME Untangle what is UI/view from what is controller/business logic here.
 # FIXME Delete tui, fight, some/all of the old handlers, ...?
+# FIXME Check all the signatures in this module and in the primitives module to see if
+# type information is complete and correct.
