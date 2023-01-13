@@ -25,7 +25,7 @@ from .decks_primitives import (
     draw_handdeck_highlight,
     draw_drawdecks,
 )
-from .utils import show_effects, draw_screen_resolution, gridpos2dpos
+from .utils import show_effects, draw_screen_resolution, gridpos2dpos, dPos
 from .decks import Decks
 from .buffercopy import BufferCopy
 
@@ -147,28 +147,17 @@ class TUIViewAndController(FightViewAndController):
         """
         # FIXME Maybe implement differently in the future when cards have states: can
         # use those states for `whichdeck`.
-
         starty = DRAW_DECKS_Y - 2
         # FIXME ^ When we put `-1` here, there will be a leftover `-` on the screen
         # after moving the cards. How to get rid of that?
-        if whichdeck == "draw":
-            startx = DRAW_DECKS_X
-        else:
-            startx = DRAW_DECKS_X + BOX_WIDTH + 2
-        buffercopy = BufferCopy(self.screen)
-        show_effects(
+        startx = DRAW_DECKS_X if whichdeck == "draw" else DRAW_DECKS_X + BOX_WIDTH + 2
+        move_card(
             self.screen,
-            render_card_at(self.screen, card, x=startx, y=starty),
+            card,
+            from_pos=dPos(startx, starty),
+            to_pos=GridPos(4, handdeck.size()),
+            steps=5,
         )
-        # FIXME Use move_card here?
-        p = Path()
-        p.jump_to(x=startx, y=starty)
-        to_pos = gridpos2dpos(GridPos(4, len(handdeck.cards)))
-        p.move_straight_to(x=to_pos.x, y=to_pos.y, steps=5)
-        for x, y in p._steps:
-            buffercopy.copyback()
-            self.screen.refresh()
-            show_effects(self.screen, render_card_at(self.screen, card, x, y))
 
     def _draw_empty_grid(self) -> None:
         for linei in range(3):
