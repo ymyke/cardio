@@ -38,6 +38,8 @@ from .utils import draw_screen_resolution, get_keycode
 # - useddeck?
 # - More animations needed for Spine and maybe other skills?
 
+# FIXME Check all occurences of `session` and check if I can get rid of it via init or
+# so.
 # FIXME How would a HumanAgentStrategy (aka automated human) be implemented here?
 
 # FIXME Should be TUIFightVnC
