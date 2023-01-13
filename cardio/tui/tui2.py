@@ -6,7 +6,6 @@ from cardio import session, Deck, GridPos, Card, FightViewAndController
 from cardio.agent_strategies import AgentStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
 from asciimatics.screen import Screen
-from asciimatics.paths import Path
 from asciimatics.event import KeyboardEvent
 from .constants import BOX_HEIGHT, BOX_WIDTH, DRAW_DECKS_X, DRAW_DECKS_Y  # FIXME
 from .card_primitives import (
@@ -15,7 +14,6 @@ from .card_primitives import (
     shake_card_in_grid,
     activate_card_in_grid,
     move_card,
-    render_card_at,
     render_card_in_grid,
     highlight_card_in_grid,
 )
