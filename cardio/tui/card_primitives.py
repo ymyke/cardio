@@ -8,7 +8,7 @@ from asciimatics.paths import Path
 from cardio import Card, GridPos
 from .constants import *
 from .buffercopy import BufferCopy
-from .utils import gridpos2dpos, show_effects, dPos
+from .utils import show_effects, dPos
 from .grid_primitives import draw_slot_in_grid
 
 
@@ -60,7 +60,7 @@ def render_card_in_grid(
     yoffset: int = 0,
 ) -> List[Effect]:
     """Render card at grid position."""
-    dpos = gridpos2dpos(pos)
+    dpos = dPos.from_gridpos(pos)
     return render_card_at(
         screen, card, x=dpos.x + xoffset, y=dpos.y + yoffset, highlight=highlight
     )
@@ -105,7 +105,7 @@ def activate_card_in_grid(screen, card, pos: GridPos, deactivate: bool = False) 
 
 
 def burn_card_in_grid(screen, card, pos: GridPos) -> None:
-    dpos = gridpos2dpos(pos)
+    dpos = dPos.from_gridpos(pos)
     overheight = 4
     overwidth = 2
     fire = Fire(
@@ -166,7 +166,7 @@ def flash_card_in_grid(screen, pos: GridPos) -> None:
 
 
 def render_highlight_card_in_grid(screen, pos: GridPos):
-    return render_highlight_card_at(screen, gridpos2dpos(pos))
+    return render_highlight_card_at(screen, dPos.from_gridpos(pos))
 
 
 def highlight_card_at(screen, pos: dPos, highlight: bool = False):
@@ -174,7 +174,7 @@ def highlight_card_at(screen, pos: dPos, highlight: bool = False):
 
 
 def highlight_card_in_grid(screen, pos: GridPos, highlight: bool = True):
-    highlight_card_at(screen, gridpos2dpos(pos), highlight)
+    highlight_card_at(screen, dPos.from_gridpos(pos), highlight)
 
 
 def clear_card_at(screen, x, y):
@@ -182,15 +182,15 @@ def clear_card_at(screen, x, y):
 
 
 def clear_card_in_grid(screen, pos: GridPos, xoffset: int = 0, yoffset: int = 0):
-    dpos = gridpos2dpos(pos)
+    dpos = dPos.from_gridpos(pos)
     clear_card_at(screen, x=dpos.x + xoffset, y=dpos.y + yoffset)
 
 
 def move_card(
     screen, card: Card, from_: Union[GridPos, dPos], to: Union[GridPos, dPos], steps=10
 ) -> None:
-    from_ = gridpos2dpos(from_) if isinstance(from_, GridPos) else from_
-    to = gridpos2dpos(to) if isinstance(to, GridPos) else to
+    from_ = dPos.from_gridpos(from_) if isinstance(from_, GridPos) else from_
+    to = dPos.from_gridpos(to) if isinstance(to, GridPos) else to
     buffercopy = BufferCopy(screen)
     show_effects(
         screen,

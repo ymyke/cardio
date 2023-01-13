@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import NamedTuple, Union, List
 import time
 from asciimatics.effects import Effect, Print
@@ -6,17 +7,20 @@ from .constants import *
 from cardio import GridPos
 
 
-class dPos(NamedTuple):  # FIXME Call it tPos instead of dPos?
+class dPos(NamedTuple):
+    """Type for display position (as opposed to grid position)."""
+
     x: int
     y: int
 
-
-def gridpos2dpos(pos: GridPos) -> dPos:
-    agentgap = 3 if pos.line >= 2 else 0
-    return dPos(
-        x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT),
-        y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP) + agentgap,
-    )
+    @classmethod
+    def from_gridpos(cls, pos: GridPos) -> dPos:
+        """Create dPos from GridPos."""
+        agentgap = AGENTGAPSIZE if pos.line >= 2 else 0
+        return dPos(
+            x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT),
+            y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP) + agentgap,
+        )
 
 
 def show_effects(screen, effects: Union[Effect, List[Effect]], pause: float = 0):

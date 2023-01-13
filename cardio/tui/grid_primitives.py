@@ -3,12 +3,12 @@ from asciimatics.effects import Print
 from asciimatics.renderers import Box, StaticRenderer
 from asciimatics.constants import SINGLE_LINE
 from .constants import *
-from .utils import show_effects, gridpos2dpos
+from .utils import show_effects, dPos
 from cardio import GridPos
 
 
 def draw_slot_in_grid(screen, pos: GridPos):
-    dpos = gridpos2dpos(pos)
+    dpos = dPos.from_gridpos(pos)
     show_effects(
         screen,
         Print(
@@ -25,7 +25,7 @@ def draw_slot_in_grid(screen, pos: GridPos):
 
 
 def draw_grid_decks_separator(screen, width: int) -> None:
-    dpos = gridpos2dpos(GridPos(4, 0))
+    dpos = dPos.from_gridpos(GridPos(4, 0))
     show_effects(
         screen,
         Print(
