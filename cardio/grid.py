@@ -28,7 +28,7 @@ class GridPos(NamedTuple):
 
 class GridPosAndCard(NamedTuple):
     pos: GridPos
-    card = Card
+    card: Card
 
 
 class Grid:
