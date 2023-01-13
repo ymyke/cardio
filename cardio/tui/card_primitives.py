@@ -1,15 +1,18 @@
 import time
-from typing import Optional, List, Literal, Union
-from asciimatics.effects import Print, Effect
-from asciimatics.screen import Screen
-from asciimatics.renderers import Box, StaticRenderer, Fire
-from asciimatics.constants import SINGLE_LINE, DOUBLE_LINE
+from typing import Literal, Optional, Union
+
+from asciimatics.constants import DOUBLE_LINE, SINGLE_LINE
+from asciimatics.effects import Print
 from asciimatics.paths import Path
+from asciimatics.renderers import Box, Fire, StaticRenderer
+from asciimatics.screen import Screen
+
 from cardio import Card, GridPos
+
 from .constants import *
 from .buffercopy import BufferCopy
-from .utils import show_effects, dPos
 from .grid_primitives import draw_slot_in_grid
+from .utils import dPos, show_effects
 
 
 def card_to_amstring(c: Card) -> str:
@@ -23,55 +26,21 @@ def card_to_amstring(c: Card) -> str:
     return s
 
 
-def render_card_at(
-    screen, card: Optional[Card], x: int, y: int, highlight: bool = False
-) -> List[Effect]:
-    """Render card and box at x, y screen position. Draws empty box if `card`
-    is `None`.
-    """
-    BOX_COLOR = Screen.COLOUR_YELLOW
-    effects = []
-    style = DOUBLE_LINE if highlight else SINGLE_LINE
-    pbox = Print(
-        screen=screen,
-        renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=style),
-        x=x,
-        y=y,
-        colour=BOX_COLOR,
-    )
-    effects.append(pbox)
-    if card is not None:
-        pcard = Print(
-            screen=screen,
-            renderer=StaticRenderer(images=[card_to_amstring(card)]),
-            y=y + 1,
-            x=x + 2,
-        )
-        effects.append(pcard)
-    return effects
-
-
-def render_card_in_grid(
-    screen,
+def draw_card(
+    screen: Screen,
     card: Optional[Card],
-    pos: GridPos,
+    pos: Union[GridPos, dPos],
     highlight: bool = False,
     xoffset: int = 0,
     yoffset: int = 0,
-) -> List[Effect]:
-    """Render card at grid position."""
-    dpos = dPos.from_gridpos(pos)
-    return render_card_at(
-        screen, card, x=dpos.x + xoffset, y=dpos.y + yoffset, highlight=highlight
-    )
+) -> None:
+    """Draw card. Either at display position or grid position, depending on the type of
+    `pos` passed. Draws empty box if `card` is `None`. Highlights card/slot if
+    `highlight` is `True`.
+    """
+    dpos = dPos.from_gridpos(pos) if isinstance(pos, GridPos) else pos
+    dpos = dPos(dpos.x + xoffset, dpos.y + yoffset)
 
-
-def redraw_card_in_grid(screen, card, pos):
-    clear_card_in_grid(screen, pos)
-    show_effects(screen, render_card_in_grid(screen, card, pos))
-
-
-def render_highlight_card_at(screen, pos: dPos, highlight: bool = False):
     if highlight:
         style = DOUBLE_LINE
         color = Screen.COLOUR_BLUE
@@ -79,32 +48,67 @@ def render_highlight_card_at(screen, pos: dPos, highlight: bool = False):
         style = SINGLE_LINE
         color = Screen.COLOUR_YELLOW
 
-    return [
+    effects = [
         Print(
             screen=screen,
             renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=style),
-            x=pos.x,
-            y=pos.y,
+            x=dpos.x,
+            y=dpos.y,
             colour=color,
         )
     ]
+    if card is not None:
+        effects.append(
+            Print(
+                screen=screen,
+                renderer=StaticRenderer(images=[card_to_amstring(card)]),
+                x=dpos.x + 2,
+                y=dpos.y + 1,
+            )
+        )
+    show_effects(screen, effects)  # type: ignore (not sure why Pylance compains here)
 
 
-def activate_card_in_grid(screen, card, pos: GridPos, deactivate: bool = False) -> None:
-    import logging
+def redraw_card(screen: Screen, card: Card, pos: GridPos) -> None:
+    clear_card(screen, pos)
+    draw_card(screen, card, pos)
 
-    logging.debug("activate_card_in_grid *** %s %s", card.name, pos)
+
+def highlight_card(
+    screen: Screen, pos: Union[GridPos, dPos], highlight: bool = True
+) -> None:
+    draw_card(screen, None, pos, highlight)
+
+
+def clear_card(
+    screen: Screen, pos: Union[GridPos, dPos], xoffset: int = 0, yoffset: int = 0
+) -> None:
+    dpos = dPos.from_gridpos(pos) if isinstance(pos, GridPos) else pos
+    screen.clear_buffer(
+        Screen.COLOUR_WHITE,
+        0,
+        0,
+        x=dpos.x + xoffset,
+        y=dpos.y + yoffset,
+        w=BOX_WIDTH,
+        h=BOX_HEIGHT,
+    )
+
+
+def activate_card(
+    screen: Screen, card: Card, pos: GridPos, deactivate: bool = False
+) -> None:
     yoffset = +2 if pos.line == 1 else -2
     if deactivate:
-        clear_card_in_grid(screen, pos, yoffset=yoffset)
-        show_effects(screen, render_card_in_grid(screen, card, pos, yoffset=0))
+        clear_card(screen, pos, yoffset=yoffset)
+        draw_card(screen, card, pos, yoffset=0)
     else:
-        clear_card_in_grid(screen, pos, yoffset=0)
-        show_effects(screen, render_card_in_grid(screen, card, pos, yoffset=yoffset))
+        clear_card(screen, pos, yoffset=0)
+        draw_card(screen, card, pos, yoffset=yoffset)
     time.sleep(0.1)
 
 
-def burn_card_in_grid(screen, card, pos: GridPos) -> None:
+def burn_card(screen: Screen, pos: GridPos) -> None:
     dpos = dPos.from_gridpos(pos)
     overheight = 4
     overwidth = 2
@@ -133,72 +137,49 @@ def burn_card_in_grid(screen, card, pos: GridPos) -> None:
         screen.refresh()
         time.sleep(0.02)
         buffercopy.copyback()
-    clear_card_in_grid(screen, pos)
+    clear_card(screen, pos)
     draw_slot_in_grid(screen, pos)
 
 
-def shake_card_in_grid(
-    screen, card: Card, pos: GridPos, direction: Literal["h", "v"]
+def shake_card(
+    screen: Screen, card: Card, pos: GridPos, direction: Literal["h", "v"]
 ) -> None:
     if direction == "h":
         offset = {"xoffset": -1}
     else:
         offset = {"yoffset": -1}
-    effects1 = render_card_in_grid(screen, card, pos)
     for _ in range(4):
-        show_effects(screen, effects1, 0.03)
-        clear_card_in_grid(screen, pos)
-        effects2 = render_card_in_grid(screen, card, pos, **offset)
-        show_effects(screen, effects2, 0.03)
-        clear_card_in_grid(screen, pos, **offset)
-    show_effects(screen, effects1)
+        draw_card(screen, card, pos)
+        time.sleep(0.03)
+        clear_card(screen, pos)
+        draw_card(screen, card, pos, **offset)
+        time.sleep(0.03)
+        clear_card(screen, pos, **offset)
+    draw_card(screen, card, pos)
 
 
-def flash_card_in_grid(screen, pos: GridPos) -> None:
+def flash_card(screen: Screen, pos: GridPos) -> None:
     highlight = True
     for _ in range(10):
-        show_effects(
-            screen,
-            render_card_in_grid(screen, None, pos, highlight=highlight),
-            pause=0.2,
-        )
+        draw_card(screen, None, pos, highlight=highlight)
+        time.sleep(0.2)
         highlight = not highlight
 
 
-def render_highlight_card_in_grid(screen, pos: GridPos):
-    return render_highlight_card_at(screen, dPos.from_gridpos(pos))
-
-
-def highlight_card_at(screen, pos: dPos, highlight: bool = False):
-    show_effects(screen, render_highlight_card_at(screen, pos, highlight))
-
-
-def highlight_card_in_grid(screen, pos: GridPos, highlight: bool = True):
-    highlight_card_at(screen, dPos.from_gridpos(pos), highlight)
-
-
-def clear_card_at(screen, x, y):
-    screen.clear_buffer(Screen.COLOUR_WHITE, 0, 0, x=x, y=y, w=BOX_WIDTH, h=BOX_HEIGHT)
-
-
-def clear_card_in_grid(screen, pos: GridPos, xoffset: int = 0, yoffset: int = 0):
-    dpos = dPos.from_gridpos(pos)
-    clear_card_at(screen, x=dpos.x + xoffset, y=dpos.y + yoffset)
-
-
 def move_card(
-    screen, card: Card, from_: Union[GridPos, dPos], to: Union[GridPos, dPos], steps=10
+    screen: Screen,
+    card: Card,
+    from_: Union[GridPos, dPos],
+    to: Union[GridPos, dPos],
+    steps=10,
 ) -> None:
     from_ = dPos.from_gridpos(from_) if isinstance(from_, GridPos) else from_
     to = dPos.from_gridpos(to) if isinstance(to, GridPos) else to
     buffercopy = BufferCopy(screen)
-    show_effects(
-        screen,
-        render_card_at(screen, card, x=from_.x, y=from_.y),
-    )
+    draw_card(screen, card, from_)
     p = Path()
     p.jump_to(x=from_.x, y=from_.y)
     p.move_straight_to(x=to.x, y=to.y, steps=steps)
     for x, y in p._steps:
         buffercopy.copyback()
-        show_effects(screen, render_card_at(screen, card, x, y))
+        draw_card(screen, card, dPos(x, y))

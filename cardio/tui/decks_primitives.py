@@ -8,17 +8,17 @@ from asciimatics.screen import Screen
 from cardio import GridPos
 
 from .constants import *
-from .card_primitives import highlight_card_at, highlight_card_in_grid
+from .card_primitives import highlight_card
 from .utils import dPos, show_effects
 
 
 def draw_handdeck_highlight(screen: Screen, slot: int, highlight: bool = True) -> None:
-    highlight_card_in_grid(screen, GridPos(4, slot), highlight)
+    highlight_card(screen, GridPos(4, slot), highlight)
 
 
 def draw_drawdeck_highlights(screen: Screen, highlights: Tuple[bool, bool]) -> None:
-    highlight_card_at(screen, dPos(DRAW_DECKS_X, DRAW_DECKS_Y), highlights[0])
-    highlight_card_at(
+    highlight_card(screen, dPos(DRAW_DECKS_X, DRAW_DECKS_Y), highlights[0])
+    highlight_card(
         screen, dPos(DRAW_DECKS_X + BOX_WIDTH + 2, DRAW_DECKS_Y), highlights[1]
     )
 

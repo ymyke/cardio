@@ -9,13 +9,13 @@ from asciimatics.screen import Screen
 from asciimatics.event import KeyboardEvent
 from .constants import BOX_HEIGHT, BOX_WIDTH, DRAW_DECKS_X, DRAW_DECKS_Y  # FIXME
 from .card_primitives import (
-    burn_card_in_grid,
-    redraw_card_in_grid,
-    shake_card_in_grid,
-    activate_card_in_grid,
+    burn_card,
+    redraw_card,
+    shake_card,
+    activate_card,
     move_card,
-    render_card_in_grid,
-    highlight_card_in_grid,
+    draw_card,
+    highlight_card,
 )
 from .grid_primitives import draw_slot_in_grid, draw_grid_decks_separator
 from .decks_primitives import (
@@ -23,7 +23,7 @@ from .decks_primitives import (
     draw_handdeck_highlight,
     draw_drawdecks,
 )
-from .utils import show_effects, draw_screen_resolution, dPos
+from .utils import draw_screen_resolution, dPos
 from .decks import Decks
 from .buffercopy import BufferCopy
 
@@ -57,20 +57,20 @@ class TUIViewAndController(FightViewAndController):
     def card_about_to_die(self, card: Card) -> None:
         pos = self.grid.find_card(card)
         assert pos is not None, "Trying to burn a card that is not in the grid"
-        burn_card_in_grid(self.screen, card, pos)
+        burn_card(self.screen, pos)
 
     def card_lost_health(self, card: Card) -> None:
-        redraw_card_in_grid(self.screen, card, self.grid.find_card(card))
+        redraw_card(self.screen, card, self.grid.find_card(card))
 
     def card_getting_attacked(self, target: Card, attacker: Card) -> None:
         pos = self.grid.find_card(target)
         assert pos is not None, "Trying to burn a card that is not in the grid"
-        shake_card_in_grid(self.screen, target, pos, "h")
+        shake_card(self.screen, target, pos, "h")
 
     def card_activate(self, card: Card) -> None:
         pos = self.grid.find_card(card)
         assert pos is not None, "Trying to burn a card that is not in the grid"
-        activate_card_in_grid(self.screen, card, pos)
+        activate_card(self.screen, card, pos)
 
     def card_prepare(self, card: Card) -> None:
         pos = self.grid.find_card(card)
@@ -88,7 +88,7 @@ class TUIViewAndController(FightViewAndController):
         # FIXME Needs to be adjusted so it works also in cases such as the one described
         # above.
         card = self.grid[pos.line][pos.slot]
-        activate_card_in_grid(self.screen, card, pos, deactivate=True)
+        activate_card(self.screen, card, pos, deactivate=True)
 
     # --- Methods specifically for TUI ---
 
@@ -126,9 +126,7 @@ class TUIViewAndController(FightViewAndController):
             h=BOX_HEIGHT,
         )
         for i, card in list(enumerate(handdeck.cards))[from_index:]:
-            show_effects(
-                self.screen, render_card_in_grid(self.screen, card, GridPos(4, i))
-            )
+            draw_card(self.screen, card, GridPos(4, i))
         self.screen.refresh()
 
     def _draw_card_to_handdeck(
@@ -210,7 +208,7 @@ class TUIViewAndController(FightViewAndController):
         cursor = 0  # Cursor within line 2
         while True:
             buffercopy.copyback()
-            highlight_card_in_grid(self.screen, GridPos(2, cursor))
+            highlight_card(self.screen, GridPos(2, cursor))
 
             keycode = self._get_keycode()
             if keycode == Screen.KEY_LEFT:
