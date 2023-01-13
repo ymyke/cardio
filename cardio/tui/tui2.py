@@ -15,6 +15,7 @@ from .card_primitives import (
     move_card,
     redraw_card,
     shake_card,
+    clear_card
 )
 from .decks import Decks  # FIXME Move to utils?
 from .decks_primitives import (
@@ -24,7 +25,7 @@ from .decks_primitives import (
     draw_handdeck_highlight,
     redraw_handdeck,
 )
-from .grid_primitives import draw_empty_grid
+from .grid_primitives import draw_empty_grid, draw_slot_in_grid
 from .utils import draw_screen_resolution, get_keycode
 
 # FIXME Todos:
@@ -76,6 +77,8 @@ class TUIViewAndController(FightViewAndController):
         pos = self.grid.find_card(card)
         assert pos is not None, "Trying to prepare a card that is not in the grid"
         assert pos.line == 0, "Calling prepare on card that is not in prep line"
+        clear_card(self.screen, pos)
+        draw_slot_in_grid(self.screen, pos)
         move_card(
             self.screen, card, from_=GridPos(0, pos.slot), to=GridPos(1, pos.slot)
         )
