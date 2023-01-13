@@ -7,7 +7,7 @@ from . import Grid, Deck, GridPos, GridPosAndCard
 # who can directly influence the grid.
 class AgentStrategy(ABC):
     @abstractmethod
-    def cards_to_be_played(self, grid: Grid, turn_number: int) -> None:
+    def cards_to_be_played(self, grid: Grid, turn_number: int) -> List[GridPosAndCard]:
         # FIXME Should `grid` be set in the initalizer? Same as in HumanAgentStrategy?
         pass
     @abstractmethod
