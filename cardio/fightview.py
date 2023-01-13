@@ -1,9 +1,10 @@
 import os
 from abc import ABC, abstractmethod
-from cardio.agent_strategies import AgentStrategy
-from .card import Card
-from .grid import Grid, GridPos
-from . import session
+from typing import Literal
+from . import session, Card, Deck, Grid, GridPos
+from .agent_strategies import AgentStrategy
+from .card_blueprints import create_cards_from_blueprints
+from .tui.decks import Decks  # FIXME tui should not be known here
 
 # FIXME This is not nice: On one hand, the view has a link to the model as an attribute.
 # On the other, it accesses the session directly. Use only one of these mechanisms!
@@ -15,11 +16,13 @@ class FightViewAndController(ABC):
       is still in the grid when the method is called.
     """
 
-    # --- Called by Card class ---
-
     def __init__(self, grid: Grid) -> None:
         self.grid = grid
         # FIXME Should we also set the computerstrategy here?
+        # FIXME We _do_ have the grid! 1) Use it! 2) Do we really have it when we look
+        # at how the view is created?
+
+    # --- Called by Card class ---
 
     def card_about_to_die(self, card: Card) -> None:
         pass
@@ -39,15 +42,131 @@ class FightViewAndController(ABC):
     def pos_card_deactivate(self, pos: GridPos) -> None:
         pass
 
+    # --- Controller-related ---
+
+    def draw_empty_grid(self, grid_width: int) -> None:
+        pass
+
+    def draw_drawdecks(self, drawdeck: Deck, hamsterdeck: Deck) -> None:
+        pass
+
+    def draw_card_to_handdeck(
+        self, handdeck: Deck, card: Card, whichdeck: Literal["draw", "hamster"]
+    ) -> None:
+        pass
+
+    def draw_computer_plays_card(self, card: Card, to: GridPos) -> None:
+        """Play a computer card to `to`, which can be in line 0 or 1."""
+        pass
+
+    def draw_human_places_card(self, card: Card, from_slot: int, to_slot: int) -> None:
+        """Place a human card from the hand (`from_slot`) to the grid (`to_slot`). Line
+        is implicitly always 2.
+        """
+        pass
+
+    def handle_human_draws_new_card(self) -> None:
+        # FIXME Does this rely on the class having more attributes such as decks? Which
+        # should be set in init?
+        pass
+
+    def handle_human_plays_card(self) -> None:
+        pass
+
+    # --- Misc ---
+
     def update(self) -> None:
         # FIXME Is this still necessary? Still used anywhere?
         pass
 
     # --- Controller ---
 
-    @abstractmethod
+    def handle_round_of_fight(self) -> bool:
+        self.decks.log()
+
+        # Play computer cards and animate how they appear:
+        for pos, card in self.computerstrategy.cards_to_be_played(
+            session.grid, self.round_num
+        ):
+            self.draw_computer_plays_card(card, pos)
+        # Now also place them in the model:
+        self.computerstrategy.play_cards(session.grid, self.round_num)
+
+        # Let human draw a card:
+        self.handle_human_draws_new_card()
+
+        # Let human play card(s) from handdeck or items in his collection:
+        self.handle_human_plays_card()
+
+        self.decks.log()
+        session.grid.log()
+
+        # Activate all cards:
+        session.grid.activate_line(2)
+        session.grid.activate_line(1)
+        session.grid.prepare_line()
+
+        # FIXME Still some things missing below:
+        if session.humanagent.has_lost_life():
+            session.humanagent.update_lives_and_health_after_death()
+            self.computer_wins_fight()
+            return False
+        if session.computeragent.has_lost_life():
+            overflow = session.computeragent.update_lives_and_health_after_death()
+            self.human_wins_fight()
+            # FIXME Do something w overflow damage here -- maybe just store it in the
+            # object right in the update_lives_and_health_after_death function but also
+            # pass it to the view for some animation?
+            return False
+        if session.grid.is_empty():
+            # QQ: Should this also break when the grid is "powerless", i.e., no cards
+            # with >0 power?
+            return False
+
+        session.grid.log()
+        return True
+
     def handle_fight(self, computerstrategy: AgentStrategy) -> None:
-        pass
+        self.computerstrategy = computerstrategy
+        # ^ FIXME Should this be in __init__? And/or the entire ComputerAgent object,
+        # which could contain the computerstrategy? It will be used for one fight only
+        # anyway...
+        self.draw_empty_grid(4)  # FIXME Parametrize grid with somehow
+
+        # Set up the 4 decks for the fight:
+        drawdeck = Deck()
+        drawdeck.cards = session.humanagent.deck.cards
+        drawdeck.shuffle()
+        hamsterdeck = Deck(create_cards_from_blueprints(["Hamster"] * 10))
+        self.decks = Decks(drawdeck, hamsterdeck, Deck(), Deck())
+
+        # Draw the decks and show how the first cards get drawn:
+        self.draw_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
+        for _ in range(3):
+            card = self.decks.drawdeck.draw_card()
+            self.draw_card_to_handdeck(self.decks.handdeck, card, "draw")
+            self.decks.handdeck.add_card(card)
+        card = self.decks.hamsterdeck.draw_card()
+        self.draw_card_to_handdeck(self.decks.handdeck, card, "hamster")
+        self.decks.handdeck.add_card(card)
+        self.draw_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
+
+        # Run the fight:
+        fighting = True
+        self.round_num = 0
+        while fighting:
+            fighting = self.handle_round_of_fight()
+            self.round_num += 1
+
+        # Reset human deck after the fight:
+        session.humanagent.deck.cards = [
+            c
+            for c in self.decks.useddeck.cards
+            + self.decks.handdeck.cards
+            + self.decks.drawdeck.cards
+            if c.name != "Hamster"
+        ]
+        session.humanagent.deck.reset_cards()
 
 
 class SimpleView(FightViewAndController):
