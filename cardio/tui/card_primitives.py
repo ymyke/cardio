@@ -187,22 +187,18 @@ def clear_card_in_grid(screen, pos: GridPos, xoffset: int = 0, yoffset: int = 0)
 
 
 def move_card(
-    screen,
-    card: Card,
-    from_pos: Union[GridPos, dPos],
-    to_pos: Union[GridPos, dPos],
-    steps=10,
+    screen, card: Card, from_: Union[GridPos, dPos], to: Union[GridPos, dPos], steps=10
 ) -> None:
-    from_pos = gridpos2dpos(from_pos) if isinstance(from_pos, GridPos) else from_pos
-    to_pos = gridpos2dpos(to_pos) if isinstance(to_pos, GridPos) else to_pos
+    from_ = gridpos2dpos(from_) if isinstance(from_, GridPos) else from_
+    to = gridpos2dpos(to) if isinstance(to, GridPos) else to
     buffercopy = BufferCopy(screen)
     show_effects(
         screen,
-        render_card_at(screen, card, x=from_pos.x, y=from_pos.y),
+        render_card_at(screen, card, x=from_.x, y=from_.y),
     )
     p = Path()
-    p.jump_to(x=from_pos.x, y=from_pos.y)
-    p.move_straight_to(x=to_pos.x, y=to_pos.y, steps=steps)
+    p.jump_to(x=from_.x, y=from_.y)
+    p.move_straight_to(x=to.x, y=to.y, steps=steps)
     for x, y in p._steps:
         buffercopy.copyback()
         show_effects(screen, render_card_at(screen, card, x, y))

@@ -77,10 +77,7 @@ class TUIViewAndController(FightViewAndController):
         assert pos is not None, "Trying to prepare a card that is not in the grid"
         assert pos.line == 0, "Calling prepare on card that is not in prep line"
         move_card(
-            self.screen,
-            card,
-            from_pos=GridPos(0, pos.slot),
-            to_pos=GridPos(1, pos.slot),
+            self.screen, card, from_=GridPos(0, pos.slot), to=GridPos(1, pos.slot)
         )
 
     def pos_card_deactivate(self, pos: GridPos) -> None:
@@ -100,9 +97,9 @@ class TUIViewAndController(FightViewAndController):
         move_card(
             self.screen,
             card,
-            # from_pos is just some point off screen and roughly middle of the grid
-            from_pos=GridPos(-2, self.grid.width // 2),
-            to_pos=to_pos,
+            # from_ is just some point off screen and roughly middle of the grid:
+            from_=GridPos(-2, self.grid.width // 2),
+            to=to_pos,
             steps=5,
         )
 
@@ -111,10 +108,7 @@ class TUIViewAndController(FightViewAndController):
         is implicitly always 2.
         """
         move_card(
-            self.screen,
-            card,
-            from_pos=GridPos(4, from_slot),
-            to_pos=GridPos(2, to_slot),
+            self.screen, card, from_=GridPos(4, from_slot), to=GridPos(2, to_slot)
         )
 
     def _redraw_handdeck(self, handdeck: Deck, from_index: int) -> None:
@@ -152,8 +146,8 @@ class TUIViewAndController(FightViewAndController):
         move_card(
             self.screen,
             card,
-            from_pos=dPos(startx, starty),
-            to_pos=GridPos(4, handdeck.size()),
+            from_=dPos(startx, starty),
+            to=GridPos(4, handdeck.size()),
             steps=5,
         )
 
