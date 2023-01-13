@@ -1,6 +1,5 @@
 from __future__ import annotations
 from typing import NamedTuple, Union, List
-import time
 from asciimatics.effects import Effect, Print
 from asciimatics.renderers import StaticRenderer
 from .constants import *
@@ -23,14 +22,12 @@ class dPos(NamedTuple):
         )
 
 
-def show_effects(screen, effects: Union[Effect, List[Effect]], pause: float = 0):
+def show_effects(screen, effects: Union[Effect, List[Effect]]):
     if not isinstance(effects, list):
         effects = [effects]
     for e in effects:  # type: ignore
         e.update(0)
     screen.refresh()
-    if pause > 0:
-        time.sleep(pause)
 
 
 def draw_screen_resolution(screen):
