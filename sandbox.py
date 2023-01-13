@@ -17,10 +17,10 @@ cs = Turn0OnlyStrategy(
 )
 hs = SimpleHumanStrategy(session.grid)
 # handlers.handle_fight(computerstrategy=cs, humanstrategy=hs)
-from cardio.tui import tui2
+from cardio.tui import tui
 
 # fight = Fight(grid=session.grid, computeragent=session.computeragent, humanagent=session.humanagent, computerstrategy=cs, humanstrategy=None)
-tv = tui2.TUIViewAndController(debug=True, grid=session.grid)
+tv = tui.TUIViewAndController(debug=True, grid=session.grid)
 session.view = tv
 # tui2.start_screen(debug=True)
 tv.handle_fight(computerstrategy=cs)
