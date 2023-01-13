@@ -26,7 +26,7 @@ class dPos(NamedTuple):
 def show_effects(screen, effects: Union[Effect, List[Effect]], pause: float = 0):
     if not isinstance(effects, list):
         effects = [effects]
-    for e in effects:
+    for e in effects:  # type: ignore
         e.update(0)
     screen.refresh()
     if pause > 0:
