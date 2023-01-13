@@ -92,14 +92,14 @@ class TUIViewAndController(FightViewAndController):
 
     # --- Methods specifically for TUI ---
 
-    def play_computer_card(self, card: Card, to_pos: GridPos) -> None:
-        """Play a computer card to `to_pos`, which can be in line 0 or 1."""
+    def _play_computer_card(self, card: Card, to: GridPos) -> None:
+        """Play a computer card to `to`, which can be in line 0 or 1."""
         move_card(
             self.screen,
             card,
             # from_ is just some point off screen and roughly middle of the grid:
             from_=GridPos(-2, self.grid.width // 2),
-            to=to_pos,
+            to=to,
             steps=5,
         )
 
@@ -285,7 +285,7 @@ class TUIViewAndController(FightViewAndController):
         for pos, card in self.computerstrategy.cards_to_be_played(
             session.grid, self.round_num
         ):
-            self.play_computer_card(card, pos)
+            self._play_computer_card(card, pos)
         # Now also place them in the model:
         self.computerstrategy.play_cards(session.grid, self.round_num)
 
