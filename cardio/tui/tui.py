@@ -1,5 +1,6 @@
 import atexit
 import logging
+from typing import Literal
 
 from asciimatics.screen import Screen
 
@@ -97,7 +98,7 @@ class TUIViewAndController(FightViewAndController):
 
     # --- Controller-type methods ---
 
-    def _play_computer_card(self, card: Card, to: GridPos) -> None:
+    def draw_computer_plays_card(self, card: Card, to: GridPos) -> None:
         """Play a computer card to `to`, which can be in line 0 or 1."""
         move_card(
             self.screen,
@@ -108,7 +109,7 @@ class TUIViewAndController(FightViewAndController):
             steps=5,
         )
 
-    def _place_human_card(self, card: Card, from_slot: int, to_slot: int) -> None:
+    def draw_human_places_card(self, card: Card, from_slot: int, to_slot: int) -> None:
         """Place a human card from the hand (`from_slot`) to the grid (`to_slot`). Line
         is implicitly always 2.
         """
@@ -116,7 +117,7 @@ class TUIViewAndController(FightViewAndController):
             self.screen, card, from_=GridPos(4, from_slot), to=GridPos(2, to_slot)
         )
 
-    def _handle_human_draws_new_card(self) -> None:
+    def handle_human_draws_new_card(self) -> None:
         """Human player draws a card from one of the draw decks (draw oder hamster)."""
         if not self.decks.drawdeck.is_empty():
             highlights = (True, False)
@@ -163,7 +164,7 @@ class TUIViewAndController(FightViewAndController):
             elif keycode == Screen.KEY_DOWN:
                 # FIXME Check if card can be placed at all
                 session.grid[2][cursor] = card
-                self._place_human_card(card, from_slot=from_slot, to_slot=cursor)
+                self.draw_human_places_card(card, from_slot=from_slot, to_slot=cursor)
                 self.decks.useddeck.add_card(card)
                 logging.debug("Human plays %s in %s", card.name, cursor)
                 return True
@@ -171,7 +172,7 @@ class TUIViewAndController(FightViewAndController):
                 buffercopy.copyback()
                 return False
 
-    def _handle_human_plays_card(self) -> None:
+    def handle_human_plays_card(self) -> None:
         """Human player picks a card from the hand to play. Also handles I key for
         inventory and C to end the turn and start next round of the fight.
         """
@@ -217,15 +218,15 @@ class TUIViewAndController(FightViewAndController):
         for pos, card in self.computerstrategy.cards_to_be_played(
             session.grid, self.round_num
         ):
-            self._play_computer_card(card, pos)
+            self.draw_computer_plays_card(card, pos)
         # Now also place them in the model:
         self.computerstrategy.play_cards(session.grid, self.round_num)
 
         # Let human draw a card:
-        self._handle_human_draws_new_card()
+        self.handle_human_draws_new_card()
 
         # Let human play card(s) from handdeck or items in his collection:
-        self._handle_human_plays_card()
+        self.handle_human_plays_card()
 
         self.decks.log()
         session.grid.log()
@@ -255,7 +256,24 @@ class TUIViewAndController(FightViewAndController):
         session.grid.log()
         return True
 
-    def _setup_and_draw_decks(self) -> None:
+    def draw_empty_grid(self, grid_width: int) -> None:
+        draw_empty_grid(self.screen, grid_width)
+
+    def draw_drawdecks(self, drawdeck: Deck, hamsterdeck: Deck) -> None:
+        draw_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
+
+    def draw_card_to_handdeck(
+        self, handdeck: Deck, card: Card, whichdeck: Literal["draw", "hamster"]
+    ) -> None:
+        draw_card_to_handdeck(self.screen, handdeck, card, whichdeck)
+
+    def handle_fight(self, computerstrategy: AgentStrategy) -> None:
+        self.computerstrategy = computerstrategy
+        # ^ FIXME Should this be in __init__? And/or the entire ComputerAgent object,
+        # which could contain the computerstrategy? It will be used for one fight only
+        # anyway...
+        self.draw_empty_grid(4)  # FIXME Parametrize grid with somehow
+
         # Set up the 4 decks for the fight:
         drawdeck = Deck()
         drawdeck.cards = session.humanagent.deck.cards
@@ -264,23 +282,15 @@ class TUIViewAndController(FightViewAndController):
         self.decks = Decks(drawdeck, hamsterdeck, Deck(), Deck())
 
         # Draw the decks and show how the first cards get drawn:
-        draw_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
+        self.draw_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
         for _ in range(3):
             card = self.decks.drawdeck.draw_card()
-            draw_card_to_handdeck(self.screen, self.decks.handdeck, card, "draw")
+            self.draw_card_to_handdeck(self.decks.handdeck, card, "draw")
             self.decks.handdeck.add_card(card)
         card = self.decks.hamsterdeck.draw_card()
-        draw_card_to_handdeck(self.screen, self.decks.handdeck, card, "hamster")
+        self.draw_card_to_handdeck(self.decks.handdeck, card, "hamster")
         self.decks.handdeck.add_card(card)
-        draw_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
-
-    def handle_fight(self, computerstrategy: AgentStrategy) -> None:
-        self.computerstrategy = computerstrategy
-        # ^ FIXME Should this be in __init__? And/or the entire ComputerAgent object,
-        # which could contain the computerstrategy? It will be used for one fight only
-        # anyway...
-        draw_empty_grid(self.screen, 4)  # FIXME Parametrize grid with somehow
-        self._setup_and_draw_decks()
+        self.draw_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
 
         # Run the fight:
         fighting = True
