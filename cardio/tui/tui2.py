@@ -1,7 +1,7 @@
 import logging
 import sys
 import atexit
-from typing import Literal, Optional, Tuple
+from typing import Literal, Optional
 from cardio import session, Deck, GridPos, Card, FightViewAndController
 from cardio.agent_strategies import AgentStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
@@ -159,18 +159,6 @@ class TUIViewAndController(FightViewAndController):
         # FIXME Paremetrize width (don't forget to do that also in the base class if I
         # add parameters or something)
 
-    def _draw_drawdecks(self, counts: Tuple[int, int]) -> None:
-        draw_drawdecks(self.screen, counts)
-        # FIXME Inline?
-
-    def _draw_handdeck_highlight(self, cursor: int) -> None:
-        draw_handdeck_highlight(self.screen, cursor)
-        # FIXME Inline?
-
-    def _card_highlight(self, pos: GridPos) -> None:
-        highlight_card_in_grid(self.screen, pos)
-        # FIXME Inline?
-
     def _get_keycode(self) -> Optional[int]:
         """Non-blocking. Ignores all mouse events. Returns `ord` value of key pressed,
         `None` if no key pressed. Special keys are encoded according to
@@ -209,9 +197,11 @@ class TUIViewAndController(FightViewAndController):
                 else:
                     card = self.decks.hamsterdeck.draw_card()
                     self._draw_card_to_handdeck(self.decks.handdeck, card, "hamster")
+
                 self.decks.handdeck.add_card(card)
-                self._draw_drawdecks(
-                    (self.decks.drawdeck.size(), self.decks.hamsterdeck.size())
+                draw_drawdecks(
+                    self.screen,
+                    (self.decks.drawdeck.size(), self.decks.hamsterdeck.size()),
                 )
                 return
 
@@ -220,7 +210,7 @@ class TUIViewAndController(FightViewAndController):
         cursor = 0  # Cursor within line 2
         while True:
             buffercopy.copyback()
-            self._card_highlight(GridPos(2, cursor))
+            highlight_card_in_grid(self.screen, GridPos(2, cursor))
 
             keycode = self._get_keycode()
             if keycode == Screen.KEY_LEFT:
@@ -248,7 +238,7 @@ class TUIViewAndController(FightViewAndController):
         while True:
             buffercopy.copyback()
             if not self.decks.handdeck.is_empty():
-                self._draw_handdeck_highlight(cursor)
+                draw_handdeck_highlight(self.screen, cursor)
 
             keycode = self._get_keycode()
             if keycode == Screen.KEY_LEFT:
@@ -332,8 +322,8 @@ class TUIViewAndController(FightViewAndController):
         self.decks = Decks(drawdeck, hamsterdeck, Deck(), Deck())
 
         # Draw the decks and how the first cards get drawn:
-        self._draw_drawdecks(
-            (self.decks.drawdeck.size(), self.decks.hamsterdeck.size())
+        draw_drawdecks(
+            self.screen, (self.decks.drawdeck.size(), self.decks.hamsterdeck.size())
         )
         for _ in range(3):
             card = self.decks.drawdeck.draw_card()
@@ -342,8 +332,8 @@ class TUIViewAndController(FightViewAndController):
         card = self.decks.hamsterdeck.draw_card()
         self._draw_card_to_handdeck(self.decks.handdeck, card, "hamster")
         self.decks.handdeck.add_card(card)
-        self._draw_drawdecks(
-            (self.decks.drawdeck.size(), self.decks.hamsterdeck.size())
+        draw_drawdecks(
+            self.screen, (self.decks.drawdeck.size(), self.decks.hamsterdeck.size())
         )
 
     def _reset_human_deck(self) -> None:

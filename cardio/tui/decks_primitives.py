@@ -20,8 +20,7 @@ def draw_drawdeck_highlights(screen, highlights: Tuple[bool, bool]):
     )
 
 
-def draw_drawdecks(screen: Screen, counts=list):
-    # FIXME Should counts be Tuple[int, int]?
+def draw_drawdecks(screen: Screen, counts: Tuple[int, int]):
 
     drawcover = "    ⬆️⬆️⬆️⬆️⬆️⬆️⬆⬆️⬆️"
     hamstercover = "      🐹🐹🐹"
