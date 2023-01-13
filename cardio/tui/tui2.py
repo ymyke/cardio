@@ -15,7 +15,7 @@ from .card_primitives import (
     move_card,
     redraw_card,
     shake_card,
-    clear_card
+    clear_card,
 )
 from .decks import Decks  # FIXME Move to utils?
 from .decks_primitives import (
@@ -95,8 +95,6 @@ class TUIViewAndController(FightViewAndController):
 
     # --- Controller-type methods ---
 
-    # FIXME Check out all following methods to see if they can be simplified.
-
     def _play_computer_card(self, card: Card, to: GridPos) -> None:
         """Play a computer card to `to`, which can be in line 0 or 1."""
         move_card(
@@ -117,6 +115,7 @@ class TUIViewAndController(FightViewAndController):
         )
 
     def _handle_human_draws_new_card(self) -> None:
+        """Human player draws a card from one of the draw decks (draw oder hamster)."""
         if not self.decks.drawdeck.is_empty():
             highlights = (True, False)
         elif not self.decks.hamsterdeck.is_empty():
@@ -145,12 +144,15 @@ class TUIViewAndController(FightViewAndController):
                 return
 
     def _handle_human_places_card(self, card: Card, from_slot: int) -> bool:
+        """Human player places a card she chose from her handdeck in her line. Returns
+        `True` if the card was actually placed, `False` otherweise (i.e., player aborted
+        via Escape key).
+        """
         buffercopy = BufferCopy(self.screen)
         cursor = 0  # Cursor within line 2
         while True:
             buffercopy.copyback()
             highlight_card(self.screen, GridPos(2, cursor))
-
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
@@ -178,7 +180,6 @@ class TUIViewAndController(FightViewAndController):
             buffercopy.copyback()
             if not self.decks.handdeck.is_empty():
                 draw_handdeck_highlight(self.screen, cursor)
-
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
@@ -189,15 +190,15 @@ class TUIViewAndController(FightViewAndController):
                 # Don't pick the card yet (i.e., don't remove it from the deck yet)
                 # because the player might still abort the placing  of the card:
                 card = self.decks.handdeck.cards[cursor]
-                res = self._handle_human_places_card(card, cursor)
-                if res:
+                has_placed = self._handle_human_places_card(card, cursor)
+                if has_placed:
                     self.decks.handdeck.pick_card(cursor)
                     cursor = min(self.decks.handdeck.size() - 1, cursor)
                     redraw_handdeck(self.screen, self.decks.handdeck, cursor)
                     buffercopy.update()
                 else:
-                    # Otherwise, we return bc the process was aborted by the user and won't
-                    # update the cursor.
+                    # Otherwise, we return bc the process was aborted by the user and
+                    # won't update the cursor.
                     # FIXME Implement this w an exception rather than the True/False
                     # mechanics?
                     pass
@@ -260,7 +261,7 @@ class TUIViewAndController(FightViewAndController):
         hamsterdeck = Deck(create_cards_from_blueprints(["Hamster"] * 10))
         self.decks = Decks(drawdeck, hamsterdeck, Deck(), Deck())
 
-        # Draw the decks and how the first cards get drawn:
+        # Draw the decks and show how the first cards get drawn:
         draw_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
         for _ in range(3):
             card = self.decks.drawdeck.draw_card()
@@ -270,16 +271,6 @@ class TUIViewAndController(FightViewAndController):
         draw_card_to_handdeck(self.screen, self.decks.handdeck, card, "hamster")
         self.decks.handdeck.add_card(card)
         draw_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
-
-    def _reset_human_deck(self) -> None:
-        session.humanagent.deck.cards = [
-            c
-            for c in self.decks.useddeck.cards
-            + self.decks.handdeck.cards
-            + self.decks.drawdeck.cards
-            if c.name != "Hamster"
-        ]
-        session.humanagent.deck.reset_cards()
 
     def handle_fight(self, computerstrategy: AgentStrategy) -> None:
         self.computerstrategy = computerstrategy
@@ -296,7 +287,15 @@ class TUIViewAndController(FightViewAndController):
             fighting = self._handle_round_of_fight()
             self.round_num += 1
 
-        self._reset_human_deck()
+        # Reset human deck after the fight:
+        session.humanagent.deck.cards = [
+            c
+            for c in self.decks.useddeck.cards
+            + self.decks.handdeck.cards
+            + self.decks.drawdeck.cards
+            if c.name != "Hamster"
+        ]
+        session.humanagent.deck.reset_cards()
 
 
 # FIXME Check if anything should be taken over from handlers.
