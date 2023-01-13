@@ -1,7 +1,11 @@
 from __future__ import annotations
-from typing import NamedTuple, Union, List
+import sys
+import time
+from typing import NamedTuple, Union, List, Optional
+from asciimatics.screen import Screen
 from asciimatics.effects import Effect, Print
 from asciimatics.renderers import StaticRenderer
+from asciimatics.event import KeyboardEvent
 from .constants import *
 from cardio import GridPos
 
@@ -41,3 +45,17 @@ def draw_screen_resolution(screen):
             y=screen.height - 1,
         ),
     )
+
+def get_keycode(screen: Screen) -> Optional[int]:
+    """Non-blocking. Ignores all mouse events. Returns `ord` value of key pressed,
+    `None` if no key pressed. Special keys are encoded according to
+    `asciimatics.screen.Screen.KEY_*`.
+    """
+    event = screen.get_event()
+    if not isinstance(event, KeyboardEvent):
+        # Add a tiny pause if there is no event to reduce CPU load while polling:
+        time.sleep(0.02)
+        return None
+    if event.key_code == ord("$"):
+        sys.exit(0)
+    return event.key_code

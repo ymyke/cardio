@@ -1,14 +1,14 @@
-from typing import Tuple
+from typing import Literal, Tuple
 
 from asciimatics.constants import SINGLE_LINE
 from asciimatics.effects import Print
 from asciimatics.renderers import Box, StaticRenderer
 from asciimatics.screen import Screen
 
-from cardio import GridPos
+from cardio import GridPos, Deck, Card
 
 from .constants import *
-from .card_primitives import highlight_card
+from .card_primitives import highlight_card, draw_card, move_card
 from .utils import dPos, show_effects
 
 
@@ -23,7 +23,7 @@ def draw_drawdeck_highlights(screen: Screen, highlights: Tuple[bool, bool]) -> N
     )
 
 
-def draw_drawdecks(screen: Screen, counts: Tuple[int, int]) -> None:
+def draw_drawdecks(screen: Screen, drawdeck: Deck, hamsterdeck: Deck) -> None:
     DRAWCOVER = "    ⬆️⬆️⬆️⬆️⬆️⬆️⬆⬆️⬆️"
     HAMSTERCOVER = "      🐹🐹🐹"
     show_effects(
@@ -45,7 +45,7 @@ def draw_drawdecks(screen: Screen, counts: Tuple[int, int]) -> None:
             ),
             Print(
                 screen,
-                StaticRenderer([f"⠀{counts[0]}⠀⠀⠀"]),
+                StaticRenderer([f"⠀{drawdeck.size()}⠀⠀⠀"]),
                 x=DRAW_DECKS_X + 1,
                 y=DRAW_DECKS_Y + BOX_HEIGHT - 2,
                 colour=Screen.COLOUR_YELLOW,
@@ -66,10 +66,48 @@ def draw_drawdecks(screen: Screen, counts: Tuple[int, int]) -> None:
             ),
             Print(
                 screen,
-                StaticRenderer([f"⠀{counts[1]}⠀⠀⠀"]),
+                StaticRenderer([f"⠀{hamsterdeck.size()}⠀⠀⠀"]),
                 x=DRAW_DECKS_X + BOX_WIDTH + 2 + 1,
                 y=DRAW_DECKS_Y + BOX_HEIGHT - 2,
                 colour=Screen.COLOUR_YELLOW,
             ),
         ],
+    )
+
+
+def redraw_handdeck(screen: Screen, handdeck: Deck, from_index: int) -> None:
+    """Redraw hand from index `from_index`."""
+    pos = dPos.from_gridpos(GridPos(4, from_index))
+    screen.clear_buffer(
+        Screen.COLOUR_WHITE,
+        0,
+        0,
+        x=pos.x,
+        y=pos.y,
+        w=screen.width - pos.x,
+        h=BOX_HEIGHT,
+    )
+    for i, card in list(enumerate(handdeck.cards))[from_index:]:
+        draw_card(screen, card, GridPos(4, i))
+    screen.refresh()
+
+
+def draw_card_to_handdeck(
+    screen: Screen, handdeck: Deck, card: Card, whichdeck: Literal["draw", "hamster"]
+) -> None:
+    """Show how a card gets drawn from one of the draw decks and moved to the hand.
+    `whichdeck` is necessary to know which location to start from.
+    """
+    # FIXME Maybe implement differently in the future when cards have states: can
+    # use those states for `whichdeck`.
+    starty = DRAW_DECKS_Y - 2
+    # FIXME ^ When we put `-1` here, there will be a leftover `-` on the screen
+    # after moving the cards. How to get rid of that?
+    startx = DRAW_DECKS_X if whichdeck == "draw" else DRAW_DECKS_X + BOX_WIDTH + 2
+    move_card(
+        screen,
+        card,
+        from_=dPos(startx, starty),
+        to=GridPos(4, handdeck.size()),
+        steps=5,
     )

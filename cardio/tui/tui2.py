@@ -1,31 +1,31 @@
-import logging
-import sys
 import atexit
-from typing import Literal, Optional
-from cardio import session, Deck, GridPos, Card, FightViewAndController
+import logging
+
+from asciimatics.screen import Screen
+
+from cardio import Card, Deck, FightViewAndController, GridPos, session
 from cardio.agent_strategies import AgentStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
-from asciimatics.screen import Screen
-from asciimatics.event import KeyboardEvent
-from .constants import BOX_HEIGHT, BOX_WIDTH, DRAW_DECKS_X, DRAW_DECKS_Y  # FIXME
+
+from .buffercopy import BufferCopy
 from .card_primitives import (
+    activate_card,
     burn_card,
+    highlight_card,
+    move_card,
     redraw_card,
     shake_card,
-    activate_card,
-    move_card,
-    draw_card,
-    highlight_card,
 )
-from .grid_primitives import draw_slot_in_grid, draw_grid_decks_separator
+from .decks import Decks  # FIXME Move to utils?
 from .decks_primitives import (
+    draw_card_to_handdeck,
     draw_drawdeck_highlights,
-    draw_handdeck_highlight,
     draw_drawdecks,
+    draw_handdeck_highlight,
+    redraw_handdeck,
 )
-from .utils import draw_screen_resolution, dPos
-from .decks import Decks
-from .buffercopy import BufferCopy
+from .grid_primitives import draw_empty_grid
+from .utils import draw_screen_resolution, get_keycode
 
 # FIXME Todos:
 # - Finish fight, e.g. cards that die, ...
@@ -90,7 +90,9 @@ class TUIViewAndController(FightViewAndController):
         card = self.grid[pos.line][pos.slot]
         activate_card(self.screen, card, pos, deactivate=True)
 
-    # --- Methods specifically for TUI ---
+    # --- Controller-type methods ---
+
+    # FIXME Check out all following methods to see if they can be simplified.
 
     def _play_computer_card(self, card: Card, to: GridPos) -> None:
         """Play a computer card to `to`, which can be in line 0 or 1."""
@@ -111,68 +113,6 @@ class TUIViewAndController(FightViewAndController):
             self.screen, card, from_=GridPos(4, from_slot), to=GridPos(2, to_slot)
         )
 
-    def _redraw_handdeck(self, handdeck: Deck, from_index: int) -> None:
-        """Redraw hand from index `from_index`."""
-        pos = dPos.from_gridpos(GridPos(4, from_index))
-        self.screen.clear_buffer(
-            # FIXME Add some primitive for this? Either in buffercopy/bufferutils or
-            # some clear_handdeck function in the primitives module?
-            Screen.COLOUR_WHITE,
-            0,
-            0,
-            x=pos.x,
-            y=pos.y,
-            w=self.screen.width - pos.x,
-            h=BOX_HEIGHT,
-        )
-        for i, card in list(enumerate(handdeck.cards))[from_index:]:
-            draw_card(self.screen, card, GridPos(4, i))
-        self.screen.refresh()
-
-    def _draw_card_to_handdeck(
-        self, handdeck: Deck, card: Card, whichdeck: Literal["draw", "hamster"]
-    ) -> None:
-        """Show how a card gets drawn from one of the draw decks and moved to the hand.
-        `whichdeck` is necessary to know which location to start from.
-        """
-        # FIXME Maybe implement differently in the future when cards have states: can
-        # use those states for `whichdeck`.
-        starty = DRAW_DECKS_Y - 2
-        # FIXME ^ When we put `-1` here, there will be a leftover `-` on the screen
-        # after moving the cards. How to get rid of that?
-        startx = DRAW_DECKS_X if whichdeck == "draw" else DRAW_DECKS_X + BOX_WIDTH + 2
-        move_card(
-            self.screen,
-            card,
-            from_=dPos(startx, starty),
-            to=GridPos(4, handdeck.size()),
-            steps=5,
-        )
-
-    def _draw_empty_grid(self) -> None:
-        for linei in range(3):
-            for sloti in range(4):
-                draw_slot_in_grid(self.screen, GridPos(linei, sloti))
-        draw_grid_decks_separator(self.screen, 4)
-        # FIXME Paremetrize width (don't forget to do that also in the base class if I
-        # add parameters or something)
-
-    def _get_keycode(self) -> Optional[int]:
-        """Non-blocking. Ignores all mouse events. Returns `ord` value of key pressed,
-        `None` if no key pressed. Special keys are encoded according to
-        `asciimatics.screen.Screen.KEY_*`.
-        """
-        event = self.screen.get_event()
-        if not isinstance(event, KeyboardEvent):
-            return None
-        if event.key_code == ord("$"):
-            sys.exit(0)
-        return event.key_code
-        # FIXME Add a tiny sleep here (and some do_pause parameter) in case there is no
-        # key so the while loops don't load CPU that much?
-
-    # --- Controller-type methods ---
-
     def _handle_human_draws_new_card(self) -> None:
         if not self.decks.drawdeck.is_empty():
             highlights = (True, False)
@@ -183,24 +123,22 @@ class TUIViewAndController(FightViewAndController):
 
         while True:
             draw_drawdeck_highlights(self.screen, highlights)
-            keycode = self._get_keycode()
+            keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT and not self.decks.drawdeck.is_empty():
                 highlights = (True, False)
             elif keycode == Screen.KEY_RIGHT and not self.decks.hamsterdeck.is_empty():
                 highlights = (False, True)
             elif keycode == Screen.KEY_UP:
                 if highlights[0]:
-                    card = self.decks.drawdeck.draw_card()
-                    self._draw_card_to_handdeck(self.decks.handdeck, card, "draw")
+                    deck = self.decks.drawdeck
+                    deckname = "draw"
                 else:
-                    card = self.decks.hamsterdeck.draw_card()
-                    self._draw_card_to_handdeck(self.decks.handdeck, card, "hamster")
-
+                    deck = self.decks.hamsterdeck
+                    deckname = "hamster"
+                card = deck.draw_card()
+                draw_card_to_handdeck(self.screen, self.decks.handdeck, card, deckname)
                 self.decks.handdeck.add_card(card)
-                draw_drawdecks(
-                    self.screen,
-                    (self.decks.drawdeck.size(), self.decks.hamsterdeck.size()),
-                )
+                draw_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
                 return
 
     def _handle_human_places_card(self, card: Card, from_slot: int) -> bool:
@@ -210,7 +148,7 @@ class TUIViewAndController(FightViewAndController):
             buffercopy.copyback()
             highlight_card(self.screen, GridPos(2, cursor))
 
-            keycode = self._get_keycode()
+            keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
@@ -238,7 +176,7 @@ class TUIViewAndController(FightViewAndController):
             if not self.decks.handdeck.is_empty():
                 draw_handdeck_highlight(self.screen, cursor)
 
-            keycode = self._get_keycode()
+            keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
@@ -252,7 +190,7 @@ class TUIViewAndController(FightViewAndController):
                 if res:
                     self.decks.handdeck.pick_card(cursor)
                     cursor = min(self.decks.handdeck.size() - 1, cursor)
-                    self._redraw_handdeck(self.decks.handdeck, cursor)
+                    redraw_handdeck(self.screen, self.decks.handdeck, cursor)
                     buffercopy.update()
                 else:
                     # Otherwise, we return bc the process was aborted by the user and won't
@@ -320,19 +258,15 @@ class TUIViewAndController(FightViewAndController):
         self.decks = Decks(drawdeck, hamsterdeck, Deck(), Deck())
 
         # Draw the decks and how the first cards get drawn:
-        draw_drawdecks(
-            self.screen, (self.decks.drawdeck.size(), self.decks.hamsterdeck.size())
-        )
+        draw_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
         for _ in range(3):
             card = self.decks.drawdeck.draw_card()
-            self._draw_card_to_handdeck(self.decks.handdeck, card, "draw")
+            draw_card_to_handdeck(self.screen, self.decks.handdeck, card, "draw")
             self.decks.handdeck.add_card(card)
         card = self.decks.hamsterdeck.draw_card()
-        self._draw_card_to_handdeck(self.decks.handdeck, card, "hamster")
+        draw_card_to_handdeck(self.screen, self.decks.handdeck, card, "hamster")
         self.decks.handdeck.add_card(card)
-        draw_drawdecks(
-            self.screen, (self.decks.drawdeck.size(), self.decks.hamsterdeck.size())
-        )
+        draw_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
 
     def _reset_human_deck(self) -> None:
         session.humanagent.deck.cards = [
@@ -349,7 +283,7 @@ class TUIViewAndController(FightViewAndController):
         # ^ FIXME Should this be in __init__? And/or the entire ComputerAgent object,
         # which could contain the computerstrategy? It will be used for one fight only
         # anyway...
-        self._draw_empty_grid()
+        draw_empty_grid(self.screen, 4)  # FIXME Parametrize grid with somehow
         self._setup_and_draw_decks()
 
         # Run the fight:

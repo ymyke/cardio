@@ -9,6 +9,13 @@ from .constants import *
 from .utils import dPos, show_effects
 
 
+def draw_empty_grid(screen: Screen, grid_width: int) -> None:
+    for linei in range(3):
+        for sloti in range(grid_width):
+            draw_slot_in_grid(screen, GridPos(linei, sloti))
+    draw_grid_decks_separator(screen, grid_width)
+
+
 def draw_slot_in_grid(screen: Screen, pos: GridPos) -> None:
     dpos = dPos.from_gridpos(pos)
     show_effects(
