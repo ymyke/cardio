@@ -81,6 +81,19 @@ class FightViewAndController(ABC):
 
     # --- Controller ---
 
+    def _safe_draw_card_to_deck(
+        self, draw_from: Deck, from_name: Literal["draw", "hamster"]
+    ) -> None:
+        """Safe way to draw a card from a deck that doesn't break when the deck is
+        empty. Important for tests.
+        """
+        try:
+            card = draw_from.draw_card()
+        except IndexError:
+            return
+        self.draw_card_to_handdeck(self.decks.handdeck, card, from_name)
+        self.decks.handdeck.add_card(card)
+
     def handle_round_of_fight(self) -> bool:
         self.decks.log()
 
@@ -143,12 +156,9 @@ class FightViewAndController(ABC):
         # Draw the decks and show how the first cards get drawn:
         self.draw_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
         for _ in range(3):
-            card = self.decks.drawdeck.draw_card()
-            self.draw_card_to_handdeck(self.decks.handdeck, card, "draw")
-            self.decks.handdeck.add_card(card)
-        card = self.decks.hamsterdeck.draw_card()
-        self.draw_card_to_handdeck(self.decks.handdeck, card, "hamster")
-        self.decks.handdeck.add_card(card)
+            self._safe_draw_card_to_deck(self.decks.drawdeck, "draw")
+        self._safe_draw_card_to_deck(self.decks.hamsterdeck, "hamster")
+        # Redraw because size of decks changed:
         self.draw_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
 
         # Run the fight:
