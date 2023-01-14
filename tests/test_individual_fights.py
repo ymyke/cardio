@@ -1,8 +1,9 @@
 from typing import Optional
-from cardio import Card, Skill, Agent, session, handlers
+from cardio import Card, Skill, Agent, session
 from cardio.agent_strategies import Turn0OnlyStrategy
 
 # FIXME Should this rather be test_skills?
+
 
 def do_the_fight(humancard: Optional[Card], computercard: Optional[Card]) -> None:
     # FIXME Deactivate view? Refactor to a fixture in conftest?
@@ -11,7 +12,7 @@ def do_the_fight(humancard: Optional[Card], computercard: Optional[Card]) -> Non
     cs = Turn0OnlyStrategy([((1, 0), computercard), ((2, 0), humancard)])
     session.humanagent = Agent(name="Human", health=5, initial_health=5, lives=1)
     session.computeragent = Agent(name="Computer", health=5, initial_health=5, lives=1)
-    handlers.handle_fight(computerstrategy=cs)
+    session.view.handle_fight(computerstrategy=cs)
 
 
 def test_vanilla_fight():

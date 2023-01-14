@@ -1,8 +1,8 @@
 # %%
 import logging
-from cardio import Card, session
+from cardio import Card, session, GridPos
 from cardio.tui import tui
-from cardio.agent_strategies import Turn0OnlyStrategy, GridPos, SimpleHumanStrategy
+from cardio.agent_strategies import Turn0OnlyStrategy
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -15,9 +15,6 @@ cs = Turn0OnlyStrategy(
 )
 
 session.setup()
-hs = SimpleHumanStrategy(session.grid)
-# handlers.handle_fight(computerstrategy=cs, humanstrategy=hs)
-# fight = Fight(grid=session.grid, computeragent=session.computeragent, humanagent=session.humanagent, computerstrategy=cs, humanstrategy=None)
 tv = tui.TUIViewAndController(debug=True, grid=session.grid)
 session.view = tv
 tv.handle_fight(computerstrategy=cs)

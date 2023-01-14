@@ -1,7 +1,8 @@
 import logging
 import copy
-from cardio import session, Card, Deck, handlers
-from cardio.agent_strategies import Turn0OnlyStrategy, GridPos, SimpleHumanStrategy
+from cardio import session, Card, Deck, GridPos
+from cardio.fightview import HumanStrategyVnC
+from cardio.agent_strategies import Turn0OnlyStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
 from .utils.fight_handler_data import (
     is_sublist,
@@ -15,16 +16,16 @@ from .utils.fight_handler_data import (
 def test_simple_initial_setup(caplog):
     caplog.set_level(logging.DEBUG)
     session.setup()
-    session.view.non_blocking = True
 
     cs = Turn0OnlyStrategy(
         [
+            # type: ignore
             (GridPos(0, 1), Card(name="Steed", initial_power=2, initial_health=10)),
             (GridPos(1, 0), Card(name="Dog", initial_power=2, initial_health=5)),
             (GridPos(2, 0), Card(name="Cat", initial_power=1, initial_health=3)),
         ]
     )
-    handlers.handle_fight(computerstrategy=cs)
+    session.view.handle_fight(computerstrategy=cs)
 
     targetgrid = [[None for _ in range(4)] for _ in range(3)]
     targetgrid[1][0] = Card(
@@ -46,12 +47,12 @@ def test_human_decks_managed_correctly(caplog, mocker):
     )
     session.humanagent.deck = Deck(copy.deepcopy(original_cards))
 
-    session.view.non_blocking = True
     mocker.patch("cardio.session.view")  # Deactivate the view to improve performance
 
     session.humanagent.health = 100
     cs = Turn0OnlyStrategy(
         [
+            # type: ignore
             (GridPos(1, 0), Card(name="Hulk", initial_power=2, initial_health=100)),
             (GridPos(1, 1), Card(name="Hulk", initial_power=2, initial_health=100)),
             (GridPos(1, 2), Card(name="Hulk", initial_power=2, initial_health=100)),
@@ -60,10 +61,8 @@ def test_human_decks_managed_correctly(caplog, mocker):
     )
     mocker.patch("cardio.deck.Deck.shuffle")
 
-    hs = SimpleHumanStrategy(session.grid)
-    handlers.handle_fight(computerstrategy=cs, humanstrategy=hs)
+    session.view = HumanStrategyVnC(session.grid)
+    session.view.handle_fight(computerstrategy=cs)
 
     assert len(session.humanagent.deck.cards) == len(original_cards)
-    # FIXME Compare cards more deeply
-
     assert is_sublist(log_test_human_decks_managed_correctly, caplog.text.split("\n"))

@@ -2,9 +2,8 @@
 
 from hypothesis import given, settings, HealthCheck, Verbosity, assume
 import hypothesis.strategies as st
-from cardio.card import Card
+from cardio import Card
 import cardio.session as session
-import cardio.handlers as handlers
 from cardio.agent_strategies import Turn0OnlyStrategy
 
 
@@ -36,15 +35,15 @@ def test_game_hypo(mocker, slotlist):
     assume(any(c.power > 0 for c in slotlist[4:] if c is not None))
 
     session.setup()
-    mocker.patch("cardio.session.view")  # Deactivate the view to improve performance
+    card_activate_spy = mocker.spy(session.view, "card_activate")  
+    getting_attacked_spy = mocker.spy(session.view, "card_getting_attacked")  
 
     before_nof_cards = len([c for c in slotlist if c is not None])
     cs = Turn0OnlyStrategy([((i // 4, i % 4), c) for i, c in enumerate(slotlist)])
-    handlers.handle_fight(computerstrategy=cs)
+    session.view.handle_fight(computerstrategy=cs)
     after_nof_cards = len([c for slots in session.grid for c in slots if c is not None])
 
     assert after_nof_cards <= before_nof_cards
     if after_nof_cards < before_nof_cards:
-        session.view.update.assert_called()
-        session.view.card_activate.assert_called()
-        session.view.card_getting_attacked.assert_called()
+        card_activate_spy.assert_called()
+        getting_attacked_spy.assert_called()

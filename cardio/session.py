@@ -1,5 +1,4 @@
 from __future__ import annotations
-import os
 from typing import List, TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -21,13 +20,13 @@ def get_starterdeck_names() -> List[str]:
 
 
 def setup() -> None:
-    from . import Grid, SimpleView, Agent, Deck
+    from . import Grid, Agent, Deck, FightViewAndController
     from cardio.card_blueprints import create_cards_from_blueprints
 
     global grid, view, humanagent, computeragent
     grid = Grid(4)  # QQ: What if the grid size changes in the game?
     # FIXME ^ Grid needs to be setup in a fight. No grid outside of fights.
-    view = SimpleView(grid)
+    view = FightViewAndController(grid)
 
     humanagent = Agent(name="Schnuzgi", health=5, initial_health=5, lives=1)
     humanagent.deck = Deck(create_cards_from_blueprints(get_starterdeck_names()))
