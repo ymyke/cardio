@@ -9,6 +9,8 @@ from .tui.decks import Decks  # FIXME tui should not be known here
 # FIXME This is not nice: On one hand, the view has a link to the model as an attribute.
 # On the other, it accesses the session directly. Use only one of these mechanisms!
 
+# FIXME Rename draw methods to show (except where card drawing is meant)?
+
 
 class FightViewAndController(ABC):
     """
