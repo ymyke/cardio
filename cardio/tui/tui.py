@@ -5,8 +5,6 @@ from typing import Literal
 from asciimatics.screen import Screen
 
 from cardio import Card, Deck, FightViewAndController, GridPos, session
-from cardio.agent_strategies import AgentStrategy
-from cardio.card_blueprints import create_cards_from_blueprints
 
 from .buffercopy import BufferCopy
 from .card_primitives import (
@@ -18,7 +16,6 @@ from .card_primitives import (
     shake_card,
     clear_card,
 )
-from .decks import Decks  # FIXME Move to utils?
 from .decks_primitives import (
     draw_card_to_handdeck,
     draw_drawdeck_highlights,
