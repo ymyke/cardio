@@ -4,7 +4,7 @@ from typing import Literal
 
 from asciimatics.screen import Screen
 
-from cardio import Card, Deck, FightViewAndController, GridPos, session
+from cardio import Card, Deck, FightVnC, GridPos, session
 
 from .buffercopy import BufferCopy
 from .card_primitives import (
@@ -41,7 +41,7 @@ from .utils import draw_screen_resolution, get_keycode
 # FIXME How would a HumanAgentStrategy (aka automated human) be implemented here?
 
 # FIXME Should be TUIFightVnC
-class TUIViewAndController(FightViewAndController):
+class TUIViewAndController(FightVnC):
     def __init__(self, debug: bool = False, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.screen = Screen.open(unicode_aware=True)

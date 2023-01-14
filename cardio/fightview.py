@@ -13,7 +13,7 @@ from .tui.decks import Decks  # FIXME tui should not be known here
 # FIXME Rename draw methods to show (except where card drawing is meant)?
 
 
-class FightViewAndController(ABC):
+class FightVnC(ABC):
     """
     - All the `card_` methods should be able to rely on the precondition that the `card`
       is still in the grid when the method is called.
@@ -191,7 +191,7 @@ class FightViewAndController(ABC):
         session.humanagent.deck.reset_cards()
 
 
-class HumanStrategyVnC(FightViewAndController):
+class HumanStrategyVnC(FightVnC):
     def handle_human_draws_new_card(self) -> None:
         """Simply alternate between drawdeck and hamsterdeck."""
         if self.decks.drawdeck.is_empty() or self.round_num % 2 == 0:
@@ -221,7 +221,7 @@ class HumanStrategyVnC(FightViewAndController):
         logging.debug("Human plays no card.")
 
 
-class SimpleView(FightViewAndController):
+class SimpleView(FightVnC):
     frames: dict = {}
     msg: str = ""
     non_blocking: bool = False

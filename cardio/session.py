@@ -3,11 +3,11 @@ from typing import List, TYPE_CHECKING
 
 if TYPE_CHECKING:
     # Functional imports will happen later to prevent circular dependencies.
-    from . import Grid, FightViewAndController, Agent
+    from . import Grid, FightVnC, Agent
 
 
 grid: Grid
-view: FightViewAndController
+view: FightVnC
 humanagent: Agent
 computeragent: Agent
 
@@ -20,13 +20,13 @@ def get_starterdeck_names() -> List[str]:
 
 
 def setup() -> None:
-    from . import Grid, Agent, Deck, FightViewAndController
+    from . import Grid, Agent, Deck, FightVnC
     from cardio.card_blueprints import create_cards_from_blueprints
 
     global grid, view, humanagent, computeragent
     grid = Grid(4)  # QQ: What if the grid size changes in the game?
     # FIXME ^ Grid needs to be setup in a fight. No grid outside of fights.
-    view = FightViewAndController(grid)
+    view = FightVnC(grid)
 
     humanagent = Agent(name="Schnuzgi", health=5, initial_health=5, lives=1)
     humanagent.deck = Deck(create_cards_from_blueprints(get_starterdeck_names()))
