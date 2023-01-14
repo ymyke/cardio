@@ -1,6 +1,6 @@
 import logging
 import os
-from abc import ABC, abstractmethod
+from abc import ABC
 from typing import Literal
 from . import session, Card, Deck, Grid, GridPos
 from .agent_strategies import AgentStrategy
