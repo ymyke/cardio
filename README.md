@@ -1,5 +1,33 @@
 # Next up
 
+- Build an EncodedVnC or so that just outputs all the game info as condensed as possible
+  and can be used for testing. Use it instead of SimpleView and instead of the caplog
+  stuff. -- Maybe it writes its output to some attribute that can be read easily?
+- Rethink how the session module works. Maybe get rid of it? Maybe have a common way
+  tests get set up in a central test module and a way sandbox.py sets up the game and
+  get rid of session altogether? -- But would need some module that grants access to
+  view to Card class.
+
+
+
+- Try to have a HumanStrategyVnC.
+- Rename the SimpleView to something else?
+
+- Make the VnC "inertable" so it can be tested by subclassing to a NoViewVnC or TextVnC or LoggingVnC.
+- Then use the new methods that can be used to inert it to plug in strategies.
+- Will the HumanStrategy still be necessary?
+- Can I get rid of the handlers module in the end.
+
+
+- Separate TUIView and FightController
+  - TUIController has a link to the view and calls the methods it needs
+  - Add more methods to FightView
+  - Add same methods to SimpleView
+- Make sure the app can still run and the TUI works (FightController and TUIView)
+- Make sure the tests work with FightController and SimpleView
+
+
+
 tui2.py:
 	view events
 		with a class that knows everything it needs to know, e.g. screen
