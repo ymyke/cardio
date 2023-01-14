@@ -1,6 +1,5 @@
 import logging
 import os
-from abc import ABC
 from typing import Literal
 from . import session, Card, Deck, Grid, GridPos
 from .agent_strategies import AgentStrategy
@@ -13,7 +12,7 @@ from .tui.decks import Decks  # FIXME tui should not be known here
 # FIXME Rename draw methods to show (except where card drawing is meant)?
 
 
-class FightVnC(ABC):
+class FightVnC:
     """
     - All the `card_` methods should be able to rely on the precondition that the `card`
       is still in the grid when the method is called.
