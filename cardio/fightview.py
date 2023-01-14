@@ -156,7 +156,7 @@ class FightViewAndController(ABC):
         # ^ FIXME Should this be in __init__? And/or the entire ComputerAgent object,
         # which could contain the computerstrategy? It will be used for one fight only
         # anyway...
-        self.draw_empty_grid(4)  # FIXME Parametrize grid with somehow
+        self.draw_empty_grid(self.grid.width)
 
         # Set up the 4 decks for the fight:
         drawdeck = Deck()
