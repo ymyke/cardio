@@ -244,6 +244,3 @@ class SimpleView(FightViewAndController):
         # FIXME Still necessary?
         # QQ: Boss fights will work differently.
         self.msg = "You lost!"
-
-    def handle_fight(self, computerstrategy: AgentStrategy) -> None:
-        pass
