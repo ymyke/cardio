@@ -1,7 +1,7 @@
 import logging
 import copy
 from cardio import session, Card, Deck, GridPos
-from cardio.fightview import HumanStrategyVnC
+from cardio.humanstrategyvnc import HumanStrategyVnC
 from cardio.agent_strategies import Turn0OnlyStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
 from .utils.fight_handler_data import (
