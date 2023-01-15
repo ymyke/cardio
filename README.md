@@ -1,6 +1,15 @@
 # Next up
 
+- Fight:
+  - Finish fight, e.g. cards that die, ...
+  - Add other elements:
+    - Switch agent health to agent damage where the difference between the two must be
+      visualized and indicates loss/win if it exceeds 5.
+    - score/health between human and computer
+    - agent state
+  - More animations needed for Spine and maybe other skills?
 - Interactive UI
+  - All fixmes is fightvnc and tuivnc
 - Blood costs (Or some other concept? Rations? Energy? Karma? ...?)
 - Bones (other name? Spirits? Essence? Soul? ...?)
 
