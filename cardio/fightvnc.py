@@ -16,8 +16,6 @@ class FightVnC:
         self.grid = grid
         self.states_log = ""
         # FIXME Should we also set the computerstrategy here?
-        # FIXME We _do_ have the grid! 1) Use it! 2) Do we really have it when we look
-        # at how the view is created?
 
     # --- Called by Card class ---
 
@@ -63,8 +61,6 @@ class FightVnC:
         pass
 
     def handle_human_draws_new_card(self) -> None:
-        # FIXME Does this rely on the class having more attributes such as decks? Which
-        # should be set in init?
         pass
 
     def handle_human_plays_card(self) -> None:
