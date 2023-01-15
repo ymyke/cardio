@@ -1,66 +1,18 @@
 # Next up
 
-- Build an EncodedVnC or so that just outputs all the game info as condensed as possible
-  and can be used for testing. Use it instead of SimpleView and instead of the caplog
-  stuff. -- Maybe it writes its output to some attribute that can be read easily?
-- Rethink how the session module works. Maybe get rid of it? Maybe have a common way
-  tests get set up in a central test module and a way sandbox.py sets up the game and
-  get rid of session altogether? -- But would need some module that grants access to
-  view to Card class.
-
-
-
-- Then use the new methods that can be used to inert it to plug in strategies.
-- Will the HumanStrategy still be necessary?
-
-
-- Separate TUIView and FightController
-  - TUIController has a link to the view and calls the methods it needs
-  - Add more methods to FightView
-  - Add same methods to SimpleView
-
-
-
-tui2.py:
-	view events
-		with a class that knows everything it needs to know, e.g. screen
-		→ then use these in card.py and anywhere else
-		→ maybe via session
-		→ have some abstract view similar to what we have already. gets imported by both card and tui2.
-	controller / business logic (game logic)
-card_renderer.py
-	ui primitives (parametrized via screen etc.)
-
-
-
-- Make the handlers work w/ the TUIView.
-- Move TUIView to its own module.
-- Refactor some more stuff from the handlers to TUIView.
-- Introduce some new class that encapsulates the handlers?
-  (similar to the Fight class we had before.)
-- Refactor so the handlers does not depend on card
-  renderers / primitives.
-- Make TUIView nicer.
-
-- Have TUIView and TUIController? Or is the latter part of the former?
-  - Or is there a View class and a Controller class and the TUIView inherits from both
-    and implements both interfaces?
-  - Controller just has 1 method maybe?
-
-- GridView should be renamed to BaseView or something.
-- Or will there by a FightView + FightController and similar pairs for other parts of
-  the game?
-
-- I think ComputerStrategy should be part of ComputerAgent and ComputerAgent should be
-  part of the fightcontroller initiator, since it only has relevance in fights.
-  (- Also, maybe there is no need for a ComputerAgent class in the end?)
-
 - Interactive UI
 - Blood costs (Or some other concept? Rations? Energy? Karma? ...?)
 - Bones (other name? Spirits? Essence? Soul? ...?)
 
 # Architectural considerations
 
+- Rethink how the session module works. Maybe get rid of it? Maybe have a common way
+  tests get set up in a central test module and a way sandbox.py sets up the game and
+  get rid of session altogether? -- But would need some module that grants access to
+  view to Card class.
+- I think ComputerStrategy should be part of ComputerAgent and ComputerAgent should be
+  part of the fightcontroller initiator, since it only has relevance in fights.
+  (- Also, maybe there is no need for a ComputerAgent class in the end?)
 - Add some draw_strategy param to the fight handler so the humanagent can be automated
   for tests? -- That way it would be warranted for both agents types to have
   strategties.
