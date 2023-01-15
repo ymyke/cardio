@@ -135,12 +135,10 @@ class FightVnC:
         self.decks.log()
 
         # Play computer cards and animate how they appear:
-        for pos, card in self.computerstrategy.cards_to_be_played(
-            session.grid, self.round_num
-        ):
+        for pos, card in self.computerstrategy.cards_to_be_played(self.round_num):
             self.draw_computer_plays_card(card, pos)
         # Now also place them in the model:
-        self.computerstrategy.play_cards(session.grid, self.round_num)
+        self.computerstrategy.play_cards(self.round_num)
 
         # Let human draw a card:
         self.handle_human_draws_new_card()

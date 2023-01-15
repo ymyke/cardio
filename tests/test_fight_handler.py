@@ -10,16 +10,16 @@ def equal_logs(log1: str, log2: str) -> bool:
 
 
 def test_simple_initial_setup():
+    session.setup()
     cs = Round0OnlyStrategy(
-        [
+        grid=session.grid,
+        cards=[
             # type: ignore
             (GridPos(0, 1), Card(name="Steed", initial_power=2, initial_health=10)),
             (GridPos(1, 0), Card(name="Dog", initial_power=2, initial_health=5)),
             (GridPos(2, 0), Card(name="Cat", initial_power=1, initial_health=3)),
-        ]
+        ],
     )
-
-    session.setup()
     session.view.handle_fight(computerstrategy=cs)
 
     target_states_log = """\
@@ -64,13 +64,14 @@ def test_human_decks_managed_correctly():
 
     session.humanagent.health = 100
     cs = Round0OnlyStrategy(
-        [
+        grid=session.grid,
+        cards=[
             # type: ignore
             (GridPos(1, 0), Card(name="Hulk", initial_power=2, initial_health=100)),
             (GridPos(1, 1), Card(name="Hulk", initial_power=2, initial_health=100)),
             (GridPos(1, 2), Card(name="Hulk", initial_power=2, initial_health=100)),
             (GridPos(1, 3), Card(name="Hulk", initial_power=2, initial_health=100)),
-        ]
+        ],
     )
 
     session.view = HumanStrategyVnC(session.grid)
