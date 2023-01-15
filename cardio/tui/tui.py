@@ -26,8 +26,7 @@ from .decks_primitives import (
 from .grid_primitives import show_empty_grid, show_slot_in_grid
 from .utils import show_screen_resolution, get_keycode
 
-# FIXME Should be TUIFightVnC
-class TUIViewAndController(FightVnC):
+class TUIFightVnC(FightVnC):
     def __init__(self, debug: bool = False, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.screen = Screen.open(unicode_aware=True)

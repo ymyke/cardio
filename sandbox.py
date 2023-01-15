@@ -17,7 +17,7 @@ cs = Round0OnlyStrategy(
     ],
 )
 
-tv = tui.TUIViewAndController(debug=True, grid=session.grid)
+tv = tui.TUIFightVnC(debug=True, grid=session.grid)
 session.view = tv
 tv.handle_fight(computerstrategy=cs)
 tv.close()
