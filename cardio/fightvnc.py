@@ -1,7 +1,7 @@
 import logging
 from typing import Literal, Optional
 from . import session, Card, Deck, Grid, GridPos
-from .agent_strategies import AgentStrategy
+from .computer_strategies import ComputerStrategy
 from .card_blueprints import create_cards_from_blueprints
 from .tui.decks import Decks  # FIXME tui should not be known here
 
@@ -179,7 +179,7 @@ class FightVnC:
 
         return True
 
-    def handle_fight(self, computerstrategy: AgentStrategy) -> None:
+    def handle_fight(self, computerstrategy: ComputerStrategy) -> None:
         self.computerstrategy = computerstrategy
         # ^ FIXME Should this be in __init__? And/or the entire ComputerAgent object,
         # which could contain the computerstrategy? It will be used for one fight only

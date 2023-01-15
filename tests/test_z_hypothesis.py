@@ -4,7 +4,7 @@ from hypothesis import given, settings, HealthCheck, Verbosity, assume
 import hypothesis.strategies as st
 from cardio import Card
 import cardio.session as session
-from cardio.agent_strategies import Turn0OnlyStrategy
+from cardio.computer_strategies import Round0OnlyStrategy
 
 
 def slotlist_strategy():
@@ -40,7 +40,7 @@ def test_game_hypo(mocker, slotlist):
     getting_attacked_spy = mocker.spy(session.view, "card_getting_attacked")  
 
     before_nof_cards = len([c for c in slotlist if c is not None])
-    cs = Turn0OnlyStrategy([((i // 4, i % 4), c) for i, c in enumerate(slotlist)])
+    cs = Round0OnlyStrategy([((i // 4, i % 4), c) for i, c in enumerate(slotlist)])
     session.view.handle_fight(computerstrategy=cs)
     after_nof_cards = len([c for slots in session.grid for c in slots if c is not None])
 

@@ -3,9 +3,7 @@ from typing import List
 from . import Grid, GridPosAndCard
 
 
-# FIXME This is maybe ComputerAgentStrategy bc it only applies to the computer agent,
-# who can directly influence the grid.
-class AgentStrategy(ABC):
+class ComputerStrategy(ABC):
     @abstractmethod
     def cards_to_be_played(self, grid: Grid, turn_number: int) -> List[GridPosAndCard]:
         # FIXME Should `grid` be set in the initalizer? Same as in HumanAgentStrategy?
@@ -17,9 +15,9 @@ class AgentStrategy(ABC):
         pass
 
 
-class Turn0OnlyStrategy(AgentStrategy):
+class Round0OnlyStrategy(ComputerStrategy):
     """Doesn't perform any checks whether there are cards on the grid in the spots where
-    new cards should be placed since this strategy is only concerned with turn 0
+    new cards should be placed since this strategy is only concerned with round 0
     placements.
     """
 

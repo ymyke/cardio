@@ -1,7 +1,7 @@
 import copy
 from cardio import session, Card, Deck, GridPos
 from cardio.humanstrategyvnc import HumanStrategyVnC
-from cardio.agent_strategies import Turn0OnlyStrategy
+from cardio.computer_strategies import Round0OnlyStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
 
 # QQ: Could we use a special view that generates output that makes testing much easier?
@@ -12,7 +12,7 @@ def equal_logs(log1: str, log2: str) -> bool:
 
 
 def test_simple_initial_setup():
-    cs = Turn0OnlyStrategy(
+    cs = Round0OnlyStrategy(
         [
             # type: ignore
             (GridPos(0, 1), Card(name="Steed", initial_power=2, initial_health=10)),
@@ -65,7 +65,7 @@ def test_human_decks_managed_correctly():
     session.humanagent.deck = Deck(copy.deepcopy(original_cards))
 
     session.humanagent.health = 100
-    cs = Turn0OnlyStrategy(
+    cs = Round0OnlyStrategy(
         [
             # type: ignore
             (GridPos(1, 0), Card(name="Hulk", initial_power=2, initial_health=100)),
