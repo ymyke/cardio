@@ -5,8 +5,6 @@ from .computer_strategies import ComputerStrategy
 from .card_blueprints import create_cards_from_blueprints
 from .tui.decks import Decks  # FIXME tui should not be known here
 
-# FIXME This is not nice: On one hand, the view has a link to the model as an attribute.
-# On the other, it accesses the session directly. Use only one of these mechanisms!
 
 # FIXME Rename draw methods to show (except where card drawing is meant)?
 
@@ -147,14 +145,14 @@ class FightVnC:
         self.handle_human_plays_card()
 
         self.decks.log()
-        session.grid.log()
+        self.grid.log()
 
         # Activate all cards:
-        session.grid.activate_line(2)
-        session.grid.activate_line(1)
-        session.grid.prepare_line()
+        self.grid.activate_line(2)
+        self.grid.activate_line(1)
+        self.grid.prepare_line()
 
-        session.grid.log()
+        self.grid.log()
         self.update_states_log()
         logging.debug("----- End of round %s -----", self.round_num)
 
@@ -170,7 +168,7 @@ class FightVnC:
             # object right in the update_lives_and_health_after_death function but also
             # pass it to the view for some animation?
             return False
-        if session.grid.is_empty():
+        if self.grid.is_empty():
             # QQ: Should this also break when the grid is "powerless", i.e., no cards
             # with >0 power?
             return False
