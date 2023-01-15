@@ -11,6 +11,11 @@ Positions:
 
 """
 
+# FIXME: Should the grid only exist implicitly in the cards? A card would have a GridPos
+# object. Would also get rid of the find_in_grid function etc. Grid object would offer
+# some convenience functions tapping into GridPos object. Card would have view
+# functions, among which one would be gridpos2dpos or so.
+
 from typing import List, Optional, Union, NamedTuple
 import logging
 from cardio.card import Card
@@ -23,7 +28,7 @@ class GridPos(NamedTuple):
 
 class GridPosAndCard(NamedTuple):
     pos: GridPos
-    card = Card
+    card: Card
 
 
 class Grid:
@@ -89,3 +94,9 @@ class Grid:
         for card in self.lines[0]:
             if card is not None:
                 card.prepare()
+
+    def log(self):
+        for line in range(3):
+            logging.debug(
+                "Grid line %s: %s", line, ", ".join([str(c) for c in self.lines[line]])
+            )

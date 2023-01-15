@@ -53,6 +53,10 @@ Decks
 
 Agents
 
+Boss fights
+- Need a different model in Fight.handle_round_of_fight -- surely also elsewhere, e.g.
+  in Agent or so.
+
 ComputerPlayerBehavior or -Strategy
 - When he brings which cards into play.
 - Maybe also when he does other things, e.g., if he also has items available.
@@ -78,3 +82,17 @@ Achievements / Badges
 Random ideas
 - could cards gain experience with fights and other things and evolve over time (stats
   would be permanent) but also die for real?
+- Have a location that allows me to create new cards, combining health, power and
+  skills, and give them a name and keep them. -- Or some other mechanism to create new
+  cards?
+- New concepts even for health and power?
+- Terrain and weather conditions etc. that affect the cards?
+- Maybe you can lose cards for good in a run -- in a fight? Or as a downside risk when
+  going for a particularly strong upgrade? E.g., the stronger the upgrade the higher the
+  likelihood to lose the card? -- Then, a save game and game progress score would
+  somehow take into account a hash over the entire game to make sure the game has not
+  been tampered with? Then only authoritative scores are allowed in leaderboards etc.
+  Can the TSM be used somehow to that end?
+- Corveaux special ability/animal? Can consume ghosts/souls/spirits and release them as
+  blood/energy/...?
+- Have floor tiles with special effects? I.e., more strength if a create is on it?
