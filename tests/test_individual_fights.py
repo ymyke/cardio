@@ -8,7 +8,6 @@ from cardio.computer_strategies import Round0OnlyStrategy
 def do_the_fight(humancard: Optional[Card], computercard: Optional[Card]) -> None:
     # FIXME Deactivate view? Refactor to a fixture in conftest?
     session.setup()
-    session.view.non_blocking = True
     cs = Round0OnlyStrategy(
         grid=session.grid, cards=[((1, 0), computercard), ((2, 0), humancard)]
     )
