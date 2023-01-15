@@ -157,10 +157,10 @@ class TUIViewAndController(FightVnC):
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
-                cursor = min(session.grid.width - 1, cursor + 1)
+                cursor = min(self.grid.width - 1, cursor + 1)
             elif keycode == Screen.KEY_DOWN:
                 # FIXME Check if card can be placed at all
-                session.grid[2][cursor] = card
+                self.grid[2][cursor] = card
                 self.show_human_places_card(card, from_slot=from_slot, to_slot=cursor)
                 self.decks.useddeck.add_card(card)
                 logging.debug("Human plays %s in %s", card.name, cursor)
