@@ -4,8 +4,6 @@ from cardio.humanstrategyvnc import HumanStrategyVnC
 from cardio.computer_strategies import Round0OnlyStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
 
-# QQ: Could we use a special view that generates output that makes testing much easier?
-
 
 def equal_logs(log1: str, log2: str) -> bool:
     return "".join(log1.split()) == "".join(log2.split())
