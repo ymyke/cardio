@@ -102,10 +102,6 @@ class FightVnC:
         # FIXME Add human and computer damage, lives, maybe items, ...
         self.states_log += s
 
-    def update(self) -> None:
-        # FIXME Is this still necessary? Still used anywhere?
-        pass
-
     # --- Controller ---
 
     def _safe_draw_card_to_deck(
