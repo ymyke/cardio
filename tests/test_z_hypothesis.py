@@ -12,6 +12,7 @@ def slotlist_strategy():
         st.one_of(
             st.builds(
                 Card,
+                name=st.text(min_size=1),
                 initial_power=st.integers(min_value=0, max_value=100),
                 initial_health=st.integers(min_value=0, max_value=100),
                 health=st.just(0),

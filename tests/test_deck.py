@@ -18,6 +18,7 @@ def test_init_with_cardlist():
     assert [c.name for c in d.cards] == ["A", "B", "C", "D"]
 
 
+@pytest.mark.disable_never_shuffle
 def test_shuffle():
     manycards = [Card(str(i), 1, 1) for i in range(1, 1000)]
     d = Deck(manycards.copy())

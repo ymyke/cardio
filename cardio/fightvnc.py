@@ -1,4 +1,5 @@
-from typing import Literal
+import logging
+from typing import Literal, Optional
 from . import session, Card, Deck, Grid, GridPos
 from .agent_strategies import AgentStrategy
 from .card_blueprints import create_cards_from_blueprints
@@ -18,6 +19,7 @@ class FightVnC:
 
     def __init__(self, grid: Grid) -> None:
         self.grid = grid
+        self.states_log = ""
         # FIXME Should we also set the computerstrategy here?
         # FIXME We _do_ have the grid! 1) Use it! 2) Do we really have it when we look
         # at how the view is created?
@@ -84,6 +86,31 @@ class FightVnC:
         # QQ: Boss fights will work differently.
         pass
 
+    def update_states_log(self) -> None:
+        def card2str(card: Optional[Card]) -> str:
+            if card is None:
+                return "-"
+            symbols = "".join([s.value.symbol for s in card.skills])
+            return f"{card.name[0]}p{card.power}h{card.health}{symbols}"
+
+        s = f"{self.round_num}:\n"
+        for line in range(3):
+            s += "|"
+            for slot in range(self.grid.width):
+                card = self.grid[line][slot]
+                s += f" {card2str(card):12s}|"
+            s += "\n"
+        for deck, name in [
+            (self.decks.handdeck, "Hand"),
+            (self.decks.useddeck, "Used"),
+            (self.decks.drawdeck, "Draw"),
+            (self.decks.hamsterdeck, "Hamster"),
+        ]:
+            s += f"{name}: " + " ".join([card2str(c) for c in deck.cards]) + "\n"
+        s += "\n"
+        # FIXME Add human and computer damage, lives, maybe items, ...
+        self.states_log += s
+
     def update(self) -> None:
         # FIXME Is this still necessary? Still used anywhere?
         pass
@@ -104,6 +131,7 @@ class FightVnC:
         self.decks.handdeck.add_card(card)
 
     def handle_round_of_fight(self) -> bool:
+        logging.debug("----- Start of round %s -----", self.round_num)
         self.decks.log()
 
         # Play computer cards and animate how they appear:
@@ -128,6 +156,10 @@ class FightVnC:
         session.grid.activate_line(1)
         session.grid.prepare_line()
 
+        session.grid.log()
+        self.update_states_log()
+        logging.debug("----- End of round %s -----", self.round_num)
+
         # FIXME Still some things missing below:
         if session.humanagent.has_lost_life():
             session.humanagent.update_lives_and_health_after_death()
@@ -145,7 +177,6 @@ class FightVnC:
             # with >0 power?
             return False
 
-        session.grid.log()
         return True
 
     def handle_fight(self, computerstrategy: AgentStrategy) -> None:
