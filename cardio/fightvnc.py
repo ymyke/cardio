@@ -6,9 +6,6 @@ from .card_blueprints import create_cards_from_blueprints
 from .tui.decks import Decks  # FIXME tui should not be known here
 
 
-# FIXME Rename draw methods to show (except where card drawing is meant)?
-
-
 class FightVnC:
     """
     - All the `card_` methods should be able to rely on the precondition that the `card`
@@ -44,22 +41,22 @@ class FightVnC:
 
     # --- Controller-related ---
 
-    def draw_empty_grid(self, grid_width: int) -> None:
+    def show_empty_grid(self, grid_width: int) -> None:
         pass
 
-    def draw_drawdecks(self, drawdeck: Deck, hamsterdeck: Deck) -> None:
+    def show_drawdecks(self, drawdeck: Deck, hamsterdeck: Deck) -> None:
         pass
 
-    def draw_card_to_handdeck(
+    def show_card_to_handdeck(
         self, handdeck: Deck, card: Card, whichdeck: Literal["draw", "hamster"]
     ) -> None:
         pass
 
-    def draw_computer_plays_card(self, card: Card, to: GridPos) -> None:
+    def show_computer_plays_card(self, card: Card, to: GridPos) -> None:
         """Play a computer card to `to`, which can be in line 0 or 1."""
         pass
 
-    def draw_human_places_card(self, card: Card, from_slot: int, to_slot: int) -> None:
+    def show_human_places_card(self, card: Card, from_slot: int, to_slot: int) -> None:
         """Place a human card from the hand (`from_slot`) to the grid (`to_slot`). Line
         is implicitly always 2.
         """
@@ -125,7 +122,7 @@ class FightVnC:
             card = draw_from.draw_card()
         except IndexError:
             return
-        self.draw_card_to_handdeck(self.decks.handdeck, card, from_name)
+        self.show_card_to_handdeck(self.decks.handdeck, card, from_name)
         self.decks.handdeck.add_card(card)
 
     def handle_round_of_fight(self) -> bool:
@@ -134,7 +131,7 @@ class FightVnC:
 
         # Play computer cards and animate how they appear:
         for pos, card in self.computerstrategy.cards_to_be_played(self.round_num):
-            self.draw_computer_plays_card(card, pos)
+            self.show_computer_plays_card(card, pos)
         # Now also place them in the model:
         self.computerstrategy.play_cards(self.round_num)
 
@@ -180,7 +177,7 @@ class FightVnC:
         # ^ FIXME Should this be in __init__? And/or the entire ComputerAgent object,
         # which could contain the computerstrategy? It will be used for one fight only
         # anyway...
-        self.draw_empty_grid(self.grid.width)
+        self.show_empty_grid(self.grid.width)
 
         # Set up the 4 decks for the fight:
         drawdeck = Deck()
@@ -190,12 +187,12 @@ class FightVnC:
         self.decks = Decks(drawdeck, hamsterdeck, Deck(), Deck())
 
         # Draw the decks and show how the first cards get drawn:
-        self.draw_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
+        self.show_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
         for _ in range(3):
             self._safe_draw_card_to_deck(self.decks.drawdeck, "draw")
         self._safe_draw_card_to_deck(self.decks.hamsterdeck, "hamster")
         # Redraw because size of decks changed:
-        self.draw_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
+        self.show_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
 
         # Run the fight:
         fighting = True

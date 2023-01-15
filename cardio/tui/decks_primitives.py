@@ -8,22 +8,22 @@ from asciimatics.screen import Screen
 from cardio import GridPos, Deck, Card
 
 from .constants import *
-from .card_primitives import highlight_card, draw_card, move_card
+from .card_primitives import highlight_card, show_card, move_card
 from .utils import dPos, show_effects
 
 
-def draw_handdeck_highlight(screen: Screen, slot: int, highlight: bool = True) -> None:
+def show_handdeck_highlight(screen: Screen, slot: int, highlight: bool = True) -> None:
     highlight_card(screen, GridPos(4, slot), highlight)
 
 
-def draw_drawdeck_highlights(screen: Screen, highlights: Tuple[bool, bool]) -> None:
+def show_drawdeck_highlights(screen: Screen, highlights: Tuple[bool, bool]) -> None:
     highlight_card(screen, dPos(DRAW_DECKS_X, DRAW_DECKS_Y), highlights[0])
     highlight_card(
         screen, dPos(DRAW_DECKS_X + BOX_WIDTH + 2, DRAW_DECKS_Y), highlights[1]
     )
 
 
-def draw_drawdecks(screen: Screen, drawdeck: Deck, hamsterdeck: Deck) -> None:
+def show_drawdecks(screen: Screen, drawdeck: Deck, hamsterdeck: Deck) -> None:
     DRAWCOVER = "    ⬆️⬆️⬆️⬆️⬆️⬆️⬆⬆️⬆️"
     HAMSTERCOVER = "      🐹🐹🐹"
     show_effects(
@@ -88,11 +88,11 @@ def redraw_handdeck(screen: Screen, handdeck: Deck, from_index: int) -> None:
         h=BOX_HEIGHT,
     )
     for i, card in list(enumerate(handdeck.cards))[from_index:]:
-        draw_card(screen, card, GridPos(4, i))
+        show_card(screen, card, GridPos(4, i))
     screen.refresh()
 
 
-def draw_card_to_handdeck(
+def show_card_to_handdeck(
     screen: Screen, handdeck: Deck, card: Card, whichdeck: Literal["draw", "hamster"]
 ) -> None:
     """Show how a card gets drawn from one of the draw decks and moved to the hand.

@@ -34,7 +34,7 @@ def show_effects(screen, effects: Union[Effect, List[Effect]]):
     screen.refresh()
 
 
-def draw_screen_resolution(screen):
+def show_screen_resolution(screen):
     txt = f"{screen.width} x {screen.height}"
     show_effects(
         screen,

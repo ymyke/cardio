@@ -9,14 +9,14 @@ from .constants import *
 from .utils import dPos, show_effects
 
 
-def draw_empty_grid(screen: Screen, grid_width: int) -> None:
+def show_empty_grid(screen: Screen, grid_width: int) -> None:
     for linei in range(3):
         for sloti in range(grid_width):
-            draw_slot_in_grid(screen, GridPos(linei, sloti))
-    draw_grid_decks_separator(screen, grid_width)
+            show_slot_in_grid(screen, GridPos(linei, sloti))
+    show_grid_decks_separator(screen, grid_width)
 
 
-def draw_slot_in_grid(screen: Screen, pos: GridPos) -> None:
+def show_slot_in_grid(screen: Screen, pos: GridPos) -> None:
     dpos = dPos.from_gridpos(pos)
     show_effects(
         screen,
@@ -33,7 +33,7 @@ def draw_slot_in_grid(screen: Screen, pos: GridPos) -> None:
     # cf https://github.com/peterbrittain/asciimatics/issues/363)
 
 
-def draw_grid_decks_separator(screen: Screen, grid_width: int) -> None:
+def show_grid_decks_separator(screen: Screen, grid_width: int) -> None:
     dpos = dPos.from_gridpos(GridPos(4, 0))
     show_effects(
         screen,

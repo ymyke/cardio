@@ -11,7 +11,7 @@ from cardio import Card, GridPos
 
 from .constants import *
 from .buffercopy import BufferCopy
-from .grid_primitives import draw_slot_in_grid
+from .grid_primitives import show_slot_in_grid
 from .utils import dPos, show_effects
 
 
@@ -26,7 +26,7 @@ def card_to_amstring(c: Card) -> str:
     return s
 
 
-def draw_card(
+def show_card(
     screen: Screen,
     card: Optional[Card],
     pos: Union[GridPos, dPos],
@@ -71,13 +71,13 @@ def draw_card(
 
 def redraw_card(screen: Screen, card: Card, pos: GridPos) -> None:
     clear_card(screen, pos)
-    draw_card(screen, card, pos)
+    show_card(screen, card, pos)
 
 
 def highlight_card(
     screen: Screen, pos: Union[GridPos, dPos], highlight: bool = True
 ) -> None:
-    draw_card(screen, None, pos, highlight)
+    show_card(screen, None, pos, highlight)
 
 
 def clear_card(
@@ -101,10 +101,10 @@ def activate_card(
     yoffset = +2 if pos.line == 1 else -2
     if deactivate:
         clear_card(screen, pos, yoffset=yoffset)
-        draw_card(screen, card, pos, yoffset=0)
+        show_card(screen, card, pos, yoffset=0)
     else:
         clear_card(screen, pos, yoffset=0)
-        draw_card(screen, card, pos, yoffset=yoffset)
+        show_card(screen, card, pos, yoffset=yoffset)
     time.sleep(0.1)
 
 
@@ -138,7 +138,7 @@ def burn_card(screen: Screen, pos: GridPos) -> None:
         time.sleep(0.02)
         buffercopy.copyback()
     clear_card(screen, pos)
-    draw_slot_in_grid(screen, pos)
+    show_slot_in_grid(screen, pos)
 
 
 def shake_card(
@@ -149,19 +149,19 @@ def shake_card(
     else:
         offset = {"yoffset": -1}
     for _ in range(4):
-        draw_card(screen, card, pos)
+        show_card(screen, card, pos)
         time.sleep(0.03)
         clear_card(screen, pos)
-        draw_card(screen, card, pos, **offset)
+        show_card(screen, card, pos, **offset)
         time.sleep(0.03)
         clear_card(screen, pos, **offset)
-    draw_card(screen, card, pos)
+    show_card(screen, card, pos)
 
 
 def flash_card(screen: Screen, pos: GridPos) -> None:
     highlight = True
     for _ in range(10):
-        draw_card(screen, None, pos, highlight=highlight)
+        show_card(screen, None, pos, highlight=highlight)
         time.sleep(0.2)
         highlight = not highlight
 
@@ -176,10 +176,10 @@ def move_card(
     from_ = dPos.from_gridpos(from_) if isinstance(from_, GridPos) else from_
     to = dPos.from_gridpos(to) if isinstance(to, GridPos) else to
     buffercopy = BufferCopy(screen)
-    draw_card(screen, card, from_)
+    show_card(screen, card, from_)
     p = Path()
     p.jump_to(x=from_.x, y=from_.y)
     p.move_straight_to(x=to.x, y=to.y, steps=steps)
     for x, y in p._steps:
         buffercopy.copyback()
-        draw_card(screen, card, dPos(x, y))
+        show_card(screen, card, dPos(x, y))

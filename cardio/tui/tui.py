@@ -17,14 +17,14 @@ from .card_primitives import (
     clear_card,
 )
 from .decks_primitives import (
-    draw_card_to_handdeck,
-    draw_drawdeck_highlights,
-    draw_drawdecks,
-    draw_handdeck_highlight,
+    show_card_to_handdeck,
+    show_drawdeck_highlights,
+    show_drawdecks,
+    show_handdeck_highlight,
     redraw_handdeck,
 )
-from .grid_primitives import draw_empty_grid, draw_slot_in_grid
-from .utils import draw_screen_resolution, get_keycode
+from .grid_primitives import show_empty_grid, show_slot_in_grid
+from .utils import show_screen_resolution, get_keycode
 
 # FIXME Todos:
 # - Finish fight, e.g. cards that die, ...
@@ -47,7 +47,7 @@ class TUIViewAndController(FightVnC):
         self.screen = Screen.open(unicode_aware=True)
         self.debug = debug
         if self.debug:
-            draw_screen_resolution(self.screen)
+            show_screen_resolution(self.screen)
         atexit.register(self.close)
 
     def close(self) -> None:
@@ -78,7 +78,7 @@ class TUIViewAndController(FightVnC):
         assert pos is not None, "Trying to prepare a card that is not in the grid"
         assert pos.line == 0, "Calling prepare on card that is not in prep line"
         clear_card(self.screen, pos)
-        draw_slot_in_grid(self.screen, pos)
+        show_slot_in_grid(self.screen, pos)
         move_card(
             self.screen, card, from_=GridPos(0, pos.slot), to=GridPos(1, pos.slot)
         )
@@ -95,7 +95,7 @@ class TUIViewAndController(FightVnC):
 
     # --- Controller-type methods ---
 
-    def draw_computer_plays_card(self, card: Card, to: GridPos) -> None:
+    def show_computer_plays_card(self, card: Card, to: GridPos) -> None:
         """Play a computer card to `to`, which can be in line 0 or 1."""
         move_card(
             self.screen,
@@ -106,7 +106,7 @@ class TUIViewAndController(FightVnC):
             steps=5,
         )
 
-    def draw_human_places_card(self, card: Card, from_slot: int, to_slot: int) -> None:
+    def show_human_places_card(self, card: Card, from_slot: int, to_slot: int) -> None:
         """Place a human card from the hand (`from_slot`) to the grid (`to_slot`). Line
         is implicitly always 2.
         """
@@ -124,7 +124,7 @@ class TUIViewAndController(FightVnC):
             return
 
         while True:
-            draw_drawdeck_highlights(self.screen, highlights)
+            show_drawdeck_highlights(self.screen, highlights)
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT and not self.decks.drawdeck.is_empty():
                 highlights = (True, False)
@@ -138,9 +138,9 @@ class TUIViewAndController(FightVnC):
                     deck = self.decks.hamsterdeck
                     deckname = "hamster"
                 card = deck.draw_card()
-                draw_card_to_handdeck(self.screen, self.decks.handdeck, card, deckname)
+                show_card_to_handdeck(self.screen, self.decks.handdeck, card, deckname)
                 self.decks.handdeck.add_card(card)
-                draw_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
+                show_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
                 return
 
     def _handle_human_places_card(self, card: Card, from_slot: int) -> bool:
@@ -161,7 +161,7 @@ class TUIViewAndController(FightVnC):
             elif keycode == Screen.KEY_DOWN:
                 # FIXME Check if card can be placed at all
                 session.grid[2][cursor] = card
-                self.draw_human_places_card(card, from_slot=from_slot, to_slot=cursor)
+                self.show_human_places_card(card, from_slot=from_slot, to_slot=cursor)
                 self.decks.useddeck.add_card(card)
                 logging.debug("Human plays %s in %s", card.name, cursor)
                 return True
@@ -179,7 +179,7 @@ class TUIViewAndController(FightVnC):
         while True:
             buffercopy.copyback()
             if not self.decks.handdeck.is_empty():
-                draw_handdeck_highlight(self.screen, cursor)
+                show_handdeck_highlight(self.screen, cursor)
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
@@ -208,16 +208,16 @@ class TUIViewAndController(FightVnC):
                 buffercopy.copyback()
                 return
 
-    def draw_empty_grid(self, grid_width: int) -> None:
-        draw_empty_grid(self.screen, grid_width)
+    def show_empty_grid(self, grid_width: int) -> None:
+        show_empty_grid(self.screen, grid_width)
 
-    def draw_drawdecks(self, drawdeck: Deck, hamsterdeck: Deck) -> None:
-        draw_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
+    def show_drawdecks(self, drawdeck: Deck, hamsterdeck: Deck) -> None:
+        show_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
 
-    def draw_card_to_handdeck(
+    def show_card_to_handdeck(
         self, handdeck: Deck, card: Card, whichdeck: Literal["draw", "hamster"]
     ) -> None:
-        draw_card_to_handdeck(self.screen, handdeck, card, whichdeck)
+        show_card_to_handdeck(self.screen, handdeck, card, whichdeck)
 
 
 # FIXME Check if anything should be taken over from handlers.

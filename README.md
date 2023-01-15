@@ -10,6 +10,12 @@
   tests get set up in a central test module and a way sandbox.py sets up the game and
   get rid of session altogether? -- But would need some module that grants access to
   view to Card class.
+  - Sometimes, we inject links to the model to an object (e.g., to grid) and sometimes
+    we don't (e.g., humanagent and computeragent in FightVnC). -> Better make this
+    consistent?
+  - One approach could be: Always use the session. But no code whatsoever in the
+    session. Everything gets set up outside of session and gets injected into the
+    session module.
 - I think ComputerStrategy should be part of ComputerAgent and ComputerAgent should be
   part of the fightcontroller initiator, since it only has relevance in fights.
   (- Also, maybe there is no need for a ComputerAgent class in the end?)
