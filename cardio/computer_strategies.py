@@ -26,11 +26,11 @@ class Round0OnlyStrategy(ComputerStrategy):
         super().__init__(*args, **kwargs)
         self.cards = cards
 
-    def cards_to_be_played(self, turn_number: int) -> List[GridPosAndCard]:
-        if turn_number == 0:
+    def cards_to_be_played(self, round_number: int) -> List[GridPosAndCard]:
+        if round_number == 0:
             return self.cards
         return []
 
-    def play_cards(self, turn_number: int) -> None:
-        for (linei, sloti), card in self.cards_to_be_played(turn_number):
-            self.grid.lines[linei][sloti] = card
+    def play_cards(self, round_number: int) -> None:
+        for (line, slot), card in self.cards_to_be_played(round_number):
+            self.grid.lines[line][slot] = card
