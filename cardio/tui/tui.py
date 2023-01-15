@@ -26,20 +26,6 @@ from .decks_primitives import (
 from .grid_primitives import show_empty_grid, show_slot_in_grid
 from .utils import show_screen_resolution, get_keycode
 
-# FIXME Todos:
-# - Finish fight, e.g. cards that die, ...
-# - Add other elements:
-#   - Switch agent health to agent damage where the difference between the two must be
-#     visualized and indicates loss/win if it exceeds 5.
-#   - score/health between human and computer
-#   - agent state
-# - useddeck?
-# - More animations needed for Spine and maybe other skills?
-
-# FIXME Check all occurences of `session` and check if I can get rid of it via init or
-# so.
-# FIXME How would a HumanAgentStrategy (aka automated human) be implemented here?
-
 # FIXME Should be TUIFightVnC
 class TUIViewAndController(FightVnC):
     def __init__(self, debug: bool = False, *args, **kwargs) -> None:
