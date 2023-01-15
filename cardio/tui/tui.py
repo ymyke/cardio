@@ -26,6 +26,7 @@ from .decks_primitives import (
 from .grid_primitives import show_empty_grid, show_slot_in_grid
 from .utils import show_screen_resolution, get_keycode
 
+
 class TUIFightVnC(FightVnC):
     def __init__(self, debug: bool = False, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
@@ -203,7 +204,3 @@ class TUIFightVnC(FightVnC):
         self, handdeck: Deck, card: Card, whichdeck: Literal["draw", "hamster"]
     ) -> None:
         show_card_to_handdeck(self.screen, handdeck, card, whichdeck)
-
-
-# FIXME Check if anything should be taken over from handlers.
-# FIXME Delete tui, fight, some/all of the old handlers, ...?
