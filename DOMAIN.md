@@ -116,3 +116,4 @@ option 3: one common game state w/o agents in FightVnC: <- Favorite! ⭐
   blood/energy/...?
 - Have floor tiles with special effects? I.e., more strength if a create is on it?
 - Can there be shops where you can buy stuff, including additional lives?
+- Maybe spirits could be persistent and can be taken over to the next fight?
