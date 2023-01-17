@@ -30,6 +30,47 @@
   behaviours and not sigils."
 
 # Agents
+- Computer player &  human player
+- The agents behind:
+  - Computer: 
+    - name -- can be a global constant / hardcoded
+    - ~~no lives -- human either makes it to the end or not~~
+    - ~~no damage~~
+    - ~~no deck~~
+  - Human:
+    - name
+    - lives -- number of fights he can lose until game is over
+    - ~~no damage -- only relevant in fights~~
+    - score & stats...
+    - gems
+    - deck
+    - items
+    - card archive(?) -- all cards she has ever discovered
+- During a fight:
+  - Computer:
+    - name -- can be different, esp. for boss fights
+    - lives -- usually just 1, but bosses have 2, almost more like levels in actuality
+    - damage (see separate discussion below)
+  - Human:
+    - damage (see separate discussion below)
+    - 4 fight card decks -- they're currently in FightVnC directly...
+
+# Damage
+option 1: both agents track:
+- computer.damage - human.damage > 5 -> human wins
+- human.damage - computer.damage > 5 -> computer wins
+- => need access to the other agent to determine state
+- overflow damage anything beyond 5
+
+option 2: only human tracks: 
+- human.damage > 5 -> computer wins
+- human.damage < -5 -> human wins
+
+option 3: one common game state w/o agents in FightVnC: <- Favorite! ⭐
+- human_damage: >5 => human lost; <-5 => human won
+
+# Money / Gems
+- QQ: What should be the metaphor for money? 💎?
 
 # Boss fights
 - Need a different model in Fight.handle_round_of_fight -- surely also elsewhere, e.g.
@@ -74,3 +115,4 @@
 - Corveaux special ability/animal? Can consume ghosts/souls/spirits and release them as
   blood/energy/...?
 - Have floor tiles with special effects? I.e., more strength if a create is on it?
+- Can there be shops where you can buy stuff, including additional lives?
