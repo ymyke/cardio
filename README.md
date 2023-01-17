@@ -1,5 +1,12 @@
 # Next up
 
+- Re damage:
+  - Add human/computer state to TUI
+  - FIXME Animate overflow damage that turns into gems
+  - FIXME Add some animation for for damage
+  - Add human/computer state to log_states
+
+
 - Fight:
   - Finish fight, e.g. cards that die, ...
   - Add other elements:
@@ -45,6 +52,8 @@
   setting that helps speed up / slow down the animations. Then do some self-timing e.g.
   on burning a card that will automatically adjust that setting if necessary (i.e.,
   animation takes too long or too short).
+- Can I build a keystroke command that switches from the TUI into some debug mode and
+  back into the TUI?
 
 # Todo
 
