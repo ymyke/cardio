@@ -1,4 +1,5 @@
 from __future__ import annotations
+import pdb
 import sys
 import time
 from typing import NamedTuple, Union, List, Optional
@@ -7,7 +8,8 @@ from asciimatics.effects import Effect, Print
 from asciimatics.renderers import StaticRenderer
 from asciimatics.event import KeyboardEvent
 from .constants import *
-from cardio import GridPos
+from .buffercopy import BufferCopy
+from cardio import GridPos, session
 
 
 class dPos(NamedTuple):
@@ -46,6 +48,7 @@ def show_screen_resolution(screen):
         ),
     )
 
+
 def get_keycode(screen: Screen) -> Optional[int]:
     """Non-blocking. Ignores all mouse events. Returns `ord` value of key pressed,
     `None` if no key pressed. Special keys are encoded according to
@@ -56,6 +59,13 @@ def get_keycode(screen: Screen) -> Optional[int]:
         # Add a tiny pause if there is no event to reduce CPU load while polling:
         time.sleep(0.02)
         return None
-    if event.key_code == ord("$"):
+    if event.key_code == ord("$"):  # hard exit
         sys.exit(0)
+    if event.key_code == ord("!"):  # debug
+        bc = BufferCopy(screen)
+        screen.close()
+        pdb.set_trace()
+        session.view.screen = bc.screen = Screen.open(unicode_aware=True)
+        bc.copyback()
+
     return event.key_code
