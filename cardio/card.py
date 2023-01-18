@@ -1,13 +1,9 @@
 from __future__ import annotations
 import logging
 from dataclasses import dataclass, field
-from typing import Optional, List, TYPE_CHECKING
+from typing import Optional, List
 from .skills import Skill, SkillList
 from . import session
-
-if TYPE_CHECKING:
-    # To prevent circular imports. Should maybe be fixed somehow at some point.
-    from . import Agent
 
 
 @dataclass
@@ -50,11 +46,6 @@ class Card:
         """Get the card from the prepline of this cards slot."""
         return session.grid[0][self.get_sloti()]
 
-    def get_opposing_agent(self) -> Agent:
-        return session.computeragent if self.get_linei() == 2 else session.humanagent
-        # QQ: Use enums or something instead of 0, 1, 2 for the lines?
-        # QQ: Should this be a grid function? (Also some of the other methods?)
-
     def die(self) -> None:
         logging.debug("%s dies.", self.name)
         self.health = 0
@@ -92,7 +83,7 @@ class Card:
         session.view.card_getting_attacked(self, opponent)
         # (Needs to happen before the call to `lose_health` below, bc the card could
         # die/vanish during that call, leading to a `None` reference on the grid and an
-        # error in the view update call.) 
+        # error in the view update call.)
         howmuch = self.lose_health(opponent.power)
         if opponent.power > howmuch and prep is not None:
             logging.debug(
@@ -120,7 +111,7 @@ class Card:
                 else:
                     opponent.get_attacked(self)
             else:
-                self.get_opposing_agent().lose_health(self.power)
+                session.view.handle_damage(self.power, self)
             return
 
         if Skill.INSTANTDEATH in self.skills:
@@ -137,10 +128,9 @@ class Card:
         if opponent is not None:
             self.attack(opponent)
         elif self.power > 0:
-            self.get_opposing_agent().lose_health(self.power)
+            session.view.handle_damage(self.power, self)
             # ^ FIXME should this be in attack after all?
         session.view.pos_card_deactivate(pos)
-        
 
     def prepare(self) -> None:
         pos = session.grid.find_card(self)

@@ -5,6 +5,12 @@ from .computer_strategies import ComputerStrategy
 from .card_blueprints import create_cards_from_blueprints
 from .tui.decks import Decks  # FIXME tui should not be known here
 
+DAMAGE_DIFF_TO_WIN = 5  # Amount of damage difference to win a fight
+
+
+class EndOfFightException(Exception):
+    pass
+
 
 class FightVnC:
     """
@@ -14,6 +20,7 @@ class FightVnC:
 
     def __init__(self, grid: Grid) -> None:
         self.grid = grid
+        self.human_damage = 0
         self.states_log = ""
         # FIXME Should we also set the computerstrategy here?
 
@@ -66,6 +73,22 @@ class FightVnC:
     def handle_human_plays_card(self) -> None:
         pass
 
+    def handle_damage(self, howmuch: int, source: Card) -> None:
+        assert source.get_linei() in (1, 2)
+        if source.get_linei() == 1:
+            self.human_damage += howmuch
+            who = "Human"
+        else:
+            self.human_damage -= howmuch
+            who = "Computer"
+        logging.debug(
+            "%s receives %s damage, human_damage now at %s",
+            who,
+            howmuch,
+            self.human_damage,
+        )
+        # FIXME Add some animation for for damage
+
     # --- Misc ---
 
     def human_wins_fight(self) -> None:
@@ -77,14 +100,14 @@ class FightVnC:
         # QQ: Boss fights will work differently.
         pass
 
-    def update_states_log(self) -> None:
+    def update_states_log(self, final: bool = False) -> None:
         def card2str(card: Optional[Card]) -> str:
             if card is None:
                 return "-"
             symbols = "".join([s.value.symbol for s in card.skills])
             return f"{card.name[0]}p{card.power}h{card.health}{symbols}"
 
-        s = f"{self.round_num}:\n"
+        s = f"Starting round {self.round_num}:\n" if not final else "Final state:\n"
         for line in range(3):
             s += "|"
             for slot in range(self.grid.width):
@@ -100,6 +123,7 @@ class FightVnC:
             s += f"{name}: " + " ".join([card2str(c) for c in deck.cards]) + "\n"
         s += "\n"
         # FIXME Add human and computer damage, lives, maybe items, ...
+        # FIXME Add damage and gems
         self.states_log += s
 
     # --- Controller ---
@@ -117,8 +141,34 @@ class FightVnC:
         self.show_card_to_handdeck(self.decks.handdeck, card, from_name)
         self.decks.handdeck.add_card(card)
 
-    def handle_round_of_fight(self) -> bool:
+    def _has_computer_won(self) -> bool:
+        return self.human_damage >= DAMAGE_DIFF_TO_WIN or not any(
+            c.power > 0
+            for c in self.grid.lines[2]
+            + self.decks.handdeck.cards
+            + self.decks.drawdeck.cards
+            + self.decks.hamsterdeck.cards
+            if c is not None
+        )
+        # FIXME The above is not fully correct yet. There could also be a case there is
+        # a card in the hand with power > 0 but that is not playable, e.g., because the
+        # necessary sacrifice is not possible. That should be taken into account in the
+        # test. Moreover, items that can have a relevant effect should be taken into
+        # account as well. Also skills that have a relevant effect such as spines or
+        # skills that increase the power of other cards etc. So this test could become
+        # very complex in the end. -- Maybe these more complex cases should be handled
+        # differently in the UI or at least explained?
+
+    def _has_human_won(self) -> bool:
+        return self.human_damage <= -DAMAGE_DIFF_TO_WIN
+
+    def _check_for_end_of_fight(self) -> None:
+        if self._has_computer_won() or self._has_human_won():
+            raise EndOfFightException
+
+    def handle_round_of_fight(self) -> None:  # FIXME Should be private
         logging.debug("----- Start of round %s -----", self.round_num)
+        self.update_states_log()
         self.decks.log()
 
         # Play computer cards and animate how they appear:
@@ -138,31 +188,14 @@ class FightVnC:
 
         # Activate all cards:
         self.grid.activate_line(2)
+        self._check_for_end_of_fight()
         self.grid.activate_line(1)
+        self._check_for_end_of_fight()
         self.grid.prepare_line()
+        self._check_for_end_of_fight()
 
         self.grid.log()
-        self.update_states_log()
         logging.debug("----- End of round %s -----", self.round_num)
-
-        # FIXME Still some things missing below:
-        if session.humanagent.has_lost_life():
-            session.humanagent.update_lives_and_health_after_death()
-            self.computer_wins_fight()
-            return False
-        if session.computeragent.has_lost_life():
-            overflow = session.computeragent.update_lives_and_health_after_death()
-            self.human_wins_fight()
-            # FIXME Do something w overflow damage here -- maybe just store it in the
-            # object right in the update_lives_and_health_after_death function but also
-            # pass it to the view for some animation?
-            return False
-        if self.grid.is_empty():
-            # QQ: Should this also break when the grid is "powerless", i.e., no cards
-            # with >0 power?
-            return False
-
-        return True
 
     def handle_fight(self, computerstrategy: ComputerStrategy) -> None:
         self.computerstrategy = computerstrategy
@@ -173,7 +206,7 @@ class FightVnC:
 
         # Set up the 4 decks for the fight:
         drawdeck = Deck()
-        drawdeck.cards = session.humanagent.deck.cards
+        drawdeck.cards = session.humanplayer.deck.cards
         drawdeck.shuffle()
         hamsterdeck = Deck(create_cards_from_blueprints(["Hamster"] * 10))
         self.decks = Decks(drawdeck, hamsterdeck, Deck(), Deck())
@@ -187,18 +220,32 @@ class FightVnC:
         self.show_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
 
         # Run the fight:
-        fighting = True
         self.round_num = 0
-        while fighting:
-            fighting = self.handle_round_of_fight()
+        while True:
+            try:
+                self.handle_round_of_fight()
+            except EndOfFightException:
+                break
             self.round_num += 1
+        self.update_states_log(final=True)
+
+        # Handle win/lose conditions:
+        if self._has_computer_won():
+            self.computer_wins_fight()
+            session.humanplayer.lives -= 1
+            # FIXME Check for game over here or later on
+        if self._has_human_won():
+            overflow = abs(self.human_damage) - DAMAGE_DIFF_TO_WIN
+            session.humanplayer.gems += overflow
+            # FIXME Animate overflow damage that turns into gems
+            self.human_wins_fight()
 
         # Reset human deck after the fight:
-        session.humanagent.deck.cards = [
+        session.humanplayer.deck.cards = [
             c
             for c in self.decks.useddeck.cards
             + self.decks.handdeck.cards
             + self.decks.drawdeck.cards
             if c.name != "Hamster"
         ]
-        session.humanagent.deck.reset_cards()
+        session.humanplayer.deck.reset_cards()
