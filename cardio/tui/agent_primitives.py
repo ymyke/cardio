@@ -1,6 +1,8 @@
+# Figlet fonts: rectangle, small, chunky
+
 from asciimatics.screen import Screen
 from asciimatics.effects import Print
-from asciimatics.renderers import StaticRenderer
+from asciimatics.renderers import StaticRenderer, FigletText
 from cardio import GridPos, session
 from .utils import dPos, show_effects
 from .constants import *
@@ -12,87 +14,42 @@ DAMAGE_DIFF_TO_WIN = (
 )
 
 
-# SCALE = """\
-# 🕱
-# ⟊
-# ⟊
-# ⟊
-# ⟊
-# =
-# ⟊
-# ⟊
-# ⟊
-# ⟊
-# 🕱
-# """
-SCALE = u"""\
-·
-·
-·
-·
-·
-${1,2,1}.${7,2,0}
-·
-·
-·
-·
-·
-"""
-
-SCALE = u"""\
-🔳
-🔳
-🔳
-🔳
-🔳
-🟥
-🔳
-🔳
-🔳
-🔳
-🔳
-"""
-
-
-
-
-
-
+def show_damage_state(screen: Screen, pos: dPos, damage_diff: int) -> None:
+    DAMAGE_ROW = "${1,2,0}■■■■■■■■■■■■■■■■${7,2,0}"
+    NO_DAMAGE_ROW = "${0,1,0}■${0,2,0}..............${0,1,0}■${7,2,0}"
+    scale = [NO_DAMAGE_ROW] * ((DAMAGE_DIFF_TO_WIN - 1) * 2 + 1)
+    if damage_diff != 0:
+        for i in range(0, damage_diff, damage_diff // abs(damage_diff)):
+            scale[DAMAGE_DIFF_TO_WIN - 1 + i] = DAMAGE_ROW
+    else:
+        scale[DAMAGE_DIFF_TO_WIN - 1] = DAMAGE_ROW
+    show_effects(
+        screen,
+        Print(screen, StaticRenderer(images=["\n".join(scale)]), x=pos.x, y=pos.y),
+    )
 
 
 def show_computerplayer_state(screen: Screen, grid_width: int) -> None:
     pos = dPos.from_gridpos(GridPos(2, grid_width))
-    pos = dPos(pos.x + AGENT_X_OFFSET, pos.y + 1 - 10)
+    pos = dPos(pos.x + AGENT_X_OFFSET, pos.y + 1 - 11)
     show_effects(
         screen,
-        Print(screen, StaticRenderer(images=["– Yshl 🤖"]), x=pos.x, y=pos.y),
+        Print(screen, FigletText("Yshl", "chunky"), x=pos.x, y=pos.y),
     )
-
 
     # scale:
-    scale_pos = dPos(pos.x-3, pos.y )
-    show_effects(
-        screen,
-        Print(screen, StaticRenderer(images=[SCALE]), x=scale_pos.x, y=scale_pos.y),
-    )
-    show_effects(
-        screen,
-        Print(screen, StaticRenderer(images=["▶️"]), x=scale_pos.x-2, y=scale_pos.y+5),
-    ) # ▶️ or 👉
-
-
+    show_damage_state(screen, dPos(pos.x, pos.y + 1), 0)
 
 
 def show_humanplayer_state(screen: Screen, grid_width: int) -> None:
     pos = dPos.from_gridpos(GridPos(2, grid_width))
-    pos = dPos(pos.x + AGENT_X_OFFSET, pos.y + 1)
+    pos = dPos(pos.x + AGENT_X_OFFSET, pos.y + 2)
     txt = f"""\
-– {session.humanplayer.name} {'💓' * session.humanplayer.lives}
-
-{'💎' * session.humanplayer.gems}{'⠀'*10}
-
-{'👻' * session.humanplayer.spirits}{'⠀'*10}
+{FigletText("Schnuzgi", "chunky")}
+{'💓' * session.humanplayer.lives}
+{'💎' * session.humanplayer.gems}{'⠀'*10} {'👻' * session.humanplayer.spirits}+2{'⠀'*10}
 """  # FIXME Make the whitespace more intelligent
+
     show_effects(
         screen,
         Print(
@@ -103,3 +60,23 @@ def show_humanplayer_state(screen: Screen, grid_width: int) -> None:
         ),
     )
     # FIXME Why isn't this just some simple show_text function?
+
+
+# def show_all_states(screen: Screen)->None:
+#     show_computerplayer_state(screen, pos[0])
+#     show_humanplayer_state(screen, pos[1])
+#     show_damage_state(screen, pos[2], damage_diff)
+
+
+# --- Alternative scale:
+#         🔳
+#         🔳
+#         🔳
+#         🔳
+#         🔳
+# ▶️ or 👉 🟥
+#         🔳
+#         🔳
+#         🔳
+#         🔳
+#         🔳
