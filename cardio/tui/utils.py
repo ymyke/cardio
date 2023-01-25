@@ -36,6 +36,26 @@ def show_effects(screen, effects: Union[Effect, List[Effect]]):
     screen.refresh()
 
 
+def render_value(
+    value: int,
+    symbol: str,
+    cap_at: int = 5,
+    clear_after: bool = True,
+    surplus_color: int = Screen.COLOUR_WHITE,
+) -> str:
+    assert value >= 0
+    nofsymbols = min(value, cap_at)
+    surplus = value - nofsymbols
+    surplus_str = (
+        f"${{{surplus_color}}}+{surplus}${{{Screen.COLOUR_WHITE}}}"
+        if surplus > 0
+        else ""
+    )
+    value_str = symbol * nofsymbols + surplus_str
+    delete_str = "⠀" * (cap_at + 4 - len(value_str)) if clear_after else ""
+    return value_str + delete_str
+
+
 def show_screen_resolution(screen):
     txt = f"{screen.width} x {screen.height}"
     show_effects(

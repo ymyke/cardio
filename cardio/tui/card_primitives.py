@@ -12,15 +12,15 @@ from cardio import Card, GridPos
 from .constants import *
 from .buffercopy import BufferCopy
 from .grid_primitives import show_slot_in_grid
-from .utils import dPos, show_effects
+from .utils import dPos, show_effects, render_value
 
 
 def card_to_amstring(c: Card) -> str:
     """Produce asciimatics string from card."""
     s = f"""\
 {c.name}
-{"💪" * c.power}
-{"💓" * c.health}
+{render_value(c.power, "💪", surplus_color=Screen.COLOUR_YELLOW)}
+{render_value(c.health, "💓", surplus_color=Screen.COLOUR_RED)}
 {"".join(s.value.symbol for s in c.skills)}
 """
     return s

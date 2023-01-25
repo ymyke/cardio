@@ -2,7 +2,7 @@ from asciimatics.screen import Screen
 from asciimatics.effects import Print
 from asciimatics.renderers import StaticRenderer, FigletText
 from cardio import GridPos, session
-from .utils import dPos, show_effects
+from .utils import dPos, show_effects, render_value
 from .constants import *
 
 # FIXME Terminology: agent vs player everywhere?
@@ -60,10 +60,10 @@ class StateWidget:
     def show_humanplayer_state(self) -> None:
         txt = f"""\
 {FigletText("Schnuzgi", self.NAME_FONT)}
-{'💓' * session.humanplayer.lives}
-{'💎' * session.humanplayer.gems}{'⠀'*10} 
-{'👻' * session.humanplayer.spirits}+2{'⠀'*10}
-"""  # FIXME Make the whitespace more intelligent
+{render_value(session.humanplayer.lives, '💓', surplus_color=Screen.COLOUR_RED)}
+{render_value(session.humanplayer.gems, '💎', surplus_color=Screen.COLOUR_BLUE)}
+{render_value(session.humanplayer.spirits, '👻')}
+"""
 
         show_effects(
             self.screen,
