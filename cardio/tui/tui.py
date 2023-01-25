@@ -209,5 +209,5 @@ class TUIFightVnC(FightVnC):
     ) -> None:
         show_card_to_handdeck(self.screen, handdeck, card, whichdeck)
 
-    def show_agents(self) -> None:
+    def show_agents_state(self) -> None:
         self.state_widget.show_all(self.human_damage)

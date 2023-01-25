@@ -67,6 +67,10 @@ class FightVnC:
         """
         pass
 
+    def show_agents_state(self) -> None:
+        """Show agent information, damage, spirits, lives, etc."""
+        pass
+
     def handle_human_draws_new_card(self) -> None:
         pass
 
@@ -203,6 +207,7 @@ class FightVnC:
         # which could contain the computerstrategy? It will be used for one fight only
         # anyway...
         self.show_empty_grid(self.grid.width)
+        self.show_agents_state()
 
         # Set up the 4 decks for the fight:
         drawdeck = Deck()
