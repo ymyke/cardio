@@ -55,6 +55,8 @@ class StateWidget:
                 FigletText("Yshl", self.NAME_FONT),
                 x=self.computer_pos.x,
                 y=self.computer_pos.y,
+                colour=Screen.COLOUR_BLACK,
+                attr=Screen.A_BOLD,
             ),
         )
 
@@ -73,6 +75,8 @@ class StateWidget:
                 StaticRenderer(images=[txt]),
                 x=self.human_pos.x,
                 y=self.human_pos.y,
+                colour=Screen.COLOUR_BLACK,
+                attr=Screen.A_BOLD,
             ),
         )
         # FIXME Why isn't this just some simple show_text function?
