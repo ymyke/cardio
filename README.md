@@ -2,6 +2,11 @@
 
 - Re damage:
   - Add human/computer state to TUI
+    - Arrow? Gameboy?
+    - Computer: name/icon only
+    - Human: name/icon, lives left, gems, spirits
+    - Damage between the two
+    - Items
   - FIXME Animate overflow damage that turns into gems
   - FIXME Add some animation for for damage
   - Add human/computer state to log_states
@@ -64,6 +69,8 @@
 - Edge case: What if the grid is empty or powerless at some point during a fight? Who
   will win?
 - Display some help output in the lower right corner? Current state of the app, allowed keys, unrecognized keys, ...?
+- Add asciimatics Arrow as the human player?
+- Reduce the number of places the session module gets imported to a sensible minimum.
 
 # Game related
 
