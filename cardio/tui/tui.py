@@ -210,6 +210,4 @@ class TUIFightVnC(FightVnC):
         show_card_to_handdeck(self.screen, handdeck, card, whichdeck)
 
     def show_agents(self) -> None:
-        session.humanplayer.gems = 5
-        session.humanplayer.spirits = 5
         self.state_widget.show_all(self.human_damage)
