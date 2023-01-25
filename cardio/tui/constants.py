@@ -7,3 +7,4 @@ BOX_PADDING_LEFT = 3
 DRAW_DECKS_X = 45
 DRAW_DECKS_Y = 45
 AGENTGAPSIZE = 3  # Gap between the agents
+AGENT_X_OFFSET = 7 # Gap between grid and agent information
