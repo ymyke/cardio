@@ -24,6 +24,7 @@ from .decks_primitives import (
     redraw_handdeck,
 )
 from .grid_primitives import show_empty_grid, show_slot_in_grid
+from .agent_primitives import StateWidget
 from .utils import show_screen_resolution, get_keycode
 
 
@@ -35,6 +36,9 @@ class TUIFightVnC(FightVnC):
         if self.debug:
             show_screen_resolution(self.screen)
         atexit.register(self.close)
+        self.state_widget = StateWidget(
+            self.screen, self.grid.width, self.DAMAGE_DIFF_TO_WIN
+        )
 
     def close(self) -> None:
         self.screen.close()
@@ -204,3 +208,8 @@ class TUIFightVnC(FightVnC):
         self, handdeck: Deck, card: Card, whichdeck: Literal["draw", "hamster"]
     ) -> None:
         show_card_to_handdeck(self.screen, handdeck, card, whichdeck)
+
+    def show_agents(self) -> None:
+        session.humanplayer.gems = 5
+        session.humanplayer.spirits = 5
+        self.state_widget.show_all(self.human_damage)
