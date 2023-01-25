@@ -45,6 +45,7 @@ class StateWidget:
                 y=self.scale_pos.y,
             ),
         )
+        # FIXME Idea: Could shorten the player's name according to its damage
 
     def show_computerplayer_state(self) -> None:
         show_effects(
