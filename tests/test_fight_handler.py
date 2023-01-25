@@ -100,7 +100,7 @@ def test_human_decks_managed_correctly(mocker):  # FIXME Should get different na
     )
 
     session.view = HumanStrategyVnC(session.grid)
-    mocker.patch("cardio.fightvnc.DAMAGE_DIFF_TO_WIN", new=50)
+    mocker.patch("cardio.fightvnc.FightVnC.DAMAGE_DIFF_TO_WIN", new=50)
     session.view.handle_fight(computerstrategy=cs)
 
     assert len(session.humanplayer.deck.cards) == len(original_cards)
