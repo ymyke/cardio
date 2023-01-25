@@ -5,8 +5,6 @@ from .computer_strategies import ComputerStrategy
 from .card_blueprints import create_cards_from_blueprints
 from .tui.decks import Decks  # FIXME tui should not be known here
 
-DAMAGE_DIFF_TO_WIN = 5  # Amount of damage difference to win a fight
-
 
 class EndOfFightException(Exception):
     pass
@@ -17,6 +15,8 @@ class FightVnC:
     - All the `card_` methods should be able to rely on the precondition that the `card`
       is still in the grid when the method is called.
     """
+
+    DAMAGE_DIFF_TO_WIN = 5  # Amount of damage difference to win a fight
 
     def __init__(self, grid: Grid) -> None:
         self.grid = grid
@@ -142,7 +142,7 @@ class FightVnC:
         self.decks.handdeck.add_card(card)
 
     def _has_computer_won(self) -> bool:
-        return self.human_damage >= DAMAGE_DIFF_TO_WIN or not any(
+        return self.human_damage >= self.DAMAGE_DIFF_TO_WIN or not any(
             c.power > 0
             for c in self.grid.lines[2]
             + self.decks.handdeck.cards
@@ -160,7 +160,7 @@ class FightVnC:
         # differently in the UI or at least explained?
 
     def _has_human_won(self) -> bool:
-        return self.human_damage <= -DAMAGE_DIFF_TO_WIN
+        return self.human_damage <= -self.DAMAGE_DIFF_TO_WIN
 
     def _check_for_end_of_fight(self) -> None:
         if self._has_computer_won() or self._has_human_won():
@@ -235,7 +235,7 @@ class FightVnC:
             session.humanplayer.lives -= 1
             # FIXME Check for game over here or later on
         if self._has_human_won():
-            overflow = abs(self.human_damage) - DAMAGE_DIFF_TO_WIN
+            overflow = abs(self.human_damage) - self.DAMAGE_DIFF_TO_WIN
             session.humanplayer.gems += overflow
             # FIXME Animate overflow damage that turns into gems
             self.human_wins_fight()
