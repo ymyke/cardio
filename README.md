@@ -62,6 +62,7 @@
 
 # Todo
 
+- Terminology: agent vs player everywhere? Which is the better term? Make it consistent.
 - Look for all `grid.*=None` and use `remove_card` instead.
 - Implement some skills that have an influence on the decks (e.g., fertility, Ouroboros,
   unkillable, ...) and see if they work well with the current deck implementation.
@@ -71,6 +72,12 @@
 - Display some help output in the lower right corner? Current state of the app, allowed keys, unrecognized keys, ...?
 - Add asciimatics Arrow as the human player?
 - Reduce the number of places the session module gets imported to a sensible minimum.
+
+# Ideas
+
+- Could shorten the player's name according to its damage. Schnuzgi -> Schnuz -> Schn ->
+  ...
+
 
 # Game related
 

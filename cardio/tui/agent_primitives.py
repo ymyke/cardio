@@ -5,8 +5,6 @@ from cardio import GridPos, session
 from .utils import dPos, show_effects, render_value
 from .constants import *
 
-# FIXME Terminology: agent vs player everywhere?
-
 
 class StateWidget:
     NAME_FONT = "rectangles"
@@ -45,7 +43,6 @@ class StateWidget:
                 y=self.scale_pos.y,
             ),
         )
-        # FIXME Idea: Could shorten the player's name according to its damage
 
     def show_computerplayer_state(self) -> None:
         show_effects(
