@@ -2,10 +2,10 @@ from __future__ import annotations
 import pdb
 import sys
 import time
-from typing import NamedTuple, Union, List, Optional
+from typing import NamedTuple, Optional
 from asciimatics.screen import Screen
-from asciimatics.effects import Effect, Print
-from asciimatics.renderers import StaticRenderer
+from asciimatics.effects import Print
+from asciimatics.renderers import StaticRenderer, Renderer
 from asciimatics.event import KeyboardEvent
 from .constants import *
 from .buffercopy import BufferCopy
@@ -28,11 +28,24 @@ class dPos(NamedTuple):
         )
 
 
-def show_effects(screen, effects: Union[Effect, List[Effect]]):
-    if not isinstance(effects, list):
-        effects = [effects]
-    for e in effects:  # type: ignore
-        e.update(0)
+# LIXME Likely obsolete -- delete eventually!
+#
+# def show_effects(screen, effects: Union[Effect, List[Effect]]):
+#     if not isinstance(effects, list):
+#         effects = [effects]
+#     for e in effects:  # type: ignore
+#         e.update(0)
+#     screen.refresh()
+
+
+def show(screen: Screen, renderer: Renderer, pos: dPos, color: Color = Color.WHITE):
+    if color is Color.GRAY:
+        color_args = dict(colour=Screen.COLOUR_BLACK, attr=Screen.A_BOLD)
+        # (BLACK + BOLD produces dark gray,
+        # cf https://github.com/peterbrittain/asciimatics/issues/363)
+    else:
+        color_args = dict(colour=color.value)
+    Print(screen=screen, renderer=renderer, x=pos.x, y=pos.y, **color_args).update(0)
     screen.refresh()
 
 
@@ -58,14 +71,10 @@ def render_value(
 
 def show_screen_resolution(screen):
     txt = f"{screen.width} x {screen.height}"
-    show_effects(
+    show(
         screen,
-        Print(
-            screen,
-            StaticRenderer(images=[txt]),
-            x=screen.width - len(txt),
-            y=screen.height - 1,
-        ),
+        StaticRenderer(images=[txt]),
+        dPos(screen.width - len(txt), screen.height - 1),
     )
 
 
