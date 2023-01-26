@@ -94,6 +94,7 @@ class FightVnC:
             self.human_damage,
         )
         # FIXME Add some animation for for damage
+        self.show_agents_state()
 
     # --- Misc ---
 
