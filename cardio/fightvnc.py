@@ -69,6 +69,8 @@ class FightVnC:
 
     def show_agents_state(self) -> None:
         """Show agent information, damage, spirits, lives, etc."""
+        # FIXME Must be called if: damage diff changes, spirits change, lives change,
+        # items added, items used, ... -- make sure this is the case
         pass
 
     def handle_human_draws_new_card(self) -> None:
