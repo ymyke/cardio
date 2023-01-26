@@ -1,8 +1,7 @@
 from asciimatics.screen import Screen
-from asciimatics.effects import Print
 from asciimatics.renderers import StaticRenderer, FigletText
 from cardio import GridPos, session
-from .utils import dPos, show_effects, render_value
+from .utils import dPos, render_value, show
 from .constants import *
 
 
@@ -34,27 +33,14 @@ class StateWidget:
                 scale[self.damage_diff_to_win - 1 + i] = DAMAGE_ROW
         else:
             scale[self.damage_diff_to_win - 1] = DAMAGE_ROW
-        show_effects(
-            self.screen,
-            Print(
-                self.screen,
-                StaticRenderer(images=["\n".join(scale)]),
-                x=self.scale_pos.x,
-                y=self.scale_pos.y,
-            ),
-        )
+        show(self.screen, StaticRenderer(images=["\n".join(scale)]), self.scale_pos)
 
     def show_computerplayer_state(self) -> None:
-        show_effects(
+        show(
             self.screen,
-            Print(
-                self.screen,
-                FigletText("Yshl", self.NAME_FONT),
-                x=self.computer_pos.x,
-                y=self.computer_pos.y,
-                colour=Screen.COLOUR_BLACK,
-                attr=Screen.A_BOLD,
-            ),
+            FigletText("Yshl", self.NAME_FONT),
+            self.computer_pos,
+            color=Color.GRAY,
         )
 
     def show_humanplayer_state(self) -> None:
@@ -65,18 +51,11 @@ class StateWidget:
 {render_value(session.humanplayer.spirits, '👻')}
 """
 
-        show_effects(
-            self.screen,
-            Print(
-                self.screen,
-                StaticRenderer(images=[txt]),
-                x=self.human_pos.x,
-                y=self.human_pos.y,
-                colour=Screen.COLOUR_BLACK,
-                attr=Screen.A_BOLD,
-            ),
+        show(
+            self.screen, StaticRenderer(images=[txt]), self.human_pos, color=Color.GRAY
         )
-        # FIXME Why isn't this just some simple show_text function?
+        # FIXME Maybe worthwhile to further simplify and add the StaticRenderer for the
+        # user if it's a simple text that needs to get output?
 
     def show_all(self, damage_diff: int):
         self.show_computerplayer_state()

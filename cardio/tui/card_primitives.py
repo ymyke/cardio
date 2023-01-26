@@ -12,7 +12,7 @@ from cardio import Card, GridPos
 from .constants import *
 from .buffercopy import BufferCopy
 from .grid_primitives import show_slot_in_grid
-from .utils import dPos, show_effects, render_value
+from .utils import dPos, render_value, show
 
 
 def card_to_amstring(c: Card) -> str:
@@ -43,30 +43,19 @@ def show_card(
 
     if highlight:
         style = DOUBLE_LINE
-        color = Screen.COLOUR_BLUE
+        color = Color.BLUE
     else:
         style = SINGLE_LINE
-        color = Screen.COLOUR_YELLOW
+        color = Color.YELLOW
 
-    effects = [
-        Print(
-            screen=screen,
-            renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=style),
-            x=dpos.x,
-            y=dpos.y,
-            colour=color,
-        )
-    ]
+    show(screen, Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=style), dpos, color=color)
     if card is not None:
-        effects.append(
-            Print(
-                screen=screen,
-                renderer=StaticRenderer(images=[card_to_amstring(card)]),
-                x=dpos.x + 2,
-                y=dpos.y + 1,
-            )
+        show(
+            screen,
+            StaticRenderer(images=[card_to_amstring(card)]),
+            dPos(dpos.x + 2, dpos.y + 1),
+            # LIXME Should this better be `dpos + (2, 1)`?
         )
-    show_effects(screen, effects)  # type: ignore (not sure why Pylance compains here)
 
 
 def redraw_card(screen: Screen, card: Card, pos: GridPos) -> None:
