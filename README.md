@@ -1,24 +1,15 @@
 # Next up
 
-- Re damage:
-  - Add human/computer state to TUI
-    - Arrow? Gameboy?
-    - Computer: name/icon only
-    - Human: name/icon, lives left, gems, spirits
-    - Damage between the two
-    - Items
-  - FIXME Animate overflow damage that turns into gems
-  - FIXME Add some animation for for damage
-  - Add human/computer state to log_states
+- Why is human damage not updated in tui?
+
+- FIXME Animate overflow damage that turns into gems
+- FIXME Add some animation for for damage
+- Add human/computer state to log_states
 
 
 - Fight:
   - Finish fight, e.g. cards that die, ...
   - Add other elements:
-    - Switch agent health to agent damage where the difference between the two must be
-      visualized and indicates loss/win if it exceeds 5.
-    - score/health between human and computer
-    - agent state
   - More animations needed for Spine and maybe other skills?
 - Interactive UI
   - All fixmes is fightvnc and tuivnc
@@ -77,6 +68,7 @@
 
 - Could shorten the player's name according to its damage. Schnuzgi -> Schnuz -> Schn ->
   ...
+- Use asciimatics' arrow as an avatar for the human player? (Or the computer?)
 
 
 # Game related
