@@ -15,10 +15,9 @@ class StateWidget:
     ) -> None:
         self.screen = screen
         self.damagestate = damagestate
-        x = dPos.from_gridpos(GridPos(0, grid_width)).x
-        x += AGENT_X_OFFSET
-        self.computer_pos = dPos(x, dPos.from_gridpos(GridPos(0, 0)).y)
-        self.human_pos = dPos(x, dPos.from_gridpos(GridPos(2, 0)).y)
+        offset = (AGENT_X_OFFSET, 0)
+        self.computer_pos = dPos.from_gridpos(GridPos(0, grid_width)) + offset
+        self.human_pos = dPos.from_gridpos(GridPos(2, grid_width)) + offset
 
     def _show_health_bars(self, pos: dPos, diff: int, max_diff: int) -> None:
         bars = render_value(min(max_diff - diff, max_diff), "█ ", 100) + "\n"
@@ -33,7 +32,7 @@ class StateWidget:
             color=Color.GRAY,
         )
         self._show_health_bars(
-            dPos(self.computer_pos.x, self.computer_pos.y + 8),
+            self.computer_pos + (0, 8),
             -self.damagestate.diff,
             self.damagestate.max_diff,
         )
@@ -51,10 +50,9 @@ class StateWidget:
         show_text(
             self.screen,
             state_str,
-            dPos(self.human_pos.x, self.human_pos.y + 2),
+            self.human_pos + (0, 2),
             color=Color.GRAY,
         )
-        # TODO Support something like dPos(1,1)+(1,1)
 
     def show_all(self):
         self.show_computerplayer_state()

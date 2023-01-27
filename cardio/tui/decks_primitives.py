@@ -17,39 +17,37 @@ def show_handdeck_highlight(screen: Screen, slot: int, highlight: bool = True) -
 
 
 def show_drawdeck_highlights(screen: Screen, highlights: Tuple[bool, bool]) -> None:
-    highlight_card(screen, dPos(DRAW_DECKS_X, DRAW_DECKS_Y), highlights[0])
-    highlight_card(
-        screen, dPos(DRAW_DECKS_X + BOX_WIDTH + 2, DRAW_DECKS_Y), highlights[1]
-    )
+    pos = dPos(DRAW_DECKS_X, DRAW_DECKS_Y)
+    highlight_card(screen, pos, highlights[0])
+    highlight_card(screen, pos + (BOX_WIDTH + 2, 0), highlights[1])
 
 
 def show_drawdecks(screen: Screen, drawdeck: Deck, hamsterdeck: Deck) -> None:
     DRAWCOVER = "    ⬆️⬆️⬆️⬆️⬆️⬆️⬆⬆️⬆️"
     HAMSTERCOVER = "      🐹🐹🐹"
+    pos = dPos(DRAW_DECKS_X, DRAW_DECKS_Y)
     yellow_show = partial(show, screen=screen, color=Color.YELLOW)
     yellow_show(
-        renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=SINGLE_LINE),
-        pos=dPos(DRAW_DECKS_X, DRAW_DECKS_Y),
+        renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=SINGLE_LINE), pos=pos
     )
     yellow_show(
-        renderer=StaticRenderer(images=[DRAWCOVER]),
-        pos=dPos(DRAW_DECKS_X + 1, DRAW_DECKS_Y + BOX_HEIGHT // 2),
+        renderer=StaticRenderer(images=[DRAWCOVER]), pos=pos + (1, BOX_HEIGHT // 2)
     )
     yellow_show(
         renderer=StaticRenderer([f"⠀{drawdeck.size()}⠀⠀⠀"]),
-        pos=dPos(DRAW_DECKS_X + 1, y=DRAW_DECKS_Y + BOX_HEIGHT - 2),
+        pos=pos + (1, BOX_HEIGHT - 2),
     )
     yellow_show(
         renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=SINGLE_LINE),
-        pos=dPos(DRAW_DECKS_X + BOX_WIDTH + 2, DRAW_DECKS_Y),
+        pos=pos + (BOX_WIDTH + 2, 0),
     )
     yellow_show(
         renderer=StaticRenderer(images=[HAMSTERCOVER]),
-        pos=dPos(DRAW_DECKS_X + BOX_WIDTH + 2 + 1, DRAW_DECKS_Y + BOX_HEIGHT // 2),
+        pos=pos + (BOX_WIDTH + 2 + 1, BOX_HEIGHT // 2),
     )
     yellow_show(
         renderer=StaticRenderer([f"⠀{hamsterdeck.size()}⠀⠀⠀"]),
-        pos=dPos(DRAW_DECKS_X + BOX_WIDTH + 2 + 1, DRAW_DECKS_Y + BOX_HEIGHT - 2),
+        pos=pos + (BOX_WIDTH + 2 + 1, BOX_HEIGHT - 2),
     )
 
 

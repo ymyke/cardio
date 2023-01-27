@@ -30,6 +30,6 @@ def show_grid_decks_separator(screen: Screen, grid_width: int) -> None:
     show(
         screen,
         StaticRenderer(["—" * ((BOX_WIDTH + BOX_PADDING_LEFT) * grid_width + 4)]),
-        dPos(dpos.x - 2, dpos.y - 3),
+        dpos - (2, 3),
         color=Color.GRAY,
     )

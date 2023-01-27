@@ -2,7 +2,7 @@ from __future__ import annotations
 import pdb
 import sys
 import time
-from typing import NamedTuple, Optional
+from typing import NamedTuple, Optional, Tuple, Union
 from asciimatics.screen import Screen
 from asciimatics.effects import Print
 from asciimatics.renderers import StaticRenderer, Renderer
@@ -13,10 +13,18 @@ from cardio import GridPos, session
 
 
 class dPos(NamedTuple):
-    """Type for display position (as opposed to grid position)."""
+    """Type for display position (as opposed to grid position). Supports `+` and `-` for
+    easier coordinate calculations, e.g.: `dPos(1, 1) + (2, 3)`
+    """
 
     x: int
     y: int
+
+    def __add__(self, o: Union[dPos, Tuple[int, int]]) -> dPos:
+        return dPos(self.x + o[0], self.y + o[1])
+
+    def __sub__(self, o: Union[dPos, Tuple[int, int]]) -> dPos:
+        return dPos(self.x - o[0], self.y - o[1])
 
     @classmethod
     def from_gridpos(cls, pos: GridPos) -> dPos:
