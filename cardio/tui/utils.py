@@ -47,7 +47,7 @@ class dPos(NamedTuple):
 #     screen.refresh()
 
 
-def show(screen: Screen, renderer: Renderer, pos: dPos, color: Color = Color.WHITE):
+def show(screen: Screen, pos: dPos, renderer: Renderer, color: Color = Color.WHITE):
     if color is Color.GRAY:
         color_args = dict(colour=Screen.COLOUR_BLACK, attr=Screen.A_BOLD)
         # (BLACK + BOLD produces dark gray,
@@ -58,19 +58,19 @@ def show(screen: Screen, renderer: Renderer, pos: dPos, color: Color = Color.WHI
     screen.refresh()
 
 
-def show_text(screen: Screen, text: str, pos: dPos, color: Color = Color.WHITE) -> None:
-    show(screen, StaticRenderer(images=[text]), pos, color)
+def show_text(screen: Screen, pos: dPos, text: str, color: Color = Color.WHITE) -> None:
+    show(screen, pos, StaticRenderer(images=[text]),  color)
 
 
 def show_box(
     screen: Screen,
-    w: int,
-    h: int,
     pos: dPos,
+    w: int = BOX_WIDTH,
+    h: int = BOX_HEIGHT,
     color: Color = Color.YELLOW,
     style: int = SINGLE_LINE,
 ) -> None:
-    show(screen, Box(w, h, style=style, uni=True), pos, color)
+    show(screen,pos, Box(w, h, style=style, uni=True),  color)
 
 
 def render_value(
@@ -98,12 +98,12 @@ def show_debug(screen, txt: str):
     screen.clear_buffer(
         Color.WHITE.value, 0, 0, x=0, y=screen.height - 1, w=screen.width, h=1
     )
-    show_text(screen, txt, dPos(screen.width // 2, screen.height - 1))
+    show_text(screen, dPos(screen.width // 2, screen.height - 1), txt)
 
 
 def show_screen_resolution(screen):
     txt = f"{screen.width} x {screen.height}"
-    show_text(screen, txt, dPos(screen.width - len(txt), screen.height - 1))
+    show_text(screen, dPos(screen.width - len(txt), screen.height - 1), txt)
 
 
 def get_keycode(screen: Screen) -> Optional[int]:

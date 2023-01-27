@@ -13,14 +13,14 @@ def show_empty_grid(screen: Screen, grid_width: int) -> None:
 
 def show_slot_in_grid(screen: Screen, pos: GridPos) -> None:
     dpos = dPos.from_gridpos(pos)
-    show_box(screen, BOX_WIDTH, BOX_HEIGHT, dpos, color=Color.GRAY)
+    show_box(screen, dpos, color=Color.GRAY)
 
 
 def show_grid_decks_separator(screen: Screen, grid_width: int) -> None:
     dpos = dPos.from_gridpos(GridPos(4, 0))
     show_text(
         screen,
-        "—" * ((BOX_WIDTH + BOX_PADDING_LEFT) * grid_width + 4),
         dpos - (2, 3),
+        "—" * ((BOX_WIDTH + BOX_PADDING_LEFT) * grid_width + 4),
         color=Color.GRAY,
     )

@@ -48,9 +48,9 @@ def show_card(
         style = SINGLE_LINE
         color = Color.YELLOW
 
-    show_box(screen, BOX_WIDTH, BOX_HEIGHT, dpos, style=style, color=color)
+    show_box(screen, dpos, style=style, color=color)
     if card is not None:
-        show_text(screen, card_to_amstring(card), dpos + (2, 1))
+        show_text(screen, dpos + (2, 1), card_to_amstring(card))
 
 
 def redraw_card(screen: Screen, card: Card, pos: GridPos) -> None:

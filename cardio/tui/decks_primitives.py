@@ -20,17 +20,17 @@ def show_drawdecks(screen: Screen, drawdeck: Deck, hamsterdeck: Deck) -> None:
     DRAWCOVER = "    ⬆️⬆️⬆️⬆️⬆️⬆️⬆⬆️⬆️"
     HAMSTERCOVER = "      🐹🐹🐹"
     pos = dPos(DRAW_DECKS_X, DRAW_DECKS_Y)
-    show_box(screen, BOX_WIDTH, BOX_HEIGHT, pos)
-    show_text(screen, DRAWCOVER, pos + (1, BOX_HEIGHT // 2), Color.YELLOW)
-    show_text(screen, f"⠀{drawdeck.size()}⠀⠀⠀", pos + (1, BOX_HEIGHT - 2), Color.YELLOW)
-    show_box(screen, BOX_WIDTH, BOX_HEIGHT, pos + (BOX_WIDTH + 2, 0))
+    show_box(screen, pos)
+    show_text(screen, pos + (1, BOX_HEIGHT // 2), DRAWCOVER, Color.YELLOW)
+    show_text(screen, pos + (1, BOX_HEIGHT - 2), f"⠀{drawdeck.size()}⠀⠀⠀", Color.YELLOW)
+    show_box(screen, pos + (BOX_WIDTH + 2, 0))
     show_text(
-        screen, HAMSTERCOVER, pos + (BOX_WIDTH + 2 + 1, BOX_HEIGHT // 2), Color.YELLOW
+        screen, pos + (BOX_WIDTH + 2 + 1, BOX_HEIGHT // 2), HAMSTERCOVER, Color.YELLOW
     )
     show_text(
         screen,
-        f"⠀{hamsterdeck.size()}⠀⠀⠀",
         pos + (BOX_WIDTH + 2 + 1, BOX_HEIGHT - 2),
+        f"⠀{hamsterdeck.size()}⠀⠀⠀",
         Color.YELLOW,
     )
 

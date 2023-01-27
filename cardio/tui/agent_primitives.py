@@ -22,13 +22,13 @@ class StateWidget:
     def _show_health_bars(self, pos: dPos, diff: int, max_diff: int) -> None:
         bars = render_value(min(max_diff - diff, max_diff), "█ ", 100) + "\n"
         bars *= 2
-        show_text(self.screen, bars, pos, color=Color.CYAN)
+        show_text(self.screen, pos, bars, color=Color.CYAN)
 
     def show_computerplayer_state(self) -> None:
         show(
             self.screen,
-            FigletText("Yshl", self.NAME_FONT),
             self.computer_pos,
+            FigletText("Yshl", self.NAME_FONT),
             color=Color.GRAY,
         )
         self._show_health_bars(
@@ -49,8 +49,8 @@ class StateWidget:
 """
         show_text(
             self.screen,
-            state_str,
             self.human_pos + (0, 2),
+            state_str,
             color=Color.GRAY,
         )
 
