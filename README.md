@@ -1,7 +1,5 @@
 # Next up
 
-- Add human/computer state to log_states
-
 - Fight:
   - Finish fight, e.g. cards that die, ...
   - Add other elements:
@@ -10,6 +8,9 @@
   - All fixmes is fightvnc and tuivnc
 - Blood costs (Or some other concept? Rations? Energy? Karma? ...?)
 - Bones (other name? Spirits? Essence? Soul? ...?)
+
+- Implement some skills that have an influence on the decks (e.g., fertility, Ouroboros,
+  unkillable, ...) and see if they work well with the current deck implementation.
 
 
 # Architectural considerations
@@ -40,24 +41,14 @@
   - Draw all modules and their dependencies and think about them.
   - Should cards have a game attribute which they use to query the world (e.g., who the
     opposing agent is) and to update the world (instead of the view directly)?
-- Check out performance of animations: Esp. when running on battery power. -> Add some
-  setting that helps speed up / slow down the animations. Then do some self-timing e.g.
-  on burning a card that will automatically adjust that setting if necessary (i.e.,
-  animation takes too long or too short).
-- Can I build a keystroke command that switches from the TUI into some debug mode and
-  back into the TUI?
 
 # Todo
 
 - Terminology: agent vs player everywhere? Which is the better term? Make it consistent.
 - Look for all `grid.*=None` and use `remove_card` instead.
-- Implement some skills that have an influence on the decks (e.g., fertility, Ouroboros,
-  unkillable, ...) and see if they work well with the current deck implementation.
-- Write tests for all existing classes and all card characteristics and sigils.
+- Write tests for all card characteristics and skills.
 - Edge case: What if the grid is empty or powerless at some point during a fight? Who
   will win?
-- Display some help output in the lower right corner? Current state of the app, allowed keys, unrecognized keys, ...?
-- Add asciimatics Arrow as the human player?
 - Reduce the number of places the session module gets imported to a sensible minimum.
 
 # More animations
@@ -67,9 +58,18 @@
 
 # Ideas
 
+- Vast range of items: E.g., rucksack 🎒, bigger rucksack 🎒🎒, some item that allows me
+  to keep my leftover spirits between fights but that I can also spend to get one-time
+  somethingsomething.
 - Could shorten the player's name according to its damage. Schnuzgi -> Schnuz -> Schn ->
   ...
 - Use asciimatics' arrow as an avatar for the human player? (Or the computer?)
+- Display some help output in the lower right corner? Current state of the app, allowed
+  keys, unrecognized keys, ...?
+- Check out performance of animations: Esp. when running on battery power. -> Add some
+  setting that helps speed up / slow down the animations. Then do some self-timing e.g.
+  on burning a card that will automatically adjust that setting if necessary (i.e.,
+  animation takes too long or too short).
 
 
 # Game related
