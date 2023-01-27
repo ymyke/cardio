@@ -1,10 +1,11 @@
 import logging
-from typing import Literal, Optional
+from typing import Literal
 from . import session, Card, Deck, Grid, GridPos
 from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
 from .card_blueprints import create_cards_from_blueprints
 from .tui.decks import Decks  # FIXME tui should not be known here
+from .states_logger import StatesLogger
 
 
 class EndOfFightException(Exception):
@@ -20,7 +21,7 @@ class FightVnC:
     def __init__(self, grid: Grid) -> None:
         self.grid = grid
         self.damagestate = AgentDamageState()
-        self.states_log = ""
+        self.stateslogger = StatesLogger(self)
         # FIXME Should we also set the computerstrategy here?
 
     # --- Called by Card class ---
@@ -98,32 +99,6 @@ class FightVnC:
         # QQ: Boss fights will work differently.
         pass
 
-    def update_states_log(self, final: bool = False) -> None:
-        def card2str(card: Optional[Card]) -> str:
-            if card is None:
-                return "-"
-            symbols = "".join([s.value.symbol for s in card.skills])
-            return f"{card.name[0]}p{card.power}h{card.health}{symbols}"
-
-        s = f"Starting round {self.round_num}:\n" if not final else "Final state:\n"
-        for line in range(3):
-            s += "|"
-            for slot in range(self.grid.width):
-                card = self.grid[line][slot]
-                s += f" {card2str(card):12s}|"
-            s += "\n"
-        for deck, name in [
-            (self.decks.handdeck, "Hand"),
-            (self.decks.useddeck, "Used"),
-            (self.decks.drawdeck, "Draw"),
-            (self.decks.hamsterdeck, "Hamster"),
-        ]:
-            s += f"{name}: " + " ".join([card2str(c) for c in deck.cards]) + "\n"
-        s += "\n"
-        # FIXME Add human and computer damage, lives, maybe items, ...
-        # FIXME Add damage and gems
-        self.states_log += s
-
     # --- Controller ---
 
     def _safe_draw_card_to_deck(
@@ -166,7 +141,7 @@ class FightVnC:
 
     def handle_round_of_fight(self) -> None:  # FIXME Should be private
         logging.debug("----- Start of round %s -----", self.round_num)
-        self.update_states_log()
+        self.stateslogger.log_current_state()
         self.decks.log()
 
         # Play computer cards and animate how they appear:
@@ -226,7 +201,7 @@ class FightVnC:
             except EndOfFightException:
                 break
             self.round_num += 1
-        self.update_states_log(final=True)
+        self.stateslogger.log_current_state(final=True)
 
         # Handle win/lose conditions:
         if self._has_computer_won():
