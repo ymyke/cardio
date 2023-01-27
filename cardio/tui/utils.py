@@ -49,6 +49,11 @@ def show(screen: Screen, renderer: Renderer, pos: dPos, color: Color = Color.WHI
     screen.refresh()
 
 
+def show_text(screen: Screen, text: str, pos: dPos, color: Color = Color.WHITE):
+    show(screen, StaticRenderer(images=[text]), pos, color)
+    # TODO Use show_text everyhwere where StaticRenderer is being used
+
+
 def render_value(
     value: int,
     symbol: str,
@@ -56,7 +61,6 @@ def render_value(
     clear_after: bool = True,
     surplus_color: int = Screen.COLOUR_WHITE,
 ) -> str:
-    assert value >= 0
     nofsymbols = min(value, cap_at)
     surplus = value - nofsymbols
     surplus_str = (
@@ -65,17 +69,15 @@ def render_value(
         else ""
     )
     value_str = symbol * nofsymbols + surplus_str
-    delete_str = "⠀" * (cap_at + 4 - len(value_str)) if clear_after else ""
+    delete_str = ""
+    if clear_after:
+        delete_str = "⠀" * (cap_at + 4 - len(value_str)) * len(symbol)
     return value_str + delete_str
 
 
 def show_screen_resolution(screen):
     txt = f"{screen.width} x {screen.height}"
-    show(
-        screen,
-        StaticRenderer(images=[txt]),
-        dPos(screen.width - len(txt), screen.height - 1),
-    )
+    show_text(screen, txt, dPos(screen.width - len(txt), screen.height - 1))
 
 
 def get_keycode(screen: Screen) -> Optional[int]:
