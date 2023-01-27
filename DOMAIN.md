@@ -2,19 +2,16 @@
 ↓↓↓↓  <- 0/computer
 ☐☐☐☐  <- 1/computer
 ☐☐☐☐  <- 2/human
-- PP: The grid controls the cards. The cards don't control themselves. The grid knows
-  where each card is. A card does not know where it is.(?) [QQ: What about a skill that
-  affects cards/slots surrounding it???]
 
 # Card Slots??
-- Have some Slot class, which would enable to do something like `slot.is_empty()`
+- QQ: Have some Slot class, which would enable to do something like `slot.is_empty()`
   instead of checking for `None`?
 
 # Cards
+- Attributes: power, health, (inner) fire, spirits (what they leave implicitly)
+- Cost: number of fires or spirits
 - have meta information for curation, likes etc. -- maybe also stats?
-- Bones!!!
-- Blood / cost!!!
-- Tribes???
+- QQ: Tribes?
 
 # Card Blueprints
 - Used to instantiate concrete cards from.
@@ -49,7 +46,7 @@
 - During a fight:
   - Computer:
     - name -- can be different, esp. for boss fights
-    - lives -- usually just 1, but bosses have 2, almost more like levels in actuality
+    - lives -- usually just 1, but bosses have 2, although more like levels in actuality
     - damage (see separate discussion below)
   - Human:
     - damage (see separate discussion below)
@@ -69,8 +66,8 @@ option 2: only human tracks:
 option 3: one common game state w/o agents in FightVnC: <- Favorite! ⭐
 - human_damage: >5 => human lost; <-5 => human won
 
-# Money / Gems
-- QQ: What should be the metaphor for money? 💎?
+# Gems
+- 💎
 
 # Boss fights
 - Need a different model in Fight.handle_round_of_fight -- surely also elsewhere, e.g.
@@ -97,23 +94,3 @@ option 3: one common game state w/o agents in FightVnC: <- Favorite! ⭐
 
 # Achievements / Badges
 - for the human player
-
-# Random ideas
-- could cards gain experience with fights and other things and evolve over time (stats
-  would be permanent) but also die for real?
-- Have a location that allows me to create new cards, combining health, power and
-  skills, and give them a name and keep them. -- Or some other mechanism to create new
-  cards?
-- New concepts even for health and power?
-- Terrain and weather conditions etc. that affect the cards?
-- Maybe you can lose cards for good in a run -- in a fight? Or as a downside risk when
-  going for a particularly strong upgrade? E.g., the stronger the upgrade the higher the
-  likelihood to lose the card? -- Then, a save game and game progress score would
-  somehow take into account a hash over the entire game to make sure the game has not
-  been tampered with? Then only authoritative scores are allowed in leaderboards etc.
-  Can the TSM be used somehow to that end?
-- Corveaux special ability/animal? Can consume ghosts/souls/spirits and release them as
-  blood/energy/...?
-- Have floor tiles with special effects? I.e., more strength if a create is on it?
-- Can there be shops where you can buy stuff, including additional lives?
-- Maybe spirits could be persistent and can be taken over to the next fight?
