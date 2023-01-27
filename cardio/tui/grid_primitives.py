@@ -1,11 +1,7 @@
-from asciimatics.constants import SINGLE_LINE
-from asciimatics.renderers import Box, StaticRenderer
 from asciimatics.screen import Screen
-
 from cardio import GridPos
-
 from .constants import *
-from .utils import dPos, show
+from .utils import dPos, show_text, show_box
 
 
 def show_empty_grid(screen: Screen, grid_width: int) -> None:
@@ -17,19 +13,14 @@ def show_empty_grid(screen: Screen, grid_width: int) -> None:
 
 def show_slot_in_grid(screen: Screen, pos: GridPos) -> None:
     dpos = dPos.from_gridpos(pos)
-    show(
-        screen,
-        Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=SINGLE_LINE),
-        dpos,
-        color=Color.GRAY,
-    )
+    show_box(screen, BOX_WIDTH, BOX_HEIGHT, dpos, color=Color.GRAY)
 
 
 def show_grid_decks_separator(screen: Screen, grid_width: int) -> None:
     dpos = dPos.from_gridpos(GridPos(4, 0))
-    show(
+    show_text(
         screen,
-        StaticRenderer(["—" * ((BOX_WIDTH + BOX_PADDING_LEFT) * grid_width + 4)]),
+        "—" * ((BOX_WIDTH + BOX_PADDING_LEFT) * grid_width + 4),
         dpos - (2, 3),
         color=Color.GRAY,
     )

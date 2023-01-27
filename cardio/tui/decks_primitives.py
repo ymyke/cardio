@@ -1,15 +1,9 @@
 from typing import Literal, Tuple
-from functools import partial
-
-from asciimatics.constants import SINGLE_LINE
-from asciimatics.renderers import Box, StaticRenderer
 from asciimatics.screen import Screen
-
 from cardio import GridPos, Deck, Card
-
 from .constants import *
 from .card_primitives import highlight_card, show_card, move_card
-from .utils import dPos, show
+from .utils import dPos, show_text, show_box
 
 
 def show_handdeck_highlight(screen: Screen, slot: int, highlight: bool = True) -> None:
@@ -26,28 +20,18 @@ def show_drawdecks(screen: Screen, drawdeck: Deck, hamsterdeck: Deck) -> None:
     DRAWCOVER = "    ⬆️⬆️⬆️⬆️⬆️⬆️⬆⬆️⬆️"
     HAMSTERCOVER = "      🐹🐹🐹"
     pos = dPos(DRAW_DECKS_X, DRAW_DECKS_Y)
-    yellow_show = partial(show, screen=screen, color=Color.YELLOW)
-    yellow_show(
-        renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=SINGLE_LINE), pos=pos
+    show_box(screen, BOX_WIDTH, BOX_HEIGHT, pos)
+    show_text(screen, DRAWCOVER, pos + (1, BOX_HEIGHT // 2), Color.YELLOW)
+    show_text(screen, f"⠀{drawdeck.size()}⠀⠀⠀", pos + (1, BOX_HEIGHT - 2), Color.YELLOW)
+    show_box(screen, BOX_WIDTH, BOX_HEIGHT, pos + (BOX_WIDTH + 2, 0))
+    show_text(
+        screen, HAMSTERCOVER, pos + (BOX_WIDTH + 2 + 1, BOX_HEIGHT // 2), Color.YELLOW
     )
-    yellow_show(
-        renderer=StaticRenderer(images=[DRAWCOVER]), pos=pos + (1, BOX_HEIGHT // 2)
-    )
-    yellow_show(
-        renderer=StaticRenderer([f"⠀{drawdeck.size()}⠀⠀⠀"]),
-        pos=pos + (1, BOX_HEIGHT - 2),
-    )
-    yellow_show(
-        renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=SINGLE_LINE),
-        pos=pos + (BOX_WIDTH + 2, 0),
-    )
-    yellow_show(
-        renderer=StaticRenderer(images=[HAMSTERCOVER]),
-        pos=pos + (BOX_WIDTH + 2 + 1, BOX_HEIGHT // 2),
-    )
-    yellow_show(
-        renderer=StaticRenderer([f"⠀{hamsterdeck.size()}⠀⠀⠀"]),
-        pos=pos + (BOX_WIDTH + 2 + 1, BOX_HEIGHT - 2),
+    show_text(
+        screen,
+        f"⠀{hamsterdeck.size()}⠀⠀⠀",
+        pos + (BOX_WIDTH + 2 + 1, BOX_HEIGHT - 2),
+        Color.YELLOW,
     )
 
 

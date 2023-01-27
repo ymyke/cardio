@@ -4,7 +4,7 @@ from typing import Literal, Optional, Union
 from asciimatics.constants import DOUBLE_LINE, SINGLE_LINE
 from asciimatics.effects import Print
 from asciimatics.paths import Path
-from asciimatics.renderers import Box, Fire, StaticRenderer
+from asciimatics.renderers import Fire
 from asciimatics.screen import Screen
 
 from cardio import Card, GridPos
@@ -12,7 +12,7 @@ from cardio import Card, GridPos
 from .constants import *
 from .buffercopy import BufferCopy
 from .grid_primitives import show_slot_in_grid
-from .utils import dPos, render_value, show
+from .utils import dPos, render_value, show_text, show_box
 
 
 def card_to_amstring(c: Card) -> str:
@@ -48,9 +48,9 @@ def show_card(
         style = SINGLE_LINE
         color = Color.YELLOW
 
-    show(screen, Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=style), dpos, color=color)
+    show_box(screen, BOX_WIDTH, BOX_HEIGHT, dpos, style=style, color=color)
     if card is not None:
-        show(screen, StaticRenderer(images=[card_to_amstring(card)]), dpos + (2, 1))
+        show_text(screen, card_to_amstring(card), dpos + (2, 1))
 
 
 def redraw_card(screen: Screen, card: Card, pos: GridPos) -> None:

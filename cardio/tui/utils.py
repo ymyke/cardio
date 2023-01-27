@@ -5,8 +5,9 @@ import time
 from typing import NamedTuple, Optional, Tuple, Union
 from asciimatics.screen import Screen
 from asciimatics.effects import Print
-from asciimatics.renderers import StaticRenderer, Renderer
+from asciimatics.renderers import StaticRenderer, Box, Renderer
 from asciimatics.event import KeyboardEvent
+from asciimatics.constants import SINGLE_LINE
 from .constants import *
 from .buffercopy import BufferCopy
 from cardio import GridPos, session
@@ -57,9 +58,19 @@ def show(screen: Screen, renderer: Renderer, pos: dPos, color: Color = Color.WHI
     screen.refresh()
 
 
-def show_text(screen: Screen, text: str, pos: dPos, color: Color = Color.WHITE):
+def show_text(screen: Screen, text: str, pos: dPos, color: Color = Color.WHITE) -> None:
     show(screen, StaticRenderer(images=[text]), pos, color)
-    # TODO Use show_text everyhwere where StaticRenderer is being used
+
+
+def show_box(
+    screen: Screen,
+    w: int,
+    h: int,
+    pos: dPos,
+    color: Color = Color.YELLOW,
+    style: int = SINGLE_LINE,
+) -> None:
+    show(screen, Box(w, h, style=style, uni=True), pos, color)
 
 
 def render_value(
