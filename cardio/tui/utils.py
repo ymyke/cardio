@@ -75,6 +75,13 @@ def render_value(
     return value_str + delete_str
 
 
+def show_debug(screen, txt: str):
+    screen.clear_buffer(
+        Color.WHITE.value, 0, 0, x=0, y=screen.height - 1, w=screen.width, h=1
+    )
+    show_text(screen, txt, dPos(screen.width // 2, screen.height - 1))
+
+
 def show_screen_resolution(screen):
     txt = f"{screen.width} x {screen.height}"
     show_text(screen, txt, dPos(screen.width - len(txt), screen.height - 1))
