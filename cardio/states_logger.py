@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Optional, TYPE_CHECKING
-from cardio import Card
+from . import Card, session
 
 if TYPE_CHECKING:
     from . import FightVnC
@@ -33,7 +33,11 @@ class StatesLogger:
             (self.vnc.decks.hamsterdeck, "Hamster"),
         ]:
             s += f"{name}: " + " ".join([card2str(c) for c in deck.cards]) + "\n"
+        s += f"{self.vnc.damagestate.diff} damage, {session.humanplayer.lives} lives, "
+        s += f"{session.humanplayer.gems} gems, {session.humanplayer.spirits} spirits\n"
+        # FIXME Add items
         s += "\n"
-        # FIXME Add human and computer damage, lives, maybe items, ...
-        # FIXME Add damage and gems
         self.log += s
+
+    def print(self) -> None:
+        print(self.log)
