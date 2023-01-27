@@ -3,7 +3,7 @@ from cardio import session, Card, Deck, GridPos
 from cardio.humanstrategyvnc import HumanStrategyVnC
 from cardio.computer_strategies import Round0OnlyStrategy, PredefinedStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
-
+from cardio.agent_damage_state import AgentDamageState
 
 def equal_logs(generatedlog: str, targetlog: str) -> bool:
     are_equal = "".join(generatedlog.split()) == "".join(targetlog.split())
@@ -81,7 +81,7 @@ def test_human_gets_gems():
     assert session.humanplayer.gems == 4
 
 
-def test_human_decks_managed_correctly(mocker):  # FIXME Should get different name?
+def test_human_decks_managed_correctly():  # FIXME Should get different name?
     session.setup()
 
     original_cards = create_cards_from_blueprints(
@@ -100,7 +100,9 @@ def test_human_decks_managed_correctly(mocker):  # FIXME Should get different na
     )
 
     session.view = HumanStrategyVnC(session.grid)
-    mocker.patch("cardio.fightvnc.FightVnC.DAMAGE_DIFF_TO_WIN", new=50)
+    # Override damagestate with better health:
+    session.view.damagestate = AgentDamageState(max_diff=50)    
+
     session.view.handle_fight(computerstrategy=cs)
 
     assert len(session.humanplayer.deck.cards) == len(original_cards)

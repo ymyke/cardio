@@ -4,7 +4,7 @@ from typing import Literal, Optional, Union
 from asciimatics.constants import DOUBLE_LINE, SINGLE_LINE
 from asciimatics.effects import Print
 from asciimatics.paths import Path
-from asciimatics.renderers import Box, Fire, StaticRenderer
+from asciimatics.renderers import Fire
 from asciimatics.screen import Screen
 
 from cardio import Card, GridPos
@@ -12,7 +12,7 @@ from cardio import Card, GridPos
 from .constants import *
 from .buffercopy import BufferCopy
 from .grid_primitives import show_slot_in_grid
-from .utils import dPos, render_value, show
+from .utils import dPos, render_value, show_text, show_box
 
 
 def card_to_amstring(c: Card) -> str:
@@ -39,7 +39,7 @@ def show_card(
     `highlight` is `True`.
     """
     dpos = dPos.from_gridpos(pos) if isinstance(pos, GridPos) else pos
-    dpos = dPos(dpos.x + xoffset, dpos.y + yoffset)
+    dpos += (xoffset, yoffset)
 
     if highlight:
         style = DOUBLE_LINE
@@ -48,14 +48,9 @@ def show_card(
         style = SINGLE_LINE
         color = Color.YELLOW
 
-    show(screen, Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=style), dpos, color=color)
+    show_box(screen, dpos, style=style, color=color)
     if card is not None:
-        show(
-            screen,
-            StaticRenderer(images=[card_to_amstring(card)]),
-            dPos(dpos.x + 2, dpos.y + 1),
-            # LIXME Should this better be `dpos + (2, 1)`?
-        )
+        show_text(screen, dpos + (2, 1), card_to_amstring(card))
 
 
 def redraw_card(screen: Screen, card: Card, pos: GridPos) -> None:
@@ -73,14 +68,9 @@ def clear_card(
     screen: Screen, pos: Union[GridPos, dPos], xoffset: int = 0, yoffset: int = 0
 ) -> None:
     dpos = dPos.from_gridpos(pos) if isinstance(pos, GridPos) else pos
+    dpos += (xoffset, yoffset)
     screen.clear_buffer(
-        Screen.COLOUR_WHITE,
-        0,
-        0,
-        x=dpos.x + xoffset,
-        y=dpos.y + yoffset,
-        w=BOX_WIDTH,
-        h=BOX_HEIGHT,
+        Screen.COLOUR_WHITE, 0, 0, x=dpos.x, y=dpos.y, w=BOX_WIDTH, h=BOX_HEIGHT
     )
 
 
@@ -110,14 +100,8 @@ def burn_card(screen: Screen, pos: GridPos) -> None:
         colours=screen.colours,
         bg=screen.colours >= 256,
     )
-    fireeffect = Print(
-        screen,
-        fire,
-        y=dpos.y - overheight,
-        x=dpos.x - overwidth // 2,
-        speed=1,
-        transparent=True,
-    )
+    dpos -= (overwidth // 2, overheight)
+    fireeffect = Print(screen, fire, y=dpos.y, x=dpos.x, speed=1, transparent=True)
     buffercopy = BufferCopy(screen)
     for i in range(25):
         if i % 5 == 0:

@@ -1,15 +1,9 @@
 from typing import Literal, Tuple
-from functools import partial
-
-from asciimatics.constants import SINGLE_LINE
-from asciimatics.renderers import Box, StaticRenderer
 from asciimatics.screen import Screen
-
 from cardio import GridPos, Deck, Card
-
 from .constants import *
 from .card_primitives import highlight_card, show_card, move_card
-from .utils import dPos, show
+from .utils import dPos, show_text, show_box
 
 
 def show_handdeck_highlight(screen: Screen, slot: int, highlight: bool = True) -> None:
@@ -17,39 +11,27 @@ def show_handdeck_highlight(screen: Screen, slot: int, highlight: bool = True) -
 
 
 def show_drawdeck_highlights(screen: Screen, highlights: Tuple[bool, bool]) -> None:
-    highlight_card(screen, dPos(DRAW_DECKS_X, DRAW_DECKS_Y), highlights[0])
-    highlight_card(
-        screen, dPos(DRAW_DECKS_X + BOX_WIDTH + 2, DRAW_DECKS_Y), highlights[1]
-    )
+    pos = dPos(DRAW_DECKS_X, DRAW_DECKS_Y)
+    highlight_card(screen, pos, highlights[0])
+    highlight_card(screen, pos + (BOX_WIDTH + 2, 0), highlights[1])
 
 
 def show_drawdecks(screen: Screen, drawdeck: Deck, hamsterdeck: Deck) -> None:
     DRAWCOVER = "    ⬆️⬆️⬆️⬆️⬆️⬆️⬆⬆️⬆️"
     HAMSTERCOVER = "      🐹🐹🐹"
-    yellow_show = partial(show, screen=screen, color=Color.YELLOW)
-    yellow_show(
-        renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=SINGLE_LINE),
-        pos=dPos(DRAW_DECKS_X, DRAW_DECKS_Y),
+    pos = dPos(DRAW_DECKS_X, DRAW_DECKS_Y)
+    show_box(screen, pos)
+    show_text(screen, pos + (1, BOX_HEIGHT // 2), DRAWCOVER, Color.YELLOW)
+    show_text(screen, pos + (1, BOX_HEIGHT - 2), f"⠀{drawdeck.size()}⠀⠀⠀", Color.YELLOW)
+    show_box(screen, pos + (BOX_WIDTH + 2, 0))
+    show_text(
+        screen, pos + (BOX_WIDTH + 2 + 1, BOX_HEIGHT // 2), HAMSTERCOVER, Color.YELLOW
     )
-    yellow_show(
-        renderer=StaticRenderer(images=[DRAWCOVER]),
-        pos=dPos(DRAW_DECKS_X + 1, DRAW_DECKS_Y + BOX_HEIGHT // 2),
-    )
-    yellow_show(
-        renderer=StaticRenderer([f"⠀{drawdeck.size()}⠀⠀⠀"]),
-        pos=dPos(DRAW_DECKS_X + 1, y=DRAW_DECKS_Y + BOX_HEIGHT - 2),
-    )
-    yellow_show(
-        renderer=Box(BOX_WIDTH, BOX_HEIGHT, uni=True, style=SINGLE_LINE),
-        pos=dPos(DRAW_DECKS_X + BOX_WIDTH + 2, DRAW_DECKS_Y),
-    )
-    yellow_show(
-        renderer=StaticRenderer(images=[HAMSTERCOVER]),
-        pos=dPos(DRAW_DECKS_X + BOX_WIDTH + 2 + 1, DRAW_DECKS_Y + BOX_HEIGHT // 2),
-    )
-    yellow_show(
-        renderer=StaticRenderer([f"⠀{hamsterdeck.size()}⠀⠀⠀"]),
-        pos=dPos(DRAW_DECKS_X + BOX_WIDTH + 2 + 1, DRAW_DECKS_Y + BOX_HEIGHT - 2),
+    show_text(
+        screen,
+        pos + (BOX_WIDTH + 2 + 1, BOX_HEIGHT - 2),
+        f"⠀{hamsterdeck.size()}⠀⠀⠀",
+        Color.YELLOW,
     )
 
 

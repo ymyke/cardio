@@ -2,21 +2,30 @@ from __future__ import annotations
 import pdb
 import sys
 import time
-from typing import NamedTuple, Optional
+from typing import NamedTuple, Optional, Tuple, Union
 from asciimatics.screen import Screen
 from asciimatics.effects import Print
-from asciimatics.renderers import StaticRenderer, Renderer
+from asciimatics.renderers import StaticRenderer, Box, Renderer
 from asciimatics.event import KeyboardEvent
+from asciimatics.constants import SINGLE_LINE
 from .constants import *
 from .buffercopy import BufferCopy
 from cardio import GridPos, session
 
 
 class dPos(NamedTuple):
-    """Type for display position (as opposed to grid position)."""
+    """Type for display position (as opposed to grid position). Supports `+` and `-` for
+    easier coordinate calculations, e.g.: `dPos(1, 1) + (2, 3)`
+    """
 
     x: int
     y: int
+
+    def __add__(self, o: Union[dPos, Tuple[int, int]]) -> dPos:
+        return dPos(self.x + o[0], self.y + o[1])
+
+    def __sub__(self, o: Union[dPos, Tuple[int, int]]) -> dPos:
+        return dPos(self.x - o[0], self.y - o[1])
 
     @classmethod
     def from_gridpos(cls, pos: GridPos) -> dPos:
@@ -38,7 +47,7 @@ class dPos(NamedTuple):
 #     screen.refresh()
 
 
-def show(screen: Screen, renderer: Renderer, pos: dPos, color: Color = Color.WHITE):
+def show(screen: Screen, pos: dPos, renderer: Renderer, color: Color = Color.WHITE):
     if color is Color.GRAY:
         color_args = dict(colour=Screen.COLOUR_BLACK, attr=Screen.A_BOLD)
         # (BLACK + BOLD produces dark gray,
@@ -49,6 +58,21 @@ def show(screen: Screen, renderer: Renderer, pos: dPos, color: Color = Color.WHI
     screen.refresh()
 
 
+def show_text(screen: Screen, pos: dPos, text: str, color: Color = Color.WHITE) -> None:
+    show(screen, pos, StaticRenderer(images=[text]),  color)
+
+
+def show_box(
+    screen: Screen,
+    pos: dPos,
+    w: int = BOX_WIDTH,
+    h: int = BOX_HEIGHT,
+    color: Color = Color.YELLOW,
+    style: int = SINGLE_LINE,
+) -> None:
+    show(screen,pos, Box(w, h, style=style, uni=True),  color)
+
+
 def render_value(
     value: int,
     symbol: str,
@@ -56,7 +80,6 @@ def render_value(
     clear_after: bool = True,
     surplus_color: int = Screen.COLOUR_WHITE,
 ) -> str:
-    assert value >= 0
     nofsymbols = min(value, cap_at)
     surplus = value - nofsymbols
     surplus_str = (
@@ -65,17 +88,22 @@ def render_value(
         else ""
     )
     value_str = symbol * nofsymbols + surplus_str
-    delete_str = "⠀" * (cap_at + 4 - len(value_str)) if clear_after else ""
+    delete_str = ""
+    if clear_after:
+        delete_str = "⠀" * (cap_at + 4 - len(value_str)) * len(symbol)
     return value_str + delete_str
+
+
+def show_debug(screen, txt: str):
+    screen.clear_buffer(
+        Color.WHITE.value, 0, 0, x=0, y=screen.height - 1, w=screen.width, h=1
+    )
+    show_text(screen, dPos(screen.width // 2, screen.height - 1), txt)
 
 
 def show_screen_resolution(screen):
     txt = f"{screen.width} x {screen.height}"
-    show(
-        screen,
-        StaticRenderer(images=[txt]),
-        dPos(screen.width - len(txt), screen.height - 1),
-    )
+    show_text(screen, dPos(screen.width - len(txt), screen.height - 1), txt)
 
 
 def get_keycode(screen: Screen) -> Optional[int]:

@@ -36,9 +36,7 @@ class TUIFightVnC(FightVnC):
         if self.debug:
             show_screen_resolution(self.screen)
         atexit.register(self.close)
-        self.state_widget = StateWidget(
-            self.screen, self.grid.width, self.DAMAGE_DIFF_TO_WIN
-        )
+        self.state_widget = StateWidget(self.screen, self.grid.width, self.damagestate)
 
     def close(self) -> None:
         self.screen.close()
@@ -210,4 +208,4 @@ class TUIFightVnC(FightVnC):
         show_card_to_handdeck(self.screen, handdeck, card, whichdeck)
 
     def show_agents_state(self) -> None:
-        self.state_widget.show_all(self.human_damage)
+        self.state_widget.show_all()

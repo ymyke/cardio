@@ -1,6 +1,7 @@
 import logging
 from typing import Literal, Optional
 from . import session, Card, Deck, Grid, GridPos
+from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
 from .card_blueprints import create_cards_from_blueprints
 from .tui.decks import Decks  # FIXME tui should not be known here
@@ -16,11 +17,9 @@ class FightVnC:
       is still in the grid when the method is called.
     """
 
-    DAMAGE_DIFF_TO_WIN = 5  # Amount of damage difference to win a fight
-
     def __init__(self, grid: Grid) -> None:
         self.grid = grid
-        self.human_damage = 0
+        self.damagestate = AgentDamageState()
         self.states_log = ""
         # FIXME Should we also set the computerstrategy here?
 
@@ -82,17 +81,9 @@ class FightVnC:
     def handle_damage(self, howmuch: int, source: Card) -> None:
         assert source.get_linei() in (1, 2)
         if source.get_linei() == 1:
-            self.human_damage += howmuch
-            who = "Human"
+            self.damagestate.damage_human(howmuch)
         else:
-            self.human_damage -= howmuch
-            who = "Computer"
-        logging.debug(
-            "%s receives %s damage, human_damage now at %s",
-            who,
-            howmuch,
-            self.human_damage,
-        )
+            self.damagestate.damage_computer(howmuch)
         # FIXME Add some animation for for damage
         self.show_agents_state()
 
@@ -149,7 +140,7 @@ class FightVnC:
         self.decks.handdeck.add_card(card)
 
     def _has_computer_won(self) -> bool:
-        return self.human_damage >= self.DAMAGE_DIFF_TO_WIN or not any(
+        return self.damagestate.has_computer_won() or not any(
             c.power > 0
             for c in self.grid.lines[2]
             + self.decks.handdeck.cards
@@ -167,7 +158,7 @@ class FightVnC:
         # differently in the UI or at least explained?
 
     def _has_human_won(self) -> bool:
-        return self.human_damage <= -self.DAMAGE_DIFF_TO_WIN
+        return self.damagestate.has_human_won()
 
     def _check_for_end_of_fight(self) -> None:
         if self._has_computer_won() or self._has_human_won():
@@ -243,8 +234,7 @@ class FightVnC:
             session.humanplayer.lives -= 1
             # FIXME Check for game over here or later on
         if self._has_human_won():
-            overflow = abs(self.human_damage) - self.DAMAGE_DIFF_TO_WIN
-            session.humanplayer.gems += overflow
+            session.humanplayer.gems += self.damagestate.get_overflow()
             # FIXME Animate overflow damage that turns into gems
             self.human_wins_fight()
 
