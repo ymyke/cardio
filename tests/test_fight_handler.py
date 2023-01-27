@@ -5,6 +5,7 @@ from cardio.computer_strategies import Round0OnlyStrategy, PredefinedStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
 from cardio.agent_damage_state import AgentDamageState
 
+
 def equal_logs(generatedlog: str, targetlog: str) -> bool:
     are_equal = "".join(generatedlog.split()) == "".join(targetlog.split())
     if not are_equal:
@@ -64,7 +65,7 @@ Used:
 Draw: Pp1h2🚀
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 """
-    assert equal_logs(session.view.states_log, target_states_log)
+    assert equal_logs(session.view.stateslogger.log, target_states_log)
 
 
 def test_human_gets_gems():
@@ -101,7 +102,7 @@ def test_human_decks_managed_correctly():  # FIXME Should get different name?
 
     session.view = HumanStrategyVnC(session.grid)
     # Override damagestate with better health:
-    session.view.damagestate = AgentDamageState(max_diff=50)    
+    session.view.damagestate = AgentDamageState(max_diff=50)
 
     session.view.handle_fight(computerstrategy=cs)
 
@@ -172,4 +173,4 @@ Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1
 """
 
-    assert equal_logs(session.view.states_log, target_states_log)
+    assert equal_logs(session.view.stateslogger.log, target_states_log)
