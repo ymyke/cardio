@@ -1,11 +1,6 @@
 # Next up
 
-- Why is human damage not updated in tui?
-
-- FIXME Animate overflow damage that turns into gems
-- FIXME Add some animation for for damage
 - Add human/computer state to log_states
-
 
 - Fight:
   - Finish fight, e.g. cards that die, ...
@@ -15,6 +10,7 @@
   - All fixmes is fightvnc and tuivnc
 - Blood costs (Or some other concept? Rations? Energy? Karma? ...?)
 - Bones (other name? Spirits? Essence? Soul? ...?)
+
 
 # Architectural considerations
 
@@ -63,6 +59,11 @@
 - Display some help output in the lower right corner? Current state of the app, allowed keys, unrecognized keys, ...?
 - Add asciimatics Arrow as the human player?
 - Reduce the number of places the session module gets imported to a sensible minimum.
+
+# More animations
+
+- When an agent loses a health bar.
+- Animate overflow damage that turns into gems.
 
 # Ideas
 
