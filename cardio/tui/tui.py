@@ -4,7 +4,7 @@ from typing import Literal
 
 from asciimatics.screen import Screen
 
-from cardio import Card, Deck, FightVnC, GridPos, session
+from cardio import Card, Deck, FightVnC, GridPos
 
 from .buffercopy import BufferCopy
 from .card_primitives import (
