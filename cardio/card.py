@@ -23,9 +23,14 @@ class Card:
     health: int = 0
 
     def __post_init__(self) -> None:
-        assert self.cost_fire * self.cost_spirits == 0, "At least one must be 0"
-        # QQ: Will we ever have cards that can have both cost_fire and cost_spirits? If
-        # so, would that be AND or OR?
+        assert self.costs_fire * self.costs_spirits == 0, (
+            "Either fire or spirit costs must be 0. "
+            "Hybrids are not supported at this time."
+            # QQ: Will we ever have cards that can have both cost_fire and cost_spirits?
+            # If so, would that be AND or OR? Note that such hybrids would add
+            # considerable complexity to the UI, since the player would have to be able
+            # to choose how much of either to use (unless specified algorithmically).
+        )
         if self.power == 0 or self.health == 0:
             # (This test allows to explicitly set power and health, e.g., for tests.)
             self.reset()
