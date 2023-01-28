@@ -9,19 +9,23 @@ from . import session
 @dataclass
 class Card:
     name: str
-    # QQ: Could cards have an icon that gets displayed, e.g., top right of the card?
-    # QQ: Then only pick animal (and plant?) types that have an emoji?
-    initial_power: int
-    initial_health: int
-    # FIXME How much blood needed?
-    # FIXME Bones...
+    initial_power: int  # 💪
+    initial_health: int  # 💓
+    cost_fire: int  # How much fire 🔥 needed
 
-    # Derived attributes:
+    # Optional attributes:
+    skills: SkillList = field(default_factory=list)
+    cost_spirits: int = 0  # How many spirits 👻 needed
+    spirits: int = 1  # How many spirits this card generates upon death 👻
+
+    # post_init attributes:
     power: int = 0
     health: int = 0
-    skills: SkillList = field(default_factory=list)
 
     def __post_init__(self) -> None:
+        assert self.cost_fire * self.cost_spirits == 0, "At least one must be 0"
+        # QQ: Will we ever have cards that can have both cost_fire and cost_spirits? If
+        # so, would that be AND or OR?
         if self.power == 0 or self.health == 0:
             # (This test allows to explicitly set power and health, e.g., for tests.)
             self.reset()

@@ -12,8 +12,8 @@ cs = Round0OnlyStrategy(
     grid=session.grid,
     cards=[
         # type:ignore
-        (GridPos(0, 1), Card(name="Steed", initial_power=1, initial_health=10)),
-        (GridPos(1, 0), Card(name="Dog", initial_power=1, initial_health=5)),
+        (GridPos(0, 1), Card("Steed", 1, 10, 1)),
+        (GridPos(1, 0), Card("Dog", 1, 5, 1)),
     ],
 )
 

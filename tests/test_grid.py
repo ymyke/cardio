@@ -4,9 +4,9 @@ from cardio import Grid, Card, GridPos
 
 def get_test_grid() -> Grid:
     g = Grid(width=4)
-    g[2][3] = Card("X", 1, 1)
-    g[1][3] = Card("Y", 1, 1)
-    g[2][2] = Card("Z", 1, 1)
+    g[2][3] = Card("X", 1, 1, 1)
+    g[1][3] = Card("Y", 1, 1, 1)
+    g[2][2] = Card("Z", 1, 1, 1)
     return g
 
 
@@ -23,7 +23,7 @@ def test_is_empty():
 
 def test_access_grid():
     g = Grid(width=4)
-    testcard = Card("X", 1, 1)
+    testcard = Card("X", 1, 1, 1)
     # Direct access:
     g[2][3] = testcard
     assert g[2][3] is testcard
@@ -49,7 +49,7 @@ def test_find_card():
 
 
 def test_find_nongrid_card():
-    assert get_test_grid().find_card(Card("X", 1, 1)) is None
+    assert get_test_grid().find_card(Card("X", 1, 1, 1)) is None
 
 
 def test_get_opposing_card():
@@ -89,6 +89,6 @@ def test_activate_line(mocker):
 def test_prepare_line(mocker):
     spy = mocker.patch("cardio.card.Card.prepare")
     g = get_test_grid()
-    g[0][0] = Card("X", 1, 1)
+    g[0][0] = Card("X", 1, 1, 1)
     g.prepare_line()
     assert spy.call_count == 1
