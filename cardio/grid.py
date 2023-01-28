@@ -62,6 +62,9 @@ class Grid:
         assert self.lines[pos.line][pos.slot] is None
         self.lines[pos.line][pos.slot] = card
 
+    def clear_position(self, pos: GridPos) -> None:
+        self.lines[pos.line][pos.slot] = None
+
     def get_opposing_card(self, card: Card) -> Optional[Card]:
         pos = self.find_card(card)
         assert pos is not None
