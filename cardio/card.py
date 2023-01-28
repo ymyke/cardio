@@ -11,12 +11,13 @@ class Card:
     name: str
     initial_power: int  # 💪
     initial_health: int  # 💓
-    cost_fire: int  # How much fire 🔥 needed
+    costs_fire: int  # How much fire 🔥 needed
 
     # Optional attributes:
     skills: SkillList = field(default_factory=list)
-    cost_spirits: int = 0  # How many spirits 👻 needed
-    spirits: int = 1  # How many spirits this card generates upon death 👻
+    costs_spirits: int = 0  # How many spirits 👻 needed
+    has_spirits: int = 1  # How many spirits this card generates upon death 👻
+    has_fire: int = 1  # How muc fire this card is worth when sacrificed 🔥
 
     # post_init attributes:
     power: int = 0
