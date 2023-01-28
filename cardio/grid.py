@@ -58,8 +58,6 @@ class Grid:
     def get_card(self, pos: GridPos) -> Optional[Card]:
         return self.lines[pos.line][pos.slot]
 
-    # TODO Use get_card and set_card wherever the grid is accessed directly.
-
     def set_card(self, pos: GridPos, card: Card) -> None:
         assert self.lines[pos.line][pos.slot] is None
         self.lines[pos.line][pos.slot] = card
