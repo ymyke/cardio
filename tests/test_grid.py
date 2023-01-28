@@ -24,9 +24,14 @@ def test_is_empty():
 def test_access_grid():
     g = Grid(width=4)
     testcard = Card("X", 1, 1)
+    # Direct access:
     g[2][3] = testcard
     assert g[2][3] is testcard
     assert g.lines == [[None] * 4, [None] * 4, [None] * 3 + [testcard]]
+    # Access via set_card and get_card:
+    assert g.get_card(GridPos(2, 3)) is testcard
+    g.set_card(GridPos(0, 0), testcard)
+    assert g[0][0] is testcard
 
 
 def test_invalid_access_to_grid():
