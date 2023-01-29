@@ -89,12 +89,12 @@ def render_value(
     symbol: str,
     cap_at: int = 5,
     clear_after: bool = True,
-    surplus_color: int = Screen.COLOUR_WHITE,
+    surplus_color: Color = Color.WHITE
 ) -> str:
     nofsymbols = min(value, cap_at)
     surplus = value - nofsymbols
     surplus_str = (
-        f"${{{surplus_color}}}+{surplus}${{{Screen.COLOUR_WHITE}}}"
+        f"${{{surplus_color.value}}}+{surplus}${{{Color.WHITE.value}}}"
         if surplus > 0
         else ""
     )

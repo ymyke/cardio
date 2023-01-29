@@ -43,8 +43,8 @@ class StateWidget:
         )
         state_str = f"""\
 {FigletText("Schnuzgi", self.NAME_FONT)}
-{render_value(session.humanplayer.lives, '💓', surplus_color=Screen.COLOUR_RED)}
-{render_value(session.humanplayer.gems, '💎', surplus_color=Screen.COLOUR_BLUE)}
+{render_value(session.humanplayer.lives, '💓', surplus_color=Color.RED)}
+{render_value(session.humanplayer.gems, '💎', surplus_color=Color.BLUE)}
 {render_value(session.humanplayer.spirits, '👻')}
 """
         show_text(
