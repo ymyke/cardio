@@ -62,6 +62,17 @@ def show_text(screen: Screen, pos: dPos, text: str, color: Color = Color.WHITE) 
     show(screen, pos, StaticRenderer(images=[text]),  color)
 
 
+def show_text_ra(
+    screen: Screen, pos: dPos, text: str, color: Color = Color.WHITE
+) -> None:
+    """Right-aligned text."""
+    pure_text = str(StaticRenderer([text]))  # Remove asciimatics color codes
+    num_asciis = len(pure_text.encode("ascii", "ignore"))
+    num_nonasciis = len(pure_text) - num_asciis
+    xoffest = num_asciis + 2 * num_nonasciis
+    show_text(screen, pos - (xoffest, 0), text, color)
+
+
 def show_box(
     screen: Screen,
     pos: dPos,
