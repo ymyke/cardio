@@ -7,7 +7,7 @@ def test_placement_manager():
     g[2][0] = Card("X", 1, 1, 1)
     g[2][1] = Card("Y", 1, 1, 1)
 
-    p = PlacementManager(g, Card("T", 1, 1, 1))
+    p = PlacementManager(g, 0, Card("T", 1, 1, 1))
     assert not p.is_marked(GridPos(2, 0))
     assert not p.can_mark(GridPos(2, 2))
     assert p.can_mark(GridPos(2, 0))
@@ -34,7 +34,7 @@ def test_placement_manager():
 def test_can_mark():
     g = Grid(width=4)
     g[2][0] = Card("X", 1, 1, 1)
-    p = PlacementManager(g, Card("T", 1, 1, 1))
+    p = PlacementManager(g, 0, Card("T", 1, 1, 1))
 
     assert not p.can_mark(GridPos(1, 0))
     assert not p.can_mark(GridPos(0, 0))
@@ -52,7 +52,41 @@ def test_can_mark():
     g.get_card(GridPos(2, 0)).has_fire = 0  # type:ignore
     assert not p.can_mark(GridPos(2, 0))
 
+    p.target_card.costs_fire = 0
+    p.target_card.costs_spirits = 1
+    p.available_spirits = 0
+    assert not p.can_mark(GridPos(2, 0))
+    assert not p.can_mark(GridPos(2, 1))
+    p.available_spirits = 1
+    assert not p.can_mark(GridPos(2, 0))
+    assert p.can_mark(GridPos(2, 1))
+
 
 def test_never_ready_without_marked_positions():
-    p = PlacementManager(Grid(width=4), Card("T", 1, 1, 0))
+    p = PlacementManager(Grid(width=4), 0, Card("T", 1, 1, 0))
     assert not p.ready_to_place()
+
+
+def test_is_placeable():
+    g = Grid(width=4)
+    g[2][0] = Card("X", 1, 1, 1)
+    g[2][1] = Card("X", 1, 1, 1)
+    g[2][2] = Card("X", 1, 1, 1)
+    g[2][3] = Card("X", 1, 1, 1)
+    p = PlacementManager(g, 0, Card("T", 1, 1, 1))
+    # Fire:
+    assert p.is_placeable()
+    p.target_card.costs_fire = 0
+    assert not p.is_placeable()
+    g[2][3] = None
+    assert p.is_placeable()
+    p.target_card.costs_fire = 3
+    assert p.is_placeable()
+    p.target_card.costs_fire = 4
+    assert not p.is_placeable()
+    # Spirits:
+    p.target_card.costs_fire = 0
+    p.target_card.costs_spirits = 1
+    assert not p.is_placeable()
+    p.available_spirits = 1
+    assert p.is_placeable()
