@@ -4,6 +4,21 @@ from cardio import GridPos, Grid, Card
 
 
 class PlacementManager:
+    """Makes sure card placement conditions are met, especially in terms of their fire
+    cost.
+
+    There are 3 general cases:
+    
+    - `target_card` costs >1 fire: Make sure we have positions with cards marked that
+      add up to the necessary fire. 
+    - `target_card costs 1 fire: Make sure we have a position with a card with at least
+      1 fire marked.
+    - `target_card` costs 0 fire: Make sure we have a position _without_ a card marked.
+
+    In the latter two cases, `target_card` will immediately placed in the respective
+    position.
+    """
+
     def __init__(self, grid: Grid, target_card: Card) -> None:
         self.grid = grid
         self.target_card = target_card
