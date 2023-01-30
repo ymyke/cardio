@@ -132,14 +132,15 @@ class TUIFightVnC(FightVnC):
                 show_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
                 return
 
-    def _handle_human_places_card(self, card: Card, from_slot: int) -> bool:
+    def _handle_human_places_card(self, from_slot: int) -> bool:
         """Human player places a card she chose from her handdeck in her line. Returns
         `True` if the card was actually placed, `False` otherwise (i.e., player aborted
         via Escape key).
         """
         buffercopy = BufferCopy(self.screen)
         cursor = 0  # Cursor within line 2
-        pmgr = PlacementManager(self.grid, card)
+        target_card = self.decks.handdeck.cards[from_slot]
+        pmgr = PlacementManager(self.grid, target_card)
         while True:
             buffercopy.copyback()
             cursor_pos = GridPos(2, cursor)
@@ -165,12 +166,12 @@ class TUIFightVnC(FightVnC):
                     clear_card(self.screen, sacrifice_pos)
                     show_slot_in_grid(self.screen, sacrifice_pos)
                 pmgr.do_place()
-                self.show_human_places_card(card, from_slot, cursor)
-                self.decks.useddeck.add_card(card)
-                logging.debug("Human plays %s in %s", card.name, cursor)
+                self.show_human_places_card(target_card, from_slot, cursor)
+                self.decks.useddeck.add_card(target_card)
+                self.decks.handdeck.pick_card(from_slot)
+                redraw_handdeck(self.screen, self.decks.handdeck, from_slot)
+                logging.debug("Human plays %s in %s", target_card.name, cursor)
                 return True
-                # TODO Which part of the placement is done here and which part in
-                # handle_human_plays_card?
 
     def handle_human_plays_card(self) -> None:
         """Human player picks a card from the hand to play. Also handles I key for
@@ -189,15 +190,12 @@ class TUIFightVnC(FightVnC):
             elif keycode == Screen.KEY_RIGHT:
                 cursor = min(self.decks.handdeck.size() - 1, cursor + 1)
             elif keycode == Screen.KEY_UP:
-                # FIXME Check if card is playable at all
+                # TODO Check if card is playable at all
                 # Don't pick the card yet (i.e., don't remove it from the deck yet)
-                # because the player might still abort the placing  of the card:
-                card = self.decks.handdeck.cards[cursor]
-                has_placed = self._handle_human_places_card(card, cursor)
+                # because the player might still abort the placing of the card:
+                has_placed = self._handle_human_places_card(cursor)
                 if has_placed:
-                    self.decks.handdeck.pick_card(cursor)
                     cursor = min(self.decks.handdeck.size() - 1, cursor)
-                    redraw_handdeck(self.screen, self.decks.handdeck, cursor)
                     buffercopy.update()
                 else:
                     # Otherwise, we return bc the process was aborted by the user and
