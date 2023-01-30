@@ -125,7 +125,7 @@ def get_keycode(screen: Screen) -> Optional[int]:
     event = screen.get_event()
     if not isinstance(event, KeyboardEvent):
         # Add a tiny pause if there is no event to reduce CPU load while polling:
-        time.sleep(0.02)
+        time.sleep(0.05)
         return None
     if event.key_code == ord("$"):  # hard exit
         sys.exit(0)
