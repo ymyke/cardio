@@ -161,7 +161,7 @@ class TUIFightVnC(FightVnC):
                 return False
 
             if pmgr.ready_to_place():
-                for sacrifice_pos in (pos for pos in pmgr.get_all_pos()):
+                for sacrifice_pos in pmgr.get_all_pos():
                     clear_card(self.screen, sacrifice_pos)
                     show_slot_in_grid(self.screen, sacrifice_pos)
                 pmgr.do_place()
