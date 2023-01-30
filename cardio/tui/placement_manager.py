@@ -8,9 +8,9 @@ class PlacementManager:
     cost.
 
     There are 3 general cases:
-    
+
     - `target_card` costs >1 fire: Make sure we have positions with cards marked that
-      add up to the necessary fire. 
+      add up to the necessary fire.
     - `target_card costs 1 fire: Make sure we have a position with a card with at least
       1 fire marked.
     - `target_card` costs 0 fire: Make sure we have a position _without_ a card marked.
@@ -71,7 +71,10 @@ class PlacementManager:
             for pos in self.marked_positions
             if self.grid.get_card(pos) is not None  # TODO Make nicer
         )
-        return available_fire >= self.target_card.costs_fire
+        return (
+            len(self.marked_positions) > 0
+            and available_fire >= self.target_card.costs_fire
+        )
 
     def do_place(self) -> None:
         for pos in self.marked_positions:

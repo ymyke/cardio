@@ -51,3 +51,8 @@ def test_can_mark():
     assert p.can_mark(GridPos(2, 0))
     g.get_card(GridPos(2, 0)).has_fire = 0  # type:ignore
     assert not p.can_mark(GridPos(2, 0))
+
+
+def test_never_ready_without_marked_positions():
+    p = PlacementManager(Grid(width=4), Card("T", 1, 1, 0))
+    assert not p.ready_to_place()
