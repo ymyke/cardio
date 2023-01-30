@@ -77,7 +77,9 @@ class PlacementManager:
         )
 
     def do_place(self) -> None:
+        """Note that this method only handles the grid. Any updates of decks and views
+        must be done in addition.
+        """
         for pos in self.marked_positions:
             self.grid.clear_position(pos)
         self.grid.set_card(self.get_last_pos(), self.target_card)
-        # TODO Card needs to be removed from the deck & needs animation
