@@ -4,7 +4,7 @@ from typing import Literal
 
 from asciimatics.screen import Screen
 
-from cardio import Card, Deck, FightVnC, GridPos
+from cardio import Card, Deck, FightVnC, GridPos, session
 
 from .buffercopy import BufferCopy
 from .card_primitives import (
@@ -25,12 +25,8 @@ from .decks_primitives import (
 )
 from .grid_primitives import show_empty_grid, show_slot_in_grid
 from .agent_primitives import StateWidget
-from .placement_manager import PlacementManager
+from .placement_manager import PlacementManager, PlacementAbortedException
 from .utils import show_screen_resolution, get_keycode
-
-
-class EscapeKeyException(Exception):
-    pass
 
 
 class TUIFightVnC(FightVnC):
@@ -138,12 +134,17 @@ class TUIFightVnC(FightVnC):
 
     def _handle_human_places_card(self, from_slot: int) -> None:
         """Human player places a card she chose from her handdeck in her line. Raises
-        `EscapeKeyException` if player aborts the process.
+        `PlacementAbortedException` if the process is aborted (either by the code or by
+        the player).
         """
+        target_card = self.decks.handdeck.cards[from_slot]
+        pmgr = PlacementManager(self.grid, session.humanplayer.spirits, target_card)
+        if not pmgr.is_placeable():
+            # FIXME Add some animation / user feedback here?
+            raise PlacementAbortedException
+
         buffercopy = BufferCopy(self.screen)
         cursor = 0  # Cursor within line 2
-        target_card = self.decks.handdeck.cards[from_slot]
-        pmgr = PlacementManager(self.grid, target_card)
         while not pmgr.ready_to_place():
             buffercopy.copyback()
             cursor_pos = GridPos(2, cursor)
@@ -162,7 +163,7 @@ class TUIFightVnC(FightVnC):
                     buffercopy.update()
             elif keycode == Screen.KEY_ESCAPE:
                 buffercopy.copyback()
-                raise EscapeKeyException
+                raise PlacementAbortedException
 
         # Now ready to place:
         for sacrifice_pos in pmgr.get_all_pos():
@@ -193,12 +194,11 @@ class TUIFightVnC(FightVnC):
             elif keycode == Screen.KEY_RIGHT:
                 cursor = min(self.decks.handdeck.size() - 1, cursor + 1)
             elif keycode == Screen.KEY_UP:
-                # TODO Check if card is playable at all
                 try:
                     self._handle_human_places_card(cursor)
                     cursor = min(self.decks.handdeck.size() - 1, cursor)
                     buffercopy.update()
-                except EscapeKeyException:
+                except PlacementAbortedException:
                     pass
             elif keycode in (ord("i"), ord("I")):
                 pass  # FIXME Inventory!
