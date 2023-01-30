@@ -29,6 +29,10 @@ from .placement_manager import PlacementManager
 from .utils import show_screen_resolution, get_keycode
 
 
+class EscapeKeyException(Exception):
+    pass
+
+
 class TUIFightVnC(FightVnC):
     def __init__(self, debug: bool = False, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
@@ -132,16 +136,15 @@ class TUIFightVnC(FightVnC):
                 show_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
                 return
 
-    def _handle_human_places_card(self, from_slot: int) -> bool:
-        """Human player places a card she chose from her handdeck in her line. Returns
-        `True` if the card was actually placed, `False` otherwise (i.e., player aborted
-        via Escape key).
+    def _handle_human_places_card(self, from_slot: int) -> None:
+        """Human player places a card she chose from her handdeck in her line. Raises
+        `EscapeKeyException` if player aborts the process.
         """
         buffercopy = BufferCopy(self.screen)
         cursor = 0  # Cursor within line 2
         target_card = self.decks.handdeck.cards[from_slot]
         pmgr = PlacementManager(self.grid, target_card)
-        while True:
+        while not pmgr.ready_to_place():
             buffercopy.copyback()
             cursor_pos = GridPos(2, cursor)
             highlight_card(self.screen, cursor_pos)
@@ -159,19 +162,18 @@ class TUIFightVnC(FightVnC):
                     buffercopy.update()
             elif keycode == Screen.KEY_ESCAPE:
                 buffercopy.copyback()
-                return False
+                raise EscapeKeyException
 
-            if pmgr.ready_to_place():
-                for sacrifice_pos in pmgr.get_all_pos():
-                    clear_card(self.screen, sacrifice_pos)
-                    show_slot_in_grid(self.screen, sacrifice_pos)
-                pmgr.do_place()
-                self.show_human_places_card(target_card, from_slot, cursor)
-                self.decks.useddeck.add_card(target_card)
-                self.decks.handdeck.pick_card(from_slot)
-                redraw_handdeck(self.screen, self.decks.handdeck, from_slot)
-                logging.debug("Human plays %s in %s", target_card.name, cursor)
-                return True
+        # Now ready to place:
+        for sacrifice_pos in pmgr.get_all_pos():
+            clear_card(self.screen, sacrifice_pos)
+            show_slot_in_grid(self.screen, sacrifice_pos)
+        pmgr.do_place()
+        self.show_human_places_card(target_card, from_slot, cursor)
+        self.decks.useddeck.add_card(target_card)
+        self.decks.handdeck.pick_card(from_slot)
+        redraw_handdeck(self.screen, self.decks.handdeck, from_slot)
+        logging.debug("Human plays %s in %s", target_card.name, cursor)
 
     def handle_human_plays_card(self) -> None:
         """Human player picks a card from the hand to play. Also handles I key for
@@ -184,6 +186,7 @@ class TUIFightVnC(FightVnC):
             buffercopy.copyback()
             if not self.decks.handdeck.is_empty():
                 show_handdeck_highlight(self.screen, cursor)
+
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
@@ -191,23 +194,17 @@ class TUIFightVnC(FightVnC):
                 cursor = min(self.decks.handdeck.size() - 1, cursor + 1)
             elif keycode == Screen.KEY_UP:
                 # TODO Check if card is playable at all
-                # Don't pick the card yet (i.e., don't remove it from the deck yet)
-                # because the player might still abort the placing of the card:
-                has_placed = self._handle_human_places_card(cursor)
-                if has_placed:
+                try:
+                    self._handle_human_places_card(cursor)
                     cursor = min(self.decks.handdeck.size() - 1, cursor)
                     buffercopy.update()
-                else:
-                    # Otherwise, we return bc the process was aborted by the user and
-                    # won't update the cursor.
-                    # FIXME Implement this w an exception rather than the True/False
-                    # mechanics?
+                except EscapeKeyException:
                     pass
             elif keycode in (ord("i"), ord("I")):
                 pass  # FIXME Inventory!
             elif keycode in (ord("c"), ord("C")):
                 buffercopy.copyback()
-                return
+                break
 
     def show_empty_grid(self, grid_width: int) -> None:
         show_empty_grid(self.screen, grid_width)
