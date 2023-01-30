@@ -12,18 +12,26 @@ from cardio import Card, GridPos
 from .constants import *
 from .buffercopy import BufferCopy
 from .grid_primitives import show_slot_in_grid
-from .utils import dPos, render_value, show_text, show_box
+from .utils import dPos, render_value, show_text, show_text_ra, show_box
 
 
-def card_to_amstring(c: Card) -> str:
-    """Produce asciimatics string from card."""
-    s = f"""\
-{c.name}
-{render_value(c.power, "💪", surplus_color=Screen.COLOUR_YELLOW)}
-{render_value(c.health, "💓", surplus_color=Screen.COLOUR_RED)}
-{"".join(s.value.symbol for s in c.skills)}
-"""
-    return s
+def show_card_contents(screen: Screen, card: Card, pos: dPos) -> None:
+    show_text(screen, pos + (2, 1), card.name)
+    power = render_value(card.power, "💪", surplus_color=Color.YELLOW)
+    show_text(screen, pos + (2, 2), power)
+    health = render_value(card.health, "💓", surplus_color=Color.RED)
+    show_text(screen, pos + (2, 3), health)
+    skills = "".join(s.value.symbol for s in card.skills)
+    show_text(screen, pos + (2, 4), skills)
+    if card.costs_fire > 0:
+        cost = render_value(
+            card.costs_fire, "🔥", surplus_color=Color.YELLOW, clear_after=False
+        )
+    else:
+        cost = render_value(
+            card.costs_spirits, "👻", surplus_color=Color.WHITE, clear_after=False
+        )
+    show_text_ra(screen, pos + (BOX_WIDTH - 1, 5), cost)
 
 
 def show_card(
