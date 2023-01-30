@@ -48,17 +48,6 @@ class PlacementManager:
         assert self.is_marked(pos)
         del self.marked_positions[pos]
 
-    def mark_or_unmark_pos(self, pos: GridPos) -> bool:
-        if self.is_marked(pos):
-            self.unmark_pos(pos)
-            return False
-        else:
-            try:
-                self.mark_pos(pos)
-                return True
-            except (AttributeError, AssertionError):
-                return False
-
     def get_all_pos(self) -> List[GridPos]:
         return list(self.marked_positions.keys())
 
