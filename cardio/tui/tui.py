@@ -25,6 +25,7 @@ from .decks_primitives import (
 )
 from .grid_primitives import show_empty_grid, show_slot_in_grid
 from .agent_primitives import StateWidget
+from .placement_manager import PlacementManager
 from .utils import show_screen_resolution, get_keycode
 
 
@@ -133,29 +134,43 @@ class TUIFightVnC(FightVnC):
 
     def _handle_human_places_card(self, card: Card, from_slot: int) -> bool:
         """Human player places a card she chose from her handdeck in her line. Returns
-        `True` if the card was actually placed, `False` otherweise (i.e., player aborted
+        `True` if the card was actually placed, `False` otherwise (i.e., player aborted
         via Escape key).
         """
         buffercopy = BufferCopy(self.screen)
         cursor = 0  # Cursor within line 2
+        pmgr = PlacementManager(self.grid, card)
         while True:
             buffercopy.copyback()
-            highlight_card(self.screen, GridPos(2, cursor))
+            cursor_pos = GridPos(2, cursor)
+            highlight_card(self.screen, cursor_pos)
+
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
                 cursor = min(self.grid.width - 1, cursor + 1)
             elif keycode == Screen.KEY_DOWN:
-                # FIXME Check if card can be placed at all
-                self.grid[2][cursor] = card
-                self.show_human_places_card(card, from_slot=from_slot, to_slot=cursor)
-                self.decks.useddeck.add_card(card)
-                logging.debug("Human plays %s in %s", card.name, cursor)
-                return True
+                if pmgr.is_marked(cursor_pos):
+                    pmgr.unmark_pos(cursor_pos)
+                elif pmgr.can_mark(cursor_pos):
+                    pmgr.mark_pos(cursor_pos)
+                    buffercopy.update()
             elif keycode == Screen.KEY_ESCAPE:
                 buffercopy.copyback()
                 return False
+
+            if pmgr.ready_to_place():
+                for sacrifice_pos in (pos for pos in pmgr.get_all_pos()):
+                    clear_card(self.screen, sacrifice_pos)
+                    show_slot_in_grid(self.screen, sacrifice_pos)
+                pmgr.do_place()
+                self.show_human_places_card(card, from_slot, cursor)
+                self.decks.useddeck.add_card(card)
+                logging.debug("Human plays %s in %s", card.name, cursor)
+                return True
+                # TODO Which part of the placement is done here and which part in
+                # handle_human_plays_card?
 
     def handle_human_plays_card(self) -> None:
         """Human player picks a card from the hand to play. Also handles I key for
