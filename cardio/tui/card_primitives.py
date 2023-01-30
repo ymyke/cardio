@@ -58,7 +58,7 @@ def show_card(
 
     show_box(screen, dpos, style=style, color=color)
     if card is not None:
-        show_text(screen, dpos + (2, 1), card_to_amstring(card))
+        show_card_contents(screen, card, dpos)
 
 
 def redraw_card(screen: Screen, card: Card, pos: GridPos) -> None:
