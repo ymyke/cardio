@@ -80,8 +80,9 @@ class FightVnC:
         pass
 
     def handle_damage(self, howmuch: int, source: Card) -> None:
-        assert source.get_linei() in (1, 2)
-        if source.get_linei() == 1:
+        source_line = source.get_grid_pos().line
+        assert source_line in (1, 2)
+        if source_line == 1:
             self.damagestate.damage_human(howmuch)
         else:
             self.damagestate.damage_computer(howmuch)

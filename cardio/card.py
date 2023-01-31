@@ -44,27 +44,13 @@ class Card:
         self.health = self.initial_health
 
     def get_grid_pos(self) -> GridPos:
-        # TODO Use throughout instead of session.grid... -- also maybe replace sloti and
-        # linei
         pos = session.grid.find_card(self)
         assert pos is not None, "Cards calling `get_grid_pos` must be on the grid"
         return pos
 
-    def get_sloti(self) -> int:
-        pos = session.grid.find_card(self)
-        if pos is None:
-            raise RuntimeError("Trying to get sloti for card that is not on the grid.")
-        return pos.slot
-
-    def get_linei(self) -> int:
-        pos = session.grid.find_card(self)
-        if pos is None:
-            raise RuntimeError("Trying to get linei for card that is not on the grid.")
-        return pos.line
-
     def get_prep_card(self) -> Optional[Card]:
         """Get the card from the prepline of this cards slot."""
-        return session.grid[0][self.get_sloti()]
+        return session.grid.get_card(self.get_grid_pos()._replace(line=0))
 
     def die(self) -> None:
         logging.debug("%s dies.", self.name)
@@ -139,7 +125,7 @@ class Card:
     def activate(self) -> None:
         logging.debug("%s becomes active", self.name)
         opponent = session.grid.get_opposing_card(self)
-        pos = session.grid.find_card(self)
+        pos = self.get_grid_pos()
         session.view.card_activate(self)
         if opponent is not None:
             self.attack(opponent)
@@ -149,10 +135,9 @@ class Card:
         session.view.pos_card_deactivate(pos)
 
     def prepare(self) -> None:
-        pos = session.grid.find_card(self)
+        pos = self.get_grid_pos()
         assert pos is not None and pos.line == 0
-        prep_to_card = session.grid[1][pos.slot]
-        # ^ QQ: Should this be a method like get_card() or something?
+        prep_to_card = session.grid.get_card(pos._replace(line=1))
         if prep_to_card is not None:
             logging.debug(
                 "Preparing %s but the prep-to space is occupied by %s",
