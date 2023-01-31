@@ -26,7 +26,7 @@ class FightVnC:
 
     # --- Called by Card class ---
 
-    def card_died(self, card: Card, pos:GridPos) -> None:
+    def card_died(self, card: Card, pos: GridPos) -> None:
         pass
 
     def card_lost_health(self, card: Card) -> None:
