@@ -13,7 +13,9 @@ _BLUEPRINTS = [
         costs_fire=1,
     ),
     Card(name="Lynx", initial_power=3, initial_health=2, costs_fire=2),
-    Card(name="Weasel", initial_power=1, initial_health=1, costs_fire=1),
+    Card(
+        name="Weasel", initial_power=1, initial_health=1, costs_fire=0, costs_spirits=2
+    ),
 ]
 
 
