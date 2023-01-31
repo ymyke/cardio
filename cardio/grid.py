@@ -82,6 +82,7 @@ class Grid:
         logging.debug("Removed card from %s", pos)
 
     def move_card(self, card: Card, to_pos: Union[GridPos, tuple]) -> None:
+        # LIXME Switch to to_pos being of type GridPos only
         """Accepts both a `GridPos` named tuple as well as a normal tuple as the
         `to_pos`.
         """
