@@ -170,10 +170,12 @@ class TUIFightVnC(FightVnC):
             clear_card(self.screen, sacrifice_pos)
             show_slot_in_grid(self.screen, sacrifice_pos)
         pmgr.do_place()
+        session.humanplayer.spirits -= target_card.costs_spirits
         self.show_human_places_card(target_card, from_slot, cursor)
         self.decks.useddeck.add_card(target_card)
         self.decks.handdeck.pick_card(from_slot)
         redraw_handdeck(self.screen, self.decks.handdeck, from_slot)
+        self.show_agents_state()
         logging.debug("Human plays %s in %s", target_card.name, cursor)
 
     def handle_human_plays_card(self) -> None:

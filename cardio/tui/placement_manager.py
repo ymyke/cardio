@@ -94,4 +94,3 @@ class PlacementManager:
         for pos in self.marked_positions:
             self.grid.clear_position(pos)
         self.grid.set_card(self.get_last_pos(), self.target_card)
-        # TODO Update spirits outside
