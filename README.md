@@ -1,7 +1,14 @@
 # Next up
 
+- Don't show costs in computer cards
+- Cost attribute / fire:
+  - Add tests
+- Spirits:
+  - ...
+
+- Handle the case where player uses the last of his hand cards
 - Fight:
-  - Finish fight, e.g. cards that die, ...
+  - Finish fight
   - Add other elements:
   - More animations needed for Spine and maybe other skills?
 - Interactive UI
@@ -12,9 +19,13 @@
 - Implement some skills that have an influence on the decks (e.g., fertility, Ouroboros,
   unkillable, ...) and see if they work well with the current deck implementation.
 
+- Can we add the new fire and spirits placement logic to the hypo-driven tests?
 
 # Architectural considerations
 
+- Should I rethink the whole view after all? Simply redraw the entire model whenever
+  necessary. But in the buffer and/or on a second screen so there is no flicker? (Is
+  that possible w/ asciimatics?)
 - Rethink how the session module works. Maybe get rid of it? Maybe have a common way
   tests get set up in a central test module and a way sandbox.py sets up the game and
   get rid of session altogether? -- But would need some module that grants access to
@@ -56,8 +67,10 @@
 - When an agent loses a health bar.
 - Animate overflow damage that turns into gems.
 
-# Ideas
+# Ideas: All prios
 
+- Maybe there can be inanimate cards that do not provide a fire? (So: Should cards have
+  a `has_fire` attribute that can be 0, 1 or more? Or would this rather be subclasses?)
 - Vast range of items: E.g., rucksack 🎒, bigger rucksack 🎒🎒, some item that allows me
   to keep my leftover spirits between fights but that I can also spend to get one-time
   somethingsomething.
@@ -87,6 +100,12 @@
 - Have floor tiles with special effects? I.e., more strength if a create is on it?
 - Can there be shops where you can buy stuff, including additional lives?
 - Maybe spirits could be persistent and can be taken over to the next fight?
+- Could cards have an icon that gets displayed, e.g., top right of the card? Then only
+  pick animal (and plant?) types that have an emoji?
+
+# Low Prio Ideas
+
+- Mark cards in a color other than blue.
 
 # Game related
 
