@@ -1,9 +1,12 @@
 from __future__ import annotations
 import logging
 from dataclasses import dataclass, field
-from typing import Optional, List
+from typing import Optional, List, TYPE_CHECKING
 from .skills import Skill, SkillList
 from . import session
+
+if TYPE_CHECKING:
+    from . import GridPos
 
 
 @dataclass
@@ -40,6 +43,13 @@ class Card:
         self.power = self.initial_power
         self.health = self.initial_health
 
+    def get_grid_pos(self) -> GridPos:
+        # TODO Use throughout instead of session.grid... -- also maybe replace sloti and
+        # linei
+        pos = session.grid.find_card(self)
+        assert pos is not None, "Cards calling `get_grid_pos` must be on the grid"
+        return pos
+
     def get_sloti(self) -> int:
         pos = session.grid.find_card(self)
         if pos is None:
@@ -59,17 +69,13 @@ class Card:
     def die(self) -> None:
         logging.debug("%s dies.", self.name)
         self.health = 0
+        session.view.card_died(self, self.get_grid_pos())
         session.grid.remove_card(self)
-        # FIXME Card must also be moved to a different deck? (This is done elsewhere, I
-        # believe. But if I ever refacator to cards knowing their states and their
-        # position in the grid, it might make sense to do this here.)
 
     def lose_health(self, howmuch: int) -> int:
         assert howmuch > 0
         if howmuch >= self.health:
             howmuch = self.health
-            session.view.card_about_to_die(self)
-            # FIXME Why is the view update done here and not in the `die` method?
             self.die()
         else:
             self.health -= howmuch

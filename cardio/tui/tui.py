@@ -44,10 +44,10 @@ class TUIFightVnC(FightVnC):
 
     # --- Methods from base class ---
 
-    def card_about_to_die(self, card: Card) -> None:
-        pos = self.grid.find_card(card)
-        assert pos is not None, "Trying to burn a card that is not in the grid"
+    def card_died(self, card: Card, pos: GridPos) -> None:
         burn_card(self.screen, pos)
+        session.humanplayer.spirits += card.has_spirits
+        self.show_agents_state()
 
     def card_lost_health(self, card: Card) -> None:
         redraw_card(self.screen, card, self.grid.find_card(card))
