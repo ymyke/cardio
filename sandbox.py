@@ -14,11 +14,12 @@ cs = Round0OnlyStrategy(
         # type:ignore
         (GridPos(0, 1), Card("Steed", 1, 10, 1)),
         (GridPos(1, 0), Card("Dog", 1, 5, 1)),
+        (GridPos(0, 0), Card("Mouse", 1, 1, 1)),
     ],
 )
 
 tv = tui.TUIFightVnC(debug=True, grid=session.grid)
 session.view = tv
-session.humanplayer.spirits=10
+session.humanplayer.spirits = 3
 tv.handle_fight(computerstrategy=cs)
 tv.close()
