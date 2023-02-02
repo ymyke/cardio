@@ -1,11 +1,6 @@
 # Next up
 
 - Don't show costs in computer cards
-- Cost attribute / fire:
-  - Add tests
-- Spirits:
-  - ...
-
 - Handle the case where player uses the last of his hand cards
 - Fight:
   - Finish fight
@@ -13,13 +8,12 @@
   - More animations needed for Spine and maybe other skills?
 - Interactive UI
   - All fixmes is fightvnc and tuivnc
-- Blood costs (Or some other concept? Rations? Energy? Karma? ...?)
-- Bones (other name? Spirits? Essence? Soul? ...?)
 
 - Implement some skills that have an influence on the decks (e.g., fertility, Ouroboros,
   unkillable, ...) and see if they work well with the current deck implementation.
 
-- Can we add the new fire and spirits placement logic to the hypo-driven tests?
+- Can we add the new fire and spirits placement logic to the hypo-driven tests? Maybe
+  using the placement mgr in the hypo test?
 
 # Architectural considerations
 
