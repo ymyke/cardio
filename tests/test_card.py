@@ -119,6 +119,8 @@ def test_activate_with_opposing_card(common_setup):
 
 def test_activate_without_opposing_card():
     """If it deals damage to the human player."""
+    # (We're not using `common_setup` here bc we need to test the `damagestate` (which
+    # would be "mocked away") later on.)
     session.setup()
     session.grid[1][3] = Card("Y", 1, 1, 1)
     session.grid[1][3].activate()
