@@ -3,7 +3,7 @@ from cardio import Deck, Card, CardList
 
 
 def create_some_cards() -> CardList:
-    return [Card(name, 1, 1) for name in ("A", "B", "C", "D")]
+    return [Card(name, 1, 1, 1) for name in ("A", "B", "C", "D")]
 
 
 def test_init_without_params():
@@ -20,7 +20,7 @@ def test_init_with_cardlist():
 
 @pytest.mark.disable_never_shuffle
 def test_shuffle():
-    manycards = [Card(str(i), 1, 1) for i in range(1, 1000)]
+    manycards = [Card(str(i), 1, 1, 1) for i in range(1, 1000)]
     d = Deck(manycards.copy())
     assert d.cards == manycards
     d.shuffle()
@@ -29,7 +29,7 @@ def test_shuffle():
 
 def test_add_card():
     d = Deck(create_some_cards())
-    d.add_card(Card("X", 1, 1))
+    d.add_card(Card("X", 1, 1, 1))
     assert len(d.cards) == 5
     assert d.cards[-1].name == "X"
 

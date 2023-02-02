@@ -62,6 +62,17 @@ def show_text(screen: Screen, pos: dPos, text: str, color: Color = Color.WHITE) 
     show(screen, pos, StaticRenderer(images=[text]),  color)
 
 
+def show_text_ra(
+    screen: Screen, pos: dPos, text: str, color: Color = Color.WHITE
+) -> None:
+    """Right-aligned text."""
+    pure_text = str(StaticRenderer([text]))  # Remove asciimatics color codes
+    num_asciis = len(pure_text.encode("ascii", "ignore"))
+    num_nonasciis = len(pure_text) - num_asciis
+    xoffest = num_asciis + 2 * num_nonasciis
+    show_text(screen, pos - (xoffest, 0), text, color)
+
+
 def show_box(
     screen: Screen,
     pos: dPos,
@@ -78,12 +89,12 @@ def render_value(
     symbol: str,
     cap_at: int = 5,
     clear_after: bool = True,
-    surplus_color: int = Screen.COLOUR_WHITE,
+    surplus_color: Color = Color.WHITE
 ) -> str:
     nofsymbols = min(value, cap_at)
     surplus = value - nofsymbols
     surplus_str = (
-        f"${{{surplus_color}}}+{surplus}${{{Screen.COLOUR_WHITE}}}"
+        f"${{{surplus_color.value}}}+{surplus}${{{Color.WHITE.value}}}"
         if surplus > 0
         else ""
     )
@@ -114,7 +125,7 @@ def get_keycode(screen: Screen) -> Optional[int]:
     event = screen.get_event()
     if not isinstance(event, KeyboardEvent):
         # Add a tiny pause if there is no event to reduce CPU load while polling:
-        time.sleep(0.02)
+        time.sleep(0.05)
         return None
     if event.key_code == ord("$"):  # hard exit
         sys.exit(0)

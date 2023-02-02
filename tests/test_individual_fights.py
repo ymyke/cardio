@@ -19,8 +19,8 @@ def do_the_fight(
 
 
 def test_vanilla_fight():
-    hc = Card(name="Human Card", initial_power=2, initial_health=10)
-    cc = Card(name="Computer Card", initial_power=2, initial_health=3)
+    hc = Card("Human Card", 2, 10, 1)
+    cc = Card("Computer Card", 2, 3, 1)
     do_the_fight(hc, cc)
     assert hc.power == 2
     assert hc.health == 8
@@ -34,8 +34,8 @@ def test_vanilla_with_power_0():
     """Should fail immediately bc human has no chance to win bc all her cards are
     powerless.
     """
-    hc = Card(name="Human Card", initial_power=0, initial_health=10)
-    cc = Card(name="Computer Card", initial_power=2, initial_health=3)
+    hc = Card("Human Card", 0, 10, 1)
+    cc = Card("Computer Card", 2, 3, 1)
     do_the_fight(hc, cc)
     assert hc.health == 10  # full health remaining
     assert cc.health == 3
@@ -48,9 +48,9 @@ def test_vanilla_with_power_0_and_additional_card_in_hand():
     card w power in her hand, therefore the fight shoud take place and the card in the
     grid suffer damage and vanish.
     """
-    hc = Card(name="Human Card", initial_power=0, initial_health=10)
-    hc2 = Card(name="Human Card 2", initial_power=1, initial_health=10)
-    cc = Card(name="Computer Card", initial_power=2, initial_health=3)
+    hc = Card("Human Card", 0, 10, 1)
+    hc2 = Card("Human Card 2", 1, 10, 1)
+    cc = Card("Computer Card", 2, 3, 1)
     do_the_fight(hc, cc, playerhand=[hc2])
     assert hc.health == 0  # health depleted
     assert cc.health == 3
@@ -59,19 +59,14 @@ def test_vanilla_with_power_0_and_additional_card_in_hand():
 
 
 def test_vanilla_with_no_opponent():
-    hc = Card(name="Human Card", initial_power=1, initial_health=10)
+    hc = Card("Human Card", 1, 10, 1)
     do_the_fight(hc, None)
     assert hc.health == 10
 
 
 def test_instant_death():
-    hc = Card(
-        name="Human Card",
-        initial_power=1,
-        initial_health=10,
-        skills=[Skill.INSTANTDEATH],
-    )
-    cc = Card(name="Computer Card", initial_power=2, initial_health=3)
+    hc = Card("Human Card", 1, 10, 1, skills=[Skill.INSTANTDEATH])
+    cc = Card("Computer Card", 2, 3, 1)
     do_the_fight(hc, cc)
     assert hc.health == 10
     assert cc.health == 0
@@ -79,13 +74,8 @@ def test_instant_death():
 
 
 def test_soaring():
-    hc = Card(
-        name="Human Card",
-        initial_power=1,
-        initial_health=20,
-        skills=[Skill.SOARING],
-    )
-    cc = Card(name="Computer Card", initial_power=2, initial_health=3)
+    hc = Card("Human Card", 1, 20, 1, skills=[Skill.SOARING])
+    cc = Card("Computer Card", 2, 3, 1)
     do_the_fight(hc, cc)
     # 12 not 10, bc fight-over conditions are checked after each line gets activated:
     assert hc.health == 12
@@ -94,18 +84,8 @@ def test_soaring():
 
 
 def test_soaring_vs_airdefense():
-    hc = Card(
-        name="Human Card",
-        initial_power=1,
-        initial_health=20,
-        skills=[Skill.SOARING],
-    )
-    cc = Card(
-        name="Computer Card",
-        initial_power=2,
-        initial_health=3,
-        skills=[Skill.AIRDEFENSE],
-    )
+    hc = Card("Human Card", 1, 20, 1, skills=[Skill.SOARING])
+    cc = Card("Computer Card", 2, 3, 1, skills=[Skill.AIRDEFENSE])
     do_the_fight(hc, cc)
     assert hc.health == 16
     assert cc.health == 0
@@ -113,18 +93,8 @@ def test_soaring_vs_airdefense():
 
 
 def test_soaring_and_instantdeath_vs_airdefense():
-    hc = Card(
-        name="Human Card",
-        initial_power=1,
-        initial_health=20,
-        skills=[Skill.SOARING, Skill.INSTANTDEATH],
-    )
-    cc = Card(
-        name="Computer Card",
-        initial_power=2,
-        initial_health=3,
-        skills=[Skill.AIRDEFENSE],
-    )
+    hc = Card("Human Card", 1, 20, 1, skills=[Skill.SOARING, Skill.INSTANTDEATH])
+    cc = Card("Computer Card", 2, 3, 1, skills=[Skill.AIRDEFENSE])
     do_the_fight(hc, cc)
     assert hc.health == 20
     assert cc.health == 0
@@ -135,13 +105,8 @@ def test_soaring_and_instantdeath_vs_no_airdefense():
     """INSTANTDEATH should have no effect and computer card should not suffer any damage
     at all bc of SOARING.
     """
-    hc = Card(
-        name="Human Card",
-        initial_power=1,
-        initial_health=20,
-        skills=[Skill.SOARING, Skill.INSTANTDEATH],
-    )
-    cc = Card(name="Computer Card", initial_power=2, initial_health=3)
+    hc = Card("Human Card", 1, 20, 1, skills=[Skill.SOARING, Skill.INSTANTDEATH])
+    cc = Card("Computer Card", 2, 3, 1)
     do_the_fight(hc, cc)
     # 12 not 10, bc fight-over conditions are checked after each line gets activated:
     assert hc.health == 12
@@ -150,10 +115,8 @@ def test_soaring_and_instantdeath_vs_no_airdefense():
 
 
 def test_spines():
-    hc = Card(name="Human Card", initial_power=2, initial_health=10)
-    cc = Card(
-        name="Computer Card", initial_power=2, initial_health=3, skills=[Skill.SPINES]
-    )
+    hc = Card("Human Card", 2, 10, 1)
+    cc = Card("Computer Card", 2, 3, 1, skills=[Skill.SPINES])
     do_the_fight(hc, cc)
     assert hc.health == 6
     assert cc.health == 0
@@ -161,10 +124,8 @@ def test_spines():
 
 
 def test_spines_resulting_in_both_cards_dying_simultaneously():
-    hc = Card(name="Human Card", initial_power=1, initial_health=1)
-    cc = Card(
-        name="Computer Card", initial_power=0, initial_health=1, skills=[Skill.SPINES]
-    )
+    hc = Card("Human Card", 1, 1, 1)
+    cc = Card("Computer Card", 0, 1, 1, skills=[Skill.SPINES])
     do_the_fight(hc, cc)
     assert hc.health == 0
     assert cc.health == 0

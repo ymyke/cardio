@@ -78,3 +78,5 @@ SkillList = List[Skill]
 # - Hoarder? -- Draw another card when this card is played. (Different to the
 #   Inscryption Hoarder.)
 # - Echolot? -- Pick a specific card from the deck. (Like the Inscryption Hoarder.)
+# - "Allesfresser"? -- can use fire _or_ spirit (or a mix) to be placed.
+# - Fiery? -- produces >1 fire when dying.

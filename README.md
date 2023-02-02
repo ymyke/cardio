@@ -1,20 +1,25 @@
 # Next up
 
+- Don't show costs in computer cards
+- Handle the case where player uses the last of his hand cards
 - Fight:
-  - Finish fight, e.g. cards that die, ...
+  - Finish fight
   - Add other elements:
   - More animations needed for Spine and maybe other skills?
 - Interactive UI
   - All fixmes is fightvnc and tuivnc
-- Blood costs (Or some other concept? Rations? Energy? Karma? ...?)
-- Bones (other name? Spirits? Essence? Soul? ...?)
 
 - Implement some skills that have an influence on the decks (e.g., fertility, Ouroboros,
   unkillable, ...) and see if they work well with the current deck implementation.
 
+- Can we add the new fire and spirits placement logic to the hypo-driven tests? Maybe
+  using the placement mgr in the hypo test?
 
 # Architectural considerations
 
+- Should I rethink the whole view after all? Simply redraw the entire model whenever
+  necessary. But in the buffer and/or on a second screen so there is no flicker? (Is
+  that possible w/ asciimatics?)
 - Rethink how the session module works. Maybe get rid of it? Maybe have a common way
   tests get set up in a central test module and a way sandbox.py sets up the game and
   get rid of session altogether? -- But would need some module that grants access to
@@ -56,8 +61,10 @@
 - When an agent loses a health bar.
 - Animate overflow damage that turns into gems.
 
-# Ideas
+# Ideas: All prios
 
+- Maybe there can be inanimate cards that do not provide a fire? (So: Should cards have
+  a `has_fire` attribute that can be 0, 1 or more? Or would this rather be subclasses?)
 - Vast range of items: E.g., rucksack 🎒, bigger rucksack 🎒🎒, some item that allows me
   to keep my leftover spirits between fights but that I can also spend to get one-time
   somethingsomething.
@@ -70,7 +77,29 @@
   setting that helps speed up / slow down the animations. Then do some self-timing e.g.
   on burning a card that will automatically adjust that setting if necessary (i.e.,
   animation takes too long or too short).
+- could cards gain experience with fights and other things and evolve over time (stats
+  would be permanent) but also die for real?
+- Have a location that allows me to create new cards, combining health, power and
+  skills, and give them a name and keep them. -- Or some other mechanism to create new
+  cards?
+- Terrain and weather conditions etc. that affect the cards?
+- Maybe you can lose cards for good in a run -- in a fight? Or as a downside risk when
+  going for a particularly strong upgrade? E.g., the stronger the upgrade the higher the
+  likelihood to lose the card? -- Then, a save game and game progress score would
+  somehow take into account a hash over the entire game to make sure the game has not
+  been tampered with? Then only authoritative scores are allowed in leaderboards etc.
+  Can the TSM be used somehow to that end?
+- Corveaux special ability/animal? Can consume ghosts/souls/spirits and release them as
+  blood/energy/...?
+- Have floor tiles with special effects? I.e., more strength if a create is on it?
+- Can there be shops where you can buy stuff, including additional lives?
+- Maybe spirits could be persistent and can be taken over to the next fight?
+- Could cards have an icon that gets displayed, e.g., top right of the card? Then only
+  pick animal (and plant?) types that have an emoji?
 
+# Low Prio Ideas
+
+- Mark cards in a color other than blue.
 
 # Game related
 

@@ -26,7 +26,7 @@ class FightVnC:
 
     # --- Called by Card class ---
 
-    def card_about_to_die(self, card: Card) -> None:
+    def card_died(self, card: Card, pos: GridPos) -> None:
         pass
 
     def card_lost_health(self, card: Card) -> None:
@@ -79,9 +79,10 @@ class FightVnC:
     def handle_human_plays_card(self) -> None:
         pass
 
-    def handle_damage(self, howmuch: int, source: Card) -> None:
-        assert source.get_linei() in (1, 2)
-        if source.get_linei() == 1:
+    def handle_player_damage(self, howmuch: int, source: Card) -> None:
+        source_line = source.get_grid_pos().line
+        assert source_line in (1, 2)
+        if source_line == 1:
             self.damagestate.damage_human(howmuch)
         else:
             self.damagestate.damage_computer(howmuch)

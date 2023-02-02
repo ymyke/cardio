@@ -55,7 +55,15 @@ class Grid:
                     return GridPos(linei, sloti)
         return None
 
-    # FIXME Should there bet get_card and set_card methods?
+    def get_card(self, pos: GridPos) -> Optional[Card]:
+        return self.lines[pos.line][pos.slot]
+
+    def set_card(self, pos: GridPos, card: Card) -> None:
+        assert self.lines[pos.line][pos.slot] is None
+        self.lines[pos.line][pos.slot] = card
+
+    def clear_position(self, pos: GridPos) -> None:
+        self.lines[pos.line][pos.slot] = None
 
     def get_opposing_card(self, card: Card) -> Optional[Card]:
         pos = self.find_card(card)
@@ -74,6 +82,7 @@ class Grid:
         logging.debug("Removed card from %s", pos)
 
     def move_card(self, card: Card, to_pos: Union[GridPos, tuple]) -> None:
+        # LIXME Switch to to_pos being of type GridPos only
         """Accepts both a `GridPos` named tuple as well as a normal tuple as the
         `to_pos`.
         """
