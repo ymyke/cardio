@@ -1,6 +1,6 @@
 from __future__ import annotations
 import logging
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, fields
 from typing import Optional, List, TYPE_CHECKING
 from .skills import Skill, SkillList
 from . import session
@@ -27,6 +27,9 @@ class Card:
     health: int = 0
 
     def __post_init__(self) -> None:
+        assert all(
+            getattr(self, f.name) >= 0 for f in fields(self) if f.type == "int"
+        ), "No negative numbers please"
         assert self.costs_fire * self.costs_spirits == 0, (
             "Either fire or spirit costs must be 0. "
             "Hybrids are not supported at this time."
@@ -81,21 +84,30 @@ class Card:
             )
             opponent.lose_health(1)
 
-        prep = self.get_prep_card()
+        prepcard = self.get_prep_card() if self.get_grid_pos().line == 1 else None
+        # (Prep cards only relevant if computer is being attacked.)
         session.view.card_getting_attacked(self, opponent)
         # (Needs to happen before the call to `lose_health` below, bc the card could
         # die/vanish during that call, leading to a `None` reference on the grid and an
         # error in the view update call.)
         howmuch = self.lose_health(opponent.power)
-        if opponent.power > howmuch and prep is not None:
+        if opponent.power > howmuch and prepcard is not None:
             logging.debug(
-                "%s gets overflow damage of %s", prep.name, opponent.power - howmuch
+                "%s gets overflow damage of %s", prepcard.name, opponent.power - howmuch
             )
-            prep.lose_health(opponent.power - howmuch)
+            prepcard.lose_health(opponent.power - howmuch)
 
-    def attack(self, opponent: Card) -> None:
+    # QQ: Fight logic is distributed between Card and FightVNC (and TUIFightVnC). Can
+    # this be streamlined? (One could argue that all the places where the card module
+    # needs to call a view method should rather belong somewhere else?)
+
+    def attack(self, opponent: Optional[Card]) -> None:
         if self.power == 0:
             logging.debug("%s would attack but has 0 power, so doesn't", self.name)
+            return
+
+        if opponent is None:
+            session.view.handle_player_damage(self.power, self)
             return
 
         logging.debug(
@@ -113,7 +125,7 @@ class Card:
                 else:
                     opponent.get_attacked(self)
             else:
-                session.view.handle_damage(self.power, self)
+                session.view.handle_player_damage(self.power, self)
             return
 
         if Skill.INSTANTDEATH in self.skills:
@@ -127,27 +139,24 @@ class Card:
         opponent = session.grid.get_opposing_card(self)
         pos = self.get_grid_pos()
         session.view.card_activate(self)
-        if opponent is not None:
-            self.attack(opponent)
-        elif self.power > 0:
-            session.view.handle_damage(self.power, self)
-            # ^ FIXME should this be in attack after all?
+        self.attack(opponent)
         session.view.pos_card_deactivate(pos)
 
     def prepare(self) -> None:
         pos = self.get_grid_pos()
         assert pos is not None and pos.line == 0
-        prep_to_card = session.grid.get_card(pos._replace(line=1))
-        if prep_to_card is not None:
+        to_pos = pos._replace(line=1)
+        prep_to = session.grid.get_card(to_pos)
+        if prep_to is not None:
             logging.debug(
                 "Preparing %s but the prep-to space is occupied by %s",
                 self.name,
-                prep_to_card.name,
+                prep_to.name,
             )
             return
         logging.debug("Preparing %s, moving to computer line", self.name)
         session.view.card_prepare(self)
-        session.grid.move_card(self, to_pos=(1, pos.slot))
+        session.grid.move_card(self, to_pos=to_pos)
         self.activate()
 
 

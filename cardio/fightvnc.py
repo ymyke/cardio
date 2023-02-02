@@ -79,7 +79,7 @@ class FightVnC:
     def handle_human_plays_card(self) -> None:
         pass
 
-    def handle_damage(self, howmuch: int, source: Card) -> None:
+    def handle_player_damage(self, howmuch: int, source: Card) -> None:
         source_line = source.get_grid_pos().line
         assert source_line in (1, 2)
         if source_line == 1:
