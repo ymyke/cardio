@@ -9,7 +9,6 @@ def common_setup(mocker) -> object:
     session.grid[1][3] = Card("Y", 1, 1, 1)
     session.grid[2][3] = Card("X", 1, 1, 1)
     mocked_view = mocker.patch("cardio.card.session.view")
-    # TODO Use spy instead of mock?
     return mocked_view
 
 
