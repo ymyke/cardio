@@ -15,6 +15,7 @@ def slotlist_strategy():
                 name=st.text(min_size=1),
                 initial_power=st.integers(min_value=0, max_value=100),
                 initial_health=st.integers(min_value=0, max_value=100),
+                costs_fire=st.integers(min_value=0, max_value=100),
                 health=st.just(0),
                 power=st.just(0),
             ),
