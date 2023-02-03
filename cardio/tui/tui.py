@@ -182,15 +182,21 @@ class TUIFightVnC(FightVnC):
         """Human player picks a card from the hand to play. Also handles I key for
         inventory and C to end the turn and start next round of the fight.
         """
-        # FIXME What if hand is empty?
         buffercopy = BufferCopy(self.screen)
         cursor = 0  # Cursor within hand deck
         while True:
             buffercopy.copyback()
-            if not self.decks.handdeck.is_empty():
-                show_handdeck_highlight(self.screen, cursor)
-
             keycode = get_keycode(self.screen)
+            if keycode in (ord("i"), ord("I")):
+                pass  # FIXME Inventory!
+            elif keycode in (ord("c"), ord("C")):
+                buffercopy.copyback()
+                break
+
+            # Everything cursor-related only if hand is not empty:
+            if self.decks.handdeck.is_empty():
+                continue
+            show_handdeck_highlight(self.screen, cursor)
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
@@ -202,11 +208,6 @@ class TUIFightVnC(FightVnC):
                     buffercopy.update()
                 except PlacementAbortedException:
                     pass
-            elif keycode in (ord("i"), ord("I")):
-                pass  # FIXME Inventory!
-            elif keycode in (ord("c"), ord("C")):
-                buffercopy.copyback()
-                break
 
     def show_empty_grid(self, grid_width: int) -> None:
         show_empty_grid(self.screen, grid_width)
