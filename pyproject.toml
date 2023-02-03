@@ -7,11 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-windows-curses = "^2.3.1"   # FIXME Remove?
-pygcurse = "^1.0.1"         # FIXME Remove?
-pygame = "^2.1.2"           # FIXME Remove?
 asciimatics = "^1.14.0"
-
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.12.0"
