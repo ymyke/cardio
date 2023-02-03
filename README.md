@@ -1,25 +1,22 @@
 # Next up
 
-- Don't show costs in computer cards
-- Handle the case where player uses the last of his hand cards
-- Fight:
-  - Finish fight
-  - Add other elements:
-  - More animations needed for Spine and maybe other skills?
-- Interactive UI
-  - All fixmes is fightvnc and tuivnc
-
+- Check todos
+- Finish fight:
+  - Start by creating some computer strategy
+  - Finish when one party won
+  - => Have a new starting point for this. g.py or so.
+- Start thinking about the broader game, map, ...
 - Implement some skills that have an influence on the decks (e.g., fertility, Ouroboros,
   unkillable, ...) and see if they work well with the current deck implementation.
-
-- Can we add the new fire and spirits placement logic to the hypo-driven tests? Maybe
-  using the placement mgr in the hypo test?
 
 # Architectural considerations
 
 - Should I rethink the whole view after all? Simply redraw the entire model whenever
   necessary. But in the buffer and/or on a second screen so there is no flicker? (Is
-  that possible w/ asciimatics?)
+  that possible w/ asciimatics?) -- Can I work with 2 asciimatics screens (and maybe
+  some buffer to copy contents between the two) and simply do full screen refreshes
+  whenever something happens and via that mechanism more properly separate the model
+  from the view?
 - Rethink how the session module works. Maybe get rid of it? Maybe have a common way
   tests get set up in a central test module and a way sandbox.py sets up the game and
   get rid of session altogether? -- But would need some module that grants access to
@@ -49,6 +46,8 @@
 
 # Todo
 
+- Can we add the new fire and spirits placement logic to the hypo-driven tests? Maybe
+  using the placement mgr in the hypo test?
 - Terminology: agent vs player everywhere? Which is the better term? Make it consistent.
 - Look for all `grid.*=None` and use `remove_card` instead.
 - Write tests for all card characteristics and skills.
@@ -60,6 +59,7 @@
 
 - When an agent loses a health bar.
 - Animate overflow damage that turns into gems.
+- More animations for certain skills?
 
 # Ideas: All prios
 
@@ -100,6 +100,7 @@
 # Low Prio Ideas
 
 - Mark cards in a color other than blue.
+- Don't show costs in computer cards.
 
 # Game related
 
