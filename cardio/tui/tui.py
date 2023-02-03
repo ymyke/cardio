@@ -167,6 +167,9 @@ class TUIFightVnC(FightVnC):
 
         # Now ready to place:
         for sacrifice_pos in pmgr.get_all_pos():
+            card = self.grid.get_card(sacrifice_pos)
+            if card is not None:
+                session.humanplayer.spirits += card.has_spirits
             clear_card(self.screen, sacrifice_pos)
             show_slot_in_grid(self.screen, sacrifice_pos)
         pmgr.do_place()
