@@ -77,8 +77,7 @@ class TUIFightVnC(FightVnC):
         and been removed from the grid between being activated and deactivated. In this
         case, `pos` should point to where the card used to be before being removed.
         """
-        # FIXME Needs to be adjusted so it works also in cases such as the one described
-        # above.
+        card = self.grid.get_card(pos)
         card = self.grid[pos.line][pos.slot]
         activate_card(self.screen, card, pos, deactivate=True)
 
@@ -140,7 +139,7 @@ class TUIFightVnC(FightVnC):
         target_card = self.decks.handdeck.cards[from_slot]
         pmgr = PlacementManager(self.grid, session.humanplayer.spirits, target_card)
         if not pmgr.is_placeable():
-            # FIXME Add some animation / user feedback here?
+            # LIXME Add some animation / user feedback here?
             raise PlacementAbortedException
 
         buffercopy = BufferCopy(self.screen)

@@ -69,8 +69,6 @@ class FightVnC:
 
     def show_agents_state(self) -> None:
         """Show agent information, damage, spirits, lives, etc."""
-        # FIXME Must be called if: damage diff changes, spirits change, lives change,
-        # items added, items used, ... -- make sure this is the case
         pass
 
     def handle_human_draws_new_card(self) -> None:
@@ -97,7 +95,6 @@ class FightVnC:
 
     def computer_wins_fight(self) -> None:
         # FIXME Still necessary?
-        # QQ: Boss fights will work differently.
         pass
 
     # --- Controller ---
@@ -211,7 +208,7 @@ class FightVnC:
             # FIXME Check for game over here or later on
         if self._has_human_won():
             session.humanplayer.gems += self.damagestate.get_overflow()
-            # FIXME Animate overflow damage that turns into gems
+            # LIXME Animate overflow damage that turns into gems
             self.human_wins_fight()
 
         # Reset human deck after the fight:

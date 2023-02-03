@@ -54,6 +54,7 @@
 - Edge case: What if the grid is empty or powerless at some point during a fight? Who
   will win?
 - Reduce the number of places the session module gets imported to a sensible minimum.
+- Add items
 
 # More animations
 
