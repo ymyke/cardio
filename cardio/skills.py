@@ -35,7 +35,7 @@ class Skill(Enum):
         name="Fertility",
         symbol="🐭",
         description="A fertile card creates a copy of itself in your hand when it is played.",
-    )  # FIXME Still needs to be implemented when we have decks and a hand deck
+    )  # QQ: Currently not tested -- how could this be tested?
     SOARING = SkillSpec(
         name="Soaring",
         symbol="🪁",

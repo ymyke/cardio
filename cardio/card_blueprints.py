@@ -3,19 +3,12 @@ from typing import List
 from . import Card, CardList, Skill
 
 _BLUEPRINTS = [
-    Card(name="Hamster", initial_power=0, initial_health=1, costs_fire=0),
-    Card(name="Koala", initial_power=1, initial_health=3, costs_fire=1),
-    Card(
-        name="Porcupine",
-        initial_power=1,
-        initial_health=2,
-        skills=[Skill.AIRDEFENSE],
-        costs_fire=1,
-    ),
-    Card(name="Lynx", initial_power=3, initial_health=2, costs_fire=2),
-    Card(
-        name="Weasel", initial_power=1, initial_health=1, costs_fire=0, costs_spirits=2
-    ),
+    Card("Hamster", 0, 1, 0),
+    Card("Koala", 1, 3, 1),
+    Card("Porcupine", 1, 2, 1, skills=[Skill.AIRDEFENSE]),
+    Card("Lynx", 3, 2, 2),
+    Card("Weasel", 1, 1, 0, costs_spirits=2),
+    Card("Church Mouse", 1, 1, 1, skills=[Skill.FERTILITY]),
 ]
 
 

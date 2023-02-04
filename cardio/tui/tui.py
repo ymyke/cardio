@@ -4,7 +4,7 @@ from typing import Literal
 
 from asciimatics.screen import Screen
 
-from cardio import Card, Deck, FightVnC, GridPos, session
+from cardio import Card, Deck, FightVnC, GridPos, session, Skill
 
 from .buffercopy import BufferCopy
 from .card_primitives import (
@@ -176,6 +176,17 @@ class TUIFightVnC(FightVnC):
         self.show_human_places_card(target_card, from_slot, cursor)
         self.decks.useddeck.add_card(target_card)
         self.decks.handdeck.pick_card(from_slot)
+        if Skill.FERTILITY in target_card.skills:
+            new_card = target_card.duplicate()
+            new_card.reset()
+            redraw_handdeck(self.screen, self.decks.handdeck, from_slot)
+            self.decks.handdeck.add_card(new_card)
+            move_card(
+                self.screen,
+                new_card,
+                GridPos(2, cursor),
+                GridPos(4, self.decks.handdeck.size()),
+            )
         redraw_handdeck(self.screen, self.decks.handdeck, from_slot)
         self.show_agents_state()
         logging.debug("Human plays %s in %s", target_card.name, cursor)
