@@ -41,6 +41,13 @@ def test_reset():
     assert c.health == 2
 
 
+def test_duplicate():
+    c = Card("X", 1, 2, 3)
+    d = c.duplicate()
+    assert c == d
+    assert c is not d
+
+
 def test_get_grid_pos(common_setup):
     assert session.grid[2][3].get_grid_pos() == GridPos(2, 3)
 

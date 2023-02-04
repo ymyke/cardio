@@ -1,5 +1,6 @@
 from __future__ import annotations
 import logging
+import copy
 from dataclasses import dataclass, field, fields
 from typing import Optional, List, TYPE_CHECKING
 from .skills import Skill, SkillList
@@ -50,6 +51,9 @@ class Card:
         pos = session.grid.find_card(self)
         assert pos is not None, "Cards calling `get_grid_pos` must be on the grid"
         return pos
+
+    def duplicate(self)->Card:
+        return copy.deepcopy(self)
 
     def get_prep_card(self) -> Optional[Card]:
         """Get the card from the prepline of this cards slot."""
