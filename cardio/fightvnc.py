@@ -1,5 +1,5 @@
 import logging
-from typing import Literal
+from typing import Literal, Optional
 from . import session, Card, Deck, Grid, GridPos
 from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
@@ -57,7 +57,7 @@ class FightVnC:
         pass
 
     def show_card_to_handdeck(
-        self, handdeck: Deck, card: Card, whichdeck: Literal["draw", "hamster"]
+        self, handdeck: Deck, card: Card, whichdeck: Deck
     ) -> None:
         pass
 
@@ -75,8 +75,8 @@ class FightVnC:
         """Show agent information, damage, spirits, lives, etc."""
         pass
 
-    def handle_human_draws_new_card(self) -> None:
-        pass
+    def handle_human_choose_deck_to_draw_from(self) -> Optional[Deck]:
+        return None
 
     def handle_human_plays_card(self) -> None:
         pass
@@ -153,7 +153,11 @@ class FightVnC:
         self.computerstrategy.play_cards(self.round_num)
 
         # Let human draw a card:
-        self.handle_human_draws_new_card()
+        deck = self.handle_human_choose_deck_to_draw_from()
+        if deck is not None:
+            card = deck.draw_card()
+            self.show_card_to_handdeck(self.decks.handdeck, card, deck)
+            self.decks.handdeck.add_card(card)
 
         # Let human play card(s) from handdeck or items in his collection:
         self.handle_human_plays_card()

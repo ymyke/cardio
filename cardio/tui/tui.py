@@ -1,6 +1,6 @@
 import atexit
 import logging
-from typing import Literal
+from typing import Optional
 
 from asciimatics.screen import Screen
 
@@ -98,14 +98,14 @@ class TUIFightVnC(FightVnC):
             self.screen, card, from_=GridPos(4, from_slot), to=GridPos(2, to_slot)
         )
 
-    def handle_human_draws_new_card(self) -> None:
+    def handle_human_choose_deck_to_draw_from(self) -> Optional[Deck]:
         """Human player draws a card from one of the draw decks (draw oder hamster)."""
         if not self.decks.drawdeck.is_empty():
             highlights = (True, False)
         elif not self.decks.hamsterdeck.is_empty():
             highlights = (False, True)
         else:  # both empty
-            return
+            return None
 
         while True:
             show_drawdeck_highlights(self.screen, highlights)
@@ -115,17 +115,7 @@ class TUIFightVnC(FightVnC):
             elif keycode == Screen.KEY_RIGHT and not self.decks.hamsterdeck.is_empty():
                 highlights = (False, True)
             elif keycode == Screen.KEY_UP:
-                if highlights[0]:
-                    deck = self.decks.drawdeck
-                    deckname = "draw"
-                else:
-                    deck = self.decks.hamsterdeck
-                    deckname = "hamster"
-                card = deck.draw_card()
-                show_card_to_handdeck(self.screen, self.decks.handdeck, card, deckname)
-                self.decks.handdeck.add_card(card)
-                show_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
-                return
+                return self.decks.drawdeck if highlights[0] else self.decks.hamsterdeck
 
     def _handle_human_places_card(self, from_slot: int) -> None:
         """Human player places a card she chose from her handdeck in her line. Raises
@@ -225,9 +215,12 @@ class TUIFightVnC(FightVnC):
         show_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
 
     def show_card_to_handdeck(
-        self, handdeck: Deck, card: Card, whichdeck: Literal["draw", "hamster"]
+        self, handdeck: Deck, card: Card, whichdeck: Deck
     ) -> None:
-        show_card_to_handdeck(self.screen, handdeck, card, whichdeck)
+        deckname = "draw" if whichdeck == self.decks.drawdeck else "hamster"
+        show_card_to_handdeck(self.screen, handdeck, card, deckname)
+        # FIXME Add a name to the Deck class and pass the deck and use the name attribute in show_card_to_handdeck?
+        show_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
 
     def show_agents_state(self) -> None:
         self.state_widget.show_all()
