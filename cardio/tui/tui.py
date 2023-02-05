@@ -73,10 +73,6 @@ class TUIFightVnC(FightVnC):
         )
 
     def pos_card_deactivate(self, pos: GridPos) -> None:
-        """Uses a position instead of a card because it could be that the card has died
-        and been removed from the grid between being activated and deactivated. In this
-        case, `pos` should point to where the card used to be before being removed.
-        """
         card = self.grid.get_card(pos)
         card = self.grid[pos.line][pos.slot]
         activate_card(self.screen, card, pos, deactivate=True)
