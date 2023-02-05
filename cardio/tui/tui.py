@@ -46,7 +46,7 @@ class TUIFightVnC(FightVnC):
 
     def card_died(self, card: Card, pos: GridPos) -> None:
         burn_card(self.screen, pos)
-        session.humanplayer.spirits += card.has_spirits
+        session.humanplayer.spirits += card.has_spirits  # TODO BZL -- add this to Card class?
         self.show_agents_state()
 
     def card_lost_health(self, card: Card) -> None:
@@ -124,6 +124,8 @@ class TUIFightVnC(FightVnC):
         """
         target_card = self.decks.handdeck.cards[from_slot]
         pmgr = PlacementManager(self.grid, session.humanplayer.spirits, target_card)
+        # TODO get the placement mgr as a parameter? Maybe even instead of the from_slot
+        # (which could be contained in the placement mgr)?
         if not pmgr.is_placeable():
             # LIXME Add some animation / user feedback here?
             raise PlacementAbortedException
@@ -149,7 +151,9 @@ class TUIFightVnC(FightVnC):
             elif keycode == Screen.KEY_ESCAPE:
                 buffercopy.copyback()
                 raise PlacementAbortedException
+        # TODO => postcondition: pmgr that is ready w/ sacrifice positions and a target_card
 
+        # TODO BZL -- mostly from here on down
         # Now ready to place:
         for sacrifice_pos in pmgr.get_all_pos():
             card = self.grid.get_card(sacrifice_pos)
@@ -188,6 +192,7 @@ class TUIFightVnC(FightVnC):
             keycode = get_keycode(self.screen)
             if keycode in (ord("i"), ord("I")):
                 pass  # FIXME Inventory!
+                # TODO  BZL
             elif keycode in (ord("c"), ord("C")):
                 buffercopy.copyback()
                 break
@@ -202,7 +207,7 @@ class TUIFightVnC(FightVnC):
                 cursor = min(self.decks.handdeck.size() - 1, cursor + 1)
             elif keycode == Screen.KEY_UP:
                 try:
-                    self._handle_human_places_card(cursor)
+                    self._handle_human_places_card(cursor)  # TODO  BZL
                     cursor = min(self.decks.handdeck.size() - 1, cursor)
                     buffercopy.update()
                 except PlacementAbortedException:

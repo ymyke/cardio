@@ -161,6 +161,9 @@ class FightVnC:
 
         # Let human play card(s) from handdeck or items in his collection:
         self.handle_human_plays_card()
+        # TODO How to move the BZL to the base class in this case? -- Maybe w a callback
+        # for the inventory call (bc maybe in the future the TUIFightVnC is no longer a
+        # subclass of FightVnC but split into TUIController und TUIAnimator?)
 
         self.decks.log()
         self.grid.log()
