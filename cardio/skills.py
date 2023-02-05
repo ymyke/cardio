@@ -36,6 +36,8 @@ class Skill(Enum):
         symbol="🐭",
         description="A fertile card creates a copy of itself in your hand when it is played.",
     )  # QQ: Currently not tested -- how could this be tested?
+    # (QQ: Maybe FERTILITY only makes sense for cards that use spirits as costs? Or that
+    # cost more than 1 fire? Otherwise you can create infinite spirits with them?))
     SOARING = SkillSpec(
         name="Soaring",
         symbol="🪁",
