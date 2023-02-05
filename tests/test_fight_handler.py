@@ -16,6 +16,10 @@ def equal_logs(generatedlog: str, targetlog: str) -> bool:
 
 def test_simple_initial_setup():
     session.setup()
+    original_cards = create_cards_from_blueprints(
+        ["Koala", "Weasel", "Lynx", "Porcupine"]
+    )
+    session.humanplayer.deck = Deck(copy.deepcopy(original_cards))
     cs = Round0OnlyStrategy(
         grid=session.grid,
         cards=[
