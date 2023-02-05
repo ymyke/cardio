@@ -74,7 +74,7 @@ class TUIFightVnC(FightVnC):
 
     def pos_card_deactivate(self, pos: GridPos) -> None:
         card = self.grid.get_card(pos)
-        card = self.grid[pos.line][pos.slot]
+        assert card is not None
         activate_card(self.screen, card, pos, deactivate=True)
 
     # --- Controller-type methods ---
