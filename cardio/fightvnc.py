@@ -158,8 +158,6 @@ class FightVnC:
                 session.humanplayer.spirits += (
                     card.has_spirits
                 )  # TODO should this rather be card.die()?
-            # clear_card(self.screen, sacrifice_pos)
-            # show_slot_in_grid(self.screen, sacrifice_pos)
         self.redraw_view()
         pmgr.do_place()
         session.humanplayer.spirits -= pmgr.target_card.costs_spirits
@@ -171,7 +169,6 @@ class FightVnC:
         if Skill.FERTILITY in pmgr.target_card.skills:
             new_card = pmgr.target_card.duplicate()
             new_card.reset()
-            # redraw_handdeck(self.screen, self.decks.handdeck, from_slot)
             self.redraw_view()
             self.decks.handdeck.add_card(new_card)
             # TODO Need some animation here:
@@ -181,10 +178,7 @@ class FightVnC:
             #     GridPos(2, to_slot),
             #     GridPos(4, self.decks.handdeck.size()),
             # )
-
-            # redraw_handdeck(self.screen, self.decks.handdeck, from_slot)
         self.redraw_view()
-        # self.show_agents_state()
         logging.debug("Human plays %s in %s", pmgr.target_card.name, to_slot)
 
     def handle_round_of_fight(self) -> None:  # FIXME Should be private
