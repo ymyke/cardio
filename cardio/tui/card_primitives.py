@@ -61,7 +61,7 @@ def show_card(
         show_card_contents(screen, card, dpos)
 
 
-def redraw_card(screen: Screen, card: Card, pos: GridPos) -> None:
+def redraw_card(screen: Screen, card: Card, pos: GridPos) -> None:  # TODO card should be Optional[Card], I think
     clear_card(screen, pos)
     show_card(screen, card, pos)
 
