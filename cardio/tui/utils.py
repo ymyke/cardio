@@ -59,7 +59,7 @@ def show(screen: Screen, pos: dPos, renderer: Renderer, color: Color = Color.WHI
 
 
 def show_text(screen: Screen, pos: dPos, text: str, color: Color = Color.WHITE) -> None:
-    show(screen, pos, StaticRenderer(images=[text]),  color)
+    show(screen, pos, StaticRenderer(images=[text]), color)
 
 
 def show_text_ra(
@@ -81,7 +81,7 @@ def show_box(
     color: Color = Color.YELLOW,
     style: int = SINGLE_LINE,
 ) -> None:
-    show(screen,pos, Box(w, h, style=style, uni=True),  color)
+    show(screen, pos, Box(w, h, style=style, uni=True), color)
 
 
 def render_value(
@@ -89,7 +89,7 @@ def render_value(
     symbol: str,
     cap_at: int = 5,
     clear_after: bool = True,
-    surplus_color: Color = Color.WHITE
+    surplus_color: Color = Color.WHITE,
 ) -> str:
     nofsymbols = min(value, cap_at)
     surplus = value - nofsymbols
