@@ -21,6 +21,9 @@ class BufferedScreen:
         self._buffer_active = False
 
     def __call__(self) -> Screen:
+        """Convenience method so the object can be called directly, saving some clutter
+        in the code.
+        """
         return self._bufferscreen if self._buffer_active else self._screen
 
     def buffer_on(self) -> None:
