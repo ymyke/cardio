@@ -10,7 +10,7 @@ from asciimatics.screen import Screen
 from cardio import Card, GridPos
 
 from .constants import *
-from .buffercopy import BufferCopy
+from .bufferutils import BufferCopy
 from .grid_primitives import show_slot_in_grid
 from .utils import dPos, render_value, show_text, show_text_ra, show_box
 
