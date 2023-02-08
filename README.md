@@ -1,9 +1,22 @@
 # Next up
 
-- Maybe try new ways of separating MVC? Play around w 2 screens...
+- Does the screen-switching work in Linux/Bash as well?
 
+- MVC: Could I have the basic FightVnC, which takes a Controller object, that does the
+  playcard stuff etc. and an Animator object that makes all the animations available
+  that are necessary?
+  - How many methods could really be moved to the Animator class? I.e., how many methods use information from the model?
+  - Is the differentiation between methods that have r/o access to the model and ones that have r/w access?
+- In `Card`: Should all the methods that need access to the vnc simply take a vnc object
+  as a paramter?
+
+- Maybe try new ways of separating MVC? Play around w 2 screens...
 - Can we more the business logic to fightvnc and invoke it via super?
+
 - How can we test Skill.FERTILITY?
+
+- Bug: When placing a card, it doesn't necessarily have to be placed on the last
+  sacrifice. Can be placed somewhere else!
 
 - Finish fight:
   - Start by creating some computer strategy
@@ -107,6 +120,8 @@
 
 # Low Prio Ideas
 
+- For convenience: Placement cursor could pick the first slot that makes sense for the
+  current card, i.e., the first empty slot for cards with `costs_fire == 0`.
 - Mark cards in a color other than blue.
 - Don't show costs in computer cards.
 
