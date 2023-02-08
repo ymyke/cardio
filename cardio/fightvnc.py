@@ -1,6 +1,10 @@
 import logging
 from typing import Literal, Optional
-from . import session, Card, Deck, Grid, GridPos
+
+from cardio.tui.placement_manager import (
+    PlacementManager,
+)  # TODO move placement_manager to cardio instead of tui
+from . import session, Card, Deck, Grid, GridPos, Skill
 from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
 from .card_blueprints import create_cards_from_blueprints
@@ -78,7 +82,9 @@ class FightVnC:
     def handle_human_choose_deck_to_draw_from(self) -> Optional[Deck]:
         return None
 
-    def handle_human_plays_card(self) -> None:
+    def handle_human_plays_card(
+        self, place_card_callback
+    ) -> None:  # TODO Add type hints
         pass
 
     def handle_player_damage(self, howmuch: int, source: Card) -> None:
@@ -92,6 +98,10 @@ class FightVnC:
         self.show_agents_state()
 
     # --- Misc ---
+
+    def redraw_view(self) -> None:
+        # TODO Which category does this belong to?
+        pass
 
     def human_wins_fight(self) -> None:
         # FIXME Still necessary?
@@ -141,6 +151,42 @@ class FightVnC:
         if self._has_computer_won() or self._has_human_won():
             raise EndOfFightException
 
+    def _place_card(self, pmgr: PlacementManager, from_slot: int) -> None:
+        for sacrifice_pos in pmgr.get_all_pos():
+            card = self.grid.get_card(sacrifice_pos)
+            if card is not None:
+                session.humanplayer.spirits += (
+                    card.has_spirits
+                )  # TODO should this rather be card.die()?
+            # clear_card(self.screen, sacrifice_pos)
+            # show_slot_in_grid(self.screen, sacrifice_pos)
+        self.redraw_view()
+        pmgr.do_place()
+        session.humanplayer.spirits -= pmgr.target_card.costs_spirits
+        to_slot = pmgr.get_last_pos().slot
+        self.show_human_places_card(pmgr.target_card, from_slot, to_slot)
+        self.decks.useddeck.add_card(pmgr.target_card)
+        self.decks.handdeck.pick_card(from_slot)
+
+        if Skill.FERTILITY in pmgr.target_card.skills:
+            new_card = pmgr.target_card.duplicate()
+            new_card.reset()
+            # redraw_handdeck(self.screen, self.decks.handdeck, from_slot)
+            self.redraw_view()
+            self.decks.handdeck.add_card(new_card)
+            # TODO Need some animation here:
+            # move_card(
+            #     self.screen,
+            #     new_card,
+            #     GridPos(2, to_slot),
+            #     GridPos(4, self.decks.handdeck.size()),
+            # )
+
+            # redraw_handdeck(self.screen, self.decks.handdeck, from_slot)
+        self.redraw_view()
+        # self.show_agents_state()
+        logging.debug("Human plays %s in %s", pmgr.target_card.name, to_slot)
+
     def handle_round_of_fight(self) -> None:  # FIXME Should be private
         logging.debug("----- Start of round %s -----", self.round_num)
         self.stateslogger.log_current_state()
@@ -160,7 +206,8 @@ class FightVnC:
             self.decks.handdeck.add_card(card)
 
         # Let human play card(s) from handdeck or items in his collection:
-        self.handle_human_plays_card()
+        self.handle_human_plays_card(place_card_callback=self._place_card)
+        # TODO Send _place_card along as a callback
         # TODO How to move the BZL to the base class in this case? -- Maybe w a callback
         # for the inventory call (bc maybe in the future the TUIFightVnC is no longer a
         # subclass of FightVnC but split into TUIController und TUIAnimator?)
