@@ -9,7 +9,7 @@ from asciimatics.renderers import StaticRenderer, Box, Renderer
 from asciimatics.event import KeyboardEvent
 from asciimatics.constants import SINGLE_LINE
 from .constants import *
-from .buffercopy import BufferCopy
+from .bufferutils import BufferCopy
 from cardio import GridPos, session
 
 
