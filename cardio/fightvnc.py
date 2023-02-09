@@ -226,8 +226,6 @@ class FightVnC:
         # ^ FIXME Should this be in __init__? And/or the entire ComputerAgent object,
         # which could contain the computerstrategy? It will be used for one fight only
         # anyway...
-        self.show_empty_grid(self.grid.width)   # TODO Use redraw_view
-        self.show_agents_state()
 
         # Set up the 4 decks for the fight:
         drawdeck = Deck()
@@ -241,7 +239,6 @@ class FightVnC:
         for _ in range(3):
             self._safe_draw_card_to_deck(self.decks.drawdeck, "draw")
         self._safe_draw_card_to_deck(self.decks.hamsterdeck, "hamster")
-        self.redraw_view()
 
         # Run the fight:
         self.round_num = 0
