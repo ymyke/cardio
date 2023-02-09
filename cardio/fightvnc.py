@@ -5,7 +5,7 @@ model. There is also some fight-related logic in the `Card` class.
 """
 
 import logging
-from typing import Literal, Optional
+from typing import Callable, Literal, Optional
 
 from cardio.tui.placement_manager import (
     PlacementManager,
@@ -88,9 +88,7 @@ class FightVnC:
     def handle_human_choose_deck_to_draw_from(self) -> Optional[Deck]:
         return None
 
-    def handle_human_plays_card(
-        self, place_card_callback
-    ) -> None:  # TODO Add type hints
+    def handle_human_plays_card(self, place_card_callback: Callable) -> None:
         pass
 
     def handle_player_damage(self, howmuch: int, source: Card) -> None:
