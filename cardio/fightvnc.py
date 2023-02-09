@@ -65,6 +65,9 @@ class FightVnC:
     ) -> None:
         pass
 
+    def show_human_receives_card_from_grid(self, card: Card, from_slot: int) -> None:
+        pass
+
     def show_computer_plays_card(self, card: Card, to: GridPos) -> None:
         """Play a computer card to `to`, which can be in line 0 or 1."""
         pass
@@ -171,13 +174,8 @@ class FightVnC:
             new_card.reset()
             self.redraw_view()
             self.decks.handdeck.add_card(new_card)
-            # TODO Need some animation here:
-            # move_card(
-            #     self.screen,
-            #     new_card,
-            #     GridPos(2, to_slot),
-            #     GridPos(4, self.decks.handdeck.size()),
-            # )
+            self.show_human_receives_card_from_grid(new_card, from_slot=to_slot)
+
         self.redraw_view()
         logging.debug("Human plays %s in %s", pmgr.target_card.name, to_slot)
 

@@ -122,6 +122,15 @@ class TUIFightVnC(FightVnC):
             self.screen(), card, from_=GridPos(4, from_slot), to=GridPos(2, to_slot)
         )
 
+    def show_human_receives_card_from_grid(self, card: Card, from_slot: int) -> None:
+        """E.g., for the fertility skill."""
+        move_card(
+            self.screen(),
+            card,
+            GridPos(2, from_slot),
+            GridPos(4, self.decks.handdeck.size()-1),
+        )
+
     def handle_human_choose_deck_to_draw_from(self) -> Optional[Deck]:
         """Human player draws a card from one of the draw decks (draw oder hamster)."""
         if not self.decks.drawdeck.is_empty():
