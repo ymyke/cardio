@@ -69,7 +69,7 @@ class TUIFightVnC(FightVnC):
                 redraw_card(self.screen(), card, pos)
         redraw_handdeck(self.screen(), self.decks.handdeck, 0)
         show_drawdecks(self.screen(), self.decks.drawdeck, self.decks.hamsterdeck)
-        self.show_agents_state()
+        self.state_widget.show_all()
         # Switch back:
         self.screen.buffer_off()
 
@@ -78,7 +78,7 @@ class TUIFightVnC(FightVnC):
         session.humanplayer.spirits += (
             card.has_spirits
         )  # TODO BZL -- add this to Card class?
-        self.show_agents_state()    # TODO Use redraw
+        self.redraw_view()  # To update agent state
 
     def card_lost_health(self, card: Card) -> None: # TODO unnnecessary? Use redraw_view
         redraw_card(self.screen(), card, self.grid.find_card(card))
@@ -243,6 +243,3 @@ class TUIFightVnC(FightVnC):
         show_card_to_handdeck(self.screen(), handdeck, card, deckname)
         # FIXME Add a name to the Deck class and pass the deck and use the name attribute in show_card_to_handdeck?
 
-    def show_agents_state(self) -> None:
-        self.state_widget.show_all()
-        # TODO inline in redraw?

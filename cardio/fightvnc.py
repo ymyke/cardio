@@ -81,10 +81,6 @@ class FightVnC:
         """
         pass
 
-    def show_agents_state(self) -> None:
-        """Show agent information, damage, spirits, lives, etc."""
-        pass
-
     def handle_human_choose_deck_to_draw_from(self) -> Optional[Deck]:
         return None
 
@@ -99,7 +95,7 @@ class FightVnC:
         else:
             self.damagestate.damage_computer(howmuch)
         # FIXME Add some animation for for damage
-        self.show_agents_state()
+        self.redraw_view()
 
     # --- Misc ---
 
