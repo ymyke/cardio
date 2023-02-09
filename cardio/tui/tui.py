@@ -1,3 +1,10 @@
+"""TUIFightVnC
+
+All ready-only methods to update the view, show animations, or handle user interaction.
+*Must not* modify any model-related information. Everything model-related and any kind
+of game-related logic must take place or be orchestrated in FightVnC.
+"""
+
 import atexit
 import itertools
 from typing import Callable, Optional
@@ -71,26 +78,27 @@ class TUIFightVnC(FightVnC):
         session.humanplayer.spirits += (
             card.has_spirits
         )  # TODO BZL -- add this to Card class?
-        self.show_agents_state()
+        self.show_agents_state()    # TODO Use redraw
 
-    def card_lost_health(self, card: Card) -> None:
+    def card_lost_health(self, card: Card) -> None: # TODO unnnecessary? Use redraw_view
         redraw_card(self.screen(), card, self.grid.find_card(card))
 
+    # TODO Should the following all be called something with "show"?
     def card_getting_attacked(self, target: Card, attacker: Card) -> None:
         pos = self.grid.find_card(target)
-        assert pos is not None, "Trying to burn a card that is not in the grid"
+        assert pos is not None
         shake_card(self.screen(), target, pos, "h")
 
     def card_activate(self, card: Card) -> None:
         pos = self.grid.find_card(card)
-        assert pos is not None, "Trying to burn a card that is not in the grid"
+        assert pos is not None
         activate_card(self.screen(), card, pos)
 
     def card_prepare(self, card: Card) -> None:
         pos = self.grid.find_card(card)
-        assert pos is not None, "Trying to prepare a card that is not in the grid"
+        assert pos is not None
         assert pos.line == 0, "Calling prepare on card that is not in prep line"
-        clear_card(self.screen(), pos)
+        clear_card(self.screen(), pos)  # TODO Can this be done differently with the new redraw_card?
         show_slot_in_grid(self.screen(), pos)
         move_card(
             self.screen(), card, from_=GridPos(0, pos.slot), to=GridPos(1, pos.slot)
@@ -100,6 +108,7 @@ class TUIFightVnC(FightVnC):
         card = self.grid.get_card(pos)
         assert card is not None
         activate_card(self.screen(), card, pos, deactivate=True)
+        # TODO Can this be done differently with the new redraw_card?
 
     # --- Controller-type methods ---
 
@@ -189,7 +198,8 @@ class TUIFightVnC(FightVnC):
         buffercopy = BufferCopy(self.screen())
         cursor = 0  # Cursor within hand deck
         while True:
-            buffercopy.copyback()
+            buffercopy.copyback()   
+            # TODO Check all buffercopys to see if they are still necessary with the new redraw_view
             keycode = get_keycode(self.screen())
             if keycode in (ord("i"), ord("I")):
                 pass  # FIXME Inventory!
@@ -223,11 +233,13 @@ class TUIFightVnC(FightVnC):
 
     def show_empty_grid(self, grid_width: int) -> None:
         show_empty_grid(self.screen(), grid_width)
+        # TODO inline in redraw?
 
     def show_drawdecks(self, drawdeck: Deck, hamsterdeck: Deck) -> None:
         show_drawdecks(self.screen(), self.decks.drawdeck, self.decks.hamsterdeck)
+        # TODO inline in redraw?
 
-    def show_card_to_handdeck(
+    def show_card_to_handdeck(  # TODO Rename to fit better to the new show_human_receives_card_from_grid
         self, handdeck: Deck, card: Card, whichdeck: Deck
     ) -> None:
         deckname = "draw" if whichdeck == self.decks.drawdeck else "hamster"
@@ -237,3 +249,4 @@ class TUIFightVnC(FightVnC):
 
     def show_agents_state(self) -> None:
         self.state_widget.show_all()
+        # TODO inline in redraw?

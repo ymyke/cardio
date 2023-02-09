@@ -1,10 +1,14 @@
 # Next up
 
+- Use redraw_view more extensively/elsewhere.
+
 - Does the screen-switching work in Linux/Bash as well?
 
 - MVC: Could I have the basic FightVnC, which takes a Controller object, that does the
   playcard stuff etc. and an Animator object that makes all the animations available
   that are necessary?
+  - QQ: How many of the controller-related functions in FightVnC are actually
+    subclassed? How much subclassing is necessary there?
   - How many methods could really be moved to the Animator class? I.e., how many methods use information from the model?
   - Is the differentiation between methods that have r/o access to the model and ones that have r/w access?
 - In `Card`: Should all the methods that need access to the vnc simply take a vnc object

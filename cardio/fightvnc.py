@@ -1,3 +1,9 @@
+"""FightVnC
+
+Implements or orchestrates all the game-logic related code and anything that changes the
+model. There is also some fight-related logic in the `Card` class.
+"""
+
 import logging
 from typing import Literal, Optional
 
@@ -223,7 +229,7 @@ class FightVnC:
         # ^ FIXME Should this be in __init__? And/or the entire ComputerAgent object,
         # which could contain the computerstrategy? It will be used for one fight only
         # anyway...
-        self.show_empty_grid(self.grid.width)
+        self.show_empty_grid(self.grid.width)   # TODO Use redraw_view
         self.show_agents_state()
 
         # Set up the 4 decks for the fight:
@@ -234,12 +240,12 @@ class FightVnC:
         self.decks = Decks(drawdeck, hamsterdeck, Deck(), Deck())
 
         # Draw the decks and show how the first cards get drawn:
-        self.show_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
+        self.show_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck) # TODO Use redraw_view
         for _ in range(3):
             self._safe_draw_card_to_deck(self.decks.drawdeck, "draw")
         self._safe_draw_card_to_deck(self.decks.hamsterdeck, "hamster")
         # Redraw because size of decks changed:
-        self.show_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
+        self.show_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck) # TODO Use redraw_view
 
         # Run the fight:
         self.round_num = 0
