@@ -68,7 +68,7 @@ class TUIFightVnC(FightVnC):
             if card is not None:
                 redraw_card(self.screen(), card, pos)
         redraw_handdeck(self.screen(), self.decks.handdeck, 0)
-        self.show_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
+        show_drawdecks(self.screen(), self.decks.drawdeck, self.decks.hamsterdeck)
         self.show_agents_state()
         # Switch back:
         self.screen.buffer_off()
@@ -235,9 +235,6 @@ class TUIFightVnC(FightVnC):
         show_empty_grid(self.screen(), grid_width)
         # TODO inline in redraw?
 
-    def show_drawdecks(self, drawdeck: Deck, hamsterdeck: Deck) -> None:
-        show_drawdecks(self.screen(), self.decks.drawdeck, self.decks.hamsterdeck)
-        # TODO inline in redraw?
 
     def show_card_to_handdeck(  # TODO Rename to fit better to the new show_human_receives_card_from_grid
         self, handdeck: Deck, card: Card, whichdeck: Deck
@@ -245,7 +242,6 @@ class TUIFightVnC(FightVnC):
         deckname = "draw" if whichdeck == self.decks.drawdeck else "hamster"
         show_card_to_handdeck(self.screen(), handdeck, card, deckname)
         # FIXME Add a name to the Deck class and pass the deck and use the name attribute in show_card_to_handdeck?
-        show_drawdecks(self.screen(), self.decks.drawdeck, self.decks.hamsterdeck)
 
     def show_agents_state(self) -> None:
         self.state_widget.show_all()

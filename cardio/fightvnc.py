@@ -63,9 +63,6 @@ class FightVnC:
     def show_empty_grid(self, grid_width: int) -> None:
         pass
 
-    def show_drawdecks(self, drawdeck: Deck, hamsterdeck: Deck) -> None:
-        pass
-
     def show_card_to_handdeck(
         self, handdeck: Deck, card: Card, whichdeck: Deck
     ) -> None:
@@ -240,12 +237,11 @@ class FightVnC:
         self.decks = Decks(drawdeck, hamsterdeck, Deck(), Deck())
 
         # Draw the decks and show how the first cards get drawn:
-        self.show_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck) # TODO Use redraw_view
+        self.redraw_view()
         for _ in range(3):
             self._safe_draw_card_to_deck(self.decks.drawdeck, "draw")
         self._safe_draw_card_to_deck(self.decks.hamsterdeck, "hamster")
-        # Redraw because size of decks changed:
-        self.show_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck) # TODO Use redraw_view
+        self.redraw_view()
 
         # Run the fight:
         self.round_num = 0
