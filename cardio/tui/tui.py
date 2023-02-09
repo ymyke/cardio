@@ -1,6 +1,6 @@
 import atexit
 import itertools
-from typing import Optional
+from typing import Callable, Optional
 
 from asciimatics.screen import Screen
 
@@ -141,16 +141,12 @@ class TUIFightVnC(FightVnC):
             elif keycode == Screen.KEY_UP:
                 return self.decks.drawdeck if highlights[0] else self.decks.hamsterdeck
 
-    def _handle_human_places_card(
-        self, from_slot: int, place_card_callback
-    ) -> None:  # TODO Add type hints
-        """Human player places a card she chose from her handdeck in her line. Raises
-        `PlacementAbortedException` if the process is aborted (either by the code or by
-        the player).
+    def _handle_card_placement_interaction(self, pmgr: PlacementManager) -> None:
+        """Human player picks the cards to sacrifice and the location of the target
+        card. All orchestrated by `PlacementManager`. Raises `PlacementAbortedException`
+        if the process is aborted (either by the code or by the player). Returns
+        regularly when the `PlacementManager` is `ready_to_place`.
         """
-        target_card = self.decks.handdeck.cards[from_slot]
-        pmgr = PlacementManager(self.grid, session.humanplayer.spirits, target_card)
-        # TODO get the placement mgr as a parameter?
         if not pmgr.is_placeable():
             # LIXME Add some animation / user feedback here?
             raise PlacementAbortedException
@@ -176,15 +172,8 @@ class TUIFightVnC(FightVnC):
             elif keycode == Screen.KEY_ESCAPE:
                 buffercopy.copyback()
                 raise PlacementAbortedException
-        # TODO => postcondition: pmgr that is ready w/ sacrifice positions and a target_card
-        place_card_callback(pmgr, from_slot)
-        # TODO Is the callback really a good solution here?
-        # Now ready to place:
-        # TODO should this even return a placement mgr?
 
-    def handle_human_plays_card(
-        self, place_card_callback
-    ) -> None:  # TODO Add type hints
+    def handle_human_plays_card(self, place_card_callback: Callable) -> None:
         """Human player picks a card from the hand to play. Also handles I key for
         inventory and C to end the turn and start next round of the fight.
         """
@@ -209,16 +198,19 @@ class TUIFightVnC(FightVnC):
             elif keycode == Screen.KEY_RIGHT:
                 cursor = min(self.decks.handdeck.size() - 1, cursor + 1)
             elif keycode == Screen.KEY_UP:
+                pmgr = PlacementManager(
+                    grid=self.grid,
+                    available_spirits=session.humanplayer.spirits,
+                    target_card=self.decks.handdeck.cards[cursor],
+                )
                 try:
-                    # TODO Get and send _place_card callback
-                    # TODO Create and send placement mgr
-                    self._handle_human_places_card(
-                        cursor, place_card_callback=place_card_callback
-                    )  # TODO  BZL
-                    cursor = min(self.decks.handdeck.size() - 1, cursor)
-                    buffercopy.update()
+                    self._handle_card_placement_interaction(pmgr)
                 except PlacementAbortedException:
                     pass
+                else:
+                    place_card_callback(pmgr=pmgr, from_slot=cursor)
+                    cursor = min(self.decks.handdeck.size() - 1, cursor)
+                    buffercopy.update()
 
     def show_empty_grid(self, grid_width: int) -> None:
         show_empty_grid(self.screen(), grid_width)
