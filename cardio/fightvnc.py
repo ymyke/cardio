@@ -60,9 +60,6 @@ class FightVnC:
 
     # --- Controller-related ---
 
-    def show_empty_grid(self, grid_width: int) -> None:
-        pass
-
     def show_card_to_handdeck(
         self, handdeck: Deck, card: Card, whichdeck: Deck
     ) -> None:

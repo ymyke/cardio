@@ -56,7 +56,7 @@ class TUIFightVnC(FightVnC):
         self.screen.buffer_on()
         # Make all the updates on the off-screen:
         self.screen().clear()
-        self.show_empty_grid(self.grid.width)
+        show_empty_grid(self.screen(), self.grid.width)
         all_pos = (
             GridPos(*p)
             for p in itertools.product(
@@ -230,11 +230,6 @@ class TUIFightVnC(FightVnC):
                     place_card_callback(pmgr=pmgr, from_slot=cursor)
                     cursor = min(self.decks.handdeck.size() - 1, cursor)
                     buffercopy.update()
-
-    def show_empty_grid(self, grid_width: int) -> None:
-        show_empty_grid(self.screen(), grid_width)
-        # TODO inline in redraw?
-
 
     def show_card_to_handdeck(  # TODO Rename to fit better to the new show_human_receives_card_from_grid
         self, handdeck: Deck, card: Card, whichdeck: Deck
