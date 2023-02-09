@@ -13,7 +13,7 @@ from asciimatics.screen import Screen
 
 from cardio import Card, Deck, FightVnC, GridPos, session
 
-from .bufferutils import BufferCopy, BufferedScreen
+from .bufferutils import BufferedScreen
 from .card_primitives import (
     activate_card,
     burn_card,
@@ -169,10 +169,8 @@ class TUIFightVnC(FightVnC):
             # LIXME Add some animation / user feedback here?
             raise PlacementAbortedException
 
-        buffercopy = BufferCopy(self.screen())
         cursor = 0  # Cursor within line 2
         while not pmgr.ready_to_place():
-            buffercopy.copyback()
             cursor_pos = GridPos(2, cursor)
             highlight_card(self.screen(), cursor_pos)
 
@@ -186,26 +184,20 @@ class TUIFightVnC(FightVnC):
                     pmgr.unmark_pos(cursor_pos)
                 elif pmgr.can_mark(cursor_pos):
                     pmgr.mark_pos(cursor_pos)
-                    buffercopy.update()
             elif keycode == Screen.KEY_ESCAPE:
-                buffercopy.copyback()
                 raise PlacementAbortedException
 
     def handle_human_plays_card(self, place_card_callback: Callable) -> None:
         """Human player picks a card from the hand to play. Also handles I key for
         inventory and C to end the turn and start next round of the fight.
         """
-        buffercopy = BufferCopy(self.screen())
         cursor = 0  # Cursor within hand deck
         while True:
-            buffercopy.copyback()   
-            # TODO Check all buffercopys to see if they are still necessary with the new redraw_view
             keycode = get_keycode(self.screen())
             if keycode in (ord("i"), ord("I")):
                 pass  # FIXME Inventory!
                 # TODO  BZL
             elif keycode in (ord("c"), ord("C")):
-                buffercopy.copyback()
                 break
 
             # Everything cursor-related only if hand is not empty:
@@ -229,7 +221,6 @@ class TUIFightVnC(FightVnC):
                 else:
                     place_card_callback(pmgr=pmgr, from_slot=cursor)
                     cursor = min(self.decks.handdeck.size() - 1, cursor)
-                    buffercopy.update()
 
     def show_card_to_handdeck(  # TODO Rename to fit better to the new show_human_receives_card_from_grid
         self, handdeck: Deck, card: Card, whichdeck: Deck
