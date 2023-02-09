@@ -107,8 +107,7 @@ class TUIFightVnC(FightVnC):
     def pos_card_deactivate(self, pos: GridPos) -> None:
         card = self.grid.get_card(pos)
         assert card is not None
-        activate_card(self.screen(), card, pos, deactivate=True)
-        # TODO Can this be done differently with the new redraw_card?
+        self.redraw_view()
 
     # --- Controller-type methods ---
 

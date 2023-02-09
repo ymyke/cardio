@@ -62,8 +62,9 @@ class Card:
     def die(self) -> None:
         logging.debug("%s dies.", self.name)
         self.health = 0
-        session.view.card_died(self, self.get_grid_pos())
+        pos = self.get_grid_pos()
         session.grid.remove_card(self)
+        session.view.card_died(self, pos)
 
     def lose_health(self, howmuch: int) -> int:
         assert howmuch > 0
