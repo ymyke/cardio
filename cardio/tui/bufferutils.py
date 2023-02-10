@@ -30,7 +30,9 @@ class BufferedScreen:
     Note that all write accesses write to the same variables, which can lead to desired
     or undesired outcomes. But it is something to keep in mind esp. where the same
     `BufferedScreen` object is accessed in a nested fashion (e.g., in
-    `handle_human_plays_card` and `_handle_card_placement_interaction`).
+    `handle_human_plays_card` and `_handle_card_placement_interaction`). For the same
+    reason, the call to `copy_to` might sometimes not be necessary because a view update
+    might already have updated the buffer on the buffer screen.
     """
 
     def __init__(self) -> None:
@@ -45,7 +47,6 @@ class BufferedScreen:
         return self._bufferscreen if self._buffer_active else self._screen
 
     def copy_to(self) -> None:
-        # TODO This call might often not even be necessary
         self._bufferscreen._buffer._double_buffer = copy.deepcopy(
             self._screen._buffer._double_buffer
         )
