@@ -27,7 +27,6 @@ from .decks_primitives import (
     show_card_to_handdeck,
     show_drawdeck_highlights,
     show_drawdecks,
-    show_handdeck_highlight,
     redraw_handdeck,
 )
 from .grid_primitives import show_empty_grid, show_slot_in_grid
@@ -207,7 +206,7 @@ class TUIFightVnC(FightVnC):
             if self.decks.handdeck.is_empty():
                 continue
             self.screen.restore_from()
-            show_handdeck_highlight( self.screen(), cursor)  # TODO Just use highlight_card?
+            highlight_card(self.screen(), GridPos(4, cursor))
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:

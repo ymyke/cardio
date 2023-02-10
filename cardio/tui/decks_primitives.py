@@ -6,10 +6,6 @@ from .card_primitives import highlight_card, show_card, move_card
 from .utils import dPos, show_text, show_box
 
 
-def show_handdeck_highlight(screen: Screen, slot: int, highlight: bool = True) -> None:
-    highlight_card(screen, GridPos(4, slot), highlight)
-
-
 def show_drawdeck_highlights(screen: Screen, highlights: Tuple[bool, bool]) -> None:
     pos = dPos(DRAW_DECKS_X, DRAW_DECKS_Y)
     highlight_card(screen, pos, highlights[0])
