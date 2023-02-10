@@ -171,6 +171,7 @@ class TUIFightVnC(FightVnC):
         cursor = 0  # Cursor within line 2
         while not pmgr.ready_to_place():
             cursor_pos = GridPos(2, cursor)
+            self.screen.restore_from()
             highlight_card(self.screen(), cursor_pos)
 
             keycode = get_keycode(self.screen())
@@ -190,6 +191,7 @@ class TUIFightVnC(FightVnC):
         """Human player picks a card from the hand to play. Also handles I key for
         inventory and C to end the turn and start next round of the fight.
         """
+        self.screen.copy_to()
         cursor = 0  # Cursor within hand deck
         while True:
             keycode = get_keycode(self.screen())
@@ -202,7 +204,8 @@ class TUIFightVnC(FightVnC):
             # Everything cursor-related only if hand is not empty:
             if self.decks.handdeck.is_empty():
                 continue
-            show_handdeck_highlight(self.screen(), cursor)
+            self.screen.restore_from()
+            show_handdeck_highlight( self.screen(), cursor)  # TODO Just use highlight_card?
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
@@ -216,6 +219,7 @@ class TUIFightVnC(FightVnC):
                 try:
                     self._handle_card_placement_interaction(pmgr)
                 except PlacementAbortedException:
+                    self.redraw_view()
                     pass
                 else:
                     place_card_callback(pmgr=pmgr, from_slot=cursor)
