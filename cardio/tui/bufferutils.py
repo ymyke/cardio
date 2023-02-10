@@ -52,7 +52,6 @@ class BufferedScreen:
         )
 
     def restore_from(self) -> None:
-        # TODO Could sometimes be used instead of redraw_view
         self._screen._buffer._double_buffer = copy.deepcopy(
             self._bufferscreen._buffer._double_buffer
         )
