@@ -168,6 +168,7 @@ class TUIFightVnC(FightVnC):
             # LIXME Add some animation / user feedback here?
             raise PlacementAbortedException
 
+        self.screen.copy_to()
         cursor = 0  # Cursor within line 2
         while not pmgr.ready_to_place():
             cursor_pos = GridPos(2, cursor)
@@ -184,6 +185,7 @@ class TUIFightVnC(FightVnC):
                     pmgr.unmark_pos(cursor_pos)
                 elif pmgr.can_mark(cursor_pos):
                     pmgr.mark_pos(cursor_pos)
+                self.screen.copy_to()
             elif keycode == Screen.KEY_ESCAPE:
                 raise PlacementAbortedException
 
