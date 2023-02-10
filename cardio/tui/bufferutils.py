@@ -39,9 +39,3 @@ class BufferedScreen:
     def close(self) -> None:
         self._bufferscreen.close()
         self._screen.close()
-
-    def __enter__(self):
-        self.buffer_on()
-
-    def __exit__(self, *args):
-        self.buffer_off()
