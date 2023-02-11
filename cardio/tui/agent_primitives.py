@@ -1,8 +1,8 @@
+from asciimatics.screen import Screen
 from asciimatics.renderers import FigletText
 from cardio import GridPos, session
 from cardio.agent_damage_state import AgentDamageState
 from .utils import dPos, render_value, show, show_text
-from .bufferutils import BufferedScreen
 from .constants import *
 
 
@@ -11,7 +11,7 @@ class StateWidget:
     # Options: rectangles, small, chunky, ... (http://www.figlet.org/examples.html)
 
     def __init__(
-        self, screen: BufferedScreen, grid_width: int, damagestate: AgentDamageState
+        self, screen: Screen, grid_width: int, damagestate: AgentDamageState
     ) -> None:
         self.screen = screen
         self.damagestate = damagestate
@@ -22,11 +22,11 @@ class StateWidget:
     def _show_health_bars(self, pos: dPos, diff: int, max_diff: int) -> None:
         bars = render_value(min(max_diff - diff, max_diff), "█ ", 100) + "\n"
         bars *= 2
-        show_text(self.screen(), pos, bars, color=Color.CYAN)
+        show_text(self.screen, pos, bars, color=Color.CYAN)
 
     def show_computerplayer_state(self) -> None:
         show(
-            self.screen(),
+            self.screen,
             self.computer_pos,
             FigletText("Yshl", self.NAME_FONT),
             color=Color.GRAY,
@@ -47,7 +47,7 @@ class StateWidget:
 {render_value(session.humanplayer.gems, '💎', surplus_color=Color.BLUE)}
 {render_value(session.humanplayer.spirits, '👻')}
 """
-        show_text(self.screen(), self.human_pos + (0, 2), state_str, color=Color.GRAY)
+        show_text(self.screen, self.human_pos + (0, 2), state_str, color=Color.GRAY)
 
     def show_all(self):
         self.show_computerplayer_state()
