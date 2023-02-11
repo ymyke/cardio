@@ -1,5 +1,5 @@
 from collections import OrderedDict
-from typing import List
+from typing import List, Optional
 from cardio import GridPos, Grid, Card
 
 
@@ -11,16 +11,17 @@ class PlacementManager:
     """Makes sure card placement conditions are met, especially in terms of their fire
     and spirits cost.
 
-    There are 3 general cases:
+    Placing is the term for the entire process here, which consists of 3 steps:
 
-    - `target_card` costs >1 fire: Make sure we have positions with cards marked that
-      add up to the necessary fire.
-    - `target_card costs 1 fire: Make sure we have a position with a card with at least
-      1 fire marked.
-    - `target_card` costs 0 fire: Make sure we have a position _without_ a card marked.
+    1. Marking: Marking as many cards as necessary to place the card. Can be 0 (e.g.,
+       hamsters or cards that only cost spirits) to n.
+    2. Picking: Once sufficient cards are marked (i.e., `ready_to_pick` returns `True`),
+       pick a slot to place the new `target_card`. This can be either an empty spot or
+       one of the marked spots.
+    3. Place the `target_card` via `do_place` (and additional code outside this class as
+       necessary).
 
-    In the latter two cases, `target_card` will immediately placed in the respective
-    position.
+    One of the central methods that orchestrates this process is `mark_unmark_or_pick`.
     """
 
     def __init__(self, grid: Grid, available_spirits: int, target_card: Card) -> None:
@@ -28,6 +29,7 @@ class PlacementManager:
         self.available_spirits = available_spirits
         self.target_card = target_card
         self.marked_positions: OrderedDict = OrderedDict()
+        self.placement_position: Optional[GridPos] = None
 
     def is_placeable(self) -> bool:
         """Whether `target_card` is placeable at all."""
@@ -41,21 +43,42 @@ class PlacementManager:
         return pos in self.marked_positions
 
     def can_mark(self, pos: GridPos) -> bool:
-        # General pre-conditions for marking:
-        if not pos.line == 2 or self.is_marked(pos):
-            return False
-        # Spirits are simple:
-        if self.target_card.costs_spirits > self.available_spirits:
-            return False
-        # Target cards requiring 0 fire:
         card = self.grid.get_card(pos)
-        if self.target_card.costs_fire == 0 and card is None:
-            return True
-        # Target cards requiring >0 fire:
-        if self.target_card.costs_fire > 0 and card is not None and card.has_fire > 0:
-            return True
-        return False
+        return (
+            pos.line == 2
+            and not self.is_marked(pos)
+            and self.target_card.costs_fire > 0
+            and card is not None
+            and card.has_fire > 0
+        )
 
+    def can_pick(self, pos: GridPos) -> bool:
+        assert self.ready_to_pick()
+        return pos.line == 2 and (
+            pos in self.get_marked_positions() or self.grid.get_card(pos) is None
+        )
+
+    def pick_if_possible(self, pos: GridPos) -> None:
+        assert self.placement_position is None
+        if self.can_pick(pos):
+            self.placement_position = pos
+
+    def mark_unmark_or_pick(self, pos: GridPos) -> None:
+        """Does all three..."""
+        if self.ready_to_pick():
+            self.pick_if_possible(pos)
+        elif self.is_marked(pos):
+            self.unmark_pos(pos)
+        elif self.can_mark(pos):
+            self.mark_pos(pos)
+
+    def ready_to_pick(self) -> bool:
+        return (
+            self.available_fire_in_marked_positions() >= self.target_card.costs_fire
+            and self.available_spirits >= self.target_card.costs_spirits
+        )
+
+    # TODO Fix order of methods
     def mark_pos(self, pos: GridPos) -> None:
         assert self.can_mark(pos), "Cannot mark this position"
         self.marked_positions[pos] = None
@@ -64,11 +87,12 @@ class PlacementManager:
         assert self.is_marked(pos)
         del self.marked_positions[pos]
 
-    def get_all_pos(self) -> List[GridPos]:
+    def get_marked_positions(self) -> List[GridPos]:
         return list(self.marked_positions.keys())
 
-    def get_last_pos(self) -> GridPos:
-        return list(self.marked_positions.keys())[-1]
+    def get_placement_position(self) -> GridPos:
+        assert self.ready_to_place()
+        return self.placement_position  # type:ignore
 
     def available_fire_in_marked_positions(self) -> int:
         return sum(
@@ -81,16 +105,13 @@ class PlacementManager:
         return sum(c.has_fire for c in self.grid.lines[2] if c is not None)
 
     def ready_to_place(self) -> bool:
-        return (
-            len(self.marked_positions) > 0
-            and self.available_fire_in_marked_positions() >= self.target_card.costs_fire
-            and self.available_spirits >= self.target_card.costs_spirits
-        )
+        return self.placement_position is not None
 
     def do_place(self) -> None:
         """Note that this method only handles the grid. Any updates of decks, views, and
         other states (e.g., for spirits count) must be done in addition.
         """
+        assert self.ready_to_place()
         for pos in self.marked_positions:
             self.grid.clear_position(pos)
-        self.grid.set_card(self.get_last_pos(), self.target_card)
+        self.grid.set_card(self.placement_position, self.target_card)  # type:ignore

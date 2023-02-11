@@ -149,7 +149,7 @@ class FightVnC:
             raise EndOfFightException
 
     def _place_card(self, pmgr: PlacementManager, from_slot: int) -> None:
-        for sacrifice_pos in pmgr.get_all_pos():
+        for sacrifice_pos in pmgr.get_marked_positions():
             card = self.grid.get_card(sacrifice_pos)
             if card is not None:
                 session.humanplayer.spirits += (
@@ -158,7 +158,7 @@ class FightVnC:
         self.redraw_view()
         pmgr.do_place()
         session.humanplayer.spirits -= pmgr.target_card.costs_spirits
-        to_slot = pmgr.get_last_pos().slot
+        to_slot = pmgr.get_placement_position().slot
         self.show_human_places_card(pmgr.target_card, from_slot, to_slot)
         self.decks.useddeck.add_card(pmgr.target_card)
         self.decks.handdeck.pick_card(from_slot)

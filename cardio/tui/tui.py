@@ -175,7 +175,7 @@ class TUIFightVnC(FightVnC):
         while not pmgr.ready_to_place():
             cursor_pos = GridPos(2, cursor)
             self.redraw_view()
-            for pos in pmgr.get_all_pos() + [cursor_pos]:
+            for pos in pmgr.get_marked_positions() + [cursor_pos]:
                 highlight_card(self.screen, pos)
             self.screen.refresh()
 
@@ -185,10 +185,7 @@ class TUIFightVnC(FightVnC):
             elif keycode == Screen.KEY_RIGHT:
                 cursor = min(self.grid.width - 1, cursor + 1)
             elif keycode == Screen.KEY_DOWN:
-                if pmgr.is_marked(cursor_pos):
-                    pmgr.unmark_pos(cursor_pos)
-                elif pmgr.can_mark(cursor_pos):
-                    pmgr.mark_pos(cursor_pos)
+                pmgr.mark_unmark_or_pick(cursor_pos)
             elif keycode == Screen.KEY_ESCAPE:
                 raise PlacementAbortedException
 
