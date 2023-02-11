@@ -44,7 +44,6 @@ class dPos(NamedTuple):
 #         effects = [effects]
 #     for e in effects:  # type: ignore
 #         e.update(0)
-#     screen.refresh()
 
 
 def show(screen: Screen, pos: dPos, renderer: Renderer, color: Color = Color.WHITE):
@@ -55,7 +54,6 @@ def show(screen: Screen, pos: dPos, renderer: Renderer, color: Color = Color.WHI
     else:
         color_args = dict(colour=color.value)
     Print(screen=screen, renderer=renderer, x=pos.x, y=pos.y, **color_args).update(0)
-    screen.refresh()
 
 
 def show_text(screen: Screen, pos: dPos, text: str, color: Color = Color.WHITE) -> None:
