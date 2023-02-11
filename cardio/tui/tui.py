@@ -226,7 +226,7 @@ class TUIFightVnC(FightVnC):
                     place_card_callback(pmgr=pmgr, from_slot=cursor)
                     cursor = min(self.decks.handdeck.size() - 1, cursor)
 
-    def show_card_to_handdeck(  # TODO Rename to fit better to the new show_human_receives_card_from_grid
+    def show_human_draws_new_card(
         self, handdeck: Deck, card: Card, whichdeck: Deck
     ) -> None:
         deckname = "draw" if whichdeck == self.decks.drawdeck else "hamster"

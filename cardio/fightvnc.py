@@ -60,7 +60,7 @@ class FightVnC:
 
     # --- Controller-related ---
 
-    def show_card_to_handdeck(
+    def show_human_draws_new_card(
         self, handdeck: Deck, card: Card, whichdeck: Deck
     ) -> None:
         pass
@@ -120,7 +120,7 @@ class FightVnC:
             card = draw_from.draw_card()
         except IndexError:
             return
-        self.show_card_to_handdeck(self.decks.handdeck, card, from_name)
+        self.show_human_draws_new_card(self.decks.handdeck, card, from_name)
         self.decks.handdeck.add_card(card)
 
     def _has_computer_won(self) -> bool:
@@ -188,7 +188,7 @@ class FightVnC:
         deck = self.handle_human_choose_deck_to_draw_from()
         if deck is not None:
             card = deck.draw_card()
-            self.show_card_to_handdeck(self.decks.handdeck, card, deck)
+            self.show_human_draws_new_card(self.decks.handdeck, card, deck)
             self.decks.handdeck.add_card(card)
 
         # Let human play card(s) from handdeck or items in his collection:
