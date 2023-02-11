@@ -45,7 +45,6 @@ def redraw_handdeck(screen: Screen, handdeck: Deck, from_index: int) -> None:
     )
     for i, card in list(enumerate(handdeck.cards))[from_index:]:
         show_card(screen, card, GridPos(4, i))
-    screen.refresh()
 
 
 def show_card_to_handdeck(
