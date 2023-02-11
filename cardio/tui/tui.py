@@ -57,9 +57,7 @@ class TUIFightVnC(FightVnC):
         if grid_highlights is None:
             grid_highlights = []
 
-        self.screen.clear_buffer(
-            0, 0, 0
-        )  # TODO correct colors, maybe add to primitives?
+        self.screen.clear_buffer(0, 0, 0)
         show_empty_grid(self.screen, self.grid.width)
         all_pos = (
             GridPos(*p)
