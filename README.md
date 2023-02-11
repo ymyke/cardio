@@ -2,22 +2,6 @@
 
 - Use redraw_view more extensively/elsewhere.
 
-- Does the screen-switching work in Linux/Bash as well?
-  - Fire doesn't work
-  - BufferedScreen doesn't work
-  - This commit worked: 594473046adaefd9d04f318d96dff9019162a752 (Feb 5)
-  - 47d29fb3339f31dc13b23ae39215b6977f51bf45 <- Here it started breaking
-  - QQ:
-    - Can I get the screen switching to work on WSL?
-    - Should I test it elsewhere?
-    - => Write a test script that I can keep and re-use.
-    - Can I get the fire to work on WSL? Elsewhere? Test script!
-    - If not: 
-      - a. Only support Windows?
-      - b. Ask asciimatics for a better way that works cross-platform.
-      - c. Roll back to the old way of doing things but keep some of the new stuff that
-        pushes more BZL to the base class.
-
 - MVC: Could I have the basic FightVnC, which takes a Controller object, that does the
   playcard stuff etc. and an Animator object that makes all the animations available
   that are necessary?
@@ -142,6 +126,10 @@
   current card, i.e., the first empty slot for cards with `costs_fire == 0`.
 - Mark cards in a color other than blue.
 - Don't show costs in computer cards.
+
+# Low Prio Todos
+
+- Make fire effect work on WSL.
 
 # Game related
 
