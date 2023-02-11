@@ -220,7 +220,6 @@ class TUIFightVnC(FightVnC):
                 try:
                     self._handle_card_placement_interaction(pmgr)
                 except PlacementAbortedException:
-                    self.redraw_view()
                     pass
                 else:
                     place_card_callback(pmgr=pmgr, from_slot=cursor)
