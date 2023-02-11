@@ -7,7 +7,7 @@ of game-related logic must take place or be orchestrated in FightVnC.
 
 import atexit
 import itertools
-from typing import Callable, Optional
+from typing import Callable, List, Optional, Tuple
 
 from asciimatics.screen import Screen
 
@@ -50,8 +50,10 @@ class TUIFightVnC(FightVnC):
     # --- Methods from base class ---
 
     def redraw_view(
-        self, grid_highlights=None, drawdeck_highlights=(False, False)
-    ) -> None:  # TODO Add types
+        self,
+        grid_highlights: Optional[List[GridPos]] = None,
+        drawdeck_highlights: Tuple[bool, bool] = (False, False),
+    ) -> None:
         if grid_highlights is None:
             grid_highlights = []
 
