@@ -49,7 +49,12 @@ class TUIFightVnC(FightVnC):
 
     # --- Methods from base class ---
 
-    def redraw_view(self) -> None:
+    def redraw_view(
+        self, grid_highlights=None, drawdeck_highlights=(False, False)
+    ) -> None:  # TODO Add types
+        if grid_highlights is None:
+            grid_highlights = []
+
         self.screen.clear_buffer(
             0, 0, 0
         )  # TODO correct colors, maybe add to primitives?
@@ -66,6 +71,12 @@ class TUIFightVnC(FightVnC):
                 redraw_card(self.screen, card, pos)
         redraw_handdeck(self.screen, self.decks.handdeck, 0)
         show_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
+
+        # Highlights, if any:
+        for pos in grid_highlights:
+            highlight_card(self.screen, pos)
+        show_drawdeck_highlights(self.screen, drawdeck_highlights)
+
         self.state_widget.show_all()
         self.screen.refresh()
 
@@ -150,9 +161,7 @@ class TUIFightVnC(FightVnC):
             return None
 
         while True:
-            self.redraw_view()
-            show_drawdeck_highlights(self.screen, highlights)
-            self.screen.refresh()
+            self.redraw_view(drawdeck_highlights=highlights)
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT and not self.decks.drawdeck.is_empty():
                 highlights = (True, False)
@@ -161,7 +170,9 @@ class TUIFightVnC(FightVnC):
             elif keycode == Screen.KEY_UP:
                 return self.decks.drawdeck if highlights[0] else self.decks.hamsterdeck
 
-    def _handle_card_placement_interaction(self, pmgr: PlacementManager) -> None:
+    def _handle_card_placement_interaction(
+        self, pmgr: PlacementManager, old_highlight: GridPos
+    ) -> None:
         """Human player picks the cards to sacrifice and the location of the target
         card. All orchestrated by `PlacementManager`. Raises `PlacementAbortedException`
         if the process is aborted (either by the code or by the player). Returns
@@ -174,10 +185,8 @@ class TUIFightVnC(FightVnC):
         cursor = 0  # Cursor within line 2
         while not pmgr.ready_to_place():
             cursor_pos = GridPos(2, cursor)
-            self.redraw_view()
-            for pos in pmgr.get_marked_positions() + [cursor_pos]:
-                highlight_card(self.screen, pos)
-            self.screen.refresh()
+            highlights = pmgr.get_marked_positions() + [cursor_pos] + [old_highlight]
+            self.redraw_view(grid_highlights=highlights)
 
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT:
@@ -205,9 +214,9 @@ class TUIFightVnC(FightVnC):
             # Everything cursor-related only if hand is not empty:
             if self.decks.handdeck.is_empty():
                 continue
-            self.redraw_view()
-            highlight_card(self.screen, GridPos(4, cursor))
-            self.screen.refresh()
+            cursor_pos = GridPos(4, cursor)
+            self.redraw_view(grid_highlights=[cursor_pos])
+
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
@@ -219,7 +228,7 @@ class TUIFightVnC(FightVnC):
                     target_card=self.decks.handdeck.cards[cursor],
                 )
                 try:
-                    self._handle_card_placement_interaction(pmgr)
+                    self._handle_card_placement_interaction(pmgr, cursor_pos)
                 except PlacementAbortedException:
                     pass
                 else:

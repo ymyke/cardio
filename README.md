@@ -1,7 +1,5 @@
 # Next up
 
-- Cursor in line 4 is lost during card placement
-
 - Use redraw_view more extensively/elsewhere.
 
 - MVC: Could I have the basic FightVnC, which takes a Controller object, that does the
