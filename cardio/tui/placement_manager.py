@@ -31,13 +31,7 @@ class PlacementManager:
         self.marked_positions: OrderedDict = OrderedDict()
         self.placement_position: Optional[GridPos] = None
 
-    def is_placeable(self) -> bool:
-        """Whether `target_card` is placeable at all."""
-        if self.available_spirits < self.target_card.costs_spirits:
-            return False
-        if self.target_card.costs_fire == 0:
-            return None in self.grid.lines[2]
-        return self.available_fire_in_grid() >= self.target_card.costs_fire
+    # ----- marking -----
 
     def is_marked(self, pos: GridPos) -> bool:
         return pos in self.marked_positions
@@ -52,33 +46,6 @@ class PlacementManager:
             and card.has_fire > 0
         )
 
-    def can_pick(self, pos: GridPos) -> bool:
-        assert self.ready_to_pick()
-        return pos.line == 2 and (
-            pos in self.get_marked_positions() or self.grid.get_card(pos) is None
-        )
-
-    def pick_if_possible(self, pos: GridPos) -> None:
-        assert self.placement_position is None
-        if self.can_pick(pos):
-            self.placement_position = pos
-
-    def mark_unmark_or_pick(self, pos: GridPos) -> None:
-        """Does all three..."""
-        if self.ready_to_pick():
-            self.pick_if_possible(pos)
-        elif self.is_marked(pos):
-            self.unmark_pos(pos)
-        elif self.can_mark(pos):
-            self.mark_pos(pos)
-
-    def ready_to_pick(self) -> bool:
-        return (
-            self.available_fire_in_marked_positions() >= self.target_card.costs_fire
-            and self.available_spirits >= self.target_card.costs_spirits
-        )
-
-    # TODO Fix order of methods
     def mark_pos(self, pos: GridPos) -> None:
         assert self.can_mark(pos), "Cannot mark this position"
         self.marked_positions[pos] = None
@@ -90,9 +57,46 @@ class PlacementManager:
     def get_marked_positions(self) -> List[GridPos]:
         return list(self.marked_positions.keys())
 
-    def get_placement_position(self) -> GridPos:
-        assert self.ready_to_place()
-        return self.placement_position  # type:ignore
+    # ----- picking -----
+
+    def mark_unmark_or_pick(self, pos: GridPos) -> None:
+        """Tries to pick if possible, or mark or unmark."""
+        if self.ready_to_pick():
+            self.pick_if_possible(pos)
+        elif self.is_marked(pos):
+            self.unmark_pos(pos)
+        elif self.can_mark(pos):
+            self.mark_pos(pos)
+
+    def can_pick(self, pos: GridPos) -> bool:
+        assert self.ready_to_pick()
+        return pos.line == 2 and (
+            pos in self.get_marked_positions() or self.grid.get_card(pos) is None
+        )
+
+    def pick_if_possible(self, pos: GridPos) -> None:
+        assert self.placement_position is None
+        if self.can_pick(pos):
+            self.placement_position = pos
+
+    def ready_to_pick(self) -> bool:
+        return (
+            self.available_fire_in_marked_positions() >= self.target_card.costs_fire
+            and self.available_spirits >= self.target_card.costs_spirits
+        )
+
+    # ----- placing ----
+
+    def is_placeable(self) -> bool:
+        """Whether `target_card` is placeable at all."""
+        if self.available_spirits < self.target_card.costs_spirits:
+            return False
+        if self.target_card.costs_fire == 0:
+            return None in self.grid.lines[2]
+        return self.available_fire_in_grid() >= self.target_card.costs_fire
+
+    def ready_to_place(self) -> bool:
+        return self.placement_position is not None
 
     def available_fire_in_marked_positions(self) -> int:
         return sum(
@@ -104,8 +108,9 @@ class PlacementManager:
     def available_fire_in_grid(self) -> int:
         return sum(c.has_fire for c in self.grid.lines[2] if c is not None)
 
-    def ready_to_place(self) -> bool:
-        return self.placement_position is not None
+    def get_placement_position(self) -> GridPos:
+        assert self.ready_to_place()
+        return self.placement_position  # type:ignore
 
     def do_place(self) -> None:
         """Note that this method only handles the grid. Any updates of decks, views, and
