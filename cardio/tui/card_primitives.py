@@ -164,3 +164,4 @@ def move_card(
     for x, y in p._steps:
         buffercopy.copyback()
         show_card(screen, card, dPos(x, y))
+        screen.refresh()
