@@ -51,10 +51,10 @@ class TUIFightVnC(FightVnC):
     # --- Methods from base class ---
 
     def redraw_view(self) -> None:
-        # Switch to off-screen as main screen:
-        self.screen.buffer_on()
-        # Make all the updates on the off-screen:
-        self.screen().clear()
+        # self.screen().clear()
+        self.screen().clear_buffer(
+            0, 0, 0
+        )  # TODO correct colors, maybe add to primitives?
         show_empty_grid(self.screen(), self.grid.width)
         all_pos = (
             GridPos(*p)
@@ -69,8 +69,7 @@ class TUIFightVnC(FightVnC):
         redraw_handdeck(self.screen(), self.decks.handdeck, 0)
         show_drawdecks(self.screen(), self.decks.drawdeck, self.decks.hamsterdeck)
         self.state_widget.show_all()
-        # Switch back:
-        self.screen.buffer_off()
+        self.screen().refresh()
 
     def card_died(self, card: Card, pos: GridPos) -> None:
         burn_card(self.screen(), pos)
@@ -148,7 +147,9 @@ class TUIFightVnC(FightVnC):
             return None
 
         while True:
+            self.redraw_view()
             show_drawdeck_highlights(self.screen(), highlights)
+            self.screen().refresh()
             keycode = get_keycode(self.screen())
             if keycode == Screen.KEY_LEFT and not self.decks.drawdeck.is_empty():
                 highlights = (True, False)
@@ -167,12 +168,13 @@ class TUIFightVnC(FightVnC):
             # LIXME Add some animation / user feedback here?
             raise PlacementAbortedException
 
-        self.screen.copy_to()
         cursor = 0  # Cursor within line 2
         while not pmgr.ready_to_place():
             cursor_pos = GridPos(2, cursor)
-            self.screen.restore_from()
-            highlight_card(self.screen(), cursor_pos)
+            self.redraw_view()
+            for pos in pmgr.get_all_pos() + [cursor_pos]:
+                highlight_card(self.screen(), pos)
+            self.screen().refresh()
 
             keycode = get_keycode(self.screen())
             if keycode == Screen.KEY_LEFT:
@@ -184,7 +186,6 @@ class TUIFightVnC(FightVnC):
                     pmgr.unmark_pos(cursor_pos)
                 elif pmgr.can_mark(cursor_pos):
                     pmgr.mark_pos(cursor_pos)
-                self.screen.copy_to()
             elif keycode == Screen.KEY_ESCAPE:
                 raise PlacementAbortedException
 
@@ -192,7 +193,6 @@ class TUIFightVnC(FightVnC):
         """Human player picks a card from the hand to play. Also handles I key for
         inventory and C to end the turn and start next round of the fight.
         """
-        self.screen.copy_to()
         cursor = 0  # Cursor within hand deck
         while True:
             keycode = get_keycode(self.screen())
@@ -205,8 +205,9 @@ class TUIFightVnC(FightVnC):
             # Everything cursor-related only if hand is not empty:
             if self.decks.handdeck.is_empty():
                 continue
-            self.screen.restore_from()
+            self.redraw_view()
             highlight_card(self.screen(), GridPos(4, cursor))
+            self.screen().refresh()
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
@@ -232,4 +233,3 @@ class TUIFightVnC(FightVnC):
         deckname = "draw" if whichdeck == self.decks.drawdeck else "hamster"
         show_card_to_handdeck(self.screen(), handdeck, card, deckname)
         # FIXME Add a name to the Deck class and pass the deck and use the name attribute in show_card_to_handdeck?
-
