@@ -81,7 +81,7 @@ class FightVnC:
     def handle_human_choose_deck_to_draw_from(self) -> Optional[Deck]:
         return None
 
-    def handle_human_plays_card(self, place_card_callback: Callable) -> None:
+    def handle_human_plays_cards(self, place_card_callback: Callable) -> None:
         pass
 
     def handle_player_damage(self, howmuch: int, source: Card) -> None:
@@ -192,7 +192,7 @@ class FightVnC:
             self.decks.handdeck.add_card(card)
 
         # Let human play card(s) from handdeck or items in his collection:
-        self.handle_human_plays_card(place_card_callback=self._place_card)
+        self.handle_human_plays_cards(place_card_callback=self._place_card)
         # TODO Send _place_card along as a callback
         # TODO How to move the BZL to the base class in this case? -- Maybe w a callback
         # for the inventory call (bc maybe in the future the TUIFightVnC is no longer a

@@ -188,7 +188,7 @@ class TUIFightVnC(FightVnC):
             elif keycode == Screen.KEY_ESCAPE:
                 raise PlacementAbortedException
 
-    def handle_human_plays_card(self, place_card_callback: Callable) -> None:
+    def handle_human_plays_cards(self, place_card_callback: Callable) -> None:
         """Human player picks a card from the hand to play. Also handles I key for
         inventory and C to end the turn and start next round of the fight.
         """

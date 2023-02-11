@@ -1,4 +1,5 @@
 import logging
+from typing import Callable
 from .fightvnc import FightVnC
 from . import Deck
 
@@ -11,7 +12,7 @@ class HumanStrategyVnC(FightVnC):
         else:
             return self.decks.drawdeck
 
-    def handle_human_plays_card(self) -> None:
+    def handle_human_plays_cards(self, place_card_callback: Callable) -> None:
         """Simply play the first card in the handdeck to the first empty slot in the
         grid line.
         """
