@@ -76,7 +76,9 @@ class TUIFightVnC(FightVnC):
         )  # TODO BZL -- add this to Card class?
         self.redraw_view()  # To update agent state
 
-    def card_lost_health(self, card: Card) -> None: # TODO unnnecessary? Use redraw_view
+    def card_lost_health(
+        self, card: Card
+    ) -> None:  # TODO unnnecessary? Use redraw_view
         redraw_card(self.screen, card, self.grid.find_card(card))
         self.screen.refresh()
 
@@ -95,7 +97,9 @@ class TUIFightVnC(FightVnC):
         pos = self.grid.find_card(card)
         assert pos is not None
         assert pos.line == 0, "Calling prepare on card that is not in prep line"
-        clear_card(self.screen, pos)  # TODO Can this be done differently with the new redraw_card?
+        clear_card(
+            self.screen, pos
+        )  # TODO Can this be done differently with the new redraw_card?
         show_slot_in_grid(self.screen, pos)
         move_card(
             self.screen, card, from_=GridPos(0, pos.slot), to=GridPos(1, pos.slot)
@@ -133,7 +137,7 @@ class TUIFightVnC(FightVnC):
             self.screen,
             card,
             GridPos(2, from_slot),
-            GridPos(4, self.decks.handdeck.size()-1),
+            GridPos(4, self.decks.handdeck.size() - 1),
         )
 
     def handle_human_choose_deck_to_draw_from(self) -> Optional[Deck]:
