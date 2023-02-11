@@ -17,9 +17,8 @@ class HumanStrategyVnC(FightVnC):
         grid line.
         """
         # TODO Can we simplify this too after incorporating the BZL stuff into the base
-        # class?
-        # TODO Either way, this needs to be adapted if handle_human_plays_card returns
-        # some value in the future.
+        # class? -- I.e., place the cards implicitly via place_card_callback rather than
+        # explicitly here, ignoring the callback.
         if self.decks.handdeck.is_empty():
             return None
         for slot in range(self.grid.width):
