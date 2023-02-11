@@ -1,5 +1,7 @@
 # Next up
 
+- Cursor in line 4 is lost during card placement
+
 - Use redraw_view more extensively/elsewhere.
 
 - MVC: Could I have the basic FightVnC, which takes a Controller object, that does the
@@ -125,6 +127,7 @@
 - For convenience: Placement cursor could pick the first slot that makes sense for the
   current card, i.e., the first empty slot for cards with `costs_fire == 0`.
 - Mark cards in a color other than blue.
+- Turn marked positions from blue to green when the placement manager is ready to pick.
 - Don't show costs in computer cards.
 
 # Low Prio Todos
