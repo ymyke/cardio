@@ -12,6 +12,3 @@ class BufferCopy:
 
     def copyback(self) -> None:
         self.screen._buffer._double_buffer = copy.deepcopy(self.buffer)
-
-
-# TODO Remove BufferCopy??
