@@ -1,6 +1,6 @@
 import pytest
 from cardio import Grid, Card, GridPos
-from cardio.tui.placement_manager import PlacementManager
+from cardio.placement_manager import PlacementManager
 
 
 def test_placement_manager():

@@ -30,8 +30,8 @@ from .decks_primitives import (
 )
 from .grid_primitives import show_empty_grid, show_slot_in_grid
 from .agent_primitives import StateWidget
-from .placement_manager import PlacementManager, PlacementAbortedException
 from .utils import show_screen_resolution, get_keycode
+from ..placement_manager import PlacementManager, PlacementAbortedException
 
 
 class TUIFightVnC(FightVnC):

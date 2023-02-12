@@ -7,10 +7,8 @@ model. There is also some fight-related logic in the `Card` class.
 import logging
 from typing import Callable, Literal, Optional
 
-from cardio.tui.placement_manager import (
-    PlacementManager,
-)  # TODO move placement_manager to cardio instead of tui
 from . import session, Card, Deck, Grid, GridPos, Skill
+from .placement_manager import PlacementManager
 from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
 from .card_blueprints import create_cards_from_blueprints
