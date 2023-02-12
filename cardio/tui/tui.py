@@ -105,9 +105,7 @@ class TUIFightVnC(FightVnC):
         pos = self.grid.find_card(card)
         assert pos is not None
         assert pos.line == 0, "Calling prepare on card that is not in prep line"
-        clear_card(
-            self.screen, pos
-        )  # TODO Can this be done differently with the new redraw_card?
+        clear_card(self.screen, pos)
         show_slot_in_grid(self.screen, pos)
         move_card(
             self.screen, card, from_=GridPos(0, pos.slot), to=GridPos(1, pos.slot)
