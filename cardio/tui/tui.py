@@ -87,11 +87,8 @@ class TUIFightVnC(FightVnC):
         )  # TODO BZL -- add this to Card class?
         self.redraw_view()  # To update agent state
 
-    def card_lost_health(
-        self, card: Card
-    ) -> None:  # TODO unnnecessary? Use redraw_view
-        redraw_card(self.screen, card, self.grid.find_card(card))
-        self.screen.refresh()
+    def card_lost_health(self, card: Card) -> None:
+        self.redraw_view()
 
     # TODO Should the following all be called something with "show"?
     def card_getting_attacked(self, target: Card, attacker: Card) -> None:
