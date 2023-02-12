@@ -95,7 +95,6 @@ class FightVnC:
     # --- Misc ---
 
     def redraw_view(self) -> None:
-        # TODO Which category does this belong to?
         pass
 
     def human_wins_fight(self) -> None:
