@@ -52,7 +52,7 @@ class Card:
         assert pos is not None, "Cards calling `get_grid_pos` must be on the grid"
         return pos
 
-    def duplicate(self)->Card:
+    def duplicate(self) -> Card:
         return copy.deepcopy(self)
 
     def get_prep_card(self) -> Optional[Card]:
@@ -62,6 +62,7 @@ class Card:
     def die(self) -> None:
         logging.debug("%s dies.", self.name)
         self.health = 0
+        session.humanplayer.spirits += self.has_spirits
         pos = self.get_grid_pos()
         session.grid.remove_card(self)
         session.view.card_died(self, pos)

@@ -82,9 +82,6 @@ class TUIFightVnC(FightVnC):
 
     def card_died(self, card: Card, pos: GridPos) -> None:
         burn_card(self.screen, pos)
-        session.humanplayer.spirits += (
-            card.has_spirits
-        )  # TODO BZL -- add this to Card class?
         self.redraw_view()  # To update agent state
 
     def card_lost_health(self, card: Card) -> None:
