@@ -115,6 +115,14 @@ def show_screen_resolution(screen):
     show_text(screen, dPos(screen.width - len(txt), screen.height - 1), txt)
 
 
+def start_debug_mode(screen: Screen):
+    bc = BufferCopy(screen)
+    screen.close()
+    pdb.set_trace()
+    session.view.screen = bc.screen = Screen.open(unicode_aware=True)  # type:ignore
+    bc.copyback()
+
+
 def get_keycode(screen: Screen) -> Optional[int]:
     """Non-blocking. Ignores all mouse events. Returns `ord` value of key pressed,
     `None` if no key pressed. Special keys are encoded according to
@@ -128,10 +136,5 @@ def get_keycode(screen: Screen) -> Optional[int]:
     if event.key_code == ord("$"):  # hard exit
         sys.exit(0)
     if event.key_code == ord("!"):  # debug
-        bc = BufferCopy(screen)
-        screen.close()
-        pdb.set_trace()
-        session.view.screen = bc.screen = Screen.open(unicode_aware=True)
-        bc.copyback()
-
+        start_debug_mode(screen)
     return event.key_code
