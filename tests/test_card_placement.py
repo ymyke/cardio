@@ -1,3 +1,5 @@
+"""Tests for both `PlacementManager` and `FightVnC._place_card`."""
+
 import pytest
 from cardio import Grid, Card, GridPos, session, Deck
 from cardio.fightvnc import FightVnC
