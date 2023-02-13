@@ -2,8 +2,6 @@ from typing import List, Optional
 from cardio import Card, Skill, session
 from cardio.computer_strategies import Round0OnlyStrategy
 
-# FIXME Should this rather be test_skills?
-
 
 def do_the_fight(
     humancard: Optional[Card],
