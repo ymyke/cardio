@@ -11,15 +11,16 @@ class PlacementManager:
     """Makes sure card placement conditions are met, especially in terms of their fire
     and spirits cost.
 
-    Placing is the term for the entire process here, which consists of 3 steps:
+    Placing is the term for the entire process here, which consists of 2 steps:
 
     1. Marking: Marking as many cards as necessary to place the card. Can be 0 (e.g.,
        hamsters or cards that only cost spirits) to n.
     2. Picking: Once sufficient cards are marked (i.e., `ready_to_pick` returns `True`),
        pick a slot to place the new `target_card`. This can be either an empty spot or
        one of the marked spots.
-    3. Place the `target_card` via `do_place` (and additional code outside this class as
-       necessary).
+
+    The actual placing of the `target_card` including model updates etc. must be done
+    outside the placement manager (cf `FightVnC._place_card`).
 
     One of the central methods that orchestrates this process is `mark_unmark_or_pick`.
     """
@@ -29,6 +30,7 @@ class PlacementManager:
         self.available_spirits = available_spirits
         self.target_card = target_card
         self.marked_positions: OrderedDict = OrderedDict()
+        # TODO No longer needs to be an OrderedDict
         self.placement_position: Optional[GridPos] = None
 
     # ----- marking -----
@@ -111,12 +113,3 @@ class PlacementManager:
     def get_placement_position(self) -> GridPos:
         assert self.ready_to_place()
         return self.placement_position  # type:ignore
-
-    def do_place(self) -> None:
-        """Note that this method only handles the grid. Any updates of decks, views, and
-        other states (e.g., for spirits count) must be done in addition.
-        """
-        assert self.ready_to_place()
-        for pos in self.marked_positions:
-            self.grid.clear_position(pos)
-        self.grid.set_card(self.placement_position, self.target_card)  # type:ignore
