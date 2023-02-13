@@ -1,6 +1,11 @@
 import pytest
-from cardio import Grid, Card, GridPos
+from cardio import Grid, Card, GridPos, session, Deck
+from cardio.fightvnc import FightVnC
 from cardio.placement_manager import PlacementManager
+from cardio.tui.decks import Decks
+
+
+# ----- PlacementManager tests -----
 
 
 def test_placement_manager():
@@ -49,12 +54,6 @@ def test_placement_manager():
     # Try to pick again:
     with pytest.raises(AssertionError):
         p.mark_unmark_or_pick(GridPos(2, 3))
-
-    # Place:
-    p.do_place()
-    assert g.get_card(GridPos(2, 0)) is None
-    assert g.get_card(GridPos(2, 1)) is None
-    assert g.get_card(GridPos(2, 3)).name == "T"  # type: ignore
 
 
 def test_can_mark():
@@ -114,3 +113,56 @@ def test_is_placeable():
     assert not p.is_placeable()
     p.available_spirits = 1
     assert p.is_placeable()
+
+
+# ----- FightVnC._place_card tests -----
+
+
+def test_place_card_with_fire_sacrifice():
+    target_card = Card("T", 1, 1, 1)
+    target_pos = GridPos(2, 3)
+    sacrifice_card = Card("S", 1, 1, 1)
+    sacrifice_pos = GridPos(2, 0)
+
+    g = Grid(width=4)
+    g.set_card(sacrifice_pos, sacrifice_card)
+
+    session.setup()
+    session.grid = g
+
+    p = PlacementManager(g, 0, target_card)
+    p.marked_positions[sacrifice_pos] = None
+    # TODO Fix once this is no longer an ordereddict
+    p.placement_position = target_pos
+
+    vnc = FightVnC(g)
+    vnc.decks = Decks(Deck(), Deck(), Deck([target_card]), Deck())
+    vnc._place_card(p, 0)
+
+    assert g.get_card(target_pos) == target_card
+    assert g.get_card(sacrifice_pos) is None
+    assert vnc.decks.handdeck.is_empty()
+    assert vnc.decks.useddeck.cards == [sacrifice_card, target_card]
+
+
+def test_place_card_with_spirits_sacrifice():
+    target_card = Card("T", 1, 1, costs_fire=0, costs_spirits=3)
+    target_pos = GridPos(2, 3)
+
+    g = Grid(width=4)
+
+    session.setup()
+    session.grid = g
+
+    p = PlacementManager(g, 0, target_card)
+    p.placement_position = target_pos
+
+    spirits_before = session.humanplayer.spirits
+    vnc = FightVnC(g)
+    vnc.decks = Decks(Deck(), Deck(), Deck([target_card]), Deck())
+    vnc._place_card(p, 0)
+
+    assert g.get_card(target_pos) == target_card
+    assert vnc.decks.handdeck.is_empty()
+    assert vnc.decks.useddeck.cards == [target_card]
+    assert session.humanplayer.spirits == spirits_before - 3
