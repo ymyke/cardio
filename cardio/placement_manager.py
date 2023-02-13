@@ -1,4 +1,3 @@
-from collections import OrderedDict
 from typing import List, Optional
 from cardio import GridPos, Grid, Card
 
@@ -29,8 +28,7 @@ class PlacementManager:
         self.grid = grid
         self.available_spirits = available_spirits
         self.target_card = target_card
-        self.marked_positions: OrderedDict = OrderedDict()
-        # TODO No longer needs to be an OrderedDict
+        self.marked_positions = set()
         self.placement_position: Optional[GridPos] = None
 
     # ----- marking -----
@@ -50,14 +48,14 @@ class PlacementManager:
 
     def mark_pos(self, pos: GridPos) -> None:
         assert self.can_mark(pos), "Cannot mark this position"
-        self.marked_positions[pos] = None
+        self.marked_positions.add(pos)
 
     def unmark_pos(self, pos: GridPos) -> None:
         assert self.is_marked(pos)
-        del self.marked_positions[pos]
+        self.marked_positions.remove(pos)
 
     def get_marked_positions(self) -> List[GridPos]:
-        return list(self.marked_positions.keys())
+        return list(self.marked_positions)
 
     # ----- picking -----
 
@@ -103,7 +101,7 @@ class PlacementManager:
     def available_fire_in_marked_positions(self) -> int:
         return sum(
             c.has_fire
-            for c in (self.grid.get_card(pos) for pos in self.marked_positions)
+            for c in (self.grid.get_card(pos) for pos in self.get_marked_positions())
             if c is not None
         )
 

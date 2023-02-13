@@ -131,8 +131,7 @@ def test_place_card_with_fire_sacrifice():
     session.grid = g
 
     p = PlacementManager(g, 0, target_card)
-    p.marked_positions[sacrifice_pos] = None
-    # TODO Fix once this is no longer an ordereddict
+    p.marked_positions = {sacrifice_pos}
     p.placement_position = target_pos
 
     vnc = FightVnC(g)
