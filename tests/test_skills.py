@@ -139,3 +139,18 @@ def test_spines_resulting_in_both_cards_dying_simultaneously():
     assert session.grid[1][0] is None
     assert session.grid[2][0] is None
     assert session.humanplayer.lives == 0
+
+
+def test_fertility():
+    hc = Card("Human Card", 1, 1, 0, skills=[Skill.FERTILITY])
+    cc = Card("Computer Card", 1, 2, 1)  # TODO If I use 3 for health, something breaks
+    do_the_fight([hc], cc)
+    assert hc in session.view.decks.useddeck.cards
+    non_hamsters_on_hand = [
+        c for c in session.view.decks.handdeck.cards if c.name != "Hamster"
+    ]
+    assert len(non_hamsters_on_hand) == 1
+    new_card = non_hamsters_on_hand[0]
+    assert new_card.name == "Human Card"
+    assert new_card.health == 1  # Make sure the health was reset
+    assert new_card.skills == [Skill.FERTILITY]
