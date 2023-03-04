@@ -8,11 +8,9 @@
   - Finish when one party won
   - => Have a new starting point for this. g.py or so.
 - Start thinking about the broader game, map, ...
-- Implement some skills that have an influence on the decks (e.g., fertility, Ouroboros,
-  unkillable, ...) and see if they work well with the current deck implementation.
 
 
-# MCV Thoughts
+# MVC Thoughts
 
 (Not sure, how good the thoughts here are...)
 
