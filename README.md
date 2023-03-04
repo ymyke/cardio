@@ -3,6 +3,19 @@
 
 # Next up
 
+- Finish fight:
+  - Start by creating some computer strategy
+  - Finish when one party won
+  - => Have a new starting point for this. g.py or so.
+- Start thinking about the broader game, map, ...
+- Implement some skills that have an influence on the decks (e.g., fertility, Ouroboros,
+  unkillable, ...) and see if they work well with the current deck implementation.
+
+
+# MCV Thoughts
+
+(Not sure, how good the thoughts here are...)
+
 - MVC: Could I have the basic FightVnC, which takes a Controller object, that does the
   playcard stuff etc. and an Animator object that makes all the animations available
   that are necessary?
@@ -15,13 +28,6 @@
 - In `Card`: Should all the methods that need access to the vnc simply take a vnc object
   as a paramter?
 
-- Finish fight:
-  - Start by creating some computer strategy
-  - Finish when one party won
-  - => Have a new starting point for this. g.py or so.
-- Start thinking about the broader game, map, ...
-- Implement some skills that have an influence on the decks (e.g., fertility, Ouroboros,
-  unkillable, ...) and see if they work well with the current deck implementation.
 
 # Architectural considerations
 
