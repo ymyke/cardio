@@ -159,6 +159,9 @@ class FightVnC:
         to_slot = pmgr.get_placement_position().slot
         self.show_human_places_card(pmgr.target_card, from_slot, to_slot)
         self.decks.useddeck.add_card(pmgr.target_card)
+        # TODO Is it really correct to have add a card to the used deck immediately?
+        # This might lead to situations where the player can draw a card from the used
+        # deck that is still active in the grid!
         self.decks.handdeck.pick_card(from_slot)
 
         if Skill.FERTILITY in pmgr.target_card.skills:
