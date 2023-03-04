@@ -20,7 +20,7 @@ class HumanStrategyVnC(FightVnC):
         # class? -- I.e., place the cards implicitly via place_card_callback rather than
         # explicitly here, ignoring the callback.
         if self.decks.handdeck.is_empty():
-            return None
+            return
         for slot in range(self.grid.width):
             if self.grid[2][slot] is None:
                 card = self.decks.handdeck.draw_card()
