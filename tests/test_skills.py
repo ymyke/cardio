@@ -143,7 +143,7 @@ def test_spines_resulting_in_both_cards_dying_simultaneously():
 
 def test_fertility():
     hc = Card("Human Card", 1, 1, 0, skills=[Skill.FERTILITY])
-    cc = Card("Computer Card", 1, 2, 1)  # TODO If I use 3 for health, something breaks
+    cc = Card("Computer Card", 1, 2, 1)
     do_the_fight([hc], cc)
     assert hc in session.view.decks.useddeck.cards
     non_hamsters_on_hand = [
