@@ -22,9 +22,6 @@
 - In `Card`: Should all the methods that need access to the vnc simply take a vnc object
   as a paramter?
 
-- Maybe try new ways of separating MVC? Play around w 2 screens...
-- Can we more the business logic to fightvnc and invoke it via super?
-
 - Finish fight:
   - Start by creating some computer strategy
   - Finish when one party won
