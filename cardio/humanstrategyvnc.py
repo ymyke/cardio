@@ -53,7 +53,7 @@ class ProperlyPlacingHumanStrategyVnC(HumanStrategyVnC):
                 card.costs_spirits = 0
                 p = PlacementManager(self.grid, 0, card)
                 p.target_card = card  # TODO Add these to initializer
-                p.placement_position = pos  # TODO Rename to target_position
+                p.placement_position = pos
                 place_card_callback(p, 0)
                 return
         logging.debug("Human plays no card.")
