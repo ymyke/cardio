@@ -1,12 +1,5 @@
 # In this branch
 
-- Better separate business logic (placed in `FightVnC`) and UI/view code (placed in `TUIFightVnC`).
-- Move card placement code (=business logic) to base class (`FightVnC`).
-- Add `redraw_view` method.
-- Inline lots of existing view-related code in `redraw_view`.
-- Revamp lots of code by using `redraw_view`.
-- Add `ProperlyPlacingHumanStrategyVnC`; later renamed to `HumanStrategyVnC`.
-
 
 # Next up
 
