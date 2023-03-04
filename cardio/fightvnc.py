@@ -150,11 +150,11 @@ class FightVnC:
         for sacrifice_pos in pmgr.get_marked_positions():
             card = self.grid.get_card(sacrifice_pos)
             assert card is not None
-            card.sacrifice()   
+            card.sacrifice()
             self.decks.useddeck.add_card(card)
         session.humanplayer.spirits -= pmgr.target_card.costs_spirits
         self.grid.set_card(pmgr.placement_position, pmgr.target_card)  # type:ignore
-        
+
         # Update view:
         to_slot = pmgr.get_placement_position().slot
         self.show_human_places_card(pmgr.target_card, from_slot, to_slot)
@@ -194,10 +194,6 @@ class FightVnC:
 
         # Let human play card(s) from handdeck or items in his collection:
         self.handle_human_plays_cards(place_card_callback=self._place_card)
-        # TODO Send _place_card along as a callback
-        # TODO How to move the BZL to the base class in this case? -- Maybe w a callback
-        # for the inventory call (bc maybe in the future the TUIFightVnC is no longer a
-        # subclass of FightVnC but split into TUIController und TUIAnimator?)
 
         self.decks.log()
         self.grid.log()
