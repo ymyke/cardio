@@ -24,12 +24,21 @@ class PlacementManager:
     One of the central methods that orchestrates this process is `mark_unmark_or_pick`.
     """
 
-    def __init__(self, grid: Grid, available_spirits: int, target_card: Card) -> None:
+    def __init__(
+        self,
+        grid: Grid,
+        available_spirits: int,
+        target_card: Card,
+        placement_position: Optional[GridPos] = None,
+    ) -> None:
+        """`placement_position` is usually not set in the initializer but derived by
+        using the `PlacementManager`, but the paramter is used in tests.
+        """
         self.grid = grid
         self.available_spirits = available_spirits
         self.target_card = target_card
         self.marked_positions = set()
-        self.placement_position: Optional[GridPos] = None
+        self.placement_position = placement_position
 
     # ----- marking -----
 

@@ -38,9 +38,7 @@ class HumanStrategyVnC(FightVnC):
                 card = self.decks.handdeck.cards[0]
                 card.costs_fire = 0
                 card.costs_spirits = 0
-                p = PlacementManager(self.grid, 0, card)
-                p.target_card = card  # TODO Add these to initializer
-                p.placement_position = pos
+                p = PlacementManager(self.grid, 0, card, placement_position=pos)
                 place_card_callback(p, 0)
                 return
         logging.debug("Human plays no card.")
