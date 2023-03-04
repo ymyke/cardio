@@ -1,6 +1,6 @@
 import copy
 from cardio import session, Card, Deck, GridPos
-from cardio.humanstrategyvnc import ProperlyPlacingHumanStrategyVnC
+from cardio.humanstrategyvnc import HumanStrategyVnC
 from cardio.computer_strategies import Round0OnlyStrategy, PredefinedStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
 from cardio.agent_damage_state import AgentDamageState
@@ -108,7 +108,7 @@ def test_human_decks_managed_correctly():  # FIXME Should get different name?
         ],
     )
 
-    session.view = ProperlyPlacingHumanStrategyVnC(grid=session.grid)
+    session.view = HumanStrategyVnC(grid=session.grid)
     # Override damagestate with better health:
     session.view.damagestate = AgentDamageState(max_diff=50)
 

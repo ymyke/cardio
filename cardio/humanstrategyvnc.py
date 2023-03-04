@@ -5,7 +5,7 @@ from .fightvnc import FightVnC
 from .placement_manager import PlacementManager
 
 
-class ProperlyPlacingHumanStrategyVnC(FightVnC):
+class HumanStrategyVnC(FightVnC):
     def __init__(
         self, whichrounds: Optional[List[int]] = None, *args, **kwargs
     ) -> None:
