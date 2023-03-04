@@ -21,7 +21,7 @@ def do_the_fight(humancards: CardList, computercard: Optional[Card]) -> None:
     session.setup()
     session.humanplayer.deck.cards = humancards
     cs = Round0OnlyStrategy(grid=session.grid, cards=[(GridPos(1, 0), computercard)])
-    session.view = ProperlyPlacingHumanStrategyVnC(session.grid, whichrounds=[0])
+    session.view = ProperlyPlacingHumanStrategyVnC(grid=session.grid, whichrounds=[0])
     session.view.handle_fight(computerstrategy=cs)
 
 

@@ -34,10 +34,10 @@ class HumanStrategyVnC(FightVnC):
 
 class ProperlyPlacingHumanStrategyVnC(HumanStrategyVnC):
     def __init__(
-        self, grid: Grid, whichrounds: Optional[List[int]] = None, *args, **kwargs
-    ) -> None:  # TODO Can I this w/o the grid here?
+        self, whichrounds: Optional[List[int]] = None, *args, **kwargs
+    ) -> None:
         """Use `whichrounds` to only become active in specific fight rounds."""
-        super().__init__(grid, *args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.whichrounds = whichrounds
 
     def handle_human_plays_cards(self, place_card_callback: Callable) -> None:
