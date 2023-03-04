@@ -10,7 +10,7 @@ from asciimatics.screen import Screen
 from cardio import Card, GridPos
 
 from .constants import *
-from .buffercopy import BufferCopy
+from .bufferutils import BufferCopy
 from .grid_primitives import show_slot_in_grid
 from .utils import dPos, render_value, show_text, show_text_ra, show_box
 
@@ -61,7 +61,7 @@ def show_card(
         show_card_contents(screen, card, dpos)
 
 
-def redraw_card(screen: Screen, card: Card, pos: GridPos) -> None:
+def redraw_card(screen: Screen, card: Optional[Card], pos: GridPos) -> None:
     clear_card(screen, pos)
     show_card(screen, card, pos)
 
@@ -89,9 +89,11 @@ def activate_card(
     if deactivate:
         clear_card(screen, pos, yoffset=yoffset)
         show_card(screen, card, pos, yoffset=0)
+        screen.refresh()
     else:
         clear_card(screen, pos, yoffset=0)
         show_card(screen, card, pos, yoffset=yoffset)
+        screen.refresh()
     time.sleep(0.1)
 
 
@@ -131,12 +133,16 @@ def shake_card(
         offset = {"yoffset": -1}
     for _ in range(4):
         show_card(screen, card, pos)
+        screen.refresh()
         time.sleep(0.03)
         clear_card(screen, pos)
         show_card(screen, card, pos, **offset)
+        screen.refresh()
         time.sleep(0.03)
         clear_card(screen, pos, **offset)
+        screen.refresh()
     show_card(screen, card, pos)
+    screen.refresh()
 
 
 def flash_card(screen: Screen, pos: GridPos) -> None:
@@ -164,3 +170,4 @@ def move_card(
     for x, y in p._steps:
         buffercopy.copyback()
         show_card(screen, card, dPos(x, y))
+        screen.refresh()

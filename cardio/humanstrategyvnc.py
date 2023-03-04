@@ -1,31 +1,44 @@
 import logging
+from typing import Callable, List, Optional
+from . import Deck, GridPos
 from .fightvnc import FightVnC
+from .placement_manager import PlacementManager
 
 
 class HumanStrategyVnC(FightVnC):
-    def handle_human_draws_new_card(self) -> None:
+    def __init__(
+        self, whichrounds: Optional[List[int]] = None, *args, **kwargs
+    ) -> None:
+        """Use `whichrounds` to only become active in specific fight rounds."""
+        super().__init__(*args, **kwargs)
+        self.whichrounds = whichrounds
+
+    def handle_human_choose_deck_to_draw_from(self) -> Deck:
         """Simply alternate between drawdeck and hamsterdeck."""
         if self.decks.drawdeck.is_empty() or self.round_num % 2 == 0:
-            whichdeck = self.decks.hamsterdeck
+            return self.decks.hamsterdeck
         else:
-            whichdeck = self.decks.drawdeck
-        if whichdeck.is_empty():
-            return
-        card = whichdeck.draw_card()
-        self.decks.handdeck.add_card(card)
-        logging.debug("Human draws %s", card.name)
+            return self.decks.drawdeck
 
-    def handle_human_plays_card(self) -> None:
+    def handle_human_plays_cards(self, place_card_callback: Callable) -> None:
         """Simply play the first card in the handdeck to the first empty slot in the
-        grid line.
+        grid line. Uses the `place_card_callback` in order to invoke all the relevant
+        code.
+
+        Note that both costs will be set to 0 before placing each card so cards get
+        placed regardless of the current state of the human player.
         """
+        if self.whichrounds and not self.round_num in self.whichrounds:
+            return
         if self.decks.handdeck.is_empty():
-            return None
+            return
         for slot in range(self.grid.width):
-            if self.grid[2][slot] is None:
-                card = self.decks.handdeck.draw_card()
-                self.grid[2][slot] = card
-                self.decks.useddeck.add_card(card)
-                logging.debug("Human plays %s on %s", card.name, slot)
+            pos = GridPos(2, slot)
+            if self.grid.get_card(pos) is None:
+                card = self.decks.handdeck.cards[0]
+                card.costs_fire = 0
+                card.costs_spirits = 0
+                p = PlacementManager(self.grid, 0, card, placement_position=pos)
+                place_card_callback(p, 0)
                 return
         logging.debug("Human plays no card.")

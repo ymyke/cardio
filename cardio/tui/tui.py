@@ -1,12 +1,18 @@
+"""TUIFightVnC
+
+All ready-only methods to update the view, show animations, or handle user interaction.
+*Must not* modify any model-related information. Everything model-related and any kind
+of game-related logic must take place or be orchestrated in FightVnC.
+"""
+
 import atexit
-import logging
-from typing import Literal
+import itertools
+from typing import Callable, List, Optional, Tuple
 
 from asciimatics.screen import Screen
 
-from cardio import Card, Deck, FightVnC, GridPos, session, Skill
+from cardio import Card, Deck, FightVnC, GridPos, session
 
-from .buffercopy import BufferCopy
 from .card_primitives import (
     activate_card,
     burn_card,
@@ -20,13 +26,12 @@ from .decks_primitives import (
     show_card_to_handdeck,
     show_drawdeck_highlights,
     show_drawdecks,
-    show_handdeck_highlight,
     redraw_handdeck,
 )
 from .grid_primitives import show_empty_grid, show_slot_in_grid
 from .agent_primitives import StateWidget
-from .placement_manager import PlacementManager, PlacementAbortedException
 from .utils import show_screen_resolution, get_keycode
+from ..placement_manager import PlacementManager, PlacementAbortedException
 
 
 class TUIFightVnC(FightVnC):
@@ -44,27 +49,58 @@ class TUIFightVnC(FightVnC):
 
     # --- Methods from base class ---
 
+    def redraw_view(
+        self,
+        grid_highlights: Optional[List[GridPos]] = None,
+        drawdeck_highlights: Tuple[bool, bool] = (False, False),
+    ) -> None:
+        if grid_highlights is None:
+            grid_highlights = []
+
+        self.screen.clear_buffer(0, 0, 0)
+        show_empty_grid(self.screen, self.grid.width)
+        all_pos = (
+            GridPos(*p)
+            for p in itertools.product(
+                range(0, len(self.grid.lines)), range(0, self.grid.width)
+            )
+        )
+        for pos in all_pos:
+            card = self.grid.get_card(pos)
+            if card is not None:
+                redraw_card(self.screen, card, pos)
+        redraw_handdeck(self.screen, self.decks.handdeck, 0)
+        show_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
+
+        # Highlights, if any:
+        for pos in grid_highlights:
+            highlight_card(self.screen, pos)
+        show_drawdeck_highlights(self.screen, drawdeck_highlights)
+
+        self.state_widget.show_all()
+        self.screen.refresh()
+
     def card_died(self, card: Card, pos: GridPos) -> None:
         burn_card(self.screen, pos)
-        session.humanplayer.spirits += card.has_spirits
-        self.show_agents_state()
+        self.redraw_view()  # To update agent state
 
     def card_lost_health(self, card: Card) -> None:
-        redraw_card(self.screen, card, self.grid.find_card(card))
+        self.redraw_view()
 
+    # TODO Should the following all be called something with "show"?
     def card_getting_attacked(self, target: Card, attacker: Card) -> None:
         pos = self.grid.find_card(target)
-        assert pos is not None, "Trying to burn a card that is not in the grid"
+        assert pos is not None
         shake_card(self.screen, target, pos, "h")
 
     def card_activate(self, card: Card) -> None:
         pos = self.grid.find_card(card)
-        assert pos is not None, "Trying to burn a card that is not in the grid"
+        assert pos is not None
         activate_card(self.screen, card, pos)
 
     def card_prepare(self, card: Card) -> None:
         pos = self.grid.find_card(card)
-        assert pos is not None, "Trying to prepare a card that is not in the grid"
+        assert pos is not None
         assert pos.line == 0, "Calling prepare on card that is not in prep line"
         clear_card(self.screen, pos)
         show_slot_in_grid(self.screen, pos)
@@ -73,13 +109,9 @@ class TUIFightVnC(FightVnC):
         )
 
     def pos_card_deactivate(self, pos: GridPos) -> None:
-        """Uses a position instead of a card because it could be that the card has died
-        and been removed from the grid between being activated and deactivated. In this
-        case, `pos` should point to where the card used to be before being removed.
-        """
         card = self.grid.get_card(pos)
-        card = self.grid[pos.line][pos.slot]
-        activate_card(self.screen, card, pos, deactivate=True)
+        assert card is not None
+        self.redraw_view()
 
     # --- Controller-type methods ---
 
@@ -102,52 +134,51 @@ class TUIFightVnC(FightVnC):
             self.screen, card, from_=GridPos(4, from_slot), to=GridPos(2, to_slot)
         )
 
-    def handle_human_draws_new_card(self) -> None:
+    def show_human_receives_card_from_grid(self, card: Card, from_slot: int) -> None:
+        """E.g., for the fertility skill."""
+        move_card(
+            self.screen,
+            card,
+            GridPos(2, from_slot),
+            GridPos(4, self.decks.handdeck.size() - 1),
+        )
+
+    def handle_human_choose_deck_to_draw_from(self) -> Optional[Deck]:
         """Human player draws a card from one of the draw decks (draw oder hamster)."""
         if not self.decks.drawdeck.is_empty():
             highlights = (True, False)
         elif not self.decks.hamsterdeck.is_empty():
             highlights = (False, True)
         else:  # both empty
-            return
+            return None
 
         while True:
-            show_drawdeck_highlights(self.screen, highlights)
+            self.redraw_view(drawdeck_highlights=highlights)
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT and not self.decks.drawdeck.is_empty():
                 highlights = (True, False)
             elif keycode == Screen.KEY_RIGHT and not self.decks.hamsterdeck.is_empty():
                 highlights = (False, True)
             elif keycode == Screen.KEY_UP:
-                if highlights[0]:
-                    deck = self.decks.drawdeck
-                    deckname = "draw"
-                else:
-                    deck = self.decks.hamsterdeck
-                    deckname = "hamster"
-                card = deck.draw_card()
-                show_card_to_handdeck(self.screen, self.decks.handdeck, card, deckname)
-                self.decks.handdeck.add_card(card)
-                show_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
-                return
+                return self.decks.drawdeck if highlights[0] else self.decks.hamsterdeck
 
-    def _handle_human_places_card(self, from_slot: int) -> None:
-        """Human player places a card she chose from her handdeck in her line. Raises
-        `PlacementAbortedException` if the process is aborted (either by the code or by
-        the player).
+    def _handle_card_placement_interaction(
+        self, pmgr: PlacementManager, old_highlight: GridPos
+    ) -> None:
+        """Human player picks the cards to sacrifice and the location of the target
+        card. All orchestrated by `PlacementManager`. Raises `PlacementAbortedException`
+        if the process is aborted (either by the code or by the player). Returns
+        regularly when the `PlacementManager` is `ready_to_place`.
         """
-        target_card = self.decks.handdeck.cards[from_slot]
-        pmgr = PlacementManager(self.grid, session.humanplayer.spirits, target_card)
         if not pmgr.is_placeable():
             # LIXME Add some animation / user feedback here?
             raise PlacementAbortedException
 
-        buffercopy = BufferCopy(self.screen)
         cursor = 0  # Cursor within line 2
         while not pmgr.ready_to_place():
-            buffercopy.copyback()
             cursor_pos = GridPos(2, cursor)
-            highlight_card(self.screen, cursor_pos)
+            highlights = pmgr.get_marked_positions() + [cursor_pos] + [old_highlight]
+            self.redraw_view(grid_highlights=highlights)
 
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT:
@@ -155,83 +186,50 @@ class TUIFightVnC(FightVnC):
             elif keycode == Screen.KEY_RIGHT:
                 cursor = min(self.grid.width - 1, cursor + 1)
             elif keycode == Screen.KEY_DOWN:
-                if pmgr.is_marked(cursor_pos):
-                    pmgr.unmark_pos(cursor_pos)
-                elif pmgr.can_mark(cursor_pos):
-                    pmgr.mark_pos(cursor_pos)
-                    buffercopy.update()
+                pmgr.mark_unmark_or_pick(cursor_pos)
             elif keycode == Screen.KEY_ESCAPE:
-                buffercopy.copyback()
                 raise PlacementAbortedException
 
-        # Now ready to place:
-        for sacrifice_pos in pmgr.get_all_pos():
-            card = self.grid.get_card(sacrifice_pos)
-            if card is not None:
-                session.humanplayer.spirits += card.has_spirits
-            clear_card(self.screen, sacrifice_pos)
-            show_slot_in_grid(self.screen, sacrifice_pos)
-        pmgr.do_place()
-        session.humanplayer.spirits -= target_card.costs_spirits
-        self.show_human_places_card(target_card, from_slot, cursor)
-        self.decks.useddeck.add_card(target_card)
-        self.decks.handdeck.pick_card(from_slot)
-        if Skill.FERTILITY in target_card.skills:
-            new_card = target_card.duplicate()
-            new_card.reset()
-            redraw_handdeck(self.screen, self.decks.handdeck, from_slot)
-            self.decks.handdeck.add_card(new_card)
-            move_card(
-                self.screen,
-                new_card,
-                GridPos(2, cursor),
-                GridPos(4, self.decks.handdeck.size()),
-            )
-        redraw_handdeck(self.screen, self.decks.handdeck, from_slot)
-        self.show_agents_state()
-        logging.debug("Human plays %s in %s", target_card.name, cursor)
-
-    def handle_human_plays_card(self) -> None:
+    def handle_human_plays_cards(self, place_card_callback: Callable) -> None:
         """Human player picks a card from the hand to play. Also handles I key for
         inventory and C to end the turn and start next round of the fight.
         """
-        buffercopy = BufferCopy(self.screen)
         cursor = 0  # Cursor within hand deck
         while True:
-            buffercopy.copyback()
             keycode = get_keycode(self.screen)
             if keycode in (ord("i"), ord("I")):
                 pass  # FIXME Inventory!
+                # TODO  BZL
             elif keycode in (ord("c"), ord("C")):
-                buffercopy.copyback()
                 break
 
             # Everything cursor-related only if hand is not empty:
             if self.decks.handdeck.is_empty():
                 continue
-            show_handdeck_highlight(self.screen, cursor)
+            cursor_pos = GridPos(4, cursor)
+            self.redraw_view(grid_highlights=[cursor_pos])
+
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
                 cursor = min(self.decks.handdeck.size() - 1, cursor + 1)
             elif keycode == Screen.KEY_UP:
+                pmgr = PlacementManager(
+                    grid=self.grid,
+                    available_spirits=session.humanplayer.spirits,
+                    target_card=self.decks.handdeck.cards[cursor],
+                )
                 try:
-                    self._handle_human_places_card(cursor)
-                    cursor = min(self.decks.handdeck.size() - 1, cursor)
-                    buffercopy.update()
+                    self._handle_card_placement_interaction(pmgr, cursor_pos)
                 except PlacementAbortedException:
                     pass
+                else:
+                    place_card_callback(pmgr=pmgr, from_slot=cursor)
+                    cursor = min(self.decks.handdeck.size() - 1, cursor)
 
-    def show_empty_grid(self, grid_width: int) -> None:
-        show_empty_grid(self.screen, grid_width)
-
-    def show_drawdecks(self, drawdeck: Deck, hamsterdeck: Deck) -> None:
-        show_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
-
-    def show_card_to_handdeck(
-        self, handdeck: Deck, card: Card, whichdeck: Literal["draw", "hamster"]
+    def show_human_draws_new_card(
+        self, handdeck: Deck, card: Card, whichdeck: Deck
     ) -> None:
-        show_card_to_handdeck(self.screen, handdeck, card, whichdeck)
-
-    def show_agents_state(self) -> None:
-        self.state_widget.show_all()
+        deckname = "draw" if whichdeck == self.decks.drawdeck else "hamster"
+        show_card_to_handdeck(self.screen, handdeck, card, deckname)
+        # FIXME Add a name to the Deck class and pass the deck and use the name attribute in show_card_to_handdeck?

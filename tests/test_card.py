@@ -58,11 +58,26 @@ def test_get_prep_card(common_setup):
 
 def test_die(common_setup):
     mocked_view = common_setup
+    spirits_before = session.humanplayer.spirits
     c = session.grid[2][3]
     assert c.health == 1
     c.die()
     assert c.health == 0
+    assert session.humanplayer.spirits == spirits_before + 1
     mocked_view.card_died.assert_called_once()
+    assert session.grid[2][3] is None
+
+
+def test_sacrifice(common_setup):
+    mocked_view = common_setup
+    spirits_before = session.humanplayer.spirits
+    c = session.grid[2][3]
+    assert c.health == 1
+    c.sacrifice()
+    assert c.health == 0
+    assert session.humanplayer.spirits == spirits_before + 1
+    mocked_view.card_died.assert_not_called()
+    assert session.grid[2][3] is None
 
 
 def test_lose_health(common_setup):

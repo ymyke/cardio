@@ -9,7 +9,7 @@ from asciimatics.renderers import StaticRenderer, Box, Renderer
 from asciimatics.event import KeyboardEvent
 from asciimatics.constants import SINGLE_LINE
 from .constants import *
-from .buffercopy import BufferCopy
+from .bufferutils import BufferCopy
 from cardio import GridPos, session
 
 
@@ -44,7 +44,6 @@ class dPos(NamedTuple):
 #         effects = [effects]
 #     for e in effects:  # type: ignore
 #         e.update(0)
-#     screen.refresh()
 
 
 def show(screen: Screen, pos: dPos, renderer: Renderer, color: Color = Color.WHITE):
@@ -55,11 +54,10 @@ def show(screen: Screen, pos: dPos, renderer: Renderer, color: Color = Color.WHI
     else:
         color_args = dict(colour=color.value)
     Print(screen=screen, renderer=renderer, x=pos.x, y=pos.y, **color_args).update(0)
-    screen.refresh()
 
 
 def show_text(screen: Screen, pos: dPos, text: str, color: Color = Color.WHITE) -> None:
-    show(screen, pos, StaticRenderer(images=[text]),  color)
+    show(screen, pos, StaticRenderer(images=[text]), color)
 
 
 def show_text_ra(
@@ -81,7 +79,7 @@ def show_box(
     color: Color = Color.YELLOW,
     style: int = SINGLE_LINE,
 ) -> None:
-    show(screen,pos, Box(w, h, style=style, uni=True),  color)
+    show(screen, pos, Box(w, h, style=style, uni=True), color)
 
 
 def render_value(
@@ -89,7 +87,7 @@ def render_value(
     symbol: str,
     cap_at: int = 5,
     clear_after: bool = True,
-    surplus_color: Color = Color.WHITE
+    surplus_color: Color = Color.WHITE,
 ) -> str:
     nofsymbols = min(value, cap_at)
     surplus = value - nofsymbols
@@ -117,6 +115,14 @@ def show_screen_resolution(screen):
     show_text(screen, dPos(screen.width - len(txt), screen.height - 1), txt)
 
 
+def start_debug_mode(screen: Screen):
+    bc = BufferCopy(screen)
+    screen.close()
+    pdb.set_trace()
+    session.view.screen = bc.screen = Screen.open(unicode_aware=True)  # type:ignore
+    bc.copyback()
+
+
 def get_keycode(screen: Screen) -> Optional[int]:
     """Non-blocking. Ignores all mouse events. Returns `ord` value of key pressed,
     `None` if no key pressed. Special keys are encoded according to
@@ -130,10 +136,5 @@ def get_keycode(screen: Screen) -> Optional[int]:
     if event.key_code == ord("$"):  # hard exit
         sys.exit(0)
     if event.key_code == ord("!"):  # debug
-        bc = BufferCopy(screen)
-        screen.close()
-        pdb.set_trace()
-        session.view.screen = bc.screen = Screen.open(unicode_aware=True)
-        bc.copyback()
-
+        start_debug_mode(screen)
     return event.key_code

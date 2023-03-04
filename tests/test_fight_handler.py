@@ -61,7 +61,7 @@ Hand: Kp1h3 Wp1h1 Lp3h2 Hp0h1
 Used:
 Draw: Pp1h2🚀
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-4 damage, 1 lives, 0 gems, 0 spirits
+4 damage, 1 lives, 0 gems, 1 spirits
 
 Final state:
 | -           | -           | -           | -           |
@@ -71,7 +71,7 @@ Hand: Kp1h3 Wp1h1 Lp3h2 Hp0h1
 Used:
 Draw: Pp1h2🚀
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-8 damage, 1 lives, 0 gems, 0 spirits
+8 damage, 1 lives, 0 gems, 1 spirits
 """
     assert equal_logs(session.view.stateslogger.log, target_states_log)
 
@@ -108,7 +108,7 @@ def test_human_decks_managed_correctly():  # FIXME Should get different name?
         ],
     )
 
-    session.view = HumanStrategyVnC(session.grid)
+    session.view = HumanStrategyVnC(grid=session.grid)
     # Override damagestate with better health:
     session.view.damagestate = AgentDamageState(max_diff=50)
 
@@ -145,7 +145,7 @@ Hand: Lp3h2 Hp0h1 Hp0h1 Pp1h2🚀
 Used: Kp1h0 Wp1h0
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-10 damage, 1 lives, 0 gems, 0 spirits
+10 damage, 1 lives, 0 gems, 2 spirits
 
 Starting round 3:
 | -           | -           | -           | -           |
@@ -155,7 +155,7 @@ Hand: Hp0h1 Hp0h1 Pp1h2🚀 Hp0h1
 Used: Kp1h0 Wp1h0 Lp3h0
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-16 damage, 1 lives, 0 gems, 0 spirits
+16 damage, 1 lives, 0 gems, 3 spirits
 
 Starting round 4:
 | -           | -           | -           | -           |
@@ -165,7 +165,7 @@ Hand: Hp0h1 Pp1h2🚀 Hp0h1 Hp0h1
 Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-22 damage, 1 lives, 0 gems, 0 spirits
+22 damage, 1 lives, 0 gems, 4 spirits
 
 Starting round 5:
 | -           | -           | -           | -           |
@@ -175,7 +175,7 @@ Hand: Pp1h2🚀 Hp0h1 Hp0h1 Hp0h1
 Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Hp0h0
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-28 damage, 1 lives, 0 gems, 0 spirits
+28 damage, 1 lives, 0 gems, 5 spirits
 
 Final state:
 | -           | -           | -           | -           |
@@ -185,7 +185,7 @@ Hand: Hp0h1 Hp0h1 Hp0h1 Hp0h1
 Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Hp0h0 Pp1h0🚀
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1
-34 damage, 1 lives, 0 gems, 0 spirits
+34 damage, 1 lives, 0 gems, 6 spirits
 """
 
     assert equal_logs(session.view.stateslogger.log, target_states_log)

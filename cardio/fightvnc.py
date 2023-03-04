@@ -1,6 +1,14 @@
+"""FightVnC
+
+Implements or orchestrates all the game-logic related code and anything that changes the
+model. There is also some fight-related logic in the `Card` class.
+"""
+
 import logging
-from typing import Literal
-from . import session, Card, Deck, Grid, GridPos
+from typing import Callable, Literal, Optional
+
+from . import session, Card, Deck, Grid, GridPos, Skill
+from .placement_manager import PlacementManager
 from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
 from .card_blueprints import create_cards_from_blueprints
@@ -42,19 +50,20 @@ class FightVnC:
         pass
 
     def pos_card_deactivate(self, pos: GridPos) -> None:
+        """Uses a position instead of a card because it could be that the card has died
+        and been removed from the grid between being activated and deactivated. In this
+        case, `pos` should point to where the card used to be before being removed.
+        """
         pass
 
     # --- Controller-related ---
 
-    def show_empty_grid(self, grid_width: int) -> None:
-        pass
-
-    def show_drawdecks(self, drawdeck: Deck, hamsterdeck: Deck) -> None:
-        pass
-
-    def show_card_to_handdeck(
-        self, handdeck: Deck, card: Card, whichdeck: Literal["draw", "hamster"]
+    def show_human_draws_new_card(
+        self, handdeck: Deck, card: Card, whichdeck: Deck
     ) -> None:
+        pass
+
+    def show_human_receives_card_from_grid(self, card: Card, from_slot: int) -> None:
         pass
 
     def show_computer_plays_card(self, card: Card, to: GridPos) -> None:
@@ -67,14 +76,10 @@ class FightVnC:
         """
         pass
 
-    def show_agents_state(self) -> None:
-        """Show agent information, damage, spirits, lives, etc."""
-        pass
+    def handle_human_choose_deck_to_draw_from(self) -> Optional[Deck]:
+        return None
 
-    def handle_human_draws_new_card(self) -> None:
-        pass
-
-    def handle_human_plays_card(self) -> None:
+    def handle_human_plays_cards(self, place_card_callback: Callable) -> None:
         pass
 
     def handle_player_damage(self, howmuch: int, source: Card) -> None:
@@ -85,9 +90,12 @@ class FightVnC:
         else:
             self.damagestate.damage_computer(howmuch)
         # FIXME Add some animation for for damage
-        self.show_agents_state()
+        self.redraw_view()
 
     # --- Misc ---
+
+    def redraw_view(self) -> None:
+        pass
 
     def human_wins_fight(self) -> None:
         # FIXME Still necessary?
@@ -109,7 +117,7 @@ class FightVnC:
             card = draw_from.draw_card()
         except IndexError:
             return
-        self.show_card_to_handdeck(self.decks.handdeck, card, from_name)
+        self.show_human_draws_new_card(self.decks.handdeck, card, from_name)
         self.decks.handdeck.add_card(card)
 
     def _has_computer_won(self) -> bool:
@@ -137,6 +145,35 @@ class FightVnC:
         if self._has_computer_won() or self._has_human_won():
             raise EndOfFightException
 
+    def _place_card(self, pmgr: PlacementManager, from_slot: int) -> None:
+        # Update model:
+        for sacrifice_pos in pmgr.get_marked_positions():
+            card = self.grid.get_card(sacrifice_pos)
+            assert card is not None
+            card.sacrifice()
+            self.decks.useddeck.add_card(card)
+        session.humanplayer.spirits -= pmgr.target_card.costs_spirits
+        self.grid.set_card(pmgr.placement_position, pmgr.target_card)  # type:ignore
+
+        # Update view:
+        to_slot = pmgr.get_placement_position().slot
+        self.show_human_places_card(pmgr.target_card, from_slot, to_slot)
+        self.decks.useddeck.add_card(pmgr.target_card)
+        # TODO Is it really correct to have add a card to the used deck immediately?
+        # This might lead to situations where the player can draw a card from the used
+        # deck that is still active in the grid!
+        self.decks.handdeck.pick_card(from_slot)
+
+        if Skill.FERTILITY in pmgr.target_card.skills:
+            new_card = pmgr.target_card.duplicate()
+            new_card.reset()
+            self.redraw_view()
+            self.decks.handdeck.add_card(new_card)
+            self.show_human_receives_card_from_grid(new_card, from_slot=to_slot)
+
+        self.redraw_view()
+        logging.debug("Human plays %s in %s", pmgr.target_card.name, to_slot)
+
     def handle_round_of_fight(self) -> None:  # FIXME Should be private
         logging.debug("----- Start of round %s -----", self.round_num)
         self.stateslogger.log_current_state()
@@ -149,10 +186,14 @@ class FightVnC:
         self.computerstrategy.play_cards(self.round_num)
 
         # Let human draw a card:
-        self.handle_human_draws_new_card()
+        deck = self.handle_human_choose_deck_to_draw_from()
+        if deck is not None:
+            card = deck.draw_card()
+            self.show_human_draws_new_card(self.decks.handdeck, card, deck)
+            self.decks.handdeck.add_card(card)
 
         # Let human play card(s) from handdeck or items in his collection:
-        self.handle_human_plays_card()
+        self.handle_human_plays_cards(place_card_callback=self._place_card)
 
         self.decks.log()
         self.grid.log()
@@ -173,8 +214,6 @@ class FightVnC:
         # ^ FIXME Should this be in __init__? And/or the entire ComputerAgent object,
         # which could contain the computerstrategy? It will be used for one fight only
         # anyway...
-        self.show_empty_grid(self.grid.width)
-        self.show_agents_state()
 
         # Set up the 4 decks for the fight:
         drawdeck = Deck()
@@ -184,12 +223,10 @@ class FightVnC:
         self.decks = Decks(drawdeck, hamsterdeck, Deck(), Deck())
 
         # Draw the decks and show how the first cards get drawn:
-        self.show_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
+        self.redraw_view()
         for _ in range(3):
             self._safe_draw_card_to_deck(self.decks.drawdeck, "draw")
         self._safe_draw_card_to_deck(self.decks.hamsterdeck, "hamster")
-        # Redraw because size of decks changed:
-        self.show_drawdecks(self.decks.drawdeck, self.decks.hamsterdeck)
 
         # Run the fight:
         self.round_num = 0

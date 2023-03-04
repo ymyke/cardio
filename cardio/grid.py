@@ -77,9 +77,7 @@ class Grid:
     def remove_card(self, card: Card) -> None:
         pos = self.find_card(card)
         assert pos is not None
-        assert self[pos.line][pos.slot] is card
-        self[pos.line][pos.slot] = None
-        logging.debug("Removed card from %s", pos)
+        self.clear_position(pos)
 
     def move_card(self, card: Card, to_pos: Union[GridPos, tuple]) -> None:
         # LIXME Switch to to_pos being of type GridPos only

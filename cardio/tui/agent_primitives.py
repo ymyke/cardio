@@ -47,12 +47,7 @@ class StateWidget:
 {render_value(session.humanplayer.gems, '💎', surplus_color=Color.BLUE)}
 {render_value(session.humanplayer.spirits, '👻')}
 """
-        show_text(
-            self.screen,
-            self.human_pos + (0, 2),
-            state_str,
-            color=Color.GRAY,
-        )
+        show_text(self.screen, self.human_pos + (0, 2), state_str, color=Color.GRAY)
 
     def show_all(self):
         self.show_computerplayer_state()

@@ -18,7 +18,7 @@ class StatesLogger:
         self.vnc = vnc
         self.log = ""
 
-    def log_current_state(self, final: bool = False) -> None:
+    def create_entry(self, final: bool = False) -> str:
         s = f"Starting round {self.vnc.round_num}:\n" if not final else "Final state:\n"
         for line in range(3):
             s += "|"
@@ -37,7 +37,10 @@ class StatesLogger:
         s += f"{session.humanplayer.gems} gems, {session.humanplayer.spirits} spirits\n"
         # FIXME Add items
         s += "\n"
-        self.log += s
+        return s
+
+    def log_current_state(self, final: bool = False) -> None:
+        self.log += self.create_entry(final)
 
     def print(self) -> None:
         print(self.log)

@@ -1,9 +1,26 @@
+# In this branch
+
+- Better separate business logic (placed in `FightVnC`) and UI/view code (placed in `TUIFightVnC`).
+- Move card placement code (=business logic) to base class (`FightVnC`).
+- Add `redraw_view` method.
+- Inline lots of existing view-related code in `redraw_view`.
+- Revamp lots of code by using `redraw_view`.
+- Add `ProperlyPlacingHumanStrategyVnC`; later renamed to `HumanStrategyVnC`.
+
+
 # Next up
 
-- Maybe try new ways of separating MVC? Play around w 2 screens...
-
-- Can we more the business logic to fightvnc and invoke it via super?
-- How can we test Skill.FERTILITY?
+- MVC: Could I have the basic FightVnC, which takes a Controller object, that does the
+  playcard stuff etc. and an Animator object that makes all the animations available
+  that are necessary?
+  - QQ: How many of the controller-related functions in FightVnC are actually
+    subclassed? How much subclassing is necessary there?
+  - How many methods could really be moved to the Animator class? I.e., how many methods
+    use information from the model?
+  - Is the differentiation between methods that have r/o access to the model and ones
+    that have r/w access?
+- In `Card`: Should all the methods that need access to the vnc simply take a vnc object
+  as a paramter?
 
 - Finish fight:
   - Start by creating some computer strategy
@@ -107,8 +124,22 @@
 
 # Low Prio Ideas
 
+- For convenience: Placement cursor could pick the first slot that makes sense for the
+  current card, i.e., the first empty slot for cards with `costs_fire == 0`.
 - Mark cards in a color other than blue.
+- Turn marked positions from blue to green when the placement manager is ready to pick.
 - Don't show costs in computer cards.
+
+# Low Prio Todos
+
+- Make fire effect work on WSL.
+
+# Debugging hints
+
+- Call `start_debug_mode` at spots in the code where you'd like to inspect variables
+  during execution.
+- Call `print(self.stateslogger.create_event())` when debugging the fight controller
+  using pdb to show the current state of the game.
 
 # Game related
 
@@ -138,6 +169,9 @@
 
 # Asciimatics
 
+- Double buffering: Newly drawn stuff gets drawn to the buffer. A call to
+  `screen.refresh()` will display the newly drawn stuff on screen. To clear the screen,
+  use `clear_buffer` instead of the simple `clear` to prevent flickering.
 - Simple rendering: https://github.com/peterbrittain/asciimatics/blob/master/samples/rendering.py
 - How to cycle to different animation: https://github.com/peterbrittain/asciimatics/blob/master/samples/noise.py
 - Use bars for scores or other stuff? https://github.com/peterbrittain/asciimatics/blob/master/samples/bars.py
