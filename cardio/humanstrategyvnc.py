@@ -1,11 +1,18 @@
 import logging
 from typing import Callable, List, Optional
-from . import Deck, GridPos, Grid
+from . import Deck, GridPos
 from .fightvnc import FightVnC
 from .placement_manager import PlacementManager
 
 
-class HumanStrategyVnC(FightVnC):
+class ProperlyPlacingHumanStrategyVnC(FightVnC):
+    def __init__(
+        self, whichrounds: Optional[List[int]] = None, *args, **kwargs
+    ) -> None:
+        """Use `whichrounds` to only become active in specific fight rounds."""
+        super().__init__(*args, **kwargs)
+        self.whichrounds = whichrounds
+
     def handle_human_choose_deck_to_draw_from(self) -> Deck:
         """Simply alternate between drawdeck and hamsterdeck."""
         if self.decks.drawdeck.is_empty() or self.round_num % 2 == 0:
@@ -15,32 +22,12 @@ class HumanStrategyVnC(FightVnC):
 
     def handle_human_plays_cards(self, place_card_callback: Callable) -> None:
         """Simply play the first card in the handdeck to the first empty slot in the
-        grid line.
+        grid line. Uses the `place_card_callback` in order to invoke all the relevant
+        code.
+
+        Note that both costs will be set to 0 before placing each card so cards get
+        placed regardless of the current state of the human player.
         """
-        # TODO Can we simplify this too after incorporating the BZL stuff into the base
-        # class? -- I.e., place the cards implicitly via place_card_callback rather than
-        # explicitly here, ignoring the callback.
-        if self.decks.handdeck.is_empty():
-            return
-        for slot in range(self.grid.width):
-            if self.grid[2][slot] is None:
-                card = self.decks.handdeck.draw_card()
-                self.grid[2][slot] = card
-                self.decks.useddeck.add_card(card)
-                logging.debug("Human plays %s on %s", card.name, slot)
-                return
-        logging.debug("Human plays no card.")
-
-
-class ProperlyPlacingHumanStrategyVnC(HumanStrategyVnC):
-    def __init__(
-        self, whichrounds: Optional[List[int]] = None, *args, **kwargs
-    ) -> None:
-        """Use `whichrounds` to only become active in specific fight rounds."""
-        super().__init__(*args, **kwargs)
-        self.whichrounds = whichrounds
-
-    def handle_human_plays_cards(self, place_card_callback: Callable) -> None:
         if self.whichrounds and not self.round_num in self.whichrounds:
             return
         if self.decks.handdeck.is_empty():
