@@ -113,9 +113,9 @@ class Card:
             )
             prepcard.lose_health(opponent.power - howmuch)
 
-    # QQ: Fight logic is distributed between Card and FightVNC (and TUIFightVnC). Can
-    # this be streamlined? (One could argue that all the places where the card module
-    # needs to call a view method should rather belong somewhere else?)
+    # QQ: Fight logic is distributed between Card and FightVNC. Can this be streamlined?
+    # (One could argue that all the places where the card module needs to call a view
+    # method should rather belong somewhere else?)
 
     def attack(self, opponent: Optional[Card]) -> None:
         if self.power == 0:
