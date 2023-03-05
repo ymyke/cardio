@@ -10,6 +10,12 @@ if TYPE_CHECKING:
     from . import GridPos
 
 
+# QQ: This class in its current implementation is geared fully on being used during
+# fights: accessing the grid, updating humanplayer, ... -- What will be necessary in the
+# future when cards are also used outside of fights? -- Maybe it's ok since fights are
+# at the very center of the game and everything else is surrounding stuff.
+
+
 @dataclass
 class Card:
     name: str
