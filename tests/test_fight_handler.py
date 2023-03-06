@@ -58,7 +58,7 @@ Starting round 2:
 | Dp2h3       | Sp2h10      | -           | -           |
 | -           | -           | -           | -           |
 Hand: Kp1h3 Wp1h1 Lp3h2 Hp0h1
-Used:
+Used: Cp1h0
 Draw: Pp1h2🚀
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 4 damage, 1 lives, 0 gems, 1 spirits
@@ -68,7 +68,7 @@ Final state:
 | Dp2h3       | Sp2h10      | -           | -           |
 | -           | -           | -           | -           |
 Hand: Kp1h3 Wp1h1 Lp3h2 Hp0h1
-Used:
+Used: Cp1h0
 Draw: Pp1h2🚀
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 8 damage, 1 lives, 0 gems, 1 spirits
@@ -88,6 +88,9 @@ def test_human_gets_gems():
     )
     session.view.handle_fight(computerstrategy=cs)
     assert session.humanplayer.gems == 4
+
+
+
 
 
 def test_human_decks_managed_correctly():  # FIXME Should get different name?
@@ -132,7 +135,7 @@ Starting round 1:
 | Hp2h99      | Hp2h100     | Hp2h100     | Hp2h100     |
 | Kp1h1       | -           | -           | -           |
 Hand: Wp1h1 Lp3h2 Hp0h1 Hp0h1
-Used: Kp1h1
+Used:
 Draw: Pp1h2🚀
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 6 damage, 1 lives, 0 gems, 0 spirits
@@ -189,3 +192,32 @@ Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1
 """
 
     assert equal_logs(session.view.stateslogger.log, target_states_log)
+
+
+
+def test_card_humanity():
+    """If `is_human` works more or less correctly. FIXME This is rather "hacky". Should
+    be simplified and moved to `test_card` once there is some new logic for cards being
+    human or not (using an explicit attribute) in place.
+    """
+    session.setup()
+    original_cards = create_cards_from_blueprints(
+        ["Koala", "Weasel", "Lynx", "Porcupine"]
+    )
+    assert not any(c.is_human() for c in original_cards)
+    session.humanplayer.deck = Deck(original_cards)
+    assert all(c.is_human() for c in original_cards)
+    cs = Round0OnlyStrategy(
+        grid=session.grid,
+        cards=[
+            # type: ignore
+            (GridPos(1, 0), Card("Hulk", 2, 100, 1)),
+            (GridPos(1, 1), Card("Hulk", 2, 100, 1)),
+            (GridPos(1, 2), Card("Hulk", 2, 100, 1)),
+            (GridPos(1, 3), Card("Hulk", 2, 100, 1)),
+        ],
+    )
+    session.view = HumanStrategyVnC(grid=session.grid)
+    session.view.handle_fight(computerstrategy=cs)
+    assert all(c.is_human() for c in original_cards)
+

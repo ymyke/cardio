@@ -137,13 +137,14 @@ def test_place_card_with_fire_sacrifice():
     p.placement_position = target_pos
 
     vnc = FightVnC(g)
+    session.view = vnc
     vnc.decks = Decks(Deck(), Deck(), Deck([target_card]), Deck())
     vnc._place_card(p, 0)
 
     assert g.get_card(target_pos) == target_card
     assert g.get_card(sacrifice_pos) is None
     assert vnc.decks.handdeck.is_empty()
-    assert vnc.decks.useddeck.cards == [sacrifice_card, target_card]
+    assert vnc.decks.useddeck.cards == [sacrifice_card]
 
 
 def test_place_card_with_spirits_sacrifice():
@@ -165,5 +166,5 @@ def test_place_card_with_spirits_sacrifice():
 
     assert g.get_card(target_pos) == target_card
     assert vnc.decks.handdeck.is_empty()
-    assert vnc.decks.useddeck.cards == [target_card]
+    assert vnc.decks.useddeck.cards == []
     assert session.humanplayer.spirits == spirits_before - 3

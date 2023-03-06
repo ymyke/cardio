@@ -10,6 +10,12 @@ if TYPE_CHECKING:
     from . import GridPos
 
 
+# QQ: This class in its current implementation is geared fully on being used during
+# fights: accessing the grid, updating humanplayer, ... -- What will be necessary in the
+# future when cards are also used outside of fights? -- Maybe it's ok since fights are
+# at the very center of the game and everything else is surrounding stuff.
+
+
 @dataclass
 class Card:
     name: str
@@ -47,6 +53,42 @@ class Card:
         self.power = self.initial_power
         self.health = self.initial_health
 
+    def is_human(self) -> bool:
+        def is_in(what: object, inlist: list) -> bool:
+            """We want to use `is` instead of `==` equality here."""
+            return any(x is what for x in inlist)
+
+        # QQ: In the future: What should be the invariant? Maybe that a card is always
+        # in session.humanplayer.deck.cards?
+        # FIXME Should be improved/simplified once we have a new architecture for deck
+        # in place. // Maybe just add an `owner` attribute to the object and simply use
+        # that? (On could ask whether we should then just use some subclass but an owner
+        # might make things more straightforward.)
+        # FIXME Add test for this method.
+        return (
+            is_in(self, session.humanplayer.deck.cards)
+            # (Note that the above test does not suffice bc new cards could be created
+            # (e.g., via fertility) during a fight which are added to one of the decks
+            # below but not yet to a player's deck (which gets recreated only after a
+            # fight).)
+            or (
+                getattr(session.view, "decks", None)
+                # (Testing for the `decks` attribute first mostly to enable various
+                # tests where we don't want to set up the entire fight environment
+                # first.)
+                and any(
+                    is_in(self, d.cards)
+                    for d in [
+                        session.view.decks.drawdeck,
+                        session.view.decks.hamsterdeck,
+                        session.view.decks.handdeck,
+                        session.view.decks.useddeck,
+                    ]
+                )
+            )
+            or is_in(self, session.grid.lines[2])
+        )
+
     def get_grid_pos(self) -> GridPos:
         pos = session.grid.find_card(self)
         assert pos is not None, "Cards calling `get_grid_pos` must be on the grid"
@@ -61,12 +103,16 @@ class Card:
 
     def _die_silently(self) -> None:
         self.health = 0
-        session.humanplayer.spirits += self.has_spirits 
-        # TODO This is wrong! Will lead to computer cards that die also adding to
-        # human's spirits. => fix and add a test case.
-        # TODO Add card to useddeck if it is a human card
-        # TODO How does a card know whether it is human or not? -> Subclasses?
+        if self.is_human():
+            session.humanplayer.spirits += self.has_spirits
+            session.view.decks.useddeck.add_card(self)
+            # FIXME ^ This could potentially be done differently/directly once we have a
+            # new implementation for deck in place.
         session.grid.remove_card(self)
+        # (Must happen after the `is_human` test, otherwise that test produces wrong
+        # results bc one test is whether the card is on the grid or not. FIXME This
+        # comment no longer necessary once we have the new deck implementation in
+        # place.)
 
     def die(self) -> None:
         logging.debug("%s dies.", self.name)
@@ -113,9 +159,9 @@ class Card:
             )
             prepcard.lose_health(opponent.power - howmuch)
 
-    # QQ: Fight logic is distributed between Card and FightVNC (and TUIFightVnC). Can
-    # this be streamlined? (One could argue that all the places where the card module
-    # needs to call a view method should rather belong somewhere else?)
+    # QQ: Fight logic is distributed between Card and FightVNC. Can this be streamlined?
+    # (One could argue that all the places where the card module needs to call a view
+    # method should rather belong somewhere else?)
 
     def attack(self, opponent: Optional[Card]) -> None:
         if self.power == 0:

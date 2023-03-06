@@ -68,6 +68,18 @@ def test_die(common_setup):
     assert session.grid[2][3] is None
 
 
+def test_no_spirits_when_computer_card_dies(common_setup):
+    mocked_view = common_setup
+    spirits_before = session.humanplayer.spirits
+    c = session.grid[1][3]
+    assert c.health == 1
+    c.die()
+    assert c.health == 0
+    assert session.humanplayer.spirits == spirits_before
+    mocked_view.card_died.assert_called_once()
+    assert session.grid[1][3] is None
+
+
 def test_sacrifice(common_setup):
     mocked_view = common_setup
     spirits_before = session.humanplayer.spirits
