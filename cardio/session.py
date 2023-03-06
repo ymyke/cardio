@@ -14,7 +14,6 @@ humanplayer: HumanPlayer
 
 
 def get_starterdeck_names() -> List[str]:
-    # QQ: Should the starter deck be generated at some point? Based on what?
     return ["Church Mouse", "Weasel", "Lynx", "Porcupine"]
 
 
