@@ -103,11 +103,8 @@ class Card:
 
     def _die_silently(self) -> None:
         self.health = 0
-        session.humanplayer.spirits += self.has_spirits 
-        # TODO This is wrong! Will lead to computer cards that die also adding to
-        # human's spirits. => fix and add a test case.
-        # TODO Add card to useddeck if it is a human card
-        # TODO How does a card know whether it is human or not? -> Subclasses?
+        if self.is_human():
+            session.humanplayer.spirits += self.has_spirits
         session.grid.remove_card(self)
 
     def die(self) -> None:
