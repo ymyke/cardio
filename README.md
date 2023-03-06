@@ -29,15 +29,6 @@
 
 # Architectural considerations
 
-- Should I rethink the whole view after all? Simply redraw the entire model whenever
-  necessary. But in the buffer and/or on a second screen so there is no flicker? (Is
-  that possible w/ asciimatics?) -- Can I work with 2 asciimatics screens (and maybe
-  some buffer to copy contents between the two) and simply do full screen refreshes
-  whenever something happens and via that mechanism more properly separate the model
-  from the view?
-  - Should there be a plain view that does nothing other than display the current state
-    of the model _and_ a collection of animations that can be called? -- But there's
-    also all the controlling part with keyboard inputs etc. ...
 - Rethink how the session module works. Maybe get rid of it? Maybe have a common way
   tests get set up in a central test module and a way sandbox.py sets up the game and
   get rid of session altogether? -- But would need some module that grants access to
