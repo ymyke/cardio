@@ -106,7 +106,8 @@
   likelihood to lose the card? -- Then, a save game and game progress score would
   somehow take into account a hash over the entire game to make sure the game has not
   been tampered with? Then only authoritative scores are allowed in leaderboards etc.
-  Can the TSM be used somehow to that end?
+  Can the TSM be used somehow to that end? Or some authoritative docker images with the
+  software? Of course one option is always to deploy on the web and run it centralized.
 - Corveaux special ability/animal? Can consume ghosts/souls/spirits and release them as
   blood/energy/...?
 - Have floor tiles with special effects? I.e., more strength if a create is on it?
