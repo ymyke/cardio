@@ -151,18 +151,12 @@ class FightVnC:
             card = self.grid.get_card(sacrifice_pos)
             assert card is not None
             card.sacrifice()
-            self.decks.useddeck.add_card(card)
         session.humanplayer.spirits -= pmgr.target_card.costs_spirits
         self.grid.set_card(pmgr.placement_position, pmgr.target_card)  # type:ignore
 
         # Update view:
         to_slot = pmgr.get_placement_position().slot
         self.show_human_places_card(pmgr.target_card, from_slot, to_slot)
-        self.decks.useddeck.add_card(pmgr.target_card)
-        # TODO Is it really correct to have add a card to the used deck immediately?
-        # This might lead to situations where the player can draw a card from the used
-        # deck that is still active in the grid! -- When would a card be added to the
-        # used deck otherwise? -> When it dies!?
         self.decks.handdeck.pick_card(from_slot)
 
         if Skill.FERTILITY in pmgr.target_card.skills:

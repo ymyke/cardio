@@ -58,7 +58,7 @@ Starting round 2:
 | Dp2h3       | Sp2h10      | -           | -           |
 | -           | -           | -           | -           |
 Hand: Kp1h3 Wp1h1 Lp3h2 Hp0h1
-Used:
+Used: Cp1h0
 Draw: Pp1h2🚀
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 4 damage, 1 lives, 0 gems, 1 spirits
@@ -68,7 +68,7 @@ Final state:
 | Dp2h3       | Sp2h10      | -           | -           |
 | -           | -           | -           | -           |
 Hand: Kp1h3 Wp1h1 Lp3h2 Hp0h1
-Used:
+Used: Cp1h0
 Draw: Pp1h2🚀
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 8 damage, 1 lives, 0 gems, 1 spirits
@@ -88,6 +88,9 @@ def test_human_gets_gems():
     )
     session.view.handle_fight(computerstrategy=cs)
     assert session.humanplayer.gems == 4
+
+
+
 
 
 def test_human_decks_managed_correctly():  # FIXME Should get different name?
@@ -132,7 +135,7 @@ Starting round 1:
 | Hp2h99      | Hp2h100     | Hp2h100     | Hp2h100     |
 | Kp1h1       | -           | -           | -           |
 Hand: Wp1h1 Lp3h2 Hp0h1 Hp0h1
-Used: Kp1h1
+Used:
 Draw: Pp1h2🚀
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 6 damage, 1 lives, 0 gems, 0 spirits
