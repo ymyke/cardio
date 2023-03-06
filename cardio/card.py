@@ -53,6 +53,42 @@ class Card:
         self.power = self.initial_power
         self.health = self.initial_health
 
+    def is_human(self) -> bool:
+        def is_in(what: object, inlist: list) -> bool:
+            """We want to use `is` instead of `==` equality here."""
+            return any(x is what for x in inlist)
+
+        # QQ: In the future: What should be the invariant? Maybe that a card is always
+        # in session.humanplayer.deck.cards?
+        # FIXME Should be improved/simplified once we have a new architecture for deck
+        # in place. // Maybe just add an `owner` attribute to the object and simply use
+        # that? (On could ask whether we should then just use some subclass but an owner
+        # might make things more straightforward.)
+        # FIXME Add test for this method.
+        return (
+            is_in(self, session.humanplayer.deck.cards)
+            # (Note that the above test does not suffice bc new cards could be created
+            # (e.g., via fertility) during a fight which are added to one of the decks
+            # below but not yet to a player's deck (which gets recreated only after a
+            # fight).)
+            or (
+                getattr(session.view, "decks", None)
+                # (Testing for the `decks` attribute first mostly to enable various
+                # tests where we don't want to set up the entire fight environment
+                # first.)
+                and any(
+                    is_in(self, d.cards)
+                    for d in [
+                        session.view.decks.drawdeck,
+                        session.view.decks.hamsterdeck,
+                        session.view.decks.handdeck,
+                        session.view.decks.useddeck,
+                    ]
+                )
+            )
+            or is_in(self, session.grid.lines[2])
+        )
+
     def get_grid_pos(self) -> GridPos:
         pos = session.grid.find_card(self)
         assert pos is not None, "Cards calling `get_grid_pos` must be on the grid"
