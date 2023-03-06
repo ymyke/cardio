@@ -60,6 +60,11 @@
   hand, used or so. At the end of the fight, all hamster cards would be removed. (QQ:
   Where would the hamster cards come from?) (Also, there would be no shuffle method any
   longer but just a draw method which would draw random card(s) from a specific deck.)
+  - Maybe there would still be some virtual `Deck` class that encapsulates all the
+    deck-related code?
+  - This could also make the `_die_silently` function in `Card` easier (=less dependent
+    on outside environment) in that the card would simply set it's own state to "used"
+    or so rather than having to make sure some decks somewhere are adjusted.
 - Dependency chaos?
   - Draw all modules and their dependencies and think about them.
   - Should cards have a game attribute which they use to query the world (e.g., who the
