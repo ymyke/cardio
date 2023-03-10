@@ -1,6 +1,6 @@
 import logging
 import random
-from typing import NamedTuple, Optional
+from typing import NamedTuple, Optional, List, Tuple
 from . import Card, CardList
 
 
@@ -60,11 +60,16 @@ class Decks(NamedTuple):
     hand: Deck
     used: Deck
 
+    def decks_x_names(self) -> List[Tuple[Deck, str]]:
+        return [
+            (self.hand, "Hand"),
+            (self.used, "Used"),
+            (self.draw, "Draw"),
+            (self.hamster, "Hamster"),
+        ]
+
     def log(self):
-        for deck, name in zip(
-            [self.hand, self.draw, self.hamster, self.used],
-            ["Hand", "Fight", "Hamster", "Used"],
-        ):
+        for deck, name in self.decks_x_names():
             logging.debug(
                 "%sdeck size: %s (%s)",
                 name,
