@@ -1,3 +1,5 @@
+"""Test `Deck` class"""
+
 import pytest
 from cardio import Deck, Card, CardList
 
