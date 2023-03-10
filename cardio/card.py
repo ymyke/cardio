@@ -54,23 +54,24 @@ class Card:
         self.health = self.initial_health
 
     def is_human(self) -> bool:
+        """`True` if this card belongs to human player."""
+
         def is_in(what: object, inlist: list) -> bool:
             """We want to use `is` instead of `==` equality here."""
             return any(x is what for x in inlist)
 
-        # QQ: In the future: What should be the invariant? Maybe that a card is always
-        # in session.humanplayer.deck.cards?
-        # FIXME Should be improved/simplified once we have a new architecture for deck
-        # in place. // Maybe just add an `owner` attribute to the object and simply use
-        # that? (On could ask whether we should then just use some subclass but an owner
-        # might make things more straightforward.)
-        # FIXME Add test for this method.
+        # TODO Add test for this method.
+
         return (
+            # A card is human if any of the following applies:
+            # 1. Outside of fights:  It belongs to the human player's deck.
             is_in(self, session.humanplayer.deck.cards)
+            # 2. During fights:
             # (Note that the above test does not suffice bc new cards could be created
             # (e.g., via fertility) during a fight which are added to one of the decks
             # below but not yet to a player's deck (which gets recreated only after a
             # fight).)
+            # 2.a. It is in one of the fight decks:
             or (
                 getattr(session.view, "decks", None)
                 # (Testing for the `decks` attribute first mostly to enable various
@@ -78,7 +79,7 @@ class Card:
                 # first.)
                 and any(
                     is_in(self, d.cards)
-                    for d in [
+                    for d in [  # TODO deck-related: Can this be streamlined?
                         session.view.decks.drawdeck,
                         session.view.decks.hamsterdeck,
                         session.view.decks.handdeck,
@@ -86,6 +87,7 @@ class Card:
                     ]
                 )
             )
+            # 2.b. It is on the grid in the human player's line:
             or is_in(self, session.grid.lines[2])
         )
 
