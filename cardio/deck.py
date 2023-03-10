@@ -55,8 +55,6 @@ class Deck:
 
 
 class Decks(NamedTuple):
-    # QQ DECK: Maybe unnecesary if I refactor decks implicitly via some `state` attribute in
-    # the card.
     draw: Deck
     hamster: Deck
     hand: Deck
