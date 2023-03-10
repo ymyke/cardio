@@ -108,13 +108,9 @@ class Card:
         if self.is_human():
             session.humanplayer.spirits += self.has_spirits
             session.view.decks.useddeck.add_card(self)
-            # FIXME DECK ^ This could potentially be done differently/directly once we have a
-            # new implementation for deck in place.
         session.grid.remove_card(self)
         # (Must happen after the `is_human` test, otherwise that test produces wrong
-        # results bc one test is whether the card is on the grid or not. FIXME DECK This
-        # comment no longer necessary once we have the new deck implementation in
-        # place.)
+        # results bc one test is whether the card is on the grid or not.)
 
     def die(self) -> None:
         logging.debug("%s dies.", self.name)
