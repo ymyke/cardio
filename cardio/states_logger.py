@@ -27,10 +27,10 @@ class StatesLogger:
                 s += f" {card2str(card):12s}|"
             s += "\n"
         for deck, name in [ # TODO DECK Streamline?
-            (self.vnc.decks.handdeck, "Hand"),
-            (self.vnc.decks.useddeck, "Used"),
-            (self.vnc.decks.drawdeck, "Draw"),
-            (self.vnc.decks.hamsterdeck, "Hamster"),
+            (self.vnc.decks.hand, "Hand"),
+            (self.vnc.decks.used, "Used"),
+            (self.vnc.decks.draw, "Draw"),
+            (self.vnc.decks.hamster, "Hamster"),
         ]:
             s += f"{name}: " + " ".join([card2str(c) for c in deck.cards]) + "\n"
         s += f"{self.vnc.damagestate.diff} damage, {session.humanplayer.lives} lives, "

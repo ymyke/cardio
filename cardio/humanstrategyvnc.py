@@ -15,10 +15,10 @@ class HumanStrategyVnC(FightVnC):
 
     def handle_human_choose_deck_to_draw_from(self) -> Deck:
         """Simply alternate between drawdeck and hamsterdeck."""
-        if self.decks.drawdeck.is_empty() or self.round_num % 2 == 0:
-            return self.decks.hamsterdeck
+        if self.decks.draw.is_empty() or self.round_num % 2 == 0:
+            return self.decks.hamster
         else:
-            return self.decks.drawdeck
+            return self.decks.draw
 
     def handle_human_plays_cards(self, place_card_callback: Callable) -> None:
         """Simply play the first card in the handdeck to the first empty slot in the
@@ -30,12 +30,12 @@ class HumanStrategyVnC(FightVnC):
         """
         if self.whichrounds and not self.round_num in self.whichrounds:
             return
-        if self.decks.handdeck.is_empty():
+        if self.decks.hand.is_empty():
             return
         for slot in range(self.grid.width):
             pos = GridPos(2, slot)
             if self.grid.get_card(pos) is None:
-                card = self.decks.handdeck.cards[0]
+                card = self.decks.hand.cards[0]
                 card.costs_fire = 0
                 card.costs_spirits = 0
                 p = PlacementManager(self.grid, 0, card, placement_position=pos)

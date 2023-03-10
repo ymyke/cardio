@@ -57,14 +57,14 @@ class Deck:
 class Decks(NamedTuple):
     # QQ DECK: Maybe unnecesary if I refactor decks implicitly via some `state` attribute in
     # the card.
-    drawdeck: Deck
-    hamsterdeck: Deck
-    handdeck: Deck
-    useddeck: Deck
+    draw: Deck
+    hamster: Deck
+    hand: Deck
+    used: Deck
 
     def log(self):
         for deck, name in zip(
-            [self.handdeck, self.drawdeck, self.hamsterdeck, self.useddeck],
+            [self.hand, self.draw, self.hamster, self.used],
             ["Hand", "Fight", "Hamster", "Used"],
         ):
             logging.debug(

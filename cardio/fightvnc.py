@@ -116,16 +116,16 @@ class FightVnC:
             card = draw_from.draw_card()
         except IndexError:
             return
-        self.show_human_draws_new_card(self.decks.handdeck, card, from_name)
-        self.decks.handdeck.add_card(card)
+        self.show_human_draws_new_card(self.decks.hand, card, from_name)
+        self.decks.hand.add_card(card)
 
     def _has_computer_won(self) -> bool:
         return self.damagestate.has_computer_won() or not any(
             c.power > 0
             for c in self.grid.lines[2]
-            + self.decks.handdeck.cards
-            + self.decks.drawdeck.cards
-            + self.decks.hamsterdeck.cards
+            + self.decks.hand.cards
+            + self.decks.draw.cards
+            + self.decks.hamster.cards
             if c is not None
             # FIXME DECK Introduce some `get_all_human_cards` method? Re-use that here
             # and in `is_human`.
@@ -158,13 +158,13 @@ class FightVnC:
         # Update view:
         to_slot = pmgr.get_placement_position().slot
         self.show_human_places_card(pmgr.target_card, from_slot, to_slot)
-        self.decks.handdeck.pick_card(from_slot)
+        self.decks.hand.pick_card(from_slot)
 
         if Skill.FERTILITY in pmgr.target_card.skills:
             new_card = pmgr.target_card.duplicate()
             new_card.reset()
             self.redraw_view()
-            self.decks.handdeck.add_card(new_card)
+            self.decks.hand.add_card(new_card)
             self.show_human_receives_card_from_grid(new_card, from_slot=to_slot)
 
         self.redraw_view()
@@ -185,8 +185,8 @@ class FightVnC:
         deck = self.handle_human_choose_deck_to_draw_from()
         if deck is not None:
             card = deck.draw_card()
-            self.show_human_draws_new_card(self.decks.handdeck, card, deck)
-            self.decks.handdeck.add_card(card)
+            self.show_human_draws_new_card(self.decks.hand, card, deck)
+            self.decks.hand.add_card(card)
 
         # Let human play card(s) from handdeck or items in his collection:
         self.handle_human_plays_cards(place_card_callback=self._place_card)
@@ -222,6 +222,8 @@ class FightVnC:
         # Draw the decks and show how the first cards get drawn:
         self.redraw_view()
         for _ in range(3):
+            self._safe_draw_card_to_deck(self.decks.draw, "draw")
+        self._safe_draw_card_to_deck(self.decks.hamster, "hamster")
         # TODO DECK Introduce and use deck name in the calls above?
 
         # Run the fight:
@@ -247,9 +249,9 @@ class FightVnC:
         # Reset human deck after the fight:
         session.humanplayer.deck.cards = [
             c
-            for c in self.decks.useddeck.cards
-            + self.decks.handdeck.cards
-            + self.decks.drawdeck.cards
+            for c in self.decks.used.cards
+            + self.decks.hand.cards
+            + self.decks.draw.cards
             if c.name != "Hamster"
             # TODO DECK This loses cards on the grid. Reuse `get_all_human_cards`
             # TODO DECK Add tets for this

@@ -69,8 +69,8 @@ class TUIFightVnC(FightVnC):
             card = self.grid.get_card(pos)
             if card is not None:
                 redraw_card(self.screen, card, pos)
-        redraw_handdeck(self.screen, self.decks.handdeck, 0)
-        show_drawdecks(self.screen, self.decks.drawdeck, self.decks.hamsterdeck)
+        redraw_handdeck(self.screen, self.decks.hand, 0)
+        show_drawdecks(self.screen, self.decks.draw, self.decks.hamster)
 
         # Highlights, if any:
         for pos in grid_highlights:
@@ -140,14 +140,14 @@ class TUIFightVnC(FightVnC):
             self.screen,
             card,
             GridPos(2, from_slot),
-            GridPos(4, self.decks.handdeck.size() - 1),
+            GridPos(4, self.decks.hand.size() - 1),
         )
 
     def handle_human_choose_deck_to_draw_from(self) -> Optional[Deck]:
         """Human player draws a card from one of the draw decks (draw oder hamster)."""
-        if not self.decks.drawdeck.is_empty():
+        if not self.decks.draw.is_empty():
             highlights = (True, False)
-        elif not self.decks.hamsterdeck.is_empty():
+        elif not self.decks.hamster.is_empty():
             highlights = (False, True)
         else:  # both empty
             return None
@@ -155,12 +155,12 @@ class TUIFightVnC(FightVnC):
         while True:
             self.redraw_view(drawdeck_highlights=highlights)
             keycode = get_keycode(self.screen)
-            if keycode == Screen.KEY_LEFT and not self.decks.drawdeck.is_empty():
+            if keycode == Screen.KEY_LEFT and not self.decks.draw.is_empty():
                 highlights = (True, False)
-            elif keycode == Screen.KEY_RIGHT and not self.decks.hamsterdeck.is_empty():
+            elif keycode == Screen.KEY_RIGHT and not self.decks.hamster.is_empty():
                 highlights = (False, True)
             elif keycode == Screen.KEY_UP:
-                return self.decks.drawdeck if highlights[0] else self.decks.hamsterdeck
+                return self.decks.draw if highlights[0] else self.decks.hamster
 
     def _handle_card_placement_interaction(
         self, pmgr: PlacementManager, old_highlight: GridPos
@@ -204,7 +204,7 @@ class TUIFightVnC(FightVnC):
                 break
 
             # Everything cursor-related only if hand is not empty:
-            if self.decks.handdeck.is_empty():
+            if self.decks.hand.is_empty():
                 continue
             cursor_pos = GridPos(4, cursor)
             self.redraw_view(grid_highlights=[cursor_pos])
@@ -212,12 +212,12 @@ class TUIFightVnC(FightVnC):
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
-                cursor = min(self.decks.handdeck.size() - 1, cursor + 1)
+                cursor = min(self.decks.hand.size() - 1, cursor + 1)
             elif keycode == Screen.KEY_UP:
                 pmgr = PlacementManager(
                     grid=self.grid,
                     available_spirits=session.humanplayer.spirits,
-                    target_card=self.decks.handdeck.cards[cursor],
+                    target_card=self.decks.hand.cards[cursor],
                 )
                 try:
                     self._handle_card_placement_interaction(pmgr, cursor_pos)
@@ -225,11 +225,11 @@ class TUIFightVnC(FightVnC):
                     pass
                 else:
                     place_card_callback(pmgr=pmgr, from_slot=cursor)
-                    cursor = min(self.decks.handdeck.size() - 1, cursor)
+                    cursor = min(self.decks.hand.size() - 1, cursor)
 
     def show_human_draws_new_card(
         self, handdeck: Deck, card: Card, whichdeck: Deck
     ) -> None:
-        deckname = "draw" if whichdeck == self.decks.drawdeck else "hamster"
+        deckname = "draw" if whichdeck == self.decks.draw else "hamster"
         show_card_to_handdeck(self.screen, handdeck, card, deckname)
         # FIXME DECK Add a name to the Deck class and pass the deck and use the name attribute in show_card_to_handdeck?

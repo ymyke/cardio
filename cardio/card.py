@@ -80,10 +80,10 @@ class Card:
                 and any(
                     is_in(self, d.cards)
                     for d in [  # TODO DECK deck-related: Can this be streamlined?
-                        session.view.decks.drawdeck,
-                        session.view.decks.hamsterdeck,
-                        session.view.decks.handdeck,
-                        session.view.decks.useddeck,
+                        session.view.decks.draw,
+                        session.view.decks.hamster,
+                        session.view.decks.hand,
+                        session.view.decks.used,
                     ]
                 )
             )
@@ -107,7 +107,7 @@ class Card:
         self.health = 0
         if self.is_human():
             session.humanplayer.spirits += self.has_spirits
-            session.view.decks.useddeck.add_card(self)
+            session.view.decks.used.add_card(self)
         session.grid.remove_card(self)
         # (Must happen after the `is_human` test, otherwise that test produces wrong
         # results bc one test is whether the card is on the grid or not.)

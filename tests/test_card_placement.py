@@ -142,8 +142,8 @@ def test_place_card_with_fire_sacrifice():
 
     assert g.get_card(target_pos) == target_card
     assert g.get_card(sacrifice_pos) is None
-    assert vnc.decks.handdeck.is_empty()
-    assert vnc.decks.useddeck.cards == [sacrifice_card]
+    assert vnc.decks.hand.is_empty()
+    assert vnc.decks.used.cards == [sacrifice_card]
 
 
 def test_place_card_with_spirits_sacrifice():
@@ -164,6 +164,6 @@ def test_place_card_with_spirits_sacrifice():
     vnc._place_card(p, 0)
 
     assert g.get_card(target_pos) == target_card
-    assert vnc.decks.handdeck.is_empty()
-    assert vnc.decks.useddeck.cards == []
+    assert vnc.decks.hand.is_empty()
+    assert vnc.decks.used.cards == []
     assert session.humanplayer.spirits == spirits_before - 3
