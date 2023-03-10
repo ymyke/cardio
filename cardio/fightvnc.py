@@ -7,12 +7,11 @@ model. There is also some fight-related logic in the `Card` class.
 import logging
 from typing import Callable, Literal, Optional
 
-from . import session, Card, Deck, Grid, GridPos, Skill
+from . import session, Card, Deck, Decks, Grid, GridPos, Skill
 from .placement_manager import PlacementManager
 from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
 from .card_blueprints import create_cards_from_blueprints
-from .tui.decks import Decks  # FIXME tui should not be known here
 from .states_logger import StatesLogger
 
 

@@ -1,10 +1,9 @@
 """Tests for both `PlacementManager` and `FightVnC._place_card`."""
 
 import pytest
-from cardio import Grid, Card, GridPos, session, Deck
+from cardio import Grid, Card, GridPos, session, Deck, Decks
 from cardio.fightvnc import FightVnC
 from cardio.placement_manager import PlacementManager
-from cardio.tui.decks import Decks
 
 
 # ----- PlacementManager tests -----

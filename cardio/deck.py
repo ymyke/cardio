@@ -1,5 +1,6 @@
-from typing import Optional
+import logging
 import random
+from typing import NamedTuple, Optional
 from . import Card, CardList
 
 
@@ -15,7 +16,7 @@ class Deck:
 
     def size(self) -> int:
         return len(self.cards)
-    
+
     def is_empty(self) -> bool:
         return self.size() == 0
 
@@ -51,3 +52,24 @@ class Deck:
         """Reset all cards in deck."""
         for card in self.cards:
             card.reset()
+
+
+class Decks(NamedTuple):
+    # QQ DECK: Maybe unnecesary if I refactor decks implicitly via some `state` attribute in
+    # the card.
+    drawdeck: Deck
+    hamsterdeck: Deck
+    handdeck: Deck
+    useddeck: Deck
+
+    def log(self):
+        for deck, name in zip(
+            [self.handdeck, self.drawdeck, self.hamsterdeck, self.useddeck],
+            ["Hand", "Fight", "Hamster", "Used"],
+        ):
+            logging.debug(
+                "%sdeck size: %s (%s)",
+                name,
+                len(deck.cards),
+                ",".join([c.name for c in deck.cards]),
+            )
