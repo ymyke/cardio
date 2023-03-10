@@ -128,6 +128,8 @@ class FightVnC:
             + self.decks.drawdeck.cards
             + self.decks.hamsterdeck.cards
             if c is not None
+            # FIXME DECK Introduce some `get_all_human_cards` method? Re-use that here
+            # and in `is_human`.
         )
         # FIXME The above is not fully correct yet. There could also be a case there is
         # a card in the hand with power > 0 but that is not playable, e.g., because the
@@ -211,6 +213,7 @@ class FightVnC:
         # anyway...
 
         # Set up the 4 decks for the fight:
+        # TODO DECK Streamline?
         drawdeck = Deck()
         drawdeck.cards = session.humanplayer.deck.cards
         drawdeck.shuffle()
