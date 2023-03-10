@@ -73,3 +73,6 @@ class Decks(NamedTuple):
                 len(deck.cards),
                 ",".join([c.name for c in deck.cards]),
             )
+
+    def get_all_cards(self) -> CardList:
+        return [card for deck in self for card in deck.cards]
