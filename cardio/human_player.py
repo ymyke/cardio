@@ -15,9 +15,6 @@ class HumanPlayer:
     # FIXME Add items
     # FIXME Add card archive? -- all cards she has ever discovered
 
-    # TODO How to make set operations work with a dataclass? -- or turn the `Card` class
-    # into a normal class now?
-
     # TODO DECK Add test
     def get_all_human_cards(self) -> CardList:
         cards = []
