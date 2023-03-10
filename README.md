@@ -3,6 +3,12 @@
 
 # Next up
 
+- Improve `is_human`? -- Maybe just live with it bc while the current solution might
+  feel clumsy, it doesn't introduce any new state information.
+- Streamline `Decks`? Turn it into `FightDecks`? Make some things/accesses nicer?
+  - Check all the decks-related fixmes todos etc. and resolve them
+  - Remove the decks-related arch comments further down
+- Try to inline Grid into the cards.
 - Finish fight:
   - Start by creating some computer strategy
   - Finish when one party won
