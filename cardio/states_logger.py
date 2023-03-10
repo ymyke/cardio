@@ -26,7 +26,7 @@ class StatesLogger:
                 card = self.vnc.grid[line][slot]
                 s += f" {card2str(card):12s}|"
             s += "\n"
-        for deck, name in [
+        for deck, name in [ # TODO DECK Streamline?
             (self.vnc.decks.handdeck, "Hand"),
             (self.vnc.decks.useddeck, "Used"),
             (self.vnc.decks.drawdeck, "Draw"),
