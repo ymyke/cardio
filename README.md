@@ -72,6 +72,8 @@
   will win?
 - Reduce the number of places the session module gets imported to a sensible minimum.
 - Add items
+- UX bug: Here you don't know where the cursor is when you'd like to place on slot 0 or
+  1: https://monosnap.com/file/qCu7dKiPJJhhMu0emorLv0wXSpi3SX
 
 # More animations
 
