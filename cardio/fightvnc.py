@@ -222,8 +222,7 @@ class FightVnC:
         # Draw the decks and show how the first cards get drawn:
         self.redraw_view()
         for _ in range(3):
-            self._safe_draw_card_to_deck(self.decks.drawdeck, "draw")
-        self._safe_draw_card_to_deck(self.decks.hamsterdeck, "hamster")
+        # TODO DECK Introduce and use deck name in the calls above?
 
         # Run the fight:
         self.round_num = 0
@@ -252,5 +251,7 @@ class FightVnC:
             + self.decks.handdeck.cards
             + self.decks.drawdeck.cards
             if c.name != "Hamster"
+            # TODO DECK This loses cards on the grid. Reuse `get_all_human_cards`
+            # TODO DECK Add tets for this
         ]
         session.humanplayer.deck.reset_cards()
