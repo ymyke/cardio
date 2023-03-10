@@ -65,7 +65,6 @@ class Card:
 
     def is_human(self) -> bool:
         return self in session.humanplayer.get_all_human_cards()
-        # TODO DECK Add test for this method.
 
     def get_grid_pos(self) -> GridPos:
         pos = session.grid.find_card(self)
