@@ -15,7 +15,6 @@ class HumanPlayer:
     # FIXME Add items
     # FIXME Add card archive? -- all cards she has ever discovered
 
-    # TODO DECK Add test
     def get_all_human_cards(self) -> CardList:
         cards = []
 
@@ -29,7 +28,7 @@ class HumanPlayer:
         # (Adding this as a separate try-except clause bc it makes tests easier without
         # having to mock up the entire decks in FightVnC.) 
         try:    
-            cards.extend(session.grid.lines[2])
+            cards.extend([c for c in session.grid.lines[2] if c is not None])
         except AttributeError:
             pass
         
