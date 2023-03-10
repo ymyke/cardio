@@ -19,26 +19,24 @@ class HumanPlayer:
         cards = []
 
         # During fights I: Add fight decks
-        try:    
+        try:
             cards.extend(session.view.decks.get_all_cards())
         except AttributeError:
             pass
-        
+
         # During fights II: Add cards on the grid in the human player's line
         # (Adding this as a separate try-except clause bc it makes tests easier without
-        # having to mock up the entire decks in FightVnC.) 
-        try:    
+        # having to mock up the entire decks in FightVnC.)
+        try:
             cards.extend([c for c in session.grid.lines[2] if c is not None])
         except AttributeError:
             pass
-        
+
         # Outside fights: Add human player's deck
         # (Note that tis test does not suffice during a fight bc new cards could be
         # created (e.g., via fertility) during a fight which are added to one of the
         # fight decks but not yet to a player's deck (which gets recreated only after a
         # fight).)
         cards.extend(self.deck.cards)
-        
+
         return cards
-        
-        
