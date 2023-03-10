@@ -60,36 +60,9 @@ class Card:
             """We want to use `is` instead of `==` equality here."""
             return any(x is what for x in inlist)
 
-        # TODO Add test for this method.
+        return is_in(self, session.humanplayer.get_all_human_cards())
 
-        return (
-            # A card is human if any of the following applies:
-            # 1. Outside of fights:  It belongs to the human player's deck.
-            is_in(self, session.humanplayer.deck.cards)
-            # 2. During fights:
-            # (Note that the above test does not suffice bc new cards could be created
-            # (e.g., via fertility) during a fight which are added to one of the decks
-            # below but not yet to a player's deck (which gets recreated only after a
-            # fight).)
-            # 2.a. It is in one of the fight decks:
-            or (
-                getattr(session.view, "decks", None)
-                # (Testing for the `decks` attribute first mostly to enable various
-                # tests where we don't want to set up the entire fight environment
-                # first.)
-                and any(
-                    is_in(self, d.cards)
-                    for d in [  # TODO DECK deck-related: Can this be streamlined?
-                        session.view.decks.draw,
-                        session.view.decks.hamster,
-                        session.view.decks.hand,
-                        session.view.decks.used,
-                    ]
-                )
-            )
-            # 2.b. It is on the grid in the human player's line:
-            or is_in(self, session.grid.lines[2])
-        )
+        # TODO DECK Add test for this method.
 
     def get_grid_pos(self) -> GridPos:
         pos = session.grid.find_card(self)
