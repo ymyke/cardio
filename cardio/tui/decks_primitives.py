@@ -53,8 +53,6 @@ def show_card_to_handdeck(
     """Show how a card gets drawn from one of the draw decks and moved to the hand.
     `whichdeck` is necessary to know which location to start from.
     """
-    # FIXME DECK Maybe implement differently in the future when cards have states: can
-    # use those states for `whichdeck`.
     starty = DRAW_DECKS_Y - 2
     # FIXME ^ When we put `-1` here, there will be a leftover `-` on the screen
     # after moving the cards. How to get rid of that?

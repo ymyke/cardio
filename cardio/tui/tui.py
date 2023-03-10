@@ -232,4 +232,3 @@ class TUIFightVnC(FightVnC):
     ) -> None:
         deckname = "draw" if whichdeck == self.decks.draw else "hamster"
         show_card_to_handdeck(self.screen, handdeck, card, deckname)
-        # FIXME DECK Add a name to the Deck class and pass the deck and use the name attribute in show_card_to_handdeck?
