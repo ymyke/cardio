@@ -120,13 +120,8 @@ class FightVnC:
     def _has_computer_won(self) -> bool:
         return self.damagestate.has_computer_won() or not any(
             c.power > 0
-            for c in self.grid.lines[2]
-            + self.decks.hand.cards
-            + self.decks.draw.cards
-            + self.decks.hamster.cards
-            if c is not None
-            # FIXME DECK Introduce some `get_all_human_cards` method? Re-use that here
-            # and in `is_human`.
+            for c in set(session.humanplayer.get_all_human_cards())
+            - set(self.decks.used.cards)
         )
         # FIXME The above is not fully correct yet. There could also be a case there is
         # a card in the hand with power > 0 but that is not playable, e.g., because the
@@ -210,7 +205,6 @@ class FightVnC:
         # anyway...
 
         # Set up the decks for the fight:
-        # TODO DECK Streamline?
         self.decks = FightDecks()
         self.decks.draw.cards = session.humanplayer.deck.cards
         self.decks.draw.shuffle()
@@ -244,12 +238,6 @@ class FightVnC:
 
         # Reset human deck after the fight:
         session.humanplayer.deck.cards = [
-            c
-            for c in self.decks.used.cards
-            + self.decks.hand.cards
-            + self.decks.draw.cards
-            if c.name != "Hamster"
-            # TODO DECK This loses cards on the grid. Reuse `get_all_human_cards`
-            # TODO DECK Add tets for this
+            c for c in session.humanplayer.get_all_human_cards() if c.name != "Hamster"
         ]
         session.humanplayer.deck.reset_cards()

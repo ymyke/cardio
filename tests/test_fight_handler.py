@@ -191,6 +191,21 @@ Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1
     assert equal_logs(session.view.stateslogger.log, target_states_log)
 
 
+def test_humanplayer_deck_gets_set_correctly_after_fight():
+    session.setup()
+
+    original_cards = create_cards_from_blueprints(
+        ["Koala", "Weasel", "Lynx", "Porcupine"]
+    )
+    session.humanplayer.deck.cards = copy.deepcopy(original_cards)
+    cs = Round0OnlyStrategy(grid=session.grid, cards=[])
+    session.view = HumanStrategyVnC(grid=session.grid)
+    session.view.handle_fight(computerstrategy=cs)
+    assert sorted(c.name for c in session.humanplayer.deck.cards) == sorted(
+        c.name for c in original_cards
+    )
+
+
 def test_card_humanity():
     """If `is_human` works more or less correctly. FIXME This is rather "hacky". Should
     be simplified and moved to `test_card` once there is some new logic for cards being
