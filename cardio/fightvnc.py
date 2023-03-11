@@ -5,7 +5,7 @@ model. There is also some fight-related logic in the `Card` class.
 """
 
 import logging
-from typing import Callable, Literal, Optional
+from typing import Callable, Optional
 
 from . import session, Card, Deck, FightDecks, Grid, GridPos, Skill
 from .placement_manager import PlacementManager
