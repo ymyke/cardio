@@ -1,7 +1,7 @@
 """Tests for both `PlacementManager` and `FightVnC._place_card`."""
 
 import pytest
-from cardio import Grid, Card, GridPos, session, Deck, Decks
+from cardio import Grid, Card, GridPos, session, FightDecks
 from cardio.fightvnc import FightVnC
 from cardio.placement_manager import PlacementManager
 
@@ -137,7 +137,8 @@ def test_place_card_with_fire_sacrifice():
 
     vnc = FightVnC(g)
     session.view = vnc
-    vnc.decks = Decks(Deck(), Deck(), Deck([target_card]), Deck())
+    vnc.decks = FightDecks()
+    vnc.decks.hand.add_card(target_card)
     vnc._place_card(p, 0)
 
     assert g.get_card(target_pos) == target_card
@@ -160,7 +161,8 @@ def test_place_card_with_spirits_sacrifice():
 
     spirits_before = session.humanplayer.spirits
     vnc = FightVnC(g)
-    vnc.decks = Decks(Deck(), Deck(), Deck([target_card]), Deck())
+    vnc.decks = FightDecks()
+    vnc.decks.hand.add_card(target_card)
     vnc._place_card(p, 0)
 
     assert g.get_card(target_pos) == target_card

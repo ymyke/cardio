@@ -7,7 +7,7 @@ model. There is also some fight-related logic in the `Card` class.
 import logging
 from typing import Callable, Literal, Optional
 
-from . import session, Card, Deck, Decks, Grid, GridPos, Skill
+from . import session, Card, Deck, FightDecks, Grid, GridPos, Skill
 from .placement_manager import PlacementManager
 from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
@@ -211,13 +211,12 @@ class FightVnC:
         # which could contain the computerstrategy? It will be used for one fight only
         # anyway...
 
-        # Set up the 4 decks for the fight:
+        # Set up the decks for the fight:
         # TODO DECK Streamline?
-        drawdeck = Deck()
-        drawdeck.cards = session.humanplayer.deck.cards
-        drawdeck.shuffle()
-        hamsterdeck = Deck(create_cards_from_blueprints(["Hamster"] * 10))
-        self.decks = Decks(drawdeck, hamsterdeck, Deck(), Deck())
+        self.decks = FightDecks()
+        self.decks.draw.cards = session.humanplayer.deck.cards
+        self.decks.draw.shuffle()
+        self.decks.hamster.cards = create_cards_from_blueprints(["Hamster"] * 10)
 
         # Draw the decks and show how the first cards get drawn:
         self.redraw_view()

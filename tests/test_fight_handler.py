@@ -19,7 +19,7 @@ def test_simple_initial_setup():
     original_cards = create_cards_from_blueprints(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )
-    session.humanplayer.deck = Deck(copy.deepcopy(original_cards))
+    session.humanplayer.deck.cards = copy.deepcopy(original_cards)
     cs = Round0OnlyStrategy(
         grid=session.grid,
         cards=[
@@ -90,16 +90,13 @@ def test_human_gets_gems():
     assert session.humanplayer.gems == 4
 
 
-
-
-
 def test_human_decks_managed_correctly():  # FIXME Should get different name?
     session.setup()
 
     original_cards = create_cards_from_blueprints(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )
-    session.humanplayer.deck = Deck(copy.deepcopy(original_cards))
+    session.humanplayer.deck.cards = copy.deepcopy(original_cards)
     cs = Round0OnlyStrategy(
         grid=session.grid,
         cards=[
@@ -194,7 +191,6 @@ Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1
     assert equal_logs(session.view.stateslogger.log, target_states_log)
 
 
-
 def test_card_humanity():
     """If `is_human` works more or less correctly. FIXME This is rather "hacky". Should
     be simplified and moved to `test_card` once there is some new logic for cards being
@@ -205,7 +201,7 @@ def test_card_humanity():
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )
     assert not any(c.is_human() for c in original_cards)
-    session.humanplayer.deck = Deck(original_cards)
+    session.humanplayer.deck.cards = original_cards
     assert all(c.is_human() for c in original_cards)
     cs = Round0OnlyStrategy(
         grid=session.grid,
@@ -220,4 +216,3 @@ def test_card_humanity():
     session.view = HumanStrategyVnC(grid=session.grid)
     session.view.handle_fight(computerstrategy=cs)
     assert all(c.is_human() for c in original_cards)
-

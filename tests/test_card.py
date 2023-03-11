@@ -1,5 +1,5 @@
 import pytest
-from cardio import Card, GridPos, session, Decks, Deck
+from cardio import Card, GridPos, session, FightDecks
 
 
 @pytest.fixture
@@ -60,9 +60,10 @@ def test_is_human():
     assert c.is_human()
     session.grid[2][2] = None
     assert not c.is_human()
-    session.view.decks = Decks(Deck(), Deck(), Deck(), Deck([c]))
+    session.view.decks = FightDecks()
+    session.view.decks.draw.add_card(c)
     assert c.is_human()
-    session.view.decks = Decks(Deck(), Deck(), Deck(), Deck())
+    session.view.decks = FightDecks()
     assert not c.is_human()
     session.humanplayer.deck.add_card(c)
     assert c.is_human()

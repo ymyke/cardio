@@ -27,4 +27,4 @@ def setup() -> None:
     view = FightVnC(grid)
 
     humanplayer = HumanPlayer(name="Schnuzgi", lives=1)
-    humanplayer.deck = Deck(create_cards_from_blueprints(get_starterdeck_names()))
+    humanplayer.deck.cards = create_cards_from_blueprints(get_starterdeck_names())
