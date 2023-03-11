@@ -110,7 +110,7 @@ def start_debug_mode(screen: Screen):
     bc = BufferCopy(screen)
     screen.close()
     pdb.set_trace()
-    session.view.screen = bc.screen = Screen.open(unicode_aware=True)  # type:ignore
+    session.vnc.screen = bc.screen = Screen.open(unicode_aware=True)  # type:ignore
     bc.copyback()
 
 

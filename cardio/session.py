@@ -7,7 +7,7 @@ if TYPE_CHECKING:
 
 
 grid: Grid
-view: FightVnC  # FIXME Rename to vnc
+vnc: FightVnC
 humanplayer: HumanPlayer
 
 # QQ: Should this rather be Game instead of session? Or should there be a Game class?
@@ -21,9 +21,9 @@ def setup() -> None:
     from . import Grid, HumanPlayer, FightVnC
     from cardio.card_blueprints import create_cards_from_blueprints
 
-    global grid, view, humanplayer
+    global grid, vnc, humanplayer
     grid = Grid(4)
-    view = FightVnC(grid)
+    vnc = FightVnC(grid)
 
     humanplayer = HumanPlayer(name="Schnuzgi", lives=1)
     humanplayer.deck.cards = create_cards_from_blueprints(get_starterdeck_names())

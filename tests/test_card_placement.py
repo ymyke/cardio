@@ -136,7 +136,7 @@ def test_place_card_with_fire_sacrifice():
     p.placement_position = target_pos
 
     vnc = FightVnC(g)
-    session.view = vnc
+    session.vnc = vnc
     vnc.decks = FightDecks()
     vnc.decks.hand.add_card(target_card)
     vnc._place_card(p, 0)
