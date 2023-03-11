@@ -3,11 +3,6 @@
 
 # Next up
 
-- Improve `is_human`? -- Maybe just live with it bc while the current solution might
-  feel clumsy, it doesn't introduce any new state information.
-- Streamline `Decks`? Turn it into `FightDecks`? Make some things/accesses nicer?
-  - Check all the decks-related fixmes todos etc. and resolve them
-  - Remove the decks-related arch comments further down
 - Try to inline Grid into the cards.
 - Finish fight:
   - Start by creating some computer strategy
@@ -52,16 +47,6 @@
   for tests? -- That way it would be warranted for both agents types to have
   strategties.
 - Get rid of the grid (or most of it) and track positions in the cards directly?
-- Get rid of the decks and track the decks as states in the cards. Then there would just
-  be a CardCollection with each agent. Card states would be: maindeck, hamsterdeck,
-  hand, used or so. At the end of the fight, all hamster cards would be removed. (QQ:
-  Where would the hamster cards come from?) (Also, there would be no shuffle method any
-  longer but just a draw method which would draw random card(s) from a specific deck.)
-  - Maybe there would still be some virtual `Deck` class that encapsulates all the
-    deck-related code?
-  - This could also make the `_die_silently` function in `Card` easier (=less dependent
-    on outside environment) in that the card would simply set it's own state to "used"
-    or so rather than having to make sure some decks somewhere are adjusted.
 - Dependency chaos?
   - Draw all modules and their dependencies and think about them.
   - Should cards have a game attribute which they use to query the world (e.g., who the
