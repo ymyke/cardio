@@ -37,15 +37,6 @@ class dPos(NamedTuple):
         )
 
 
-# LIXME Likely obsolete -- delete eventually!
-#
-# def show_effects(screen, effects: Union[Effect, List[Effect]]):
-#     if not isinstance(effects, list):
-#         effects = [effects]
-#     for e in effects:  # type: ignore
-#         e.update(0)
-
-
 def show(screen: Screen, pos: dPos, renderer: Renderer, color: Color = Color.WHITE):
     if color is Color.GRAY:
         color_args = dict(colour=Screen.COLOUR_BLACK, attr=Screen.A_BOLD)

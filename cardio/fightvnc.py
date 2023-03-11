@@ -88,7 +88,7 @@ class FightVnC:
             self.damagestate.damage_human(howmuch)
         else:
             self.damagestate.damage_computer(howmuch)
-        # FIXME Add some animation for for damage
+        # LIXME Add some animation for for damage
         self.redraw_view()
 
     # --- Misc ---
@@ -97,11 +97,11 @@ class FightVnC:
         pass
 
     def human_wins_fight(self) -> None:
-        # FIXME Still necessary?
+        # QQ: Still necessary?
         pass
 
     def computer_wins_fight(self) -> None:
-        # FIXME Still necessary?
+        # QQ: Still necessary?
         pass
 
     # --- Controller ---
@@ -163,7 +163,7 @@ class FightVnC:
         self.redraw_view()
         logging.debug("Human plays %s in %s", pmgr.target_card.name, to_slot)
 
-    def handle_round_of_fight(self) -> None:  # FIXME Should be private
+    def handle_round_of_fight(self) -> None:  # QQ: Should be private?
         logging.debug("----- Start of round %s -----", self.round_num)
         self.stateslogger.log_current_state()
         self.decks.log()

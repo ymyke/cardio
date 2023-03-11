@@ -53,10 +53,10 @@ class Card:
         assert costs_fire * costs_spirits == 0, (
             "Either fire or spirit costs must be 0. "
             "Hybrids are not supported at this time."
-            # QQ: Will we ever have cards that can have both cost_fire and cost_spirits?
-            # If so, would that be AND or OR? Note that such hybrids would add
-            # considerable complexity to the UI, since the player would have to be able
-            # to choose how much of either to use (unless specified algorithmically).
+            # (Will we ever have cards that can have both cost_fire and cost_spirits? If
+            # so, would that be AND or OR? Note that such hybrids would add considerable
+            # complexity to the UI, since the player would have to be able to choose how
+            # much of either to use (unless specified algorithmically).)
         )
 
     def reset(self) -> None:

@@ -53,8 +53,8 @@ def show_card_to_handdeck(
     """Show how a card gets drawn from one of the draw decks and moved to the hand."""
     assert from_deck.name in ("Draw", "Hamster")
     starty = DRAW_DECKS_Y - 2
-    # FIXME ^ When we put `-1` here, there will be a leftover `-` on the screen
-    # after moving the cards. How to get rid of that?
+    # (^ When we put `-1` here, there will be a leftover `-` on the screen after moving
+    # the cards. How to get rid of that?)
     startx = DRAW_DECKS_X if from_deck.name == "Draw" else DRAW_DECKS_X + BOX_WIDTH + 2
     move_card(
         screen,

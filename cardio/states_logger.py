@@ -30,7 +30,7 @@ class StatesLogger:
             s += f"{deck.name}: " + " ".join([card2str(c) for c in deck.cards]) + "\n"
         s += f"{self.vnc.damagestate.diff} damage, {session.humanplayer.lives} lives, "
         s += f"{session.humanplayer.gems} gems, {session.humanplayer.spirits} spirits\n"
-        # FIXME Add items
+        # LIXME Add items
         s += "\n"
         return s
 

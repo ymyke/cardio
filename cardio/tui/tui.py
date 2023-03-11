@@ -87,7 +87,7 @@ class TUIFightVnC(FightVnC):
     def card_lost_health(self, card: Card) -> None:
         self.redraw_view()
 
-    # TODO Should the following all be called something with "show"?
+    # QQ: Should the following all be called something with "show"?
     def card_getting_attacked(self, target: Card, attacker: Card) -> None:
         pos = self.grid.find_card(target)
         assert pos is not None
@@ -198,8 +198,7 @@ class TUIFightVnC(FightVnC):
         while True:
             keycode = get_keycode(self.screen)
             if keycode in (ord("i"), ord("I")):
-                pass  # FIXME Inventory!
-                # TODO  BZL
+                pass  # FIXME Inventory! !BZL!
             elif keycode in (ord("c"), ord("C")):
                 break
 
