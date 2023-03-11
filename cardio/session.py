@@ -22,8 +22,7 @@ def setup() -> None:
     from cardio.card_blueprints import create_cards_from_blueprints
 
     global grid, view, humanplayer
-    grid = Grid(4)  # QQ: What if the grid size changes in the game?
-    # FIXME ^ Grid needs to be setup in a fight. No grid outside of fights.
+    grid = Grid(4)
     view = FightVnC(grid)
 
     humanplayer = HumanPlayer(name="Schnuzgi", lives=1)
