@@ -1,12 +1,14 @@
-from typing import Optional
+from typing import Optional, List
+from dataclasses import dataclass, fields, field
+import logging
 import random
 from . import Card, CardList
 
 
 class Deck:
-    cards: CardList
-
-    def __init__(self, cards: Optional[CardList] = None) -> None:
+    def __init__(self, name: str, cards: Optional[CardList] = None) -> None:
+        assert isinstance(name, str)
+        self.name = name
         if cards is None:
             self.cards = []
         else:
@@ -15,7 +17,7 @@ class Deck:
 
     def size(self) -> int:
         return len(self.cards)
-    
+
     def is_empty(self) -> bool:
         return self.size() == 0
 
@@ -51,3 +53,22 @@ class Deck:
         """Reset all cards in deck."""
         for card in self.cards:
             card.reset()
+
+
+@dataclass
+class FightDecks:
+    hand: Deck = field(default_factory=lambda: Deck("Hand"))
+    used: Deck = field(default_factory=lambda: Deck("Used"))
+    draw: Deck = field(default_factory=lambda: Deck("Draw"))
+    hamster: Deck = field(default_factory=lambda: Deck("Hamster"))
+
+    def get_decks(self) -> List[Deck]:
+        return [getattr(self, f.name) for f in fields(self) if f.type == Deck]
+
+    def log(self):
+        for deck in self.get_decks():
+            cardnames = ",".join([c.name for c in deck.cards])
+            logging.debug("%sdeck size: %s (%s)", deck.name, len(deck.cards), cardnames)
+
+    def get_all_cards(self) -> CardList:
+        return [card for deck in self.get_decks() for card in deck.cards]

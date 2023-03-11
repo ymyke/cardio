@@ -1,5 +1,5 @@
 import pytest
-from cardio import Card, GridPos, session
+from cardio import Card, GridPos, session, FightDecks
 
 
 @pytest.fixture
@@ -44,8 +44,29 @@ def test_reset():
 def test_duplicate():
     c = Card("X", 1, 2, 3)
     d = c.duplicate()
-    assert c == d
+    assert c != d
     assert c is not d
+    assert c.name == d.name
+    assert c.power == d.power
+    assert c.health == d.health
+    assert c.costs_fire == d.costs_fire
+
+
+def test_is_human():
+    session.setup()
+    c = Card("A", 1, 1, 1)
+    assert not c.is_human()
+    session.grid[2][2] = c
+    assert c.is_human()
+    session.grid[2][2] = None
+    assert not c.is_human()
+    session.view.decks = FightDecks()
+    session.view.decks.draw.add_card(c)
+    assert c.is_human()
+    session.view.decks = FightDecks()
+    assert not c.is_human()
+    session.humanplayer.deck.add_card(c)
+    assert c.is_human()
 
 
 def test_get_grid_pos(common_setup):

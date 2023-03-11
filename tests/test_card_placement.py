@@ -1,10 +1,9 @@
 """Tests for both `PlacementManager` and `FightVnC._place_card`."""
 
 import pytest
-from cardio import Grid, Card, GridPos, session, Deck
+from cardio import Grid, Card, GridPos, session, FightDecks
 from cardio.fightvnc import FightVnC
 from cardio.placement_manager import PlacementManager
-from cardio.tui.decks import Decks
 
 
 # ----- PlacementManager tests -----
@@ -138,13 +137,14 @@ def test_place_card_with_fire_sacrifice():
 
     vnc = FightVnC(g)
     session.view = vnc
-    vnc.decks = Decks(Deck(), Deck(), Deck([target_card]), Deck())
+    vnc.decks = FightDecks()
+    vnc.decks.hand.add_card(target_card)
     vnc._place_card(p, 0)
 
     assert g.get_card(target_pos) == target_card
     assert g.get_card(sacrifice_pos) is None
-    assert vnc.decks.handdeck.is_empty()
-    assert vnc.decks.useddeck.cards == [sacrifice_card]
+    assert vnc.decks.hand.is_empty()
+    assert vnc.decks.used.cards == [sacrifice_card]
 
 
 def test_place_card_with_spirits_sacrifice():
@@ -161,10 +161,11 @@ def test_place_card_with_spirits_sacrifice():
 
     spirits_before = session.humanplayer.spirits
     vnc = FightVnC(g)
-    vnc.decks = Decks(Deck(), Deck(), Deck([target_card]), Deck())
+    vnc.decks = FightDecks()
+    vnc.decks.hand.add_card(target_card)
     vnc._place_card(p, 0)
 
     assert g.get_card(target_pos) == target_card
-    assert vnc.decks.handdeck.is_empty()
-    assert vnc.decks.useddeck.cards == []
+    assert vnc.decks.hand.is_empty()
+    assert vnc.decks.used.cards == []
     assert session.humanplayer.spirits == spirits_before - 3

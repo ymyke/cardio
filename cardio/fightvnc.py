@@ -7,12 +7,11 @@ model. There is also some fight-related logic in the `Card` class.
 import logging
 from typing import Callable, Literal, Optional
 
-from . import session, Card, Deck, Grid, GridPos, Skill
+from . import session, Card, Deck, FightDecks, Grid, GridPos, Skill
 from .placement_manager import PlacementManager
 from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
 from .card_blueprints import create_cards_from_blueprints
-from .tui.decks import Decks  # FIXME tui should not be known here
 from .states_logger import StatesLogger
 
 
@@ -59,7 +58,7 @@ class FightVnC:
     # --- Controller-related ---
 
     def show_human_draws_new_card(
-        self, handdeck: Deck, card: Card, whichdeck: Deck
+        self, draw_to: Deck, card: Card, draw_from: Deck
     ) -> None:
         pass
 
@@ -107,9 +106,7 @@ class FightVnC:
 
     # --- Controller ---
 
-    def _safe_draw_card_to_deck(
-        self, draw_from: Deck, from_name: Literal["draw", "hamster"]
-    ) -> None:
+    def _safe_draw_card_to_deck(self, draw_from: Deck) -> None:
         """Safe way to draw a card from a deck that doesn't break when the deck is
         empty. Important for tests.
         """
@@ -117,17 +114,14 @@ class FightVnC:
             card = draw_from.draw_card()
         except IndexError:
             return
-        self.show_human_draws_new_card(self.decks.handdeck, card, from_name)
-        self.decks.handdeck.add_card(card)
+        self.show_human_draws_new_card(self.decks.hand, card, draw_from)
+        self.decks.hand.add_card(card)
 
     def _has_computer_won(self) -> bool:
         return self.damagestate.has_computer_won() or not any(
             c.power > 0
-            for c in self.grid.lines[2]
-            + self.decks.handdeck.cards
-            + self.decks.drawdeck.cards
-            + self.decks.hamsterdeck.cards
-            if c is not None
+            for c in set(session.humanplayer.get_all_human_cards())
+            - set(self.decks.used.cards)
         )
         # FIXME The above is not fully correct yet. There could also be a case there is
         # a card in the hand with power > 0 but that is not playable, e.g., because the
@@ -157,13 +151,13 @@ class FightVnC:
         # Update view:
         to_slot = pmgr.get_placement_position().slot
         self.show_human_places_card(pmgr.target_card, from_slot, to_slot)
-        self.decks.handdeck.pick_card(from_slot)
+        self.decks.hand.pick_card(from_slot)
 
         if Skill.FERTILITY in pmgr.target_card.skills:
             new_card = pmgr.target_card.duplicate()
             new_card.reset()
             self.redraw_view()
-            self.decks.handdeck.add_card(new_card)
+            self.decks.hand.add_card(new_card)
             self.show_human_receives_card_from_grid(new_card, from_slot=to_slot)
 
         self.redraw_view()
@@ -184,8 +178,8 @@ class FightVnC:
         deck = self.handle_human_choose_deck_to_draw_from()
         if deck is not None:
             card = deck.draw_card()
-            self.show_human_draws_new_card(self.decks.handdeck, card, deck)
-            self.decks.handdeck.add_card(card)
+            self.show_human_draws_new_card(self.decks.hand, card, deck)
+            self.decks.hand.add_card(card)
 
         # Let human play card(s) from handdeck or items in his collection:
         self.handle_human_plays_cards(place_card_callback=self._place_card)
@@ -210,18 +204,17 @@ class FightVnC:
         # which could contain the computerstrategy? It will be used for one fight only
         # anyway...
 
-        # Set up the 4 decks for the fight:
-        drawdeck = Deck()
-        drawdeck.cards = session.humanplayer.deck.cards
-        drawdeck.shuffle()
-        hamsterdeck = Deck(create_cards_from_blueprints(["Hamster"] * 10))
-        self.decks = Decks(drawdeck, hamsterdeck, Deck(), Deck())
+        # Set up the decks for the fight:
+        self.decks = FightDecks()
+        self.decks.draw.cards = session.humanplayer.deck.cards
+        self.decks.draw.shuffle()
+        self.decks.hamster.cards = create_cards_from_blueprints(["Hamster"] * 10)
 
         # Draw the decks and show how the first cards get drawn:
         self.redraw_view()
         for _ in range(3):
-            self._safe_draw_card_to_deck(self.decks.drawdeck, "draw")
-        self._safe_draw_card_to_deck(self.decks.hamsterdeck, "hamster")
+            self._safe_draw_card_to_deck(self.decks.draw)
+        self._safe_draw_card_to_deck(self.decks.hamster)
 
         # Run the fight:
         self.round_num = 0
@@ -245,10 +238,6 @@ class FightVnC:
 
         # Reset human deck after the fight:
         session.humanplayer.deck.cards = [
-            c
-            for c in self.decks.useddeck.cards
-            + self.decks.handdeck.cards
-            + self.decks.drawdeck.cards
-            if c.name != "Hamster"
+            c for c in session.humanplayer.get_all_human_cards() if c.name != "Hamster"
         ]
         session.humanplayer.deck.reset_cards()

@@ -1,7 +1,6 @@
 from __future__ import annotations
 import logging
 import copy
-from dataclasses import dataclass, field, fields
 from typing import Optional, List, TYPE_CHECKING
 from .skills import Skill, SkillList
 from . import session
@@ -16,28 +15,42 @@ if TYPE_CHECKING:
 # at the very center of the game and everything else is surrounding stuff.
 
 
-@dataclass
 class Card:
-    name: str
-    initial_power: int  # 💪
-    initial_health: int  # 💓
-    costs_fire: int  # How much fire 🔥 needed
+    def __init__(
+        self,
+        # Mandatory:
+        name: str,
+        initial_power: int,  # 💪
+        initial_health: int,  # 💓
+        costs_fire: int,  # How much fire 🔥 needed
+        # Optional:
+        skills: Optional[SkillList] = None,
+        costs_spirits: int = 0,  # How many spirits 👻 needed
+        has_spirits: int = 1,  # How many spirits this card generates upon death 👻
+        has_fire: int = 1,  # How much fire this card is worth when sacrificed 🔥
+        power: int = 0,
+        health: int = 0,
+    ) -> None:
+        self.name = name
+        self.initial_power = initial_power
+        self.initial_health = initial_health
+        self.costs_fire = costs_fire
+        self.skills = skills or []
+        self.costs_spirits = costs_spirits
+        self.has_spirits = has_spirits
+        self.has_fire = has_fire
 
-    # Optional attributes:
-    skills: SkillList = field(default_factory=list)
-    costs_spirits: int = 0  # How many spirits 👻 needed
-    has_spirits: int = 1  # How many spirits this card generates upon death 👻
-    has_fire: int = 1  # How much fire this card is worth when sacrificed 🔥
+        if power * health == 0:  # Normal behavior
+            self.reset()
+        else:  # Used by tests to explicitly set values
+            self.power = power
+            self.health = health
 
-    # post_init attributes:
-    power: int = 0
-    health: int = 0
-
-    def __post_init__(self) -> None:
+        # Sanity checks:
         assert all(
-            getattr(self, f.name) >= 0 for f in fields(self) if f.type == "int"
+            getattr(self, a) >= 0 for a in dir(self) if isinstance(a, int)
         ), "No negative numbers please"
-        assert self.costs_fire * self.costs_spirits == 0, (
+        assert costs_fire * costs_spirits == 0, (
             "Either fire or spirit costs must be 0. "
             "Hybrids are not supported at this time."
             # QQ: Will we ever have cards that can have both cost_fire and cost_spirits?
@@ -45,49 +58,13 @@ class Card:
             # considerable complexity to the UI, since the player would have to be able
             # to choose how much of either to use (unless specified algorithmically).
         )
-        if self.power == 0 or self.health == 0:
-            # (This test allows to explicitly set power and health, e.g., for tests.)
-            self.reset()
 
     def reset(self) -> None:
         self.power = self.initial_power
         self.health = self.initial_health
 
     def is_human(self) -> bool:
-        def is_in(what: object, inlist: list) -> bool:
-            """We want to use `is` instead of `==` equality here."""
-            return any(x is what for x in inlist)
-
-        # QQ: In the future: What should be the invariant? Maybe that a card is always
-        # in session.humanplayer.deck.cards?
-        # FIXME Should be improved/simplified once we have a new architecture for deck
-        # in place. // Maybe just add an `owner` attribute to the object and simply use
-        # that? (On could ask whether we should then just use some subclass but an owner
-        # might make things more straightforward.)
-        # FIXME Add test for this method.
-        return (
-            is_in(self, session.humanplayer.deck.cards)
-            # (Note that the above test does not suffice bc new cards could be created
-            # (e.g., via fertility) during a fight which are added to one of the decks
-            # below but not yet to a player's deck (which gets recreated only after a
-            # fight).)
-            or (
-                getattr(session.view, "decks", None)
-                # (Testing for the `decks` attribute first mostly to enable various
-                # tests where we don't want to set up the entire fight environment
-                # first.)
-                and any(
-                    is_in(self, d.cards)
-                    for d in [
-                        session.view.decks.drawdeck,
-                        session.view.decks.hamsterdeck,
-                        session.view.decks.handdeck,
-                        session.view.decks.useddeck,
-                    ]
-                )
-            )
-            or is_in(self, session.grid.lines[2])
-        )
+        return self in session.humanplayer.get_all_human_cards()
 
     def get_grid_pos(self) -> GridPos:
         pos = session.grid.find_card(self)
@@ -105,14 +82,10 @@ class Card:
         self.health = 0
         if self.is_human():
             session.humanplayer.spirits += self.has_spirits
-            session.view.decks.useddeck.add_card(self)
-            # FIXME ^ This could potentially be done differently/directly once we have a
-            # new implementation for deck in place.
+            session.view.decks.used.add_card(self)
         session.grid.remove_card(self)
         # (Must happen after the `is_human` test, otherwise that test produces wrong
-        # results bc one test is whether the card is on the grid or not. FIXME This
-        # comment no longer necessary once we have the new deck implementation in
-        # place.)
+        # results bc one test is whether the card is on the grid or not.)
 
     def die(self) -> None:
         logging.debug("%s dies.", self.name)

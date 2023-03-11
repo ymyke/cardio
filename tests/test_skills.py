@@ -145,9 +145,9 @@ def test_fertility():
     hc = Card("Human Card", 1, 1, 0, skills=[Skill.FERTILITY])
     cc = Card("Computer Card", 1, 2, 1)
     do_the_fight([hc], cc)
-    assert hc in session.view.decks.useddeck.cards
+    assert hc in session.view.decks.used.cards
     non_hamsters_on_hand = [
-        c for c in session.view.decks.handdeck.cards if c.name != "Hamster"
+        c for c in session.view.decks.hand.cards if c.name != "Hamster"
     ]
     assert len(non_hamsters_on_hand) == 1
     new_card = non_hamsters_on_hand[0]
