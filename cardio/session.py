@@ -18,7 +18,7 @@ def get_starterdeck_names() -> List[str]:
 
 
 def setup() -> None:
-    from . import Grid, HumanPlayer, Deck, FightVnC
+    from . import Grid, HumanPlayer, FightVnC
     from cardio.card_blueprints import create_cards_from_blueprints
 
     global grid, view, humanplayer
