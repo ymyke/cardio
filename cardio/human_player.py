@@ -10,7 +10,7 @@ class HumanPlayer:
     lives: int = 1  # 💓
     gems: int = 0  # 💎
     spirits: int = 0  # 👻 (or droplets/essence? 💧)
-    deck: Deck = field(default_factory=lambda: Deck())
+    deck: Deck = field(default_factory=lambda: Deck("main"))
     # FIXME Add score, stats, ...
     # FIXME Add items
     # FIXME Add card archive? -- all cards she has ever discovered

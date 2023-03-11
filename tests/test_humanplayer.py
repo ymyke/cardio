@@ -1,4 +1,4 @@
-from cardio import HumanPlayer, Deck, Decks, Card, session
+from cardio import HumanPlayer, FightDecks, Card, session
 
 
 def cards_names(hp: HumanPlayer) -> str:
@@ -11,7 +11,7 @@ def test_get_all_human_cards():
     # Just the human's cards:
     hp = HumanPlayer("X")
     assert hp.get_all_human_cards() == []
-    hp.deck = Deck([Card("A", 1, 1, 1)])
+    hp.deck.add_card(Card("A", 1, 1, 1))
     assert cards_names(hp) == "A"
 
     # With grid:
@@ -19,5 +19,6 @@ def test_get_all_human_cards():
     assert cards_names(hp) == "BA"
 
     # With fight decks:
-    session.view.decks = Decks(Deck(), Deck(), Deck(), Deck([Card("C", 1, 1, 1)]))
+    session.view.decks = FightDecks()
+    session.view.decks.used.add_card(Card("C", 1, 1, 1))
     assert cards_names(hp) == "CBA"

@@ -228,7 +228,6 @@ class TUIFightVnC(FightVnC):
                     cursor = min(self.decks.hand.size() - 1, cursor)
 
     def show_human_draws_new_card(
-        self, handdeck: Deck, card: Card, whichdeck: Deck
+        self, draw_to: Deck, card: Card, draw_from: Deck
     ) -> None:
-        deckname = "draw" if whichdeck == self.decks.draw else "hamster"
-        show_card_to_handdeck(self.screen, handdeck, card, deckname)
+        show_card_to_handdeck(self.screen, draw_to, card, draw_from)

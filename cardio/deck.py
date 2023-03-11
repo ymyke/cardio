@@ -1,13 +1,14 @@
+from typing import Optional, List
+from dataclasses import dataclass, fields, field
 import logging
 import random
-from typing import NamedTuple, Optional, List, Tuple
 from . import Card, CardList
 
 
 class Deck:
-    cards: CardList
-
-    def __init__(self, cards: Optional[CardList] = None) -> None:
+    def __init__(self, name: str, cards: Optional[CardList] = None) -> None:
+        assert isinstance(name, str)
+        self.name = name
         if cards is None:
             self.cards = []
         else:
@@ -54,28 +55,20 @@ class Deck:
             card.reset()
 
 
-class Decks(NamedTuple):
-    draw: Deck
-    hamster: Deck
-    hand: Deck
-    used: Deck
+@dataclass
+class FightDecks:
+    hand: Deck = field(default_factory=lambda: Deck("Hand"))
+    used: Deck = field(default_factory=lambda: Deck("Used"))
+    draw: Deck = field(default_factory=lambda: Deck("Draw"))
+    hamster: Deck = field(default_factory=lambda: Deck("Hamster"))
 
-    def decks_x_names(self) -> List[Tuple[Deck, str]]:
-        return [
-            (self.hand, "Hand"),
-            (self.used, "Used"),
-            (self.draw, "Draw"),
-            (self.hamster, "Hamster"),
-        ]
+    def get_decks(self) -> List[Deck]:
+        return [getattr(self, f.name) for f in fields(self) if f.type == Deck]
 
     def log(self):
-        for deck, name in self.decks_x_names():
-            logging.debug(
-                "%sdeck size: %s (%s)",
-                name,
-                len(deck.cards),
-                ",".join([c.name for c in deck.cards]),
-            )
+        for deck in self.get_decks():
+            cardnames = ",".join([c.name for c in deck.cards])
+            logging.debug("%sdeck size: %s (%s)", deck.name, len(deck.cards), cardnames)
 
     def get_all_cards(self) -> CardList:
-        return [card for deck in self for card in deck.cards]
+        return [card for deck in self.get_decks() for card in deck.cards]
