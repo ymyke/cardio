@@ -58,7 +58,7 @@ class FightVnC:
     # --- Controller-related ---
 
     def show_human_draws_new_card(
-        self, handdeck: Deck, card: Card, whichdeck: Deck
+        self, draw_to: Deck, card: Card, draw_from: Deck
     ) -> None:
         pass
 
@@ -106,9 +106,7 @@ class FightVnC:
 
     # --- Controller ---
 
-    def _safe_draw_card_to_deck(
-        self, draw_from: Deck, from_name: Literal["draw", "hamster"]
-    ) -> None:
+    def _safe_draw_card_to_deck(self, draw_from: Deck) -> None:
         """Safe way to draw a card from a deck that doesn't break when the deck is
         empty. Important for tests.
         """
@@ -116,7 +114,7 @@ class FightVnC:
             card = draw_from.draw_card()
         except IndexError:
             return
-        self.show_human_draws_new_card(self.decks.hand, card, from_name)
+        self.show_human_draws_new_card(self.decks.hand, card, draw_from)
         self.decks.hand.add_card(card)
 
     def _has_computer_won(self) -> bool:
@@ -221,9 +219,8 @@ class FightVnC:
         # Draw the decks and show how the first cards get drawn:
         self.redraw_view()
         for _ in range(3):
-            self._safe_draw_card_to_deck(self.decks.draw, "draw")
-        self._safe_draw_card_to_deck(self.decks.hamster, "hamster")
-        # TODO DECK Introduce and use deck name in the calls above?
+            self._safe_draw_card_to_deck(self.decks.draw)
+        self._safe_draw_card_to_deck(self.decks.hamster)
 
         # Run the fight:
         self.round_num = 0
