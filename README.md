@@ -3,7 +3,7 @@
 
 # Next up
 
-- Try to inline Grid into the cards.
+- Fix grid-related todos
 - Finish fight:
   - Start by creating some computer strategy
   - Finish when one party won
@@ -46,7 +46,6 @@
 - Add some draw_strategy param to the fight handler so the humanagent can be automated
   for tests? -- That way it would be warranted for both agents types to have
   strategties.
-- Get rid of the grid (or most of it) and track positions in the cards directly?
 - Dependency chaos?
   - Draw all modules and their dependencies and think about them.
   - Should cards have a game attribute which they use to query the world (e.g., who the
