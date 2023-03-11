@@ -135,7 +135,7 @@ def test_place_card_with_fire_sacrifice():
     p.marked_positions = {sacrifice_pos}
     p.placement_position = target_pos
 
-    vnc = FightVnC(g)
+    vnc = FightVnC(g, None)
     session.vnc = vnc
     vnc.decks = FightDecks()
     vnc.decks.hand.add_card(target_card)
@@ -160,7 +160,7 @@ def test_place_card_with_spirits_sacrifice():
     p.placement_position = target_pos
 
     spirits_before = session.humanplayer.spirits
-    vnc = FightVnC(g)
+    vnc = FightVnC(g, None)
     vnc.decks = FightDecks()
     vnc.decks.hand.add_card(target_card)
     vnc._place_card(p, 0)

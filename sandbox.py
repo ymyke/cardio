@@ -18,8 +18,8 @@ cs = Round0OnlyStrategy(
     ],
 )
 
-tv = tui.TUIFightVnC(debug=True, grid=session.grid)
+tv = tui.TUIFightVnC(debug=True, computerstrategy=cs, grid=session.grid)
 session.vnc = tv
 session.humanplayer.spirits = 3
-tv.handle_fight(computerstrategy=cs)
+tv.handle_fight()
 tv.close()

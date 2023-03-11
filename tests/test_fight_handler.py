@@ -20,7 +20,7 @@ def test_simple_initial_setup():
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )
     session.humanplayer.deck.cards = copy.deepcopy(original_cards)
-    cs = Round0OnlyStrategy(
+    session.vnc.computerstrategy = Round0OnlyStrategy(
         grid=session.grid,
         cards=[
             # type: ignore
@@ -29,7 +29,7 @@ def test_simple_initial_setup():
             (GridPos(2, 0), Card("Cat", 1, 3, 1)),
         ],
     )
-    session.view.handle_fight(computerstrategy=cs)
+    session.vnc.handle_fight()
 
     target_states_log = """\
 
@@ -73,12 +73,12 @@ Draw: Pp1h2🚀
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 8 damage, 1 lives, 0 gems, 1 spirits
 """
-    assert equal_logs(session.view.stateslogger.log, target_states_log)
+    assert equal_logs(session.vnc.stateslogger.log, target_states_log)
 
 
 def test_human_gets_gems():
     session.setup()
-    cs = PredefinedStrategy(
+    session.vnc.computerstrategy = PredefinedStrategy(
         grid=session.grid,
         cards_per_round={
             # type: ignore
@@ -86,7 +86,7 @@ def test_human_gets_gems():
             1: [(GridPos(2, 1), Card("Cat", 10, 1, 1))],
         },
     )
-    session.view.handle_fight(computerstrategy=cs)
+    session.vnc.handle_fight()
     assert session.humanplayer.gems == 4
 
 
@@ -108,11 +108,11 @@ def test_human_decks_managed_correctly():  # FIXME Should get different name?
         ],
     )
 
-    session.view = HumanStrategyVnC(grid=session.grid)
+    session.vnc = HumanStrategyVnC(grid=session.grid, computerstrategy=cs)
     # Override damagestate with better health:
-    session.view.damagestate = AgentDamageState(max_diff=50)
+    session.vnc.damagestate = AgentDamageState(max_diff=50)
 
-    session.view.handle_fight(computerstrategy=cs)
+    session.vnc.handle_fight()
 
     assert len(session.humanplayer.deck.cards) == len(original_cards)
     assert session.humanplayer.lives == 0
@@ -188,7 +188,7 @@ Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1
 34 damage, 1 lives, 0 gems, 6 spirits
 """
 
-    assert equal_logs(session.view.stateslogger.log, target_states_log)
+    assert equal_logs(session.vnc.stateslogger.log, target_states_log)
 
 
 def test_humanplayer_deck_gets_set_correctly_after_fight():
@@ -199,8 +199,8 @@ def test_humanplayer_deck_gets_set_correctly_after_fight():
     )
     session.humanplayer.deck.cards = copy.deepcopy(original_cards)
     cs = Round0OnlyStrategy(grid=session.grid, cards=[])
-    session.view = HumanStrategyVnC(grid=session.grid)
-    session.view.handle_fight(computerstrategy=cs)
+    session.vnc = HumanStrategyVnC(grid=session.grid, computerstrategy=cs)
+    session.vnc.handle_fight()
     assert sorted(c.name for c in session.humanplayer.deck.cards) == sorted(
         c.name for c in original_cards
     )
@@ -228,6 +228,6 @@ def test_card_humanity():
             (GridPos(1, 3), Card("Hulk", 2, 100, 1)),
         ],
     )
-    session.view = HumanStrategyVnC(grid=session.grid)
-    session.view.handle_fight(computerstrategy=cs)
+    session.vnc = HumanStrategyVnC(grid=session.grid, computerstrategy=cs)
+    session.vnc.handle_fight()
     assert all(c.is_human() for c in original_cards)

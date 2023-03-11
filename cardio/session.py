@@ -23,7 +23,7 @@ def setup() -> None:
 
     global grid, vnc, humanplayer
     grid = Grid(4)
-    vnc = FightVnC(grid)
+    vnc = FightVnC(grid, None)
 
     humanplayer = HumanPlayer(name="Schnuzgi", lives=1)
     humanplayer.deck.cards = create_cards_from_blueprints(get_starterdeck_names())
