@@ -1,15 +1,15 @@
 # %%
 import logging
-from cardio import Card, session, GridPos
+from cardio import Card, gg, GridPos
 from cardio.tui import tui
 from cardio.computer_strategies import Round0OnlyStrategy
 
 logging.basicConfig(level=logging.DEBUG)
 
-session.setup()
+gg.setup()
 
 cs = Round0OnlyStrategy(
-    grid=session.grid,
+    grid=gg.grid,
     cards=[
         # type:ignore
         (GridPos(0, 1), Card("Steed", 1, 10, 1)),
@@ -18,8 +18,8 @@ cs = Round0OnlyStrategy(
     ],
 )
 
-tv = tui.TUIFightVnC(debug=True, computerstrategy=cs, grid=session.grid)
-session.vnc = tv
-session.humanplayer.spirits = 3
+tv = tui.TUIFightVnC(debug=True, computerstrategy=cs, grid=gg.grid)
+gg.vnc = tv
+gg.humanplayer.spirits = 3
 tv.handle_fight()
 tv.close()

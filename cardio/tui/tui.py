@@ -11,7 +11,7 @@ from typing import Callable, List, Optional, Tuple
 
 from asciimatics.screen import Screen
 
-from cardio import Card, Deck, FightVnC, GridPos, session
+from cardio import Card, Deck, FightVnC, GridPos, gg
 
 from .card_primitives import (
     activate_card,
@@ -215,7 +215,7 @@ class TUIFightVnC(FightVnC):
             elif keycode == Screen.KEY_UP:
                 pmgr = PlacementManager(
                     grid=self.grid,
-                    available_spirits=session.humanplayer.spirits,
+                    available_spirits=gg.humanplayer.spirits,
                     target_card=self.decks.hand.cards[cursor],
                 )
                 try:

@@ -3,7 +3,7 @@ import logging
 import copy
 from typing import Optional, List, TYPE_CHECKING
 from .skills import Skill, SkillList
-from . import session
+from . import gg
 
 if TYPE_CHECKING:
     from . import GridPos
@@ -64,10 +64,10 @@ class Card:
         self.health = self.initial_health
 
     def is_human(self) -> bool:
-        return self in session.humanplayer.get_all_human_cards()
+        return self in gg.humanplayer.get_all_human_cards()
 
     def get_grid_pos(self) -> GridPos:
-        pos = session.grid.find_card(self)
+        pos = gg.grid.find_card(self)
         assert pos is not None, "Cards calling `get_grid_pos` must be on the grid"
         return pos
 
@@ -76,14 +76,14 @@ class Card:
 
     def get_prep_card(self) -> Optional[Card]:
         """Get the card from the prepline of this cards slot."""
-        return session.grid.get_card(self.get_grid_pos()._replace(line=0))
+        return gg.grid.get_card(self.get_grid_pos()._replace(line=0))
 
     def _die_silently(self) -> None:
         self.health = 0
         if self.is_human():
-            session.humanplayer.spirits += self.has_spirits
-            session.vnc.decks.used.add_card(self)
-        session.grid.remove_card(self)
+            gg.humanplayer.spirits += self.has_spirits
+            gg.vnc.decks.used.add_card(self)
+        gg.grid.remove_card(self)
         # (Must happen after the `is_human` test, otherwise that test produces wrong
         # results bc one test is whether the card is on the grid or not.)
 
@@ -91,7 +91,7 @@ class Card:
         logging.debug("%s dies.", self.name)
         pos = self.get_grid_pos()
         self._die_silently()
-        session.vnc.card_died(self, pos)
+        gg.vnc.card_died(self, pos)
 
     def sacrifice(self) -> None:
         self._die_silently()
@@ -103,7 +103,7 @@ class Card:
             self.die()
         else:
             self.health -= howmuch
-            session.vnc.card_lost_health(self)
+            gg.vnc.card_lost_health(self)
             logging.debug("%s new health: %s", self.name, self.health)
         return howmuch
 
@@ -121,7 +121,7 @@ class Card:
 
         prepcard = self.get_prep_card() if self.get_grid_pos().line == 1 else None
         # (Prep cards only relevant if computer is being attacked.)
-        session.vnc.card_getting_attacked(self, opponent)
+        gg.vnc.card_getting_attacked(self, opponent)
         # (Needs to happen before the call to `lose_health` below, bc the card could
         # die/vanish during that call, leading to a `None` reference on the grid and an
         # error in the view update call.)
@@ -142,7 +142,7 @@ class Card:
             return
 
         if opponent is None:
-            session.vnc.handle_player_damage(self.power, self)
+            gg.vnc.handle_player_damage(self.power, self)
             return
 
         logging.debug(
@@ -160,7 +160,7 @@ class Card:
                 else:
                     opponent.get_attacked(self)
             else:
-                session.vnc.handle_player_damage(self.power, self)
+                gg.vnc.handle_player_damage(self.power, self)
             return
 
         if Skill.INSTANTDEATH in self.skills:
@@ -171,17 +171,17 @@ class Card:
 
     def activate(self) -> None:
         logging.debug("%s becomes active", self.name)
-        opponent = session.grid.get_opposing_card(self)
+        opponent = gg.grid.get_opposing_card(self)
         pos = self.get_grid_pos()
-        session.vnc.card_activate(self)
+        gg.vnc.card_activate(self)
         self.attack(opponent)
-        session.vnc.pos_card_deactivate(pos)
+        gg.vnc.pos_card_deactivate(pos)
 
     def prepare(self) -> None:
         pos = self.get_grid_pos()
         assert pos is not None and pos.line == 0
         to_pos = pos._replace(line=1)
-        prep_to = session.grid.get_card(to_pos)
+        prep_to = gg.grid.get_card(to_pos)
         if prep_to is not None:
             logging.debug(
                 "Preparing %s but the prep-to space is occupied by %s",
@@ -190,8 +190,8 @@ class Card:
             )
             return
         logging.debug("Preparing %s, moving to computer line", self.name)
-        session.vnc.card_prepare(self)
-        session.grid.move_card(self, to_pos=to_pos)
+        gg.vnc.card_prepare(self)
+        gg.grid.move_card(self, to_pos=to_pos)
         self.activate()
 
 

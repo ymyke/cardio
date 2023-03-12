@@ -2,8 +2,8 @@
 
 from hypothesis import given, settings, HealthCheck, Verbosity, assume
 import hypothesis.strategies as st
-from cardio import Card
-import cardio.session as session
+from cardio import Card, HumanPlayer, FightVnC
+import cardio.gg as gg
 from cardio.computer_strategies import Round0OnlyStrategy
 
 
@@ -31,21 +31,25 @@ def slotlist_strategy():
     suppress_health_check=[HealthCheck.function_scoped_fixture],
     verbosity=Verbosity.normal,
 )
-def test_game_hypo(mocker, slotlist):
+def test_game_hypo(mocker, gg_setup, slotlist):
     # We want at least one card with power that is not in the prepper line in order to
     # prevent an endless loop when running the game:
     assume(any(c.power > 0 for c in slotlist[4:] if c is not None))
 
-    session.setup()
-    card_activate_spy = mocker.spy(session.vnc, "card_activate")
-    getting_attacked_spy = mocker.spy(session.vnc, "card_getting_attacked")
+    # Need to reset the following two variables because hypothesis won't rerun fixtures:
+    # See also https://hypothesis.works/articles/hypothesis-pytest-fixtures/
+    gg.humanplayer = HumanPlayer(name="Schnuzgi", lives=1)
+    gg.vnc = FightVnC(gg.grid, None)
+
+    card_activate_spy = mocker.spy(gg.vnc, "card_activate")
+    getting_attacked_spy = mocker.spy(gg.vnc, "card_getting_attacked")
 
     before_nof_cards = len([c for c in slotlist if c is not None])
-    session.vnc.computerstrategy = Round0OnlyStrategy(
-        grid=session.grid, cards=[((i // 4, i % 4), c) for i, c in enumerate(slotlist)]
+    gg.vnc.computerstrategy = Round0OnlyStrategy(
+        grid=gg.grid, cards=[((i // 4, i % 4), c) for i, c in enumerate(slotlist)]
     )
-    session.vnc.handle_fight()
-    after_nof_cards = len([c for slots in session.grid for c in slots if c is not None])
+    gg.vnc.handle_fight()
+    after_nof_cards = len([c for slots in gg.grid for c in slots if c is not None])
 
     assert after_nof_cards <= before_nof_cards
     if after_nof_cards < before_nof_cards:

@@ -1,5 +1,5 @@
 import logging
-from cardio import Card, session, GridPos, HumanPlayer, Grid
+from cardio import Card, gg, GridPos, HumanPlayer, Grid
 from cardio.card_blueprints import create_cards_from_blueprints
 from cardio.tui import tui
 from cardio.computer_strategies import Round0OnlyStrategy
@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.DEBUG)
 humanplayer = HumanPlayer(name="Schnuzgi", lives=1, spirits=3)
 HUMAN_START_CARDS = ["Church Mouse", "Weasel", "Lynx", "Porcupine"]
 humanplayer.deck.cards = create_cards_from_blueprints(HUMAN_START_CARDS)
-session.humanplayer = humanplayer
+gg.humanplayer = humanplayer
 
 ### If load player:
 # (Load and just use the main deck the player has.)
@@ -45,8 +45,8 @@ cs = Round0OnlyStrategy(
 vnc = tui.TUIFightVnC(debug=True, computerstrategy=cs, grid=grid)
 
 # Stick information into session:
-session.vnc = vnc
-session.grid = grid  # TODO Maybe have this only in the vnc (and computerstrategy) and not separately?
+gg.vnc = vnc
+gg.grid = grid  # TODO Maybe have this only in the vnc (and computerstrategy) and not separately?
 
 vnc.handle_fight()
 vnc.close()
