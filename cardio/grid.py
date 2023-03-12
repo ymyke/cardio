@@ -75,12 +75,7 @@ class Grid:
         assert pos is not None
         self.clear_position(pos)
 
-    def move_card(self, card: Card, to_pos: Union[GridPos, tuple]) -> None:
-        # LIXME Switch to to_pos being of type GridPos only
-        """Accepts both a `GridPos` named tuple as well as a normal tuple as the
-        `to_pos`.
-        """
-        to_pos = GridPos(*to_pos)
+    def move_card(self, card: Card, to_pos: GridPos) -> None:
         from_pos = self.find_card(card)
         assert from_pos is not None
         assert self[to_pos.line][to_pos.slot] is None

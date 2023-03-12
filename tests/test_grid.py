@@ -72,7 +72,7 @@ def test_remove_card():
 def test_move_card():
     g = get_test_grid()
     c = g[2][2]
-    g.move_card(c, (0, 1))
+    g.move_card(c, GridPos(0, 1))
     assert g[0][1] is c
     assert g[2][2] is None
 
