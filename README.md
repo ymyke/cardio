@@ -109,6 +109,8 @@
 
 # Low Prio Ideas
 
+- Randomize player's start cards at the beginning of a run from a set of possible start
+  cards.
 - For convenience: Placement cursor could pick the first slot that makes sense for the
   current card, i.e., the first empty slot for cards with `costs_fire == 0`.
 - Mark cards in a color other than blue.
