@@ -7,7 +7,7 @@ model. There is also some fight-related logic in the `Card` class.
 import logging
 from typing import Callable, Optional
 
-from . import session, Card, Deck, FightDecks, Grid, GridPos, Skill
+from . import gg, Card, Deck, FightDecks, Grid, GridPos, Skill
 from .placement_manager import PlacementManager
 from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
@@ -121,7 +121,7 @@ class FightVnC:
     def _has_computer_won(self) -> bool:
         return self.damagestate.has_computer_won() or not any(
             c.power > 0
-            for c in set(session.humanplayer.get_all_human_cards())
+            for c in set(gg.humanplayer.get_all_human_cards())
             - set(self.decks.used.cards)
         )
         # FIXME The above is not fully correct yet. There could also be a case there is
@@ -146,7 +146,7 @@ class FightVnC:
             card = self.grid.get_card(sacrifice_pos)
             assert card is not None
             card.sacrifice()
-        session.humanplayer.spirits -= pmgr.target_card.costs_spirits
+        gg.humanplayer.spirits -= pmgr.target_card.costs_spirits
         self.grid.set_card(pmgr.placement_position, pmgr.target_card)  # type:ignore
 
         # Update view:
@@ -204,7 +204,7 @@ class FightVnC:
 
         # Set up the decks for the fight:
         self.decks = FightDecks()
-        self.decks.draw.cards = session.humanplayer.deck.cards
+        self.decks.draw.cards = gg.humanplayer.deck.cards
         self.decks.draw.shuffle()
         self.decks.hamster.cards = create_cards_from_blueprints(["Hamster"] * 10)
 
@@ -227,15 +227,15 @@ class FightVnC:
         # Handle win/lose conditions:
         if self._has_computer_won():
             self.computer_wins_fight()
-            session.humanplayer.lives -= 1
+            gg.humanplayer.lives -= 1
             # FIXME Check for game over here or later on
         if self._has_human_won():
-            session.humanplayer.gems += self.damagestate.get_overflow()
+            gg.humanplayer.gems += self.damagestate.get_overflow()
             # LIXME Animate overflow damage that turns into gems
             self.human_wins_fight()
 
         # Reset human deck after the fight:
-        session.humanplayer.deck.cards = [
-            c for c in session.humanplayer.get_all_human_cards() if c.name != "Hamster"
+        gg.humanplayer.deck.cards = [
+            c for c in gg.humanplayer.get_all_human_cards() if c.name != "Hamster"
         ]
-        session.humanplayer.deck.reset_cards()
+        gg.humanplayer.deck.reset_cards()

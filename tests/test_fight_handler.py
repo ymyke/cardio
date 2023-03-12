@@ -1,5 +1,5 @@
 import copy
-from cardio import session, Card, Deck, GridPos
+from cardio import gg, Card, Deck, GridPos
 from cardio.humanstrategyvnc import HumanStrategyVnC
 from cardio.computer_strategies import Round0OnlyStrategy, PredefinedStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
@@ -18,9 +18,9 @@ def test_simple_initial_setup(session_setup):
     original_cards = create_cards_from_blueprints(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )
-    session.humanplayer.deck.cards = copy.deepcopy(original_cards)
-    session.vnc.computerstrategy = Round0OnlyStrategy(
-        grid=session.grid,
+    gg.humanplayer.deck.cards = copy.deepcopy(original_cards)
+    gg.vnc.computerstrategy = Round0OnlyStrategy(
+        grid=gg.grid,
         cards=[
             # type: ignore
             (GridPos(0, 1), Card("Steed", 2, 10, 1)),
@@ -28,7 +28,7 @@ def test_simple_initial_setup(session_setup):
             (GridPos(2, 0), Card("Cat", 1, 3, 1)),
         ],
     )
-    session.vnc.handle_fight()
+    gg.vnc.handle_fight()
 
     target_states_log = """\
 
@@ -72,29 +72,29 @@ Draw: Pp1h2🚀
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 8 damage, 1 lives, 0 gems, 1 spirits
 """
-    assert equal_logs(session.vnc.stateslogger.log, target_states_log)
+    assert equal_logs(gg.vnc.stateslogger.log, target_states_log)
 
 
 def test_human_gets_gems(session_setup):
-    session.vnc.computerstrategy = PredefinedStrategy(
-        grid=session.grid,
+    gg.vnc.computerstrategy = PredefinedStrategy(
+        grid=gg.grid,
         cards_per_round={
             # type: ignore
             0: [(GridPos(1, 0), Card("Mouse", 1, 1, 1))],
             1: [(GridPos(2, 1), Card("Cat", 10, 1, 1))],
         },
     )
-    session.vnc.handle_fight()
-    assert session.humanplayer.gems == 4
+    gg.vnc.handle_fight()
+    assert gg.humanplayer.gems == 4
 
 
 def test_human_decks_managed_correctly(session_setup):  # FIXME Should get different name?
     original_cards = create_cards_from_blueprints(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )
-    session.humanplayer.deck.cards = copy.deepcopy(original_cards)
+    gg.humanplayer.deck.cards = copy.deepcopy(original_cards)
     cs = Round0OnlyStrategy(
-        grid=session.grid,
+        grid=gg.grid,
         cards=[
             # type: ignore
             (GridPos(1, 0), Card("Hulk", 2, 100, 1)),
@@ -104,14 +104,14 @@ def test_human_decks_managed_correctly(session_setup):  # FIXME Should get diffe
         ],
     )
 
-    session.vnc = HumanStrategyVnC(grid=session.grid, computerstrategy=cs)
+    gg.vnc = HumanStrategyVnC(grid=gg.grid, computerstrategy=cs)
     # Override damagestate with better health:
-    session.vnc.damagestate = AgentDamageState(max_diff=50)
+    gg.vnc.damagestate = AgentDamageState(max_diff=50)
 
-    session.vnc.handle_fight()
+    gg.vnc.handle_fight()
 
-    assert len(session.humanplayer.deck.cards) == len(original_cards)
-    assert session.humanplayer.lives == 0
+    assert len(gg.humanplayer.deck.cards) == len(original_cards)
+    assert gg.humanplayer.lives == 0
     target_states_log = """
 Starting round 0:
 | -           | -           | -           | -           |
@@ -184,18 +184,18 @@ Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1
 34 damage, 1 lives, 0 gems, 6 spirits
 """
 
-    assert equal_logs(session.vnc.stateslogger.log, target_states_log)
+    assert equal_logs(gg.vnc.stateslogger.log, target_states_log)
 
 
 def test_humanplayer_deck_gets_set_correctly_after_fight(session_setup):
     original_cards = create_cards_from_blueprints(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )
-    session.humanplayer.deck.cards = copy.deepcopy(original_cards)
-    cs = Round0OnlyStrategy(grid=session.grid, cards=[])
-    session.vnc = HumanStrategyVnC(grid=session.grid, computerstrategy=cs)
-    session.vnc.handle_fight()
-    assert sorted(c.name for c in session.humanplayer.deck.cards) == sorted(
+    gg.humanplayer.deck.cards = copy.deepcopy(original_cards)
+    cs = Round0OnlyStrategy(grid=gg.grid, cards=[])
+    gg.vnc = HumanStrategyVnC(grid=gg.grid, computerstrategy=cs)
+    gg.vnc.handle_fight()
+    assert sorted(c.name for c in gg.humanplayer.deck.cards) == sorted(
         c.name for c in original_cards
     )
 
@@ -209,10 +209,10 @@ def test_card_humanity(session_setup):
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )
     assert not any(c.is_human() for c in original_cards)
-    session.humanplayer.deck.cards = original_cards
+    gg.humanplayer.deck.cards = original_cards
     assert all(c.is_human() for c in original_cards)
     cs = Round0OnlyStrategy(
-        grid=session.grid,
+        grid=gg.grid,
         cards=[
             # type: ignore
             (GridPos(1, 0), Card("Hulk", 2, 100, 1)),
@@ -221,6 +221,6 @@ def test_card_humanity(session_setup):
             (GridPos(1, 3), Card("Hulk", 2, 100, 1)),
         ],
     )
-    session.vnc = HumanStrategyVnC(grid=session.grid, computerstrategy=cs)
-    session.vnc.handle_fight()
+    gg.vnc = HumanStrategyVnC(grid=gg.grid, computerstrategy=cs)
+    gg.vnc.handle_fight()
     assert all(c.is_human() for c in original_cards)

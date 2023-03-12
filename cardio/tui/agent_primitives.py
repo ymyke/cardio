@@ -1,6 +1,6 @@
 from asciimatics.screen import Screen
 from asciimatics.renderers import FigletText
-from cardio import GridPos, session
+from cardio import GridPos, gg
 from cardio.agent_damage_state import AgentDamageState
 from .utils import dPos, render_value, show, show_text
 from .constants import *
@@ -43,9 +43,9 @@ class StateWidget:
         )
         state_str = f"""\
 {FigletText("Schnuzgi", self.NAME_FONT)}
-{render_value(session.humanplayer.lives, '💓', surplus_color=Color.RED)}
-{render_value(session.humanplayer.gems, '💎', surplus_color=Color.BLUE)}
-{render_value(session.humanplayer.spirits, '👻')}
+{render_value(gg.humanplayer.lives, '💓', surplus_color=Color.RED)}
+{render_value(gg.humanplayer.gems, '💎', surplus_color=Color.BLUE)}
+{render_value(gg.humanplayer.spirits, '👻')}
 """
         show_text(self.screen, self.human_pos + (0, 2), state_str, color=Color.GRAY)
 

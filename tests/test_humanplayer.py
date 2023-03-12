@@ -1,4 +1,4 @@
-from cardio import HumanPlayer, FightDecks, Card, session
+from cardio import HumanPlayer, FightDecks, Card, gg
 
 
 def cards_names(hp: HumanPlayer) -> str:
@@ -13,10 +13,10 @@ def test_get_all_human_cards(session_setup):
     assert cards_names(hp) == "A"
 
     # With grid:
-    session.grid[2][0] = Card("B", 1, 1, 1)
+    gg.grid[2][0] = Card("B", 1, 1, 1)
     assert cards_names(hp) == "BA"
 
     # With fight decks:
-    session.vnc.decks = FightDecks()
-    session.vnc.decks.used.add_card(Card("C", 1, 1, 1))
+    gg.vnc.decks = FightDecks()
+    gg.vnc.decks.used.add_card(Card("C", 1, 1, 1))
     assert cards_names(hp) == "CBA"

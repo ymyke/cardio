@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Optional, TYPE_CHECKING
-from . import Card, session
+from . import Card, gg
 
 if TYPE_CHECKING:
     from . import FightVnC
@@ -28,8 +28,8 @@ class StatesLogger:
             s += "\n"
         for deck in self.vnc.decks.get_decks():
             s += f"{deck.name}: " + " ".join([card2str(c) for c in deck.cards]) + "\n"
-        s += f"{self.vnc.damagestate.diff} damage, {session.humanplayer.lives} lives, "
-        s += f"{session.humanplayer.gems} gems, {session.humanplayer.spirits} spirits\n"
+        s += f"{self.vnc.damagestate.diff} damage, {gg.humanplayer.lives} lives, "
+        s += f"{gg.humanplayer.gems} gems, {gg.humanplayer.spirits} spirits\n"
         # LIXME Add items
         s += "\n"
         return s

@@ -1,7 +1,7 @@
 """Tests for both `PlacementManager` and `FightVnC._place_card`."""
 
 import pytest
-from cardio import Grid, Card, GridPos, session, FightDecks
+from cardio import Grid, Card, GridPos, gg, FightDecks
 from cardio.fightvnc import FightVnC
 from cardio.placement_manager import PlacementManager
 
@@ -125,35 +125,35 @@ def test_place_card_with_fire_sacrifice(session_setup):
     sacrifice_card = Card("S", 1, 1, 1)
     sacrifice_pos = GridPos(2, 0)
 
-    session.grid.set_card(sacrifice_pos, sacrifice_card)
-    p = PlacementManager(session.grid, 0, target_card)
+    gg.grid.set_card(sacrifice_pos, sacrifice_card)
+    p = PlacementManager(gg.grid, 0, target_card)
     p.marked_positions = {sacrifice_pos}
     p.placement_position = target_pos
 
-    session.vnc.decks = FightDecks()
-    session.vnc.decks.hand.add_card(target_card)
-    session.vnc._place_card(p, 0)
+    gg.vnc.decks = FightDecks()
+    gg.vnc.decks.hand.add_card(target_card)
+    gg.vnc._place_card(p, 0)
 
-    assert session.grid.get_card(target_pos) == target_card
-    assert session.grid.get_card(sacrifice_pos) is None
-    assert session.vnc.decks.hand.is_empty()
-    assert session.vnc.decks.used.cards == [sacrifice_card]
+    assert gg.grid.get_card(target_pos) == target_card
+    assert gg.grid.get_card(sacrifice_pos) is None
+    assert gg.vnc.decks.hand.is_empty()
+    assert gg.vnc.decks.used.cards == [sacrifice_card]
 
 
 def test_place_card_with_spirits_sacrifice(session_setup):
     target_card = Card("T", 1, 1, costs_fire=0, costs_spirits=3)
     target_pos = GridPos(2, 3)
 
-    p = PlacementManager(session.grid, 0, target_card)
+    p = PlacementManager(gg.grid, 0, target_card)
     p.placement_position = target_pos
 
-    spirits_before = session.humanplayer.spirits
-    session.vnc = FightVnC(session.grid, None)
-    session.vnc.decks = FightDecks()
-    session.vnc.decks.hand.add_card(target_card)
-    session.vnc._place_card(p, 0)
+    spirits_before = gg.humanplayer.spirits
+    gg.vnc = FightVnC(gg.grid, None)
+    gg.vnc.decks = FightDecks()
+    gg.vnc.decks.hand.add_card(target_card)
+    gg.vnc._place_card(p, 0)
 
-    assert session.grid.get_card(target_pos) == target_card
-    assert session.vnc.decks.hand.is_empty()
-    assert session.vnc.decks.used.cards == []
-    assert session.humanplayer.spirits == spirits_before - 3
+    assert gg.grid.get_card(target_pos) == target_card
+    assert gg.vnc.decks.hand.is_empty()
+    assert gg.vnc.decks.used.cards == []
+    assert gg.humanplayer.spirits == spirits_before - 3

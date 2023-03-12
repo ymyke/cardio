@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from cardio import session
+from cardio import gg
 from cardio.card import CardList
 from .deck import Deck
 
@@ -17,7 +17,7 @@ class HumanPlayer:
 
         # During fights I: Add fight decks
         try:
-            cards.extend(session.vnc.decks.get_all_cards())
+            cards.extend(gg.vnc.decks.get_all_cards())
         except AttributeError:
             pass
 
@@ -25,7 +25,7 @@ class HumanPlayer:
         # (Adding this as a separate try-except clause bc it makes tests easier without
         # having to mock up the entire decks in FightVnC.)
         try:
-            cards.extend([c for c in session.grid.lines[2] if c is not None])
+            cards.extend([c for c in gg.grid.lines[2] if c is not None])
         except AttributeError:
             pass
 

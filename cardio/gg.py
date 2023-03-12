@@ -8,5 +8,3 @@ if TYPE_CHECKING:
 grid: Grid
 vnc: FightVnC
 humanplayer: HumanPlayer
-
-# QQ: Should this rather be Game instead of session? Or should there be a Game class?
