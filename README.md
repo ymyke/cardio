@@ -3,7 +3,6 @@
 
 # Next up
 
-- Fix grid-related todos
 - Finish fight:
   - Start by creating some computer strategy
   - Finish when one party won
