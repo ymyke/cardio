@@ -12,6 +12,7 @@ logging.basicConfig(level=logging.DEBUG)
 humanplayer = HumanPlayer(name="Schnuzgi", lives=1, spirits=3)
 HUMAN_START_CARDS = ["Church Mouse", "Weasel", "Lynx", "Porcupine"]
 humanplayer.deck.cards = create_cards_from_blueprints(HUMAN_START_CARDS)
+session.humanplayer = humanplayer
 
 ### If load player:
 # (Load and just use the main deck the player has.)
@@ -45,8 +46,7 @@ vnc = tui.TUIFightVnC(debug=True, computerstrategy=cs, grid=grid)
 
 # Stick information into session:
 session.vnc = vnc
-session.grid = grid # TODO Maybe have this only in the vnc (and computerstrategy) and not separately?
-session.humanplayer = humanplayer   # TODO Could be done much further up
+session.grid = grid  # TODO Maybe have this only in the vnc (and computerstrategy) and not separately?
 
 vnc.handle_fight()
 vnc.close()
@@ -55,5 +55,3 @@ vnc.close()
 
 ### Game over:
 ###   ...
-
-
