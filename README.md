@@ -24,7 +24,9 @@
   - Is the differentiation between methods that have r/o access to the model and ones
     that have r/w access?
 - In `Card`: Should all the methods that need access to the vnc simply take a vnc object
-  as a paramter?
+  as a paramter? -- This could work. The methods in Card that should work with or w/o
+  vnc could take vnc as an option and just not do the vnc part if no vnc was passed
+  (e.g., `_die_silently`).
 
 
 # Architectural considerations
@@ -39,12 +41,6 @@
   - One approach could be: Always use the session. But no code whatsoever in the
     session. Everything gets set up outside of session and gets injected into the
     session module.
-- I think ComputerStrategy should be part of ComputerAgent and ComputerAgent should be
-  part of the fightcontroller initiator, since it only has relevance in fights.
-  (- Also, maybe there is no need for a ComputerAgent class in the end?)
-- Add some draw_strategy param to the fight handler so the humanagent can be automated
-  for tests? -- That way it would be warranted for both agents types to have
-  strategties.
 - Dependency chaos?
   - Draw all modules and their dependencies and think about them.
   - Should cards have a game attribute which they use to query the world (e.g., who the
