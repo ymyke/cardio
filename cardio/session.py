@@ -18,6 +18,8 @@ def get_starterdeck_names() -> List[str]:
 
 
 def setup() -> None:
+    # TODO Is setup only required for tests in the end and could be replaced by a
+    # fixture in conftest?
     from . import Grid, HumanPlayer, FightVnC
     from cardio.card_blueprints import create_cards_from_blueprints
 
