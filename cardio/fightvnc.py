@@ -200,6 +200,8 @@ class FightVnC:
         logging.debug("----- End of round %s -----", self.round_num)
 
     def handle_fight(self) -> None:
+        assert self.computerstrategy is not None
+
         # Set up the decks for the fight:
         self.decks = FightDecks()
         self.decks.draw.cards = session.humanplayer.deck.cards
