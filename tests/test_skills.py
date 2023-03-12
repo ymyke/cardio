@@ -21,8 +21,10 @@ def do_the_fight(humancards: CardList, computercard: Optional[Card]) -> None:
     session.setup()
     session.humanplayer.deck.cards = humancards
     cs = Round0OnlyStrategy(grid=session.grid, cards=[(GridPos(1, 0), computercard)])
-    session.view = HumanStrategyVnC(grid=session.grid, whichrounds=[0])
-    session.view.handle_fight(computerstrategy=cs)
+    session.vnc = HumanStrategyVnC(
+        grid=session.grid, computerstrategy=cs, whichrounds=[0]
+    )
+    session.vnc.handle_fight()
 
 
 def test_vanilla_fight():
@@ -145,9 +147,9 @@ def test_fertility():
     hc = Card("Human Card", 1, 1, 0, skills=[Skill.FERTILITY])
     cc = Card("Computer Card", 1, 2, 1)
     do_the_fight([hc], cc)
-    assert hc in session.view.decks.used.cards
+    assert hc in session.vnc.decks.used.cards
     non_hamsters_on_hand = [
-        c for c in session.view.decks.hand.cards if c.name != "Hamster"
+        c for c in session.vnc.decks.hand.cards if c.name != "Hamster"
     ]
     assert len(non_hamsters_on_hand) == 1
     new_card = non_hamsters_on_hand[0]

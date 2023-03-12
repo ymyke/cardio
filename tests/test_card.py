@@ -8,7 +8,7 @@ def common_setup(mocker) -> object:
     session.grid[0][3] = Card("Z", 1, 1, 1)
     session.grid[1][3] = Card("Y", 1, 1, 1)
     session.grid[2][3] = Card("X", 1, 1, 1)
-    mocked_view = mocker.patch("cardio.card.session.view")
+    mocked_view = mocker.patch("cardio.card.session.vnc")
     return mocked_view
 
 
@@ -60,10 +60,10 @@ def test_is_human():
     assert c.is_human()
     session.grid[2][2] = None
     assert not c.is_human()
-    session.view.decks = FightDecks()
-    session.view.decks.draw.add_card(c)
+    session.vnc.decks = FightDecks()
+    session.vnc.decks.draw.add_card(c)
     assert c.is_human()
-    session.view.decks = FightDecks()
+    session.vnc.decks = FightDecks()
     assert not c.is_human()
     session.humanplayer.deck.add_card(c)
     assert c.is_human()
@@ -180,7 +180,7 @@ def test_activate_without_opposing_card():
     session.grid[1][3] = Card("Y", 1, 1, 1)
     session.grid[1][3].activate()
     assert session.grid[2][3] == None
-    assert session.view.damagestate.diff == 1
+    assert session.vnc.damagestate.diff == 1
 
 
 def test_prepare_preconditions(common_setup):

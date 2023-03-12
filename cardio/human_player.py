@@ -17,7 +17,7 @@ class HumanPlayer:
 
         # During fights I: Add fight decks
         try:
-            cards.extend(session.view.decks.get_all_cards())
+            cards.extend(session.vnc.decks.get_all_cards())
         except AttributeError:
             pass
 

@@ -25,11 +25,12 @@ class FightVnC:
       is still in the grid when the method is called.
     """
 
-    def __init__(self, grid: Grid) -> None:
+    def __init__(self, grid: Grid, computerstrategy: ComputerStrategy) -> None:
         self.grid = grid
         self.damagestate = AgentDamageState()
         self.stateslogger = StatesLogger(self)
-        # FIXME Should we also set the computerstrategy here?
+        self.computerstrategy = computerstrategy
+
 
     # --- Called by Card class ---
 
@@ -198,12 +199,7 @@ class FightVnC:
         self.grid.log()
         logging.debug("----- End of round %s -----", self.round_num)
 
-    def handle_fight(self, computerstrategy: ComputerStrategy) -> None:
-        self.computerstrategy = computerstrategy
-        # ^ FIXME Should this be in __init__? And/or the entire ComputerAgent object,
-        # which could contain the computerstrategy? It will be used for one fight only
-        # anyway...
-
+    def handle_fight(self) -> None:
         # Set up the decks for the fight:
         self.decks = FightDecks()
         self.decks.draw.cards = session.humanplayer.deck.cards

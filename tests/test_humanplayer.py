@@ -19,6 +19,6 @@ def test_get_all_human_cards():
     assert cards_names(hp) == "BA"
 
     # With fight decks:
-    session.view.decks = FightDecks()
-    session.view.decks.used.add_card(Card("C", 1, 1, 1))
+    session.vnc.decks = FightDecks()
+    session.vnc.decks.used.add_card(Card("C", 1, 1, 1))
     assert cards_names(hp) == "CBA"

@@ -37,14 +37,14 @@ def test_game_hypo(mocker, slotlist):
     assume(any(c.power > 0 for c in slotlist[4:] if c is not None))
 
     session.setup()
-    card_activate_spy = mocker.spy(session.view, "card_activate")
-    getting_attacked_spy = mocker.spy(session.view, "card_getting_attacked")
+    card_activate_spy = mocker.spy(session.vnc, "card_activate")
+    getting_attacked_spy = mocker.spy(session.vnc, "card_getting_attacked")
 
     before_nof_cards = len([c for c in slotlist if c is not None])
-    cs = Round0OnlyStrategy(
+    session.vnc.computerstrategy = Round0OnlyStrategy(
         grid=session.grid, cards=[((i // 4, i % 4), c) for i, c in enumerate(slotlist)]
     )
-    session.view.handle_fight(computerstrategy=cs)
+    session.vnc.handle_fight()
     after_nof_cards = len([c for slots in session.grid for c in slots if c is not None])
 
     assert after_nof_cards <= before_nof_cards
