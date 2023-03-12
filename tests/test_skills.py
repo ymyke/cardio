@@ -7,7 +7,7 @@ from cardio.humanstrategyvnc import HumanStrategyVnC
 
 
 @pytest.fixture(autouse=True)
-def common_setup(mocker, session_setup):
+def common_setup(mocker, gg_setup):
     # Do not reset cards  so we can verify the effects of fights:
     mocker.patch("cardio.Deck.reset_cards")
 

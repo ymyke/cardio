@@ -3,7 +3,7 @@ from cardio import Card, GridPos, gg, FightDecks
 
 
 @pytest.fixture
-def common_setup(mocker, session_setup):
+def common_setup(mocker, gg_setup):
     gg.grid[0][3] = Card("Z", 1, 1, 1)
     gg.grid[1][3] = Card("Y", 1, 1, 1)
     gg.grid[2][3] = Card("X", 1, 1, 1)
@@ -51,7 +51,7 @@ def test_duplicate():
     assert c.costs_fire == d.costs_fire
 
 
-def test_is_human(session_setup):
+def test_is_human(gg_setup):
     c = Card("A", 1, 1, 1)
     assert not c.is_human()
     gg.grid[2][2] = c
@@ -170,7 +170,7 @@ def test_activate_with_opposing_card(common_setup):
     mocked_vnc.handle_player_damage.assert_not_called()
 
 
-def test_activate_without_opposing_card(session_setup):
+def test_activate_without_opposing_card(gg_setup):
     """If it deals damage to the human player."""
     # (We're not using `common_setup` here bc we need to test the `damagestate` (which
     # would be "mocked away") later on.)

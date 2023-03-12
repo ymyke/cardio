@@ -31,7 +31,7 @@ def slotlist_strategy():
     suppress_health_check=[HealthCheck.function_scoped_fixture],
     verbosity=Verbosity.normal,
 )
-def test_game_hypo(mocker, session_setup, slotlist):
+def test_game_hypo(mocker, gg_setup, slotlist):
     # We want at least one card with power that is not in the prepper line in order to
     # prevent an endless loop when running the game:
     assume(any(c.power > 0 for c in slotlist[4:] if c is not None))

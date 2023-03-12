@@ -119,7 +119,7 @@ def test_is_placeable():
 # ----- FightVnC._place_card tests -----
 
 
-def test_place_card_with_fire_sacrifice(session_setup):
+def test_place_card_with_fire_sacrifice(gg_setup):
     target_card = Card("T", 1, 1, 1)
     target_pos = GridPos(2, 3)
     sacrifice_card = Card("S", 1, 1, 1)
@@ -140,7 +140,7 @@ def test_place_card_with_fire_sacrifice(session_setup):
     assert gg.vnc.decks.used.cards == [sacrifice_card]
 
 
-def test_place_card_with_spirits_sacrifice(session_setup):
+def test_place_card_with_spirits_sacrifice(gg_setup):
     target_card = Card("T", 1, 1, costs_fire=0, costs_spirits=3)
     target_pos = GridPos(2, 3)
 
