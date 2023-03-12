@@ -14,8 +14,7 @@ def equal_logs(generatedlog: str, targetlog: str) -> bool:
     return are_equal
 
 
-def test_simple_initial_setup():
-    session.setup()
+def test_simple_initial_setup(session_setup):
     original_cards = create_cards_from_blueprints(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )
@@ -76,8 +75,7 @@ Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
     assert equal_logs(session.vnc.stateslogger.log, target_states_log)
 
 
-def test_human_gets_gems():
-    session.setup()
+def test_human_gets_gems(session_setup):
     session.vnc.computerstrategy = PredefinedStrategy(
         grid=session.grid,
         cards_per_round={
@@ -90,9 +88,7 @@ def test_human_gets_gems():
     assert session.humanplayer.gems == 4
 
 
-def test_human_decks_managed_correctly():  # FIXME Should get different name?
-    session.setup()
-
+def test_human_decks_managed_correctly(session_setup):  # FIXME Should get different name?
     original_cards = create_cards_from_blueprints(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )
@@ -191,9 +187,7 @@ Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1
     assert equal_logs(session.vnc.stateslogger.log, target_states_log)
 
 
-def test_humanplayer_deck_gets_set_correctly_after_fight():
-    session.setup()
-
+def test_humanplayer_deck_gets_set_correctly_after_fight(session_setup):
     original_cards = create_cards_from_blueprints(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )
@@ -206,12 +200,11 @@ def test_humanplayer_deck_gets_set_correctly_after_fight():
     )
 
 
-def test_card_humanity():
+def test_card_humanity(session_setup):
     """If `is_human` works more or less correctly. FIXME This is rather "hacky". Should
     be simplified and moved to `test_card` once there is some new logic for cards being
     human or not (using an explicit attribute) in place.
     """
-    session.setup()
     original_cards = create_cards_from_blueprints(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )

@@ -1,15 +1,14 @@
 from typing import Optional
 import pytest
+from . import conftest
 from cardio import Card, CardList, Skill, session, GridPos
 from cardio.computer_strategies import Round0OnlyStrategy
 from cardio.humanstrategyvnc import HumanStrategyVnC
 
 
 @pytest.fixture(autouse=True)
-def never_reset_cards(mocker):
-    """Do not reset cards anywhere in this module so we can verify the effects of
-    fights.
-    """
+def common_setup(mocker, session_setup):
+    # Do not reset cards  so we can verify the effects of fights:
     mocker.patch("cardio.Deck.reset_cards")
 
 
@@ -18,7 +17,6 @@ def do_the_fight(humancards: CardList, computercard: Optional[Card]) -> None:
     place new cards on the first free slot from the left, i.e., the very first human
     card gets placed on (2,0).
     """
-    session.setup()
     session.humanplayer.deck.cards = humancards
     cs = Round0OnlyStrategy(grid=session.grid, cards=[(GridPos(1, 0), computercard)])
     session.vnc = HumanStrategyVnC(

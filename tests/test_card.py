@@ -3,13 +3,12 @@ from cardio import Card, GridPos, session, FightDecks
 
 
 @pytest.fixture
-def common_setup(mocker) -> object:
-    session.setup()
+def common_setup(mocker, session_setup):
     session.grid[0][3] = Card("Z", 1, 1, 1)
     session.grid[1][3] = Card("Y", 1, 1, 1)
     session.grid[2][3] = Card("X", 1, 1, 1)
-    mocked_view = mocker.patch("cardio.card.session.vnc")
-    return mocked_view
+    mocked_vnc = mocker.patch("cardio.card.session.vnc")
+    yield mocked_vnc
 
 
 def test_init():
@@ -52,8 +51,7 @@ def test_duplicate():
     assert c.costs_fire == d.costs_fire
 
 
-def test_is_human():
-    session.setup()
+def test_is_human(session_setup):
     c = Card("A", 1, 1, 1)
     assert not c.is_human()
     session.grid[2][2] = c
@@ -78,73 +76,73 @@ def test_get_prep_card(common_setup):
 
 
 def test_die(common_setup):
-    mocked_view = common_setup
+    mocked_vnc = common_setup
     spirits_before = session.humanplayer.spirits
     c = session.grid[2][3]
     assert c.health == 1
     c.die()
     assert c.health == 0
     assert session.humanplayer.spirits == spirits_before + 1
-    mocked_view.card_died.assert_called_once()
+    mocked_vnc.card_died.assert_called_once()
     assert session.grid[2][3] is None
 
 
 def test_no_spirits_when_computer_card_dies(common_setup):
-    mocked_view = common_setup
+    mocked_vnc = common_setup
     spirits_before = session.humanplayer.spirits
     c = session.grid[1][3]
     assert c.health == 1
     c.die()
     assert c.health == 0
     assert session.humanplayer.spirits == spirits_before
-    mocked_view.card_died.assert_called_once()
+    mocked_vnc.card_died.assert_called_once()
     assert session.grid[1][3] is None
 
 
 def test_sacrifice(common_setup):
-    mocked_view = common_setup
+    mocked_vnc = common_setup
     spirits_before = session.humanplayer.spirits
     c = session.grid[2][3]
     assert c.health == 1
     c.sacrifice()
     assert c.health == 0
     assert session.humanplayer.spirits == spirits_before + 1
-    mocked_view.card_died.assert_not_called()
+    mocked_vnc.card_died.assert_not_called()
     assert session.grid[2][3] is None
 
 
 def test_lose_health(common_setup):
-    mocked_view = common_setup
+    mocked_vnc = common_setup
     c = session.grid[2][3]
     c.health = 10
     actual_loss = c.lose_health(3)
     assert actual_loss == 3
     assert c.health == 7
-    mocked_view.card_lost_health.assert_called_once()
-    mocked_view.card_died.assert_not_called()
+    mocked_vnc.card_lost_health.assert_called_once()
+    mocked_vnc.card_died.assert_not_called()
 
 
 def test_lose_health_and_die(common_setup):
-    mocked_view = common_setup
+    mocked_vnc = common_setup
     c = session.grid[2][3]
     actual_loss = c.lose_health(100)
     assert actual_loss == 1
     assert c.health == 0
-    mocked_view.card_died.assert_called_once()
+    mocked_vnc.card_died.assert_called_once()
 
 
 def test_get_attacked_targeting_humancard(common_setup):
-    mocked_view = common_setup
+    mocked_vnc = common_setup
     target = session.grid[2][3]
     attacker = Card("A", 10, 1, 1)
     target.get_attacked(attacker)
     assert target.health == 0
     assert session.grid[0][3].health == 1  # No overflow to prepline!
-    mocked_view.card_getting_attacked.assert_called_once()
+    mocked_vnc.card_getting_attacked.assert_called_once()
 
 
 def test_get_attacked_targeting_computercard(common_setup):
-    mocked_view = common_setup
+    mocked_vnc = common_setup
     target = session.grid[1][3]
     prepcard = session.grid[0][3]
     attacker = Card("A", 10, 1, 1)
@@ -152,7 +150,7 @@ def test_get_attacked_targeting_computercard(common_setup):
     assert target.health == 0
     assert prepcard.health == 0  # Overflow damage to prepline!
     assert session.grid[0][3] is None  # Leading to that spot being empty
-    mocked_view.card_getting_attacked.assert_called_once()
+    mocked_vnc.card_getting_attacked.assert_called_once()
 
 
 # Note that `attack` is not being tested here bc there are relevant tests for that
@@ -162,21 +160,20 @@ def test_get_attacked_targeting_computercard(common_setup):
 
 def test_activate_with_opposing_card(common_setup):
     """If it deals damage to the opposing card."""
-    mocked_view = common_setup
+    mocked_vnc = common_setup
     target = session.grid[2][3]
     session.grid[1][3].activate()
     assert target.health == 0
     assert session.grid[2][3] == None
-    mocked_view.card_activate.assert_called_once()
-    mocked_view.pos_card_deactivate.assert_called_once()
-    mocked_view.handle_player_damage.assert_not_called()
+    mocked_vnc.card_activate.assert_called_once()
+    mocked_vnc.pos_card_deactivate.assert_called_once()
+    mocked_vnc.handle_player_damage.assert_not_called()
 
 
-def test_activate_without_opposing_card():
+def test_activate_without_opposing_card(session_setup):
     """If it deals damage to the human player."""
     # (We're not using `common_setup` here bc we need to test the `damagestate` (which
     # would be "mocked away") later on.)
-    session.setup()
     session.grid[1][3] = Card("Y", 1, 1, 1)
     session.grid[1][3].activate()
     assert session.grid[2][3] == None
@@ -196,15 +193,15 @@ def test_prepare_preconditions(common_setup):
 
 
 def test_prepare_but_slot_taken(common_setup):
-    mocked_view = common_setup
+    mocked_vnc = common_setup
     session.grid[0][3].prepare()
-    mocked_view.card_prepare.assert_not_called()
+    mocked_vnc.card_prepare.assert_not_called()
     assert session.grid[0][3] is not None
 
 
 def test_prepare_with_success(common_setup):
-    mocked_view = common_setup
+    mocked_vnc = common_setup
     session.grid[1][3] = None
     session.grid[0][3].prepare()
-    mocked_view.card_prepare.assert_called_once()
+    mocked_vnc.card_prepare.assert_called_once()
     assert session.grid[0][3] is None

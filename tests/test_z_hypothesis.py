@@ -2,7 +2,7 @@
 
 from hypothesis import given, settings, HealthCheck, Verbosity, assume
 import hypothesis.strategies as st
-from cardio import Card
+from cardio import Card, HumanPlayer, FightVnC
 import cardio.session as session
 from cardio.computer_strategies import Round0OnlyStrategy
 
@@ -31,12 +31,16 @@ def slotlist_strategy():
     suppress_health_check=[HealthCheck.function_scoped_fixture],
     verbosity=Verbosity.normal,
 )
-def test_game_hypo(mocker, slotlist):
+def test_game_hypo(mocker, session_setup, slotlist):
     # We want at least one card with power that is not in the prepper line in order to
     # prevent an endless loop when running the game:
     assume(any(c.power > 0 for c in slotlist[4:] if c is not None))
 
-    session.setup()
+    # Need to reset the following two variables because hypothesis won't rerun fixtures:
+    # See also https://hypothesis.works/articles/hypothesis-pytest-fixtures/
+    session.humanplayer = HumanPlayer(name="Schnuzgi", lives=1)
+    session.vnc = FightVnC(session.grid, None)
+
     card_activate_spy = mocker.spy(session.vnc, "card_activate")
     getting_attacked_spy = mocker.spy(session.vnc, "card_getting_attacked")
 

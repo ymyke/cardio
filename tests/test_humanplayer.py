@@ -5,9 +5,7 @@ def cards_names(hp: HumanPlayer) -> str:
     return "".join(c.name for c in hp.get_all_human_cards())
 
 
-def test_get_all_human_cards():
-    session.setup()
-
+def test_get_all_human_cards(session_setup):
     # Just the human's cards:
     hp = HumanPlayer("X")
     assert hp.get_all_human_cards() == []
