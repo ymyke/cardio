@@ -34,12 +34,11 @@ class FightLocation(Location):
         nofcards = random.randint(1, 4)
         cardnames = [random.choice(_BLUEPRINTS).name for _ in range(nofcards)]
         cards = create_cards_from_blueprints(cardnames)
-        cards.extend([None] * (2 * self.grid.width - nofcards))
         positions = [
             GridPos(line, slot) for line in (0, 1) for slot in range(self.grid.width)
         ]
+        random.shuffle(positions)
         posncards = list(zip(positions, cards))
-        random.shuffle(posncards)
         self.computerstrategy = Round0OnlyStrategy(grid=self.grid, cards=posncards)
 
         # FIXME Use some other computer strategy later
