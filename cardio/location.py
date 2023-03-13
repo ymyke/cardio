@@ -6,7 +6,6 @@ from cardio.card_blueprints import _BLUEPRINTS, create_cards_from_blueprints
 from cardio.tui import tui
 
 
-
 class Location(ABC):
     seed: int
     distance: int
@@ -21,8 +20,9 @@ class Location(ABC):
         pass
 
     @abstractmethod
-    def handle(self)->None:
+    def handle(self) -> None:
         pass
+
 
 class FightLocation(Location):
     grid: Grid
@@ -46,10 +46,11 @@ class FightLocation(Location):
         # FIXME Use distance to somehow increase difficulty as more distance is traveled
         # (e.g., more cards every x steps)
 
-
     def handle(self) -> bool:
-        vnc = tui.TUIFightVnC(debug=True, computerstrategy=self.computerstrategy, grid=self.grid)
-        gg.vnc = vnc    # Stick information into the globals
+        vnc = tui.TUIFightVnC(
+            computerstrategy=self.computerstrategy, grid=self.grid, debug=True
+        )
+        gg.vnc = vnc  # Stick information into the globals
         gg.grid = self.grid
         vnc.handle_fight()
         vnc.close()
