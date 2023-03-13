@@ -46,7 +46,7 @@ vnc = tui.TUIFightVnC(debug=True, computerstrategy=cs, grid=grid)
 
 # Stick information into session:
 gg.vnc = vnc
-gg.grid = grid  # TODO Maybe have this only in the vnc (and computerstrategy) and not separately?
+gg.grid = grid
 
 vnc.handle_fight()
 vnc.close()
