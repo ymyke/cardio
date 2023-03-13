@@ -19,11 +19,11 @@ gg.humanplayer = humanplayer
 
 ### Start new run:
 
-### Generate new run/map (or load old map if existing game is being continued)
-# (Also creates/chooses a computer strategy for each fight.)
+### Generate new seed
+# (or load seed + current location + player state if existing game is being continued)
 
 ### While not game over:
-###   Display map
+###   Display map (create new locations if necessary to fill map segment)
 ###   Choose path => next location
 ###   Handle location
 
