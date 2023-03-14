@@ -27,7 +27,9 @@
   behaviours and not sigils."
 
 # Agents
-- Computer player &  human player
+- Computer player &  human player -- QQ: Maybe only humanplayer in the future and call
+  it simply player? Because in the meantime, the human and computer players are very
+  different.
 - The agents behind:
   - Computer: 
     - name -- can be a global constant / hardcoded
@@ -85,12 +87,35 @@ option 3: one common game state w/o agents in FightVnC: <- Favorite! ⭐
   - Needing to adhere to placement rules such as blood sacrifices etc.
   - ...
 
-# Map
+# Run
+- One run through the game.
+- Runs are fully predetermined based on some seed, i.e., they don't adapt based on the
+  player's behavior in any way.
+- Runs are indefinite. A player gets as far as she gets.
+  - How to meaure how far a player came? Simply by number of locations pased? Or
+    something more clever?
 
-# Locations
+# Map
+- The map contains all the locations and paths in a run.
+- Naturally, the game only shows the map segment that currently fits on the screen. 
+- After the player has visited a location, she can chose the next location on the map.
+  The map always shows the maximum information, i.e., with each visited location the
+  next paths and locations are added to the map and shown to the player.
+
+# Location
+- One Location on the map. Contains everything it needs to handle that location.
+- E.g., FightLocation:
+  - ComputerStrategy including cards
+  - Computer player initial values
+- A location has a seed and a distance (steps from the start) attribute, which are used
+  to generate the location. The seed is derived from an original seed for the entire
+  run.
 
 # Items
 - also things like the totem? Or are they something else?
 
 # Achievements / Badges
 - for the human player
+
+# Misc
+- Upgrading the game should invalidate all running/saved runs.
