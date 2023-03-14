@@ -20,7 +20,8 @@ class Location(ABC):
         pass
 
     @abstractmethod
-    def handle(self) -> None:
+    def handle(self) -> bool:
+        """Returns `True` if the game is is still on, `False` if game is over."""
         pass
 
 
