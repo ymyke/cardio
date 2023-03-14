@@ -1,4 +1,4 @@
-from cardio import Grid
+from cardio import Grid, GridPos
 from cardio.location import FightLocation
 from cardio.computer_strategies import Round0OnlyStrategy
 
@@ -7,26 +7,16 @@ def test_generate():
     l = FightLocation(0, 0)
     assert isinstance(l.grid, Grid)
     assert isinstance(l.computerstrategy, Round0OnlyStrategy)
-    assert [c and c.name for _, c in l.computerstrategy.cards] == [
-        "Hamster",
-        "Lynx",
-        None,
-        None,
-        None,
-        "Porcupine",
-        "Weasel",
-        None,
+    assert [(loc, card.name) for loc, card in l.computerstrategy.cards] == [
+        (GridPos(line=0, slot=1), "Lynx"),
+        (GridPos(line=0, slot=0), "Hamster"),
+        (GridPos(line=1, slot=0), "Porcupine"),
+        (GridPos(line=1, slot=1), "Weasel"),
     ]
 
     # Try different seed:
     l = FightLocation(1, 0)
-    assert [c and c.name for _, c in l.computerstrategy.cards] == [
-        None,
-        "Hamster",
-        None,
-        None,
-        None,
-        None,
-        "Weasel",
-        None,
+    assert [(loc, card.name) for loc, card in l.computerstrategy.cards] == [
+        (GridPos(line=1, slot=2), "Weasel"),
+        (GridPos(line=0, slot=1), "Hamster"),
     ]
