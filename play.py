@@ -1,8 +1,8 @@
 import logging
-from cardio import Card, gg, GridPos, HumanPlayer, Grid
+import time
+from cardio import gg, HumanPlayer
 from cardio.card_blueprints import create_cards_from_blueprints
-from cardio.tui import tui
-from cardio.computer_strategies import Round0OnlyStrategy
+from cardio.location import FightLocation
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -22,6 +22,15 @@ gg.humanplayer = humanplayer
 ### Generate new seed
 # (or load seed + current location + player state if existing game is being continued)
 
+# TODO Need some seed handling in the Run class. Should generate seed from root seed
+# based on distance. Should maybe also store some history information (either the entire
+# map or the seed + current commit hash) and the path taken by the user.
+
+# TODO Also need some code that decides which kind of location will be generated at each
+# step. (Maybe Locations have a fixed probability weight and register themselves with
+# some location factory or with the run that then chooses among all registered
+# locations?)
+
 ### While not game over:
 ###   Display map (create new locations if necessary to fill map segment)
 ###   Choose path => next location
@@ -32,26 +41,13 @@ gg.humanplayer = humanplayer
 # run.current_location.handle() where current_location is a Location object and in case
 # of a fight a FightLocation object with a computerstrategy attribute.)
 # TODO Implement Run and Location classes next?
-grid = Grid(4)
-cs = Round0OnlyStrategy(
-    grid=grid,
-    cards=[
-        # type:ignore
-        (GridPos(0, 1), Card("Steed", 1, 10, 1)),
-        (GridPos(1, 0), Card("Dog", 1, 5, 1)),
-        (GridPos(0, 0), Card("Mouse", 1, 1, 1)),
-    ],
-)
-vnc = tui.TUIFightVnC(debug=True, computerstrategy=cs, grid=grid)
 
-# Stick information into session:
-gg.vnc = vnc
-gg.grid = grid
-
-vnc.handle_fight()
-vnc.close()
-
-# ----- End of fight -----
+game_on = True
+distance = -1
+while game_on:
+    distance += 1
+    l = FightLocation(time.time_ns(), distance)
+    game_on = l.handle()
 
 ### Game over:
 ###   ...
