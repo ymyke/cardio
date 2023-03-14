@@ -46,7 +46,7 @@ game_on = True
 distance = -1
 while game_on:
     distance += 1
-    l = FightLocation(time.time_ns(), distance)
+    l = FightLocation(time.time_ns(), distance, 0)
     game_on = l.handle()
 
 ### Game over:
