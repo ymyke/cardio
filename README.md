@@ -3,6 +3,9 @@
 
 # Next up
 
+- Bug? Porcupine seems to attack opposing creature even though it's flying. At least
+  when opposed by other Porcupine?
+
 - Finish fight:
   - Start by creating some computer strategy
   - Finish when one party won
