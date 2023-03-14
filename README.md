@@ -5,6 +5,7 @@
 
 - Bug? Porcupine seems to attack opposing creature even though it's flying. At least
   when opposed by other Porcupine?
+- Bug? Hamster attacks even though it has no power?
 
 - Finish fight:
   - Start by creating some computer strategy
