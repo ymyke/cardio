@@ -7,8 +7,8 @@ from cardio.tui import tui
 
 
 class Location(ABC):
-    def __init__(self, base_seed: int, distance: int, index: int) -> None:
-        self.seed = (base_seed * 1000 + distance) * 10 + index
+    def __init__(self, base_seed: str, distance: int, index: int) -> None:
+        self.seed = f"L{distance}_{index}_{base_seed}"
         self.distance = distance  # Distance from start
         self.index = index  # Index position at current distance
         self.generate()
