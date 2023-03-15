@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import List
 import random
 from cardio import Grid, GridPos, gg
 from cardio.computer_strategies import ComputerStrategy, Round0OnlyStrategy
@@ -7,10 +8,13 @@ from cardio.tui import tui
 
 
 class Location(ABC):
-    def __init__(self, base_seed: str, distance: int, index: int) -> None:
+    def __init__(
+        self, base_seed: str, distance: int, index: int, paths: List[int]
+    ) -> None:
         self.seed = f"L{distance}_{index}_{base_seed}"
         self.distance = distance  # Distance from start
         self.index = index  # Index position at current distance
+        self.paths = paths  # Paths to next locations
         self.generate()
 
     @abstractmethod
