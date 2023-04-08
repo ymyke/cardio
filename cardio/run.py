@@ -56,6 +56,8 @@ PATH_PATTERNS = {
 }
 # (2-3/3-2 etc. could also be mirrored rather than duplicated.)
 
+# TODO Add tests
+
 
 class Run:
     base_seed: str
