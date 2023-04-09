@@ -2,6 +2,7 @@ import random
 from typing import List, Optional
 import time
 from cardio.location import Location, FightLocation
+from cardio.path_patterns import PATH_PATTERNS
 
 # TODO: There can be levels w/o nodes, where the path just goes straight through. -- How
 # should that work exactly? -- Maybe just have a special location kind `NoLocation` and
@@ -27,7 +28,7 @@ class Run:
         in_locs = self._nof_locations(at_distance)
         out_locs = self._nof_locations(at_distance + 1)
         random.seed(f"P{at_distance}_{self.base_seed}")
-        return random.choice(PATH_PATTERNS[f"{in_locs}-{out_locs}"])
+        return random.choice(PATH_PATTERNS[f"{in_locs}-{out_locs}"])["paths"]
         # FIXME Add more weight to "fan-out" patterns than to "fan-in" patterns so more
         # separate longer stretches will be generated?
 
