@@ -4,293 +4,301 @@
 
 # (2-3/3-2 etc. could also be mirrored rather than duplicated.)
 
+from typing import List, NamedTuple
+
+
+class PathPattern(NamedTuple):
+    paths: List[List[int]]
+    pattern: str
+
+
 PATH_PATTERNS = {
     "1-1": [
-        {
-            "paths": [[0]],
-            "pattern": """
+        PathPattern(
+            paths=[[0]],
+            pattern="""
     xxx    
      |
      |
      |
     xxx    
 """,
-        }
+        )
     ],
     "1-2": [
-        {
-            "paths": [[0, 1]],
-            "pattern": """
+        PathPattern(
+            paths=[[0, 1]],
+            pattern="""
 xxx     xxx
  |       |
  +--+ +--+
     | |   
     xxx    
 """,
-        }
+        )
     ],
     "2-1": [
-        {
-            "paths": [[0], [0]],
-            "pattern": """
+        PathPattern(
+            paths=[[0], [0]],
+            pattern="""
     xxx    
     | |   
  +--+ +--+
  |       |
 xxx     xxx
 """,
-        }
+        )
     ],
     "2-2": [
-        {
-            "paths": [[0], [1]],
-            "pattern": """
+        PathPattern(
+            paths=[[0], [1]],
+            pattern="""
 xxx     xxx
  |       |
  |       |
  |       |
 xxx     xxx
 """,
-        },
-        {
-            "paths": [[0, 1], [1]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0, 1], [1]],
+            pattern="""
 xxx     xxx
  |      ||
  |+-----+|
  ||      |
 xxx     xxx
 """,
-        },
-        {
-            "paths": [[0], [0, 1]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0], [0, 1]],
+            pattern="""
 xxx     xxx
  ||      |
  |+-----+|
  |      ||
 xxx     xxx
 """,
-        },
+        ),
     ],
     "2-3": [
-        {
-            "paths": [[0], [1, 2]],
-            "pattern": """
+        PathPattern(
+            paths=[[0], [1, 2]],
+            pattern="""
 xxx xxx xxx
  |   |   |
  |   +--+|
  |      ||
 xxx     xxx
 """,
-        },
-        {
-            "paths": [[0, 1], [2]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0, 1], [2]],
+            pattern="""
 xxx xxx xxx
  |   |   |
  |+--+   |
  ||      |
 xxx     xxx
 """,
-        },
-        {
-            "paths": [[0, 1], [1, 2]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0, 1], [1, 2]],
+            pattern="""
 xxx xxx xxx
  |  | |  |
  |+-+ +-+|
  ||     ||
 xxx     xxx
 """,
-        },
-        {
-            "paths": [[0, 1, 2], [2]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0, 1, 2], [2]],
+            pattern="""
 xxx xxx xxx
 |+---+  || 
 ||+-----+| 
 |||      | 
 xxx     xxx
 """,
-        },
-        {
-            "paths": [[0], [0, 1, 2]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0], [0, 1, 2]],
+            pattern="""
 xxx xxx xxx
  ||  +---+|
  |+-----+||
  |      |||
 xxx     xxx
 """,
-        },
+        ),
     ],
     "3-2": [
-        {
-            "paths": [[0], [1], [1]],
-            "pattern": """
+        PathPattern(
+            paths=[[0], [1], [1]],
+            pattern="""
 xxx     xxx
  |      ||
  |   +--+|
  |   |   |
 xxx xxx xxx
 """,
-        },
-        {
-            "paths": [[0], [0], [1]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0], [0], [1]],
+            pattern="""
 xxx     xxx
  ||      |
  |+--+   |
  |   |   |
 xxx xxx xxx
 """,
-        },
-        {
-            "paths": [[0], [0, 1], [1]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0], [0, 1], [1]],
+            pattern="""
 xxx     xxx
  ||     ||
  |+-+ +-+|
  |  | |  |
 xxx xxx xxx
 """,
-        },
-        {
-            "paths": [[0], [0], [0, 1]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0], [0], [0, 1]],
+            pattern="""
 xxx     xxx
 |||      | 
 ||+-----+| 
 |+---+  || 
 xxx xxx xxx
 """,
-        },
-        {
-            "paths": [[0, 1], [1], [1]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0, 1], [1], [1]],
+            pattern="""
 xxx     xxx
  |      |||
  |+-----+||
  ||  +---+|
 xxx xxx xxx
 """,
-        },
+        ),
     ],
     "1-3": [
-        {
-            "paths": [[0, 1, 2]],
-            "pattern": """
+        PathPattern(
+            paths=[[0, 1, 2]],
+            pattern="""
 xxx xxx xxx
  |   |   |
  +--+++--+
     |||   
     xxx    
 """,
-        }
+        )
     ],
     "3-1": [
-        {
-            "paths": [[0], [0], [0]],
-            "pattern": """
+        PathPattern(
+            paths=[[0], [0], [0]],
+            pattern="""
     xxx    
     |||   
  +--+++--+
  |   |   |
 xxx xxx xxx
 """,
-        }
+        )
     ],
     "3-3": [
-        {
-            "paths": [[0], [1], [2]],
-            "pattern": """
+        PathPattern(
+            paths=[[0], [1], [2]],
+            pattern="""
 xxx xxx xxx
  |   |   |
  |   |   |
  |   |   |
 xxx xxx xxx
 """,
-        },
-        {
-            "paths": [[0, 1], [1], [2]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0, 1], [1], [2]],
+            pattern="""
 xxx xxx xxx
  |  ||   |
  |+-+|   |
  ||  |   |
 xxx xxx xxx
 """,
-        },
-        {
-            "paths": [[0, 1], [1, 2], [2]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0, 1], [1, 2], [2]],
+            pattern="""
 xxx xxx xxx
  |  ||  ||
  |+-+|+-+|
  ||  ||  |
 xxx xxx xxx
 """,
-        },
-        {
-            "paths": [[0], [0, 1], [2]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0], [0, 1], [2]],
+            pattern="""
 xxx xxx xxx
  ||  |   |
  |+-+|   |
  |  ||   |
 xxx xxx xxx
 """,
-        },
-        {
-            "paths": [[0], [1], [1, 2]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0], [1], [1, 2]],
+            pattern="""
 xxx xxx xxx
  |   ||  |
  |   |+-+|
  |   |  ||
 xxx xxx xxx
 """,
-        },
-        {
-            "paths": [[0], [1, 2], [2]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0], [1, 2], [2]],
+            pattern="""
 xxx xxx xxx
  |   |  ||
  |   |+-+|
  |   ||  |
 xxx xxx xxx
 """,
-        },
-        {
-            "paths": [[0], [0, 1], [1, 2]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0], [0, 1], [1, 2]],
+            pattern="""
 xxx xxx xxx
  ||  ||  |
  |+-+|+-+|
  |  ||  ||
 xxx xxx xxx
 """,
-        },
-        {
-            "paths": [[0], [0, 1, 2], [2]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0], [0, 1, 2], [2]],
+            pattern="""
 xxx xxx xxx
  ||  |  ||
  |+-+|+-+|
  |  |||  |
 xxx xxx xxx
 """,
-        },
-        {
-            "paths": [[0, 1], [1], [1, 2]],
-            "pattern": """
+        ),
+        PathPattern(
+            paths=[[0, 1], [1], [1, 2]],
+            pattern="""
 xxx xxx xxx
  |  |||  |
  |+-+|+-+|
  ||  |  ||
 xxx xxx xxx
 """,
-        },
+        ),
     ],
 }

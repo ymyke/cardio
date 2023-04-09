@@ -2,7 +2,7 @@ import random
 from typing import List, Optional
 import time
 from cardio.location import Location, FightLocation
-from cardio.path_patterns import PATH_PATTERNS
+from cardio.path_patterns import PATH_PATTERNS, PathPattern
 
 # TODO: There can be levels w/o nodes, where the path just goes straight through. -- How
 # should that work exactly? -- Maybe just have a special location kind `NoLocation` and
@@ -24,20 +24,20 @@ class Run:
         random.seed(f"N{at_distance}_{self.base_seed}")
         return random.randint(1, 3)
 
-    def _get_paths(self, at_distance: int) -> List[List[int]]:
+    def _get_paths(self, at_distance: int) -> PathPattern:
         in_locs = self._nof_locations(at_distance)
         out_locs = self._nof_locations(at_distance + 1)
         random.seed(f"P{at_distance}_{self.base_seed}")
-        return random.choice(PATH_PATTERNS[f"{in_locs}-{out_locs}"])["paths"]
+        return random.choice(PATH_PATTERNS[f"{in_locs}-{out_locs}"])
         # FIXME Add more weight to "fan-out" patterns than to "fan-in" patterns so more
         # separate longer stretches will be generated?
 
     def get_locations(self, at_distance: int) -> List[Location]:
         locations = []
         noflocations = range(self._nof_locations(at_distance))
-        paths = self._get_paths(at_distance)
+        pathpattern = self._get_paths(at_distance)
         for i in noflocations:
-            loc = FightLocation(self.base_seed, at_distance, i, paths[i])
+            loc = FightLocation(self.base_seed, at_distance, i, pathpattern.paths[i])
             # TODO Need to get the location from some register and based on weights
             locations.append(loc)
         return locations
