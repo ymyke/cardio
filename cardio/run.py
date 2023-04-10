@@ -43,8 +43,9 @@ class Run:
         return locations
 
     def print(self, start: int, end: int, h_condense: bool = False):
-        def v_stretch(line: str, howmuch: int) -> str:
-            r = f"{line.rstrip():11s}" + howmuch * 2 * " "  # Normalize line length
+        def v_stretch(line: str) -> str:
+            howmuch = 6
+            r = f"{line.rstrip():11s}"  # Normalize line length
             i0, i1 = 3, 7  # Positions 3 and 7 are the positions we can stretch
             c0, c1 = r[i0], r[i1]
             return r[:i0] + c0 * howmuch + r[i0 + 1 : i1] + c1 * howmuch + r[i1 + 1 :]
@@ -52,15 +53,12 @@ class Run:
         start, end = max(start, end), min(start, end)
         for i in range(start, end - 1, -1):
             pattern = self._get_paths(i).pattern
-            lines = list(filter(None, pattern.split("\n")))
-            lines[-1] += f"     ← {i}"
-            newlines = []
-            for j, l in enumerate(lines):
-                nl = v_stretch(l, 6)
-                if h_condense and j in (1, len(lines) - 2):
-                    pass  # Ignore 2nd and 2nd-to-last lines if condensing horizontally
-                else:
-                    newlines.append(nl)
+            lines = filter(None, pattern.split("\n"))
+            lines = list(map(v_stretch, lines))
+            if h_condense:
+                del lines[1]
+                del lines[-2]
             if i < start:
-                del newlines[0]
-            print("\n".join(newlines))
+                del lines[0]
+            lines[-1] += f"     ← {i}"
+            print("\n".join(lines))
