@@ -32,8 +32,6 @@ class Run:
         out_locs = self._nof_locations(at_distance + 1)
         random.seed(f"P{at_distance}_{self.base_seed}")
         return random.choice(PATH_PATTERNS[f"{in_locs}-{out_locs}"])
-        # FIXME Add more weight to "fan-out" patterns than to "fan-in" patterns so more
-        # separate longer stretches will be generated?
 
     def get_locations(self, at_distance: int) -> List[Location]:
         locations = []
