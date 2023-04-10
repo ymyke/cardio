@@ -8,8 +8,6 @@ from cardio.path_patterns import PATH_PATTERNS, PathPattern
 # should that work exactly? -- Maybe just have a special location kind `NoLocation` and
 # that's that?
 
-# TODO Add tests
-
 
 class Run:
     base_seed: str
@@ -43,7 +41,7 @@ class Run:
             locations.append(loc)
         return locations
 
-    def print(self, start: int, end: int, h_condense: bool = False):
+    def get_string(self, start: int, end: int, h_condense: bool = False) -> str:
         def v_stretch(line: str) -> str:
             howmuch = 6
             r = f"{line.rstrip():11s}"  # Normalize line length
@@ -52,6 +50,7 @@ class Run:
             return r[:i0] + c0 * howmuch + r[i0 + 1 : i1] + c1 * howmuch + r[i1 + 1 :]
 
         start, end = max(start, end), min(start, end)
+        res = ""
         for i in range(start, end - 1, -1):
             pattern = self._get_paths(i).pattern
             lines = filter(None, pattern.split("\n"))
@@ -62,4 +61,8 @@ class Run:
             if i < start:
                 del lines[0]
             lines[-1] += f"     ← {i}"
-            print("\n".join(lines))
+            res += "\n".join(lines) + "\n"
+        return res
+
+    def print(self, start: int, end: int, h_condense: bool = False) -> None:
+        print(self.get_string(start, end, h_condense))
