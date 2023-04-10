@@ -17,7 +17,9 @@ PATH_PATTERNS = {
         PathPattern(
             paths=[[0]],
             pattern="""
-    xxx    
+    xxx
+     |    
+     |
      |
      |
      |
@@ -31,7 +33,9 @@ PATH_PATTERNS = {
             pattern="""
 xxx     xxx
  |       |
+ |       |
  +--+ +--+
+    | |   
     | |   
     xxx    
 """,
@@ -43,7 +47,9 @@ xxx     xxx
             pattern="""
     xxx    
     | |   
+    | |   
  +--+ +--+
+ |       |
  |       |
 xxx     xxx
 """,
@@ -57,6 +63,8 @@ xxx     xxx
  |       |
  |       |
  |       |
+ |       |
+ |       |
 xxx     xxx
 """,
         ),
@@ -65,7 +73,9 @@ xxx     xxx
             pattern="""
 xxx     xxx
  |      ||
+ |      ||
  |+-----+|
+ ||      |
  ||      |
 xxx     xxx
 """,
@@ -75,7 +85,9 @@ xxx     xxx
             pattern="""
 xxx     xxx
  ||      |
+ ||      |
  |+-----+|
+ |      ||
  |      ||
 xxx     xxx
 """,
@@ -87,7 +99,9 @@ xxx     xxx
             pattern="""
 xxx xxx xxx
  |   |   |
+ |   |   |
  |   +--+|
+ |      ||
  |      ||
 xxx     xxx
 """,
@@ -97,7 +111,9 @@ xxx     xxx
             pattern="""
 xxx xxx xxx
  |   |   |
+ |   |   |
  |+--+   |
+ ||      |
  ||      |
 xxx     xxx
 """,
@@ -107,7 +123,9 @@ xxx     xxx
             pattern="""
 xxx xxx xxx
  |  | |  |
+ |  | |  |
  |+-+ +-+|
+ ||     ||
  ||     ||
 xxx     xxx
 """,
@@ -116,8 +134,10 @@ xxx     xxx
             paths=[[0, 1, 2], [2]],
             pattern="""
 xxx xxx xxx
+|    |  ||
 |+---+  || 
 ||+-----+| 
+|||      | 
 |||      | 
 xxx     xxx
 """,
@@ -126,8 +146,10 @@ xxx     xxx
             paths=[[0], [0, 1, 2]],
             pattern="""
 xxx xxx xxx
+ ||  |    |
  ||  +---+|
  |+-----+||
+ |      |||
  |      |||
 xxx     xxx
 """,
@@ -139,7 +161,9 @@ xxx     xxx
             pattern="""
 xxx     xxx
  |      ||
+ |      ||
  |   +--+|
+ |   |   |
  |   |   |
 xxx xxx xxx
 """,
@@ -149,7 +173,9 @@ xxx xxx xxx
             pattern="""
 xxx     xxx
  ||      |
+ ||      |
  |+--+   |
+ |   |   |
  |   |   |
 xxx xxx xxx
 """,
@@ -159,7 +185,9 @@ xxx xxx xxx
             pattern="""
 xxx     xxx
  ||     ||
+ ||     ||
  |+-+ +-+|
+ |  | |  |
  |  | |  |
 xxx xxx xxx
 """,
@@ -169,8 +197,10 @@ xxx xxx xxx
             pattern="""
 xxx     xxx
 |||      | 
+|||      | 
 ||+-----+| 
 |+---+  || 
+|    |  ||
 xxx xxx xxx
 """,
         ),
@@ -179,8 +209,10 @@ xxx xxx xxx
             pattern="""
 xxx     xxx
  |      |||
+ |      |||
  |+-----+||
  ||  +---+|
+ ||  |    |
 xxx xxx xxx
 """,
         ),
@@ -191,7 +223,9 @@ xxx xxx xxx
             pattern="""
 xxx xxx xxx
  |   |   |
+ |   |   |
  +--+++--+
+    |||   
     |||   
     xxx    
 """,
@@ -203,7 +237,9 @@ xxx xxx xxx
             pattern="""
     xxx    
     |||   
+    |||   
  +--+++--+
+ |   |   |
  |   |   |
 xxx xxx xxx
 """,
@@ -217,6 +253,8 @@ xxx xxx xxx
  |   |   |
  |   |   |
  |   |   |
+ |   |   |
+ |   |   |
 xxx xxx xxx
 """,
         ),
@@ -225,7 +263,9 @@ xxx xxx xxx
             pattern="""
 xxx xxx xxx
  |  ||   |
+ |  ||   |
  |+-+|   |
+ ||  |   |
  ||  |   |
 xxx xxx xxx
 """,
@@ -235,7 +275,9 @@ xxx xxx xxx
             pattern="""
 xxx xxx xxx
  |  ||  ||
+ |  ||  ||
  |+-+|+-+|
+ ||  ||  |
  ||  ||  |
 xxx xxx xxx
 """,
@@ -245,7 +287,9 @@ xxx xxx xxx
             pattern="""
 xxx xxx xxx
  ||  |   |
+ ||  |   |
  |+-+|   |
+ |  ||   |
  |  ||   |
 xxx xxx xxx
 """,
@@ -255,7 +299,9 @@ xxx xxx xxx
             pattern="""
 xxx xxx xxx
  |   ||  |
+ |   ||  |
  |   |+-+|
+ |   |  ||
  |   |  ||
 xxx xxx xxx
 """,
@@ -265,7 +311,9 @@ xxx xxx xxx
             pattern="""
 xxx xxx xxx
  |   |  ||
+ |   |  ||
  |   |+-+|
+ |   ||  |
  |   ||  |
 xxx xxx xxx
 """,
@@ -275,7 +323,9 @@ xxx xxx xxx
             pattern="""
 xxx xxx xxx
  ||  ||  |
+ ||  ||  |
  |+-+|+-+|
+ |  ||  ||
  |  ||  ||
 xxx xxx xxx
 """,
@@ -285,7 +335,9 @@ xxx xxx xxx
             pattern="""
 xxx xxx xxx
  ||  |  ||
+ ||  |  ||
  |+-+|+-+|
+ |  |||  |
  |  |||  |
 xxx xxx xxx
 """,
@@ -295,7 +347,9 @@ xxx xxx xxx
             pattern="""
 xxx xxx xxx
  |  |||  |
+ |  |||  |
  |+-+|+-+|
+ ||  |  ||
  ||  |  ||
 xxx xxx xxx
 """,
