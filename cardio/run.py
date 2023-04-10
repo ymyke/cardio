@@ -43,4 +43,25 @@ class Run:
         return locations
 
     def print(self, start: int, end: int):
-        pass
+        start, end = max(start, end), min(start, end)
+        for i in range(start, end - 1, -1):
+            pattern = self._get_paths(i).pattern
+            lines = list(filter(None, pattern.split("\n")))
+            lines[-1] += f"     ← {i}"
+            newlines = []
+            h_condense = False
+            stretch = 6
+            i0 = 3
+            i1 = 7
+            for j, l in enumerate(lines):
+                l = f"{l.rstrip():11s}" + stretch * 2 * " "
+                c0 = l[i0]
+                c1 = l[i1]
+                nl = l[:i0] + c0 * stretch + l[i0 + 1 : i1] + c1 * stretch + l[i1 + 1 :]
+                if h_condense and j in (1, len(lines) - 2):
+                    pass
+                else:
+                    newlines.append(nl)
+            if i < start:
+                del newlines[0]
+            print("\n".join(newlines))
