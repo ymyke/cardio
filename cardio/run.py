@@ -21,6 +21,9 @@ class Run:
         self.current_distance = 0
 
     def _nof_locations(self, at_distance: int) -> int:
+        assert at_distance >= 0
+        if at_distance == 0:  # Always start with 1 location on level 0
+            return 1
         random.seed(f"N{at_distance}_{self.base_seed}")
         return random.randint(1, 3)
 
