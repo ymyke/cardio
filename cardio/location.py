@@ -20,6 +20,7 @@ class Location(ABC):
 
     @abstractmethod
     def generate(self) -> None:
+        random.seed(self.seed)
         pass
 
     @abstractmethod
@@ -33,7 +34,7 @@ class FightLocation(Location):
     computerstrategy: ComputerStrategy
 
     def generate(self) -> None:
-        random.seed(self.seed)
+        super().generate()
         self.grid = Grid(4)
         nofcards = random.randint(1, 4)
         cardnames = [random.choice(_BLUEPRINTS).name for _ in range(nofcards)]
