@@ -1,8 +1,4 @@
-# TODO: Note, I know which columns are the "stretch" columns and can just multiply
-# whichever character is at that position. – But does that also work with non-3-3
-# patterns?
-
-# (2-3/3-2 etc. could also be mirrored rather than duplicated.)
+# LIXME: (2-3/3-2 etc. could also be mirrored rather than duplicated.)
 
 from typing import List, NamedTuple
 
