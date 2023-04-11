@@ -4,10 +4,6 @@ import time
 from cardio.location import Location, create_random_location
 from cardio.path_patterns import PATH_PATTERNS, PathPattern
 
-# TODO: There can be levels w/o nodes, where the path just goes straight through. -- How
-# should that work exactly? -- Maybe just have a special location kind `NoLocation` and
-# that's that?
-
 
 class Run:
     base_seed: str
