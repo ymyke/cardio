@@ -11,7 +11,7 @@ class Location(ABC):
     def __init__(
         self, base_seed: str, distance: int, index: int, paths: List[int]
     ) -> None:
-        self.name = f"L{distance}_{index}"
+        self.name = f"{self.__class__.__name__[0]}{distance}_{index}"
         self.seed = f"L{distance}_{index}_{base_seed}"
         self.distance = distance  # Distance from start
         self.index = index  # Index position at current distance
