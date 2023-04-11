@@ -1,7 +1,7 @@
 import random
 from typing import List, Optional
 import time
-from cardio.location import Location, FightLocation
+from cardio.location import Location, create_random_location
 from cardio.path_patterns import PATH_PATTERNS, PathPattern
 
 # TODO: There can be levels w/o nodes, where the path just goes straight through. -- How
@@ -36,12 +36,21 @@ class Run:
         noflocations = range(self._nof_locations(at_distance))
         pathpattern = self._get_paths(at_distance)
         for i in noflocations:
-            loc = FightLocation(self.base_seed, at_distance, i, pathpattern.paths[i])
-            # TODO Need to get the location from some register and based on weights
+            loc = create_random_location(
+                self.base_seed, at_distance, i, pathpattern.paths[i]
+            )
             locations.append(loc)
         return locations
 
     def get_string(self, start: int, end: int, h_condense: bool = False) -> str:
+        """
+        Todos:
+        - Make paths dark grey. Make locations use some fitting color.
+        - Use asciimaatics to print the paths coordinates-based.
+        - With the above: Use emojis for locations (they have different widths but maybe
+          with coordinate-based positioning they can still be aligned well?).
+        """
+
         def v_stretch(line: str) -> str:
             howmuch = 6
             r = f"{line.rstrip():11s}"  # Normalize line length
@@ -52,6 +61,7 @@ class Run:
         start, end = max(start, end), min(start, end)
         res = ""
         for i in range(start, end - 1, -1):
+            # Get and format the path pattern:
             pattern = self._get_paths(i).pattern
             lines = filter(None, pattern.split("\n"))
             lines = list(map(v_stretch, lines))
@@ -61,7 +71,17 @@ class Run:
             if i < start:
                 del lines[0]
             lines[-1] += f"     ← {i}"
-            res += "\n".join(lines) + "\n"
+
+            # Fill in the location names:
+            locations = self.get_locations(i)
+            for loc in locations:
+                lines[-1] = lines[-1].replace("xxx", loc.marker, 1)
+
+            if i == start:  # Ignore the outgoing paths on top
+                res = lines[-1] + "\n"
+            else:
+                res += "\n".join(lines) + "\n"
+
         return res
 
     def print(self, start: int, end: int, h_condense: bool = False) -> None:

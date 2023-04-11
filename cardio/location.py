@@ -8,10 +8,12 @@ from cardio.tui import tui
 
 
 class Location(ABC):
+    marker = "   "
+
     def __init__(
         self, base_seed: str, distance: int, index: int, paths: List[int]
     ) -> None:
-        self.name = f"{self.__class__.__name__[0]}{distance}_{index}"
+        self.id = f"{self.__class__.__name__[0]}{distance}_{index}"
         self.seed = f"L{distance}_{index}_{base_seed}"
         self.distance = distance  # Distance from start
         self.index = index  # Index position at current distance
@@ -29,7 +31,37 @@ class Location(ABC):
         pass
 
 
+# ----- Factory -----
+
+
+def create_random_location(
+    base_seed: str, distance: int, index: int, paths: List[int]
+) -> Location:
+    known_locations = [  # 1 = "base" frequency
+        (NoLocation, 5),
+        (FightLocation, 5),
+    ]
+    random.seed(f"L{distance}_{index}_{base_seed}_locationfactory")
+    exploded_locations = [loc for loc, count in known_locations for _ in range(count)]
+    location_class = random.choice(exploded_locations)
+    return location_class(base_seed, distance, index, paths)
+
+
+# ----- Specific locations -----
+
+
+class NoLocation(Location):
+    marker = "···"
+
+    def generate(self) -> None:
+        pass
+
+    def handle(self) -> bool:
+        return True
+
+
 class FightLocation(Location):
+    marker = "FFF"
     grid: Grid
     computerstrategy: ComputerStrategy
 
