@@ -2,7 +2,7 @@ import logging
 import time
 from cardio import gg, HumanPlayer
 from cardio.card_blueprints import create_cards_from_blueprints
-from cardio.location import FightLocation
+from cardio.run import Run
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -18,36 +18,20 @@ gg.humanplayer = humanplayer
 # (Load and just use the main deck the player has.)
 
 ### Start new run:
-
-### Generate new seed
+run = Run()  # <- This generates a new seed
 # (or load seed + current location + player state if existing game is being continued)
 
-# TODO Need some seed handling in the Run class. Should generate seed from root seed
-# based on distance. Should maybe also store some history information (either the entire
-# map or the seed + current commit hash) and the path taken by the user.
-
-# TODO Also need some code that decides which kind of location will be generated at each
-# step. (Maybe Locations have a fixed probability weight and register themselves with
-# some location factory or with the run that then chooses among all registered
-# locations?)
-
 ### While not game over:
-###   Display map (create new locations if necessary to fill map segment)
-###   Choose path => next location
-###   Handle location
-
-### If fight:
-# (cs = run.current_location.get_computerstrategy() or something -- or maybe better:
-# run.current_location.handle() where current_location is a Location object and in case
-# of a fight a FightLocation object with a computerstrategy attribute.)
-# TODO Implement Run and Location classes next?
-
 game_on = True
 distance = -1
 while game_on:
     distance += 1
-    l = FightLocation(time.time_ns(), distance, 0)
-    game_on = l.handle()
+    # TODO Show map
+    # TODO Let use choose location -> chosen_loc
+    locs = run.get_locations(distance)
+    chosen_loc = locs[0]
+    # 👆 Simply taking the first one, should be chosen interactively TODO
+    game_on = chosen_loc.handle()
 
 ### Game over:
 ###   ...
