@@ -109,6 +109,8 @@
 
 # Low Prio Ideas
 
+- Maybe NoLocations can have minor "on the way" events? I.e., gain/lose some gems, ...?
+- Hidden locations? I.e., locations that are not revealed until you visit them.
 - Randomize player's start cards at the beginning of a run from a set of possible start
   cards.
 - For convenience: Placement cursor could pick the first slot that makes sense for the
