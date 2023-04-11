@@ -46,4 +46,4 @@ FFF               FFF     ← 3
           |          
          ···              ← 0
 """
-    assert run.get_string(0, 3) == target
+    assert run.get_string(0, 3, debug=True) == target

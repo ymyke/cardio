@@ -38,7 +38,9 @@ class Run:
             locations.append(loc)
         return locations
 
-    def get_string(self, start: int, end: int, h_condense: bool = False) -> str:
+    def get_string(
+        self, start: int, end: int, h_condense: bool = False, debug: bool = False
+    ) -> str:
         """
         Todos:
         - Make paths dark grey. Make locations use some fitting color.
@@ -66,7 +68,8 @@ class Run:
                 del lines[-2]
             if i < start:
                 del lines[0]
-            lines[-1] += f"     ← {i}"
+            if debug:
+                lines[-1] += f"     ← {i}"
 
             # Fill in the location names:
             locations = self.get_locations(i)
