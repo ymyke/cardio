@@ -107,7 +107,7 @@ option 3: one common game state w/o agents in FightVnC: <- Favorite! ⭐
 - E.g., FightLocation:
   - ComputerStrategy including cards
   - Computer player initial values
-- A location has a seed and a distance (steps from the start) attribute, which are used
+- A location has a seed and a rung (steps from the start) attribute, which are used
   to generate the location. The seed is derived from an original seed for the entire
   run.
 

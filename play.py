@@ -23,12 +23,12 @@ run = Run()  # <- This generates a new seed
 
 ### While not game over:
 game_on = True
-distance = -1
+current_rung = -1
 while game_on:
-    distance += 1
+    current_rung += 1
     # TODO Show map
     # TODO Let use choose location -> chosen_loc
-    locs = run.get_locations(distance)
+    locs = run.get_locations(current_rung)
     chosen_loc = locs[0]
     # 👆 Simply taking the first one, should be chosen interactively TODO
     game_on = chosen_loc.handle()

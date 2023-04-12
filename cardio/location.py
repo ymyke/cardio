@@ -10,13 +10,11 @@ from cardio.tui import tui
 class Location(ABC):
     marker = "   "
 
-    def __init__(
-        self, base_seed: str, distance: int, index: int, paths: List[int]
-    ) -> None:
-        self.id = f"{self.__class__.__name__[0]}{distance}_{index}"
-        self.seed = f"L{distance}_{index}_{base_seed}"
-        self.distance = distance  # Distance from start
-        self.index = index  # Index position at current distance
+    def __init__(self, base_seed: str, rung: int, index: int, paths: List[int]) -> None:
+        self.id = f"{self.__class__.__name__[0]}{rung}_{index}"
+        self.seed = f"L{rung}_{index}_{base_seed}"
+        self.rung = rung  # Steps from start
+        self.index = index  # Index position at current rung
         self.paths = paths  # Paths to next locations
         self.generate()
 
@@ -35,16 +33,16 @@ class Location(ABC):
 
 
 def create_random_location(
-    base_seed: str, distance: int, index: int, paths: List[int]
+    base_seed: str, rung: int, index: int, paths: List[int]
 ) -> Location:
     known_locations = [  # 1 = "base" frequency
         (NoLocation, 5),
         (FightLocation, 5),
     ]
-    random.seed(f"L{distance}_{index}_{base_seed}_locationfactory")
+    random.seed(f"L{rung}_{index}_{base_seed}_locationfactory")
     exploded_locations = [loc for loc, count in known_locations for _ in range(count)]
     location_class = random.choice(exploded_locations)
-    return location_class(base_seed, distance, index, paths)
+    return location_class(base_seed, rung, index, paths)
 
 
 # ----- Specific locations -----
@@ -79,7 +77,7 @@ class FightLocation(Location):
         self.computerstrategy = Round0OnlyStrategy(grid=self.grid, cards=posncards)
 
         # FIXME Use some other computer strategy later
-        # FIXME Use distance to somehow increase difficulty as more distance is traveled
+        # FIXME Use rung to somehow increase difficulty as more distance is traveled
         # (e.g., more cards every x steps)
 
     def handle(self) -> bool:
