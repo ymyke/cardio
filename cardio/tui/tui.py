@@ -5,6 +5,8 @@ All ready-only methods to update the view, show animations, or handle user inter
 of game-related logic must take place or be orchestrated in FightVnC.
 """
 
+# TODO Rename this module to tuifightvnc.py
+
 import atexit
 import itertools
 from typing import Callable, List, Optional, Tuple
