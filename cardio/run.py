@@ -40,7 +40,11 @@ class Run:
         return locations
 
     def get_string(
-        self, start: int, end: int, h_condense: bool = False, debug: bool = False
+        self,
+        start: Optional[int] = None,
+        howmany: int = 5,
+        h_condense: bool = False,
+        debug: bool = False,
     ) -> str:
         """
         Todos:
@@ -57,9 +61,10 @@ class Run:
             c0, c1 = r[i0], r[i1]
             return r[:i0] + c0 * howmuch + r[i0 + 1 : i1] + c1 * howmuch + r[i1 + 1 :]
 
-        start, end = max(start, end), min(start, end)
+        lower = start or self.current_rung
+        upper = lower + howmany - 1
         res = ""
-        for i in range(start, end - 1, -1):
+        for i in range(upper, lower - 1, -1):
             # Get and format the path pattern:
             pattern = self._get_paths(i).pattern
             lines = filter(None, pattern.split("\n"))
@@ -67,7 +72,7 @@ class Run:
             if h_condense:
                 del lines[1]
                 del lines[-2]
-            if i < start:
+            if i < upper:
                 del lines[0]
             if debug:
                 lines[-1] += f"     ← {i}"
