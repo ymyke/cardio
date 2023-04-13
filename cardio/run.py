@@ -7,10 +7,19 @@ from cardio.path_patterns import PATH_PATTERNS, PathPattern
 
 class Run:
     base_seed: str
-    # Doesn't need to store any history bc everything is determined by the seed.
+    # (Doesn't need to store any history bc everything is determined by the seed.)
+    current_rung: int   
+    current_index: int
 
     def __init__(self, base_seed: Optional[str] = None) -> None:
         self.base_seed = base_seed or str(time.time_ns())
+        self.current_rung = 0
+        self.current_index = 0
+
+    def move_to(self, loc:Location) -> None:
+        assert loc.rung == self.current_rung +1
+        self.current_rung += 1
+        self.current_index = loc.index
 
     def _nof_locations(self, at_rung: int) -> int:
         assert at_rung >= 0
