@@ -1,7 +1,7 @@
 import random
 from typing import List, Optional
 import time
-from cardio.location import Location, create_random_location
+from cardio.location import Location, create_random_location, NoLocation
 from cardio.path_patterns import PATH_PATTERNS, PathPattern
 
 
@@ -14,12 +14,13 @@ class Run:
 
     def _nof_locations(self, at_rung: int) -> int:
         assert at_rung >= 0
-        if at_rung == 0:  # Always start with 1 location on level 0
+        if at_rung == 0:  # Always start with 1 location on rung 0
             return 1
         random.seed(f"N{at_rung}_{self.base_seed}")
         return random.randint(1, 3)
 
     def _get_paths(self, at_rung: int) -> PathPattern:
+        assert at_rung >= 0
         in_locs = self._nof_locations(at_rung)
         out_locs = self._nof_locations(at_rung + 1)
         random.seed(f"P{at_rung}_{self.base_seed}")
@@ -29,6 +30,8 @@ class Run:
         locations = []
         noflocations = range(self._nof_locations(at_rung))
         pathpattern = self._get_paths(at_rung)
+        if at_rung == 0:  # Always start with a NoLocation on rung 0
+            return [NoLocation(self.base_seed, 0, 0, pathpattern.paths[0])]
         for i in noflocations:
             loc = create_random_location(
                 self.base_seed, at_rung, i, pathpattern.paths[i]
