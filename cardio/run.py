@@ -4,6 +4,7 @@ import time
 from cardio.location import Location, create_random_location, NoLocation
 from cardio.path_patterns import PATH_PATTERNS, PathPattern
 
+# TODO Need more tests for the new code such as next_rung etc?
 
 class Run:
     base_seed: str
