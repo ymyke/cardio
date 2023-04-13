@@ -26,7 +26,8 @@ class Run:
         random.seed(f"P{at_rung}_{self.base_seed}")
         return random.choice(PATH_PATTERNS[f"{in_locs}-{out_locs}"])
 
-    def get_locations(self, at_rung: int) -> List[Location]:
+    def get_locations(self, at_rung: Optional[int] = None) -> List[Location]:
+        at_rung = at_rung or self.current_rung
         locations = []
         noflocations = range(self._nof_locations(at_rung))
         pathpattern = self._get_paths(at_rung)
