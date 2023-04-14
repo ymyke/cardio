@@ -1,4 +1,5 @@
 import atexit
+from typing import Optional
 from asciimatics.screen import Screen
 from .utils import show_screen_resolution, get_keycode, show_text, dPos
 from ..run import Run
@@ -35,18 +36,18 @@ class TUIMapView:
             view_index * 9, (height - (loc.rung - self.run.current_rung)) * 6
         )
 
-    def redraw(self) -> None:
+    def redraw(self, cursor_pos: Optional[int] = None) -> None:
         self.screen.clear_buffer(0, 0, 0)
         show_text(self.screen, dPos(1, 1), str(self.run.current_rung))
         for i, l in enumerate(self.run.get_string().split("\n")):
             show_text(self.screen, self.topleft + dPos(0, i), l, color=Color.GRAY)
 
         # Mark current location:
-        loc = self.run.get_current_location()
+        current_loc = self.run.get_current_location()
         show_text(
             self.screen,
-            self.dpos_from_location(loc) + dPos(-2, 0),
-            f">>{loc.marker}<<",
+            self.dpos_from_location(current_loc) + dPos(-2, 0),
+            f">>{current_loc.marker}<<",
             color=Color.YELLOW,
         )
 
@@ -59,30 +60,33 @@ class TUIMapView:
                 color=Color.WHITE,
             )
 
-        # Color next locations:
-        for loc in self.run.get_accessible_locations(1):
+        # Color the next possible locations including cursor position:
+        for i, loc in enumerate(self.run.get_accessible_locations(1)):
+            s = f"[[{loc.marker}]]" if i == cursor_pos else f"  {loc.marker}"
             show_text(
                 self.screen,
-                self.dpos_from_location(loc),
-                f"{loc.marker}",
+                self.dpos_from_location(loc) - dPos(2, 0),
+                s,
                 color=Color.BLUE,
             )
 
         if self.debug:
             show_screen_resolution(self.screen)
-
         self.screen.refresh()
 
     def get_next_location(self) -> Location:
-        # TODO
+        possible_locations = self.run.get_accessible_locations(1)
+        cursor = 0
         while True:
-            self.redraw()
+            self.redraw(cursor_pos=cursor)
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_UP:
                 break
-        import random
-
-        return random.choice(self.run.get_locations(self.run.current_rung + 1))
+            if keycode == Screen.KEY_LEFT:
+                cursor = max(0, cursor - 1)
+            elif keycode == Screen.KEY_RIGHT:
+                cursor = min(len(possible_locations) - 1, cursor + 1)
+        return possible_locations[cursor]
 
     def move_to(self, loc: Location) -> None:
         # FIXME Maybe scroll line-by-line when transitioning from one rung to the next?
