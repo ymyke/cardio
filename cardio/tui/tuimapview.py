@@ -32,15 +32,16 @@ class TUIMapView:
         else:
             view_index = loc.index
         height = 5
-        return self.topleft + dPos(
-            view_index * 9, (height - (loc.rung - self.run.current_rung)) * 6
+        return self.topleft + (
+            view_index * 9,
+            (height - (loc.rung - self.run.current_rung)) * 6,
         )
 
     def redraw(self, cursor_pos: Optional[int] = None) -> None:
         self.screen.clear_buffer(0, 0, 0)
         show_text(self.screen, dPos(1, 1), str(self.run.current_rung))
         for i, l in enumerate(self.run.get_string().split("\n")):
-            show_text(self.screen, self.topleft + dPos(0, i), l, color=Color.GRAY)
+            show_text(self.screen, self.topleft + (0, i), l, color=Color.GRAY)
 
         # TODO Show more stuff:
         # - seed
@@ -52,7 +53,7 @@ class TUIMapView:
         current_loc = self.run.get_current_location()
         show_text(
             self.screen,
-            self.dpos_from_location(current_loc) + dPos(-2, 0),
+            self.dpos_from_location(current_loc) + (-2, 0),
             f">>{current_loc.marker}<<",
             color=Color.YELLOW,
         )
@@ -71,7 +72,7 @@ class TUIMapView:
             s = f"[[{loc.marker}]]" if i == cursor_pos else f"  {loc.marker}"
             show_text(
                 self.screen,
-                self.dpos_from_location(loc) - dPos(2, 0),
+                self.dpos_from_location(loc) - (2, 0),
                 s,
                 color=Color.BLUE,
             )
