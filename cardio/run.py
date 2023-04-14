@@ -54,6 +54,22 @@ class Run:
     def get_current_location(self) -> Location:
         return self.get_locations()[self.current_index]
 
+    def get_accessible_locations(self, for_rungs: int) -> List[Location]:
+        """Return a list of all locations that are accessible from the current location
+        and within `for_rungs` rungs.
+        """
+        result = []
+        next_accessible_indices = set(self.get_current_location().paths)
+        for i in range(1, for_rungs + 1):
+            accessible_indices = next_accessible_indices
+            next_accessible_indices = set()
+            locations = self.get_locations(self.current_rung + i)
+            for loc in locations:
+                if loc.index in accessible_indices:
+                    result.append(loc)
+                    next_accessible_indices |= set(loc.paths)
+        return result
+
     def get_string(
         self,
         start: Optional[int] = None,
