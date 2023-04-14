@@ -3,6 +3,7 @@ from asciimatics.screen import Screen
 from .utils import show_screen_resolution, get_keycode, show, show_text, dPos
 from ..run import Run
 from ..location import Location
+from .constants import Color
 
 
 class TUIMapView:
@@ -38,18 +39,15 @@ class TUIMapView:
         self.screen.clear_buffer(0, 0, 0)
         show_text(self.screen, dPos(1, 1), str(self.run.current_rung))
         for i, l in enumerate(self.run.get_string().split("\n")):
-            show_text(self.screen, self.topleft + dPos(0, i), l)
+            show_text(self.screen, self.topleft + dPos(0, i), l, color=Color.GRAY)
 
         # Mark current location:
+        loc = self.run.get_current_location()
         show_text(
             self.screen,
-            self.dpos_from_location(self.run.get_current_location()) + dPos(-2, 0),
-            ">>",
-        )
-        show_text(
-            self.screen,
-            self.dpos_from_location(self.run.get_current_location()) + dPos(3, 0),
-            "<<",
+            self.dpos_from_location(loc) + dPos(-2, 0),
+            f">>{loc.marker}<<",
+            color=Color.YELLOW,
         )
 
         self.screen.refresh()
