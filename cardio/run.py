@@ -6,10 +6,11 @@ from cardio.path_patterns import PATH_PATTERNS, PathPattern
 
 # TODO Need more tests for the new code such as next_rung etc?
 
+
 class Run:
     base_seed: str
     # (Doesn't need to store any history bc everything is determined by the seed.)
-    current_rung: int   
+    current_rung: int
     current_index: int
 
     def __init__(self, base_seed: Optional[str] = None) -> None:
@@ -17,8 +18,8 @@ class Run:
         self.current_rung = 0
         self.current_index = 0
 
-    def move_to(self, loc:Location) -> None:
-        assert loc.rung == self.current_rung +1
+    def move_to(self, loc: Location) -> None:
+        assert loc.rung == self.current_rung + 1
         self.current_rung += 1
         self.current_index = loc.index
 
@@ -49,6 +50,9 @@ class Run:
             )
             locations.append(loc)
         return locations
+
+    def get_current_location(self) -> Location:
+        return self.get_locations()[self.current_index]
 
     def get_string(
         self,
