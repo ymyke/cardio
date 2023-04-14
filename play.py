@@ -23,7 +23,7 @@ run = Run()  # <- This generates a new seed
 
 
 ### While not game over:
-mapview = TUIMapView(run)
+mapview = TUIMapView(run, debug=True)
 game_on = True
 while game_on:
     chosen_loc = mapview.get_next_location()
