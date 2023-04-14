@@ -23,15 +23,17 @@ class TUIMapView:
     def dpos_from_location(self, loc: Location) -> dPos:
         # FIXME This is not nice bc it hardcodes all kinds of things that are flexible
         # in run.get_string.
-        num_locations = len(self.run.get_locations())
+        num_locations = len(self.run.get_locations(loc.rung))
         if num_locations == 1:
             view_index = 1
         elif num_locations == 2:
-            view_index = self.run.current_index * 2
+            view_index = loc.index * 2
         else:
-            view_index = self.run.current_index
+            view_index = loc.index
         height = 5
-        return self.topleft + dPos(view_index * 9, height * 6)
+        return self.topleft + dPos(
+            view_index * 9, (height - (loc.rung - self.run.current_rung)) * 6
+        )
 
     def redraw(self) -> None:
         self.screen.clear_buffer(0, 0, 0)
