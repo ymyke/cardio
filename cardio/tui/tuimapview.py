@@ -1,6 +1,6 @@
 import atexit
 from asciimatics.screen import Screen
-from .utils import show_screen_resolution, get_keycode, show, show_text, dPos
+from .utils import show_screen_resolution, get_keycode, show_text, dPos
 from ..run import Run
 from ..location import Location
 from .constants import Color
@@ -49,6 +49,24 @@ class TUIMapView:
             f">>{loc.marker}<<",
             color=Color.YELLOW,
         )
+
+        # Color all accessible locations:
+        for loc in self.run.get_accessible_locations(5):
+            show_text(
+                self.screen,
+                self.dpos_from_location(loc),
+                f"{loc.marker}",
+                color=Color.WHITE,
+            )
+
+        # Color next locations:
+        for loc in self.run.get_accessible_locations(1):
+            show_text(
+                self.screen,
+                self.dpos_from_location(loc),
+                f"{loc.marker}",
+                color=Color.BLUE,
+            )
 
         if self.debug:
             show_screen_resolution(self.screen)
