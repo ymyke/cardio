@@ -104,5 +104,11 @@ class Run:
 
         return res
 
-    def print(self, start: int, end: int, h_condense: bool = False) -> None:
-        print(self.get_string(start, end, h_condense))
+    def print(
+        self,
+        start: Optional[int] = None,
+        howmany: int = 5,
+        h_condense: bool = False,
+        debug: bool = False,
+    ) -> None:
+        print(self.get_string(start, howmany, h_condense, debug))
