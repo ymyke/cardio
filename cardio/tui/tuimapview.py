@@ -42,6 +42,12 @@ class TUIMapView:
         for i, l in enumerate(self.run.get_string().split("\n")):
             show_text(self.screen, self.topleft + dPos(0, i), l, color=Color.GRAY)
 
+        # TODO Show more stuff:
+        # - seed
+        # - rung
+        # - human player info
+        # - larger map
+
         # Mark current location:
         current_loc = self.run.get_current_location()
         show_text(
