@@ -15,8 +15,6 @@ class TUIMapView:
         self.debug = debug
         self.topleft = dPos(10, 2)
         self.screen = Screen.open(unicode_aware=True)
-        if self.debug:
-            show_screen_resolution(self.screen)
         atexit.register(self.close)
 
     def close(self) -> None:
@@ -49,6 +47,9 @@ class TUIMapView:
             f">>{loc.marker}<<",
             color=Color.YELLOW,
         )
+
+        if self.debug:
+            show_screen_resolution(self.screen)
 
         self.screen.refresh()
 
