@@ -38,7 +38,7 @@ class Round0OnlyStrategy(ComputerStrategy):
 class PredefinedStrategy(ComputerStrategy):
     """Simply plays predefined cards in specific rounds of a fight. Does not perform any
     checks whether the grid is empty or not where a card should be played. 
-    # TODO Add that check and test it too.
+    # FIXME Add that check and test it too.
     """
 
     def __init__(self, cards_per_round: Dict[int, List[GridPosAndCard]], *args, **kwargs) -> None:

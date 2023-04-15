@@ -51,7 +51,7 @@ class StateWidget:
 def show_humanplayer(screen: Screen, pos: dPos) -> None:
     # Note: This is factored out so it can be easily used also in views that don't use
     # the StateWidget.
-    # TODO Make name configurable
+    # FIXME Make name configurable
     s = f"""\
 {FigletText("Schnuzgi", StateWidget.NAME_FONT)}
 {render_value(gg.humanplayer.lives, '💓', surplus_color=Color.RED)}
