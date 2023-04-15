@@ -41,17 +41,24 @@ class StateWidget:
         self._show_health_bars(
             self.human_pos, self.damagestate.diff, self.damagestate.max_diff
         )
-        state_str = f"""\
-{FigletText("Schnuzgi", self.NAME_FONT)}
-{render_value(gg.humanplayer.lives, '💓', surplus_color=Color.RED)}
-{render_value(gg.humanplayer.gems, '💎', surplus_color=Color.BLUE)}
-{render_value(gg.humanplayer.spirits, '👻')}
-"""
-        show_text(self.screen, self.human_pos + (0, 2), state_str, color=Color.GRAY)
+        show_humanplayer(self.screen, self.human_pos + (0, 2))
 
     def show_all(self):
         self.show_computerplayer_state()
         self.show_humanplayer_state()
+
+
+def show_humanplayer(screen: Screen, pos: dPos) -> None:
+    # Note: This is factored out so it can be easily used also in views that don't use
+    # the StateWidget.
+    # TODO Make name configurable
+    s = f"""\
+{FigletText("Schnuzgi", StateWidget.NAME_FONT)}
+{render_value(gg.humanplayer.lives, '💓', surplus_color=Color.RED)}
+{render_value(gg.humanplayer.gems, '💎', surplus_color=Color.BLUE)}
+{render_value(gg.humanplayer.spirits, '👻')}
+"""
+    show_text(screen, pos, s, color=Color.GRAY)
 
 
 # Alternative scale:
