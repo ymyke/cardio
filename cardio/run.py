@@ -4,8 +4,6 @@ import time
 from cardio.location import Location, create_random_location, NoLocation
 from cardio.path_patterns import PATH_PATTERNS, PathPattern
 
-# TODO Need more tests for the new code such as next_rung etc?
-
 
 class Run:
     base_seed: str
@@ -39,7 +37,7 @@ class Run:
 
     def get_locations(self, at_rung: Optional[int] = None) -> List[Location]:
         """Get all locations on rung `at_rung`.
-        
+
         Note that this method creates new location objects with each call. They always
         _look_ identical as long as the seed doesn't change, but they are different
         Python objects. Keep that in mind if you ever think about storing information

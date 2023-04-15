@@ -1,3 +1,4 @@
+import pytest
 from cardio.run import Run
 from cardio.location import Location
 
@@ -20,6 +21,37 @@ def test_get_locations():
     assert all(isinstance(l, Location) for l in locs3)
     assert [l.paths for l in locs] != [l.paths for l in locs3]
     assert [l.id for l in locs] != [l.id for l in locs3]
+
+
+def test_move_to():
+    run = Run("0")
+
+    # Valid move:
+    goto_loc = run.get_locations(1)[0]
+    run.move_to(goto_loc)
+    assert run.get_current_location().id == goto_loc.id
+    assert run.current_rung == 1
+    assert run.current_index == 0
+
+    # Invalid move:
+    with pytest.raises(AssertionError):
+        run.move_to(run.get_locations(3)[0])
+
+
+def test_get_accessible_locations():
+    run = Run("0")
+    run.current_rung = 2
+    run.current_index = 2
+    assert [l.id for l in run.get_accessible_locations(5)] == [
+        "F3_1",
+        "F4_0",
+        "F5_0",
+        "N5_1",
+        "N5_2",
+        "F6_0",
+        "N6_1",
+        "F7_0",
+    ]
 
 
 def test_run_pattern():
