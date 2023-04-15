@@ -38,6 +38,13 @@ class Run:
         return random.choice(PATH_PATTERNS[f"{in_locs}-{out_locs}"])
 
     def get_locations(self, at_rung: Optional[int] = None) -> List[Location]:
+        """Get all locations on rung `at_rung`.
+        
+        Note that this method creates new location objects with each call. They always
+        _look_ identical as long as the seed doesn't change, but they are different
+        Python objects. Keep that in mind if you ever think about storing information
+        dynamically in location objects.
+        """
         at_rung = at_rung or self.current_rung
         locations = []
         noflocations = range(self._nof_locations(at_rung))
