@@ -9,8 +9,17 @@
   rungs increase.
 - Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
 - Implement items.
+- Add more skills.
+
+- Are there 3 (to 4) broad card categories?
+  - 1. All that concectually exist.
+  - 2. The ones the player knows about.
+  - 3. The ones the player owns.
+  - (4. The ones in different decks during a fight.)
+(Add these thoughts to DOMAIN.)
 
 - Bug? Hamster attacks even though it has no power?
+- Spirits: keep them between fights (as it is now)?
 
 - UX bug: Here you don't know where the cursor is when you'd like to place on slot 0 or
   1: https://monosnap.com/file/qCu7dKiPJJhhMu0emorLv0wXSpi3SX
@@ -66,6 +75,7 @@
   will win?
 - Reduce the number of places the session module gets imported to a sensible minimum.
 - Add items
+- Turn all the notes here and in DOMAIN into a Github wiki.
 
 # More animations
 
@@ -75,6 +85,17 @@
 
 # Ideas: All prios
 
+- Location ideas:
+  - Card shop: Buy cards for gems
+  - Exchange: Change spirits to gems and vice versa
+  - Card gambler: Give a card and get a random card in return
+  - Card buyer: Buy certain cards for gems -- usually higher value cards
+  - Card disposer: Allows you to get rid of cards (just 1 maybe) at a cost in gems
+  - Card upgrader: Upgrade a card's power or health 
+  - Card merger: Merge 2 identical cards for double attributes (or, if you don't have
+    any pairs, duplicate a card)
+  - Skill transer: Transfer the skill of a card to another. Sacrificing the first card
+  - Locations around items...? Item shop, ...?
 - Maybe there can be inanimate cards that do not provide a fire? (So: Should cards have
   a `has_fire` attribute that can be 0, 1 or more? Or would this rather be subclasses?)
 - Vast range of items: E.g., rucksack 🎒, bigger rucksack 🎒🎒, some item that allows me
