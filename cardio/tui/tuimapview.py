@@ -5,16 +5,20 @@ from .utils import show_screen_resolution, get_keycode, show_text, dPos
 from ..run import Run
 from ..location import Location
 from .constants import Color
+from .agent_primitives import show_humanplayer
 
 
 class TUIMapView:
+    MAPTOPLEFT = dPos(20, 10)
+    AGENTINFO = dPos(70, 2)
+    GAMEINFO = dPos(70, 18)
+
     def __init__(self, run: Run, debug: bool = False) -> None:
         # FIXME Code redundancies w TUIFightVnC -- Change these to all use the same
         # sceen (i.e., pass some screen object to the initializer)? Or the same code
         # (i.e., inherit from some TUIScreen class or mixin?)
         self.run = run
         self.debug = debug
-        self.topleft = dPos(10, 2)
         self.screen = Screen.open(unicode_aware=True)
         atexit.register(self.close)
 
@@ -32,22 +36,17 @@ class TUIMapView:
         else:
             view_index = loc.index
         height = 5
-        return self.topleft + (
+        return self.MAPTOPLEFT + (
             view_index * 9,
             (height - (loc.rung - self.run.current_rung)) * 6,
         )
 
     def redraw(self, cursor_pos: Optional[int] = None) -> None:
         self.screen.clear_buffer(0, 0, 0)
-        show_text(self.screen, dPos(1, 1), str(self.run.current_rung))
-        for i, l in enumerate(self.run.get_string().split("\n")):
-            show_text(self.screen, self.topleft + (0, i), l, color=Color.GRAY)
 
-        # TODO Show more stuff:
-        # - seed
-        # - rung
-        # - human player info
-        # - larger map
+        # Draw map:
+        for i, l in enumerate(self.run.get_string().split("\n")):
+            show_text(self.screen, self.MAPTOPLEFT + (0, i), l, color=Color.GRAY)
 
         # Mark current location:
         current_loc = self.run.get_current_location()
@@ -76,6 +75,16 @@ class TUIMapView:
                 s,
                 color=Color.BLUE,
             )
+
+        # Show more agent and other information:
+        show_humanplayer(self.screen, self.AGENTINFO)
+        show_text(self.screen, self.GAMEINFO, f"Rung: {self.run.current_rung}")
+        show_text(
+            self.screen,
+            self.GAMEINFO + (0, 2),
+            f"Seed: {self.run.base_seed}",
+            color=Color.GRAY,
+        )
 
         if self.debug:
             show_screen_resolution(self.screen)
