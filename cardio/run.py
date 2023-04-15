@@ -93,7 +93,7 @@ class Run:
             return r[:i0] + c0 * howmuch + r[i0 + 1 : i1] + c1 * howmuch + r[i1 + 1 :]
 
         lower = start or self.current_rung
-        upper = lower + howmany - 1
+        upper = lower + howmany
         res = ""
         for i in range(upper, lower - 1, -1):
             # Get and format the path pattern:
@@ -113,7 +113,7 @@ class Run:
             for loc in locations:
                 lines[-1] = lines[-1].replace("xxx", loc.marker, 1)
 
-            if i == start:  # Ignore the outgoing paths on top
+            if i == upper:  # Ignore the outgoing paths on top
                 res = lines[-1] + "\n"
             else:
                 res += "\n".join(lines) + "\n"
