@@ -3,15 +3,20 @@
 
 # Next up
 
-- Bug? Porcupine seems to attack opposing creature even though it's flying. At least
-  when opposed by other Porcupine?
+- Add more locations
+- Add more cards
+- Refine FightLocation and Computerstrategy so the game becomes harder and harder as the
+  rungs increase.
+- Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
+- Implement items.
+
 - Bug? Hamster attacks even though it has no power?
 
-- Finish fight:
-  - Start by creating some computer strategy
-  - Finish when one party won
-  - => Have a new starting point for this. g.py or so.
-- Start thinking about the broader game, map, ...
+- UX bug: Here you don't know where the cursor is when you'd like to place on slot 0 or
+  1: https://monosnap.com/file/qCu7dKiPJJhhMu0emorLv0wXSpi3SX
+  => Need different color for cursor and marked positions.
+  => Also, change the cursor's color when the card is ready to be placed (but the user
+  still needs to pick a place for it)
 
 
 # MVC Thoughts
@@ -61,8 +66,6 @@
   will win?
 - Reduce the number of places the session module gets imported to a sensible minimum.
 - Add items
-- UX bug: Here you don't know where the cursor is when you'd like to place on slot 0 or
-  1: https://monosnap.com/file/qCu7dKiPJJhhMu0emorLv0wXSpi3SX
 
 # More animations
 
