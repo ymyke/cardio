@@ -205,6 +205,7 @@ class FightVnC:
         # Set up the decks for the fight:
         self.decks = FightDecks()
         self.decks.draw.cards = gg.humanplayer.deck.cards
+        gg.humanplayer.deck.cards = []
         self.decks.draw.shuffle()
         self.decks.hamster.cards = create_cards_from_blueprints(["Hamster"] * 10)
 
