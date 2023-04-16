@@ -5,6 +5,8 @@ from cardio import Grid, GridPos, gg
 from cardio.computer_strategies import ComputerStrategy, Round0OnlyStrategy
 from cardio.card_blueprints import _BLUEPRINTS, create_cards_from_blueprints
 from cardio.tui import tui
+from cardio.tui.tuiupgraderview import TUIUpgraderView
+from cardio import gg
 
 
 class Location(ABC):
@@ -17,6 +19,9 @@ class Location(ABC):
         self.index = index  # Index position at current rung
         self.paths = paths  # Paths to next locations
         self.generate()
+        # FIXME Should the initializer also take a view base object that will be used to
+        # access views by the different locations and that can be used to use different
+        # views? (OR: register some basic view object in gg?)
 
     @abstractmethod
     def generate(self) -> None:
@@ -38,6 +43,7 @@ def create_random_location(
     known_locations = [  # 1 = "base" frequency
         (NoLocation, 5),
         (FightLocation, 5),
+        (PowerUpgraderLocation, 1),
     ]
     random.seed(f"L{rung}_{index}_{base_seed}_locationfactory")
     exploded_locations = [loc for loc, count in known_locations for _ in range(count)]
@@ -52,9 +58,29 @@ class NoLocation(Location):
     marker = "···"
 
     def generate(self) -> None:
-        pass
+        super().generate()
 
     def handle(self) -> bool:
+        return True
+
+
+class PowerUpgraderLocation(Location):
+    marker = "UPU"
+
+    # TODO Have several upgraders?
+    # once vs several, Health vs Power? UHU, UPU, UH*, UP*
+    # (Maybe the * kinds run the risk of losing the card?)
+
+    def generate(self) -> None:
+        super().generate()
+
+    def handle(self) -> bool:
+        upgradable_cards = gg.humanplayer.deck.cards
+        view = TUIUpgraderView(upgradable_cards)
+        card = view.pick()
+        card.power += 1
+        view.show_upgrade(card)
+        view.close()
         return True
 
 
