@@ -46,7 +46,7 @@ def show_card(
     `pos` passed. Draws empty box if `card` is `None`. Highlights card/slot if
     `highlight` is `True`.
     """
-    dpos = dPos.from_gridpos(pos) if isinstance(pos, GridPos) else pos
+    dpos = dPos.cast(pos)
     dpos += (xoffset, yoffset)
 
     if highlight:
@@ -61,7 +61,9 @@ def show_card(
         show_card_contents(screen, card, dpos)
 
 
-def redraw_card(screen: Screen, card: Optional[Card], pos: GridPos) -> None:
+def redraw_card(
+    screen: Screen, card: Optional[Card], pos: Union[GridPos, dPos]
+) -> None:
     clear_card(screen, pos)
     show_card(screen, card, pos)
 
@@ -75,7 +77,7 @@ def highlight_card(
 def clear_card(
     screen: Screen, pos: Union[GridPos, dPos], xoffset: int = 0, yoffset: int = 0
 ) -> None:
-    dpos = dPos.from_gridpos(pos) if isinstance(pos, GridPos) else pos
+    dpos = dPos.cast(pos)
     dpos += (xoffset, yoffset)
     screen.clear_buffer(
         Screen.COLOUR_WHITE, 0, 0, x=dpos.x, y=dpos.y, w=BOX_WIDTH, h=BOX_HEIGHT
@@ -145,12 +147,13 @@ def shake_card(
     screen.refresh()
 
 
-def flash_card(screen: Screen, pos: GridPos) -> None:
+def flash_card(screen: Screen, pos: Union[dPos, GridPos]) -> None:
     highlight = True
     for _ in range(10):
         show_card(screen, None, pos, highlight=highlight)
         time.sleep(0.2)
         highlight = not highlight
+        screen.refresh()
 
 
 def move_card(
@@ -160,8 +163,8 @@ def move_card(
     to: Union[GridPos, dPos],
     steps=10,
 ) -> None:
-    from_ = dPos.from_gridpos(from_) if isinstance(from_, GridPos) else from_
-    to = dPos.from_gridpos(to) if isinstance(to, GridPos) else to
+    from_ = dPos.cast(from_)
+    to = dPos.cast(to)
     buffercopy = BufferCopy(screen)
     show_card(screen, card, from_)
     p = Path()

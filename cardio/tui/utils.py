@@ -29,12 +29,21 @@ class dPos(NamedTuple):
 
     @classmethod
     def from_gridpos(cls, pos: GridPos) -> dPos:
-        """Create dPos from GridPos."""
+        """Create `dPos` from `GridPos`."""
         agentgap = AGENTGAPSIZE if pos.line >= 2 else 0
         return dPos(
             x=GRID_MARGIN_LEFT + pos.slot * (BOX_WIDTH + BOX_PADDING_LEFT),
             y=GRID_MARGIN_TOP + pos.line * (BOX_HEIGHT + BOX_PADDING_TOP) + agentgap,
         )
+
+    @classmethod
+    def cast(cls, pos: Union[GridPos, dPos, Tuple[int, int]]) -> dPos:
+        """Convert all kinds of inputs to `dPos`."""
+        if isinstance(pos, dPos):
+            return pos
+        elif isinstance(pos, GridPos):
+            return cls.from_gridpos(pos)
+        return dPos(pos[0], pos[1])
 
 
 def show(screen: Screen, pos: dPos, renderer: Renderer, color: Color = Color.WHITE):
