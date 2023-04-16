@@ -1,6 +1,6 @@
 import pytest
 from cardio.run import Run
-from cardio.location import Location
+from cardio.locations.location import Location
 
 
 def test_get_locations():

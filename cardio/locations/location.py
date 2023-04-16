@@ -5,7 +5,7 @@ from cardio import Grid, GridPos, gg
 from cardio.computer_strategies import ComputerStrategy, Round0OnlyStrategy
 from cardio.card_blueprints import _BLUEPRINTS, create_cards_from_blueprints
 from cardio.tui import tui
-from cardio.tui.tuiupgraderview import TUIUpgraderView
+from cardio.tui.locations.upgraderview import TUIUpgraderView
 from cardio import gg
 
 
