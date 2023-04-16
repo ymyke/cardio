@@ -29,6 +29,9 @@ class Deck:
         assert isinstance(card, Card)
         self.cards.append(card)
 
+    def remove_card(self, card: Card) -> None:
+        self.cards.remove(card)
+
     def draw_cards(self, howmany: int) -> CardList:
         """Draw `howmany` cards from the left/beginning. Drawn cards are removed from
         the deck.

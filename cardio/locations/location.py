@@ -37,13 +37,15 @@ def create_random_location(
     # Importing these here to prevent circular imports:
     from .fight_location import FightLocation
     from .no_location import NoLocation
-    from .upgrader_location import PowerUpgraderLocation, HealthUpgraderLocation
+    from .upgrader_location import PowerUpgraderLocation, HealthUpgraderLocation, PowerUpgraderMultiLocation, HealthUpgraderMultiLocation
 
     known_locations = [  # 1 = "base" frequency
         (NoLocation, 5),
         (FightLocation, 5),
         (PowerUpgraderLocation, 1),
         (HealthUpgraderLocation, 1),
+        (PowerUpgraderMultiLocation, 5),
+        (HealthUpgraderMultiLocation, 5)
     ]
     random.seed(f"L{rung}_{index}_{base_seed}_locationfactory")
     exploded_locations = [loc for loc, count in known_locations for _ in range(count)]

@@ -1,13 +1,13 @@
+from typing import Literal
+import random
 from cardio import gg
 from cardio.tui.locations.upgraderview import TUIUpgraderView
 from .location import Location
 
-# FIXME Also have UH*, UP*, which can update several times (and where you run the risk
-# of losing the card?)
-
 
 class UpgraderLocation(Location):
-    which_attribute = "_undefined_"
+    which_attribute: str = "_undefined_"
+    upgrade_type: Literal["once", "multi"] = "once"
 
     def generate(self) -> None:
         super().generate()
@@ -18,6 +18,20 @@ class UpgraderLocation(Location):
         card = view.pick()
         setattr(card, self.which_attribute, getattr(card, self.which_attribute) + 1)
         view.show_upgrade(card)
+        if self.upgrade_type == "multi":
+            while view.ask(card):
+                if random.randint(1, 100) <= 5:  # TODO increase risk
+                    view.show_destroy(card)
+                    gg.humanplayer.deck.remove_card(card)
+                    break
+                else:
+                    setattr(
+                        card,
+                        self.which_attribute,
+                        getattr(card, self.which_attribute) + 1,
+                    )
+                    view.show_upgrade(card)
+
         view.close()
         return True
 
@@ -30,3 +44,15 @@ class PowerUpgraderLocation(UpgraderLocation):
 class HealthUpgraderLocation(UpgraderLocation):
     marker = "UHU"
     which_attribute = "health"
+
+
+class PowerUpgraderMultiLocation(UpgraderLocation):
+    marker = "UP*"
+    which_attribute = "health"
+    upgrade_type = "multi"
+
+
+class HealthUpgraderMultiLocation(UpgraderLocation):
+    marker = "UH*"
+    which_attribute = "health"
+    upgrade_type = "multi"

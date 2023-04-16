@@ -37,6 +37,13 @@ def test_add_card():
     assert d.cards[-1].name == "X"
 
 
+def test_remove_card():
+    d = Deck("n", create_some_cards())
+    assert [c.name for c in d.cards] == ["A", "B", "C", "D"]
+    d.remove_card(d.cards[1])
+    assert [c.name for c in d.cards] == ["A", "C", "D"]
+
+
 def test_draw_cards():
     d = Deck("n", create_some_cards())
     # Draw some:

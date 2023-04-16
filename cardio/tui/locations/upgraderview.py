@@ -5,8 +5,9 @@ from ..utils import get_keycode, dPos
 from ... import Card
 from ..card_primitives import (
     redraw_card,
-    flash_card,
     show_card,
+    shake_card,
+    burn_card,
     BOX_WIDTH,
     BOX_PADDING_LEFT,
     BOX_HEIGHT,
@@ -50,7 +51,11 @@ class TUIUpgraderView:
     def show_upgrade(self, card: Card) -> None:
         pos = self.dpos_from_cardindex(self.cards.index(card))
         redraw_card(self.screen, card, pos)
-        flash_card(self.screen, pos)
+        shake_card(self.screen, card, pos, "h")
+
+    def show_destroy(self, card: Card) -> None:
+        pos = self.dpos_from_cardindex(self.cards.index(card))
+        burn_card(self.screen, pos)
 
     def pick(self) -> Card:
         cursor = 0
@@ -67,3 +72,12 @@ class TUIUpgraderView:
                 cursor = min(len(self.cards) - 1, cursor + self.cardsperline)
             if keycode == Screen.KEY_UP:
                 cursor = max(0, cursor - self.cardsperline)
+
+    def ask(self, card: Card) -> bool:
+        self.redraw(self.cards.index(card))
+        while True:
+            keycode = get_keycode(self.screen)
+            if keycode == 13:  # Return
+                return True
+            if keycode == Screen.KEY_ESCAPE:
+                return False

@@ -99,8 +99,8 @@ def activate_card(
     time.sleep(0.1)
 
 
-def burn_card(screen: Screen, pos: GridPos) -> None:
-    dpos = dPos.from_gridpos(pos)
+def burn_card(screen: Screen, pos: Union[dPos, GridPos]) -> None:
+    dpos = dPos.cast(pos)
     overheight = 4
     overwidth = 2
     fire = Fire(
@@ -123,11 +123,10 @@ def burn_card(screen: Screen, pos: GridPos) -> None:
         time.sleep(0.02)
         buffercopy.copyback()
     clear_card(screen, pos)
-    show_slot_in_grid(screen, pos)
 
 
 def shake_card(
-    screen: Screen, card: Card, pos: GridPos, direction: Literal["h", "v"]
+    screen: Screen, card: Card, pos: Union[dPos, GridPos], direction: Literal["h", "v"]
 ) -> None:
     if direction == "h":
         offset = {"xoffset": -1}
