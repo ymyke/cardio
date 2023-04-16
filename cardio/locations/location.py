@@ -1,12 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List
 import random
-from cardio import Grid, GridPos, gg
-from cardio.computer_strategies import ComputerStrategy, Round0OnlyStrategy
-from cardio.card_blueprints import _BLUEPRINTS, create_cards_from_blueprints
-from cardio.tui import tui
-from cardio.tui.locations.upgraderview import TUIUpgraderView
-from cardio import gg
 
 
 class Location(ABC):
@@ -40,6 +34,11 @@ class Location(ABC):
 def create_random_location(
     base_seed: str, rung: int, index: int, paths: List[int]
 ) -> Location:
+    # Importing these here to prevent circular imports:
+    from .fight_location import FightLocation
+    from .no_location import NoLocation
+    from .upgrader_location import PowerUpgraderLocation
+
     known_locations = [  # 1 = "base" frequency
         (NoLocation, 5),
         (FightLocation, 5),
@@ -49,69 +48,3 @@ def create_random_location(
     exploded_locations = [loc for loc, count in known_locations for _ in range(count)]
     location_class = random.choice(exploded_locations)
     return location_class(base_seed, rung, index, paths)
-
-
-# ----- Specific locations -----
-
-
-class NoLocation(Location):
-    marker = "···"
-
-    def generate(self) -> None:
-        super().generate()
-
-    def handle(self) -> bool:
-        return True
-
-
-class PowerUpgraderLocation(Location):
-    marker = "UPU"
-
-    # TODO Have several upgraders?
-    # once vs several, Health vs Power? UHU, UPU, UH*, UP*
-    # (Maybe the * kinds run the risk of losing the card?)
-
-    def generate(self) -> None:
-        super().generate()
-
-    def handle(self) -> bool:
-        upgradable_cards = gg.humanplayer.deck.cards
-        view = TUIUpgraderView(upgradable_cards)
-        card = view.pick()
-        card.power += 1
-        view.show_upgrade(card)
-        view.close()
-        return True
-
-
-class FightLocation(Location):
-    marker = "FFF"
-    grid: Grid
-    computerstrategy: ComputerStrategy
-
-    def generate(self) -> None:
-        super().generate()
-        self.grid = Grid(4)
-        nofcards = random.randint(1, 4)
-        cardnames = [random.choice(_BLUEPRINTS).name for _ in range(nofcards)]
-        cards = create_cards_from_blueprints(cardnames)
-        positions = [
-            GridPos(line, slot) for line in (0, 1) for slot in range(self.grid.width)
-        ]
-        random.shuffle(positions)
-        posncards = list(zip(positions, cards))
-        self.computerstrategy = Round0OnlyStrategy(grid=self.grid, cards=posncards)
-
-        # FIXME Use some other computer strategy later
-        # FIXME Use rung to somehow increase difficulty as more distance is traveled
-        # (e.g., more cards every x steps)
-
-    def handle(self) -> bool:
-        vnc = tui.TUIFightVnC(
-            computerstrategy=self.computerstrategy, grid=self.grid, debug=True
-        )
-        gg.vnc = vnc  # Stick information into the globals
-        gg.grid = self.grid
-        vnc.handle_fight()
-        vnc.close()
-        return vnc._has_human_won()

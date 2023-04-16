@@ -50,7 +50,7 @@ def test_get_accessible_locations():
         "N5_2",
         "F6_0",
         "N6_1",
-        "F7_0",
+        "P7_0",
     ]
 
 
