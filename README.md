@@ -4,6 +4,9 @@
 # Next up
 
 - Add more locations
+  - Card upgrader: Upgrade a card's power or health 
+    - Mabe a small and a large one?
+  - Skill transfer: Transfer the skill of a card to another. Sacrificing the first card
 - Add more cards
 - Refine FightLocation and Computerstrategy so the game becomes harder and harder as the
   rungs increase.
@@ -91,10 +94,8 @@
   - Card gambler: Give a card and get a random card in return
   - Card buyer: Buy certain cards for gems -- usually higher value cards
   - Card disposer: Allows you to get rid of cards (just 1 maybe) at a cost in gems
-  - Card upgrader: Upgrade a card's power or health 
   - Card merger: Merge 2 identical cards for double attributes (or, if you don't have
     any pairs, duplicate a card)
-  - Skill transer: Transfer the skill of a card to another. Sacrificing the first card
   - Locations around items...? Item shop, ...?
 - Maybe there can be inanimate cards that do not provide a fire? (So: Should cards have
   a `has_fire` attribute that can be 0, 1 or more? Or would this rather be subclasses?)
