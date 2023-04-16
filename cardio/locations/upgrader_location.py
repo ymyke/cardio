@@ -1,6 +1,6 @@
 from typing import Literal
 import random
-from cardio import gg
+from cardio import gg, Card
 from cardio.tui.locations.upgraderview import TUIUpgraderView
 from .location import Location
 
@@ -13,24 +13,29 @@ class UpgraderLocation(Location):
         super().generate()
 
     def handle(self) -> bool:
+        def _upgrade(card: Card):
+            for attr in (self.which_attribute, "initial_" + self.which_attribute):
+                setattr(card, attr, getattr(card, attr) + 1)
+            view.show_upgrade(card)
+
         upgradable_cards = gg.humanplayer.deck.cards
         view = TUIUpgraderView(upgradable_cards)
         card = view.pick()
-        setattr(card, self.which_attribute, getattr(card, self.which_attribute) + 1)
-        view.show_upgrade(card)
-        if self.upgrade_type == "multi":
-            while view.ask(card):
-                if random.randint(1, 100) <= 5:  # TODO increase risk
+        if self.upgrade_type == "once":
+            _upgrade(card)
+        else:  # multi
+            risk = 0
+            while True:
+                risk += (100 - risk) / 10
+                print(risk)
+                if random.randint(1, 100) <= risk:
                     view.show_destroy(card)
                     gg.humanplayer.deck.remove_card(card)
                     break
-                else:
-                    setattr(
-                        card,
-                        self.which_attribute,
-                        getattr(card, self.which_attribute) + 1,
-                    )
-                    view.show_upgrade(card)
+
+                _upgrade(card)
+                if not view.ask(card):
+                    break
 
         view.close()
         return True
@@ -48,7 +53,7 @@ class HealthUpgraderLocation(UpgraderLocation):
 
 class PowerUpgraderMultiLocation(UpgraderLocation):
     marker = "UP*"
-    which_attribute = "health"
+    which_attribute = "power"
     upgrade_type = "multi"
 
 
