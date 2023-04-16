@@ -1,9 +1,9 @@
 import atexit
 from typing import List, Optional
 from asciimatics.screen import Screen
-from .utils import get_keycode, dPos
-from .. import Card
-from .card_primitives import (
+from ..utils import get_keycode, dPos
+from ... import Card
+from ..card_primitives import (
     redraw_card,
     flash_card,
     show_card,

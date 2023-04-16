@@ -1,5 +1,5 @@
 from cardio import Grid, GridPos
-from cardio.location import FightLocation
+from cardio.locations.location import FightLocation
 from cardio.computer_strategies import Round0OnlyStrategy
 
 

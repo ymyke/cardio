@@ -3,7 +3,7 @@ from typing import Optional
 from asciimatics.screen import Screen
 from .utils import show_screen_resolution, get_keycode, show_text, dPos
 from ..run import Run
-from ..location import Location
+from ..locations.location import Location
 from .constants import Color
 from .agent_primitives import show_humanplayer
 

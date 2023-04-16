@@ -1,7 +1,7 @@
 import random
 from typing import List, Optional
 import time
-from cardio.location import Location, create_random_location, NoLocation
+from cardio.locations.location import Location, create_random_location, NoLocation
 from cardio.path_patterns import PATH_PATTERNS, PathPattern
 
 
