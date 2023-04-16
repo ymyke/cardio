@@ -4,10 +4,10 @@ import random
 
 
 class Location(ABC):
-    marker = "   "
+    marker = "___"
 
     def __init__(self, base_seed: str, rung: int, index: int, paths: List[int]) -> None:
-        self.id = f"{self.__class__.__name__[0]}{rung}_{index}"
+        self.id = f"{self.marker}_{rung}_{index}"
         self.seed = f"L{rung}_{index}_{base_seed}"
         self.rung = rung  # Steps from start
         self.index = index  # Index position at current rung

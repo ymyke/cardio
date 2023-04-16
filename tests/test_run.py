@@ -43,14 +43,14 @@ def test_get_accessible_locations():
     run.current_rung = 2
     run.current_index = 2
     assert [l.id for l in run.get_accessible_locations(5)] == [
-        "F3_1",
-        "F4_0",
-        "F5_0",
-        "N5_1",
-        "N5_2",
-        "F6_0",
-        "N6_1",
-        "P7_0",
+        "FFF_3_1",
+        "FFF_4_0",
+        "FFF_5_0",
+        "···_5_1",
+        "···_5_2",
+        "FFF_6_0",
+        "···_6_1",
+        "UPU_7_0",
     ]
 
 
