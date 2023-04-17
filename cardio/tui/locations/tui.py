@@ -11,7 +11,7 @@ import itertools
 from typing import Callable, List, Optional, Tuple
 from asciimatics.screen import Screen
 from cardio import Card, Deck, FightVnC, GridPos, gg
-from .card_primitives import (
+from ..card_primitives import (
     activate_card,
     burn_card,
     highlight_card,
@@ -20,17 +20,17 @@ from .card_primitives import (
     shake_card,
     clear_card,
 )
-from .decks_primitives import (
+from ..decks_primitives import (
     show_card_to_handdeck,
     show_drawdeck_highlights,
     show_drawdecks,
     redraw_handdeck,
 )
-from .grid_primitives import show_empty_grid, show_slot_in_grid
-from .agent_primitives import StateWidget
-from .utils import show_screen_resolution, get_keycode
-from ..placement_manager import PlacementManager, PlacementAbortedException
-from .tuibase import TUIBaseMixin
+from ..grid_primitives import show_empty_grid, show_slot_in_grid
+from ..agent_primitives import StateWidget
+from ..utils import show_screen_resolution, get_keycode
+from ...placement_manager import PlacementManager, PlacementAbortedException
+from ..tuibase import TUIBaseMixin
 
 
 class TUIFightVnC(TUIBaseMixin, FightVnC):

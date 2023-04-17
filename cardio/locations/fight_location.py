@@ -2,7 +2,7 @@ import random
 from cardio import Grid, GridPos, gg
 from cardio.card_blueprints import _BLUEPRINTS, create_cards_from_blueprints
 from cardio.computer_strategies import ComputerStrategy, Round0OnlyStrategy
-from cardio.tui import tui
+from cardio.tui.locations import tui
 from .location import Location
 
 

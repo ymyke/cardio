@@ -1,7 +1,7 @@
 # %%
 import logging
 from cardio import Card, gg, GridPos
-from cardio.tui import tui
+from cardio.tui.locations import tui
 from cardio.computer_strategies import Round0OnlyStrategy
 
 logging.basicConfig(level=logging.DEBUG)
