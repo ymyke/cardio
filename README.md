@@ -3,6 +3,14 @@
 
 # Next up
 
+Add tests for upgradelocation
+	Have some way to pass a view? (Which can then easily be mocked/faked for tests?)
+Use return in map
+Set cursor on next rung more sensibly
+
+- Bug: Church Mouse produces cards that will be in the player's deck. Should remove the
+  copies that get produced in a fight. How? Add some copy flag?
+
 - Add more locations
   - Card upgrader: Upgrade a card's power or health 
     - Mabe a small and a large one?
@@ -13,6 +21,10 @@
 - Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
 - Implement items.
 - Add more skills.
+
+- Should there be additional scores in addition to the rung? Something that better
+  reflects the difficulty mastered by that run? E.g., number of fights? Or should there
+  be a score per fight (maybe something that reflects how hard the fight is)?
 
 - Are there 3 (to 4) broad card categories?
   - 1. All that concectually exist.
