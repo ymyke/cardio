@@ -7,14 +7,10 @@ of game-related logic must take place or be orchestrated in FightVnC.
 
 # FIXME Rename this module to tuifightvnc.py
 
-import atexit
 import itertools
 from typing import Callable, List, Optional, Tuple
-
 from asciimatics.screen import Screen
-
 from cardio import Card, Deck, FightVnC, GridPos, gg
-
 from .card_primitives import (
     activate_card,
     burn_card,
@@ -34,20 +30,15 @@ from .grid_primitives import show_empty_grid, show_slot_in_grid
 from .agent_primitives import StateWidget
 from .utils import show_screen_resolution, get_keycode
 from ..placement_manager import PlacementManager, PlacementAbortedException
+from .tuibase import TUIBaseMixin
 
 
-class TUIFightVnC(FightVnC):
-    def __init__(self, debug: bool = False, *args, **kwargs) -> None:
+class TUIFightVnC(TUIBaseMixin, FightVnC):
+    def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
-        self.screen = Screen.open(unicode_aware=True)
-        self.debug = debug
         if self.debug:
             show_screen_resolution(self.screen)
-        atexit.register(self.close)
         self.state_widget = StateWidget(self.screen, self.grid.width, self.damagestate)
-
-    def close(self) -> None:
-        self.screen.close()
 
     # --- Methods from base class ---
 

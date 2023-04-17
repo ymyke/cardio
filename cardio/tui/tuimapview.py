@@ -1,4 +1,3 @@
-import atexit
 from typing import Optional
 from asciimatics.screen import Screen
 from .utils import show_screen_resolution, get_keycode, show_text, dPos
@@ -6,24 +5,17 @@ from ..run import Run
 from ..locations.location import Location
 from .constants import Color
 from .agent_primitives import show_humanplayer
+from .tuibase import TUIBaseMixin
 
 
-class TUIMapView:
+class TUIMapView(TUIBaseMixin):
     MAPTOPLEFT = dPos(20, 10)
     AGENTINFO = dPos(70, 2)
     GAMEINFO = dPos(70, 18)
 
-    def __init__(self, run: Run, debug: bool = False) -> None:
-        # FIXME Code redundancies w TUIFightVnC -- Change these to all use the same
-        # sceen (i.e., pass some screen object to the initializer)? Or the same code
-        # (i.e., inherit from some TUIScreen class or mixin?)
+    def __init__(self, run: Run, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
         self.run = run
-        self.debug = debug
-        self.screen = Screen.open(unicode_aware=True)
-        atexit.register(self.close)
-
-    def close(self) -> None:
-        self.screen.close()
 
     def dpos_from_location(self, loc: Location) -> dPos:
         # FIXME This is not nice bc it hardcodes all kinds of things that are flexible

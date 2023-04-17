@@ -1,4 +1,3 @@
-import atexit
 from typing import List, Optional
 from asciimatics.screen import Screen
 from ..utils import get_keycode, dPos
@@ -13,24 +12,16 @@ from ..card_primitives import (
     BOX_HEIGHT,
     BOX_PADDING_TOP,
 )
+from ..tuibase import TUIBaseMixin
 
 
-class TUIUpgraderView:
-    def __init__(self, cards: List[Card], debug: bool = False) -> None:
-        # TODO Code redundancies w TUIFightVnC & TUIMapView -- Change these to all use
-        # the same sceen (i.e., pass some screen object to the initializer)? Or the same
-        # code (i.e., inherit from some TUIScreen class or mixin?)
+class TUIUpgraderView(TUIBaseMixin):
+    def __init__(self, cards: List[Card], *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
         self.cards = cards
-        self.debug = debug
-        self.screen = Screen.open(unicode_aware=True)
         self.gross_width = BOX_WIDTH + BOX_PADDING_LEFT
         self.gross_height = BOX_HEIGHT + BOX_PADDING_TOP
         self.cardsperline = self.screen.width // self.gross_width
-
-        atexit.register(self.close)
-
-    def close(self) -> None:
-        self.screen.close()
 
     def dpos_from_cardindex(self, idx: int) -> dPos:
         x = (idx % self.cardsperline) * self.gross_width
