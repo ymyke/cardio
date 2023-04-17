@@ -81,6 +81,7 @@ Set cursor on next rung more sensibly
 
 # Todo
 
+- Check for right minimum resolution at the beginning.
 - Can we add the new fire and spirits placement logic to the hypo-driven tests? Maybe
   using the placement mgr in the hypo test?
 - Terminology: agent vs player everywhere? Which is the better term? Make it consistent.
