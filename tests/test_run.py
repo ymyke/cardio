@@ -43,11 +43,11 @@ def test_get_accessible_locations():
     run.current_rung = 2
     run.current_index = 2
     assert [l.id for l in run.get_accessible_locations(5)] == [
-        "FFF_3_1",
+        "UP*_3_1",
         "FFF_4_0",
         "FFF_5_0",
         "···_5_1",
-        "···_5_2",
+        "UH*_5_2",
         "FFF_6_0",
         "···_6_1",
         "UPU_7_0",
@@ -58,7 +58,7 @@ def test_run_pattern():
     run = Run("0")
 
     target = """\
-FFF               FFF     ← 3
+FFF               UP*     ← 3
  ||                | 
  ||                | 
  |+-------+        | 
@@ -70,7 +70,7 @@ UHU      FFF      ···     ← 2
  +-------+++-------+ 
          |||         
          |||         
-         FFF              ← 1
+         UP*              ← 1
           |          
           |          
           |          
