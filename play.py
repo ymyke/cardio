@@ -2,7 +2,7 @@ import logging
 from cardio import gg, HumanPlayer
 from cardio.card_blueprints import create_cards_from_blueprints
 from cardio.run import Run
-from cardio.tui.tuimapview import TUIMapView
+from cardio.tui.mapview import TUIMapView
 
 logging.basicConfig(level=logging.DEBUG)
 
