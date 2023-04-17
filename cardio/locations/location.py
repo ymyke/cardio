@@ -23,7 +23,7 @@ class Location(ABC):
         pass
 
     @abstractmethod
-    def handle(self) -> bool:
+    def handle(self, view_class: type) -> bool:
         """Returns `True` if the game is is still on, `False` if game is over."""
         pass
 
@@ -35,24 +35,11 @@ def create_random_location(
     base_seed: str, rung: int, index: int, paths: List[int]
 ) -> Location:
     # Importing these here to prevent circular imports:
-    from .fight_location import FightLocation
-    from .no_location import NoLocation
-    from .upgrader_location import (
-        PowerUpgraderLocation,
-        HealthUpgraderLocation,
-        PowerUpgraderMultiLocation,
-        HealthUpgraderMultiLocation,
-    )
+    from .location_directory import location_frequencies
 
-    known_locations = [  # 1 = "base" frequency
-        (NoLocation, 10),
-        (FightLocation, 10),
-        (PowerUpgraderLocation, 2),
-        (HealthUpgraderLocation, 2),
-        (PowerUpgraderMultiLocation, 1),
-        (HealthUpgraderMultiLocation, 1),
-    ]
     random.seed(f"L{rung}_{index}_{base_seed}_locationfactory")
-    exploded_locations = [loc for loc, count in known_locations for _ in range(count)]
+    exploded_locations = [
+        loc for loc, count in location_frequencies for _ in range(count)
+    ]
     location_class = random.choice(exploded_locations)
     return location_class(base_seed, rung, index, paths)

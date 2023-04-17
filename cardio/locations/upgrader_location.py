@@ -1,8 +1,25 @@
-from typing import Literal
+from typing import Literal, Protocol, Type
 import random
-from cardio import gg, Card
-from cardio.tui.locations.upgraderview import TUIUpgraderView
+from cardio import gg, Card, CardList
 from .location import Location
+from .baseview import BaseLocationView
+
+
+class UpgraderView(BaseLocationView, Protocol):
+    def __init__(self, upgradable_cards: CardList) -> None:
+        ...
+
+    def pick(self) -> Card:
+        ...
+
+    def show_destroy(self, card: Card) -> None:
+        ...
+
+    def show_upgrade(self, card: Card) -> None:
+        ...
+
+    def ask(self, card: Card) -> bool:
+        ...
 
 
 class UpgraderLocation(Location):
@@ -12,14 +29,14 @@ class UpgraderLocation(Location):
     def generate(self) -> None:
         super().generate()
 
-    def handle(self) -> bool:
+    def handle(self, view_class: Type[UpgraderView]) -> bool:
         def _upgrade(card: Card):
             for attr in (self.which_attribute, "initial_" + self.which_attribute):
                 setattr(card, attr, getattr(card, attr) + 1)
             view.show_upgrade(card)
 
         upgradable_cards = gg.humanplayer.deck.cards
-        view = TUIUpgraderView(upgradable_cards)
+        view = view_class(upgradable_cards)
         card = view.pick()
         if self.upgrade_type == "once":
             _upgrade(card)

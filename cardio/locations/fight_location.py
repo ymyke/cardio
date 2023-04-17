@@ -1,9 +1,24 @@
 import random
+from typing import Protocol, Type
 from cardio import Grid, GridPos, gg
 from cardio.card_blueprints import _BLUEPRINTS, create_cards_from_blueprints
 from cardio.computer_strategies import ComputerStrategy, Round0OnlyStrategy
-from cardio.tui.locations import fightview
 from .location import Location
+from .baseview import BaseLocationView
+
+
+class FightView(BaseLocationView, Protocol):
+    def __init__(
+        self, computerstrategy: ComputerStrategy, grid: Grid, debug=True
+    ) -> None:
+        ...
+
+    def handle_fight(self) -> None:
+        ...
+
+    def _has_human_won(self) -> bool:
+        # FIXME Make this method non-private
+        ...
 
 
 class FightLocation(Location):
@@ -28,8 +43,8 @@ class FightLocation(Location):
         # FIXME Use rung to somehow increase difficulty as more distance is traveled
         # (e.g., more cards every x steps)
 
-    def handle(self) -> bool:
-        vnc = fightview.TUIFightVnC(
+    def handle(self, view_class: Type[FightView]) -> bool:
+        vnc = view_class(
             computerstrategy=self.computerstrategy, grid=self.grid, debug=True
         )
         gg.vnc = vnc  # Stick information into the globals

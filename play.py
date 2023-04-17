@@ -3,6 +3,7 @@ from cardio import gg, HumanPlayer
 from cardio.card_blueprints import create_cards_from_blueprints
 from cardio.run import Run
 from cardio.tui.mapview import TUIMapView
+from cardio.locations.location_directory import view_directory
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -29,7 +30,8 @@ while game_on:
     chosen_loc = mapview.get_next_location()
     mapview.move_to(chosen_loc)
     run.move_to(chosen_loc)
-    game_on = chosen_loc.handle()
+    view = view_directory[type(chosen_loc)]  # type: ignore
+    game_on = chosen_loc.handle(view)
 
 
 ### Game over:
