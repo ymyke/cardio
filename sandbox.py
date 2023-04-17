@@ -1,7 +1,7 @@
 # %%
 import logging
 from cardio import Card, gg, GridPos
-from cardio.tui.locations import tui
+from cardio.tui.locations import fightview
 from cardio.computer_strategies import Round0OnlyStrategy
 
 logging.basicConfig(level=logging.DEBUG)
@@ -18,7 +18,7 @@ cs = Round0OnlyStrategy(
     ],
 )
 
-tv = tui.TUIFightVnC(debug=True, computerstrategy=cs, grid=gg.grid)
+tv = fightview.TUIFightVnC(debug=True, computerstrategy=cs, grid=gg.grid)
 gg.vnc = tv
 gg.humanplayer.spirits = 3
 tv.handle_fight()

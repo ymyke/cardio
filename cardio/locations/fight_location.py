@@ -2,7 +2,7 @@ import random
 from cardio import Grid, GridPos, gg
 from cardio.card_blueprints import _BLUEPRINTS, create_cards_from_blueprints
 from cardio.computer_strategies import ComputerStrategy, Round0OnlyStrategy
-from cardio.tui.locations import tui
+from cardio.tui.locations import fightview
 from .location import Location
 
 
@@ -29,7 +29,7 @@ class FightLocation(Location):
         # (e.g., more cards every x steps)
 
     def handle(self) -> bool:
-        vnc = tui.TUIFightVnC(
+        vnc = fightview.TUIFightVnC(
             computerstrategy=self.computerstrategy, grid=self.grid, debug=True
         )
         gg.vnc = vnc  # Stick information into the globals
