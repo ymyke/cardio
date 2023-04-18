@@ -7,5 +7,5 @@ class NoLocation(Location):
     def generate(self) -> None:
         super().generate()
 
-    def handle(self) -> bool:
+    def handle(self, view_class: type) -> bool:
         return True
