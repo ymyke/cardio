@@ -84,7 +84,7 @@ class TUIMapView(TUIBaseMixin):
 
     def get_next_location(self) -> Location:
         possible_locations = self.run.get_accessible_locations(1)
-        cursor = 0
+        cursor = min(self.run.current_index, len(possible_locations) - 1)
         while True:
             self.redraw(cursor_pos=cursor)
             keycode = get_keycode(self.screen)
