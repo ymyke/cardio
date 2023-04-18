@@ -88,7 +88,7 @@ class TUIMapView(TUIBaseMixin):
         while True:
             self.redraw(cursor_pos=cursor)
             keycode = get_keycode(self.screen)
-            if keycode == Screen.KEY_UP:
+            if keycode in (Screen.KEY_UP, 13):
                 break
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
