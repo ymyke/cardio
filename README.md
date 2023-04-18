@@ -3,15 +3,11 @@
 
 # Next up
 
-Use return in map
-Set cursor on next rung more sensibly
 
 - Bug: Church Mouse produces cards that will be in the player's deck. Should remove the
   copies that get produced in a fight. How? Add some copy flag?
 
 - Add more locations
-  - Card upgrader: Upgrade a card's power or health 
-    - Mabe a small and a large one?
   - Skill transfer: Transfer the skill of a card to another. Sacrificing the first card
 - Add more cards
 - Refine FightLocation and Computerstrategy so the game becomes harder and harder as the
