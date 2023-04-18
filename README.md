@@ -3,8 +3,6 @@
 
 # Next up
 
-Add tests for upgradelocation
-	Have some way to pass a view? (Which can then easily be mocked/faked for tests?)
 Use return in map
 Set cursor on next rung more sensibly
 
