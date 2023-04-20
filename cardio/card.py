@@ -66,6 +66,9 @@ class Card:
     def is_human(self) -> bool:
         return self in gg.humanplayer.get_all_human_cards()
 
+    def is_skilled(self) -> bool:
+        return len(self.skills) > 0
+
     def get_grid_pos(self) -> GridPos:
         pos = gg.grid.find_card(self)
         assert pos is not None, "Cards calling `get_grid_pos` must be on the grid"
