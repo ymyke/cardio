@@ -15,6 +15,7 @@ class TUIBaseMixin:
 
     def message(self, msg: str) -> None:
         """Display a message for the user and wait for any key."""
+        self.screen.clear_buffer(0, 0, 0)
         splash_message(self.screen, msg)
         wait_for_any_key(self.screen)
 
