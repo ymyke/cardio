@@ -42,6 +42,7 @@ class Skill(Enum):
         name="Soaring",
         symbol="🪁",
         description="A Soaring card will ignore opposing cards and strike an opponent directly.",
+        # Or: Jump 🐇
     )
     SPINES = SkillSpec(
         name="Spines",
@@ -68,8 +69,8 @@ SkillList = List[Skill]
 # - Berserk 💢 -- A card with Berserk gains increased strength when it has taken damage.
 # - Underdog -- A card with Underdog gains additional strength when fighting against
 #   cards with higher power.
-# - Poisonous 💊 -- Opponent (player or card?) gets poisoned and loses 1 health each
-#   round.
+# - Poisonous 🐍💊 / Noxious 🌿 -- Opponent (player or card?) gets poisoned and loses 1
+#   health each round.
 # - Radiant 🌞 -- A card with Radiant creates 1 more spirit each time it gets brought
 #   into play.
 # - Mixer 🔀 -- A card with Mixer swaps one random card from your hand with another one
@@ -79,6 +80,20 @@ SkillList = List[Skill]
 #   time it gets brought into play.
 # - Quick ⚡ -- Strikes twice. Maybe at normal time and again after the opponent
 #   attacked.
+# - Slow 🐢 -- A card with Slow will attack only every other round.
+# - Stun 🥊 -- A card with Stun will stun an attacked card with a successful attack. A
+#   stunned card will not attack next round.
+# - Bloodsucker 🩸 -- A card with Bloodsucker will have comparatively high fire cost but
+#   can use opponent's cards as well for sacrifice.
+# - Ambush 🏹 / Haste 🏃‍♂️ -- A card with Ambush will attack the opponent directly when
+#   it is played.
+# - Double Strike 🗡️ -- A card with Double Strike will attack twice.
+# - Immune 🧬 -- A card with Immune will not be affected by any skills.
+# - Overload 🔌 -- A card with Overload will deal 1 damage to itself when it attacks.
+# - Weakness 🤕 -- A card with Weakness will deal 1 less damage when it attacks.
+# - Yell 🗣️ -- A card with Yell will deal 1 more damage when it attacks.
+# - Bully 🤼 -- A card with Bully will always attack the weakest opponent (in the entire
+#   row or opponent + 2 neighbors).
 # - Hoarder -- Draw another card when this card is played. # - Echolot 🔍 -- Pick a
 #   specific card from the deck.
 # - Summon 🤝 -- A card with Summon can bring other cards from your deck into play.
