@@ -4,12 +4,10 @@
 # Next up
 
 
-- Skill lottery: Pick a card and get a random skill for it. (Maybe there should be
-  negative skills as well in the future?) -- The more skills the card has already, the
-  higher the chance it will lose a skill instead.
-
 - Bug: Church Mouse produces cards that will be in the player's deck. Should remove the
   copies that get produced in a fight. How? Add some copy flag?
+
+- UI Bug: Need differrent symbol for INSTANTDEATH.
 
 - Add more locations
 - Add more cards

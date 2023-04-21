@@ -47,7 +47,7 @@ def test_get_accessible_locations():
         "FFF_4_0",
         "FFF_5_0",
         "···_5_1",
-        "UH*_5_2",
+        "SL⚀_5_2",
         "FFF_6_0",
         "···_6_1",
         "S→→_7_0",
