@@ -29,29 +29,29 @@ class Skill(Enum):
     INSTANTDEATH = SkillSpec(
         name="Instant Death",
         symbol="☠️",
-        description="A card with Instant Death kills a card it damages in one hit. If the attack strikes the opponent directly, the skill has no effect and the attack does damage according to its power, as usual. If a card has 0 Power, it will not attack and this skill has no effect.",
+        description="A card with Instant Death will instantly kill any card it damages. If the attack strikes the opponent directly, the skill has no effect, and the attack will deal damage according to its power. If a card has 0 power, it will not attack, and this skill will have no effect.",
     )
     FERTILITY = SkillSpec(
         name="Fertility",
         symbol="🐭",
         description="A fertile card creates a copy of itself in your hand when it is played.",
     )
-    # (QQ: Maybe FERTILITY only makes sense for cards that use spirits as costs? Or that
-    # cost more than 1 fire? Otherwise you can create infinite spirits with them?))
+    # QQ: Maybe FERTILITY only makes sense for cards that use spirits as costs? Or that
+    # cost more than 1 fire? Otherwise you can create infinite spirits with them?
     SOARING = SkillSpec(
         name="Soaring",
         symbol="🪁",
-        description="A soaring card will ignore opposing cards and strike an opponent directly.",
+        description="A Soaring card will ignore opposing cards and strike an opponent directly.",
     )
     SPINES = SkillSpec(
         name="Spines",
         symbol="🦔",
-        description="When a card with spines is struck, the striker is dealt 1 damage.",
+        description="When a card with Spines is attacked, the attacker receives 1 damage.",
     )
     AIRDEFENSE = SkillSpec(
         name="Air Defense",
         symbol="🚀",
-        description="A card with Air Defense blocks opposing Soaring creatures.",
+        description="A card with Air Defense will block attacks from Soaring cards.",
         # QQ: Maybe REACHHIGH instead of AIRDEFENSE? With an arm symbol? Or
         # LONGNECK/HEADHIGH/... and the girafe emojoi?
     )
