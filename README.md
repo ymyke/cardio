@@ -4,6 +4,10 @@
 # Next up
 
 
+- Skill lottery: Pick a card and get a random skill for it. (Maybe there should be
+  negative skills as well in the future?) -- The more skills the card has already, the
+  higher the chance it will lose a skill instead.
+
 - Bug: Church Mouse produces cards that will be in the player's deck. Should remove the
   copies that get produced in a fight. How? Add some copy flag?
 
@@ -94,13 +98,13 @@
 
 # Ideas: All prios
 
+- Add titles to locations.
 - Location ideas:
-  - Skill lottery: Pick a card and get a random skill for it. (Maybe there should be
-    negative skills as well in the future?) -- The more skills the card has already, the
-    higher the chance it will lose a skill instead.
   - Card shop: Buy cards for gems
   - Exchange: Change spirits to gems and vice versa
-  - Card gambler: Give a card and get a random card in return
+  - Card lottery: Give a card and get a random card in return
+  - Card game: Play some little game and the better you are the better the card you get
+    (at random) in return.
   - Card buyer: Buy certain cards for gems -- usually higher value cards
   - Card disposer: Allows you to get rid of cards (just 1 maybe) at a cost in gems
   - Card merger: Merge 2 identical cards for double attributes (or, if you don't have
