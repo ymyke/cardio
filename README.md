@@ -11,6 +11,8 @@
 - Bug: Church Mouse produces cards that will be in the player's deck. Should remove the
   copies that get produced in a fight. How? Add some copy flag?
 
+- UI Bug: Need differrent symbol for INSTANTDEATH.
+
 - Add more locations
 - Add more cards
 - Refine FightLocation and Computerstrategy so the game becomes harder and harder as the
