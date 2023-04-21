@@ -104,7 +104,15 @@
   - Exchange: Change spirits to gems and vice versa
   - Card lottery: Give a card and get a random card in return
   - Card game: Play some little game and the better you are the better the card you get
-    (at random) in return.
+    (at random) in return. -- Ideas for minigames:
+    - Guess the number: The computer picks a number between 1 and 100 and you have to
+      guess it. The computer tells you whether your guess is too high or too low.
+    - Rock Paper Scissors for x times.
+    - Perform calculations ever quicker.
+    - Keep up with typing text that gets produced ever faster.
+    - Press keys as they appear on screen as quickly as possible.
+    - Snakes/Tron
+    - Frogger
   - Card buyer: Buy certain cards for gems -- usually higher value cards
   - Card disposer: Allows you to get rid of cards (just 1 maybe) at a cost in gems
   - Card merger: Merge 2 identical cards for double attributes (or, if you don't have
