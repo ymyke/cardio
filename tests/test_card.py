@@ -1,5 +1,5 @@
 import pytest
-from cardio import Card, GridPos, gg, FightDecks
+from cardio import Card, GridPos, gg, FightDecks, Skill
 
 
 @pytest.fixture
@@ -25,6 +25,12 @@ def test_init():
     assert c.costs_spirits == 0
     assert c.has_spirits == 1
     assert c.has_fire == 1
+
+
+def test_is_skilled():
+    c = Card("X", 1, 2, 3)
+    assert not c.is_skilled()
+    c.skills = [Skill.FERTILITY]
 
 
 def test_init_with_both_fire_and_spirit_should_fail():

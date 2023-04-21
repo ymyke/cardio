@@ -8,7 +8,6 @@
   copies that get produced in a fight. How? Add some copy flag?
 
 - Add more locations
-  - Skill transfer: Transfer the skill of a card to another. Sacrificing the first card
 - Add more cards
 - Refine FightLocation and Computerstrategy so the game becomes harder and harder as the
   rungs increase.
@@ -96,6 +95,9 @@
 # Ideas: All prios
 
 - Location ideas:
+  - Skill lottery: Pick a card and get a random skill for it. (Maybe there should be
+    negative skills as well in the future?) -- The more skills the card has already, the
+    higher the chance it will lose a skill instead.
   - Card shop: Buy cards for gems
   - Exchange: Change spirits to gems and vice versa
   - Card gambler: Give a card and get a random card in return

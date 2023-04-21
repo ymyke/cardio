@@ -26,6 +26,12 @@ class FakeUpgraderView(UpgraderView):
     def close(self) -> None:
         ...
 
+    def message(self, msg: str) -> None:
+        ...
+
+    def error(self, msg: str) -> None:
+        ...
+
 
 def test_powerupgraderlocation(gg_setup):
     card = Card("X", 1, 1, 1, None)

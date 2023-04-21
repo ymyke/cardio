@@ -71,6 +71,16 @@ def show_text_ra(
     show_text(screen, pos - (xoffest, 0), text, color)
 
 
+def splash_message(screen: Screen, msg: str) -> None:
+    lines = msg.split("\n")
+    y = screen.height // 2 - len(lines) // 2
+    for line in lines:
+        x = screen.width // 2 - len(line) // 2
+        show_text(screen, dPos(x, y), line)
+        y += 1
+    screen.refresh()
+
+
 def show_box(
     screen: Screen,
     pos: dPos,
@@ -138,3 +148,10 @@ def get_keycode(screen: Screen) -> Optional[int]:
     if event.key_code == ord("!"):  # debug
         start_debug_mode(screen)
     return event.key_code
+
+
+def wait_for_any_key(screen: Screen) -> int:
+    keycode = None
+    while not keycode:
+        keycode = get_keycode(screen)
+    return keycode
