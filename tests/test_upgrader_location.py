@@ -57,5 +57,7 @@ def test_powerupgraderlocation_multi(gg_setup):
     card = Card("X", 1, 1, 1, None)
     gg.humanplayer.deck = Deck("main", [card])
     loc = PowerUpgraderMultiLocation("0", 0, 0, [])
+    # Together with the fake view above, which always confirms in the `ask` method, the
+    # following will upgrade the card so often that will get destroyed eventually:
     loc.handle(view_class=FakeUpgraderView)
     assert gg.humanplayer.deck.is_empty()
