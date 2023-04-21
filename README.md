@@ -8,7 +8,6 @@
   copies that get produced in a fight. How? Add some copy flag?
 
 - Add more locations
-  - Skill transfer: Transfer the skill of a card to another. Sacrificing the first card
 - Add more cards
 - Refine FightLocation and Computerstrategy so the game becomes harder and harder as the
   rungs increase.

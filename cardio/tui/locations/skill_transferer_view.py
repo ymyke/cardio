@@ -1,10 +1,10 @@
 from typing import List
-from ... import Card
-from ..card_picker import CardPicker
+from ... import Card, CardList
 from ..tuibase import TUIBaseMixin
+from ..card_picker import CardPicker
 
 
-class TUIUpgraderView(TUIBaseMixin):
+class TUISkillTransfererView(TUIBaseMixin):
     def __init__(self, cards: List[Card], *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.cards = cards
@@ -16,8 +16,8 @@ class TUIUpgraderView(TUIBaseMixin):
     def show_destroy(self, card: Card) -> None:
         self.cardpicker.burn_card(card)
 
-    def pick(self) -> Card:
-        return self.cardpicker.pick()
+    def pick_from(self, from_cards: CardList) -> Card:
+        return self.cardpicker.pick(from_cards)
 
-    def ask(self, card: Card) -> bool:  # FIXME Better call this confirm?
-        return self.cardpicker.confirm(card)
+    def pick_to(self, to_cards: CardList) -> Card:
+        return self.cardpicker.pick(to_cards)

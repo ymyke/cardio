@@ -15,8 +15,11 @@ from .grid_primitives import show_slot_in_grid
 from .utils import dPos, render_value, show_text, show_text_ra, show_box
 
 
-def show_card_contents(screen: Screen, card: Card, pos: dPos) -> None:
-    show_text(screen, pos + (2, 1), card.name)
+def show_card_contents(
+    screen: Screen, card: Card, pos: dPos, inactive: bool = False
+) -> None:
+    color = Color.GRAY if inactive else Color.WHITE
+    show_text(screen, pos + (2, 1), card.name, color=color)
     power = render_value(card.power, "💪", surplus_color=Color.YELLOW)
     show_text(screen, pos + (2, 2), power)
     health = render_value(card.health, "💓", surplus_color=Color.RED)
@@ -39,26 +42,31 @@ def show_card(
     card: Optional[Card],
     pos: Union[GridPos, dPos],
     highlight: bool = False,
+    inactive: bool = False,
     xoffset: int = 0,
     yoffset: int = 0,
 ) -> None:
     """Draw card. Either at display position or grid position, depending on the type of
     `pos` passed. Draws empty box if `card` is `None`. Highlights card/slot if
-    `highlight` is `True`.
+    `highlight` is `True`. Displays card as inactive if `inactive` is `True`
+    (`highlight` trumps `inactive`).
     """
     dpos = dPos.cast(pos)
     dpos += (xoffset, yoffset)
 
+    style = SINGLE_LINE
+    color = Color.YELLOW
+
+    if inactive:
+        color = Color.GRAY
+
     if highlight:
         style = DOUBLE_LINE
         color = Color.BLUE
-    else:
-        style = SINGLE_LINE
-        color = Color.YELLOW
 
     show_box(screen, dpos, style=style, color=color)
     if card is not None:
-        show_card_contents(screen, card, dpos)
+        show_card_contents(screen, card, dpos, inactive=inactive)
 
 
 def redraw_card(
