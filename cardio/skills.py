@@ -80,6 +80,11 @@ SkillList = List[Skill]
 #   time it gets brought into play.
 # - Quick ⚡ -- Strikes twice. Maybe at normal time and again after the opponent
 #   attacked.
+# - Bloodless / Pale/ Inert / Extinguished 🧯 -- Will not provide any fire or spirits
+#   (has_*). That also means the card cannot be sacrificed.
+# - Hunter / Kidnapper -- A card with Hunter will grab the opposing card to the player's
+#   side (for the duration of the fight), pushing the Hunter-card to the prep line
+#   (computer) or the player's (human) hand. 
 # - Slow 🐢 -- A card with Slow will attack only every other round.
 # - Stun 🥊 -- A card with Stun will stun an attacked card with a successful attack. A
 #   stunned card will not attack next round.
