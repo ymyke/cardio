@@ -25,15 +25,31 @@ def show_card_contents(
     show_text(screen, pos + (2, 3), health)
     skills = "".join(s.value.symbol for s in card.skills)
     show_text(screen, pos + (2, 4), skills)
-    if card.costs_fire > 0:
-        cost = render_value(
-            card.costs_fire, "🔥", surplus_color=Color.YELLOW, clear_after=False
-        )
-    else:
-        cost = render_value(
-            card.costs_spirits, "👻", surplus_color=Color.WHITE, clear_after=False
-        )
-    show_text_ra(screen, pos + (BOX_WIDTH - 1, 5), cost)
+
+    # Show costs_fire/spirits or has_fire/spirits depending on card's position:
+    gridpos = None
+    try:
+        gridpos = card.get_grid_pos()
+    except AssertionError:
+        pass
+
+    if gridpos is None:  # Card is not in grid -> show costs_fire/spirits
+        if card.costs_fire > 0:
+            cost = "↓" + render_value(card.costs_fire, "🔥", 5, False, Color.YELLOW)
+        elif card.costs_spirits > 0:
+            cost = "↓" + render_value(card.costs_spirits, "👻", 5, False, Color.WHITE)
+        else:
+            cost = ""
+        show_text_ra(screen, pos + (BOX_WIDTH - 1, 5), cost)
+    elif gridpos.line == 2:  # Card is in human's line -> show has_fire/spirits
+        if card.has_fire > 0:
+            cost = "↑" + render_value(card.has_fire, "🔥", 5, False, Color.YELLOW)
+        elif card.has_spirits > 0:
+            cost = "↑" + render_value(card.has_spirits, "👻", 5, False, Color.WHITE)
+        else:
+            cost = ""
+        show_text_ra(screen, pos + (BOX_WIDTH - 1, 5), cost)
+    # else:  # Card is in computer's line -> don't show anything
 
 
 def show_card(
