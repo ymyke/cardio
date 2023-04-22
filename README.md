@@ -3,13 +3,13 @@
 
 # Next up
 
+- Bug: Why is there a ghost here? https://monosnap.com/file/yyaT9Gk55JsxgJUX9Fv0qCCQkBbMyJ
 
 - Bug: Church Mouse produces cards that will be in the player's deck. Should remove the
   copies that get produced in a fight. How? Add some copy flag?
 
 - UI Bug: Need differrent symbol for INSTANTDEATH.
 
-- Add more locations
 - Add more cards
 - Refine FightLocation and Computerstrategy so the game becomes harder and harder as the
   rungs increase.
@@ -141,8 +141,12 @@
   likelihood to lose the card? -- Then, a save game and game progress score would
   somehow take into account a hash over the entire game to make sure the game has not
   been tampered with? Then only authoritative scores are allowed in leaderboards etc.
-  Can the TSM be used somehow to that end? Or some authoritative docker images with the
+  Can the TSE be used somehow to that end? Or some authoritative docker images with the
   software? Of course one option is always to deploy on the web and run it centralized.
+  (Yet another option might be to create logs of information with each run (including
+  all user choices) that can be used to simulate and verify the run. That way, it can be
+  verified if such a run relly exists. (Such a system would still be prone to cheating
+  by creating a computer agent that brute force searches for the best run.))
 - Corveaux special ability/animal? Can consume ghosts/souls/spirits and release them as
   blood/energy/...?
 - Have floor tiles with special effects? I.e., more strength if a create is on it?
