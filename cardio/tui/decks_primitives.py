@@ -2,14 +2,18 @@ from typing import Literal, Tuple
 from asciimatics.screen import Screen
 from cardio import GridPos, Deck, Card
 from .constants import *
-from .card_primitives import highlight_card, show_card, move_card, highlight2_card
+from .card_primitives import show_card, move_card, VisualState
 from .utils import dPos, show_text, show_box
 
 
-def show_drawdeck_highlights(screen: Screen, highlights: Tuple[bool, bool]) -> None:
+def show_drawdeck_cursor(screen: Screen, cursor: Literal[0, 1]) -> None:
     pos = dPos(DRAW_DECKS_X, DRAW_DECKS_Y)
-    highlight2_card(screen, pos, highlights[0])
-    highlight2_card(screen, pos + (BOX_WIDTH + 2, 0), highlights[1])
+    if cursor == 0:
+        state0, state1 = VisualState.CURSOR, VisualState.NORMAL
+    else:
+        state0, state1 = VisualState.NORMAL, VisualState.CURSOR
+    show_card(screen, None, pos, state0)
+    show_card(screen, None, pos + (BOX_WIDTH + 2, 0), state1)
 
 
 def show_drawdecks(screen: Screen, drawdeck: Deck, hamsterdeck: Deck) -> None:
