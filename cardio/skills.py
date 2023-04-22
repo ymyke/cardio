@@ -30,6 +30,7 @@ class Skill(Enum):
         name="Instant Death",
         symbol="💀",
         description="A card with Instant Death will instantly kill any card it damages. If the attack strikes the opponent directly, the skill has no effect, and the attack will deal damage according to its power. If a card has 0 power, it will not attack, and this skill will have no effect.",
+        # QQ: Alternative names: One-Shot🎯, Killer Instinct, Exterminator, Terminator
     )
     FERTILITY = SkillSpec(
         name="Fertility",
@@ -84,7 +85,7 @@ SkillList = List[Skill]
 #   (has_*). That also means the card cannot be sacrificed.
 # - Hunter / Kidnapper -- A card with Hunter will grab the opposing card to the player's
 #   side (for the duration of the fight), pushing the Hunter-card to the prep line
-#   (computer) or the player's (human) hand. 
+#   (computer) or the player's (human) hand.
 # - Slow 🐢 -- A card with Slow will attack only every other round.
 # - Stun 🥊 -- A card with Stun will stun an attacked card with a successful attack. A
 #   stunned card will not attack next round.
