@@ -6,15 +6,14 @@ of game-related logic must take place or be orchestrated in FightVnC.
 """
 
 import itertools
-from typing import Callable, List, Optional, Tuple
+from typing import Callable, List, Literal, Optional
 from asciimatics.screen import Screen
 from cardio import Card, Deck, FightVnC, GridPos, gg
 from ..card_primitives import (
+    VisualState,
+    show_card,
     activate_card,
     burn_card,
-    highlight_card,
-    highlight2_card,
-    highlight3_card,
     move_card,
     redraw_card,
     shake_card,
@@ -22,7 +21,7 @@ from ..card_primitives import (
 )
 from ..decks_primitives import (
     show_card_to_handdeck,
-    show_drawdeck_highlights,
+    show_drawdeck_cursor,
     show_drawdecks,
     redraw_handdeck,
 )
@@ -45,7 +44,7 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
     def redraw_view(
         self,
         grid_highlights: Optional[List[GridPos]] = None,
-        drawdeck_highlights: Tuple[bool, bool] = (False, False),
+        drawdeck_cursor: Literal[0, 1] = 0,
         grid_markings: Optional[List[GridPos]] = None,
         readytopick: bool = False,
     ) -> None:
@@ -69,14 +68,11 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
 
         # Highlights, if any:
         for pos in grid_markings:
-            highlight_card(self.screen, pos)
+            show_card(self.screen, None, pos, VisualState.MARKED)
         for pos in grid_highlights:
-            if readytopick:
-                highlight3_card(self.screen, pos)
-
-            else:
-                highlight2_card(self.screen, pos)
-        show_drawdeck_highlights(self.screen, drawdeck_highlights)
+            state = VisualState.READY if readytopick else VisualState.CURSOR
+            show_card(self.screen, None, pos, state)
+        show_drawdeck_cursor(self.screen, drawdeck_cursor)
 
         self.state_widget.show_all()
         self.screen.refresh()
@@ -148,21 +144,21 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
     def handle_human_choose_deck_to_draw_from(self) -> Optional[Deck]:
         """Human player draws a card from one of the draw decks (draw oder hamster)."""
         if not self.decks.draw.is_empty():
-            highlights = (True, False)
+            cursor = 0
         elif not self.decks.hamster.is_empty():
-            highlights = (False, True)
+            cursor = 1
         else:  # both empty
             return None
 
         while True:
-            self.redraw_view(drawdeck_highlights=highlights)
+            self.redraw_view(drawdeck_cursor=cursor)
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT and not self.decks.draw.is_empty():
-                highlights = (True, False)
+                cursor = 0
             elif keycode == Screen.KEY_RIGHT and not self.decks.hamster.is_empty():
-                highlights = (False, True)
+                cursor = 1
             elif keycode == Screen.KEY_UP:
-                return self.decks.draw if highlights[0] else self.decks.hamster
+                return self.decks.draw if cursor == 0 else self.decks.hamster
 
     def _handle_card_placement_interaction(
         self, pmgr: PlacementManager, old_highlight: GridPos
