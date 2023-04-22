@@ -17,6 +17,11 @@ from .utils import dPos, render_value, show_text, show_text_ra, show_box
 def show_card_contents(
     screen: Screen, card: Card, pos: dPos, inactive: bool = False
 ) -> None:
+    """
+    On `costs_*` and `has_*`:
+    - Show `costs_*` in lower right, only the one that is > 0.
+    - Show `has_*` in lower left, only the one that is > 1 (if any).
+    """
     color = Color.GRAY if inactive else Color.WHITE
     show_text(screen, pos + (2, 1), card.name, color=color)
     power = render_value(card.power, "💪", surplus_color=Color.YELLOW)
@@ -26,30 +31,30 @@ def show_card_contents(
     skills = "".join(s.value.symbol for s in card.skills)
     show_text(screen, pos + (2, 4), skills)
 
-    # Show costs_fire/spirits or has_fire/spirits depending on card's position:
-    gridpos = None
+    # Don't show `costs_*` and `has_*` for cards in computer lines:
     try:
-        gridpos = card.get_grid_pos()
-    except AssertionError:
+        if card.get_grid_pos().line in (0, 1):
+            return
+    except (AssertionError, AttributeError):
         pass
 
-    if gridpos is None:  # Card is not in grid -> show costs_fire/spirits
-        if card.costs_fire > 0:
-            cost = "↓" + render_value(card.costs_fire, "🔥", 5, False, Color.YELLOW)
-        elif card.costs_spirits > 0:
-            cost = "↓" + render_value(card.costs_spirits, "👻", 5, False, Color.WHITE)
-        else:
-            cost = ""
-        show_text_ra(screen, pos + (BOX_WIDTH - 1, 5), cost)
-    elif gridpos.line == 2:  # Card is in human's line -> show has_fire/spirits
-        if card.has_fire > 0:
-            cost = "↑" + render_value(card.has_fire, "🔥", 5, False, Color.YELLOW)
-        elif card.has_spirits > 0:
-            cost = "↑" + render_value(card.has_spirits, "👻", 5, False, Color.WHITE)
-        else:
-            cost = ""
-        show_text_ra(screen, pos + (BOX_WIDTH - 1, 5), cost)
-    # else:  # Card is in computer's line -> don't show anything
+    # Show `costs_*` in lower right, only the one that is > 0:
+    if card.costs_fire > 0:
+        costs = render_value(card.costs_fire, "🔥", 3, False, Color.YELLOW)
+    elif card.costs_spirits > 0:
+        costs = render_value(card.costs_spirits, "👻", 3, False, Color.WHITE)
+    else:
+        costs = ""
+    show_text_ra(screen, pos + (BOX_WIDTH - 1, 5), costs)
+
+    # Show `has_*` in lower left, only the one that is > 1 (if any):
+    if card.has_fire > 1:
+        has = render_value(card.has_fire, "🔥", 3, False, Color.YELLOW)
+    elif card.has_spirits > 1:
+        has = render_value(card.has_spirits, "👻", 3, False, Color.WHITE)
+    else:
+        has = ""
+    show_text(screen, pos + (2, 5), has)
 
 
 def show_card(
