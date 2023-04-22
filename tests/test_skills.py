@@ -13,15 +13,13 @@ def common_setup(mocker, gg_setup):
 
 
 def do_the_fight(humancards: CardList, computercard: Optional[Card]) -> None:
-    """Note that the assumption here is that `ProperlyPlacingHumanStrategyVnC` will
-    place new cards on the first free slot from the left, i.e., the very first human
-    card gets placed on (2,0).
+    """Note that the assumption here is that `HumanStrategyVnC` will place new cards on
+    the first free slot from the left, i.e., the very first human card gets placed on
+    (2,0).
     """
     gg.humanplayer.deck.cards = humancards
     cs = Round0OnlyStrategy(grid=gg.grid, cards=[(GridPos(1, 0), computercard)])
-    gg.vnc = HumanStrategyVnC(
-        grid=gg.grid, computerstrategy=cs, whichrounds=[0]
-    )
+    gg.vnc = HumanStrategyVnC(grid=gg.grid, computerstrategy=cs, whichrounds=[0])
     gg.vnc.handle_fight()
 
 
@@ -145,12 +143,15 @@ def test_fertility():
     hc = Card("Human Card", 1, 1, 0, skills=[Skill.FERTILITY])
     cc = Card("Computer Card", 1, 2, 1)
     do_the_fight([hc], cc)
+    # The original card must be used:
     assert hc in gg.vnc.decks.used.cards
-    non_hamsters_on_hand = [
-        c for c in gg.vnc.decks.hand.cards if c.name != "Hamster"
-    ]
+    # The copy should be in the hand deck and it should be flagged as temporary:
+    non_hamsters_on_hand = [c for c in gg.vnc.decks.hand.cards if c.name != "Hamster"]
     assert len(non_hamsters_on_hand) == 1
-    new_card = non_hamsters_on_hand[0]
-    assert new_card.name == "Human Card"
-    assert new_card.health == 1  # Make sure the health was reset
-    assert new_card.skills == [Skill.FERTILITY]
+    copy = non_hamsters_on_hand[0]
+    assert copy.name == "Human Card"
+    assert copy.health == 1  # Make sure the health was reset
+    assert copy.skills == [Skill.FERTILITY]
+    assert copy.is_temporary
+    # The copy should _not_ be in the player's main deck, since it is a temporary card:
+    assert copy not in gg.humanplayer.deck.cards

@@ -31,7 +31,6 @@ class FightVnC:
         self.stateslogger = StatesLogger(self)
         self.computerstrategy = computerstrategy
 
-
     # --- Called by Card class ---
 
     def card_died(self, card: Card, pos: GridPos) -> None:
@@ -155,7 +154,7 @@ class FightVnC:
         self.decks.hand.pick_card(from_slot)
 
         if Skill.FERTILITY in pmgr.target_card.skills:
-            new_card = pmgr.target_card.duplicate()
+            new_card = pmgr.target_card.make_temp_copy()
             new_card.reset()
             self.redraw_view()
             self.decks.hand.add_card(new_card)
@@ -237,6 +236,8 @@ class FightVnC:
 
         # Reset human deck after the fight:
         gg.humanplayer.deck.cards = [
-            c for c in gg.humanplayer.get_all_human_cards() if c.name != "Hamster"
+            c
+            for c in gg.humanplayer.get_all_human_cards()
+            if c.name != "Hamster" and not c.is_temporary
         ]
         gg.humanplayer.deck.reset_cards()

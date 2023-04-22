@@ -17,9 +17,9 @@ if TYPE_CHECKING:
 
 class Card:
     """Card class
-    
+
     Principles for `has_*` and `costs_*`:
-    - `costs_fire` & `costs_spirits`: 
+    - `costs_fire` & `costs_spirits`:
         - Exactly one is > 0.
     - `has_fire` & `has_spirits`:
         - Typically both are == 1.
@@ -32,7 +32,7 @@ class Card:
         - (QQ: Possible variant: `has_spirits` is always == 1; this would simplify
           things further. But the current philosophy could easily be adapted to such a
           rule.)
-    
+
     QQ: Turn `has_*` and `costs_*` into properties to enforce the above rules?
     """
 
@@ -59,6 +59,8 @@ class Card:
         self.costs_spirits = costs_spirits
         self.has_spirits = has_spirits
         self.has_fire = has_fire
+        
+        self.is_temporary: bool= False  # Whether this is only used in a single fight
 
         if power * health == 0:  # Normal behavior
             self.reset()
@@ -94,8 +96,15 @@ class Card:
         assert pos is not None, "Cards calling `get_grid_pos` must be on the grid"
         return pos
 
-    def duplicate(self) -> Card:
+    def clone(self) -> Card:
+        """Return a real clone of this card."""
         return copy.deepcopy(self)
+
+    def make_temp_copy(self) -> Card:
+        """Return a temporary copy of card."""
+        copy = self.clone()
+        copy.is_temporary = True
+        return copy
 
     def get_prep_card(self) -> Optional[Card]:
         """Get the card from the prepline of this cards slot."""
