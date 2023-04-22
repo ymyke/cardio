@@ -14,7 +14,6 @@
 - Refine FightLocation and Computerstrategy so the game becomes harder and harder as the
   rungs increase.
 - Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
-- Implement items.
 - Add more skills.
 
 - Should there be additional scores in addition to the rung? Something that better
@@ -36,6 +35,8 @@
   => Need different color for cursor and marked positions.
   => Also, change the cursor's color when the card is ready to be placed (but the user
   still needs to pick a place for it)
+
+- Save and load game state.
 
 
 # MVC Thoughts
@@ -76,6 +77,7 @@
 
 # Todo
 
+- In cursor-based views: Flash cursor red when an action is not possible.
 - Check for right minimum resolution at the beginning.
 - Can we add the new fire and spirits placement logic to the hypo-driven tests? Maybe
   using the placement mgr in the hypo test?
@@ -85,7 +87,8 @@
 - Edge case: What if the grid is empty or powerless at some point during a fight? Who
   will win?
 - Reduce the number of places the session module gets imported to a sensible minimum.
-- Add items
+- Add items? What kinds of items are there? (Can a number of items be derived from
+  skills as one-time-skills?)
 - Turn all the notes here and in DOMAIN into a Github wiki.
 
 # More animations
@@ -101,8 +104,9 @@
   - Card shop: Buy cards for gems
   - Exchange: Change spirits to gems and vice versa
   - Card lottery: Give a card and get a random card in return
-  - Card game: Play some little game and the better you are the better the card you get
-    (at random) in return. -- Ideas for minigames:
+  - Card/skill game: Play some little game and the better you are the better the card
+    you get (at random) in return. Or the better a skill you can chose? Or the more
+    random skills or cards you can choose from. Or... -- Ideas for minigames:
     - Guess the number: The computer picks a number between 1 and 100 and you have to
       guess it. The computer tells you whether your guess is too high or too low.
     - Rock Paper Scissors for x times.
@@ -146,7 +150,10 @@
   (Yet another option might be to create logs of information with each run (including
   all user choices) that can be used to simulate and verify the run. That way, it can be
   verified if such a run relly exists. (Such a system would still be prone to cheating
-  by creating a computer agent that brute force searches for the best run.))
+  by creating a computer agent that brute force searches for the best run.)) (Maybe this
+  could be combined with the code taking a hash over its entire code and game state to
+  proof originality of code at a certain point in time? Maybe also combined with some
+  proof of humanity (the minigames?) to prevent bots from playing the game?)
 - Corveaux special ability/animal? Can consume ghosts/souls/spirits and release them as
   blood/energy/...?
 - Have floor tiles with special effects? I.e., more strength if a create is on it?
@@ -154,6 +161,8 @@
 - Maybe spirits could be persistent and can be taken over to the next fight?
 - Could cards have an icon that gets displayed, e.g., top right of the card? Then only
   pick animal (and plant?) types that have an emoji?
+- Explain locations in the map view? Or have some keystroke that opens explanatory text
+  in any view?
 
 # Low Prio Ideas
 

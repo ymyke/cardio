@@ -1,5 +1,11 @@
+FIXME -- get rid of this file eventually and move everything either to the wiki or to
+the corresponding classes in the code. Decide: a) all documentation in wiki, b) all
+documentation in code, c) some combination of both. (Where documentation includes all
+domain-related information, design decisions, game mechamics, etc.) -- Maybe b is the
+preferred option.
+
 # Grid
-↓↓↓↓  <- 0/computer
+↓↓↓↓  <- 0/computer prep
 ☐☐☐☐  <- 1/computer
 ☐☐☐☐  <- 2/human
 
