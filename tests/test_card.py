@@ -46,9 +46,22 @@ def test_reset():
     assert c.health == 2
 
 
-def test_duplicate():
+def test_clone():
     c = Card("X", 1, 2, 3)
-    d = c.duplicate()
+    d = c.clone()
+    assert not d.is_temporary
+    assert c != d
+    assert c is not d
+    assert c.name == d.name
+    assert c.power == d.power
+    assert c.health == d.health
+    assert c.costs_fire == d.costs_fire
+
+
+def test_make_temp_copy():
+    c = Card("X", 1, 2, 3)
+    d = c.make_temp_copy()
+    assert d.is_temporary
     assert c != d
     assert c is not d
     assert c.name == d.name
