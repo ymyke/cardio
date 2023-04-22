@@ -31,12 +31,15 @@ def show_card_contents(
     skills = "".join(s.value.symbol for s in card.skills)
     show_text(screen, pos + (2, 4), skills)
 
-    # Don't show `costs_*` and `has_*` for cards in computer lines:
+    # Don't show `costs_*` and `has_*` for computer cards:
     try:
         if card.get_grid_pos().line in (0, 1):
+            # Cards that are on the grid in computer's lines.
             return
     except (AssertionError, AttributeError):
-        pass
+        if pos.y <= dPos.from_gridpos(GridPos(1, 0)).y:
+            # Cards that are not yet on the grid but being moved on computer's side.
+            return
 
     # Show `costs_*` in lower right, only the one that is > 0:
     if card.costs_fire > 0:
