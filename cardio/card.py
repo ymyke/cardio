@@ -16,6 +16,26 @@ if TYPE_CHECKING:
 
 
 class Card:
+    """Card class
+    
+    Principles for `has_*` and `costs_*`:
+    - `costs_fire` & `costs_spirits`: 
+        - Exactly one is > 0.
+    - `has_fire` & `has_spirits`:
+        - Typically both are == 1.
+        - Max one is > 1.
+        - Neither is == 0, "0-ness" is indicated via some skill such as bloodless or
+          inert or so. (A card with bloodless should always have both `has_*` == 1.)
+        - The preceding two bullets are design decisions to keep things simple(r) so a
+          player can rely on default information even if not all information is always
+          displayed.
+        - (QQ: Possible variant: `has_spirits` is always == 1; this would simplify
+          things further. But the current philosophy could easily be adapted to such a
+          rule.)
+    
+    QQ: Turn `has_*` and `costs_*` into properties to enforce the above rules?
+    """
+
     def __init__(
         self,
         # Mandatory:
