@@ -1,5 +1,6 @@
+from dataclasses import dataclass
 import time
-from typing import Literal, Optional, Union
+from typing import Literal, Optional, Tuple, Union
 
 from asciimatics.constants import DOUBLE_LINE, SINGLE_LINE
 from asciimatics.effects import Print
@@ -12,6 +13,23 @@ from cardio import Card, GridPos
 from .constants import *
 from .bufferutils import BufferCopy
 from .utils import dPos, render_value, show_text, show_text_ra, show_box
+
+
+@dataclass(frozen=True)
+class VisualStateSpec:
+    color: Color
+    linestyle: int
+
+
+class VisualState(Enum):
+    """Visual state of a card."""
+
+    NORMAL = VisualStateSpec(Color.YELLOW, SINGLE_LINE)
+    MARKED = VisualStateSpec(Color.BLUE, DOUBLE_LINE)
+    CURSOR = VisualStateSpec(Color.MAGENTA, DOUBLE_LINE)
+    READY = VisualStateSpec(Color.GREEN, DOUBLE_LINE)
+    INACTIVE = VisualStateSpec(Color.GRAY, SINGLE_LINE)
+    ERROR = VisualStateSpec(Color.RED, DOUBLE_LINE)
 
 
 def show_card_contents(
@@ -64,42 +82,19 @@ def show_card(
     screen: Screen,
     card: Optional[Card],
     pos: Union[GridPos, dPos],
-    highlight: bool = False,
-    highlight2: bool = False,
-    highlight3: bool = False,
-    inactive: bool = False,
+    state: VisualState = VisualState.NORMAL,
     xoffset: int = 0,
     yoffset: int = 0,
 ) -> None:
     """Draw card. Either at display position or grid position, depending on the type of
     `pos` passed. Draws empty box if `card` is `None`. Highlights card/slot if
     `highlight` is `True`. Displays card as inactive if `inactive` is `True`
-    (`highlight` trumps `inactive`).
+    (`highlight` trumps `inactive`). TODO Adjust
     """
-    dpos = dPos.cast(pos)
-    dpos += (xoffset, yoffset)
-
-    style = SINGLE_LINE
-    color = Color.YELLOW
-
-    if inactive:
-        color = Color.GRAY
-
-    if highlight:
-        style = DOUBLE_LINE
-        color = Color.BLUE
-
-    if highlight2:
-        style = DOUBLE_LINE
-        color = Color.MAGENTA
-
-    if highlight3:
-        style = DOUBLE_LINE
-        color = Color.GREEN
-
-    show_box(screen, dpos, style=style, color=color)
-    if card is not None:
-        show_card_contents(screen, card, dpos, inactive=inactive)
+    dpos = dPos.cast(pos) + (xoffset, yoffset)
+    show_box(screen, dpos, style=state.value.linestyle, color=state.value.color)
+    if card:
+        show_card_contents(screen, card, dpos, inactive=state == VisualState.INACTIVE)
 
 
 def redraw_card(
@@ -107,24 +102,6 @@ def redraw_card(
 ) -> None:
     clear_card(screen, pos)
     show_card(screen, card, pos)
-
-
-def highlight_card(
-    screen: Screen, pos: Union[GridPos, dPos], highlight: bool = True
-) -> None:
-    show_card(screen, None, pos, highlight)
-
-
-def highlight2_card(
-    screen: Screen, pos: Union[GridPos, dPos], highlight: bool = True
-) -> None:
-    show_card(screen, None, pos, highlight2=highlight)
-
-
-def highlight3_card(
-    screen: Screen, pos: Union[GridPos, dPos], highlight: bool = True
-) -> None:
-    show_card(screen, None, pos, highlight3=highlight)
 
 
 def clear_card(
@@ -199,13 +176,17 @@ def shake_card(
     screen.refresh()
 
 
-def flash_card(screen: Screen, pos: Union[dPos, GridPos]) -> None:
-    highlight = True
-    for _ in range(10):
-        show_card(screen, None, pos, highlight=highlight)
-        time.sleep(0.2)
-        highlight = not highlight
+def flash_card(
+    screen: Screen, pos: Union[dPos, GridPos], states: Tuple[VisualState, VisualState]
+) -> None:
+    """Quickly alternate between two states."""
+    # TODO: Does not yet work completely.
+    buffercopy = BufferCopy(screen)
+    for i in range(10):
+        show_card(screen, None, pos, state=states[i % 2])
+        time.sleep(0.05)
         screen.refresh()
+        buffercopy.copyback()
 
 
 def move_card(
