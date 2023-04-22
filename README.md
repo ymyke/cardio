@@ -3,39 +3,29 @@
 
 # Next up
 
-- Bug: Why is there a ghost here? https://monosnap.com/file/yyaT9Gk55JsxgJUX9Fv0qCCQkBbMyJ
-
 - Bug: Church Mouse produces cards that will be in the player's deck. Should remove the
   copies that get produced in a fight. How? Add some copy flag?
-
-- UI Bug: Need differrent symbol for INSTANTDEATH.
-
-- Add more cards
-- Refine FightLocation and Computerstrategy so the game becomes harder and harder as the
-  rungs increase.
-- Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
-- Add more skills.
-
-- Should there be additional scores in addition to the rung? Something that better
-  reflects the difficulty mastered by that run? E.g., number of fights? Or should there
-  be a score per fight (maybe something that reflects how hard the fight is)?
-
-- Are there 3 (to 4) broad card categories?
-  - 1. All that concectually exist.
-  - 2. The ones the player knows about.
-  - 3. The ones the player owns.
-  - (4. The ones in different decks during a fight.)
-(Add these thoughts to DOMAIN.)
-
-- Bug? Hamster attacks even though it has no power?
-- Spirits: keep them between fights (as it is now)?
-
 - UX bug: Here you don't know where the cursor is when you'd like to place on slot 0 or
   1: https://monosnap.com/file/qCu7dKiPJJhhMu0emorLv0wXSpi3SX
   => Need different color for cursor and marked positions.
   => Also, change the cursor's color when the card is ready to be placed (but the user
   still needs to pick a place for it)
 
+- Add more cards
+- Refine FightLocation and Computerstrategy so the game becomes harder and harder as the
+  rungs increase.
+- Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
+- Add more skills.
+- Should there be additional scores in addition to the rung? Something that better
+  reflects the difficulty mastered by that run? E.g., number of fights? Or should there
+  be a score per fight (maybe something that reflects how hard the fight is)?
+- Are there 3 (to 4) broad card categories?
+  - 1. All that concectually exist.
+  - 2. The ones the player knows about.
+  - 3. The ones the player owns.
+  - (4. The ones in different decks during a fight.)
+(Add these thoughts to DOMAIN.)
+- Spirits: keep them between fights (as it is now)?
 - Save and load game state.
 
 
@@ -77,6 +67,7 @@
 
 # Todo
 
+- Start the game w/ 0 skills.
 - In cursor-based views: Flash cursor red when an action is not possible.
 - Check for right minimum resolution at the beginning.
 - Can we add the new fire and spirits placement logic to the hypo-driven tests? Maybe
