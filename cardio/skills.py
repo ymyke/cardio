@@ -55,7 +55,7 @@ class Skill(Enum):
         symbol="🚀",
         description="A card with Air Defense will block attacks from Soaring cards.",
         # QQ: Maybe REACHHIGH instead of AIRDEFENSE? With an arm symbol? Or
-        # LONGNECK/HEADHIGH/... and the girafe emojoi?
+        # LONGNECK/HEADHIGH/... and the girafe emoji? Or: Sky Shield? ☁️
     )
 
 
