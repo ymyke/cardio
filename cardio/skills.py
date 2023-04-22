@@ -28,7 +28,7 @@ class SkillSpec:
 class Skill(Enum):
     INSTANTDEATH = SkillSpec(
         name="Instant Death",
-        symbol="☠️",
+        symbol="💀",
         description="A card with Instant Death will instantly kill any card it damages. If the attack strikes the opponent directly, the skill has no effect, and the attack will deal damage according to its power. If a card has 0 power, it will not attack, and this skill will have no effect.",
     )
     FERTILITY = SkillSpec(
