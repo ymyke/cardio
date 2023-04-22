@@ -65,6 +65,8 @@ def show_card(
     card: Optional[Card],
     pos: Union[GridPos, dPos],
     highlight: bool = False,
+    highlight2: bool = False,
+    highlight3: bool = False,
     inactive: bool = False,
     xoffset: int = 0,
     yoffset: int = 0,
@@ -87,6 +89,14 @@ def show_card(
         style = DOUBLE_LINE
         color = Color.BLUE
 
+    if highlight2:
+        style = DOUBLE_LINE
+        color = Color.MAGENTA
+
+    if highlight3:
+        style = DOUBLE_LINE
+        color = Color.GREEN
+
     show_box(screen, dpos, style=style, color=color)
     if card is not None:
         show_card_contents(screen, card, dpos, inactive=inactive)
@@ -103,6 +113,18 @@ def highlight_card(
     screen: Screen, pos: Union[GridPos, dPos], highlight: bool = True
 ) -> None:
     show_card(screen, None, pos, highlight)
+
+
+def highlight2_card(
+    screen: Screen, pos: Union[GridPos, dPos], highlight: bool = True
+) -> None:
+    show_card(screen, None, pos, highlight2=highlight)
+
+
+def highlight3_card(
+    screen: Screen, pos: Union[GridPos, dPos], highlight: bool = True
+) -> None:
+    show_card(screen, None, pos, highlight3=highlight)
 
 
 def clear_card(

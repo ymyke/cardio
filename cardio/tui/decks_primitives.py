@@ -2,14 +2,14 @@ from typing import Literal, Tuple
 from asciimatics.screen import Screen
 from cardio import GridPos, Deck, Card
 from .constants import *
-from .card_primitives import highlight_card, show_card, move_card
+from .card_primitives import highlight_card, show_card, move_card, highlight2_card
 from .utils import dPos, show_text, show_box
 
 
 def show_drawdeck_highlights(screen: Screen, highlights: Tuple[bool, bool]) -> None:
     pos = dPos(DRAW_DECKS_X, DRAW_DECKS_Y)
-    highlight_card(screen, pos, highlights[0])
-    highlight_card(screen, pos + (BOX_WIDTH + 2, 0), highlights[1])
+    highlight2_card(screen, pos, highlights[0])
+    highlight2_card(screen, pos + (BOX_WIDTH + 2, 0), highlights[1])
 
 
 def show_drawdecks(screen: Screen, drawdeck: Deck, hamsterdeck: Deck) -> None:

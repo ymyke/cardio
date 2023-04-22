@@ -45,7 +45,7 @@ class TUIMapView(TUIBaseMixin):
         show_text(
             self.screen,
             self.dpos_from_location(current_loc) + (-2, 0),
-            f">>{current_loc.marker}<<",
+            f"[ {current_loc.marker} ]",
             color=Color.YELLOW,
         )
 
@@ -60,13 +60,13 @@ class TUIMapView(TUIBaseMixin):
 
         # Color the next possible locations including cursor position:
         for i, loc in enumerate(self.run.get_accessible_locations(1)):
-            s = f"[[{loc.marker}]]" if i == cursor_pos else f"  {loc.marker}"
-            show_text(
-                self.screen,
-                self.dpos_from_location(loc) - (2, 0),
-                s,
-                color=Color.BLUE,
-            )
+            if i == cursor_pos:
+                s = f"> {loc.marker} <"
+                col = Color.MAGENTA
+            else:
+                s = f"  {loc.marker}"
+                col = Color.BLUE
+            show_text(self.screen, self.dpos_from_location(loc) - (2, 0), s, color=col)
 
         # Show more agent and other information:
         show_humanplayer(self.screen, self.AGENTINFO)

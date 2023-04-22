@@ -13,6 +13,8 @@ from ..card_primitives import (
     activate_card,
     burn_card,
     highlight_card,
+    highlight2_card,
+    highlight3_card,
     move_card,
     redraw_card,
     shake_card,
@@ -44,9 +46,11 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
         self,
         grid_highlights: Optional[List[GridPos]] = None,
         drawdeck_highlights: Tuple[bool, bool] = (False, False),
+        grid_markings: Optional[List[GridPos]] = None,
+        readytopick: bool = False,
     ) -> None:
-        if grid_highlights is None:
-            grid_highlights = []
+        grid_highlights = grid_highlights or []
+        grid_markings = grid_markings or []
 
         self.screen.clear_buffer(0, 0, 0)
         show_empty_grid(self.screen, self.grid.width)
@@ -64,8 +68,14 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
         show_drawdecks(self.screen, self.decks.draw, self.decks.hamster)
 
         # Highlights, if any:
-        for pos in grid_highlights:
+        for pos in grid_markings:
             highlight_card(self.screen, pos)
+        for pos in grid_highlights:
+            if readytopick:
+                highlight3_card(self.screen, pos)
+
+            else:
+                highlight2_card(self.screen, pos)
         show_drawdeck_highlights(self.screen, drawdeck_highlights)
 
         self.state_widget.show_all()
@@ -169,8 +179,17 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
         cursor = 0  # Cursor within line 2
         while not pmgr.ready_to_place():
             cursor_pos = GridPos(2, cursor)
-            highlights = pmgr.get_marked_positions() + [cursor_pos] + [old_highlight]
-            self.redraw_view(grid_highlights=highlights)
+            markings = pmgr.get_marked_positions() + [old_highlight]
+            # TODO Is old_highlight still a good name? What about markings vs
+            # highlights? What would be good naming? Better to have highlights and
+            # cursors?
+            self.redraw_view(
+                grid_highlights=[cursor_pos],
+                grid_markings=markings,
+                readytopick=pmgr.ready_to_pick(),
+            )
+            # TODO Just pass the pmgr to redraw_view? Also check the other redraw call
+            # that passes highlights.
 
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT:
@@ -212,6 +231,8 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
                 )
                 try:
                     self._handle_card_placement_interaction(pmgr, cursor_pos)
+                    # TODO Is pmgr enough and I can derive cursor_pos from it, i.e., via
+                    # getgridpos(target_card) or so?
                 except PlacementAbortedException:
                     pass
                 else:
