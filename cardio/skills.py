@@ -136,4 +136,5 @@ SkillList = List[Skill]
 #   a fight? -- That could be a way to be more strategic around building a deck. In the
 #   negative cases, the player would try to get rid of a card. Or heal it?
 # - Viral -- Like poisonous, but spreads?
-# - Pregnant -- One-time fertility?
+# - Pregnant -- One-time (per fight) fertility?
+# - Corbeaux / Corvus Corax -- Can consume spirits and release them as fire.
