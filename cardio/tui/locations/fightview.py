@@ -18,6 +18,7 @@ from ..card_primitives import (
     redraw_card,
     shake_card,
     clear_card,
+    flash_card,
 )
 from ..decks_primitives import (
     show_card_to_handdeck,
@@ -158,7 +159,7 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
                 cursor = 0
             elif keycode == Screen.KEY_RIGHT and not self.decks.hamster.is_empty():
                 cursor = 1
-            elif keycode == Screen.KEY_UP:
+            elif keycode in (Screen.KEY_UP, 13):
                 return self.decks.draw if cursor == 0 else self.decks.hamster
 
     def _handle_card_placement_interaction(self, pmgr: PlacementManager) -> None:
@@ -181,8 +182,9 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
                 cursor = min(self.grid.width - 1, cursor + 1)
-            elif keycode == Screen.KEY_DOWN:
-                pmgr.mark_unmark_or_pick(cursor_pos)
+            elif keycode in (Screen.KEY_DOWN, 13):
+                if not pmgr.mark_unmark_or_pick(cursor_pos):
+                    flash_card(self.screen, cursor_pos)
             elif keycode == Screen.KEY_ESCAPE:
                 raise PlacementAbortedException
 
@@ -207,7 +209,7 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
                 cursor = min(self.decks.hand.size() - 1, cursor + 1)
-            elif keycode == Screen.KEY_UP:
+            elif keycode in (Screen.KEY_UP, 13):
                 pmgr = PlacementManager(
                     grid=self.grid,
                     available_spirits=gg.humanplayer.spirits,
@@ -216,7 +218,7 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
                 try:
                     self._handle_card_placement_interaction(pmgr)
                 except PlacementAbortedException:
-                    pass
+                    flash_card(self.screen, GridPos(4, cursor))
                 else:
                     place_card_callback(pmgr=pmgr, from_slot=cursor)
                     cursor = min(self.decks.hand.size() - 1, cursor)
