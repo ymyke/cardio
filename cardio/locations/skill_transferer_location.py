@@ -46,6 +46,9 @@ class SkillTransfererLocation(Location):
       with which other skills. (Should there be?)
     """
 
+    # FIXME Add the possibility to pick a different card once a from_card has been
+    # selected but before the to_card has been chosen (=escape key functionality)
+
     marker = "S→→"
 
     def generate(self) -> None:
