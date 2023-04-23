@@ -3,6 +3,7 @@ from typing import Literal, Optional
 from asciimatics.screen import Screen
 from .utils import get_keycode, dPos
 from .card_primitives import (
+    VisualState,
     redraw_card,
     shake_card,
     burn_card,
@@ -33,19 +34,18 @@ class CardPicker:
         )
         return dPos(x, y)
 
-    def redraw(self, activecards: CardList, highlight: Optional[int] = None) -> None:
-        # FIXME Would it be nicer if highlight was Card instead of int?
+    def redraw(self, activecards: CardList, cursor: Optional[int] = None) -> None:
+        # FIXME Would it be nicer if cursor was Card instead of int?
         activecards = activecards or self.cards
         self.screen.clear_buffer(0, 0, 0)
         for i, card in enumerate(self.cards):
-            do_highlight = i == highlight
-            show_card(
-                self.screen,
-                card,
-                self.dpos_from_cardindex(i),
-                do_highlight,
-                inactive=card not in activecards,
-            )
+            if i == cursor:
+                state = VisualState.CURSOR
+            elif card not in activecards:
+                state = VisualState.INACTIVE
+            else:
+                state = VisualState.NORMAL
+            show_card(self.screen, card, self.dpos_from_cardindex(i), state)
         self.screen.refresh()
 
     def pick(self, activecards: Optional[CardList] = None) -> Card:
