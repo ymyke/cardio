@@ -177,16 +177,15 @@ def shake_card(
 
 
 def flash_card(
-    screen: Screen, pos: Union[dPos, GridPos], states: Tuple[VisualState, VisualState]
+    screen: Screen,
+    pos: Union[dPos, GridPos],
+    states: Tuple[VisualState, VisualState] = (VisualState.NORMAL, VisualState.ERROR),
 ) -> None:
     """Quickly alternate between two states."""
-    # TODO: Does not yet work completely.
-    buffercopy = BufferCopy(screen)
     for i in range(10):
         show_card(screen, None, pos, state=states[i % 2])
-        time.sleep(0.05)
+        time.sleep(0.02)
         screen.refresh()
-        buffercopy.copyback()
 
 
 def move_card(
