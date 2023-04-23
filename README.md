@@ -3,8 +3,15 @@
 
 # Next up
 
+- Add card ([?,?]) and skill ([-10, 10]?) strength scores and calc function.
+  - Maybe there's max numbers for power, health, costs_*, and has_*? Then, the score
+    could be normalized to [0, 1]?
+- Add a card generator.
 - Add more cards
 - Add more skills.
+- Add a way to determine the starting deck for a run.
+  - Makes an additional deck necessary in humanplayer: "main" (existing) and "all" or
+    "known" or so.
 - Scoring and difficulty progress:
   - Should there be additional scores in addition to the rung? Something that better
     reflects the difficulty mastered by that run? E.g., number of fights? Or should
@@ -16,7 +23,9 @@
     cards defeated, which cards confronted with, ... -- could have an instance of each
     "thing" (card, location, etc.) and log the stats with these things (using a special
     Stats class that gets added to each such thing) -- or maybe just the entire run in
-    some useful format? (Would replace log and maybe also the stateslogger)
+    some useful format? (Would replace log and maybe also the stateslogger) -- Keep in
+    mind that some cards can die during a run but should still keep their stats
+    available. How to do that exactly?
 - Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
 
 
@@ -143,8 +152,6 @@
   could be combined with the code taking a hash over its entire code and game state to
   proof originality of code at a certain point in time? Maybe also combined with some
   proof of humanity (the minigames?) to prevent bots from playing the game?)
-- Corveaux special ability/animal? Can consume ghosts/souls/spirits and release them as
-  blood/energy/...?
 - Have floor tiles with special effects? I.e., more strength if a create is on it?
 - Can there be shops where you can buy stuff, including additional lives?
 - Maybe spirits could be persistent and can be taken over to the next fight?
@@ -155,6 +162,8 @@
 
 # Low Prio Ideas
 
+- Add a quick "FIGHT!" splash screen before a fight? (Maybe after the initial grid has
+  been set up?)
 - Maybe NoLocations can have minor "on the way" events? I.e., gain/lose some gems, ...?
 - Hidden locations? I.e., locations that are not revealed until you visit them.
 - Randomize player's start cards at the beginning of a run from a set of possible start

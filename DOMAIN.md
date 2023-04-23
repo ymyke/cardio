@@ -44,6 +44,11 @@ Refer to the documentation with each class or module for details.
   is defeated (the run ends, if it is the human player).
 - **Computer Strategy:** The strategy the computer player uses in a fight.
 - **Item:** Some buff that can be used in a fight. (Currently not implemented.)
+- **Strength Score:** Cards and skills have strength scores that indicate how strong
+  they are. The strength score is used to determine the cost of a card/skill in the shop
+  or at the start of a run, the probability of a card/skill to be drawn in a lottery,
+  and the difficulty/strength of a card/skill in a fight.
+
 
 # Card "buckets"
 
@@ -53,9 +58,14 @@ There are the following broad "buckets" of cards:
    be selected from this bucket.
    - This is the only bucket where the philosophies I vs II make any difference.
 2. The ones the player owns.
+   - Player can only choose from those to put together their starting deck.
+   - Maybe there will be certain locations that only apply to cards the player owns in
+     the future?
 3. The ones a player actually starts a run with.
    - Maybe she can choose? Based on a number of points (and maybe also gems and
      spirits)? (But at least one?) 
+   - Or maybe the subset of initial cards is also randomly selected from the cards the
+     player owns (and up to a max score)? 
 4. (The ones in different decks during a fight.)
 
 ## Example run
@@ -76,6 +86,10 @@ There are the following broad "buckets" of cards:
 
 - The game does not generate new cards dynamically. I.e., all cards are known (to the
   game at least, maybe not to the player) at the start of the game.
+- Note that here we also need a strength score for cards in order to decide how
+  expensive (start of the game or shop) or rare (lottery) or difficult (fight) they are.
+  However, under this philosophy does not necessarily be calculated but can be
+  pre-generated as well, as all cards are known beforehand.
 
 
 # Philosophy II: All cards randomly generated
@@ -90,7 +104,7 @@ There are the following broad "buckets" of cards:
 
 Details:
 
-- Options on how to get the name a) live from ChatGPT, b) fully random from a
+- Options on how to get the name: a) live from ChatGPT, b) fully random from a
   pre-generated list, c) from a pre-generated list that is categorized by strength
   score.
 - Maybe make sure that cards with the same attribute always get the same name?
