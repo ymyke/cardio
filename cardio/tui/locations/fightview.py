@@ -43,14 +43,10 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
 
     def redraw_view(
         self,
-        grid_highlights: Optional[List[GridPos]] = None,
-        drawdeck_cursor: Literal[0, 1] = 0,
-        grid_markings: Optional[List[GridPos]] = None,
-        readytopick: bool = False,
+        cursor: Optional[GridPos] = None,
+        drawdeck_cursor: Optional[Literal[0, 1]] = None,
+        pmgr: Optional[PlacementManager] = None,
     ) -> None:
-        grid_highlights = grid_highlights or []
-        grid_markings = grid_markings or []
-
         self.screen.clear_buffer(0, 0, 0)
         show_empty_grid(self.screen, self.grid.width)
         all_pos = (
@@ -66,13 +62,18 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
         redraw_handdeck(self.screen, self.decks.hand, 0)
         show_drawdecks(self.screen, self.decks.draw, self.decks.hamster)
 
-        # Highlights, if any:
-        for pos in grid_markings:
+        # Marked positions:
+        for pos in pmgr.marked_positions if pmgr else []:
             show_card(self.screen, None, pos, VisualState.MARKED)
-        for pos in grid_highlights:
-            state = VisualState.READY if readytopick else VisualState.CURSOR
-            show_card(self.screen, None, pos, state)
-        show_drawdeck_cursor(self.screen, drawdeck_cursor)
+        # Cursors:
+        if cursor:
+            if pmgr and pmgr.ready_to_pick():
+                state = VisualState.READY
+            else:
+                state = VisualState.CURSOR
+            show_card(self.screen, None, cursor, state)
+        if drawdeck_cursor is not None:
+            show_drawdeck_cursor(self.screen, drawdeck_cursor)
 
         self.state_widget.show_all()
         self.screen.refresh()
@@ -160,9 +161,7 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
             elif keycode == Screen.KEY_UP:
                 return self.decks.draw if cursor == 0 else self.decks.hamster
 
-    def _handle_card_placement_interaction(
-        self, pmgr: PlacementManager, old_highlight: GridPos
-    ) -> None:
+    def _handle_card_placement_interaction(self, pmgr: PlacementManager) -> None:
         """Human player picks the cards to sacrifice and the location of the target
         card. All orchestrated by `PlacementManager`. Raises `PlacementAbortedException`
         if the process is aborted (either by the code or by the player). Returns
@@ -175,17 +174,7 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
         cursor = 0  # Cursor within line 2
         while not pmgr.ready_to_place():
             cursor_pos = GridPos(2, cursor)
-            markings = pmgr.get_marked_positions() + [old_highlight]
-            # TODO Is old_highlight still a good name? What about markings vs
-            # highlights? What would be good naming? Better to have highlights and
-            # cursors?
-            self.redraw_view(
-                grid_highlights=[cursor_pos],
-                grid_markings=markings,
-                readytopick=pmgr.ready_to_pick(),
-            )
-            # TODO Just pass the pmgr to redraw_view? Also check the other redraw call
-            # that passes highlights.
+            self.redraw_view(cursor=cursor_pos, pmgr=pmgr)
 
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT:
@@ -212,8 +201,7 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
             # Everything cursor-related only if hand is not empty:
             if self.decks.hand.is_empty():
                 continue
-            cursor_pos = GridPos(4, cursor)
-            self.redraw_view(grid_highlights=[cursor_pos])
+            self.redraw_view(cursor=GridPos(4, cursor))
 
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
@@ -226,9 +214,7 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
                     target_card=self.decks.hand.cards[cursor],
                 )
                 try:
-                    self._handle_card_placement_interaction(pmgr, cursor_pos)
-                    # TODO Is pmgr enough and I can derive cursor_pos from it, i.e., via
-                    # getgridpos(target_card) or so?
+                    self._handle_card_placement_interaction(pmgr)
                 except PlacementAbortedException:
                     pass
                 else:
