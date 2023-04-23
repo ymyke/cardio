@@ -1,8 +1,9 @@
 import operator
-from typing import Literal, Optional
+from typing import List, Literal, Optional
 from asciimatics.screen import Screen
 from .utils import get_keycode, dPos
 from .card_primitives import (
+    VisualState,
     redraw_card,
     shake_card,
     burn_card,
@@ -33,22 +34,31 @@ class CardPicker:
         )
         return dPos(x, y)
 
-    def redraw(self, activecards: CardList, highlight: Optional[int] = None) -> None:
-        # FIXME Would it be nicer if highlight was Card instead of int?
+    def redraw(
+        self,
+        activecards: CardList,
+        cursor: Optional[int] = None,
+        marks: Optional[List[int]] = None,
+    ) -> None:
+        # FIXME Would it be nicer if cursor was Card instead of int?
         activecards = activecards or self.cards
+        marks = marks or []
         self.screen.clear_buffer(0, 0, 0)
         for i, card in enumerate(self.cards):
-            do_highlight = i == highlight
-            show_card(
-                self.screen,
-                card,
-                self.dpos_from_cardindex(i),
-                do_highlight,
-                inactive=card not in activecards,
-            )
+            if i == cursor:
+                state = VisualState.CURSOR
+            elif i in marks:
+                state = VisualState.MARKED
+            elif card not in activecards:
+                state = VisualState.INACTIVE
+            else:
+                state = VisualState.NORMAL
+            show_card(self.screen, card, self.dpos_from_cardindex(i), state)
         self.screen.refresh()
 
-    def pick(self, activecards: Optional[CardList] = None) -> Card:
+    def pick(
+        self, activecards: Optional[CardList] = None, marks: Optional[List[int]] = None
+    ) -> Card:
         def search(current_cursor: int, dir: Literal[1, -1], offset: int) -> int:
             if dir > 0:
                 limit, within = len(self.cards), operator.lt
@@ -64,7 +74,7 @@ class CardPicker:
         activecards = activecards or self.cards
         cursor = search(-1, 1, 1)
         while True:
-            self.redraw(activecards, cursor)
+            self.redraw(activecards, cursor, marks)
             keycode = get_keycode(self.screen)
             if keycode == 13:  # Return
                 return self.cards[cursor]

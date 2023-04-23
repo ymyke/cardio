@@ -3,14 +3,6 @@
 
 # Next up
 
-- Bug: Church Mouse produces cards that will be in the player's deck. Should remove the
-  copies that get produced in a fight. How? Add some copy flag?
-- UX bug: Here you don't know where the cursor is when you'd like to place on slot 0 or
-  1: https://monosnap.com/file/qCu7dKiPJJhhMu0emorLv0wXSpi3SX
-  => Need different color for cursor and marked positions.
-  => Also, change the cursor's color when the card is ready to be placed (but the user
-  still needs to pick a place for it)
-
 - Add more cards
 - Refine FightLocation and Computerstrategy so the game becomes harder and harder as the
   rungs increase.
@@ -110,7 +102,11 @@
   - Card disposer: Allows you to get rid of cards (just 1 maybe) at a cost in gems
   - Card merger: Merge 2 identical cards for double attributes (or, if you don't have
     any pairs, duplicate a card)
+  - Card cost mutator: Switch card costs from fire to (many more) spirits and vice
+    versa.
   - Locations around items...? Item shop, ...?
+  - Treasure location? ✘✘✘ -- Pick one of several digging locations and get a random
+    item in return (or nothing).
 - Maybe there can be inanimate cards that do not provide a fire? (So: Should cards have
   a `has_fire` attribute that can be 0, 1 or more? Or would this rather be subclasses?)
 - Vast range of items: E.g., rucksack 🎒, bigger rucksack 🎒🎒, some item that allows me

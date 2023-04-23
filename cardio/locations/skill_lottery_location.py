@@ -46,12 +46,16 @@ class SkillLotteryLocation(Location):
             skill = random.choice(card.skills)
             card.skills.remove(skill)
             view.show_upgrade(card)
-            view.message(f"{card.name} lost the {skill.name} skill. 😢")
+            view.message(
+                f"{card.name} lost the {skill.name} {skill.value.symbol} skill. 😢"
+            )
         else:
             skill = random.choice(list(set(Skill) - set(card.skills)))
             card.skills.append(skill)
             view.show_upgrade(card)
-            view.message(f"{card.name} gained the {skill.name} skill! 🥳")
+            view.message(
+                f"{card.name} gained the {skill.name} {skill.value.symbol} skill! 🥳"
+            )
 
         view.close()
         return True

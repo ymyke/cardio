@@ -6,21 +6,23 @@ of game-related logic must take place or be orchestrated in FightVnC.
 """
 
 import itertools
-from typing import Callable, List, Optional, Tuple
+from typing import Callable, List, Literal, Optional
 from asciimatics.screen import Screen
 from cardio import Card, Deck, FightVnC, GridPos, gg
 from ..card_primitives import (
+    VisualState,
+    show_card,
     activate_card,
     burn_card,
-    highlight_card,
     move_card,
     redraw_card,
     shake_card,
     clear_card,
+    flash_card,
 )
 from ..decks_primitives import (
     show_card_to_handdeck,
-    show_drawdeck_highlights,
+    show_drawdeck_cursor,
     show_drawdecks,
     redraw_handdeck,
 )
@@ -42,12 +44,10 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
 
     def redraw_view(
         self,
-        grid_highlights: Optional[List[GridPos]] = None,
-        drawdeck_highlights: Tuple[bool, bool] = (False, False),
+        cursor: Optional[GridPos] = None,
+        drawdeck_cursor: Optional[Literal[0, 1]] = None,
+        pmgr: Optional[PlacementManager] = None,
     ) -> None:
-        if grid_highlights is None:
-            grid_highlights = []
-
         self.screen.clear_buffer(0, 0, 0)
         show_empty_grid(self.screen, self.grid.width)
         all_pos = (
@@ -63,10 +63,18 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
         redraw_handdeck(self.screen, self.decks.hand, 0)
         show_drawdecks(self.screen, self.decks.draw, self.decks.hamster)
 
-        # Highlights, if any:
-        for pos in grid_highlights:
-            highlight_card(self.screen, pos)
-        show_drawdeck_highlights(self.screen, drawdeck_highlights)
+        # Marked positions:
+        for pos in pmgr.marked_positions if pmgr else []:
+            show_card(self.screen, None, pos, VisualState.MARKED)
+        # Cursors:
+        if cursor:
+            if pmgr and pmgr.ready_to_pick():
+                state = VisualState.READY
+            else:
+                state = VisualState.CURSOR
+            show_card(self.screen, None, cursor, state)
+        if drawdeck_cursor is not None:
+            show_drawdeck_cursor(self.screen, drawdeck_cursor)
 
         self.state_widget.show_all()
         self.screen.refresh()
@@ -138,47 +146,44 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
     def handle_human_choose_deck_to_draw_from(self) -> Optional[Deck]:
         """Human player draws a card from one of the draw decks (draw oder hamster)."""
         if not self.decks.draw.is_empty():
-            highlights = (True, False)
+            cursor = 0
         elif not self.decks.hamster.is_empty():
-            highlights = (False, True)
+            cursor = 1
         else:  # both empty
             return None
 
         while True:
-            self.redraw_view(drawdeck_highlights=highlights)
+            self.redraw_view(drawdeck_cursor=cursor)
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT and not self.decks.draw.is_empty():
-                highlights = (True, False)
+                cursor = 0
             elif keycode == Screen.KEY_RIGHT and not self.decks.hamster.is_empty():
-                highlights = (False, True)
-            elif keycode == Screen.KEY_UP:
-                return self.decks.draw if highlights[0] else self.decks.hamster
+                cursor = 1
+            elif keycode in (Screen.KEY_UP, 13):
+                return self.decks.draw if cursor == 0 else self.decks.hamster
 
-    def _handle_card_placement_interaction(
-        self, pmgr: PlacementManager, old_highlight: GridPos
-    ) -> None:
+    def _handle_card_placement_interaction(self, pmgr: PlacementManager) -> None:
         """Human player picks the cards to sacrifice and the location of the target
         card. All orchestrated by `PlacementManager`. Raises `PlacementAbortedException`
         if the process is aborted (either by the code or by the player). Returns
         regularly when the `PlacementManager` is `ready_to_place`.
         """
         if not pmgr.is_placeable():
-            # LIXME Add some animation / user feedback here?
             raise PlacementAbortedException
 
         cursor = 0  # Cursor within line 2
         while not pmgr.ready_to_place():
             cursor_pos = GridPos(2, cursor)
-            highlights = pmgr.get_marked_positions() + [cursor_pos] + [old_highlight]
-            self.redraw_view(grid_highlights=highlights)
+            self.redraw_view(cursor=cursor_pos, pmgr=pmgr)
 
             keycode = get_keycode(self.screen)
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
                 cursor = min(self.grid.width - 1, cursor + 1)
-            elif keycode == Screen.KEY_DOWN:
-                pmgr.mark_unmark_or_pick(cursor_pos)
+            elif keycode in (Screen.KEY_DOWN, 13):
+                if not pmgr.mark_unmark_or_pick(cursor_pos):
+                    flash_card(self.screen, cursor_pos)
             elif keycode == Screen.KEY_ESCAPE:
                 raise PlacementAbortedException
 
@@ -197,23 +202,22 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
             # Everything cursor-related only if hand is not empty:
             if self.decks.hand.is_empty():
                 continue
-            cursor_pos = GridPos(4, cursor)
-            self.redraw_view(grid_highlights=[cursor_pos])
+            self.redraw_view(cursor=GridPos(4, cursor))
 
             if keycode == Screen.KEY_LEFT:
                 cursor = max(0, cursor - 1)
             elif keycode == Screen.KEY_RIGHT:
                 cursor = min(self.decks.hand.size() - 1, cursor + 1)
-            elif keycode == Screen.KEY_UP:
+            elif keycode in (Screen.KEY_UP, 13):
                 pmgr = PlacementManager(
                     grid=self.grid,
                     available_spirits=gg.humanplayer.spirits,
                     target_card=self.decks.hand.cards[cursor],
                 )
                 try:
-                    self._handle_card_placement_interaction(pmgr, cursor_pos)
+                    self._handle_card_placement_interaction(pmgr)
                 except PlacementAbortedException:
-                    pass
+                    flash_card(self.screen, GridPos(4, cursor))
                 else:
                     place_card_callback(pmgr=pmgr, from_slot=cursor)
                     cursor = min(self.decks.hand.size() - 1, cursor)

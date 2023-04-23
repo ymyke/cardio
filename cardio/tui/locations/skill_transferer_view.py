@@ -17,7 +17,8 @@ class TUISkillTransfererView(TUIBaseMixin):
         self.cardpicker.burn_card(card)
 
     def pick_from(self, from_cards: CardList) -> Card:
-        return self.cardpicker.pick(from_cards)
+        self.picked = self.cardpicker.pick(from_cards)
+        return self.picked
 
     def pick_to(self, to_cards: CardList) -> Card:
-        return self.cardpicker.pick(to_cards)
+        return self.cardpicker.pick(to_cards, marks=[self.cards.index(self.picked)])
