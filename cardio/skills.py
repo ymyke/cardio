@@ -17,44 +17,50 @@ from typing import List
 # QQ: Maybe use a subclass such as TemporarySkill to implement things like temporary
 # buffs like the power buff thanks to the Leader skill.
 
-# FIXME Do skills need a strength score attribute?
-
 
 @dataclass(frozen=True)
 class SkillSpec:
     name: str
     symbol: str
     description: str
+    potency: int
 
 
 class Skill(Enum):
     INSTANTDEATH = SkillSpec(
         name="Instant Death",
         symbol="💀",
+        potency=70,
         description="A card with Instant Death will instantly kill any card it damages. If the attack strikes the opponent directly, the skill has no effect, and the attack will deal damage according to its power. If a card has 0 power, it will not attack, and this skill will have no effect.",
         # QQ: Alternative names: One-Shot🎯, Killer Instinct, Exterminator, Terminator
     )
     FERTILITY = SkillSpec(
         name="Fertility",
         symbol="🐭",
+        potency=90,
         description="A fertile card creates a copy of itself in your hand when it is played.",
+        # QQ: Maybe FERTILITY only makes sense for cards that use spirits as costs? Or
+        # that cost more than 1 fire? Otherwise you can create infinite spirits with
+        # them?
+        # QQ: Should copies of this lose their fertility skill?
     )
-    # QQ: Maybe FERTILITY only makes sense for cards that use spirits as costs? Or that
-    # cost more than 1 fire? Otherwise you can create infinite spirits with them?
     SOARING = SkillSpec(
         name="Soaring",
         symbol="🪁",
+        potency=20,
         description="A Soaring card will ignore opposing cards and strike an opponent directly.",
         # Or: Jump 🐇
     )
     SPINES = SkillSpec(
         name="Spines",
         symbol="🦔",
-        description="When a card with Spines is attacked, the attacker receives 1 damage.",
+        potency=30,
+        description="After a card with Spines is attacked, the attacker receives 1 damage.",
     )
     AIRDEFENSE = SkillSpec(
         name="Air Defense",
         symbol="🚀",
+        potency=10,
         description="A card with Air Defense will block attacks from Soaring cards.",
         # QQ: Maybe REACHHIGH instead of AIRDEFENSE? With an arm symbol? Or
         # LONGNECK/HEADHIGH/... and the girafe emoji? Or: Sky Shield? ☁️
