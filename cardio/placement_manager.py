@@ -68,14 +68,17 @@ class PlacementManager:
 
     # ----- picking -----
 
-    def mark_unmark_or_pick(self, pos: GridPos) -> None:
-        """Tries to pick if possible, or mark or unmark."""
+    def mark_unmark_or_pick(self, pos: GridPos) -> bool:
+        """Try to pick if possible, or mark or unmark. Returns `True` if any of these actions was possible, `False` otherwise. Return value can be used for visual feedback."""
         if self.ready_to_pick():
-            self.pick_if_possible(pos)
+            return self.pick_if_possible(pos)
         elif self.is_marked(pos):
             self.unmark_pos(pos)
+            return True
         elif self.can_mark(pos):
             self.mark_pos(pos)
+            return True
+        return False
 
     def can_pick(self, pos: GridPos) -> bool:
         assert self.ready_to_pick()
@@ -83,10 +86,15 @@ class PlacementManager:
             pos in self.get_marked_positions() or self.grid.get_card(pos) is None
         )
 
-    def pick_if_possible(self, pos: GridPos) -> None:
+    def pick_if_possible(self, pos: GridPos) -> bool:
+        """Try to pick the card if possible. Returns `True` if picking was possible,
+        `False` otherwise.
+        """
         assert self.placement_position is None
         if self.can_pick(pos):
             self.placement_position = pos
+            return True
+        return False
 
     def ready_to_pick(self) -> bool:
         return (
