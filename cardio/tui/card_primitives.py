@@ -87,9 +87,8 @@ def show_card(
     yoffset: int = 0,
 ) -> None:
     """Draw card. Either at display position or grid position, depending on the type of
-    `pos` passed. Draws empty box if `card` is `None`. Highlights card/slot if
-    `highlight` is `True`. Displays card as inactive if `inactive` is `True`
-    (`highlight` trumps `inactive`). TODO Adjust
+    `pos` passed. Draws empty box if `card` is `None`. Uses `state` to determine to
+    display all kinds of states a card can be in.
     """
     dpos = dPos.cast(pos) + (xoffset, yoffset)
     show_box(screen, dpos, style=state.value.linestyle, color=state.value.color)
