@@ -169,7 +169,6 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
         regularly when the `PlacementManager` is `ready_to_place`.
         """
         if not pmgr.is_placeable():
-            # LIXME Add some animation / user feedback here?
             raise PlacementAbortedException
 
         cursor = 0  # Cursor within line 2
