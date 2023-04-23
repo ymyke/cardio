@@ -4,18 +4,23 @@ import random
 
 
 class Location(ABC):
+    """Abstract base class for locations.
+
+    - One Location on the map. Contains everything it needs to handle that location.
+    - A location has a `rung` (steps from the start) and an `index` attribute, which are
+      used to generate the location. The seed is derived from an original seed for the
+      entire run.
+    """
+
     marker = "___"
 
     def __init__(self, base_seed: str, rung: int, index: int, paths: List[int]) -> None:
         self.id = f"{self.marker}_{rung}_{index}"
-        self.seed = f"L{rung}_{index}_{base_seed}"
+        self.seed = f"L{rung}_{index}_{base_seed}"  # FIXME Use the id here?
         self.rung = rung  # Steps from start
         self.index = index  # Index position at current rung
         self.paths = paths  # Paths to next locations
         self.generate()
-        # FIXME Should the initializer also take a view base object that will be used to
-        # access views by the different locations and that can be used to use different
-        # views? (OR: register some basic view object in gg?)
 
     @abstractmethod
     def generate(self) -> None:

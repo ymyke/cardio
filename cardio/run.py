@@ -7,8 +7,16 @@ from cardio.path_patterns import PATH_PATTERNS, PathPattern
 
 
 class Run:
+    """A run is a sequence of locations that are connected by paths.
+    
+    - Runs are fully predetermined based on some seed (`base_seed`), i.e., they don't
+      adapt based on the player's behavior in any way. 
+    - Runs are indefinite. A player gets as far as she gets. 
+    - A run represents the entire map and keeps track of the current location
+      (`current_rung` and `current_index`) and the path taken so far (not implemented
+      yet, FIXME).
+    """
     base_seed: str
-    # (Doesn't need to store any history bc everything is determined by the seed.)
     current_rung: int
     current_index: int
 

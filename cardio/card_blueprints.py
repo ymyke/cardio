@@ -2,6 +2,8 @@ import copy
 from typing import List
 from . import Card, CardList, Skill
 
+# FIXME Do cards and in particular blueprints need a strength score attribute?
+
 _BLUEPRINTS = [
     Card("Hamster", 0, 1, 0),
     Card("Koala", 1, 3, 1),

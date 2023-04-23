@@ -4,21 +4,20 @@
 # Next up
 
 - Add more cards
-- Refine FightLocation and Computerstrategy so the game becomes harder and harder as the
-  rungs increase.
-- Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
 - Add more skills.
-- Should there be additional scores in addition to the rung? Something that better
-  reflects the difficulty mastered by that run? E.g., number of fights? Or should there
-  be a score per fight (maybe something that reflects how hard the fight is)?
-- Are there 3 (to 4) broad card categories?
-  - 1. All that concectually exist.
-  - 2. The ones the player knows about.
-  - 3. The ones the player owns.
-  - (4. The ones in different decks during a fight.)
-(Add these thoughts to DOMAIN.)
-- Spirits: keep them between fights (as it is now)?
+- Scoring and difficulty progress:
+  - Should there be additional scores in addition to the rung? Something that better
+    reflects the difficulty mastered by that run? E.g., number of fights? Or should
+    there be a score per fight (maybe something that reflects how hard the fight is)?
+  - Refine FightLocation and Computerstrategy so the game becomes harder and harder as
+    the rungs increase.
 - Save and load game state.
+  - Add stats to game state: number of fights won, locations visited, number and which
+    cards defeated, which cards confronted with, ... -- could have an instance of each
+    "thing" (card, location, etc.) and log the stats with these things (using a special
+    Stats class that gets added to each such thing) -- or maybe just the entire run in
+    some useful format? (Would replace log and maybe also the stateslogger)
+- Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
 
 
 # MVC Thoughts
@@ -60,6 +59,8 @@
 # Todo
 
 - Start the game w/ 0 skills.
+- QQ: Spirits: keep them between fights (as it is now)? (Maybe have to sacrifice 1 life
+  if you want to keep them?)
 - In cursor-based views: Flash cursor red when an action is not possible.
 - Check for right minimum resolution at the beginning.
 - Can we add the new fire and spirits placement logic to the hypo-driven tests? Maybe
@@ -73,6 +74,7 @@
 - Add items? What kinds of items are there? (Can a number of items be derived from
   skills as one-time-skills?)
 - Turn all the notes here and in DOMAIN into a Github wiki.
+- Check TUI on linux / wsl.
 
 # More animations
 
@@ -162,6 +164,11 @@
 - Mark cards in a color other than blue.
 - Turn marked positions from blue to green when the placement manager is ready to pick.
 - Don't show costs in computer cards.
+- Different tribes?
+- If there are more and more cards, maybe they get some meta information around
+  curation, likes, etc.?
+- Achievements/badges for the player?
+- Upgrading the game should invalidate all running/saved runs.
 
 # Low Prio Todos
 
@@ -178,7 +185,7 @@
 
 - https://inscryption.fandom.com/wiki/Cards
 - https://inscryption.fandom.com/wiki/Sigils
-- "Cardio was massively inspyred by Inscryption. Buy it and play it!"
+- "Cardio was massively inspyred by Inscryption. Buy yt and play yt!"
 
 # Other TUI projects
 

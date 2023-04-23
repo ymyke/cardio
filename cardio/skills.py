@@ -17,6 +17,8 @@ from typing import List
 # QQ: Maybe use a subclass such as TemporarySkill to implement things like temporary
 # buffs like the power buff thanks to the Leader skill.
 
+# FIXME Do skills need a strength score attribute?
+
 
 @dataclass(frozen=True)
 class SkillSpec:
@@ -112,6 +114,8 @@ SkillList = List[Skill]
 # - Wildcard 🃏 -- In each round, gets a random skill from the list of all skills.
 # - Parry -- A card with Parry has a chance to deflect an opponent's attack back at
 #   them.
+# - Trample – A card with Trample will deal the equal amount of damage to the computer
+#   player as it deals to the opposing card.
 # - Lucky Strike 🍀 -- Either kills the opponent or deals 1 damage to itself.
 # - Firefighter 🚒🧯🧑‍🚒 -- A card with Firefighter will reduce its neighbors' fire to
 #   0.
