@@ -109,10 +109,15 @@ assert all(s.value.potency >= 0 and s.value.potency <= 10 for s in Skill)
 # - Lucky Strike 🍀 -- Either kills the opponent or deals 1 damage to itself.
 # - Annihilator 💔 -- Destroys a card for good. Not just for this fight but for the
 #   entire game. (Only makes sense against the human player maybe?)
+# - Vulnerable 🎯 -- A card with Vulnerable takes increased damage from attacks.
+# - Wither 💀 -- A card with Wither deals damage to itself at the end of each turn.
+# - Amnesiac 🤔 -- A card with Amnesiac will forget all its other skills.
 
 
 # ----- Medium prio -----
 
+# - Confused 😵 -- A card with Confused will occasionally attack its own allies instead
+#   of the opponent.
 # - Pregnant -- One-time (per fight) fertility?
 # - Firefighter 🚒🧯🧑‍🚒 -- A card with Firefighter will reduce its neighbors' fire to
 #   0.
