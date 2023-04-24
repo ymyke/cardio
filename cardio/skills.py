@@ -38,9 +38,9 @@ class Skill(Enum):
         symbol="🐭",
         description="A fertile card creates a copy of itself in your hand when it is played.",
         potency=9,
-        # QQ: Maybe FERTILITY only makes sense for cards that use spirits as costs? Or
+        # FIXME: Maybe FERTILITY only makes sense for cards that use spirits as costs? Or
         # that cost more than 1 fire? Otherwise you can create infinite spirits with
-        # them?
+        # them? OR: The cards go to the draw deck instead of the hand?
         # QQ: Should copies of this lose their fertility skill?
     )
     SOARING = SkillSpec(
