@@ -130,7 +130,10 @@ class FightVnC:
         # account as well. Also skills that have a relevant effect such as spines or
         # skills that increase the power of other cards etc. So this test could become
         # very complex in the end. -- Maybe these more complex cases should be handled
-        # differently in the UI or at least explained?
+        # differently in the UI or at least explained? -- Just simply add a "give up"
+        # function to the UI? -- Or add some mechanism like Inscryption's "Starvation"?
+        # Or a simple turn countdown that activates after a certain amount of turns in
+        # which nothing meaningful has happened?
 
     def _has_human_won(self) -> bool:
         return self.damagestate.has_human_won()
