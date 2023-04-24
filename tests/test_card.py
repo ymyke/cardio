@@ -33,6 +33,21 @@ def test_is_skilled():
     c.skills = [Skill.FERTILITY]
 
 
+def test_potency():
+    c = Card("X", 3, 2, 1)
+    assert c.potency == 11
+    c.skills = [Skill.FERTILITY]
+    assert c.potency == 20
+    c.skills.append(Skill.SOARING)
+    assert c.potency == 22
+    # Another one:
+    c = Card("X", 1, 1, 10)
+    assert c.potency == -4
+    # One with the costs bonus:
+    c = Card("X", 0, 0, 0, costs_spirits=0, has_fire=0, has_spirits=0)
+    assert c.potency == 10  # <- 10 for the costs bonus
+
+
 def test_init_with_both_fire_and_spirit_should_fail():
     with pytest.raises(AssertionError):
         Card("X", 1, 1, costs_fire=1, costs_spirits=1)

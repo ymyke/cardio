@@ -59,8 +59,8 @@ class Card:
         self.costs_spirits = costs_spirits
         self.has_spirits = has_spirits
         self.has_fire = has_fire
-        
-        self.is_temporary: bool= False  # Whether this is only used in a single fight
+
+        self.is_temporary: bool = False  # Whether this is only used in a single fight
 
         if power * health == 0:  # Normal behavior
             self.reset()
@@ -90,6 +90,22 @@ class Card:
 
     def is_skilled(self) -> bool:
         return len(self.skills) > 0
+
+    @property
+    def potency(self) -> int:
+        """Return the potency of this card. Simply add a number of attributes, where
+        power and health are weighted more heavily. Add a bonus for cards with no costs.
+        """
+        strengths = (
+            self.initial_power * 2
+            + self.initial_health * 2
+            + self.has_fire
+            + self.has_spirits
+            + sum(s.value.potency for s in self.skills)
+        )
+        costs = self.costs_fire + self.costs_spirits
+        costs_bonus = 10 if costs == 0 else 0  # Bonus for cards with no costs at all
+        return strengths - costs + costs_bonus
 
     def get_grid_pos(self) -> GridPos:
         pos = gg.grid.find_card(self)
