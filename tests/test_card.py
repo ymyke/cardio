@@ -33,19 +33,26 @@ def test_is_skilled():
     c.skills = [Skill.FERTILITY]
 
 
-def test_potency():
+def test_raw_potency():
     c = Card("X", 3, 2, 1)
-    assert c.potency == 11
+    assert c.raw_potency == 11
     c.skills = [Skill.FERTILITY]
-    assert c.potency == 20
+    assert c.raw_potency == 20
     c.skills.append(Skill.SOARING)
-    assert c.potency == 22
+    assert c.raw_potency == 22
     # Another one:
     c = Card("X", 1, 1, 10)
-    assert c.potency == -4
+    assert c.raw_potency == -4
     # One with the costs bonus:
     c = Card("X", 0, 0, 0, costs_spirits=0, has_fire=0, has_spirits=0)
-    assert c.potency == 10  # <- 10 for the costs bonus
+    assert c.raw_potency == 10  # <- 10 for the costs bonus
+
+
+def test_potency(mocker):
+    c = Card("X", 3, 2, 1)
+    assert c.raw_potency == 11
+    mocker.patch("cardio.card.Card.get_raw_potency_range", return_value=(0, 22))
+    assert c.potency == 50
 
 
 def test_init_with_both_fire_and_spirit_should_fail():

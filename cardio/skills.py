@@ -23,8 +23,7 @@ class SkillSpec:
     name: str
     symbol: str
     description: str
-    potency: int  # [0, 10]
-
+    potency: int  # [-10, 10], usually [0, 10]
 
 class Skill(Enum):
     INSTANTDEATH = SkillSpec(
