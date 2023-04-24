@@ -4,6 +4,9 @@
 # Next up
 
 - Add a card generator.
+  - Maybe also cards the human can get are randomly generated and the human can give
+    them names? Or at least sometimes can give them names? (Or there are locations where
+    she can (re)name cards?)
 - Add more cards
 - Add more skills.
 - Add a way to determine the starting deck for a run.
