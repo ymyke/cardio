@@ -20,12 +20,14 @@ from typing import List
 # FIXME: Should certain or all (or none?) skills be stackable? What does that mean?
 # where does it make sense?
 
+
 @dataclass(frozen=True)
 class SkillSpec:
     name: str
     symbol: str
     description: str
     potency: int  # [-10, 10], usually [0, 10]
+
 
 class Skill(Enum):
     INSTANTDEATH = SkillSpec(
@@ -78,7 +80,9 @@ assert all(s.value.potency >= 0 and s.value.potency <= 10 for s in Skill)
 
 
 # ----- Ideas for more skills -----
-#
+
+# ----- High prio -----
+
 # - Healing / Regeneration 💉 -- Itself or others around it? A card with Regeneration
 #   will heal 1 damage at the end of each turn.
 # - Shield 🛡️ -- Blocks the first attack? Or absorbs 1 damage per attack? Or absorbs
@@ -89,21 +93,16 @@ assert all(s.value.potency >= 0 and s.value.potency <= 10 for s in Skill)
 # - Mixer 🔀 -- A card with Mixer swaps one random card from your hand with another one
 #   from your draw deck. (Maybe also gives me an additional hamster?)
 # - Persevering / Final Blow 💥 -- Hits one more time in dying.
-# - Quick ⚡ -- Strikes twice. Maybe at normal time and again after the opponent
-#   attacked.
-# - Double Strike 🗡️ -- A card with Double Strike will attack twice. TODO: Duplicate?
+# - Quick ⚡ / Double strike -- Attacks twice.
 # - Bloodless / Pale/ Inert / Extinguished 🧯 -- Will not provide any fire or spirits
 #   (has_*). That also means the card cannot be sacrificed.
-# - Immune 🧬 -- A card with Immune will not be affected by any skills.
-# - Disrupt -- A card with Disrupt can interfere with opponent card abilities, rendering
-#   them useless. TODO Duplicate?
 # - Overload 🔌 -- A card with Overload will deal 1 damage to itself when it attacks.
 # - Weakness 🤕 -- A card with Weakness will deal 1 less damage when it attacks.
 # - Bully 🤼 -- A card with Bully will always attack the weakest opponent (in the entire
 #   row or opponent + 2 neighbors).
-# - Hoarder -- Draw another card when this card is played. 
-# - Ambush 🏹 / Haste 🏃‍♂️ -- A card with Ambush will attack the opponent directly when
-#   it is played. TODO duplicate?
+# - Hoarder -- Draw another card when this card is played.
+# - Longrange 🏹 -- A card with Longrange will attack the prep line card instead of the
+#   front line card.
 # - Trample – A card with Trample will deal the equal amount of damage to the computer
 #   player as it deals to the opposing card.
 # - Lucky Strike 🍀 -- Either kills the opponent or deals 1 damage to itself.
@@ -112,6 +111,7 @@ assert all(s.value.potency >= 0 and s.value.potency <= 10 for s in Skill)
 # - Vulnerable 🎯 -- A card with Vulnerable takes increased damage from attacks.
 # - Wither 💀 -- A card with Wither deals damage to itself at the end of each turn.
 # - Amnesiac 🤔 -- A card with Amnesiac will forget all its other skills.
+# - Inhibit 🚧 -- A card with Inhibit will disable all skills of the opponent's card.
 
 
 # ----- Medium prio -----
