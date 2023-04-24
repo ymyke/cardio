@@ -36,6 +36,11 @@ class Card:
     QQ: Turn `has_*` and `costs_*` into properties to enforce the above rules?
     """
 
+    MAX_ATTR = 10  # Max value per attribute (power, health, ...)
+    MAX_SKILLS = 6  # Max number of skills a card can have
+    # FIXME ^ These are not enforced yet. Should be. Not only in the initializer but
+    # whenever something changes to affect these values.
+
     def __init__(
         self,
         # Mandatory:

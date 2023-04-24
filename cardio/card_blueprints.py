@@ -41,30 +41,32 @@ def print_potency_stats():
     minpot, maxpot = get_potency_range()
     print(f"Current max possible potency: {maxpot}")
     print(f"Current min possible potency: {minpot}")
-    print("('Current' meaning with the currently available list of skills.)")
+    print(
+        "(This is with the current set of skills available and\n" 
+        f"under the assumption that all attributes max out at {Card.MAX_ATTR}\n"
+        f"and a card can have no more than {Card.MAX_SKILLS} skills.)"
+    )
 
 
 def get_potency_range() -> Tuple[int, int]:
     """Return the theoretical current potency range."""
-    MAX_SKILLS = 6
-    MAX_ATTR = 10
     skills = sorted(list(Skill), key=lambda s: s.value.potency, reverse=True)
     maxcard = Card(
         name="Max",
-        initial_power=MAX_ATTR,
-        initial_health=MAX_ATTR,
+        initial_power=Card.MAX_ATTR,
+        initial_health=Card.MAX_ATTR,
         costs_fire=0,
-        skills=skills[:MAX_SKILLS],
+        skills=skills[:Card.MAX_SKILLS],
         costs_spirits=0,
-        has_spirits=MAX_ATTR,
-        has_fire=MAX_ATTR,
+        has_spirits=Card.MAX_ATTR,
+        has_fire=Card.MAX_ATTR,
     )
     mincard = Card(
         name="Min",
         initial_power=0,
         initial_health=0,
         costs_fire=10,
-        skills=[s for s in skills[-MAX_SKILLS:] if s.value.potency < 0],
+        skills=[s for s in skills[-Card.MAX_SKILLS:] if s.value.potency < 0],
         costs_spirits=0,  # 0, bc we can't have both types of costs in a card
         has_spirits=0,
         has_fire=0,
