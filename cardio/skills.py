@@ -23,22 +23,22 @@ class SkillSpec:
     name: str
     symbol: str
     description: str
-    potency: int
+    potency: int  # [0, 10]
 
 
 class Skill(Enum):
     INSTANTDEATH = SkillSpec(
         name="Instant Death",
         symbol="💀",
-        potency=70,
         description="A card with Instant Death will instantly kill any card it damages. If the attack strikes the opponent directly, the skill has no effect, and the attack will deal damage according to its power. If a card has 0 power, it will not attack, and this skill will have no effect.",
+        potency=7,
         # QQ: Alternative names: One-Shot🎯, Killer Instinct, Exterminator, Terminator
     )
     FERTILITY = SkillSpec(
         name="Fertility",
         symbol="🐭",
-        potency=90,
         description="A fertile card creates a copy of itself in your hand when it is played.",
+        potency=9,
         # QQ: Maybe FERTILITY only makes sense for cards that use spirits as costs? Or
         # that cost more than 1 fire? Otherwise you can create infinite spirits with
         # them?
@@ -47,21 +47,21 @@ class Skill(Enum):
     SOARING = SkillSpec(
         name="Soaring",
         symbol="🪁",
-        potency=20,
         description="A Soaring card will ignore opposing cards and strike an opponent directly.",
+        potency=2,
         # Or: Jump 🐇
     )
     SPINES = SkillSpec(
         name="Spines",
         symbol="🦔",
-        potency=30,
         description="After a card with Spines is attacked, the attacker receives 1 damage.",
+        potency=3,
     )
     AIRDEFENSE = SkillSpec(
         name="Air Defense",
         symbol="🚀",
-        potency=10,
         description="A card with Air Defense will block attacks from Soaring cards.",
+        potency=1,
         # QQ: Maybe REACHHIGH instead of AIRDEFENSE? With an arm symbol? Or
         # LONGNECK/HEADHIGH/... and the girafe emoji? Or: Sky Shield? ☁️
     )
@@ -69,7 +69,11 @@ class Skill(Enum):
 
 SkillList = List[Skill]
 
-# Ideas for more skills:
+# Sanity check:
+assert all(s.value.potency >= 0 and s.value.potency <= 10 for s in Skill)
+
+
+# ----- Ideas for more skills -----
 #
 # - Healing / Regeneration 💉 -- Itself or others around it? A card with Regeneration
 #   will heal 1 damage at the end of each turn.
@@ -110,6 +114,8 @@ SkillList = List[Skill]
 #   row or opponent + 2 neighbors).
 # - Hoarder -- Draw another card when this card is played. # - Echolot 🔍 -- Pick a
 #   specific card from the deck.
+# - Eternal / Persistent / Resilient -- A card with Persistent will be returned to its
+#   owner's deck when it dies.
 # - Summon 🤝 -- A card with Summon can bring other cards from your deck into play.
 # - Leader 👑 -- A card with Leader can buff other cards.
 # - Confuse 😵 -- A card with Confuse can confuse an opponent's cards, causing them to
