@@ -44,10 +44,10 @@ Refer to the documentation with each class or module for details.
   is defeated (the run ends, if it is the human player).
 - **Computer Strategy:** The strategy the computer player uses in a fight.
 - **Item:** Some buff that can be used in a fight. (Currently not implemented.)
-- **Strength Score:** Cards and skills have strength scores that indicate how strong
-  they are. The strength score is used to determine the cost of a card/skill in the shop
-  or at the start of a run, the probability of a card/skill to be drawn in a lottery,
-  and the difficulty/strength of a card/skill in a fight.
+- **Potency:** Cards and skills have potency scores that indicate how strong they are.
+  The potency is used to determine the cost of a card/skill in the shop or at the start
+  of a run, the probability of a card/skill to be drawn in a lottery, and the
+  difficulty/value of a card/skill in a fight.
 
 
 # Card "buckets"
@@ -86,7 +86,7 @@ There are the following broad "buckets" of cards:
 
 - The game does not generate new cards dynamically. I.e., all cards are known (to the
   game at least, maybe not to the player) at the start of the game.
-- Note that here we also need a strength score for cards in order to decide how
+- Note that here we also need a potency score for cards in order to decide how
   expensive (start of the game or shop) or rare (lottery) or difficult (fight) they are.
   However, under this philosophy does not necessarily be calculated but can be
   pre-generated as well, as all cards are known beforehand.
@@ -97,7 +97,7 @@ There are the following broad "buckets" of cards:
 - Locations, where the player can get a card, randomly generate cards.
 - Computer strategy randomly generates cards.
 - Need some way to generate the cards (including names) and especially a way to derive a
-  score from a card, which should hint at the cards overall strength.
+  score from a card, which should hint at the cards overall potency.
   - Such a score would require the skills to have a score as well.
 - (Such a generator would make sense anyway to generate card proposals for Philosophy
   I.)
@@ -105,8 +105,7 @@ There are the following broad "buckets" of cards:
 Details:
 
 - Options on how to get the name: a) live from ChatGPT, b) fully random from a
-  pre-generated list, c) from a pre-generated list that is categorized by strength
-  score.
+  pre-generated list, c) from a pre-generated list that is categorized by potency.
 - Maybe make sure that cards with the same attribute always get the same name?
 
 
@@ -120,36 +119,4 @@ Details:
 
 - Maybe the player can choose between the philosophies at the start of a game (but not
   at the start of a run)?
-
-
-
-# Possible score function
-
-``` python
-def calculate_strength_score(card) -> int:
-    """
-    Calculates the overall strength score of a card based on its initial power, initial health,
-    skills, and the total costs of fire and spirits required to play and sacrifice the card.
-    
-    QQ: Can the score be normalized to [0, 1]? It might be possible for a certain version of the game, if all skills and their scores are known and if the max numbers for power, health, and costs are known.
-    """
-    # Calculate the total costs of fire and spirits required to play and sacrifice the card
-    total_costs = card.costs_fire + card.costs_spirits
-    
-    # Calculate the overall strength score of the card
-    strength_score = card.initial_power * 2 + card.initial_health * 3 - total_costs
-    
-    # Modify the strength score based on the skills of the card
-    if card.skills:
-        for skill in card.skills:
-            if skill == TRAMPLE:
-                strength_score += 2
-            elif skill == LIFEDRAIN:
-                strength_score += 1
-            # Add more conditions for other skills as needed
-            
-    # Return the strength score
-    return strength_score
-```
-
 

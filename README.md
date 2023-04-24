@@ -3,9 +3,6 @@
 
 # Next up
 
-- Add card ([?,?]) and skill ([-10, 10]?) strength scores and calc function.
-  - Maybe there's max numbers for power, health, costs_*, and has_*? Then, the score
-    could be normalized to [0, 1]?
 - Add a card generator.
 - Add more cards
 - Add more skills.
@@ -18,6 +15,7 @@
     there be a score per fight (maybe something that reflects how hard the fight is)?
   - Refine FightLocation and Computerstrategy so the game becomes harder and harder as
     the rungs increase.
+  - Use card generator to this end.
 - Save and load game state.
   - Add stats to game state: number of fights won, locations visited, number and which
     cards defeated, which cards confronted with, ... -- could have an instance of each
@@ -70,6 +68,10 @@
 - Start the game w/ 0 skills.
 - QQ: Spirits: keep them between fights (as it is now)? (Maybe have to sacrifice 1 life
   if you want to keep them?)
+- QQ: Should there be maximums for power, health, costs_*, and has_* and the number of
+  skills a card can have? If so, those should be introduced and enforced. -- Note: There
+  are at least implicit maxima now with the introduction of the potency range (see
+  Card.MAX_*).
 - In cursor-based views: Flash cursor red when an action is not possible.
 - Check for right minimum resolution at the beginning.
 - Can we add the new fire and spirits placement logic to the hypo-driven tests? Maybe

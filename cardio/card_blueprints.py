@@ -2,7 +2,6 @@ import copy
 from typing import List
 from . import Card, CardList, Skill
 
-# FIXME Do cards and in particular blueprints need a strength score attribute?
 
 _BLUEPRINTS = [
     Card("Hamster", 0, 1, 0),
@@ -17,7 +16,7 @@ _BLUEPRINTS = [
 def create_card_from_blueprint(name: str) -> Card:
     found = [c for c in _BLUEPRINTS if c.name == name]
     assert len(found) == 1
-    return copy.deepcopy(found[0])
+    return copy.deepcopy(found[0])  # TODO Use clone
 
 
 def create_cards_from_blueprints(namelist: List[str]) -> CardList:

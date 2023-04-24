@@ -1,7 +1,7 @@
 from __future__ import annotations
 import logging
 import copy
-from typing import Optional, List, TYPE_CHECKING
+from typing import Optional, List, TYPE_CHECKING, Tuple
 from .skills import Skill, SkillList
 from . import gg
 
@@ -36,6 +36,11 @@ class Card:
     QQ: Turn `has_*` and `costs_*` into properties to enforce the above rules?
     """
 
+    MAX_ATTR = 10  # Max value per attribute (power, health, ...)
+    MAX_SKILLS = 6  # Max number of skills a card can have
+    # FIXME ^ These are not enforced yet. Should be. Not only in the initializer but
+    # whenever something changes to affect these values.
+
     def __init__(
         self,
         # Mandatory:
@@ -59,8 +64,8 @@ class Card:
         self.costs_spirits = costs_spirits
         self.has_spirits = has_spirits
         self.has_fire = has_fire
-        
-        self.is_temporary: bool= False  # Whether this is only used in a single fight
+
+        self.is_temporary: bool = False  # Whether this is only used in a single fight
 
         if power * health == 0:  # Normal behavior
             self.reset()
@@ -90,6 +95,30 @@ class Card:
 
     def is_skilled(self) -> bool:
         return len(self.skills) > 0
+
+    @property
+    def raw_potency(self) -> int:
+        """Return the raw potency number of this card. Simply add a number of
+        attributes, where power and health are weighted more heavily. Add a bonus for
+        cards with no costs.
+        """
+        strengths = (
+            self.initial_power * 2
+            + self.initial_health * 2
+            + self.has_fire
+            + self.has_spirits
+            + sum(s.value.potency for s in self.skills)
+        )
+        costs = self.costs_fire + self.costs_spirits
+        costs_bonus = 10 if costs == 0 else 0  # Bonus for cards with no costs at all
+        return strengths - costs + costs_bonus
+
+    @property
+    def potency(self) -> int:
+        """Return this card's potency, its raw potency number normalized to [0, 100].
+        (Note that it can actually also be <0, but usually isn't.)
+        """
+        return int(self.raw_potency / self.get_raw_potency_range()[1] * 100)
 
     def get_grid_pos(self) -> GridPos:
         pos = gg.grid.find_card(self)
@@ -228,6 +257,38 @@ class Card:
         gg.vnc.card_prepare(self)
         gg.grid.move_card(self, to_pos=to_pos)
         self.activate()
+
+    @classmethod
+    def get_raw_potency_range(cls) -> Tuple[int, int, int]:
+        """Return the current potency range: (min, max, theoretical max)."""
+        skills = sorted(list(Skill), key=lambda s: s.value.potency, reverse=True)
+        mincard = cls(
+            name="Min",
+            initial_power=0,
+            initial_health=0,
+            costs_fire=10,
+            skills=[s for s in skills[-cls.MAX_SKILLS :] if s.value.potency < 0],
+            costs_spirits=0,  # 0, bc we can't have both types of costs in a card
+            has_spirits=0,
+            has_fire=0,
+        )
+        curmaxcard = cls(
+            name="Max",
+            initial_power=cls.MAX_ATTR,
+            initial_health=cls.MAX_ATTR,
+            costs_fire=0,
+            skills=skills[: cls.MAX_SKILLS],
+            costs_spirits=0,
+            has_spirits=cls.MAX_ATTR,
+            has_fire=cls.MAX_ATTR,
+        )
+        theorymaxcard = curmaxcard.clone()
+        theorymaxcard.skills = []
+        return (
+            mincard.raw_potency,
+            curmaxcard.raw_potency,
+            theorymaxcard.raw_potency + cls.MAX_SKILLS * 10,
+        )
 
 
 # ----- Types -----
