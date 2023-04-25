@@ -209,6 +209,8 @@ class Skill(Enum):
         name="Shield",
         symbol="🛡️",
         description="The Shield on a card absorbs 1 damage per attack the card receives.",
+        # OR: The first damage per turn. OR: The first x damage per fight. OR: All
+        # damage of the first damage dealt.
         potency=7,
         under_construction=True,
         # ⭐
