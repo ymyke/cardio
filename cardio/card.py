@@ -232,7 +232,9 @@ class Card:
 
     def activate(self) -> None:
         if self.power == 0:
-            logging.debug("%s become active but has 0 power, so doesn't", self.name)
+            logging.debug(
+                "%s would become active but has 0 power, so doesn't", self.name
+            )
             return
         logging.debug("%s becomes active", self.name)
         opponent = gg.grid.get_opposing_card(self)
