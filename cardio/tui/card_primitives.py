@@ -46,7 +46,7 @@ def show_card_contents(
     show_text(screen, pos + (2, 2), power)
     health = render_value(card.health, "💓", surplus_color=Color.RED)
     show_text(screen, pos + (2, 3), health)
-    skills = "".join(s.value.symbol for s in card.skills)
+    skills = "".join(s.symbol for s in card.skills)
     show_text(screen, pos + (2, 4), skills)
 
     # Don't show `costs_*` and `has_*` for computer cards:

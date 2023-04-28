@@ -1,5 +1,6 @@
 import pytest
-from cardio import Card, GridPos, gg, FightDecks, Skill
+from cardio import Card, GridPos, gg, FightDecks, skills
+from cardio.skills import SkillSet
 
 
 @pytest.fixture
@@ -21,7 +22,8 @@ def test_init():
     assert c.power == 1
     assert c.health == 2
     # defaults:
-    assert c.skills == []
+    assert isinstance(c.skills, SkillSet)
+    assert c.skills.count() == 0
     assert c.costs_spirits == 0
     assert c.has_spirits == 1
     assert c.has_fire == 1
@@ -30,15 +32,16 @@ def test_init():
 def test_is_skilled():
     c = Card("X", 1, 2, 3)
     assert not c.is_skilled()
-    c.skills = [Skill.FERTILITY]
+    c.skills.add(skills.Fertility)
+    assert c.is_skilled()
 
 
 def test_raw_potency():
     c = Card("X", 3, 2, 1)
     assert c.raw_potency == 11
-    c.skills = [Skill.FERTILITY]
+    c.skills.add(skills.Fertility)
     assert c.raw_potency == 20
-    c.skills.append(Skill.SOARING)
+    c.skills.add(skills.Soaring)
     assert c.raw_potency == 22
     # Another one:
     c = Card("X", 1, 1, 10)

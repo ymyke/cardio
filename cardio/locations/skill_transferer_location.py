@@ -26,7 +26,7 @@ def get_to_cards(from_card: Card) -> CardList:
     return [
         c
         for c in gg.humanplayer.deck.cards
-        if set(c.skills) & set(from_card.skills) == set()
+        if set(c.skills.get_types()) & set(from_card.skills.get_types()) == set()
     ]
 
 
@@ -88,10 +88,10 @@ class SkillTransfererLocation(Location):
             )
 
         # Apply (random) skill to the second card and destroy the first:
-        which_skill = random.choice(from_card.skills)
-        to_card.skills.append(which_skill)
+        which_skill = random.choice(from_card.skills.get_types())
+        to_card.skills.add(which_skill)
         view.show_upgrade(to_card)
-        if len(from_card.skills) == 1:
+        if from_card.skills.count() == 1:
             view.show_destroy(from_card)
             gg.humanplayer.deck.remove_card(from_card)
         else:

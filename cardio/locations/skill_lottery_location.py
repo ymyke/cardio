@@ -1,6 +1,6 @@
 import random
 from typing import Protocol, Type
-from cardio import gg, Card, CardList, Skill
+from cardio import gg, Card, CardList, skills
 from .location import Location
 from .baseview import BaseLocationView
 
@@ -23,7 +23,6 @@ class SkillLotteryLocation(Location):
     removed rather than a new one added.
 
     Notes:
-    - There is currently no max number of skills per card. (Should there be?)
     - There are currently no restrictions as to which skills can and cannot be combined
       with which other skills. (Should there be?)
     """
@@ -36,26 +35,24 @@ class SkillLotteryLocation(Location):
     def handle(self, view_class: Type[SkillLotteryView]) -> bool:
         view = view_class(gg.humanplayer.deck.cards)
         possible_cards = [
-            c for c in gg.humanplayer.deck.cards if len(c.skills) < len(Skill)
+            c for c in gg.humanplayer.deck.cards if c.skills.count() < Card.MAX_SKILLS
         ]
         if not possible_cards:
             view.error("Sorry, you don't have any cards that can get more skills.")
             return True
         card = view.pick(possible_cards)
-        if card.skills and random.random() < len(card.skills) / len(Skill):
-            skill = random.choice(card.skills)
+        if card.skills and random.random() < card.skills.count() / Card.MAX_SKILLS:
+            skill = random.choice(card.skills.get_types())
             card.skills.remove(skill)
             view.show_upgrade(card)
-            view.message(
-                f"{card.name} lost the {skill.name} {skill.value.symbol} skill. 😢"
-            )
+            view.message(f"{card.name} lost the {skill.name} {skill.symbol} skill. 😢")
         else:
-            skill = random.choice(list(set(Skill) - set(card.skills)))
-            card.skills.append(skill)
-            view.show_upgrade(card)
-            view.message(
-                f"{card.name} gained the {skill.name} {skill.value.symbol} skill! 🥳"
+            skill = random.choice(
+                list(set(skills.get_all_skilltypes()) - set(card.skills.get_types()))
             )
+            card.skills.add(skill)
+            view.show_upgrade(card)
+            view.message(f"{card.name} gained the {skill.name} {skill.symbol} skill! 🥳")
 
         view.close()
         return True

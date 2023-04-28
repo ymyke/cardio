@@ -7,7 +7,7 @@ model. There is also some fight-related logic in the `Card` class.
 import logging
 from typing import Callable, Optional
 
-from . import gg, Card, Deck, FightDecks, Grid, GridPos, Skill
+from . import gg, Card, Deck, FightDecks, Grid, GridPos, skills
 from .placement_manager import PlacementManager
 from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
@@ -156,7 +156,7 @@ class FightVnC:
         self.show_human_places_card(pmgr.target_card, from_slot, to_slot)
         self.decks.hand.pick_card(from_slot)
 
-        if Skill.FERTILITY in pmgr.target_card.skills:
+        if skills.Fertility in pmgr.target_card.skills:
             new_card = pmgr.target_card.make_temp_copy()
             new_card.reset()
             self.redraw_view()

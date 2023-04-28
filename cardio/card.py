@@ -2,8 +2,8 @@ from __future__ import annotations
 import logging
 import copy
 from typing import Optional, List, TYPE_CHECKING, Tuple
-from .skills import Skill, SkillList
-from . import gg
+from .skills import ListOfSkillsOrSkillTypes, SkillSet, get_all_skilltypes
+from . import gg, skills
 
 if TYPE_CHECKING:
     from . import GridPos
@@ -49,7 +49,7 @@ class Card:
         initial_health: int,  # 💓
         costs_fire: int,  # How much fire 🔥 needed
         # Optional:
-        skills: Optional[SkillList] = None,
+        skills: Optional[ListOfSkillsOrSkillTypes] = None,
         costs_spirits: int = 0,  # How many spirits 👻 needed
         has_spirits: int = 1,  # How many spirits this card generates upon death 👻
         has_fire: int = 1,  # How much fire this card is worth when sacrificed 🔥
@@ -60,7 +60,7 @@ class Card:
         self.initial_power = initial_power
         self.initial_health = initial_health
         self.costs_fire = costs_fire
-        self.skills = skills or []
+        self.skills = SkillSet(skills or [])
         self.costs_spirits = costs_spirits
         self.has_spirits = has_spirits
         self.has_fire = has_fire
@@ -94,7 +94,7 @@ class Card:
         return self in gg.humanplayer.get_all_human_cards()
 
     def is_skilled(self) -> bool:
-        return len(self.skills) > 0
+        return self.skills.count() > 0
 
     @property
     def raw_potency(self) -> int:
@@ -107,7 +107,7 @@ class Card:
             + self.initial_health * 2
             + self.has_fire
             + self.has_spirits
-            + sum(s.value.potency for s in self.skills)
+            + sum(s.potency for s in self.skills)
         )
         costs = self.costs_fire + self.costs_spirits
         costs_bonus = 10 if costs == 0 else 0  # Bonus for cards with no costs at all
@@ -171,7 +171,7 @@ class Card:
     def get_attacked(self, opponent: Card) -> None:
         logging.debug("%s gets attacked by %s", self.name, opponent.name)
 
-        if Skill.SPINES in self.skills:
+        if skills.Spines in self.skills:
             # FIXME Should maybe be moved further down once we have an animation in
             # place for this because otherwise the animations will happen in the wrong
             # order.
@@ -209,14 +209,14 @@ class Card:
         logging.debug(
             "%s%s attacks %s %s",
             self.name,
-            "".join(s.value.symbol for s in self.skills),
+            "".join(s.symbol for s in self.skills),
             opponent.name,
-            "".join(s.value.symbol for s in opponent.skills),
-        )
+            "".join(s.symbol for s in opponent.skills),
+        )   # FIXME Add some `name_with_skills` or `xname` method to Card?
 
-        if Skill.SOARING in self.skills:
-            if Skill.AIRDEFENSE in opponent.skills:
-                if Skill.INSTANTDEATH in self.skills:
+        if skills.Soaring in self.skills:
+            if skills.Airdefense in opponent.skills:
+                if skills.InstantDeath in self.skills:
                     opponent.die()
                 else:
                     opponent.get_attacked(self)
@@ -224,7 +224,7 @@ class Card:
                 gg.vnc.handle_player_damage(self.power, self)
             return
 
-        if Skill.INSTANTDEATH in self.skills:
+        if skills.InstantDeath in self.skills:
             opponent.die()
             return
 
@@ -261,13 +261,13 @@ class Card:
     @classmethod
     def get_raw_potency_range(cls) -> Tuple[int, int, int]:
         """Return the current potency range: (min, max, theoretical max)."""
-        skills = sorted(list(Skill), key=lambda s: s.value.potency, reverse=True)
+        skills = sorted(get_all_skilltypes(), key=lambda s: s.potency, reverse=True)
         mincard = cls(
             name="Min",
             initial_power=0,
             initial_health=0,
             costs_fire=10,
-            skills=[s for s in skills[-cls.MAX_SKILLS :] if s.value.potency < 0],
+            skills=[s for s in skills[-cls.MAX_SKILLS :] if s.potency < 0],
             costs_spirits=0,  # 0, bc we can't have both types of costs in a card
             has_spirits=0,
             has_fire=0,
@@ -277,7 +277,7 @@ class Card:
             initial_power=cls.MAX_ATTR,
             initial_health=cls.MAX_ATTR,
             costs_fire=0,
-            skills=skills[: cls.MAX_SKILLS],
+            skills=skills[: cls.MAX_SKILLS],  # type: ignore (why is this necessary?)
             costs_spirits=0,
             has_spirits=cls.MAX_ATTR,
             has_fire=cls.MAX_ATTR,

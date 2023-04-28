@@ -1,7 +1,6 @@
 from typing import Optional
 import pytest
-from . import conftest
-from cardio import Card, CardList, Skill, gg, GridPos
+from cardio import Card, CardList, gg, GridPos, skills
 from cardio.computer_strategies import Round0OnlyStrategy
 from cardio.humanstrategyvnc import HumanStrategyVnC
 
@@ -70,7 +69,7 @@ def test_vanilla_with_no_opponent():
 
 
 def test_instant_death():
-    hc = Card("Human Card", 1, 10, 1, skills=[Skill.INSTANTDEATH])
+    hc = Card("Human Card", 1, 10, 1, skills=[skills.InstantDeath])
     cc = Card("Computer Card", 2, 3, 1)
     do_the_fight([hc], cc)
     assert hc.health == 10
@@ -79,7 +78,7 @@ def test_instant_death():
 
 
 def test_soaring():
-    hc = Card("Human Card", 1, 20, 1, skills=[Skill.SOARING])
+    hc = Card("Human Card", 1, 20, 1, skills=[skills.Soaring])
     cc = Card("Computer Card", 2, 3, 1)
     do_the_fight([hc], cc)
     # 12 not 10, bc fight-over conditions are checked after each line gets activated:
@@ -89,8 +88,8 @@ def test_soaring():
 
 
 def test_soaring_vs_airdefense():
-    hc = Card("Human Card", 1, 20, 1, skills=[Skill.SOARING])
-    cc = Card("Computer Card", 2, 3, 1, skills=[Skill.AIRDEFENSE])
+    hc = Card("Human Card", 1, 20, 1, skills=[skills.Soaring])
+    cc = Card("Computer Card", 2, 3, 1, skills=[skills.Airdefense])
     do_the_fight([hc], cc)
     assert hc.health == 16
     assert cc.health == 0
@@ -98,8 +97,8 @@ def test_soaring_vs_airdefense():
 
 
 def test_soaring_and_instantdeath_vs_airdefense():
-    hc = Card("Human Card", 1, 20, 1, skills=[Skill.SOARING, Skill.INSTANTDEATH])
-    cc = Card("Computer Card", 2, 3, 1, skills=[Skill.AIRDEFENSE])
+    hc = Card("Human Card", 1, 20, 1, skills=[skills.Soaring, skills.InstantDeath])
+    cc = Card("Computer Card", 2, 3, 1, skills=[skills.Airdefense])
     do_the_fight([hc], cc)
     assert hc.health == 20
     assert cc.health == 0
@@ -110,7 +109,7 @@ def test_soaring_and_instantdeath_vs_no_airdefense():
     """INSTANTDEATH should have no effect and computer card should not suffer any damage
     at all bc of SOARING.
     """
-    hc = Card("Human Card", 1, 20, 1, skills=[Skill.SOARING, Skill.INSTANTDEATH])
+    hc = Card("Human Card", 1, 20, 1, skills=[skills.Soaring, skills.InstantDeath])
     cc = Card("Computer Card", 2, 3, 1)
     do_the_fight([hc], cc)
     # 12 not 10, bc fight-over conditions are checked after each line gets activated:
@@ -121,7 +120,7 @@ def test_soaring_and_instantdeath_vs_no_airdefense():
 
 def test_spines():
     hc = Card("Human Card", 2, 10, 1)
-    cc = Card("Computer Card", 2, 3, 1, skills=[Skill.SPINES])
+    cc = Card("Computer Card", 2, 3, 1, skills=[skills.Spines])
     do_the_fight([hc], cc)
     assert hc.health == 6
     assert cc.health == 0
@@ -130,7 +129,7 @@ def test_spines():
 
 def test_spines_resulting_in_both_cards_dying_simultaneously():
     hc = Card("Human Card", 1, 1, 1)
-    cc = Card("Computer Card", 0, 1, 1, skills=[Skill.SPINES])
+    cc = Card("Computer Card", 0, 1, 1, skills=[skills.Spines])
     do_the_fight([hc], cc)
     assert hc.health == 0
     assert cc.health == 0
@@ -140,7 +139,7 @@ def test_spines_resulting_in_both_cards_dying_simultaneously():
 
 
 def test_fertility():
-    hc = Card("Human Card", 1, 1, 0, skills=[Skill.FERTILITY])
+    hc = Card("Human Card", 1, 1, 0, skills=[skills.Fertility])
     cc = Card("Computer Card", 1, 2, 1)
     do_the_fight([hc], cc)
     # The original card must be used:
@@ -151,7 +150,7 @@ def test_fertility():
     copy = non_hamsters_on_hand[0]
     assert copy.name == "Human Card"
     assert copy.health == 1  # Make sure the health was reset
-    assert copy.skills == [Skill.FERTILITY]
+    assert copy.skills.get_types() == [skills.Fertility]
     assert copy.is_temporary
     # The copy should _not_ be in the player's main deck, since it is a temporary card:
     assert copy not in gg.humanplayer.deck.cards
