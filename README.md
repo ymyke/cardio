@@ -3,6 +3,8 @@
 
 # Next up
 
+- Bug: Aborting card placement with ESC will lead to a card flash like an error.
+
 - Add a card generator.
   - Maybe also cards the human can get are randomly generated and the human can give
     them names? Or at least sometimes can give them names? (Or there are locations where
