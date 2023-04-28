@@ -11,18 +11,11 @@ Checklist when adding a new skill:
 - Anything that needs to be saved?
 """
 from dataclasses import dataclass
-from enum import Enum
-from typing import List
-
-# QQ: Maybe use a subclass such as TemporarySkill to implement things like temporary
-# buffs like the power buff thanks to the Leader skill.
-
-# FIXME: Should certain or all (or none?) skills be stackable? What does that mean?
-# where does it make sense?
+from typing import List, Optional, Type, Union
 
 
-@dataclass(frozen=True)
-class SkillSpec:
+@dataclass
+class Skill:
     name: str
     symbol: str
     description: str
@@ -30,237 +23,363 @@ class SkillSpec:
     under_construction: bool = False
 
 
-# TODO Which skills will need some state and how will we save that state? Need to have
-# some skill representation that is not frozen? Maybe some skills are subclasses of
-# SkillSpec?
+SkillType = Type[Skill]
+SkillOrSkillType = Union[Skill, SkillType]
+ListOfSkillsOrSkillTypes = List[SkillOrSkillType]
+
+
+def get_all_skilltypes() -> List[SkillType]:
+    return Skill.__subclasses__()
+
+
+class SkillSet:
+    """A collection of skills.
+
+    All methods that take a skill are flexible in that they accept both a skill instance
+    and a skill type (i.e., the class itself), hence the `SkillOrSkillType` type. So,
+    e.g., both `a_skillist.add(Spines)` and `a_skillist.add(Spines())` are valid.
+    """
+
+    def __init__(self, skills: Optional[ListOfSkillsOrSkillTypes] = None) -> None:
+        skills = skills or []
+        self.skills = [s() if isinstance(s, type) else s for s in skills]  # type: ignore
+
+    def has(self, skill: SkillOrSkillType) -> bool:
+        return skill in self.skills or skill in [type(s) for s in self.skills]
+
+    def get(self, skill: SkillOrSkillType) -> SkillOrSkillType:
+        if skill in self.skills:
+            return skill
+        elif skill in [type(s) for s in self.skills]:
+            return [s for s in self.skills if type(s) == skill][0]
+        raise AttributeError(f"Skill {skill} not found in {self.skills}")
+
+    def get_types(self) -> List[SkillType]:
+        return [type(s) for s in self.skills]
+
+    def count(self) -> int:
+        return len(self.skills)
+
+    def add(self, skill: SkillOrSkillType) -> None:
+        assert not self.has(skill), "Skill stacking is not supported."
+        # QQ: Should certain or all (or none?) skills be stackable? What does that mean?
+        # where does it make sense?
+        self.skills.append(skill() if isinstance(skill, type) else skill)  # type: ignore
+
+    def remove(self, skill: SkillOrSkillType) -> None:
+        assert self.has(skill)
+        if isinstance(skill, type):
+            self.skills = [s for s in self.skills if not isinstance(s, skill)]
+        else:
+            self.skills.remove(skill)
+
+    def remove_all(self) -> None:
+        self.skills = []
+
+    def __repr__(self) -> str:
+        return f"SkillSet({self.skills})"
+
+    def __iter__(self):
+        return iter(self.skills)
+
+    def __contains__(self, skill):
+        return self.has(skill)
+
+
+# TODO Which skills will need some state and how will we save that state?
 
 # FIXME Need more skills in the 1-4 range.
 
 
-class Skill(Enum):
-    INSTANTDEATH = SkillSpec(
-        name="Instant Death",
-        symbol="💀",
-        description="A card with Instant Death will instantly kill any card it damages. If the attack strikes the opposing agent directly, the skill has no effect, and the attack will deal damage according to its power. If a card has 0 power, it will not attack, and this skill will have no effect.",
-        potency=7,
-        # QQ: Alternative names: One-Shot🎯, Killer Instinct, Exterminator, Terminator
-        # FIXME What if the attack is blocked, e.g. by a shield? I think they can't be
-        # blocked. (Maybe the shield gets destroyed?)
-    )
-    FERTILITY = SkillSpec(
-        name="Fertility",
-        symbol="🐭",
-        description="A fertile card creates a copy of itself in your hand when it is played.",
-        potency=9,
-        # FIXME: Maybe FERTILITY only makes sense for cards that use spirits as costs?
-        # Or that cost more than 1 fire? Otherwise you can create infinite spirits with
-        # them? OR: The cards go to the draw deck instead of the hand? QQ: Should copies
-        # of this lose their fertility skill? OR: Cards with fertility do not produce
-        # spirits, no matter what.
-        # QQ: BTW, for such restrictions, we could use a "restriction" attribute/function here
-        # that gets the card and evaluates whether the skill can be added or not. [1]
-    )
-    SOARING = SkillSpec(
-        name="Soaring",
-        symbol="🪁",
-        description="A Soaring card will ignore opposing cards and strike an opponent directly.",
-        potency=2,
-        # Or: Jump 🐇🦘
-    )
-    SPINES = SkillSpec(
-        name="Spines",
-        symbol="🦔",
-        description="After a card with Spines is attacked, the attacker receives 1 damage.",
-        potency=3,
-    )
-    AIRDEFENSE = SkillSpec(
-        name="Air Defense",
-        symbol="🚀",
-        description="A card with Air Defense will block attacks from Soaring cards.",
-        potency=1,
-        # QQ: Maybe REACHHIGH instead of AIRDEFENSE? With an arm symbol? Or
-        # LONGNECK/HEADHIGH/... and the girafe emoji? Or: Sky Shield? ☁️
-    )
-    INHIBIT = SkillSpec(
-        # FIXME This is not easy. Maybe need some kind of precondition filter code that
-        # gets executed for each skill? See also [1] above -> Skills would have an
-        # assign-filter and an activate-filter. The activate-filter for INHIBIT would
-        # not be with the INHIBIT skill but with EVERY skill.
-        # QQ: What if INHIBIT and INHIBIT oppose each other?
-        name="Inhibit",
-        symbol="🚧",
-        description="A card with Inhibit will disable all skills of the opposing card.",
-        potency=2,
-        under_construction=True,
-    )
-    AMNESIA = SkillSpec(
-        name="Amnesia",
-        symbol="🤷‍♂️",
-        description="A card with Amnesia will forget all its other skills. They remain on the card, but they will not be activated as long as Amnesia is on the card.",
-        potency=-3,
-        under_construction=True,
-        # Similar to INHIBIT. See notes there.
-    )
-    FRAGILE = SkillSpec(
-        name="Fragile",
-        symbol="🥚",
-        description="A card with Fragile takes 1 more damage from every successful (e.g., non-blocked) attack by an opponent.",
-        potency=-4,
-        under_construction=True,
-        # FIXME Make sure this works properly once we have a way to block attacks, shields
-        # etc. ⭐
-    )
-    LUCKYSTRIKE = SkillSpec(
-        name="Lucky Strike",
-        symbol="🍀",
-        description="A card with Lucky Strike has a 50-50 chance to either kill the opponent or the card itself instantly. If the attack strikes the opposing agent directly, the skill has no effect, and the attack will deal damage according to its power. If a card has 0 power, it will not attack, and this skill will have no effect.",
-        potency=0,
-        under_construction=True,
-        # QQ: What if the attack is blocked, e.g. by a shield? I think they can't be
-        # blocked. (Maybe the shield gets destroyed?)
-    )
-    TRAMPLE = SkillSpec(
-        name="Trample",
-        symbol="🦏",
-        description="A card with Trample will deal the equal amount of damage to the opposing player as it deals to the opposing card.",
-        potency=7,
-        under_construction=True,
-    )
-    REGENERATE = SkillSpec(
-        name="Regenerate",
-        symbol="🩹",  # 💊🌡️
-        description="A card with Regenerate will heal 1 damage at the end of each turn.",
-        potency=5,
-        under_construction=True,
-        # ⭐
-    )
-    HEALER = SkillSpec(
-        name="Healer",  # Medic?
-        symbol="🚑",  # 🩺⚕️
-        description="A card with Healer will heal 1 damage of its neighboring cards at the end of each turn.",
-        potency=6,
-        under_construction=True,
-        # ⭐
-    )
-    UNDERDOG = SkillSpec(
-        name="Underdog",
-        symbol="🐩",
-        description="A card with Underdog gains additional strength when opposed by a card with higher power.",
-        potency=4,
-        under_construction=True,
-        # ⭐
-    )
-    OVERLOAD = SkillSpec(
-        name="Overload",
-        symbol="🔌",  # 🔋
-        description="A card with Overload will deal 1 damage to itself when it attacks.",
-        potency=-5,
-        under_construction=True,
-        # ⭐
-        # Maybe there will be ways to prevent cards from attacking in a turn (e.g.,
-        # through an item?), in which case this skill would become more strategic and
-        # controllable by the player.
-    )
-    WEAKNESS = SkillSpec(
-        name="Weakness",
-        symbol="🤕",
-        description="A card with Weakness will deal 1 less damage when it attacks.",
-        potency=-4,
-        under_construction=True,
-        # ⭐
-        # TODO Is this the same as reducing its power by 1?
-    )
-    PACKRAT = SkillSpec(
-        name="Packrat",
-        symbol="🧺",
-        description="A card with Packrat will draw another card to the player's hand when it is played.",
-        potency=6,
-        under_construction=True,
-        # ⭐
-        # FIXME This one is also only applicable to human player's cards. Should there
-        # be a flag to differentiate the two types?
-    )
-    BULLY = SkillSpec(
-        name="Bully",
-        symbol="🥊",
-        description="A card with Bully will always attack the weakest opposing card (in the entire row), but never its directly opposing card.",
-        potency=6,
-        under_construction=True,
-    )
-    EMPTY = SkillSpec(
-        name="Empty",  # Bloodless / Pale / Inert / Extinguished 🧯
-        symbol="📭",
-        description="A card with Empty will not provide any fire or spirits. This also means the card cannot be sacrificed.",
-        potency=-3,
-        under_construction=True,
-        # TODO What is the basic philosophy? a) A card with EMPTY keeps all its stats
-        # (esp. has_*) and the code does special handling to check for cards with this
-        # skill wherever appropriate (e.g., card placement). b) A card keeps its
-        # _original_ stats and adjusts its stats as it gets (and loses, in which case
-        # the original stats will be restored) a skill such as EMPTY. That way, the code
-        # does not need to identify and handle special cases. -- Seems to me that a is
-        # the more consistent approach that can apply to all skills. -- One way to make
-        # things easier is to turn the attributes in the Card class into properties that
-        # handle all these special cases such as EMPTY etc.
-        #
-        # → QQ: How many other skills are relevant to this question?
-    )
-    SHIELD = SkillSpec(
-        name="Shield",
-        symbol="🛡️",
-        description="The Shield on a card absorbs 1 damage per attack the card receives.",
-        # OR: The first damage per turn. OR: The first x damage per fight. OR: All
-        # damage of the first damage dealt.
-        potency=7,
-        under_construction=True,
-        # ⭐
-        # FIXME Will be destroyed by INSTANTDEATH? And maybe LUCKYSTRIKE? If so, mention
-        # in their descriptions.
-    )
-    DOUBLESTRIKE = SkillSpec(
-        name="Double Strike",
-        symbol="✌️",
-        description="A card with Double Strike will attack twice. Afterwards, it will lose 1 power (for the rest of the fight).",
-        potency=6,
-        under_construction=True,
-        # ⭐
-    )
-    FINALBLOW = SkillSpec(
-        name="Final Blow",
-        symbol="🏁",
-        description="A card with Final Blow will attack one last time just before dying.",
-        potency=6,
-        under_construction=True,
-    )
-    BERSERK = SkillSpec(
-        name="Berserk",
-        symbol="🪓",
-        description="A card with Berserk gains 1 power each time it is attacked (until the end of the fight).",
-        potency=8,
-        under_construction=True,
-    )
-    MIXER = SkillSpec(
-        name="Mixer",
-        symbol="🔀",
-        description="When a card with Mixer is played, it swaps one random card from the player's hand with another one from the draw deck. In addition, the player draws a hamster card.",
-        potency=0,
-        under_construction=True,
-        # FIXME humanonly
-    )
-    HAMSTERWHEEL = SkillSpec(
-        name="Hamster Wheel",
-        symbol="🎡",
-        description="When a card with Hamster Wheel is played, it swaps one random card from the player's hand with another one from the draw deck (same as Mixer). In addition, the player draws a hamster card.",
-        potency=5,
-        under_construction=True,
-        # FIXME humanonly
-    )
+# ----- Individual skills -----
 
 
-SkillList = List[Skill]
+@dataclass
+class InstantDeath(Skill):
+    name: str = "Instant Death"
+    symbol: str = "💀"
+    description: str = "A card with Instant Death will instantly kill any card it damages. If the attack strikes the opposing agent directly, the skill has no effect, and the attack will deal damage according to its power. If a card has 0 power, it will not attack, and this skill will have no effect."
+    potency: int = 7
+    # QQ: Alternative names: One-Shot🎯, Killer Instinct, Exterminator, Terminator
+    # FIXME What if the attack is blocked, e.g. by a shield? I think they can't be
+    # blocked. (Maybe the shield gets destroyed?)
+
+
+@dataclass
+class Fertility(Skill):
+    name: str = "Fertility"
+    symbol: str = "🐭"
+    description: str = (
+        "A fertile card creates a copy of itself in your hand when it is played."
+    )
+    potency: int = 9
+    # FIXME: Maybe FERTILITY only makes sense for cards that use spirits as costs?
+    # Or that cost more than 1 fire? Otherwise you can create infinite spirits with
+    # them? OR: The cards go to the draw deck instead of the hand? QQ: Should copies
+    # of this lose their fertility skill? OR: Cards with fertility do not produce
+    # spirits, no matter what.
+    # QQ: BTW, for such restrictions, we could use a "restriction" attribute/function here
+    # that gets the card and evaluates whether the skill can be added or not. [1]
+
+
+@dataclass
+class Soaring(Skill):
+    name: str = "Soaring"
+    symbol: str = "🪁"
+    description: str = (
+        "A Soaring card will ignore opposing cards and strike an opponent directly."
+    )
+    potency: int = 2
+    # Or: Jump 🐇🦘
+
+
+@dataclass
+class Spines(Skill):
+    name: str = "Spines"
+    symbol: str = "🦔"
+    description: str = (
+        "After a card with Spines is attacked, the attacker receives 1 damage."
+    )
+    potency: int = 3
+
+
+@dataclass
+class Airdefense(Skill):
+    name: str = "Air Defense"
+    symbol: str = "🚀"
+    description: str = "A card with Air Defense will block attacks from Soaring cards."
+    potency: int = 1
+    # QQ: Maybe REACHHIGH instead of AIRDEFENSE? With an arm symbol? Or
+    # LONGNECK/HEADHIGH/... and the girafe emoji? Or: Sky Shield? ☁️
+
+
+# ----- Under construction -----
+
+
+@dataclass
+class Inhibit(Skill):
+    # FIXME This is not easy. Maybe need some kind of precondition filter code that
+    # gets executed for each skill? See also [1] above -> Skills would have an
+    # assign-filter and an activate-filter. The activate-filter for INHIBIT would
+    # not be with the INHIBIT skill but with EVERY skill.
+    # QQ: What if INHIBIT and INHIBIT oppose each other?
+    name: str = "Inhibit"
+    symbol: str = "🚧"
+    description: str = (
+        "A card with Inhibit will disable all skills of the opposing card."
+    )
+    potency: int = 2
+    under_construction: bool = True
+
+
+@dataclass
+class Amnesia(Skill):
+    name: str = "Amnesia"
+    symbol: str = "🤷‍♂️"
+    description: str = "A card with Amnesia will forget all its other skills. They remain on the card, but they will not be activated as long as Amnesia is on the card."
+    potency: int = -3
+    under_construction: bool = True
+    # Similar to INHIBIT. See notes there.
+
+
+@dataclass
+class Fragile(Skill):
+    name: str = "Fragile"
+    symbol: str = "🥚"
+    description: str = "A card with Fragile takes 1 more damage from every successful (e.g., non-blocked) attack by an opponent."
+    potency: int = -4
+    under_construction: bool = True
+    # FIXME Make sure this works properly once we have a way to block attacks, shields
+    # etc. ⭐
+
+
+@dataclass
+class Luckystrike(Skill):
+    name: str = "Lucky Strike"
+    symbol: str = "🍀"
+    description: str = "A card with Lucky Strike has a 50-50 chance to either kill the opponent or the card itself instantly. If the attack strikes the opposing agent directly, the skill has no effect, and the attack will deal damage according to its power. If a card has 0 power, it will not attack, and this skill will have no effect."
+    potency: int = 0
+    under_construction: bool = True
+    # QQ: What if the attack is blocked, e.g. by a shield? I think they can't be
+    # blocked. (Maybe the shield gets destroyed?)
+
+
+@dataclass
+class Trample(Skill):
+    name: str = "Trample"
+    symbol: str = "🦏"
+    description: str = "A card with Trample will deal the equal amount of damage to the opposing player as it deals to the opposing card."
+    potency: int = 7
+    under_construction: bool = True
+
+
+@dataclass
+class Regenerate(Skill):
+    name: str = "Regenerate"
+    symbol: str = "🩹"
+    description: str = (
+        "A card with Regenerate will heal 1 damage at the end of each turn."
+    )
+    potency: int = 5
+    under_construction: bool = True
+    # ⭐
+
+
+@dataclass
+class Healer(Skill):
+    name: str = "Healer"  # Medic
+    symbol: str = "🚑"
+    description: str = "A card with Healer will heal 1 damage of its neighboring cards at the end of each turn."
+    potency: int = 6
+    under_construction: bool = True
+    # ⭐
+
+
+@dataclass
+class Underdog(Skill):
+    name: str = "Underdog"
+    symbol: str = "🐩"
+    description: str = "A card with Underdog gains additional strength when opposed by a card with higher power."
+    potency: int = 4
+    under_construction: bool = True
+    # ⭐
+
+
+@dataclass
+class Overload(Skill):
+    name: str = "Overload"
+    symbol: str = "🔌"  # 🔋
+    description: str = (
+        "A card with Overload will deal 1 damage to itself when it attacks."
+    )
+    potency: int = -5
+    under_construction: bool = True
+    # ⭐
+    # Maybe there will be ways to prevent cards from attacking in a turn (e.g.,
+    # through an item?), in which case this skill would become more strategic and
+    # controllable by the player.
+
+
+@dataclass
+class Weakness(Skill):
+    name: str = "Weakness"
+    symbol: str = "🤕"
+    description: str = "A card with Weakness will deal 1 less damage when it attacks."
+    potency: int = -4
+    under_construction: bool = True
+    # ⭐
+    # TODO Is this the same as reducing its power by 1?
+
+
+@dataclass
+class Packrat(Skill):
+    name: str = "Packrat"
+    symbol: str = "🧺"
+    description: str = "A card with Packrat will draw another card to the player's hand when it is played."
+    potency: int = 6
+    under_construction: bool = True
+    # ⭐
+    # FIXME This one is also only applicable to human player's cards. Should there
+    # be a flag to differentiate the two types?
+
+
+@dataclass
+class Bully(Skill):
+    name: str = "Bully"
+    symbol: str = "🥊"
+    description: str = "A card with Bully will always attack the weakest opposing card (in the entire row), but never its directly opposing card."
+    potency: int = 6
+    under_construction: bool = True
+
+
+@dataclass
+class Empty(Skill):
+    name: str = "Empty"  # Bloodless / Pale / Inert / Extinguished
+    symbol: str = "📭"
+    description: str = "A card with Empty will not provide any fire or spirits. This also means the card cannot be sacrificed."
+    potency: int = -3
+    under_construction: bool = True
+    # TODO What is the basic philosophy? a) A card with EMPTY keeps all its stats
+    # (esp. has_*) and the code does special handling to check for cards with this
+    # skill wherever appropriate (e.g., card placement). b) A card keeps its
+    # _original_ stats and adjusts its stats as it gets (and loses, in which case
+    # the original stats will be restored) a skill such as EMPTY. That way, the code
+    # does not need to identify and handle special cases. -- Seems to me that a is
+    # the more consistent approach that can apply to all skills. -- One way to make
+    # things easier is to turn the attributes in the Card class into properties that
+    # handle all these special cases such as EMPTY etc.
+    #
+    # → QQ: How many other skills are relevant to this question?
+
+
+@dataclass
+class Shield(Skill):
+    name: str = "Shield"
+    symbol: str = "🛡️"
+    description: str = (
+        "The Shield on a card absorbs 1 damage per attack the card receives."
+    )
+    # OR: The first damage per turn. OR: The first x damage per fight. OR: All
+    # damage of the first damage dealt.
+    potency: int = 7
+    under_construction: bool = True
+    # ⭐
+    # FIXME Will be destroyed by INSTANTDEATH? And maybe LUCKYSTRIKE? If so, mention
+    # in their descriptions.
+
+
+@dataclass
+class Doublestrike(Skill):
+    name: str = "Double Strike"
+    symbol: str = "✌️"
+    description: str = "A card with Double Strike will attack twice. Afterwards, it will lose 1 power (for the rest of the fight)."
+    potency: int = 6
+    under_construction: bool = True
+    # ⭐
+
+
+@dataclass
+class Finalblow(Skill):
+    name: str = "Final Blow"
+    symbol: str = "🏁"
+    description: str = (
+        "A card with Final Blow will attack one last time just before dying."
+    )
+    potency: int = 6
+    under_construction: bool = True
+
+
+@dataclass
+class Berserk(Skill):
+    name: str = "Berserk"
+    symbol: str = "🪓"
+    description: str = "A card with Berserk gains 1 power each time it is attacked (until the end of the fight)."
+    potency: int = 8
+    under_construction: bool = True
+
+
+@dataclass
+class Mixer(Skill):
+    name: str = "Mixer"
+    symbol: str = "🔀"
+    description: str = "When a card with Mixer is played, it swaps one random card from the player's hand with another one from the draw deck. In addition, the player draws a hamster card."
+    potency: int = 0
+    under_construction: bool = True
+    # FIXME humanonly
+
+
+@dataclass
+class Hamsterwheel(Skill):
+    name: str = "Hamster Wheel"
+    symbol: str = "🎡"
+    description: str = "When a card with Hamster Wheel is played, it swaps one random card from the player's hand with another one from the draw deck (same as Mixer). In addition, the player draws a hamster card."
+    potency: int = 5
+    under_construction: bool = True
+    # FIXME humanonly
+
 
 # Sanity check:
-assert all(abs(s.value.potency) <= 10 for s in Skill)
+assert all(abs(cls.potency) <= 10 for cls in get_all_skilltypes())
 
 
 # ----- Ideas for more skills -----
