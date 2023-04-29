@@ -371,7 +371,7 @@ class Berserk(Skill):
 class Mixer(Skill):
     name: str = "Mixer"
     symbol: str = "🔀"
-    description: str = "When a card with Mixer is played, it swaps one random card from the player's hand with another one from the draw deck. In addition, the player draws a hamster card."
+    description: str = "When a card with Mixer is played, it swaps one random card from the player's hand with another one from the draw deck."
     potency: int = 0
     under_construction: bool = True
     # FIXME humanonly
