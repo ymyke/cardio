@@ -20,6 +20,8 @@ def do_the_fight(humancards: CardList, computercard: Optional[Card]) -> StatesLo
     (2,0).
     """
     gg.humanplayer.deck.cards = humancards
+    # Reset grid for good measure in case we run several fights in one test:
+    gg.grid = Grid(4)   
     cs = Round0OnlyStrategy(grid=gg.grid, cards=[(GridPos(1, 0), computercard)])
     gg.vnc = HumanStrategyVnC(grid=gg.grid, computerstrategy=cs, whichrounds=[0])
     gg.vnc.handle_fight()
@@ -176,7 +178,6 @@ def test_shield():
     # Without shield:
     # The human card will die bc it no longer has the shield and therefore takes 2
     # damage per round.
-    gg.grid = Grid(4)
     hc = Card("Human Card", 2, 4, 1)
     cc = Card("Computer Card", 2, 7, 1)
     do_the_fight([hc], cc)
@@ -187,7 +188,6 @@ def test_shield():
     # With shield and spines:
     # The human card will die bc while the shield absorbs 1 damage in each round, the
     # spines deal another damage, which will not be absorbed.
-    gg.grid = Grid(4)
     hc = Card("Human Card", 2, 4, 1, skills=[skills.Shield])
     cc = Card("Computer Card", 2, 7, 1, skills=[skills.Spines])
     do_the_fight([hc], cc)
@@ -211,3 +211,18 @@ def test_shield_deadlock():
     hc = Card("Procupine", 1, 2, 1, skills=[skills.Airdefense, skills.Shield])
     cc = hc.clone()
     do_the_fight([hc], cc)
+
+
+def test_underdog():
+    # With Underdog:
+    hc = Card("Human Card", 1, 1, 1, skills=[skills.Underdog])
+    cc = Card("Computer Card", 2, 2, 1)
+    do_the_fight([hc], cc)
+    assert hc.health == 1  # hc wins bc it gets +1 power from Underdog
+    assert cc.health == 0
+    # Without Underdog:
+    hc = Card("Human Card", 1, 1, 1)
+    cc = Card("Computer Card", 2, 2, 1)
+    do_the_fight([hc], cc)
+    assert hc.health == 0
+    assert cc.health == 1  # cc wins bc it has more power
