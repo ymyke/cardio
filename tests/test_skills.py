@@ -1,17 +1,20 @@
 from typing import Optional
 import pytest
-from cardio import Card, CardList, gg, GridPos, skills
+from cardio import Card, CardList, gg, GridPos, skills, Grid
 from cardio.computer_strategies import Round0OnlyStrategy
 from cardio.humanstrategyvnc import HumanStrategyVnC
+from cardio.states_logger import StatesLogger
 
 
 @pytest.fixture(autouse=True)
-def common_setup(mocker, gg_setup):
+def common_setup(mocker, request, gg_setup):
+    if "skip_common_setup" in request.keywords:
+        return
     # Do not reset cards  so we can verify the effects of fights:
     mocker.patch("cardio.Deck.reset_cards")
 
 
-def do_the_fight(humancards: CardList, computercard: Optional[Card]) -> None:
+def do_the_fight(humancards: CardList, computercard: Optional[Card]) -> StatesLogger:
     """Note that the assumption here is that `HumanStrategyVnC` will place new cards on
     the first free slot from the left, i.e., the very first human card gets placed on
     (2,0).
@@ -20,6 +23,7 @@ def do_the_fight(humancards: CardList, computercard: Optional[Card]) -> None:
     cs = Round0OnlyStrategy(grid=gg.grid, cards=[(GridPos(1, 0), computercard)])
     gg.vnc = HumanStrategyVnC(grid=gg.grid, computerstrategy=cs, whichrounds=[0])
     gg.vnc.handle_fight()
+    return gg.vnc.stateslogger
 
 
 def test_vanilla_fight():
@@ -154,3 +158,48 @@ def test_fertility():
     assert copy.is_temporary
     # The copy should _not_ be in the player's main deck, since it is a temporary card:
     assert copy not in gg.humanplayer.deck.cards
+
+
+def test_shield():
+    # FIXME Once we have skills that break the shield, add that as a test case.
+
+    # With shield:
+    # The human card will survive bc the shield absorbs 1 damage in each round.
+    hc = Card("Human Card", 2, 4, 1, skills=[skills.Shield])
+    cc = Card("Computer Card", 2, 7, 1)
+    do_the_fight([hc], cc)
+    assert hc.health == 1
+    assert cc.health == 0
+    assert gg.grid[1][0] is None
+    assert gg.grid[2][0] is hc
+    assert hc.skills.get(skills.Shield).turns_used == [0, 1, 2]
+    # Without shield:
+    # The human card will die bc it no longer has the shield and therefore takes 2
+    # damage per round.
+    gg.grid = Grid(4)
+    hc = Card("Human Card", 2, 4, 1)
+    cc = Card("Computer Card", 2, 7, 1)
+    do_the_fight([hc], cc)
+    assert hc.health == 0
+    assert cc.health == 3
+    assert gg.grid[1][0] is cc
+    assert gg.grid[2][0] is None
+    # With shield and spines:
+    # The human card will die bc while the shield absorbs 1 damage in each round, the
+    # spines deal another damage, which will not be absorbed.
+    gg.grid = Grid(4)
+    hc = Card("Human Card", 2, 4, 1, skills=[skills.Shield])
+    cc = Card("Computer Card", 2, 7, 1, skills=[skills.Spines])
+    do_the_fight([hc], cc)
+    assert hc.health == 0
+    assert cc.health == 3
+    assert gg.grid[1][0] is cc
+    assert gg.grid[2][0] is None
+
+
+@pytest.mark.skip_common_setup
+def test_shield_resets_state_after_fight():
+    hc = Card("Human Card", 2, 4, 1, skills=[skills.Shield])
+    cc = Card("Computer Card", 2, 7, 1)
+    do_the_fight([hc], cc)
+    assert hc.skills.get(skills.Shield).turns_used == []

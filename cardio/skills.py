@@ -14,6 +14,9 @@ from dataclasses import dataclass
 from typing import List, Optional, Type, Union
 
 
+# TODO Implement this simply as a directory of names -> specs and a factory?
+
+
 @dataclass
 class Skill:
     name: str
@@ -21,6 +24,9 @@ class Skill:
     description: str
     potency: int  # [-10, 10], usually [0, 10]
     under_construction: bool = False
+
+    def reset(self) -> None:
+        pass
 
 
 SkillType = Type[Skill]
@@ -42,13 +48,14 @@ class SkillSet:
 
     def __init__(self, skills: Optional[ListOfSkillsOrSkillTypes] = None) -> None:
         skills = skills or []
-        self.skills = [s() if isinstance(s, type) else s for s in skills]  # type: ignore
+        self.skills: List[skill] = [s() if isinstance(s, type) else s for s in skills]  # type: ignore
 
     def has(self, skill: SkillOrSkillType) -> bool:
         return skill in self.skills or skill in [type(s) for s in self.skills]
 
-    def get(self, skill: SkillOrSkillType) -> SkillOrSkillType:
+    def get(self, skill: SkillOrSkillType) -> Skill:
         if skill in self.skills:
+            assert isinstance(skill, Skill)
             return skill
         elif skill in [type(s) for s in self.skills]:
             return [s for s in self.skills if type(s) == skill][0]
@@ -151,6 +158,27 @@ class Airdefense(Skill):
     potency: int = 1
     # QQ: Maybe REACHHIGH instead of AIRDEFENSE? With an arm symbol? Or
     # LONGNECK/HEADHIGH/... and the girafe emoji? Or: Sky Shield? ☁️
+
+
+@dataclass
+class Shield(Skill):
+    name: str = "Shield"
+    symbol: str = "🔰"  # 🛡️ (doesn't work in asciimatics)
+    description: str = (
+        "The Shield on a card absorbs 1 (the first) damage the card receives per turn."
+        # (OR: The first x damage per fight. OR: All damage of the first damage dealt.)
+    )
+    potency: int = 7
+
+    def __post_init__(self):
+        self.reset()
+
+    def reset(self):
+        # Keep track of which turn the shield was used in:
+        self.turns_used: List[int] = []
+
+    # FIXME Will a shield be destroyed by INSTANTDEATH? And maybe LUCKYSTRIKE? If so,
+    # mention in their descriptions.
 
 
 # ----- Under construction -----
@@ -310,22 +338,6 @@ class Empty(Skill):
     # handle all these special cases such as EMPTY etc.
     #
     # → QQ: How many other skills are relevant to this question?
-
-
-@dataclass
-class Shield(Skill):
-    name: str = "Shield"
-    symbol: str = "🛡️"
-    description: str = (
-        "The Shield on a card absorbs 1 damage per attack the card receives."
-    )
-    # OR: The first damage per turn. OR: The first x damage per fight. OR: All
-    # damage of the first damage dealt.
-    potency: int = 7
-    under_construction: bool = True
-    # ⭐
-    # FIXME Will be destroyed by INSTANTDEATH? And maybe LUCKYSTRIKE? If so, mention
-    # in their descriptions.
 
 
 @dataclass

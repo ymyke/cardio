@@ -89,6 +89,8 @@ class Card:
     def reset(self) -> None:
         self.power = self.initial_power
         self.health = self.initial_health
+        for s in self.skills:
+            s.reset()
 
     def is_human(self) -> bool:
         return self in gg.humanplayer.get_all_human_cards()
@@ -159,6 +161,17 @@ class Card:
 
     def lose_health(self, howmuch: int) -> int:
         assert howmuch > 0
+
+        if skills.Shield in self.skills:
+            shield = self.skills.get(skills.Shield)
+            assert isinstance(shield, skills.Shield)
+            if gg.vnc.round_num not in shield.turns_used:
+                howmuch -= 1
+                shield.turns_used.append(gg.vnc.round_num)
+                logging.debug("%s uses shield", self.name)
+            else:
+                logging.debug("%s shield already used this turn", self.name)
+
         if howmuch >= self.health:
             howmuch = self.health
             self.die()
@@ -212,7 +225,7 @@ class Card:
             "".join(s.symbol for s in self.skills),
             opponent.name,
             "".join(s.symbol for s in opponent.skills),
-        )   # FIXME Add some `name_with_skills` or `xname` method to Card?
+        )  # FIXME Add some `name_with_skills` or `xname` method to Card?
 
         if skills.Soaring in self.skills:
             if skills.Airdefense in opponent.skills:
