@@ -165,3 +165,5 @@ assert all(s.value.potency >= 0 and s.value.potency <= 10 for s in Skill)
 # - Hotblooded -- Can be played at any time. (Doesn't really fit the basic gameplay
 #   model but might be a fun "real-time" element where you either press a key in time to
 #   interrupt the game flow or you missed it.)
+# - Magnet -- A card with magnet in the prepline will absorb overflow damage that would
+#   otherwise be directed to player C.
