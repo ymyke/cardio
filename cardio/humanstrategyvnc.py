@@ -13,12 +13,13 @@ class HumanStrategyVnC(FightVnC):
         super().__init__(*args, **kwargs)
         self.whichrounds = whichrounds
 
-    def handle_human_choose_deck_to_draw_from(self) -> Deck:
+    def handle_human_choose_deck_to_draw_from(self) -> Optional[Deck]:
         """Simply alternate between drawdeck and hamsterdeck."""
+        if self.decks.draw.is_empty() and self.decks.hamster.is_empty():
+            return None
         if self.decks.draw.is_empty() or self.round_num % 2 == 0:
             return self.decks.hamster
-        else:
-            return self.decks.draw
+        return self.decks.draw
 
     def handle_human_plays_cards(self, place_card_callback: Callable) -> None:
         """Simply play the first card in the handdeck to the first empty slot in the
