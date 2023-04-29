@@ -27,14 +27,14 @@ def do_the_fight(humancards: CardList, computercard: Optional[Card]) -> StatesLo
 
 
 def test_vanilla_fight():
-    hc = Card("Human Card", 2, 10, 1)
-    cc = Card("Computer Card", 2, 3, 1)
+    hc = Card("Human Card", 3, 10, 1)
+    cc = Card("Computer Card", 2, 5, 1)
     do_the_fight([hc], cc)
-    assert hc.power == 2
+    assert hc.power == 3
     assert hc.health == 8
     assert cc.power == 2
     assert cc.health == 0
-    assert gg.humanplayer.gems == 1
+    assert gg.humanplayer.gems == 2
     assert gg.grid[1][0] is None
 
 

@@ -200,18 +200,14 @@ class Card:
             )
             opponent.lose_health(1)
 
-        prepcard = self.get_prep_card() if self.get_grid_pos().line == 1 else None
-        # (Prep cards only relevant if computer is being attacked.)
         gg.vnc.card_getting_attacked(self, opponent)
         # (Needs to happen before the call to `lose_health` below, bc the card could
         # die/vanish during that call, leading to a `None` reference on the grid and an
         # error in the view update call.)
         damage_left = self.lose_health(opponent.power)
-        if opponent.power > howmuch and prepcard is not None:
-            logging.debug(
-        if damage_left > 0 and prepcard is not None:
-            logging.debug("%s gets overflow damage of %s", prepcard.name, damage_left)
-            prepcard.lose_health(damage_left)
+        if damage_left > 0:
+            logging.debug("Agent gets overflow damage of %s", damage_left)
+            gg.vnc.handle_player_damage(damage_left, opponent)
 
     # QQ: Fight logic is distributed between Card and FightVNC. Can this be streamlined?
     # (One could argue that all the places where the card module needs to call a view

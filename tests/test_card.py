@@ -204,10 +204,13 @@ def test_get_attacked_targeting_computercard(common_setup):
     prepcard = gg.grid[0][3]
     attacker = Card("A", 10, 1, 1)
     target.get_attacked(attacker)
-    assert target.health == 0
-    assert prepcard.health == 0  # Overflow damage to prepline!
-    assert gg.grid[0][3] is None  # Leading to that spot being empty
+    assert target.health == 0   # Target dead
+    assert prepcard.health == 1  # No overflow damage to prepline!
+    assert gg.grid[0][3] is prepcard  # So prepcard still there
     mocked_vnc.card_getting_attacked.assert_called_once()
+    mocked_vnc.handle_player_damage.assert_called_once()
+    # Overflow damage applied to computer?
+    mocked_vnc.handle_player_damage.assert_called_with(9, attacker)
 
 
 # Note that `attack` is not being tested here bc there are relevant tests for that
