@@ -21,7 +21,7 @@ def do_the_fight(humancards: CardList, computercard: Optional[Card]) -> StatesLo
     """
     gg.humanplayer.deck.cards = humancards
     # Reset grid for good measure in case we run several fights in one test:
-    gg.grid = Grid(4)   
+    gg.grid = Grid(4)
     cs = Round0OnlyStrategy(grid=gg.grid, cards=[(GridPos(1, 0), computercard)])
     gg.vnc = HumanStrategyVnC(grid=gg.grid, computerstrategy=cs, whichrounds=[0])
     gg.vnc.handle_fight()
