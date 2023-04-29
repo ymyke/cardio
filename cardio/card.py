@@ -210,6 +210,14 @@ class Card:
 
         opponent_power = opponent.power
         if skills.Underdog in opponent.skills and opponent_power < self.power:
+            # Note/QQ: The way this is currently implemented, some interdependencies
+            # might get missed with future skills. E.g., if there is a skill that gives
+            # a buff if a card has a certain power, it will not be triggered by Underdog
+            # as it is currently implemented. If we ever have such skills and
+            # interdependencies, we might need to implement Underdog an similar skills
+            # with temporary attributes or attribute modifiers in the card. OR: Each
+            # such dependent skill has to check if there are any other skills in play
+            # that might affect it.
             logging.debug("%s has Underdog and gets +1 power", opponent.name)
             opponent_power += 1
 
