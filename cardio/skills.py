@@ -389,16 +389,15 @@ class Hamsterwheel(Skill):
     # FIXME humanonly
 
 
-# Sanity check:
+# ----- Sanity checks -----
+
 assert all(abs(cls.potency) <= 10 for cls in get_all_skilltypes())
 
 
-# ----- Ideas for more skills -----
-
-# ----- High prio -----
+# ----- Ideas for more skills ----- High prio -----
 
 
-# ----- Medium prio -----
+# ----- Ideas for more skills ----- Medium prio -----
 
 # - Overrun 🏃‍♂️ -- A card with Overrun will apply surplus damage to the prep line card
 #   instead of the opposing player. (Caveat: This would have no effect for computer
@@ -437,7 +436,8 @@ assert all(abs(cls.potency) <= 10 for cls in get_all_skilltypes())
 #   entire game. (Only makes sense against the human player maybe?)
 
 
-# ----- Low prio and/or high complexity and/or only applicable to human's cards -----
+# ----- Ideas for more skills ----- Low prio -----
+# (Low prio and/or high complexity and/or only applicable to human's cards)
 
 # - Corbeaux / Corvus Corax -- Can consume spirits and release them as fire.
 # - Viral -- Like poisonous, but spreads?
