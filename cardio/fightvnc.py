@@ -133,7 +133,9 @@ class FightVnC:
         # differently in the UI or at least explained? -- Just simply add a "give up"
         # function to the UI? -- Or add some mechanism like Inscryption's "Starvation"?
         # Or a simple turn countdown that activates after a certain amount of turns in
-        # which nothing meaningful has happened?
+        # which nothing meaningful has happened? -- With the introduction of shield,
+        # things become more complicated: The test for power > 0 does not suffice, since
+        # you can have to shields opposing now; cf. `test_skills.test_shield_deadlock`.
 
     def _has_human_won(self) -> bool:
         return self.damagestate.has_human_won()

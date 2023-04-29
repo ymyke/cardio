@@ -203,3 +203,11 @@ def test_shield_resets_state_after_fight():
     cc = Card("Computer Card", 2, 7, 1)
     do_the_fight([hc], cc)
     assert hc.skills.get(skills.Shield).turns_used == []
+
+
+@pytest.mark.skip
+def test_shield_deadlock():
+    # FIXME Will produce a deadloop. What is the approach to fix this?
+    hc = Card("Procupine", 1, 2, 1, skills=[skills.Airdefense, skills.Shield])
+    cc = hc.clone()
+    do_the_fight([hc], cc)

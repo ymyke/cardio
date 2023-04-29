@@ -28,7 +28,8 @@
     mind that some cards can die during a run but should still keep their stats
     available. How to do that exactly?
 - Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
-
+- Resolve the shield deadlock and general deadlock issue. Cf. `_has_computer_won` in
+  fightvnc.
 
 # MVC Thoughts
 
