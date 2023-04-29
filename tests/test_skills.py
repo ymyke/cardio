@@ -226,3 +226,21 @@ def test_underdog():
     do_the_fight([hc], cc)
     assert hc.health == 0
     assert cc.health == 1  # cc wins bc it has more power
+
+
+def test_packrat():
+    # With Packrat:
+    hc = Card("Human Card", 1, 1, 1, skills=[skills.Packrat])
+    xc = Card("X", 1, 1, 1)
+    cc = Card("Computer Card", 1, 2, 1)
+    log = do_the_fight([hc, hc.clone(), hc.clone(), xc], cc)
+    assert "Draw: Xp1h1" in log.log.split("Starting round")[1]
+    # `xc` gets drawn ealier:
+    assert "Draw: Xp1h1" not in log.log.split("Starting round")[2]
+    # Without Packrat:
+    hc = Card("Human Card", 1, 1, 1)
+    xc = Card("X", 1, 1, 1)
+    cc = Card("Computer Card", 1, 2, 1)
+    log = do_the_fight([hc, hc.clone(), hc.clone(), xc], cc)
+    assert "Draw: Xp1h1" in log.log.split("Starting round")[1]
+    assert "Draw: Xp1h1" in log.log.split("Starting round")[2]
