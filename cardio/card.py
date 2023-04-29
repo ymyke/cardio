@@ -227,6 +227,12 @@ class Card:
             "".join(s.symbol for s in opponent.skills),
         )  # FIXME Add some `name_with_skills` or `xname` method to Card?
 
+        # FIXME Clearly differentiate the different verbs here (attack, damage, prepare,
+        # etc.). E.g., below, when I card dies, it doesn't get attacked but dies
+        # immediately the way this is coded currently. This could be cleaned up by
+        # moving the `InstantDeath` check and `die` calls to `get_attacked`. This would
+        # also simplify a couple of things here.
+
         if skills.Soaring in self.skills:
             if skills.Airdefense in opponent.skills:
                 if skills.InstantDeath in self.skills:
