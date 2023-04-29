@@ -10,7 +10,7 @@ Checklist when adding a new skill:
 - Does the skill need any new view animation that needs to be implemented and called?
 - Anything that needs to be saved?
 """
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List, Optional, Type, Union
 
 
@@ -162,6 +162,7 @@ class Airdefense(Skill):
 
 @dataclass
 class Shield(Skill):
+    # TODO Shields introduce deadlock potential!!
     name: str = "Shield"
     symbol: str = "🔰"  # 🛡️ (doesn't work in asciimatics)
     description: str = (
@@ -169,15 +170,13 @@ class Shield(Skill):
         # (OR: The first x damage per fight. OR: All damage of the first damage dealt.)
     )
     potency: int = 7
-
-    def __post_init__(self):
-        self.reset()
+    turns_used: List[int] = field(default_factory=list)
 
     def reset(self):
         # Keep track of which turn the shield was used in:
         self.turns_used: List[int] = []
 
-    # FIXME Will a shield be destroyed by INSTANTDEATH? And maybe LUCKYSTRIKE? If so,
+    # QQ: Will a shield be destroyed by INSTANTDEATH? And maybe LUCKYSTRIKE? If so,
     # mention in their descriptions.
 
 
