@@ -1,4 +1,4 @@
-from cardio import Card, CardList, Deck, gg, Skill
+from cardio import Card, CardList, Deck, gg, skills
 from cardio.locations.skill_transferer_location import (
     SkillTransfererLocation,
     SkillTransfererView,
@@ -35,19 +35,19 @@ class FakeSkillTransfererView(SkillTransfererView):
 
 
 def test_successfully_transfer_one_skill_destroying_the_from_card(gg_setup):
-    cards = [Card("From", 1, 1, 1, [Skill.SPINES]), Card("To", 1, 1, 1, None)]
+    cards = [Card("From", 1, 1, 1, [skills.Spines]), Card("To", 1, 1, 1, None)]
     gg.humanplayer.deck = Deck("main", cards)
     loc = SkillTransfererLocation("0", 0, 0, [])
     res = loc.handle(view_class=FakeSkillTransfererView)
     assert res == True
     assert gg.humanplayer.deck.size() == 1
     assert gg.humanplayer.deck.cards[0].name == "To"
-    assert gg.humanplayer.deck.cards[0].skills == [Skill.SPINES]
+    assert gg.humanplayer.deck.cards[0].skills.get_types() == [skills.Spines]
 
 
 def test_successfully_transfer_several_skills_not_destroying_the_from_card(gg_setup):
     cards = [
-        Card("From", 1, 1, 1, [Skill.SPINES, Skill.SOARING]),
+        Card("From", 1, 1, 1, [skills.Spines, skills.Soaring]),
         Card("To", 1, 1, 1, None),
     ]
     gg.humanplayer.deck = Deck("main", cards)
@@ -55,8 +55,10 @@ def test_successfully_transfer_several_skills_not_destroying_the_from_card(gg_se
     res = loc.handle(view_class=FakeSkillTransfererView)
     assert res == True
     assert gg.humanplayer.deck.size() == 2
-    assert gg.humanplayer.deck.cards[0].skills in [[Skill.SPINES], [Skill.SOARING]]
-    assert gg.humanplayer.deck.cards[1].skills in [[Skill.SPINES], [Skill.SOARING]]
+    assert gg.humanplayer.deck.cards[0].skills.get_types() == [skills.Soaring]
+    assert gg.humanplayer.deck.cards[1].skills.get_types() == [skills.Spines]
+    # Note that the location will "randomly" pick always the same bc we're always using
+    # the same seed in the location initialization above.
 
 
 def test_deck_too_small(gg_setup):
@@ -79,9 +81,9 @@ def test_no_skilled_cards(gg_setup):
 
 def test_no_cards_to_transfer_to(gg_setup):
     cards = [
-        Card("A", 1, 1, 1, [Skill.SPINES, Skill.FERTILITY]),
-        Card("B", 1, 1, 1, [Skill.SPINES, Skill.AIRDEFENSE]),
-        Card("C", 1, 1, 1, [Skill.SPINES, Skill.SOARING]),
+        Card("A", 1, 1, 1, [skills.Spines, skills.Fertility]),
+        Card("B", 1, 1, 1, [skills.Spines, skills.Airdefense]),
+        Card("C", 1, 1, 1, [skills.Spines, skills.Soaring]),
     ]
     gg.humanplayer.deck = Deck("main", cards)
     loc = SkillTransfererLocation("0", 0, 0, [])

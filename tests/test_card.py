@@ -1,5 +1,6 @@
 import pytest
-from cardio import Card, GridPos, gg, FightDecks, Skill
+from cardio import Card, GridPos, gg, FightDecks, skills
+from cardio.skills import SkillSet
 
 
 @pytest.fixture
@@ -21,7 +22,8 @@ def test_init():
     assert c.power == 1
     assert c.health == 2
     # defaults:
-    assert c.skills == []
+    assert isinstance(c.skills, SkillSet)
+    assert c.skills.count() == 0
     assert c.costs_spirits == 0
     assert c.has_spirits == 1
     assert c.has_fire == 1
@@ -30,15 +32,16 @@ def test_init():
 def test_is_skilled():
     c = Card("X", 1, 2, 3)
     assert not c.is_skilled()
-    c.skills = [Skill.FERTILITY]
+    c.skills.add(skills.Fertility)
+    assert c.is_skilled()
 
 
 def test_raw_potency():
     c = Card("X", 3, 2, 1)
     assert c.raw_potency == 11
-    c.skills = [Skill.FERTILITY]
+    c.skills.add(skills.Fertility)
     assert c.raw_potency == 20
-    c.skills.append(Skill.SOARING)
+    c.skills.add(skills.Soaring)
     assert c.raw_potency == 22
     # Another one:
     c = Card("X", 1, 1, 10)
@@ -156,18 +159,31 @@ def test_lose_health(common_setup):
     mocked_vnc = common_setup
     c = gg.grid[2][3]
     c.health = 10
-    actual_loss = c.lose_health(3)
-    assert actual_loss == 3
+    damage_left = c.lose_health(3)
+    assert damage_left == 0
     assert c.health == 7
     mocked_vnc.card_lost_health.assert_called_once()
     mocked_vnc.card_died.assert_not_called()
 
 
+def test_lose_health_calculates_damage_left_correctly(common_setup):
+    # With shield:
+    c = Card("A", 1, 1, 1, skills=[skills.Shield])
+    gg.grid[2][3] = c
+    damage_left = c.lose_health(2)
+    assert damage_left == 0  # 0 because the shield absorbed all the damage
+    # Without shield:
+    c = Card("A", 1, 1, 1)
+    gg.grid[2][3] = c
+    damage_left = c.lose_health(2)
+    assert damage_left == 1  # 1 because the card only absorbed 1 of 2 damage
+
+
 def test_lose_health_and_die(common_setup):
     mocked_vnc = common_setup
     c = gg.grid[2][3]
-    actual_loss = c.lose_health(100)
-    assert actual_loss == 1
+    damage_left = c.lose_health(100)
+    assert damage_left == 99
     assert c.health == 0
     mocked_vnc.card_died.assert_called_once()
 
@@ -188,10 +204,13 @@ def test_get_attacked_targeting_computercard(common_setup):
     prepcard = gg.grid[0][3]
     attacker = Card("A", 10, 1, 1)
     target.get_attacked(attacker)
-    assert target.health == 0
-    assert prepcard.health == 0  # Overflow damage to prepline!
-    assert gg.grid[0][3] is None  # Leading to that spot being empty
+    assert target.health == 0   # Target dead
+    assert prepcard.health == 1  # No overflow damage to prepline!
+    assert gg.grid[0][3] is prepcard  # So prepcard still there
     mocked_vnc.card_getting_attacked.assert_called_once()
+    mocked_vnc.handle_player_damage.assert_called_once()
+    # Overflow damage applied to computer?
+    mocked_vnc.handle_player_damage.assert_called_with(9, attacker)
 
 
 # Note that `attack` is not being tested here bc there are relevant tests for that

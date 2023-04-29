@@ -28,7 +28,8 @@
     mind that some cards can die during a run but should still keep their stats
     available. How to do that exactly?
 - Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
-
+- Resolve the shield deadlock and general deadlock issue. Cf. `_has_computer_won` in
+  fightvnc.
 
 # MVC Thoughts
 
@@ -68,6 +69,8 @@
 
 # Todo
 
+- Have some generic animation (just some color change for 0.2 seconds?) for skill
+  effects that get activated. E.g., for shield.
 - Start the game w/ 0 skills.
 - QQ: Spirits: keep them between fights (as it is now)? (Maybe have to sacrifice 1 life
   if you want to keep them?)

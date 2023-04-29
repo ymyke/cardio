@@ -7,7 +7,7 @@ model. There is also some fight-related logic in the `Card` class.
 import logging
 from typing import Callable, Optional
 
-from . import gg, Card, Deck, FightDecks, Grid, GridPos, Skill
+from . import gg, Card, Deck, FightDecks, Grid, GridPos, skills
 from .placement_manager import PlacementManager
 from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
@@ -133,7 +133,9 @@ class FightVnC:
         # differently in the UI or at least explained? -- Just simply add a "give up"
         # function to the UI? -- Or add some mechanism like Inscryption's "Starvation"?
         # Or a simple turn countdown that activates after a certain amount of turns in
-        # which nothing meaningful has happened?
+        # which nothing meaningful has happened? -- With the introduction of shield,
+        # things become more complicated: The test for power > 0 does not suffice, since
+        # you can have to shields opposing now; cf. `test_skills.test_shield_deadlock`.
 
     def _has_human_won(self) -> bool:
         return self.damagestate.has_human_won()
@@ -156,7 +158,7 @@ class FightVnC:
         self.show_human_places_card(pmgr.target_card, from_slot, to_slot)
         self.decks.hand.pick_card(from_slot)
 
-        if Skill.FERTILITY in pmgr.target_card.skills:
+        if skills.Fertility in pmgr.target_card.skills:
             new_card = pmgr.target_card.make_temp_copy()
             new_card.reset()
             self.redraw_view()

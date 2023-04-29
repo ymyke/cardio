@@ -52,16 +52,6 @@ Draw: Pp1h2🚀
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 2 damage, 1 lives, 0 gems, 0 spirits
 
-Starting round 2:
-| -           | -           | -           | -           |
-| Dp2h3       | Sp2h10      | -           | -           |
-| -           | -           | -           | -           |
-Hand: Kp1h3 Wp1h1 Lp3h2 Hp0h1
-Used: Cp1h0
-Draw: Pp1h2🚀
-Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-4 damage, 1 lives, 0 gems, 1 spirits
-
 Final state:
 | -           | -           | -           | -           |
 | Dp2h3       | Sp2h10      | -           | -           |
@@ -70,7 +60,7 @@ Hand: Kp1h3 Wp1h1 Lp3h2 Hp0h1
 Used: Cp1h0
 Draw: Pp1h2🚀
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-8 damage, 1 lives, 0 gems, 1 spirits
+5 damage, 1 lives, 0 gems, 1 spirits
 """
     assert equal_logs(gg.vnc.stateslogger.log, target_states_log)
 
@@ -105,7 +95,8 @@ def test_human_decks_managed_correctly(gg_setup):  # FIXME Should get different 
     )
 
     gg.vnc = HumanStrategyVnC(grid=gg.grid, computerstrategy=cs)
-    # Override damagestate with better health:
+    # Override damagestate with better health (the fight will end not because of high
+    # enough damage diff but bc player H had no more unplayed cards with power > 0):
     gg.vnc.damagestate = AgentDamageState(max_diff=50)
 
     gg.vnc.handle_fight()
@@ -141,7 +132,7 @@ Hand: Lp3h2 Hp0h1 Hp0h1 Pp1h2🚀
 Used: Kp1h0 Wp1h0
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-10 damage, 1 lives, 0 gems, 2 spirits
+12 damage, 1 lives, 0 gems, 2 spirits
 
 Starting round 3:
 | -           | -           | -           | -           |
@@ -151,7 +142,7 @@ Hand: Hp0h1 Hp0h1 Pp1h2🚀 Hp0h1
 Used: Kp1h0 Wp1h0 Lp3h0
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-16 damage, 1 lives, 0 gems, 3 spirits
+18 damage, 1 lives, 0 gems, 3 spirits
 
 Starting round 4:
 | -           | -           | -           | -           |
@@ -161,7 +152,7 @@ Hand: Hp0h1 Pp1h2🚀 Hp0h1 Hp0h1
 Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-22 damage, 1 lives, 0 gems, 4 spirits
+25 damage, 1 lives, 0 gems, 4 spirits
 
 Starting round 5:
 | -           | -           | -           | -           |
@@ -171,7 +162,7 @@ Hand: Pp1h2🚀 Hp0h1 Hp0h1 Hp0h1
 Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Hp0h0
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-28 damage, 1 lives, 0 gems, 5 spirits
+32 damage, 1 lives, 0 gems, 5 spirits
 
 Final state:
 | -           | -           | -           | -           |
@@ -181,7 +172,7 @@ Hand: Hp0h1 Hp0h1 Hp0h1 Hp0h1
 Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Hp0h0 Pp1h0🚀
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1
-34 damage, 1 lives, 0 gems, 6 spirits
+38 damage, 1 lives, 0 gems, 6 spirits
 """
 
     assert equal_logs(gg.vnc.stateslogger.log, target_states_log)

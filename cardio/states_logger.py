@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 def card2str(card: Optional[Card]) -> str:
     if card is None:
         return "-"
-    symbols = "".join([s.value.symbol for s in card.skills])
+    symbols = "".join([s.symbol for s in card.skills])
     return f"{card.name[0]}p{card.power}h{card.health}{symbols}"
 
 

@@ -2,8 +2,8 @@ from __future__ import annotations
 import logging
 import copy
 from typing import Optional, List, TYPE_CHECKING, Tuple
-from .skills import Skill, SkillList
-from . import gg
+from .skills import ListOfSkillsOrSkillTypes, SkillSet, get_all_skilltypes
+from . import gg, skills
 
 if TYPE_CHECKING:
     from . import GridPos
@@ -49,7 +49,7 @@ class Card:
         initial_health: int,  # 💓
         costs_fire: int,  # How much fire 🔥 needed
         # Optional:
-        skills: Optional[SkillList] = None,
+        skills: Optional[ListOfSkillsOrSkillTypes] = None,
         costs_spirits: int = 0,  # How many spirits 👻 needed
         has_spirits: int = 1,  # How many spirits this card generates upon death 👻
         has_fire: int = 1,  # How much fire this card is worth when sacrificed 🔥
@@ -60,7 +60,7 @@ class Card:
         self.initial_power = initial_power
         self.initial_health = initial_health
         self.costs_fire = costs_fire
-        self.skills = skills or []
+        self.skills = SkillSet(skills or [])
         self.costs_spirits = costs_spirits
         self.has_spirits = has_spirits
         self.has_fire = has_fire
@@ -89,12 +89,14 @@ class Card:
     def reset(self) -> None:
         self.power = self.initial_power
         self.health = self.initial_health
+        for s in self.skills:
+            s.reset()
 
     def is_human(self) -> bool:
         return self in gg.humanplayer.get_all_human_cards()
 
     def is_skilled(self) -> bool:
-        return len(self.skills) > 0
+        return self.skills.count() > 0
 
     @property
     def raw_potency(self) -> int:
@@ -107,7 +109,7 @@ class Card:
             + self.initial_health * 2
             + self.has_fire
             + self.has_spirits
-            + sum(s.value.potency for s in self.skills)
+            + sum(s.potency for s in self.skills)
         )
         costs = self.costs_fire + self.costs_spirits
         costs_bonus = 10 if costs == 0 else 0  # Bonus for cards with no costs at all
@@ -158,20 +160,38 @@ class Card:
         self._die_silently()
 
     def lose_health(self, howmuch: int) -> int:
+        """Returns how much damage is still left to be consumed. Damage can be left when
+        a card died w/o consuming all damage. Keep in mind that damage can be consumed
+        by shields an other skills too.
+        """
         assert howmuch > 0
-        if howmuch >= self.health:
-            howmuch = self.health
+        damage_left = howmuch
+
+        if skills.Shield in self.skills:
+            shield = self.skills.get(skills.Shield)
+            assert isinstance(shield, skills.Shield)
+            if gg.vnc.round_num not in shield.turns_used:
+                damage_left -= 1
+                shield.turns_used.append(gg.vnc.round_num)
+                logging.debug("%s uses shield", self.name)
+            else:
+                logging.debug("%s shield already used this turn", self.name)
+
+        if damage_left >= self.health:
+            damage_left -= self.health
             self.die()
         else:
-            self.health -= howmuch
+            self.health -= damage_left
+            damage_left = 0
             gg.vnc.card_lost_health(self)
             logging.debug("%s new health: %s", self.name, self.health)
-        return howmuch
+
+        return damage_left
 
     def get_attacked(self, opponent: Card) -> None:
         logging.debug("%s gets attacked by %s", self.name, opponent.name)
 
-        if Skill.SPINES in self.skills:
+        if skills.Spines in self.skills:
             # FIXME Should maybe be moved further down once we have an animation in
             # place for this because otherwise the animations will happen in the wrong
             # order.
@@ -180,22 +200,19 @@ class Card:
             )
             opponent.lose_health(1)
 
-        prepcard = self.get_prep_card() if self.get_grid_pos().line == 1 else None
-        # (Prep cards only relevant if computer is being attacked.)
         gg.vnc.card_getting_attacked(self, opponent)
         # (Needs to happen before the call to `lose_health` below, bc the card could
         # die/vanish during that call, leading to a `None` reference on the grid and an
         # error in the view update call.)
-        howmuch = self.lose_health(opponent.power)
-        if opponent.power > howmuch and prepcard is not None:
-            logging.debug(
-                "%s gets overflow damage of %s", prepcard.name, opponent.power - howmuch
-            )
-            prepcard.lose_health(opponent.power - howmuch)
+        damage_left = self.lose_health(opponent.power)
+        if damage_left > 0:
+            logging.debug("Agent gets overflow damage of %s", damage_left)
+            gg.vnc.handle_player_damage(damage_left, opponent)
 
     # QQ: Fight logic is distributed between Card and FightVNC. Can this be streamlined?
     # (One could argue that all the places where the card module needs to call a view
-    # method should rather belong somewhere else?)
+    # method should rather belong somewhere else?) -- should all the fight logic be in
+    # fightvnc?
 
     def attack(self, opponent: Optional[Card]) -> None:
         if self.power == 0:
@@ -209,14 +226,20 @@ class Card:
         logging.debug(
             "%s%s attacks %s %s",
             self.name,
-            "".join(s.value.symbol for s in self.skills),
+            "".join(s.symbol for s in self.skills),
             opponent.name,
-            "".join(s.value.symbol for s in opponent.skills),
-        )
+            "".join(s.symbol for s in opponent.skills),
+        )  # FIXME Add some `name_with_skills` or `xname` method to Card?
 
-        if Skill.SOARING in self.skills:
-            if Skill.AIRDEFENSE in opponent.skills:
-                if Skill.INSTANTDEATH in self.skills:
+        # FIXME Clearly differentiate the different verbs here (attack, damage, prepare,
+        # etc.). E.g., below, when I card dies, it doesn't get attacked but dies
+        # immediately the way this is coded currently. This could be cleaned up by
+        # moving the `InstantDeath` check and `die` calls to `get_attacked`. This would
+        # also simplify a couple of things here.
+
+        if skills.Soaring in self.skills:
+            if skills.Airdefense in opponent.skills:
+                if skills.InstantDeath in self.skills:
                     opponent.die()
                 else:
                     opponent.get_attacked(self)
@@ -224,7 +247,7 @@ class Card:
                 gg.vnc.handle_player_damage(self.power, self)
             return
 
-        if Skill.INSTANTDEATH in self.skills:
+        if skills.InstantDeath in self.skills:
             opponent.die()
             return
 
@@ -261,13 +284,13 @@ class Card:
     @classmethod
     def get_raw_potency_range(cls) -> Tuple[int, int, int]:
         """Return the current potency range: (min, max, theoretical max)."""
-        skills = sorted(list(Skill), key=lambda s: s.value.potency, reverse=True)
+        skills = sorted(get_all_skilltypes(), key=lambda s: s.potency, reverse=True)
         mincard = cls(
             name="Min",
             initial_power=0,
             initial_health=0,
             costs_fire=10,
-            skills=[s for s in skills[-cls.MAX_SKILLS :] if s.value.potency < 0],
+            skills=[s for s in skills[-cls.MAX_SKILLS :] if s.potency < 0],
             costs_spirits=0,  # 0, bc we can't have both types of costs in a card
             has_spirits=0,
             has_fire=0,
@@ -277,7 +300,7 @@ class Card:
             initial_power=cls.MAX_ATTR,
             initial_health=cls.MAX_ATTR,
             costs_fire=0,
-            skills=skills[: cls.MAX_SKILLS],
+            skills=skills[: cls.MAX_SKILLS],  # type: ignore (why is this necessary?)
             costs_spirits=0,
             has_spirits=cls.MAX_ATTR,
             has_fire=cls.MAX_ATTR,
