@@ -164,6 +164,18 @@ class FightVnC:
             self.redraw_view()
             self.decks.hand.add_card(new_card)
             self.show_human_receives_card_from_grid(new_card, from_slot=to_slot)
+            logging.debug("Human copies %s via Fertility", new_card.name)
+
+        self.redraw_view()
+
+        if skills.Packrat in pmgr.target_card.skills:
+            if not self.decks.draw.is_empty():
+                new_card = self.decks.draw.draw_card()
+                self.show_human_draws_new_card(
+                    self.decks.hand, new_card, self.decks.draw
+                )
+                self.decks.hand.add_card(new_card)
+                logging.debug("Human draws %s via Packrat", new_card.name)
 
         self.redraw_view()
         logging.debug("Human plays %s in %s", pmgr.target_card.name, to_slot)

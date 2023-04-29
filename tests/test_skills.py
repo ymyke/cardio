@@ -21,7 +21,7 @@ def do_the_fight(humancards: CardList, computercard: Optional[Card]) -> StatesLo
     """
     gg.humanplayer.deck.cards = humancards
     # Reset grid for good measure in case we run several fights in one test:
-    gg.grid = Grid(4)   
+    gg.grid = Grid(4)
     cs = Round0OnlyStrategy(grid=gg.grid, cards=[(GridPos(1, 0), computercard)])
     gg.vnc = HumanStrategyVnC(grid=gg.grid, computerstrategy=cs, whichrounds=[0])
     gg.vnc.handle_fight()
@@ -226,3 +226,21 @@ def test_underdog():
     do_the_fight([hc], cc)
     assert hc.health == 0
     assert cc.health == 1  # cc wins bc it has more power
+
+
+def test_packrat():
+    # With Packrat:
+    hc = Card("Human Card", 1, 1, 1, skills=[skills.Packrat])
+    xc = Card("X", 1, 1, 1)
+    cc = Card("Computer Card", 1, 2, 1)
+    log = do_the_fight([hc, hc.clone(), hc.clone(), xc], cc)
+    assert "Draw: Xp1h1" in log.log.split("Starting round")[1]
+    # `xc` gets drawn ealier:
+    assert "Draw: Xp1h1" not in log.log.split("Starting round")[2]
+    # Without Packrat:
+    hc = Card("Human Card", 1, 1, 1)
+    xc = Card("X", 1, 1, 1)
+    cc = Card("Computer Card", 1, 2, 1)
+    log = do_the_fight([hc, hc.clone(), hc.clone(), xc], cc)
+    assert "Draw: Xp1h1" in log.log.split("Starting round")[1]
+    assert "Draw: Xp1h1" in log.log.split("Starting round")[2]

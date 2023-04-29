@@ -11,10 +11,20 @@ Checklist when adding a new skill:
 - Anything that needs to be saved?
 """
 from dataclasses import dataclass, field
+from enum import Enum, auto
 from typing import List, Optional, Type, Union
 
 
 # TODO Implement this simply as a directory of names -> specs and a factory?
+
+
+class ForWhom(Enum):
+    """Who can use a skill?"""
+
+    # TODO Use this where relevant
+    HUMAN = auto()
+    COMPUTER = auto()
+    BOTH = auto()
 
 
 @dataclass
@@ -23,6 +33,7 @@ class Skill:
     symbol: str
     description: str
     potency: int  # [-10, 10], usually [0, 10]
+    forwhom: ForWhom = ForWhom.BOTH
     under_construction: bool = False
 
     def reset(self) -> None:
@@ -34,7 +45,7 @@ SkillOrSkillType = Union[Skill, SkillType]
 ListOfSkillsOrSkillTypes = List[SkillOrSkillType]
 
 
-def get_skilltypes(implemented_only:bool=True) -> List[SkillType]:
+def get_skilltypes(implemented_only: bool = True) -> List[SkillType]:
     if implemented_only:
         return [s for s in Skill.__subclasses__() if not s.under_construction]
     return Skill.__subclasses__()
@@ -190,6 +201,15 @@ class Underdog(Skill):
     potency: int = 4
 
 
+@dataclass
+class Packrat(Skill):
+    name: str = "Packrat"
+    symbol: str = "🧺"
+    description: str = "A card with Packrat will draw another card to the player's hand when it is played."
+    potency: int = 6
+    forwhom: ForWhom = ForWhom.HUMAN
+
+
 # ----- Under construction -----
 
 
@@ -299,18 +319,6 @@ class Weakness(Skill):
 
 
 @dataclass
-class Packrat(Skill):
-    name: str = "Packrat"
-    symbol: str = "🧺"
-    description: str = "A card with Packrat will draw another card to the player's hand when it is played."
-    potency: int = 6
-    under_construction: bool = True
-    # ⭐
-    # FIXME This one is also only applicable to human player's cards. Should there
-    # be a flag to differentiate the two types?
-
-
-@dataclass
 class Bully(Skill):
     name: str = "Bully"
     symbol: str = "🥊"
@@ -391,7 +399,7 @@ class Hamsterwheel(Skill):
 
 # ----- Sanity checks -----
 
-assert all(abs(cls.potency) <= 10 for cls in get_all_skilltypes())
+assert all(abs(cls.potency) <= 10 for cls in get_skilltypes())
 
 
 # ----- Ideas for more skills ----- High prio -----
