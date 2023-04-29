@@ -48,7 +48,7 @@ class SkillLotteryLocation(Location):
             view.message(f"{card.name} lost the {skill.name} {skill.symbol} skill. 😢")
         else:
             skill = random.choice(
-                list(set(skills.get_all_skilltypes()) - set(card.skills.get_types()))
+                list(set(skills.get_skilltypes()) - set(card.skills.get_types()))
             )
             card.skills.add(skill)
             view.show_upgrade(card)

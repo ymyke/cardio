@@ -2,7 +2,7 @@ from __future__ import annotations
 import logging
 import copy
 from typing import Optional, List, TYPE_CHECKING, Tuple
-from .skills import ListOfSkillsOrSkillTypes, SkillSet, get_all_skilltypes
+from .skills import ListOfSkillsOrSkillTypes, SkillSet, get_skilltypes
 from . import gg, skills
 
 if TYPE_CHECKING:
@@ -293,7 +293,11 @@ class Card:
     @classmethod
     def get_raw_potency_range(cls) -> Tuple[int, int, int]:
         """Return the current potency range: (min, max, theoretical max)."""
-        skills = sorted(get_all_skilltypes(), key=lambda s: s.potency, reverse=True)
+        skills = sorted(
+            get_skilltypes(implemented_only=False),
+            key=lambda s: s.potency,
+            reverse=True,
+        )
         mincard = cls(
             name="Min",
             initial_power=0,

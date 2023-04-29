@@ -34,7 +34,9 @@ SkillOrSkillType = Union[Skill, SkillType]
 ListOfSkillsOrSkillTypes = List[SkillOrSkillType]
 
 
-def get_all_skilltypes() -> List[SkillType]:
+def get_skilltypes(implemented_only:bool=True) -> List[SkillType]:
+    if implemented_only:
+        return [s for s in Skill.__subclasses__() if not s.under_construction]
     return Skill.__subclasses__()
 
 
