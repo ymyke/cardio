@@ -215,7 +215,8 @@ class Card:
 
     # QQ: Fight logic is distributed between Card and FightVNC. Can this be streamlined?
     # (One could argue that all the places where the card module needs to call a view
-    # method should rather belong somewhere else?)
+    # method should rather belong somewhere else?) -- should all the fight logic be in
+    # fightvnc?
 
     def attack(self, opponent: Optional[Card]) -> None:
         if self.power == 0:
