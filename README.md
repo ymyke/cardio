@@ -30,6 +30,19 @@
     mind that some cards can die during a run but should still keep their stats
     available. How to do that exactly?
 - Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
+- Maybe destroy likelihood in UPU etc should also rise with
+  amount of Power/Health a card has already?
+
+- Make a branch `move all fight code to codevnc` and see how that goes.
+```python
+c2 = grid[2][0]
+c1 = grid[1][0]
+c0 = grid[0][0]
+
+attack(c2, c1, prep=c0, human=..., computer=...)
+	lose_health(c1, ...)
+attack(c1, c2, ...)
+```
 
 
 # MVC Thoughts
@@ -82,6 +95,7 @@
 - Can we add the new fire and spirits placement logic to the hypo-driven tests? Maybe
   using the placement mgr in the hypo test?
 - Terminology: agent vs player everywhere? Which is the better term? Make it consistent.
+  -- Or: Terminology: Player 1 or H and Player C?
 - Look for all `grid.*=None` and use `remove_card` instead.
 - Write tests for all card characteristics and skills.
 - Edge case: What if the grid is empty or powerless at some point during a fight? Who
