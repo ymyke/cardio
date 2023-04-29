@@ -191,6 +191,9 @@ class Card:
     def get_attacked(self, opponent: Card) -> None:
         logging.debug("%s gets attacked by %s", self.name, opponent.name)
 
+        # QQ: Does it really make sense to have both `get_attacked` and `attack`? What
+        # for exactly?
+
         if skills.Spines in self.skills:
             # FIXME Should maybe be moved further down once we have an animation in
             # place for this because otherwise the animations will happen in the wrong
@@ -204,7 +207,13 @@ class Card:
         # (Needs to happen before the call to `lose_health` below, bc the card could
         # die/vanish during that call, leading to a `None` reference on the grid and an
         # error in the view update call.)
-        damage_left = self.lose_health(opponent.power)
+
+        opponent_power = opponent.power
+        if skills.Underdog in opponent.skills and opponent_power < self.power:
+            logging.debug("%s has Underdog and gets +1 power", opponent.name)
+            opponent_power += 1
+
+        damage_left = self.lose_health(opponent_power)
         if damage_left > 0:
             logging.debug("Agent gets overflow damage of %s", damage_left)
             gg.vnc.handle_player_damage(damage_left, opponent)

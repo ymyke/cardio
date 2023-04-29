@@ -180,6 +180,14 @@ class Shield(Skill):
     # mention in their descriptions.
 
 
+@dataclass
+class Underdog(Skill):
+    name: str = "Underdog"
+    symbol: str = "🐩"
+    description: str = "A card with Underdog gains additional strength when opposed by a card with higher power."
+    potency: int = 4
+
+
 # ----- Under construction -----
 
 
@@ -258,16 +266,6 @@ class Healer(Skill):
     symbol: str = "🚑"
     description: str = "A card with Healer will heal 1 damage of its neighboring cards at the end of each turn."
     potency: int = 6
-    under_construction: bool = True
-    # ⭐
-
-
-@dataclass
-class Underdog(Skill):
-    name: str = "Underdog"
-    symbol: str = "🐩"
-    description: str = "A card with Underdog gains additional strength when opposed by a card with higher power."
-    potency: int = 4
     under_construction: bool = True
     # ⭐
 
