@@ -69,6 +69,8 @@
 
 # Todo
 
+- Have some generic animation (just some color change for 0.2 seconds?) for skill
+  effects that get activated. E.g., for shield.
 - Start the game w/ 0 skills.
 - QQ: Spirits: keep them between fights (as it is now)? (Maybe have to sacrifice 1 life
   if you want to keep them?)
