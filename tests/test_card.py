@@ -159,18 +159,31 @@ def test_lose_health(common_setup):
     mocked_vnc = common_setup
     c = gg.grid[2][3]
     c.health = 10
-    actual_loss = c.lose_health(3)
-    assert actual_loss == 3
+    damage_left = c.lose_health(3)
+    assert damage_left == 0
     assert c.health == 7
     mocked_vnc.card_lost_health.assert_called_once()
     mocked_vnc.card_died.assert_not_called()
 
 
+def test_lose_health_calculates_damage_left_correctly(common_setup):
+    # With shield:
+    c = Card("A", 1, 1, 1, skills=[skills.Shield])
+    gg.grid[2][3] = c
+    damage_left = c.lose_health(2)
+    assert damage_left == 0  # 0 because the shield absorbed all the damage
+    # Without shield:
+    c = Card("A", 1, 1, 1)
+    gg.grid[2][3] = c
+    damage_left = c.lose_health(2)
+    assert damage_left == 1  # 1 because the card only absorbed 1 of 2 damage
+
+
 def test_lose_health_and_die(common_setup):
     mocked_vnc = common_setup
     c = gg.grid[2][3]
-    actual_loss = c.lose_health(100)
-    assert actual_loss == 1
+    damage_left = c.lose_health(100)
+    assert damage_left == 99
     assert c.health == 0
     mocked_vnc.card_died.assert_called_once()
 

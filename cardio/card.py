@@ -160,26 +160,33 @@ class Card:
         self._die_silently()
 
     def lose_health(self, howmuch: int) -> int:
+        """Returns how much damage is still left to be consumed. Damage can be left when
+        a card died w/o consuming all damage. Keep in mind that damage can be consumed
+        by shields an other skills too.
+        """
         assert howmuch > 0
+        damage_left = howmuch
 
         if skills.Shield in self.skills:
             shield = self.skills.get(skills.Shield)
             assert isinstance(shield, skills.Shield)
             if gg.vnc.round_num not in shield.turns_used:
-                howmuch -= 1
+                damage_left -= 1
                 shield.turns_used.append(gg.vnc.round_num)
                 logging.debug("%s uses shield", self.name)
             else:
                 logging.debug("%s shield already used this turn", self.name)
 
-        if howmuch >= self.health:
-            howmuch = self.health
+        if damage_left >= self.health:
+            damage_left -= self.health
             self.die()
         else:
-            self.health -= howmuch
+            self.health -= damage_left
+            damage_left = 0
             gg.vnc.card_lost_health(self)
             logging.debug("%s new health: %s", self.name, self.health)
-        return howmuch
+
+        return damage_left
 
     def get_attacked(self, opponent: Card) -> None:
         logging.debug("%s gets attacked by %s", self.name, opponent.name)
@@ -199,12 +206,12 @@ class Card:
         # (Needs to happen before the call to `lose_health` below, bc the card could
         # die/vanish during that call, leading to a `None` reference on the grid and an
         # error in the view update call.)
-        howmuch = self.lose_health(opponent.power)
+        damage_left = self.lose_health(opponent.power)
         if opponent.power > howmuch and prepcard is not None:
             logging.debug(
-                "%s gets overflow damage of %s", prepcard.name, opponent.power - howmuch
-            )
-            prepcard.lose_health(opponent.power - howmuch)
+        if damage_left > 0 and prepcard is not None:
+            logging.debug("%s gets overflow damage of %s", prepcard.name, damage_left)
+            prepcard.lose_health(damage_left)
 
     # QQ: Fight logic is distributed between Card and FightVNC. Can this be streamlined?
     # (One could argue that all the places where the card module needs to call a view
