@@ -210,6 +210,18 @@ class Packrat(Skill):
     forwhom: ForWhom = ForWhom.HUMAN
 
 
+@dataclass
+class LuckyStrike(Skill):
+    name: str = "Lucky Strike"
+    symbol: str = "🍀"
+    description: str = "A card with Lucky Strike has a 50-50 chance to either kill the opponent or the card itself instantly. If the attack strikes the opposing agent directly and is lucky, it strikes with doubled power. If a card has 0 power, it will not attack, and this skill will have no effect. (Lucky Strike has precedence over Instant Death.)"
+    potency: int = 0
+    # QQ: What if the attack is blocked, e.g. by a shield? I think they can't be
+    # blocked. (Maybe the shield gets destroyed?)
+    # QQ: Or maybe better: 1/3 chance to kill the opponent, 1/3 chance to kill itself,
+    # 1/3 chance to attack as usual.
+
+
 # ----- Under construction -----
 
 
@@ -248,17 +260,6 @@ class Fragile(Skill):
     under_construction: bool = True
     # FIXME Make sure this works properly once we have a way to block attacks, shields
     # etc. ⭐
-
-
-@dataclass
-class Luckystrike(Skill):
-    name: str = "Lucky Strike"
-    symbol: str = "🍀"
-    description: str = "A card with Lucky Strike has a 50-50 chance to either kill the opponent or the card itself instantly. If the attack strikes the opposing agent directly, the skill has no effect, and the attack will deal damage according to its power. If a card has 0 power, it will not attack, and this skill will have no effect."
-    potency: int = 0
-    under_construction: bool = True
-    # QQ: What if the attack is blocked, e.g. by a shield? I think they can't be
-    # blocked. (Maybe the shield gets destroyed?)
 
 
 @dataclass

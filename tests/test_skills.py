@@ -1,3 +1,4 @@
+import random
 from typing import Optional
 import pytest
 from cardio import Card, CardList, gg, GridPos, skills, Grid
@@ -175,6 +176,7 @@ def test_shield():
     assert gg.grid[1][0] is None
     assert gg.grid[2][0] is hc
     assert hc.skills.get(skills.Shield).turns_used == [0, 1, 2]
+
     # Without shield:
     # The human card will die bc it no longer has the shield and therefore takes 2
     # damage per round.
@@ -185,6 +187,7 @@ def test_shield():
     assert cc.health == 3
     assert gg.grid[1][0] is cc
     assert gg.grid[2][0] is None
+
     # With shield and spines:
     # The human card will die bc while the shield absorbs 1 damage in each round, the
     # spines deal another damage, which will not be absorbed.
@@ -220,6 +223,7 @@ def test_underdog():
     do_the_fight([hc], cc)
     assert hc.health == 1  # hc wins bc it gets +1 power from Underdog
     assert cc.health == 0
+
     # Without Underdog:
     hc = Card("Human Card", 1, 1, 1)
     cc = Card("Computer Card", 2, 2, 1)
@@ -233,10 +237,12 @@ def test_packrat():
     hc = Card("Human Card", 1, 1, 1, skills=[skills.Packrat])
     xc = Card("X", 1, 1, 1)
     cc = Card("Computer Card", 1, 2, 1)
+    # 3 cards will get drawn at the beginning of the fight:
     log = do_the_fight([hc, hc.clone(), hc.clone(), xc], cc)
     assert "Draw: Xp1h1" in log.log.split("Starting round")[1]
     # `xc` gets drawn ealier:
     assert "Draw: Xp1h1" not in log.log.split("Starting round")[2]
+
     # Without Packrat:
     hc = Card("Human Card", 1, 1, 1)
     xc = Card("X", 1, 1, 1)
@@ -244,3 +250,29 @@ def test_packrat():
     log = do_the_fight([hc, hc.clone(), hc.clone(), xc], cc)
     assert "Draw: Xp1h1" in log.log.split("Starting round")[1]
     assert "Draw: Xp1h1" in log.log.split("Starting round")[2]
+    # `xc` gets drawn one round later:
+    assert "Draw: Xp1h1" not in log.log.split("Starting round")[3]
+
+
+def test_luckystrike():
+    # LuckyStrike gets unlucky and kills itself:
+    random.seed(0)
+    hc = Card("Human Card", 10, 10, 1, skills=[skills.LuckyStrike])
+    cc = Card("Computer Card", 1, 1, 1)
+    do_the_fight([hc], cc)
+    assert hc.health == 0  # `hc` should have died immediately
+
+    # LuckyStrike gets lucky and kills the opponent:
+    random.seed(1)
+    hc = Card("Human Card", 1, 1, 1, skills=[skills.LuckyStrike])
+    cc = Card("Computer Card", 10, 10, 1)
+    do_the_fight([hc], cc)
+    assert cc.health == 0  # `cc` should have died immediately
+
+    # LuckyStrike gets lucky, but no opposing card:
+    random.seed(1)
+    hc = Card("Human Card", 1, 1, 1, skills=[skills.LuckyStrike])
+    log = do_the_fight([hc], None)
+    assert hc.health == 1  # `cc` should have died immediately
+    # TODO Must check log output here to verify if the computer was hit w/ doubled power.
+    

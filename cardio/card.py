@@ -1,6 +1,7 @@
 from __future__ import annotations
 import logging
 import copy
+import random
 from typing import Optional, List, TYPE_CHECKING, Tuple
 from .skills import ListOfSkillsOrSkillTypes, SkillSet, get_skilltypes
 from . import gg, skills
@@ -236,9 +237,25 @@ class Card:
             logging.debug("%s would attack but has 0 power, so doesn't", self.name)
             return
 
-        if opponent is None:
-            gg.vnc.handle_player_damage(self.power, self)
+        luckystrike_is_lucky = False
+        if skills.LuckyStrike in self.skills:
+            if random.random() <= 0.5:
+                luckystrike_is_lucky = True
+                logging.debug("%s will get lucky with Lucky Strike", self.name)
+            else:
+                logging.debug("%s will get unlucky with Lucky Strike", self.name)
+
+        if opponent is None and not (
+            skills.LuckyStrike in self.skills and luckystrike_is_lucky
+        ):
+            power = self.power
+            if skills.LuckyStrike in self.skills and luckystrike_is_lucky:
+                power *= 2
+            gg.vnc.handle_player_damage(power, self)
             return
+
+        # TODO The above should work but then it breaks here because `opponent` is None
+        # sometimes.
 
         logging.debug(
             "%s%s attacks %s %s",
@@ -254,17 +271,23 @@ class Card:
         # moving the `InstantDeath` check and `die` calls to `get_attacked`. This would
         # also simplify a couple of things here.
 
+        if skills.LuckyStrike in self.skills and not luckystrike_is_lucky:
+            self.die()
+            logging.debug("%s gets unlucky with Lucky Strike", self.name)
+            return
+
         if skills.Soaring in self.skills:
             if skills.Airdefense in opponent.skills:
-                if skills.InstantDeath in self.skills:
+                if skills.InstantDeath in self.skills or luckystrike_is_lucky:
                     opponent.die()
                 else:
                     opponent.get_attacked(self)
             else:
+                # TODO Need unlucky logic here too
                 gg.vnc.handle_player_damage(self.power, self)
             return
 
-        if skills.InstantDeath in self.skills:
+        if skills.InstantDeath in self.skills or luckystrike_is_lucky:
             opponent.die()
             return
 
