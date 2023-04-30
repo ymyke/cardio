@@ -109,8 +109,6 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
         )
 
     def pos_card_deactivate(self, pos: GridPos) -> None:
-        card = self.grid.get_card(pos)
-        assert card is not None
         self.redraw_view()
 
     # --- Controller-type methods ---

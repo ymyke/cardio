@@ -53,6 +53,8 @@ class FightVnC:
         and been removed from the grid between being activated and deactivated. In this
         case, `pos` should point to where the card used to be before being removed.
         """
+        # FIXME Using pos makes this view-dependent. -> Switch back to card? -- would
+        # also need to rename the method.
         pass
 
     # --- Controller-related ---
