@@ -1,5 +1,15 @@
 # In this branch
 
+# On skills
+
+What is the model with skills?
+- They are assigned and later evaluated. I.e., when a card attacks, we evaluate whether
+  it has the underdog skill and if so, we apply its effect to the calculation.
+  - This could be easier with a more straightforward code for the fightvnc, where
+    everything fight-related is in fightvnc rather than also in the card class.
+- There are certain methods in skills that get called at certain points in time. e.g.,
+  before/after a fight or turn etc. Similar to `reset`, but more of these.
+
 
 # Next up
 
