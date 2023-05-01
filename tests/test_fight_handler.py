@@ -82,6 +82,23 @@ def test_endless_loop(gg_setup):
     gg.vnc.handle_fight()
 
 
+def test_prepcard_will_not_attack(mocker, gg_setup):
+    gg.vnc.computerstrategy = PredefinedStrategy(
+        grid=gg.grid,
+        cards_per_round={
+            # type: ignore
+            0: [
+                (GridPos(0, 0), Card("P", 1, 1, 1)),
+                (GridPos(1, 0), Card("X", 1, 1, 1)),
+            ],
+        },
+    )
+    attack_spy = mocker.spy(attack, "attack")
+    gg.vnc.handle_fight()
+    # Make sure `attack` was never called with prepcard:
+    assert not any(x.kwargs["attacker"].name == "P" for x in attack_spy.call_args_list)
+
+
 def test_prepare_but_slot_taken(mocker, gg_setup):
     pc = Card("P", 1, 1, 1)
     cc = Card("C", 1, 1, 1)

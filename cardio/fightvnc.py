@@ -207,41 +207,16 @@ class FightVnC:
         self.decks.log()
         self.grid.log()
 
-        # TODO Simplify the following 3 blocks?
-        # Activate human line:
-        for card in self.grid.lines[2]:
-            if card is not None:
-                attack.attack(
-                    attacker=card,
-                    attacking_agent="H",
-                    target=gg.grid.get_opposing_card(card),
-                    prepcard=None,  # FIXME Do we need this?
-                )
-                # FIXME Why isn't there a `get_opposing_card` method in Card?
-        self._check_for_end_of_fight()
-
-        # Activate computer line:
-        for card in self.grid.lines[1]:
-            if card is not None:
-                attack.attack(
-                    attacker=card,
-                    attacking_agent="C",
-                    target=gg.grid.get_opposing_card(card),
-                    prepcard=None,  # FIXME Do we need this?
-                )
-        self._check_for_end_of_fight()
-
-        # Activate prep line:
-        for card in self.grid.lines[0]:
-            if card is not None:
-                attack.prepare(card)
-                attack.attack(
-                    attacker=card,
-                    attacking_agent="C",
-                    target=gg.grid.get_opposing_card(card),
-                    prepcard=None,  # FIXME Do we need this?
-                )
-        self._check_for_end_of_fight()
+        # Activate all cards line by line:
+        for line in [2, 1, 0]:
+            for card in (c for c in self.grid.lines[line] if c is not None):
+                if line == 0:
+                    if not attack.prepare(card):
+                        continue  # Do not attack, if not prepared successfully
+                attack.attack(attacker=card, target=gg.grid.get_opposing_card(card))
+            self._check_for_end_of_fight()
+            # QQ: Here, we check end-of-fight conditions after each line. Should this
+            # rather be at the end of the fight? Or after each card?
 
         self.grid.log()
         logging.debug("----- End of round %s -----", self.round_num)

@@ -7,12 +7,8 @@ from . import skills as sk
 # class
 
 
-def attack(
-    attacker: Card,
-    attacking_agent: Literal["H", "C"],
-    target: Optional[Card] = None,
-    prepcard: Optional[Card] = None,
-) -> None:
+def attack(attacker: Card, target: Optional[Card] = None) -> None:
+    assert gg.grid.find_card(attacker).line != 0
 
     # ----- No power? -> Return immediately -----
 
@@ -132,7 +128,10 @@ def attack(
 # affect it.
 
 
-def prepare(card: Card) -> None:
+def prepare(card: Card) -> bool:
+    """Prepare a card for attack by moving it from the prepline to the computer line.
+    Returns True if the card was prepared, False if it couldn't be prepared.
+    """
     pos = card.get_grid_pos()
     assert pos is not None and pos.line == 0
     to_pos = pos._replace(line=1)
@@ -143,7 +142,9 @@ def prepare(card: Card) -> None:
             card.name,
             prep_to.name,
         )
-        return
+        return False
+    
     logging.debug("Preparing %s, moving to computer line", card.name)
     gg.vnc.card_prepare(card)
     gg.grid.move_card(card, to_pos=to_pos)
+    return True
