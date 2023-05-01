@@ -92,6 +92,12 @@ def test_human_gets_gems(gg_setup):
     )
     gg.vnc.handle_fight()
     assert gg.humanplayer.gems == 4
+    # (4 because:
+    # - Round 0: mouse deals 1 agent damage
+    # - Round 1: cat deals 10 agent damage
+    # - This results in a diff of -9
+    # -> computer dies with 9 - 5 overflow damage = 4 gems
+    # Note that mouse and cat are in different slots, so mouse doesn't defend.)
 
 
 def test_human_decks_managed_correctly(gg_setup):  # FIXME Should get different name?
