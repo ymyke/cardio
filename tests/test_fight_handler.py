@@ -5,6 +5,7 @@ from cardio.humanstrategyvnc import HumanStrategyVnC
 from cardio.computer_strategies import Round0OnlyStrategy, PredefinedStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
 from cardio.agent_damage_state import AgentDamageState
+from cardio import attack
 
 
 def equal_logs(generatedlog: str, targetlog: str) -> bool:
@@ -79,6 +80,45 @@ def test_endless_loop(gg_setup):
         },
     )
     gg.vnc.handle_fight()
+
+
+def test_prepare_but_slot_taken(mocker, gg_setup):
+    pc = Card("P", 1, 1, 1)
+    cc = Card("C", 1, 1, 1)
+    gg.grid[0][0] = pc
+    gg.grid[1][0] = cc
+    mocked_vnc = mocker.patch("cardio.attack.gg.vnc")
+    attack.prepare(pc)
+    assert gg.grid[0][0] is pc
+    assert gg.grid[1][0] is cc
+    mocked_vnc.card_prepare.assert_not_called()
+
+
+def test_prepare_with_success(mocker, gg_setup):
+    pc = Card("P", 1, 1, 1)
+    gg.grid[0][0] = pc
+    mocked_vnc = mocker.patch("cardio.attack.gg.vnc")
+    attack.prepare(pc)
+    assert gg.grid[0][0] is None
+    assert gg.grid[1][0] is pc
+    mocked_vnc.card_prepare.assert_called_once()
+
+
+def test_prepcard_gets_no_damage(gg_setup):
+    gg.vnc.computerstrategy = PredefinedStrategy(
+        grid=gg.grid,
+        cards_per_round={
+            # type: ignore
+            0: [
+                (GridPos(0, 0), Card("X", 1, 1, 1)),
+                (GridPos(1, 0), Card("X", 1, 1, 1)),
+                (GridPos(2, 0), Card("X", 10, 1, 1)),
+            ],
+        },
+    )
+    gg.vnc.handle_fight()
+    assert gg.grid[1][0] is None
+    assert gg.grid[0][0].health == 1  # prepcard untouched
 
 
 def test_human_gets_gems(gg_setup):
