@@ -12,6 +12,8 @@ Checklist when adding a new skill:
 """
 from dataclasses import dataclass, field
 from enum import Enum, auto
+import logging
+import random
 from typing import List, Optional, Type, Union
 
 
@@ -37,6 +39,12 @@ class Skill:
     under_construction: bool = False
 
     def reset(self) -> None:
+        pass
+
+    def pre_attack(self) -> None:
+        pass
+
+    def post_attack(self) -> None:
         pass
 
 
@@ -216,10 +224,26 @@ class LuckyStrike(Skill):
     symbol: str = "🍀"
     description: str = "A card with Lucky Strike has a 50-50 chance to either kill the opponent or the card itself instantly. If the attack strikes the opposing agent directly and is lucky, it strikes with doubled power. If a card has 0 power, it will not attack, and this skill will have no effect. (Lucky Strike has precedence over Instant Death.)"
     potency: int = 0
+    _is_lucky: Optional[bool] = False
     # QQ: What if the attack is blocked, e.g. by a shield? I think they can't be
     # blocked. (Maybe the shield gets destroyed?)
     # QQ: Or maybe better: 1/3 chance to kill the opponent, 1/3 chance to kill itself,
     # 1/3 chance to attack as usual.
+
+    def is_lucky(self) -> bool:
+        assert self._is_lucky is not None
+        return self._is_lucky
+
+    def pre_attack(self) -> None:
+        self._is_lucky = random.random() <= 0.5
+        logging.debug("Lucky Strike is lucky: %s", self._is_lucky)
+
+    def post_attack(self) -> None:
+        self._is_lucky = None
+
+    def power_up_against_agent(self, power: int) -> int:
+        assert self.is_lucky()
+        return power * 2
 
 
 # ----- Under construction -----

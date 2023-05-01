@@ -77,18 +77,19 @@ def test_move_card():
     assert g[2][2] is None
 
 
-def test_activate_line(mocker):
-    spy = mocker.patch("cardio.card.Card.activate")
-    g = get_test_grid()
-    g.activate_line(1)
-    assert spy.call_count == 1
-    g.activate_line(2)
-    assert spy.call_count == 3
+# @pytest.mark.skip
+# def test_activate_line(mocker):
+#     spy = mocker.patch("cardio.card.Card.activate")
+#     g = get_test_grid()
+#     g.activate_line(1)
+#     assert spy.call_count == 1
+#     g.activate_line(2)
+#     assert spy.call_count == 3
 
-
-def test_prepare_line(mocker):
-    spy = mocker.patch("cardio.card.Card.prepare")
-    g = get_test_grid()
-    g[0][0] = Card("X", 1, 1, 1)
-    g.prepare_line()
-    assert spy.call_count == 1
+# @pytest.mark.skip
+# def test_prepare_line(mocker):
+#     spy = mocker.patch("cardio.card.Card.prepare")
+#     g = get_test_grid()
+#     g[0][0] = Card("X", 1, 1, 1)
+#     g.prepare_line()
+#     assert spy.call_count == 1

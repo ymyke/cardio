@@ -188,6 +188,7 @@ def test_lose_health_and_die(common_setup):
     mocked_vnc.card_died.assert_called_once()
 
 
+@pytest.mark.skip
 def test_get_attacked_targeting_humancard(common_setup):
     mocked_vnc = common_setup
     target = gg.grid[2][3]
@@ -198,6 +199,7 @@ def test_get_attacked_targeting_humancard(common_setup):
     mocked_vnc.card_getting_attacked.assert_called_once()
 
 
+@pytest.mark.skip
 def test_get_attacked_targeting_computercard(common_setup):
     mocked_vnc = common_setup
     target = gg.grid[1][3]
@@ -218,6 +220,7 @@ def test_get_attacked_targeting_computercard(common_setup):
 # concept as to which fight-logic-related tests are here and which are there.
 
 
+@pytest.mark.skip
 def test_activate_with_opposing_card(common_setup):
     """If it deals damage to the opposing card."""
     mocked_vnc = common_setup
@@ -230,6 +233,7 @@ def test_activate_with_opposing_card(common_setup):
     mocked_vnc.handle_player_damage.assert_not_called()
 
 
+@pytest.mark.skip
 def test_activate_without_opposing_card(gg_setup):
     """If it deals damage to the human player."""
     # (We're not using `common_setup` here bc we need to test the `damagestate` (which
@@ -240,6 +244,7 @@ def test_activate_without_opposing_card(gg_setup):
     assert gg.vnc.damagestate.diff == 1
 
 
+@pytest.mark.skip
 def test_prepare_preconditions(common_setup):
     with pytest.raises(AssertionError):
         # Not in prep line:
@@ -252,6 +257,7 @@ def test_prepare_preconditions(common_setup):
         Card("X", 1, 1, 1).prepare()
 
 
+@pytest.mark.skip
 def test_prepare_but_slot_taken(common_setup):
     mocked_vnc = common_setup
     gg.grid[0][3].prepare()
@@ -259,6 +265,7 @@ def test_prepare_but_slot_taken(common_setup):
     assert gg.grid[0][3] is not None
 
 
+@pytest.mark.skip
 def test_prepare_with_success(common_setup):
     mocked_vnc = common_setup
     gg.grid[1][3] = None

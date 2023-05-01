@@ -82,16 +82,16 @@ class Grid:
         self[to_pos.line][to_pos.slot] = card
         self[from_pos.line][from_pos.slot] = None
 
-    def activate_line(self, linei: int) -> None:
-        assert linei in [1, 2]
-        for card in self.lines[linei]:
-            if card is not None:
-                card.activate()
+    # def activate_line(self, linei: int) -> None:
+    #     assert linei in [1, 2]
+    #     for card in self.lines[linei]:
+    #         if card is not None:
+    #             card.activate()
 
-    def prepare_line(self) -> None:
-        for card in self.lines[0]:
-            if card is not None:
-                card.prepare()
+    # def prepare_line(self) -> None:
+    #     for card in self.lines[0]:
+    #         if card is not None:
+    #             card.prepare()
 
     def log(self):
         for line in range(3):

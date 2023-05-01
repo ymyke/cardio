@@ -13,6 +13,7 @@ from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
 from .card_blueprints import create_cards_from_blueprints
 from .states_logger import StatesLogger
+from . import attack
 
 
 class EndOfFightException(Exception):
@@ -206,12 +207,40 @@ class FightVnC:
         self.decks.log()
         self.grid.log()
 
-        # Activate all cards:
-        self.grid.activate_line(2)
+        # TODO Simplify the following 3 blocks?
+        # Activate human line:
+        for card in self.grid.lines[2]:
+            if card is not None:
+                attack.attack(
+                    attacker=card,
+                    attacking_agent="H",
+                    target=gg.grid.get_opposing_card(card),
+                    prepcard=None,  # FIXME Do we need this?
+                )
+                # FIXME Why isn't there a `get_opposing_card` method in Card?
         self._check_for_end_of_fight()
-        self.grid.activate_line(1)
+
+        # Activate computer line:
+        for card in self.grid.lines[1]:
+            if card is not None:
+                attack.attack(
+                    attacker=card,
+                    attacking_agent="C",
+                    target=gg.grid.get_opposing_card(card),
+                    prepcard=None,  # FIXME Do we need this?
+                )
         self._check_for_end_of_fight()
-        self.grid.prepare_line()
+
+        # Activate prep line:
+        for card in self.grid.lines[0]:
+            if card is not None:
+                attack.prepare(card)
+                attack.attack(
+                    attacker=card,
+                    attacking_agent="C",
+                    target=gg.grid.get_opposing_card(card),
+                    prepcard=None,  # FIXME Do we need this?
+                )
         self._check_for_end_of_fight()
 
         self.grid.log()

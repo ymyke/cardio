@@ -1,7 +1,6 @@
 from __future__ import annotations
 import logging
 import copy
-import random
 from typing import Optional, List, TYPE_CHECKING, Tuple
 from .skills import ListOfSkillsOrSkillTypes, SkillSet, get_skilltypes
 from . import gg, skills
@@ -189,137 +188,137 @@ class Card:
 
         return damage_left
 
-    def get_attacked(self, opponent: Card) -> None:
-        logging.debug("%s gets attacked by %s", self.name, opponent.name)
+    # def get_attacked(self, opponent: Card) -> None:
+    #     logging.debug("%s gets attacked by %s", self.name, opponent.name)
 
-        # QQ: Does it really make sense to have both `get_attacked` and `attack`? What
-        # for exactly?
+    #     # QQ: Does it really make sense to have both `get_attacked` and `attack`? What
+    #     # for exactly?
 
-        if skills.Spines in self.skills:
-            # FIXME Should maybe be moved further down once we have an animation in
-            # place for this because otherwise the animations will happen in the wrong
-            # order.
-            logging.debug(
-                "%s causes 1 damage on %s with Spines", self.name, opponent.name
-            )
-            opponent.lose_health(1)
+    #     if skills.Spines in self.skills:
+    #         # FIXME Should maybe be moved further down once we have an animation in
+    #         # place for this because otherwise the animations will happen in the wrong
+    #         # order.
+    #         logging.debug(
+    #             "%s causes 1 damage on %s with Spines", self.name, opponent.name
+    #         )
+    #         opponent.lose_health(1)
 
-        gg.vnc.card_getting_attacked(self, opponent)
-        # (Needs to happen before the call to `lose_health` below, bc the card could
-        # die/vanish during that call, leading to a `None` reference on the grid and an
-        # error in the view update call.)
+    #     gg.vnc.card_getting_attacked(self, opponent)
+    #     # (Needs to happen before the call to `lose_health` below, bc the card could
+    #     # die/vanish during that call, leading to a `None` reference on the grid and an
+    #     # error in the view update call.)
 
-        opponent_power = opponent.power
-        if skills.Underdog in opponent.skills and opponent_power < self.power:
-            # Note/QQ: The way this is currently implemented, some interdependencies
-            # might get missed with future skills. E.g., if there is a skill that gives
-            # a buff if a card has a certain power, it will not be triggered by Underdog
-            # as it is currently implemented. If we ever have such skills and
-            # interdependencies, we might need to implement Underdog an similar skills
-            # with temporary attributes or attribute modifiers in the card. OR: Each
-            # such dependent skill has to check if there are any other skills in play
-            # that might affect it.
-            logging.debug("%s has Underdog and gets +1 power", opponent.name)
-            opponent_power += 1
+    #     opponent_power = opponent.power
+    #     if skills.Underdog in opponent.skills and opponent_power < self.power:
+    #         # Note/QQ: The way this is currently implemented, some interdependencies
+    #         # might get missed with future skills. E.g., if there is a skill that gives
+    #         # a buff if a card has a certain power, it will not be triggered by Underdog
+    #         # as it is currently implemented. If we ever have such skills and
+    #         # interdependencies, we might need to implement Underdog an similar skills
+    #         # with temporary attributes or attribute modifiers in the card. OR: Each
+    #         # such dependent skill has to check if there are any other skills in play
+    #         # that might affect it.
+    #         logging.debug("%s has Underdog and gets +1 power", opponent.name)
+    #         opponent_power += 1
 
-        damage_left = self.lose_health(opponent_power)
-        if damage_left > 0:
-            logging.debug("Agent gets overflow damage of %s", damage_left)
-            gg.vnc.handle_player_damage(damage_left, opponent)
+    #     damage_left = self.lose_health(opponent_power)
+    #     if damage_left > 0:
+    #         logging.debug("Agent gets overflow damage of %s", damage_left)
+    #         gg.vnc.handle_player_damage(damage_left, opponent)
 
-    # QQ: Fight logic is distributed between Card and FightVNC. Can this be streamlined?
-    # (One could argue that all the places where the card module needs to call a view
-    # method should rather belong somewhere else?) -- should all the fight logic be in
-    # fightvnc?
+    # # QQ: Fight logic is distributed between Card and FightVNC. Can this be streamlined?
+    # # (One could argue that all the places where the card module needs to call a view
+    # # method should rather belong somewhere else?) -- should all the fight logic be in
+    # # fightvnc?
 
-    def attack(self, opponent: Optional[Card]) -> None:
-        if self.power == 0:
-            logging.debug("%s would attack but has 0 power, so doesn't", self.name)
-            return
+    # def attack(self, opponent: Optional[Card]) -> None:
+    #     if self.power == 0:
+    #         logging.debug("%s would attack but has 0 power, so doesn't", self.name)
+    #         return
 
-        luckystrike_is_lucky = False
-        if skills.LuckyStrike in self.skills:
-            if random.random() <= 0.5:
-                luckystrike_is_lucky = True
-                logging.debug("%s will get lucky with Lucky Strike", self.name)
-            else:
-                logging.debug("%s will get unlucky with Lucky Strike", self.name)
+    #     luckystrike_is_lucky = False
+    #     if skills.LuckyStrike in self.skills:
+    #         if random.random() <= 0.5:
+    #             luckystrike_is_lucky = True
+    #             logging.debug("%s will get lucky with Lucky Strike", self.name)
+    #         else:
+    #             logging.debug("%s will get unlucky with Lucky Strike", self.name)
 
-        if opponent is None and not (
-            skills.LuckyStrike in self.skills and luckystrike_is_lucky
-        ):
-            power = self.power
-            if skills.LuckyStrike in self.skills and luckystrike_is_lucky:
-                power *= 2
-            gg.vnc.handle_player_damage(power, self)
-            return
+    #     if opponent is None and not (
+    #         skills.LuckyStrike in self.skills and luckystrike_is_lucky
+    #     ):
+    #         power = self.power
+    #         if skills.LuckyStrike in self.skills and luckystrike_is_lucky:
+    #             power *= 2
+    #         gg.vnc.handle_player_damage(power, self)
+    #         return
 
-        # TODO The above should work but then it breaks here because `opponent` is None
-        # sometimes.
+    #     # TODO The above should work but then it breaks here because `opponent` is None
+    #     # sometimes.
 
-        logging.debug(
-            "%s%s attacks %s %s",
-            self.name,
-            "".join(s.symbol for s in self.skills),
-            opponent.name,
-            "".join(s.symbol for s in opponent.skills),
-        )  # FIXME Add some `name_with_skills` or `xname` method to Card?
+    #     logging.debug(
+    #         "%s%s attacks %s %s",
+    #         self.name,
+    #         "".join(s.symbol for s in self.skills),
+    #         opponent.name,
+    #         "".join(s.symbol for s in opponent.skills),
+    #     )  # FIXME Add some `name_with_skills` or `xname` method to Card?
 
-        # FIXME Clearly differentiate the different verbs here (attack, damage, prepare,
-        # etc.). E.g., below, when I card dies, it doesn't get attacked but dies
-        # immediately the way this is coded currently. This could be cleaned up by
-        # moving the `InstantDeath` check and `die` calls to `get_attacked`. This would
-        # also simplify a couple of things here.
+    #     # FIXME Clearly differentiate the different verbs here (attack, damage, prepare,
+    #     # etc.). E.g., below, when I card dies, it doesn't get attacked but dies
+    #     # immediately the way this is coded currently. This could be cleaned up by
+    #     # moving the `InstantDeath` check and `die` calls to `get_attacked`. This would
+    #     # also simplify a couple of things here.
 
-        if skills.LuckyStrike in self.skills and not luckystrike_is_lucky:
-            self.die()
-            logging.debug("%s gets unlucky with Lucky Strike", self.name)
-            return
+    #     if skills.LuckyStrike in self.skills and not luckystrike_is_lucky:
+    #         self.die()
+    #         logging.debug("%s gets unlucky with Lucky Strike", self.name)
+    #         return
 
-        if skills.Soaring in self.skills:
-            if skills.Airdefense in opponent.skills:
-                if skills.InstantDeath in self.skills or luckystrike_is_lucky:
-                    opponent.die()
-                else:
-                    opponent.get_attacked(self)
-            else:
-                # TODO Need unlucky logic here too
-                gg.vnc.handle_player_damage(self.power, self)
-            return
+    #     if skills.Soaring in self.skills:
+    #         if skills.Airdefense in opponent.skills:
+    #             if skills.InstantDeath in self.skills or luckystrike_is_lucky:
+    #                 opponent.die()
+    #             else:
+    #                 opponent.get_attacked(self)
+    #         else:
+    #             # TODO Need unlucky logic here too
+    #             gg.vnc.handle_player_damage(self.power, self)
+    #         return
 
-        if skills.InstantDeath in self.skills or luckystrike_is_lucky:
-            opponent.die()
-            return
+    #     if skills.InstantDeath in self.skills or luckystrike_is_lucky:
+    #         opponent.die()
+    #         return
 
-        opponent.get_attacked(self)
+    #     opponent.get_attacked(self)
 
-    def activate(self) -> None:
-        if self.power == 0:
-            logging.debug("%s become active but has 0 power, so doesn't", self.name)
-            return
-        logging.debug("%s becomes active", self.name)
-        opponent = gg.grid.get_opposing_card(self)
-        pos = self.get_grid_pos()
-        gg.vnc.card_activate(self)
-        self.attack(opponent)
-        gg.vnc.pos_card_deactivate(pos)
+    # def activate(self) -> None:
+    #     if self.power == 0:
+    #         logging.debug("%s become active but has 0 power, so doesn't", self.name)
+    #         return
+    #     logging.debug("%s becomes active", self.name)
+    #     opponent = gg.grid.get_opposing_card(self)
+    #     pos = self.get_grid_pos()
+    #     gg.vnc.card_activate(self)
+    #     self.attack(opponent)
+    #     gg.vnc.pos_card_deactivate(pos)
 
-    def prepare(self) -> None:
-        pos = self.get_grid_pos()
-        assert pos is not None and pos.line == 0
-        to_pos = pos._replace(line=1)
-        prep_to = gg.grid.get_card(to_pos)
-        if prep_to is not None:
-            logging.debug(
-                "Preparing %s but the prep-to space is occupied by %s",
-                self.name,
-                prep_to.name,
-            )
-            return
-        logging.debug("Preparing %s, moving to computer line", self.name)
-        gg.vnc.card_prepare(self)
-        gg.grid.move_card(self, to_pos=to_pos)
-        self.activate()
+    # def prepare(self) -> None:
+    #     pos = self.get_grid_pos()
+    #     assert pos is not None and pos.line == 0
+    #     to_pos = pos._replace(line=1)
+    #     prep_to = gg.grid.get_card(to_pos)
+    #     if prep_to is not None:
+    #         logging.debug(
+    #             "Preparing %s but the prep-to space is occupied by %s",
+    #             self.name,
+    #             prep_to.name,
+    #         )
+    #         return
+    #     logging.debug("Preparing %s, moving to computer line", self.name)
+    #     gg.vnc.card_prepare(self)
+    #     gg.grid.move_card(self, to_pos=to_pos)
+    #     self.activate()
 
     @classmethod
     def get_raw_potency_range(cls) -> Tuple[int, int, int]:
