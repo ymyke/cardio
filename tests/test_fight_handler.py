@@ -1,4 +1,5 @@
 import copy
+import pytest
 from cardio import gg, Card, Deck, GridPos
 from cardio.humanstrategyvnc import HumanStrategyVnC
 from cardio.computer_strategies import Round0OnlyStrategy, PredefinedStrategy
@@ -63,6 +64,21 @@ Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 5 damage, 1 lives, 0 gems, 1 spirits
 """
     assert equal_logs(gg.vnc.stateslogger.log, target_states_log)
+
+
+@pytest.mark.skip(reason="Will produce an endless loop")
+def test_endless_loop(gg_setup):
+    gg.vnc.computerstrategy = PredefinedStrategy(
+        grid=gg.grid,
+        cards_per_round={
+            # type: ignore
+            0: [
+                (GridPos(1, 0), Card("X", 1, 0, 1)),
+                (GridPos(2, 1), Card("X", 1, 0, 1)),
+            ],
+        },
+    )
+    gg.vnc.handle_fight()
 
 
 def test_human_gets_gems(gg_setup):
