@@ -5,6 +5,8 @@ from typing import Optional, List, TYPE_CHECKING, Tuple
 from .skills import ListOfSkillsOrSkillTypes, SkillSet, get_skilltypes
 from . import gg, skills
 
+# FIXME Get rid of gg altogether here and make Card unrelated to fights?
+
 if TYPE_CHECKING:
     from . import GridPos
 
