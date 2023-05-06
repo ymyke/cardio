@@ -279,3 +279,8 @@ def test_luckystrike():
     log = do_the_fight([hc], None)
     assert hc.health == 1  # `hc` should have survived
     assert "-6 damage," in log.log.split("Starting round")[1]
+
+
+
+# TODO Add tests that directly test the more complex classes such as Shield and
+# LuckyStrike. -- Also, add this step to the checklist in skills.py
