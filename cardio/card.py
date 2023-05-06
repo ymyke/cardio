@@ -3,7 +3,7 @@ import logging
 import copy
 from typing import Optional, List, TYPE_CHECKING, Tuple
 from .skills import ListOfSkillsOrSkillTypes, SkillSet, get_skilltypes
-from . import gg, skills
+from . import gg
 
 # FIXME Get rid of gg altogether here and make Card unrelated to fights?
 
@@ -143,52 +143,78 @@ class Card:
         """Get the card from the prepline of this cards slot."""
         return gg.grid.get_card(self.get_grid_pos()._replace(line=0))
 
-    def _die_silently(self) -> None:
-        self.health = 0
-        if self.is_human():
-            gg.humanplayer.spirits += self.has_spirits
-            gg.vnc.decks.used.add_card(self)
-        gg.grid.remove_card(self)
-        # (Must happen after the `is_human` test, otherwise that test produces wrong
-        # results bc one test is whether the card is on the grid or not.)
+    def is_dead(self) -> bool:  # TODO New; add tests // Do we really need this?
+        return self.health <= 0
 
-    def die(self) -> None:
-        logging.debug("%s dies.", self.name)
-        pos = self.get_grid_pos()
-        self._die_silently()
-        gg.vnc.card_died(self, pos)
-
-    def sacrifice(self) -> None:
-        self._die_silently()
-
-    def lose_health(self, howmuch: int) -> int:
-        """Returns how much damage is still left to be consumed. Damage can be left when
-        a card died w/o consuming all damage. Keep in mind that damage can be consumed
-        by shields an other skills too.
-        """
-        assert howmuch > 0
+    def reduce_health(self, howmuch: int) -> int:  # TODO New; add tests
+        """Reduce health by `howmuch` and return the amount of damage left over."""
+        assert howmuch >= 0
         damage_left = howmuch
-
-        if skills.Shield in self.skills:
-            shield = self.skills.get(skills.Shield)
-            assert isinstance(shield, skills.Shield)
-            if gg.vnc.round_num not in shield.turns_used:
-                damage_left -= 1
-                shield.turns_used.append(gg.vnc.round_num)
-                logging.debug("%s uses shield", self.name)
-            else:
-                logging.debug("%s shield already used this turn", self.name)
-
-        if damage_left >= self.health:
+        if howmuch >= self.health:
             damage_left -= self.health
             self.die()
         else:
             self.health -= damage_left
             damage_left = 0
-            gg.vnc.card_lost_health(self)
-            logging.debug("%s new health: %s", self.name, self.health)
-
+        logging.debug(
+            "%s new health: %s (-%s)", self.name, self.health, howmuch - damage_left
+        )
         return damage_left
+
+    def die(self) -> int:
+        logging.debug("%s dies.", self.name)
+        self.health = 0
+        return self.has_spirits
+
+    # def _die_silently(self) -> None:
+    #     self.health = 0
+    #     if self.is_human():
+    #         gg.humanplayer.spirits += (
+    #             self.has_spirits
+    #         )  # FIXME Should this be outside or is it ok here? should it be self.owner.add_spirits(self.has_spirits)? I.e., should cards know their owners?
+    #         gg.vnc.decks.used.add_card(self)
+    #     gg.grid.remove_card(self)
+    #     # (Must happen after the `is_human` test, otherwise that test produces wrong
+    #     # results bc one test is whether the card is on the grid or not.)
+
+    # def die(self) -> None:
+    #     logging.debug("%s dies.", self.name)
+    #     pos = self.get_grid_pos()
+    #     self._die_silently()
+    #     gg.vnc.card_died(self, pos)
+
+    # def sacrifice(self) -> None:
+    #     self._die_silently()
+
+    # def lose_health(self, howmuch: int) -> int:
+    #     """Returns how much damage is still left to be consumed. Damage can be left when
+    #     a card died w/o consuming all damage. Keep in mind that damage can be consumed
+    #     by shields an other skills too.
+    #     """
+    #     assert howmuch > 0
+    #     damage_left = howmuch
+
+    #     if skills.Shield in self.skills:
+    #         # TODO Put much more logic into the shield skill
+    #         shield = self.skills.get(skills.Shield)
+    #         assert isinstance(shield, skills.Shield)
+    #         if gg.vnc.round_num not in shield.turns_used:
+    #             damage_left -= 1
+    #             shield.turns_used.append(gg.vnc.round_num)
+    #             logging.debug("%s uses shield", self.name)
+    #         else:
+    #             logging.debug("%s shield already used this turn", self.name)
+
+    #     if damage_left >= self.health:
+    #         damage_left -= self.health
+    #         self.die()
+    #     else:
+    #         self.health -= damage_left
+    #         damage_left = 0
+    #         gg.vnc.card_lost_health(self)
+    #         logging.debug("%s new health: %s", self.name, self.health)
+
+    #     return damage_left
 
     # def get_attacked(self, opponent: Card) -> None:
     #     logging.debug("%s gets attacked by %s", self.name, opponent.name)

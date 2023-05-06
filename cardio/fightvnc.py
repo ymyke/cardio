@@ -152,7 +152,7 @@ class FightVnC:
         for sacrifice_pos in pmgr.get_marked_positions():
             card = self.grid.get_card(sacrifice_pos)
             assert card is not None
-            card.sacrifice()
+            attack.sacrifice_card(card)
         gg.humanplayer.spirits -= pmgr.target_card.costs_spirits
         self.grid.set_card(pmgr.placement_position, pmgr.target_card)  # type:ignore
 
