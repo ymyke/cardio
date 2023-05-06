@@ -84,14 +84,14 @@ class FightVnC:
     def handle_human_plays_cards(self, place_card_callback: Callable) -> None:
         pass
 
-    def handle_player_damage(self, howmuch: int, source: Card) -> None:
-        source_line = source.get_grid_pos().line
-        assert source_line in (1, 2)
-        if source_line == 1:
-            self.damagestate.damage_human(howmuch)
-        else:
+    def handle_agent_damage(self, to_computer: bool, howmuch: int) -> None:
+        """Handle `howmuch` damage to the agent. `to_computer` indicates whether the
+        damage is to the computer or the human.
+        """
+        if to_computer:
             self.damagestate.damage_computer(howmuch)
-        # LIXME Add some animation for for damage
+        else:
+            self.damagestate.damage_human(howmuch)
         self.redraw_view()
 
     # --- Misc ---
