@@ -192,11 +192,23 @@ class Shield(Skill):
         # (OR: The first x damage per fight. OR: All damage of the first damage dealt.)
     )
     potency: int = 7
-    turns_used: List[int] = field(default_factory=list)
+    # Keep track of which turn the shield was used in:
+    _turns_used: List[int] = field(default_factory=list)
 
     def reset(self):
-        # Keep track of which turn the shield was used in:
-        self.turns_used: List[int] = []
+        self._turns_used: List[int] = []
+
+    def absorbed_damage(self, damage_left: int, fight_round: int) -> int:
+        if damage_left == 0:
+            logging.debug("%s absorbs 0D (no damage to absorb)", self.name)
+            return 0
+        if fight_round not in self._turns_used:
+            self._turns_used.append(fight_round)
+            logging.debug("%s absorbs 1D", self.name)
+            return 1
+
+        logging.debug("%s absorbs 0D (already used this turn)", self.name)
+        return 0
 
     # QQ: Will a shield be destroyed by INSTANTDEATH? And maybe LUCKYSTRIKE? If so,
     # mention in their descriptions.
@@ -237,7 +249,7 @@ class LuckyStrike(Skill):
 
     def pre_attack(self) -> None:
         self._is_lucky = random.random() <= 0.5
-        logging.debug("Lucky Strike is lucky: %s", self._is_lucky)
+        logging.debug("% is lucky: %s", self.name, self._is_lucky)
 
     def post_attack(self) -> None:
         self._is_lucky = None
