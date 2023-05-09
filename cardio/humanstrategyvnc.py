@@ -6,6 +6,10 @@ from .placement_manager import PlacementManager
 
 
 class HumanStrategyVnC(FightVnC):
+    """A VnC that simulates a human player. Used for testing."""
+
+    # TODO Move to tests directory?
+
     def __init__(
         self, whichrounds: Optional[List[int]] = None, *args, **kwargs
     ) -> None:
