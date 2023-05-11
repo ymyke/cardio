@@ -1,18 +1,20 @@
-from typing import Optional, List
+from typing import Generic, Optional, List, TypeVar
 from dataclasses import dataclass, fields, field
 import logging
 import random
-from . import Card, CardList
 
 
-class Deck:
-    def __init__(self, name: str, cards: Optional[CardList] = None) -> None:
+T = TypeVar("T")
+
+
+class Deck(Generic[T]):
+    def __init__(self, name: str, cards: Optional[List[T]] = None) -> None:
         assert isinstance(name, str)
         self.name = name
         if cards is None:
             self.cards = []
         else:
-            assert all(isinstance(c, Card) for c in cards)
+            assert all(isinstance(c, type(cards[0])) for c in cards)
             self.cards = cards
 
     def size(self) -> int:
@@ -24,15 +26,15 @@ class Deck:
     def shuffle(self) -> None:
         random.shuffle(self.cards)
 
-    def add_card(self, card: Card) -> None:
+    def add_card(self, card: T) -> None:
         """Add `card` to the right/end."""
-        assert isinstance(card, Card)
+        assert self.is_empty() or isinstance(card, type(self.cards[0]))
         self.cards.append(card)
 
-    def remove_card(self, card: Card) -> None:
+    def remove_card(self, card: T) -> None:
         self.cards.remove(card)
 
-    def draw_cards(self, howmany: int) -> CardList:
+    def draw_cards(self, howmany: int) -> List[T]:
         """Draw `howmany` cards from the left/beginning. Drawn cards are removed from
         the deck.
         """
@@ -41,11 +43,11 @@ class Deck:
         del self.cards[:howmany]
         return drawncards
 
-    def draw_card(self) -> Card:
+    def draw_card(self) -> T:
         """Draw exactly 1 card."""
         return self.draw_cards(1).pop()
 
-    def pick_card(self, i: int) -> Card:
+    def pick_card(self, i: int) -> T:
         """Pick sepcific card at position `i`, remove it from the deck and return it."""
         assert i >= 0 and i < len(self.cards)
         card = self.cards[i]
@@ -55,11 +57,11 @@ class Deck:
     def reset_cards(self) -> None:
         """Reset all cards in deck."""
         for card in self.cards:
-            card.reset()
+            card.reset()  # TODO Maybe no longer needed?
 
 
 @dataclass
-class FightDecks:
+class FightDecks(Generic[T]):
     hand: Deck = field(default_factory=lambda: Deck("Hand"))
     used: Deck = field(default_factory=lambda: Deck("Used"))
     draw: Deck = field(default_factory=lambda: Deck("Draw"))
@@ -73,5 +75,5 @@ class FightDecks:
             cardnames = ",".join([c.name for c in deck.cards])
             logging.debug("%sdeck size: %s (%s)", deck.name, len(deck.cards), cardnames)
 
-    def get_all_cards(self) -> CardList:
+    def get_all_cards(self) -> List[T]:
         return [card for deck in self.get_decks() for card in deck.cards]
