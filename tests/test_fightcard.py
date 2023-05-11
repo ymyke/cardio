@@ -2,6 +2,7 @@ import pytest
 from cardio import Card, FightCard, Grid, GridPos, gg
 from cardio import skills as sk
 
+# TODO Use ff here?
 
 @pytest.fixture
 def common_setup(mocker, gg_setup):
