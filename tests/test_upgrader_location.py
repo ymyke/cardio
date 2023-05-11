@@ -39,7 +39,6 @@ def test_powerupgraderlocation(gg_setup):
     loc = PowerUpgraderLocation("0", 0, 0, [])
     loc.handle(view_class=FakeUpgraderView)
     assert card.power == 2
-    assert card.initial_power == 2
     assert gg.humanplayer.deck.size() == 1
 
 
@@ -49,7 +48,6 @@ def test_healthupgraderlocation(gg_setup):
     loc = HealthUpgraderLocation("0", 0, 0, [])
     loc.handle(view_class=FakeUpgraderView)
     assert card.health == 2
-    assert card.initial_health == 2
     assert gg.humanplayer.deck.size() == 1
 
 

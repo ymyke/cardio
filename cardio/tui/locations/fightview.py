@@ -6,9 +6,9 @@ of game-related logic must take place or be orchestrated in FightVnC.
 """
 
 import itertools
-from typing import Callable, List, Literal, Optional
+from typing import Callable, Literal, Optional
 from asciimatics.screen import Screen
-from cardio import Card, Deck, FightVnC, GridPos, gg
+from cardio import FightCard, Deck, FightVnC, GridPos, gg
 from ..card_primitives import (
     VisualState,
     show_card,
@@ -79,26 +79,27 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
         self.state_widget.show_all()
         self.screen.refresh()
 
-    def card_died(self, card: Card, pos: GridPos) -> None:
+    # TODO Can streamline many of the following by using card.get_grid_pos() directly
+    def card_died(self, card: FightCard, pos: GridPos) -> None:
         burn_card(self.screen, pos)
         show_slot_in_grid(self.screen, pos)
         self.redraw_view()  # To update agent state
 
-    def card_lost_health(self, card: Card) -> None:
+    def card_lost_health(self, card: FightCard) -> None:
         self.redraw_view()
 
     # QQ: Should the following all be called something with "show"?
-    def card_getting_attacked(self, target: Card, attacker: Card) -> None:
+    def card_getting_attacked(self, target: FightCard, attacker: FightCard) -> None:
         pos = self.grid.find_card(target)
         assert pos is not None
         shake_card(self.screen, target, pos, "h")
 
-    def card_activate(self, card: Card) -> None:
+    def card_activate(self, card: FightCard) -> None:
         pos = self.grid.find_card(card)
         assert pos is not None
         activate_card(self.screen, card, pos)
 
-    def card_prepare(self, card: Card) -> None:
+    def card_prepare(self, card: FightCard) -> None:
         pos = self.grid.find_card(card)
         assert pos is not None
         assert pos.line == 0, "Calling prepare on card that is not in prep line"
@@ -113,7 +114,7 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
 
     # --- Controller-type methods ---
 
-    def show_computer_plays_card(self, card: Card, to: GridPos) -> None:
+    def show_computer_plays_card(self, card: FightCard, to: GridPos) -> None:
         """Play a computer card to `to`, which can be in line 0 or 1."""
         move_card(
             self.screen,
@@ -124,7 +125,9 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
             steps=5,
         )
 
-    def show_human_places_card(self, card: Card, from_slot: int, to_slot: int) -> None:
+    def show_human_places_card(
+        self, card: FightCard, from_slot: int, to_slot: int
+    ) -> None:
         """Place a human card from the hand (`from_slot`) to the grid (`to_slot`). Line
         is implicitly always 2.
         """
@@ -132,7 +135,9 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
             self.screen, card, from_=GridPos(4, from_slot), to=GridPos(2, to_slot)
         )
 
-    def show_human_receives_card_from_grid(self, card: Card, from_slot: int) -> None:
+    def show_human_receives_card_from_grid(
+        self, card: FightCard, from_slot: int
+    ) -> None:
         """E.g., for the fertility skill."""
         move_card(
             self.screen,
@@ -221,6 +226,6 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
                     cursor = min(self.decks.hand.size() - 1, cursor)
 
     def show_human_draws_new_card(
-        self, draw_to: Deck, card: Card, draw_from: Deck
+        self, draw_to: Deck, card: FightCard, draw_from: Deck
     ) -> None:
         show_card_to_handdeck(self.screen, draw_to, card, draw_from)

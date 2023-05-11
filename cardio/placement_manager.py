@@ -1,6 +1,8 @@
 from typing import List, Optional
 from cardio import GridPos, Grid, Card
 
+# FIXME Use FightCard here since this only makes sense for FightCards -- even though the
+# module is abstract enough to work fine with Cards as well.
 
 class PlacementAbortedException(Exception):
     pass
