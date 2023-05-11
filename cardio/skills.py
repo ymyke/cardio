@@ -10,6 +10,7 @@ Checklist when adding a new skill:
 - Does the skill need any new view animation that needs to be implemented and called?
 - Anything that needs to be saved?
 """
+from __future__ import annotations
 from dataclasses import dataclass, field
 from enum import Enum, auto
 import logging
@@ -103,6 +104,9 @@ class SkillSet:
 
     def remove_all(self) -> None:
         self.skills = []
+
+    def copy(self) -> SkillSet:#TODO add test
+        return SkillSet(self.get_types())
 
     def __repr__(self) -> str:
         return f"SkillSet({self.skills})"
