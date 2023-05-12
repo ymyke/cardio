@@ -28,6 +28,7 @@ class FightVnC:
         self.grid = grid
         self.damagestate = AgentDamageState()
         self.stateslogger = StatesLogger(self)
+        FightCard.init_fight(self, self.grid)
         self.computerstrategy = computerstrategy
 
     # --- Called by FightCard class ---
@@ -194,7 +195,7 @@ class FightVnC:
         for pos, card in self.computerstrategy.cards_to_be_played(self.round_num):
             self.show_computer_plays_card(card, pos)
         # Now also place them in the model:
-        self.computerstrategy.play_cards(self.round_num, self)
+        self.computerstrategy.play_cards(self.round_num)
 
         # Let human draw a card:
         deck = self.handle_human_choose_deck_to_draw_from()
@@ -230,14 +231,14 @@ class FightVnC:
         # Set up the decks for the fight:
         self.decks = FightDecks()
         self.decks.draw.cards = [
-            FightCard.from_card(c, self, self.grid) for c in gg.humanplayer.deck.cards
+            FightCard.from_card(c) for c in gg.humanplayer.deck.cards
         ]
         # self.decks.draw.cards = gg.humanplayer.deck.cards
         original_cards = gg.humanplayer.deck.cards
         gg.humanplayer.deck.cards = []  # TODO Does this produce problems?
         self.decks.draw.shuffle()
         self.decks.hamster.cards = [
-            FightCard.from_card(c, self, self.grid)
+            FightCard.from_card(c)
             for c in create_cards_from_blueprints(["Hamster"] * 10)
         ]
         # TODO /REVIEW

@@ -1,10 +1,6 @@
-from __future__ import annotations
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Dict, List
+from typing import Dict, List
 from . import FightCard, Grid, GridPosAndCard
-
-if TYPE_CHECKING:
-    from . import FightVnC
 
 
 class ComputerStrategy(ABC):
@@ -29,14 +25,10 @@ class ComputerStrategy(ABC):
     def cards_to_be_played(self, round_number: int) -> List[GridPosAndCard]:
         pass
 
-    def play_cards(self, round_number: int, vnc: FightVnC) -> None:
-        # FIXME I don't think it's very nice that we pass vnc here. We need it to create
-        # the FightCards. We could also inline the play_cards method into FightVnC but
-        # then we'd lose the flexibility of having more realistic placement strategies
-        # also for the computer.
+    def play_cards(self, round_number: int) -> None:
         for (line, slot), card in self.cards_to_be_played(round_number):
             if card and not isinstance(card, FightCard):
-                card = FightCard.from_card(card, vnc, self.grid)
+                card = FightCard.from_card(card)
             self.grid.lines[line][slot] = card
 
 

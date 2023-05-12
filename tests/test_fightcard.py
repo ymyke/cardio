@@ -1,22 +1,18 @@
 import pytest
-from cardio import Card, FightCard, Grid, GridPos, gg
+from cardio import Card, FightCard, GridPos, gg
 from cardio import skills as sk
 
-# TODO Use ff here?
 
 @pytest.fixture
 def common_setup(mocker, gg_setup):
-    grid = Grid(4)
-    gg.grid = grid
-    # ^ We do this so `is_human` will work correctly. Might become obsolete with a
-    # different implementation of `is_human`. Then, `gg_setup` might become obsolete
-    # here too. QQ
+    _, grid, *_ = gg_setup
     c = Card("X", 1, 2, 3)
     mocked_vnc = mocker.patch("cardio.card.gg.vnc")
-    fc = FightCard.from_card(c, mocked_vnc, grid)
-    grid[0][3] = FightCard.__new__(FightCard)
-    grid[1][3] = FightCard.__new__(FightCard)
+    FightCard.init_fight(gg.vnc, grid)
+    fc = FightCard.from_card(c)
     grid[2][3] = fc
+    grid[1][3] = fc.copy()
+    grid[0][3] = fc.copy()
     yield c, fc, grid, mocked_vnc
 
 
