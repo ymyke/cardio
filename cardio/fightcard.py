@@ -1,6 +1,6 @@
 from __future__ import annotations
 import logging
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, ClassVar, Optional
 from . import Card, gg
 from . import skills as sk
 
@@ -19,8 +19,8 @@ class FightCard(Card):
     are like throwaway cards that add the necessary functionality during fights.
     """
 
-    vnc: FightVnC
-    grid: Grid
+    vnc: ClassVar[FightVnC]
+    grid: ClassVar[Grid]
     _orig: Card
 
     def __init__(self, *args, **kwargs):
@@ -33,15 +33,22 @@ class FightCard(Card):
         return self._orig
 
     @classmethod
-    def from_card(cls, card: Card, vnc: FightVnC, grid: Grid) -> FightCard:
+    def init_fight(cls, vnc: FightVnC, grid: Grid) -> None:
+        """Set the `FightVnC` and the `Grid` for this class. Do this at the beginning of
+        a fight, before creating any `FightCard`s.
+        """
+        cls.vnc = vnc
+        cls.grid = grid
+
+    @classmethod
+    def from_card(cls, card: Card) -> FightCard:
         """Create a `FightCard` from a `Card`."""
+        assert cls.vnc and cls.grid, "Call `init_fight` first."
         assert isinstance(card, Card)
         fc = card.copy()
         fc.__class__ = cls
         assert isinstance(fc, FightCard)
         fc._orig = card
-        fc.vnc = vnc
-        fc.grid = grid
         fc._orig._fc = fc  # Just to have access to this in tests, e.g., in test_skills
         return fc
 
