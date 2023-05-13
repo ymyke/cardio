@@ -1,4 +1,3 @@
-import copy
 from typing import List
 from . import Card, CardList, skills
 
@@ -16,7 +15,7 @@ _BLUEPRINTS = [
 def create_card_from_blueprint(name: str) -> Card:
     found = [c for c in _BLUEPRINTS if c.name == name]
     assert len(found) == 1
-    return copy.deepcopy(found[0])  # TODO Use clone
+    return found[0].copy()
 
 
 def create_cards_from_blueprints(namelist: List[str]) -> CardList:

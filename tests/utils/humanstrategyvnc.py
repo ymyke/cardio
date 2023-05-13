@@ -1,11 +1,13 @@
 import logging
 from typing import Callable, List, Optional
-from . import Deck, GridPos
-from .fightvnc import FightVnC
-from .placement_manager import PlacementManager
+from cardio import Deck, GridPos
+from cardio.fightvnc import FightVnC
+from cardio.placement_manager import PlacementManager
 
 
 class HumanStrategyVnC(FightVnC):
+    """A VnC that simulates a human player. Used for testing."""
+
     def __init__(
         self, whichrounds: Optional[List[int]] = None, *args, **kwargs
     ) -> None:

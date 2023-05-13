@@ -1,5 +1,6 @@
 from .skills import Skill
 from .card import Card, CardList
+from .fightcard import FightCard
 from .deck import Deck, FightDecks
 from .grid import Grid, GridPos, GridPosAndCard
 from .fightvnc import FightVnC

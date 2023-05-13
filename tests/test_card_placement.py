@@ -1,22 +1,21 @@
 """Tests for both `PlacementManager` and `FightVnC._place_card`."""
 
 import pytest
-from cardio import Grid, Card, GridPos, gg, FightDecks
-from cardio.fightvnc import FightVnC
+from cardio import GridPos, FightDecks
 from cardio.placement_manager import PlacementManager
 
 
 # ----- PlacementManager tests -----
 
 
-def test_placement_manager():
-    g = Grid(width=4)
-    g[2][0] = Card("X", 1, 1, 1)
-    g[2][1] = Card("Y", 1, 1, 1)
-    g[2][2] = Card("Z", 1, 1, 1)
+def test_placement_manager(gg_setup):
+    _, grid, _, ff = gg_setup
+    grid[2][0] = ff("X", 1, 1, 1)
+    grid[2][1] = ff("X", 1, 1, 1)
+    grid[2][2] = ff("X", 1, 1, 1)
 
     # Initial state:
-    p = PlacementManager(g, 0, Card("T", 1, 1, 2))
+    p = PlacementManager(grid, 0, ff("T", 1, 1, 2))
     assert not p.is_marked(GridPos(2, 0))
     assert not p.can_mark(GridPos(2, 3))
     assert not p.ready_to_pick()
@@ -57,10 +56,10 @@ def test_placement_manager():
         p.mark_unmark_or_pick(GridPos(2, 3))
 
 
-def test_can_mark():
-    g = Grid(width=4)
-    g[2][0] = Card("X", 1, 1, 1)
-    p = PlacementManager(g, 0, Card("T", 1, 1, 1))
+def test_can_mark(gg_setup):
+    _, grid, _, ff = gg_setup
+    grid[2][0] = ff("X", 1, 1, 1)
+    p = PlacementManager(grid, 0, ff("T", 1, 1, 1))
 
     assert not p.can_mark(GridPos(1, 0))
     assert not p.can_mark(GridPos(0, 0))
@@ -77,7 +76,7 @@ def test_can_mark():
     assert p.can_mark(GridPos(2, 0))
 
     # Cannot mark a card wich has 0 fire:
-    g.get_card(GridPos(2, 0)).has_fire = 0  # type:ignore
+    grid.get_card(GridPos(2, 0)).has_fire = 0  # type:ignore
     assert not p.can_mark(GridPos(2, 0))
 
     p.target_card.costs_fire = 0
@@ -86,23 +85,24 @@ def test_can_mark():
     assert not p.can_mark(GridPos(2, 1))
 
 
-def test_never_ready_without_marked_positions():
-    p = PlacementManager(Grid(width=4), 0, Card("T", 1, 1, 0))
+def test_never_ready_without_marked_positions(gg_setup):
+    _, grid, _, ff = gg_setup
+    p = PlacementManager(grid, 0, ff("T", 1, 1, 0))
     assert not p.ready_to_place()
 
 
-def test_is_placeable():
-    g = Grid(width=4)
-    g[2][0] = Card("X", 1, 1, 1)
-    g[2][1] = Card("X", 1, 1, 1)
-    g[2][2] = Card("X", 1, 1, 1)
-    g[2][3] = Card("X", 1, 1, 1)
-    p = PlacementManager(g, 0, Card("T", 1, 1, 1))
+def test_is_placeable(gg_setup):
+    _, grid, _, ff = gg_setup
+    grid[2][0] = ff("X", 1, 1, 1)
+    grid[2][1] = ff("X", 1, 1, 1)
+    grid[2][2] = ff("X", 1, 1, 1)
+    grid[2][3] = ff("X", 1, 1, 1)
+    p = PlacementManager(grid, 0, ff("T", 1, 1, 1))
     # Fire:
     assert p.is_placeable()
     p.target_card.costs_fire = 0
     assert not p.is_placeable()
-    g[2][3] = None
+    grid[2][3] = None
     assert p.is_placeable()
     p.target_card.costs_fire = 3
     assert p.is_placeable()
@@ -120,40 +120,41 @@ def test_is_placeable():
 
 
 def test_place_card_with_fire_sacrifice(gg_setup):
-    target_card = Card("T", 1, 1, 1)
+    _, grid, vnc, ff = gg_setup
+    target_card = ff("T", 1, 1, 1)
     target_pos = GridPos(2, 3)
-    sacrifice_card = Card("S", 1, 1, 1)
+    sacrifice_card = ff("S", 1, 1, 1)
     sacrifice_pos = GridPos(2, 0)
 
-    gg.grid.set_card(sacrifice_pos, sacrifice_card)
-    p = PlacementManager(gg.grid, 0, target_card)
+    grid.set_card(sacrifice_pos, sacrifice_card)
+    p = PlacementManager(grid, 0, target_card)
     p.marked_positions = {sacrifice_pos}
     p.placement_position = target_pos
 
-    gg.vnc.decks = FightDecks()
-    gg.vnc.decks.hand.add_card(target_card)
-    gg.vnc._place_card(p, 0)
+    vnc.decks = FightDecks()
+    vnc.decks.hand.add_card(target_card)
+    vnc._place_card(p, 0)
 
-    assert gg.grid.get_card(target_pos) == target_card
-    assert gg.grid.get_card(sacrifice_pos) is None
-    assert gg.vnc.decks.hand.is_empty()
-    assert gg.vnc.decks.used.cards == [sacrifice_card]
+    assert grid.get_card(target_pos) == target_card
+    assert grid.get_card(sacrifice_pos) is None
+    assert vnc.decks.hand.is_empty()
+    assert vnc.decks.used.cards == [sacrifice_card]
 
 
 def test_place_card_with_spirits_sacrifice(gg_setup):
-    target_card = Card("T", 1, 1, costs_fire=0, costs_spirits=3)
+    human, grid, vnc, ff = gg_setup
+    target_card = ff("T", 1, 1, costs_fire=0, costs_spirits=3)
     target_pos = GridPos(2, 3)
 
-    p = PlacementManager(gg.grid, 0, target_card)
+    p = PlacementManager(grid, 0, target_card)
     p.placement_position = target_pos
 
-    spirits_before = gg.humanplayer.spirits
-    gg.vnc = FightVnC(gg.grid, None)
-    gg.vnc.decks = FightDecks()
-    gg.vnc.decks.hand.add_card(target_card)
-    gg.vnc._place_card(p, 0)
+    spirits_before = human.spirits
+    vnc.decks = FightDecks()
+    vnc.decks.hand.add_card(target_card)
+    vnc._place_card(p, 0)
 
-    assert gg.grid.get_card(target_pos) == target_card
-    assert gg.vnc.decks.hand.is_empty()
-    assert gg.vnc.decks.used.cards == []
-    assert gg.humanplayer.spirits == spirits_before - 3
+    assert grid.get_card(target_pos) == target_card
+    assert vnc.decks.hand.is_empty()
+    assert vnc.decks.used.cards == []
+    assert human.spirits == spirits_before - 3
