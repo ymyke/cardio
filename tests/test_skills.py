@@ -11,7 +11,7 @@ import pytest
 from cardio import Card, CardList, gg, GridPos, skills, Grid
 from cardio.computer_strategies import Round0OnlyStrategy
 from cardio.fightcard import FightCard
-from cardio.humanstrategyvnc import HumanStrategyVnC
+from tests.utils.humanstrategyvnc import HumanStrategyVnC
 from cardio.states_logger import StatesLogger
 
 

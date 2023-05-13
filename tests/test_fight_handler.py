@@ -2,7 +2,7 @@ import copy  # TODO deepcopy really necessary in this module?
 import pytest
 from cardio import GridPos, gg
 from cardio.card import Card
-from cardio.humanstrategyvnc import HumanStrategyVnC
+from tests.utils.humanstrategyvnc import HumanStrategyVnC
 from cardio.computer_strategies import Round0OnlyStrategy, PredefinedStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
 from cardio.agent_damage_state import AgentDamageState
