@@ -79,7 +79,7 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
         self.state_widget.show_all()
         self.screen.refresh()
 
-    # TODO Can streamline many of the following by using card.get_grid_pos() directly
+    # FIXME Can streamline many of the following by using card.get_grid_pos() directly
     def card_died(self, card: FightCard, pos: GridPos) -> None:
         burn_card(self.screen, pos)
         show_slot_in_grid(self.screen, pos)

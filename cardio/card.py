@@ -34,7 +34,7 @@ class Card:
     # FIXME ^ These are not enforced yet. Should be. Not only in the initializer but
     # whenever something changes to affect these values.
 
-    _fc: FightCard  # TODO Try class variables instead of the _fc mechanism?
+    _fc: FightCard
 
     def __init__(
         self,

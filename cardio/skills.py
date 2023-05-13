@@ -18,7 +18,7 @@ import random
 from typing import List, Optional, Type, Union
 
 
-# TODO Implement this simply as a directory of names -> specs and a factory?
+# QQ: Better implement this simply as a directory of names with specs and a factory?
 
 
 class ForWhom(Enum):
@@ -105,7 +105,7 @@ class SkillSet:
     def remove_all(self) -> None:
         self.skills = []
 
-    def copy(self) -> SkillSet:#TODO add test
+    def copy(self) -> SkillSet:  # TODO add test
         return SkillSet(self.get_types())
 
     def __repr__(self) -> str:
@@ -117,8 +117,6 @@ class SkillSet:
     def __contains__(self, skill):
         return self.has(skill)
 
-
-# TODO Which skills will need some state and how will we save that state?
 
 # FIXME Need more skills in the 1-4 range.
 
@@ -244,8 +242,6 @@ class LuckyStrike(Skill):
     _is_lucky: Optional[bool] = False
     # QQ: What if the attack is blocked, e.g. by a shield? I think they can't be
     # blocked. (Maybe the shield gets destroyed?)
-    # QQ: Or maybe better: 1/3 chance to kill the opponent, 1/3 chance to kill itself,
-    # 1/3 chance to attack as usual.
 
     def is_lucky(self) -> bool:
         assert self._is_lucky is not None
@@ -268,11 +264,10 @@ class LuckyStrike(Skill):
 
 @dataclass
 class Inhibit(Skill):
-    # FIXME This is not easy. Maybe need some kind of precondition filter code that
-    # gets executed for each skill? See also [1] above -> Skills would have an
-    # assign-filter and an activate-filter. The activate-filter for INHIBIT would
-    # not be with the INHIBIT skill but with EVERY skill.
-    # QQ: What if INHIBIT and INHIBIT oppose each other?
+    # FIXME This is not easy. Maybe need some kind of precondition filter code that gets
+    # executed for each skill?  -> Skills would have an assign-filter and an
+    # activate-filter. The activate-filter for INHIBIT would not be with the INHIBIT
+    # skill but with EVERY skill. QQ: What if INHIBIT and INHIBIT oppose each other?
     name: str = "Inhibit"
     symbol: str = "🚧"
     description: str = (
@@ -357,7 +352,7 @@ class Weakness(Skill):
     potency: int = -4
     under_construction: bool = True
     # ⭐
-    # TODO Is this the same as reducing its power by 1?
+    # QQ: Is this the same as reducing its power by 1?
 
 
 @dataclass
@@ -376,17 +371,8 @@ class Empty(Skill):
     description: str = "A card with Empty will not provide any fire or spirits. This also means the card cannot be sacrificed."
     potency: int = -3
     under_construction: bool = True
-    # TODO What is the basic philosophy? a) A card with EMPTY keeps all its stats
-    # (esp. has_*) and the code does special handling to check for cards with this
-    # skill wherever appropriate (e.g., card placement). b) A card keeps its
-    # _original_ stats and adjusts its stats as it gets (and loses, in which case
-    # the original stats will be restored) a skill such as EMPTY. That way, the code
-    # does not need to identify and handle special cases. -- Seems to me that a is
-    # the more consistent approach that can apply to all skills. -- One way to make
-    # things easier is to turn the attributes in the Card class into properties that
-    # handle all these special cases such as EMPTY etc.
-    #
-    # → QQ: How many other skills are relevant to this question?
+    # QQ: What is the basic philosophy for issues such as these?
+    # -> https://github.com/ymyke/cardio/issues/1
 
 
 @dataclass
