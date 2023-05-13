@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import logging
 from typing import Dict, List
 from . import FightCard, Grid, GridPosAndCard
 
@@ -51,7 +52,6 @@ class Round0OnlyStrategy(ComputerStrategy):
 class PredefinedStrategy(ComputerStrategy):
     """Simply plays predefined cards in specific rounds of a fight. Does not perform any
     checks whether the grid is empty or not where a card should be played.
-    # TODO Add that check and test it too.
     """
 
     def __init__(
@@ -61,8 +61,10 @@ class PredefinedStrategy(ComputerStrategy):
         self.cards_per_round = cards_per_round
 
     def cards_to_be_played(self, round_number: int) -> List[GridPosAndCard]:
-        return self.cards_per_round.get(round_number, [])
-
-
-# TODO watch out! After the first round, computer strategy should place cards only in
-# the prep line, not in line 1 directly.
+        cards = self.cards_per_round.get(round_number, [])
+        for pos, _ in cards:
+            if pos.line != 0 and round_number > 0:
+                logging.warning(
+                    "Computer is supposed to only place in prepline in later rounds"
+                )
+        return cards
