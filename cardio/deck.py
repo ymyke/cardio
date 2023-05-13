@@ -54,11 +54,6 @@ class Deck(Generic[T]):
         del self.cards[i]
         return card
 
-    def reset_cards(self) -> None:
-        """Reset all cards in deck."""
-        for card in self.cards:
-            card.reset()  # TODO Maybe no longer needed?
-
 
 @dataclass
 class FightDecks(Generic[T]):

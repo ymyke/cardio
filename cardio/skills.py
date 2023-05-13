@@ -1,12 +1,16 @@
 """Skills
 
 Checklist when adding a new skill:
+
 - Implement its logic in `Card` (and elsewhere, if necessary).
 - Check for possible interdependencies with other skills and address those in the code
   accordingly.
 - Add tests for skill and all interdependencies.
 - Does the skill add any kind of state to the card (or other cards or other parts of the
-  world) that would need to be reset (e.g., in `Card.reset`)?
+  world) that would need to be set or reset in any of the hooks (e.g., `pre_attack`
+  etc.)?
+- Any new hooks needed? (E.g., because the skill needs to be (re)set at other points in
+  time such as before or after preparing a card.)
 - Does the skill need any new view animation that needs to be implemented and called?
 - Anything that needs to be saved?
 """
@@ -39,7 +43,13 @@ class Skill:
     forwhom: ForWhom = ForWhom.BOTH
     under_construction: bool = False
 
-    def reset(self) -> None:
+    def __post_init__(self) -> None:
+        self.pre_fight()
+
+    def pre_fight(self) -> None:
+        """Called before the fight starts. Use this to set up a pristine state in skills
+        that have state.
+        """
         pass
 
     def pre_attack(self) -> None:
@@ -107,6 +117,11 @@ class SkillSet:
 
     def copy(self) -> SkillSet:  # TODO add test
         return SkillSet(self.get_types())
+
+    def call(self, method_name: str, *args, **kwargs):  # TODO add test
+        """Call a method on all skills. E.g., `skillset.call('pre_fight')`."""
+        for skill in self.skills:
+            getattr(skill, method_name)(*args, **kwargs)
 
     def __repr__(self) -> str:
         return f"SkillSet({self.skills})"
@@ -189,7 +204,7 @@ class Shield(Skill):
     # Keep track of which turn the shield was used in:
     _turns_used: List[int] = field(default_factory=list)
 
-    def reset(self):
+    def pre_fight(self):
         self._turns_used: List[int] = []
 
     def absorbed_damage(self, damage_left: int, fight_round: int) -> int:

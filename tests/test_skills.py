@@ -19,8 +19,6 @@ from cardio.states_logger import StatesLogger
 def common_setup(mocker, request, gg_setup):
     if "skip_common_setup" in request.keywords:
         return
-    # Do not reset cards  so we can verify the effects of fights:
-    mocker.patch("cardio.Deck.reset_cards")  # TODO check if this is still needed
 
 
 def do_the_fight(humancards: CardList, computercard: Optional[Card]) -> StatesLogger:
@@ -211,12 +209,21 @@ def test_shield():
     assert gg.grid[2][0] is None
 
 
-@pytest.mark.skip_common_setup
-def test_shield_resets_state_after_fight():
+def test_shield_resets_at_start_of_fight(mocker):
+    def fake_post_init(self):
+        self._turns_used = [0, 1, 2]
+
+    post_init_orig = skills.Shield.__post_init__
+    skills.Shield.__post_init__ = fake_post_init
     hc = Card("Human Card", 2, 4, 1, skills=[skills.Shield])
     cc = Card("Computer Card", 2, 7, 1)
     do_the_fight([hc], cc)
-    assert hc.skills.get(skills.Shield)._turns_used == []
+    assert hc._fc.health == 1
+    assert cc._fc.health == 0
+    assert gg.grid[1][0] is None
+    assert gg.grid[2][0] is hc._fc
+    assert hc._fc.skills.get(skills.Shield)._turns_used == [0, 1, 2]
+    skills.Shield.__post_init__ = post_init_orig
 
 
 @pytest.mark.skip("Causes a Shield deadlock.")

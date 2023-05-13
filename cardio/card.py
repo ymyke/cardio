@@ -71,12 +71,6 @@ class Card:
             # much of either to use (unless specified algorithmically).)
         )
 
-    def reset(self) -> None:
-        # TODO Maybe get rid of the reset method altogether and do skill resets
-        # differently? (Similar to the pre- hooks we already have in some skills?)
-        for s in self.skills:
-            s.reset()
-
     def is_human(self) -> bool:
         return self in gg.humanplayer.get_all_human_cards()
         # FIXME Not nice, rethink the `is_human` test.

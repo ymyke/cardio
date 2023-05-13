@@ -123,7 +123,7 @@ class FightVnC:
     def _has_computer_won(self) -> bool:
         return self.damagestate.has_computer_won() or not any(
             c.power > 0
-            for c in set(gg.humanplayer.get_all_human_cards())
+            for c in set(gg.humanplayer.get_all_human_cards(fightonly=True))
             - set(self.decks.used.cards)
         )
         # FIXME The above is not fully correct yet. There could also be a case there is
@@ -163,7 +163,6 @@ class FightVnC:
 
         if skills.Fertility in pmgr.target_card.skills:
             new_card = pmgr.target_card.copy()
-            new_card.reset()
             self.redraw_view()
             self.decks.hand.add_card(new_card)
             self.show_human_receives_card_from_grid(new_card, from_slot=to_slot)
@@ -224,21 +223,16 @@ class FightVnC:
     def handle_fight(self) -> None:
         assert self.computerstrategy is not None
 
-        # TODO REVIEW
         # Set up the decks for the fight:
         self.decks = FightDecks()
-        self.decks.draw.cards = [
-            FightCard.from_card(c) for c in gg.humanplayer.deck.cards
-        ]
-        # self.decks.draw.cards = gg.humanplayer.deck.cards
-        original_cards = gg.humanplayer.deck.cards
-        gg.humanplayer.deck.cards = []  # TODO Does this produce problems?
+        self.decks.draw.cards = FightCard.from_cards(gg.humanplayer.deck.cards)
+        hamster_cards = create_cards_from_blueprints(["Hamster"] * 10)
+        self.decks.hamster.cards = FightCard.from_cards(hamster_cards)
         self.decks.draw.shuffle()
-        self.decks.hamster.cards = [
-            FightCard.from_card(c)
-            for c in create_cards_from_blueprints(["Hamster"] * 10)
-        ]
-        # TODO /REVIEW
+
+        # Initialize all skills:
+        for card in gg.humanplayer.get_all_human_cards(fightonly=True):
+            card.skills.call("pre_fight")
 
         # Draw the decks and show how the first cards get drawn:
         self.redraw_view()
@@ -265,17 +259,3 @@ class FightVnC:
             gg.humanplayer.gems += self.damagestate.get_overflow()
             # LIXME Animate overflow damage that turns into gems
             self.human_wins_fight()
-
-        # Reset human deck after the fight:
-        # TODO REVIEW
-
-        # TODO Just throw  all FightCards away!?
-        # gg.humanplayer.deck.cards = [
-        #     c
-        #     for c in gg.humanplayer.get_all_human_cards()
-        #     if c.name != "Hamster" and not c.is_temporary
-        # ]
-        gg.humanplayer.deck.cards = original_cards
-        gg.humanplayer.deck.reset_cards()
-        # TODO Only reset the skills
-        # TODO /REVIEW

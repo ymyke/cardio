@@ -1,6 +1,6 @@
 from __future__ import annotations
 import logging
-from typing import TYPE_CHECKING, ClassVar, Optional
+from typing import TYPE_CHECKING, ClassVar, List, Optional
 from . import Card, gg
 from . import skills as sk
 
@@ -51,6 +51,10 @@ class FightCard(Card):
         fc._orig = card
         fc._orig._fc = fc  # Just to have access to this in tests, e.g., in test_skills
         return fc
+
+    @classmethod
+    def from_cards(cls, cards: list[Card]) -> List[FightCard]:
+        return [cls.from_card(c) for c in cards]
 
     def copy(self) -> FightCard:
         """Copy the card. Use case: temporary copies of cards during a fight. E.g., for
@@ -162,11 +166,7 @@ class FightCard(Card):
 
         self.vnc.card_activate(self)
 
-        # TODO Call pre-attack on all skills that have it -- Should this happen outside of
-        # this routine before any of the attacks happen?
-        for skill in self.skills:  # TODO Add this as a method to SkillSet
-            skill.pre_attack()
-        # TODO Need the same for targets and prepcards too?
+        self.skills.call("pre_attack")
 
         # ----- Early special cases -----
 
@@ -247,9 +247,7 @@ class FightCard(Card):
 
         # ----- Cleanup -----
 
-        for skill in self.skills:  # TODO Add this as a method to SkillSet
-            skill.post_attack()
-        # TODO Need the same for targets and prepcards too?
+        self.skills.call("post_attack")
 
         gg.vnc.card_deactivate(self)
 

@@ -25,6 +25,15 @@ def test_has():
     assert sl.has(Fertility()) == False
 
 
+def test_call():
+    sl = SkillSet([Spines, InstantDeath])
+    for s in sl:
+        s.f = lambda x: x.append(1)
+    res = []
+    sl.call("f", res)
+    assert res == [1, 1]
+
+
 def test_get():
     sl = SkillSet([Spines, InstantDeath])
     assert sl.get(Spines) == Spines()
