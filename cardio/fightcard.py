@@ -251,7 +251,7 @@ class FightCard(Card):
             skill.post_attack()
         # TODO Need the same for targets and prepcards too?
 
-        # gg.vnc.pos_card_deactivate(pos)   # TODO turn this into pos_card_deactivate(attacker)
+        gg.vnc.card_deactivate(self)
 
     # Notes:
     #

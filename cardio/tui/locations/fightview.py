@@ -109,7 +109,7 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
             self.screen, card, from_=GridPos(0, pos.slot), to=GridPos(1, pos.slot)
         )
 
-    def pos_card_deactivate(self, pos: GridPos) -> None:
+    def card_deactivate(self, pos: GridPos) -> None:
         self.redraw_view()
 
     # --- Controller-type methods ---

@@ -48,13 +48,10 @@ class FightVnC:
     def card_prepare(self, card: FightCard) -> None:
         pass
 
-    def pos_card_deactivate(self, pos: GridPos) -> None:
-        """Uses a position instead of a card because it could be that the card has died
-        and been removed from the grid between being activated and deactivated. In this
-        case, `pos` should point to where the card used to be before being removed.
+    def card_deactivate(self, card: FightCard) -> None:
+        """Note that the card might have died and been removed from the grid before this
+        method gets called.
         """
-        # FIXME Using pos makes this view-dependent. -> Switch back to card? -- would
-        # also need to rename the method.
         pass
 
     # --- Controller-related ---
