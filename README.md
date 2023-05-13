@@ -1,7 +1,6 @@
 
 
 - clean up all the branches (see below).
-- Document the new setup (Fightard, where the fight logic resides, ...) in DOMAIN.
 
 
 # In this branch
@@ -10,40 +9,6 @@
 - merge this into luckystrike-refactor.
 - merge this into luckystrike??
 - merge into more-skills.
-
-Variants:
-
-A) Mixins like above:
-- type checker will complain -> Use assert statements to fix?
-
-B) FightingCard that _has_ a Card:
-- Lots of boilerplate for things like card.has_spirits etc.
-- But would get a much more generic and extensible reset mechanism in that the Card
-  would be the original and the FightingCard would be thrown away after a fight.
-
-C) FightingCard that _is_ a Card:
-- Cast between C and FC dynamically.
-- Need to change a number of other places? E.g., deck?
-
-D) Leave it like it is now.
-
-E) Cards get a FightingSomething when they're in a fight?
-- Better use F)
-
-F) Card can switch to fight state and out of it (using a call that lets it know all the
-controller stuff and everything)
-- Code doesn't show immediately which state a card is expected to be in.
-
-
-# On skills
-
-What is the model with skills?
-- They are assigned and later evaluated. I.e., when a card attacks, we evaluate whether
-  it has the underdog skill and if so, we apply its effect to the calculation.
-  - This could be easier with a more straightforward code for the fightvnc, where
-    everything fight-related is in fightvnc rather than also in the card class.
-- There are certain methods in skills that get called at certain points in time. e.g.,
-  before/after a fight or turn etc. Similar to `reset`, but more of these.
 
 
 # Next up

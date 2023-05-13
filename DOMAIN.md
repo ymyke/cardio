@@ -7,6 +7,10 @@ Refer to the documentation with each class or module for details.
   - A card can have/produce (inner) fire and/or spirits as a resource.
   - A card can cost (inner) fire and/or spirits to bring into play.
   - A card can have 0-n skills.
+- **FightCard:** A card that is used in a fight. It is derived from a Card and will be
+  thrown away after the fight, without affecting the original Card. Most of the fight
+  logic is implemented in FightCard, mainly in its `attack`, `prepare`, and
+  `take_damage` methods.
 - **Card Blueprints:** Used to instantiate concrete cards from.
 - **Deck:** A collection of cards.
   - The human player has a "main" deck with all the cards she owns.
