@@ -1,4 +1,39 @@
+
+
+- clean up all the branches (see below).
+- Document the new setup (Fightard, where the fight logic resides, ...) in DOMAIN.
+
+
 # In this branch
+
+- add-fightcard: Explore refactoring code from attack into FightCard.
+- merge this into luckystrike-refactor.
+- merge this into luckystrike??
+- merge into more-skills.
+
+Variants:
+
+A) Mixins like above:
+- type checker will complain -> Use assert statements to fix?
+
+B) FightingCard that _has_ a Card:
+- Lots of boilerplate for things like card.has_spirits etc.
+- But would get a much more generic and extensible reset mechanism in that the Card
+  would be the original and the FightingCard would be thrown away after a fight.
+
+C) FightingCard that _is_ a Card:
+- Cast between C and FC dynamically.
+- Need to change a number of other places? E.g., deck?
+
+D) Leave it like it is now.
+
+E) Cards get a FightingSomething when they're in a fight?
+- Better use F)
+
+F) Card can switch to fight state and out of it (using a call that lets it know all the
+controller stuff and everything)
+- Code doesn't show immediately which state a card is expected to be in.
+
 
 # On skills
 
@@ -40,6 +75,9 @@ What is the model with skills?
 - Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
 - Resolve the shield deadlock and general deadlock issue. Cf. `_has_computer_won` in
   fightvnc.
+- Add deadlock resolver.
+  - Shields introduce deadlocks.
+  - See also notes in FightVnC.
 
 # MVC Thoughts
 
