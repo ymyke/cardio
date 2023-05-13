@@ -78,7 +78,7 @@ class FightCard(Card):
         sacrificing does not produce any spirits.
         """
         self.health = 0
-        if self.is_human():  # TODO Can this be done differently?
+        if self.is_human():  # QQ: Can this be done differently?
             self.vnc.decks.used.add_card(self)
         self.grid.remove_card(self)
         logging.debug("%s sacrificed.", self.name)
@@ -87,7 +87,7 @@ class FightCard(Card):
     def die(self) -> None:
         self.health = 0
         pos = self.get_grid_pos()
-        if self.is_human():  # TODO Can this be done differently?
+        if self.is_human():  # QQ: Can this be done differently?
             gg.humanplayer.spirits += self.has_spirits
             self.vnc.decks.used.add_card(self)
         self.grid.remove_card(self)

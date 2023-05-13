@@ -192,7 +192,6 @@ class Airdefense(Skill):
 
 @dataclass
 class Shield(Skill):
-    # TODO Shields introduce deadlock potential!!
     name: str = "Shield"
     symbol: str = "🔰"  # 🛡️ (doesn't work in asciimatics)
     description: str = (
