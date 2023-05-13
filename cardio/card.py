@@ -78,6 +78,11 @@ class Card:
     def is_skilled(self) -> bool:
         return self.skills.count() > 0
 
+    def copy(self) -> Card:
+        cp = copy.copy(self)
+        cp.skills = self.skills.copy()
+        return cp
+
     @property
     def raw_potency(self) -> int:
         """Return the raw potency number of this card. Simply add a number of
@@ -101,11 +106,6 @@ class Card:
         (Note that it can actually also be <0, but usually isn't.)
         """
         return int(self.raw_potency / self.get_raw_potency_range()[1] * 100)
-
-    def copy(self) -> Card:
-        cp = copy.copy(self)
-        cp.skills = self.skills.copy()
-        return cp
 
     @classmethod
     def get_raw_potency_range(cls) -> Tuple[int, int, int]:
