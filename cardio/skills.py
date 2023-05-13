@@ -143,14 +143,6 @@ class Fertility(Skill):
         "A fertile card creates a copy of itself in your hand when it is played."
     )
     potency: int = 9
-    # FIXME: Maybe FERTILITY only makes sense for cards that use spirits as costs? Or
-    # that cost more than 1 fire? Otherwise you can create infinite spirits with them?
-    # OR: The cards go to the draw deck instead of the hand? QQ: Should copies of this
-    # lose their fertility skill? OR: Cards with fertility do not produce spirits, no
-    # matter what.  TODO: This was a bug in how sacrifice works. Sacrificed cards must
-    # not produce spirits.
-    # QQ: BTW, for such restrictions, we could use a "restriction" attribute/function here
-    # that gets the card and evaluates whether the skill can be added or not. [1]
 
 
 @dataclass
