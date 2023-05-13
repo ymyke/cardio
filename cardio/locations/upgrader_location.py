@@ -31,8 +31,7 @@ class UpgraderLocation(Location):
 
     def handle(self, view_class: Type[UpgraderView]) -> bool:
         def _upgrade(card: Card):
-            for attr in (self.which_attribute, "initial_" + self.which_attribute):
-                setattr(card, attr, getattr(card, attr) + 1)
+            setattr(card, self.which_attribute, getattr(card, self.which_attribute) + 1)
             view.show_upgrade(card)
 
         upgradable_cards = gg.humanplayer.deck.cards

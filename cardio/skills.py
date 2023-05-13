@@ -1,15 +1,20 @@
 """Skills
 
 Checklist when adding a new skill:
+
 - Implement its logic in `Card` (and elsewhere, if necessary).
 - Check for possible interdependencies with other skills and address those in the code
   accordingly.
 - Add tests for skill and all interdependencies.
 - Does the skill add any kind of state to the card (or other cards or other parts of the
-  world) that would need to be reset (e.g., in `Card.reset`)?
+  world) that would need to be set or reset in any of the hooks (e.g., `pre_attack`
+  etc.)?
+- Any new hooks needed? (E.g., because the skill needs to be (re)set at other points in
+  time such as before or after preparing a card.)
 - Does the skill need any new view animation that needs to be implemented and called?
 - Anything that needs to be saved?
 """
+from __future__ import annotations
 from dataclasses import dataclass, field
 from enum import Enum, auto
 import logging
@@ -17,13 +22,12 @@ import random
 from typing import List, Optional, Type, Union
 
 
-# TODO Implement this simply as a directory of names -> specs and a factory?
+# QQ: Better implement this simply as a directory of names with specs and a factory?
 
 
 class ForWhom(Enum):
     """Who can use a skill?"""
 
-    # TODO Use this where relevant
     HUMAN = auto()
     COMPUTER = auto()
     BOTH = auto()
@@ -38,7 +42,13 @@ class Skill:
     forwhom: ForWhom = ForWhom.BOTH
     under_construction: bool = False
 
-    def reset(self) -> None:
+    def __post_init__(self) -> None:
+        self.pre_fight()
+
+    def pre_fight(self) -> None:
+        """Called before the fight starts. Use this to set up a pristine state in skills
+        that have state.
+        """
         pass
 
     def pre_attack(self) -> None:
@@ -104,6 +114,14 @@ class SkillSet:
     def remove_all(self) -> None:
         self.skills = []
 
+    def copy(self) -> SkillSet:
+        return SkillSet(self.get_types())
+
+    def call(self, method_name: str, *args, **kwargs):
+        """Call a method on all skills. E.g., `skillset.call('pre_fight')`."""
+        for skill in self.skills:
+            getattr(skill, method_name)(*args, **kwargs)
+
     def __repr__(self) -> str:
         return f"SkillSet({self.skills})"
 
@@ -113,8 +131,6 @@ class SkillSet:
     def __contains__(self, skill):
         return self.has(skill)
 
-
-# TODO Which skills will need some state and how will we save that state?
 
 # FIXME Need more skills in the 1-4 range.
 
@@ -141,14 +157,6 @@ class Fertility(Skill):
         "A fertile card creates a copy of itself in your hand when it is played."
     )
     potency: int = 9
-    # FIXME: Maybe FERTILITY only makes sense for cards that use spirits as costs? Or
-    # that cost more than 1 fire? Otherwise you can create infinite spirits with them?
-    # OR: The cards go to the draw deck instead of the hand? QQ: Should copies of this
-    # lose their fertility skill? OR: Cards with fertility do not produce spirits, no
-    # matter what.  TODO: This was a bug in how sacrifice works. Sacrificed cards must
-    # not produce spirits.
-    # QQ: BTW, for such restrictions, we could use a "restriction" attribute/function here
-    # that gets the card and evaluates whether the skill can be added or not. [1]
 
 
 @dataclass
@@ -184,7 +192,6 @@ class Airdefense(Skill):
 
 @dataclass
 class Shield(Skill):
-    # TODO Shields introduce deadlock potential!!
     name: str = "Shield"
     symbol: str = "🔰"  # 🛡️ (doesn't work in asciimatics)
     description: str = (
@@ -195,7 +202,7 @@ class Shield(Skill):
     # Keep track of which turn the shield was used in:
     _turns_used: List[int] = field(default_factory=list)
 
-    def reset(self):
+    def pre_fight(self):
         self._turns_used: List[int] = []
 
     def absorbed_damage(self, damage_left: int, fight_round: int) -> int:
@@ -240,8 +247,6 @@ class LuckyStrike(Skill):
     _is_lucky: Optional[bool] = False
     # QQ: What if the attack is blocked, e.g. by a shield? I think they can't be
     # blocked. (Maybe the shield gets destroyed?)
-    # QQ: Or maybe better: 1/3 chance to kill the opponent, 1/3 chance to kill itself,
-    # 1/3 chance to attack as usual.
 
     def is_lucky(self) -> bool:
         assert self._is_lucky is not None
@@ -264,11 +269,10 @@ class LuckyStrike(Skill):
 
 @dataclass
 class Inhibit(Skill):
-    # FIXME This is not easy. Maybe need some kind of precondition filter code that
-    # gets executed for each skill? See also [1] above -> Skills would have an
-    # assign-filter and an activate-filter. The activate-filter for INHIBIT would
-    # not be with the INHIBIT skill but with EVERY skill.
-    # QQ: What if INHIBIT and INHIBIT oppose each other?
+    # FIXME This is not easy. Maybe need some kind of precondition filter code that gets
+    # executed for each skill?  -> Skills would have an assign-filter and an
+    # activate-filter. The activate-filter for INHIBIT would not be with the INHIBIT
+    # skill but with EVERY skill. QQ: What if INHIBIT and INHIBIT oppose each other?
     name: str = "Inhibit"
     symbol: str = "🚧"
     description: str = (
@@ -353,7 +357,7 @@ class Weakness(Skill):
     potency: int = -4
     under_construction: bool = True
     # ⭐
-    # TODO Is this the same as reducing its power by 1?
+    # QQ: Is this the same as reducing its power by 1?
 
 
 @dataclass
@@ -372,17 +376,8 @@ class Empty(Skill):
     description: str = "A card with Empty will not provide any fire or spirits. This also means the card cannot be sacrificed."
     potency: int = -3
     under_construction: bool = True
-    # TODO What is the basic philosophy? a) A card with EMPTY keeps all its stats
-    # (esp. has_*) and the code does special handling to check for cards with this
-    # skill wherever appropriate (e.g., card placement). b) A card keeps its
-    # _original_ stats and adjusts its stats as it gets (and loses, in which case
-    # the original stats will be restored) a skill such as EMPTY. That way, the code
-    # does not need to identify and handle special cases. -- Seems to me that a is
-    # the more consistent approach that can apply to all skills. -- One way to make
-    # things easier is to turn the attributes in the Card class into properties that
-    # handle all these special cases such as EMPTY etc.
-    #
-    # → QQ: How many other skills are relevant to this question?
+    # QQ: What is the basic philosophy for issues such as these?
+    # -> https://github.com/ymyke/cardio/issues/1
 
 
 @dataclass
