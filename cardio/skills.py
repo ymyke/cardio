@@ -28,7 +28,6 @@ from typing import List, Optional, Type, Union
 class ForWhom(Enum):
     """Who can use a skill?"""
 
-    # TODO Use this where relevant
     HUMAN = auto()
     COMPUTER = auto()
     BOTH = auto()
@@ -115,10 +114,10 @@ class SkillSet:
     def remove_all(self) -> None:
         self.skills = []
 
-    def copy(self) -> SkillSet:  # TODO add test
+    def copy(self) -> SkillSet:
         return SkillSet(self.get_types())
 
-    def call(self, method_name: str, *args, **kwargs):  # TODO add test
+    def call(self, method_name: str, *args, **kwargs):
         """Call a method on all skills. E.g., `skillset.call('pre_fight')`."""
         for skill in self.skills:
             getattr(skill, method_name)(*args, **kwargs)

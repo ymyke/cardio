@@ -34,6 +34,12 @@ def test_call():
     assert res == [1, 1]
 
 
+def test_copy():
+    sl = SkillSet([Spines, InstantDeath])
+    sl2 = sl.copy()
+    assert sl2.skills == [Spines(), InstantDeath()]
+
+
 def test_get():
     sl = SkillSet([Spines, InstantDeath])
     assert sl.get(Spines) == Spines()
