@@ -1,15 +1,5 @@
 
 
-- clean up all the branches (see below).
-
-
-# In this branch
-
-- add-fightcard: Explore refactoring code from attack into FightCard.
-- merge this into luckystrike-refactor.
-- merge this into luckystrike??
-- merge into more-skills.
-
 
 # Next up
 
