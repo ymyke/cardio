@@ -71,6 +71,14 @@ class Card:
             # much of either to use (unless specified algorithmically).)
         )
 
+    def __str__(self) -> str:
+        skillstr = "".join(s.symbol for s in self.skills)
+        s = f"{self.name} {skillstr} {self.power}p {self.health}h\n"
+        coststr = "🔥" * self.costs_fire + "👻" * self.costs_spirits
+        hasstr = "🔥" * self.has_fire + "👻" * self.has_spirits
+        s += f"costs: {coststr or '-'} has: {hasstr or '-'} pot: {self.potency}"
+        return s
+
     def is_human(self) -> bool:
         return self in gg.humanplayer.get_all_human_cards()
         # FIXME Not nice, rethink the `is_human` test.
