@@ -1,4 +1,4 @@
-# In this branch
+
 
 
 # Next up
@@ -30,19 +30,13 @@
     mind that some cards can die during a run but should still keep their stats
     available. How to do that exactly?
 - Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
+- Resolve the shield deadlock and general deadlock issue. Cf. `_has_computer_won` in
+  fightvnc.
+- Add deadlock resolver.
+  - Shields introduce deadlocks.
+  - See also notes in FightVnC.
 - Maybe destroy likelihood in UPU etc should also rise with
   amount of Power/Health a card has already?
-
-- Make a branch `move all fight code to codevnc` and see how that goes.
-```python
-c2 = grid[2][0]
-c1 = grid[1][0]
-c0 = grid[0][0]
-
-attack(c2, c1, prep=c0, human=..., computer=...)
-	lose_health(c1, ...)
-attack(c1, c2, ...)
-```
 
 
 # MVC Thoughts
@@ -83,6 +77,8 @@ attack(c1, c2, ...)
 
 # Todo
 
+- Have some generic animation (just some color change for 0.2 seconds?) for skill
+  effects that get activated. E.g., for shield.
 - Start the game w/ 0 skills.
 - QQ: Spirits: keep them between fights (as it is now)? (Maybe have to sacrifice 1 life
   if you want to keep them?)

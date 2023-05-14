@@ -1,6 +1,8 @@
-import copy
-from cardio import gg, Card, Deck, GridPos
-from cardio.humanstrategyvnc import HumanStrategyVnC
+import copy  # TODO deepcopy really necessary in this module?
+import pytest
+from cardio import GridPos, gg
+from cardio.card import Card
+from tests.utils.humanstrategyvnc import HumanStrategyVnC
 from cardio.computer_strategies import Round0OnlyStrategy, PredefinedStrategy
 from cardio.card_blueprints import create_cards_from_blueprints
 from cardio.agent_damage_state import AgentDamageState
@@ -15,20 +17,21 @@ def equal_logs(generatedlog: str, targetlog: str) -> bool:
 
 
 def test_simple_initial_setup(gg_setup):
+    human, grid, vnc, ff = gg_setup
     original_cards = create_cards_from_blueprints(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )
-    gg.humanplayer.deck.cards = copy.deepcopy(original_cards)
-    gg.vnc.computerstrategy = Round0OnlyStrategy(
-        grid=gg.grid,
+    human.deck.cards = copy.deepcopy(original_cards)
+    vnc.computerstrategy = Round0OnlyStrategy(
+        grid=grid,
         cards=[
             # type: ignore
-            (GridPos(0, 1), Card("Steed", 2, 10, 1)),
-            (GridPos(1, 0), Card("Dog", 2, 5, 1)),
-            (GridPos(2, 0), Card("Cat", 1, 3, 1)),
+            (GridPos(0, 1), ff("Steed", 2, 10, 1)),
+            (GridPos(1, 0), ff("Dog", 2, 5, 1)),
+            (GridPos(2, 0), ff("Cat", 1, 3, 1)),
         ],
     )
-    gg.vnc.handle_fight()
+    vnc.handle_fight()
 
     target_states_log = """\
 
@@ -52,16 +55,6 @@ Draw: Pp1h2🚀
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 2 damage, 1 lives, 0 gems, 0 spirits
 
-Starting round 2:
-| -           | -           | -           | -           |
-| Dp2h3       | Sp2h10      | -           | -           |
-| -           | -           | -           | -           |
-Hand: Kp1h3 Wp1h1 Lp3h2 Hp0h1
-Used: Cp1h0
-Draw: Pp1h2🚀
-Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-4 damage, 1 lives, 0 gems, 1 spirits
-
 Final state:
 | -           | -           | -           | -           |
 | Dp2h3       | Sp2h10      | -           | -           |
@@ -70,31 +63,113 @@ Hand: Kp1h3 Wp1h1 Lp3h2 Hp0h1
 Used: Cp1h0
 Draw: Pp1h2🚀
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-8 damage, 1 lives, 0 gems, 1 spirits
+5 damage, 1 lives, 0 gems, 1 spirits
 """
-    assert equal_logs(gg.vnc.stateslogger.log, target_states_log)
+    assert equal_logs(vnc.stateslogger.log, target_states_log)
+
+
+@pytest.mark.skip(reason="Will produce an endless loop")
+def test_endless_loop(gg_setup):
+    _, grid, vnc, ff = gg_setup
+    vnc.computerstrategy = PredefinedStrategy(
+        grid=grid,
+        cards_per_round={
+            # type: ignore
+            0: [
+                (GridPos(1, 0), ff("X", 1, 0, 1)),
+                (GridPos(2, 1), ff("X", 1, 0, 1)),
+            ],
+        },
+    )
+    vnc.handle_fight()
+
+
+def test_prepcard_will_not_attack(mocker, gg_setup):
+    _, grid, vnc, ff = gg_setup
+    prepcard = ff("P", 1, 1, 1)
+    vnc.computerstrategy = PredefinedStrategy(
+        grid=grid,
+        cards_per_round={
+            # type: ignore
+            0: [
+                (GridPos(0, 0), prepcard),
+                (GridPos(1, 0), ff("X", 1, 1, 1)),
+            ],
+        },
+    )
+    spy = mocker.spy(prepcard, "attack")
+    vnc.handle_fight()
+    # Make sure `attack` was never called with prepcard:
+    spy.assert_not_called()
+
+
+def test_prepare_but_slot_taken(mocker, gg_setup):
+    _, grid, vnc, ff = gg_setup
+    grid[0][0] = pc = ff("P", 1, 1, 1)
+    grid[1][0] = cc = ff("C", 1, 1, 1)
+    spy = mocker.spy(vnc, "card_prepare")
+    pc.prepare()
+    assert grid[0][0] is pc
+    assert grid[1][0] is cc
+    spy.assert_not_called()
+
+
+def test_prepare_with_success(mocker, gg_setup):
+    _, grid, vnc, ff = gg_setup
+    grid[0][0] = pc = ff("P", 1, 1, 1)
+    spy = mocker.spy(vnc, "card_prepare")
+    pc.prepare()
+    assert grid[0][0] is None
+    assert grid[1][0] is pc
+    spy.assert_called_once()
+
+
+def test_prepcard_gets_no_damage(gg_setup):
+    _, grid, vnc, ff = gg_setup
+    vnc.computerstrategy = PredefinedStrategy(
+        grid=grid,
+        cards_per_round={
+            # type: ignore
+            0: [
+                (GridPos(0, 0), ff("X", 1, 1, 1)),
+                (GridPos(1, 0), ff("X", 1, 1, 1)),
+                (GridPos(2, 0), ff("X", 10, 1, 1)),
+            ],
+        },
+    )
+    vnc.handle_fight()
+    assert grid[1][0] is None
+    assert grid[0][0].health == 1  # prepcard untouched
 
 
 def test_human_gets_gems(gg_setup):
-    gg.vnc.computerstrategy = PredefinedStrategy(
-        grid=gg.grid,
+    human, grid, vnc, ff = gg_setup
+    vnc.computerstrategy = PredefinedStrategy(
+        grid=grid,
         cards_per_round={
             # type: ignore
-            0: [(GridPos(1, 0), Card("Mouse", 1, 1, 1))],
-            1: [(GridPos(2, 1), Card("Cat", 10, 1, 1))],
+            0: [(GridPos(1, 0), ff("Mouse", 1, 1, 1))],
+            1: [(GridPos(2, 1), ff("Cat", 10, 1, 1))],
         },
     )
-    gg.vnc.handle_fight()
-    assert gg.humanplayer.gems == 4
+    vnc.handle_fight()
+    assert human.gems == 4
+    # (4 because:
+    # - Round 0: mouse deals 1 agent damage
+    # - Round 1: cat deals 10 agent damage
+    # - This results in a diff of -9
+    # -> computer dies with 9 - 5 overflow damage = 4 gems
+    # Note that mouse and cat are in different slots, so mouse doesn't defend.)
 
 
 def test_human_decks_managed_correctly(gg_setup):  # FIXME Should get different name?
+    human, grid, _, _ = gg_setup
     original_cards = create_cards_from_blueprints(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )
-    gg.humanplayer.deck.cards = copy.deepcopy(original_cards)
+    human.deck.cards = copy.deepcopy(original_cards)
     cs = Round0OnlyStrategy(
-        grid=gg.grid,
+        grid=grid,
         cards=[
             # type: ignore
             (GridPos(1, 0), Card("Hulk", 2, 100, 1)),
@@ -104,14 +179,15 @@ def test_human_decks_managed_correctly(gg_setup):  # FIXME Should get different 
         ],
     )
 
-    gg.vnc = HumanStrategyVnC(grid=gg.grid, computerstrategy=cs)
-    # Override damagestate with better health:
-    gg.vnc.damagestate = AgentDamageState(max_diff=50)
+    vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs)
+    # Override damagestate with better health (the fight will end not because of high
+    # enough damage diff but bc player H had no more unplayed cards with power > 0):
+    vnc.damagestate = AgentDamageState(max_diff=50)
+    gg.vnc = vnc
+    vnc.handle_fight()
 
-    gg.vnc.handle_fight()
-
-    assert len(gg.humanplayer.deck.cards) == len(original_cards)
-    assert gg.humanplayer.lives == 0
+    assert len(human.deck.cards) == len(original_cards)
+    assert human.lives == 0
     target_states_log = """
 Starting round 0:
 | -           | -           | -           | -           |
@@ -141,7 +217,7 @@ Hand: Lp3h2 Hp0h1 Hp0h1 Pp1h2🚀
 Used: Kp1h0 Wp1h0
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-10 damage, 1 lives, 0 gems, 2 spirits
+12 damage, 1 lives, 0 gems, 2 spirits
 
 Starting round 3:
 | -           | -           | -           | -           |
@@ -151,7 +227,7 @@ Hand: Hp0h1 Hp0h1 Pp1h2🚀 Hp0h1
 Used: Kp1h0 Wp1h0 Lp3h0
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-16 damage, 1 lives, 0 gems, 3 spirits
+18 damage, 1 lives, 0 gems, 3 spirits
 
 Starting round 4:
 | -           | -           | -           | -           |
@@ -161,7 +237,7 @@ Hand: Hp0h1 Pp1h2🚀 Hp0h1 Hp0h1
 Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-22 damage, 1 lives, 0 gems, 4 spirits
+25 damage, 1 lives, 0 gems, 4 spirits
 
 Starting round 5:
 | -           | -           | -           | -           |
@@ -171,7 +247,7 @@ Hand: Pp1h2🚀 Hp0h1 Hp0h1 Hp0h1
 Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Hp0h0
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-28 damage, 1 lives, 0 gems, 5 spirits
+32 damage, 1 lives, 0 gems, 5 spirits
 
 Final state:
 | -           | -           | -           | -           |
@@ -181,21 +257,22 @@ Hand: Hp0h1 Hp0h1 Hp0h1 Hp0h1
 Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Hp0h0 Pp1h0🚀
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1
-34 damage, 1 lives, 0 gems, 6 spirits
+38 damage, 1 lives, 0 gems, 6 spirits
 """
 
-    assert equal_logs(gg.vnc.stateslogger.log, target_states_log)
+    assert equal_logs(vnc.stateslogger.log, target_states_log)
 
 
 def test_humanplayer_deck_gets_set_correctly_after_fight(gg_setup):
+    human, grid, vnc, _ = gg_setup
     original_cards = create_cards_from_blueprints(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )
-    gg.humanplayer.deck.cards = copy.deepcopy(original_cards)
-    cs = Round0OnlyStrategy(grid=gg.grid, cards=[])
-    gg.vnc = HumanStrategyVnC(grid=gg.grid, computerstrategy=cs)
-    gg.vnc.handle_fight()
-    assert sorted(c.name for c in gg.humanplayer.deck.cards) == sorted(
+    human.deck.cards = copy.deepcopy(original_cards)
+    cs = Round0OnlyStrategy(grid=grid, cards=[])
+    vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs)
+    vnc.handle_fight()
+    assert sorted(c.name for c in human.deck.cards) == sorted(
         c.name for c in original_cards
     )
 
@@ -205,14 +282,16 @@ def test_card_humanity(gg_setup):
     be simplified and moved to `test_card` once there is some new logic for cards being
     human or not (using an explicit attribute) in place.
     """
+    human, grid, vnc, _ = gg_setup
+
     original_cards = create_cards_from_blueprints(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     )
     assert not any(c.is_human() for c in original_cards)
-    gg.humanplayer.deck.cards = original_cards
+    human.deck.cards = original_cards
     assert all(c.is_human() for c in original_cards)
     cs = Round0OnlyStrategy(
-        grid=gg.grid,
+        grid=grid,
         cards=[
             # type: ignore
             (GridPos(1, 0), Card("Hulk", 2, 100, 1)),
@@ -221,6 +300,6 @@ def test_card_humanity(gg_setup):
             (GridPos(1, 3), Card("Hulk", 2, 100, 1)),
         ],
     )
-    gg.vnc = HumanStrategyVnC(grid=gg.grid, computerstrategy=cs)
-    gg.vnc.handle_fight()
+    vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs)
+    vnc.handle_fight()
     assert all(c.is_human() for c in original_cards)

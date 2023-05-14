@@ -43,6 +43,7 @@ def create_random_location(
     from .location_directory import location_frequencies
 
     random.seed(f"L{rung}_{index}_{base_seed}_locationfactory")
+    # FIXME Use random.choices() instead of the following:
     exploded_locations = [
         loc for loc, count in location_frequencies for _ in range(count)
     ]

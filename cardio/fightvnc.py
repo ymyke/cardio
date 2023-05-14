@@ -6,8 +6,7 @@ model. There is also some fight-related logic in the `Card` class.
 
 import logging
 from typing import Callable, Optional
-
-from . import gg, Card, Deck, FightDecks, Grid, GridPos, Skill
+from . import gg, FightCard, Deck, FightDecks, Grid, GridPos, skills
 from .placement_manager import PlacementManager
 from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
@@ -29,47 +28,51 @@ class FightVnC:
         self.grid = grid
         self.damagestate = AgentDamageState()
         self.stateslogger = StatesLogger(self)
+        FightCard.init_fight(self, self.grid)
         self.computerstrategy = computerstrategy
 
-    # --- Called by Card class ---
+    # --- Called by FightCard class ---
 
-    def card_died(self, card: Card, pos: GridPos) -> None:
+    def card_died(self, card: FightCard, pos: GridPos) -> None:
         pass
 
-    def card_lost_health(self, card: Card) -> None:
+    def card_lost_health(self, card: FightCard) -> None:
         pass
 
-    def card_getting_attacked(self, target: Card, attacker: Card) -> None:
+    def card_getting_attacked(self, target: FightCard, attacker: FightCard) -> None:
         pass
 
-    def card_activate(self, card: Card) -> None:
+    def card_activate(self, card: FightCard) -> None:
         pass
 
-    def card_prepare(self, card: Card) -> None:
+    def card_prepare(self, card: FightCard) -> None:
         pass
 
-    def pos_card_deactivate(self, pos: GridPos) -> None:
-        """Uses a position instead of a card because it could be that the card has died
-        and been removed from the grid between being activated and deactivated. In this
-        case, `pos` should point to where the card used to be before being removed.
+    def card_deactivate(self, card: FightCard) -> None:
+        """Note that the card might have died and been removed from the grid before this
+        method gets called.
         """
         pass
 
     # --- Controller-related ---
 
     def show_human_draws_new_card(
-        self, draw_to: Deck, card: Card, draw_from: Deck
+        self, draw_to: Deck, card: FightCard, draw_from: Deck
     ) -> None:
         pass
 
-    def show_human_receives_card_from_grid(self, card: Card, from_slot: int) -> None:
+    def show_human_receives_card_from_grid(
+        self, card: FightCard, from_slot: int
+    ) -> None:
         pass
 
-    def show_computer_plays_card(self, card: Card, to: GridPos) -> None:
+    def show_computer_plays_card(self, card: FightCard, to: GridPos) -> None:
         """Play a computer card to `to`, which can be in line 0 or 1."""
         pass
 
-    def show_human_places_card(self, card: Card, from_slot: int, to_slot: int) -> None:
+    def show_human_places_card(
+        self, card: FightCard, from_slot: int, to_slot: int
+    ) -> None:
         """Place a human card from the hand (`from_slot`) to the grid (`to_slot`). Line
         is implicitly always 2.
         """
@@ -81,14 +84,14 @@ class FightVnC:
     def handle_human_plays_cards(self, place_card_callback: Callable) -> None:
         pass
 
-    def handle_player_damage(self, howmuch: int, source: Card) -> None:
-        source_line = source.get_grid_pos().line
-        assert source_line in (1, 2)
-        if source_line == 1:
-            self.damagestate.damage_human(howmuch)
-        else:
+    def handle_agent_damage(self, to_computer: bool, howmuch: int) -> None:
+        """Handle `howmuch` damage to the agent. `to_computer` indicates whether the
+        damage is to the computer or the human.
+        """
+        if to_computer:
             self.damagestate.damage_computer(howmuch)
-        # LIXME Add some animation for for damage
+        else:
+            self.damagestate.damage_human(howmuch)
         self.redraw_view()
 
     # --- Misc ---
@@ -120,7 +123,7 @@ class FightVnC:
     def _has_computer_won(self) -> bool:
         return self.damagestate.has_computer_won() or not any(
             c.power > 0
-            for c in set(gg.humanplayer.get_all_human_cards())
+            for c in set(gg.humanplayer.get_all_human_cards(fightonly=True))
             - set(self.decks.used.cards)
         )
         # FIXME The above is not fully correct yet. There could also be a case there is
@@ -133,7 +136,9 @@ class FightVnC:
         # differently in the UI or at least explained? -- Just simply add a "give up"
         # function to the UI? -- Or add some mechanism like Inscryption's "Starvation"?
         # Or a simple turn countdown that activates after a certain amount of turns in
-        # which nothing meaningful has happened?
+        # which nothing meaningful has happened? -- With the introduction of shield,
+        # things become more complicated: The test for power > 0 does not suffice, since
+        # you can have to shields opposing now; cf. `test_skills.test_shield_deadlock`.
 
     def _has_human_won(self) -> bool:
         return self.damagestate.has_human_won()
@@ -156,12 +161,23 @@ class FightVnC:
         self.show_human_places_card(pmgr.target_card, from_slot, to_slot)
         self.decks.hand.pick_card(from_slot)
 
-        if Skill.FERTILITY in pmgr.target_card.skills:
-            new_card = pmgr.target_card.make_temp_copy()
-            new_card.reset()
+        if skills.Fertility in pmgr.target_card.skills:
+            new_card = pmgr.target_card.copy()
             self.redraw_view()
             self.decks.hand.add_card(new_card)
             self.show_human_receives_card_from_grid(new_card, from_slot=to_slot)
+            logging.debug("Human copies %s via Fertility", new_card.name)
+
+        self.redraw_view()
+
+        if skills.Packrat in pmgr.target_card.skills:
+            if not self.decks.draw.is_empty():
+                new_card = self.decks.draw.draw_card()
+                self.show_human_draws_new_card(
+                    self.decks.hand, new_card, self.decks.draw
+                )
+                self.decks.hand.add_card(new_card)
+                logging.debug("Human draws %s via Packrat", new_card.name)
 
         self.redraw_view()
         logging.debug("Human plays %s in %s", pmgr.target_card.name, to_slot)
@@ -190,13 +206,16 @@ class FightVnC:
         self.decks.log()
         self.grid.log()
 
-        # Activate all cards:
-        self.grid.activate_line(2)
-        self._check_for_end_of_fight()
-        self.grid.activate_line(1)
-        self._check_for_end_of_fight()
-        self.grid.prepare_line()
-        self._check_for_end_of_fight()
+        # Activate all cards line by line:
+        for line in [2, 1, 0]:
+            for card in (c for c in self.grid.lines[line] if c is not None):
+                if line == 0:
+                    if not card.prepare():
+                        continue  # Do not attack, if not prepared successfully
+                card.attack(gg.grid.get_opposing_card(card))
+            self._check_for_end_of_fight()
+            # QQ: Here, we check end-of-fight conditions after each line. Should this
+            # rather be at the end of the fight? Or after each card?
 
         self.grid.log()
         logging.debug("----- End of round %s -----", self.round_num)
@@ -206,10 +225,14 @@ class FightVnC:
 
         # Set up the decks for the fight:
         self.decks = FightDecks()
-        self.decks.draw.cards = gg.humanplayer.deck.cards
-        gg.humanplayer.deck.cards = []
+        self.decks.draw.cards = FightCard.from_cards(gg.humanplayer.deck.cards)
+        hamster_cards = create_cards_from_blueprints(["Hamster"] * 10)
+        self.decks.hamster.cards = FightCard.from_cards(hamster_cards)
         self.decks.draw.shuffle()
-        self.decks.hamster.cards = create_cards_from_blueprints(["Hamster"] * 10)
+
+        # Initialize all skills:
+        for card in gg.humanplayer.get_all_human_cards(fightonly=True):
+            card.skills.call("pre_fight")
 
         # Draw the decks and show how the first cards get drawn:
         self.redraw_view()
@@ -236,11 +259,3 @@ class FightVnC:
             gg.humanplayer.gems += self.damagestate.get_overflow()
             # LIXME Animate overflow damage that turns into gems
             self.human_wins_fight()
-
-        # Reset human deck after the fight:
-        gg.humanplayer.deck.cards = [
-            c
-            for c in gg.humanplayer.get_all_human_cards()
-            if c.name != "Hamster" and not c.is_temporary
-        ]
-        gg.humanplayer.deck.reset_cards()

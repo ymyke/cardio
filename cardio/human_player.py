@@ -12,7 +12,11 @@ class HumanPlayer:
     spirits: int = 0  # 👻 (or droplets/essence? 💧)
     deck: Deck = field(default_factory=lambda: Deck("main"))
 
-    def get_all_human_cards(self) -> CardList:
+    def get_all_human_cards(self, fightonly: bool = False) -> CardList:
+        """Return all cards that are currently in the human player's possession. By
+        default returns all cards it can find. If `fightonly` is True, only
+        right-related cards are returned.
+        """
         cards = []
 
         # During fights I: Add fight decks
@@ -34,6 +38,7 @@ class HumanPlayer:
         # created (e.g., via fertility) during a fight which are added to one of the
         # fight decks but not yet to a player's deck (which gets recreated only after a
         # fight).)
-        cards.extend(self.deck.cards)
+        if not fightonly:
+            cards.extend(self.deck.cards)
 
         return cards
