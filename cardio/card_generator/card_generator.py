@@ -1,6 +1,12 @@
+# QQ: Let's say we generate a larger list of cards with this generator. Then we add a
+# couple of new skills and incorporate new cards with that skill that fit in the
+# collection of existing cards in a statistically sound manner. How to do that? Would
+# have to define the new skills somehow and tweak their probabilities.
+
 # TODO Need to think about seed?
 
 #%%
+import logging
 from typing import Optional, Tuple
 import random
 import numpy as np
@@ -118,10 +124,12 @@ def gen_skills(ignore_levels: int = 0) -> list:
     available_skills = get_skilltypes(implemented_only=True)
     weights = [s.potency + min_potency + 1 for s in available_skills]
     sum_weights = sum(weights)
-    weights = [w / sum_weights for w in weights]
+    probabilities = [w / sum_weights for w in weights]
 
     skills = list(
-        np.random.choice(a=available_skills, size=num_skills, replace=False, p=weights)
+        np.random.choice(
+            a=available_skills, size=num_skills, replace=False, p=probabilities
+        )
     )
 
     return skills
@@ -149,6 +157,9 @@ def random_card(ignore_levels: int = 0) -> Card:
     # TODO Have a register and look up card in there and reuse name if already exists?
 
 
+def add_name(card: Card) -> None:
+    card.name = "Randy Rowdy"
+
 def create_card(wanted_potency: Optional[int] = None, exactly: bool = False) -> Card:
     min_, max_, _ = Card.get_raw_potency_range()
     assert wanted_potency is None or min_ <= wanted_potency <= max_
@@ -157,16 +168,35 @@ def create_card(wanted_potency: Optional[int] = None, exactly: bool = False) -> 
         card = random_card(i // 1000)
         i += 1
         if i % 1000 == 0:
-            print(card)
+            logging.debug("Tried %s cards", i)
+            logging.debug("Current card:\n%s", card)
         if wanted_potency is None:
-            return card
+            break
         if exactly:
             if card.potency == wanted_potency:
-                return card
+                break
         else:
             if abs(card.potency - wanted_potency) < 3:
-                return card
+                break
 
+    # if not registered:
+    add_name(card)
+    # add card to register
+    # else:
+    #    look up card in register
+    return card
 
-c = create_card(55, exactly=True)
-print(c)
+#%%
+import logging
+logging.basicConfig()
+logging.getLogger().setLevel(logging.INFO)
+
+minpot, maxpot, _ = Card.get_raw_potency_range()
+for pot in range(max(minpot+1,0), maxpot):
+    c = create_card(pot, exactly=True)
+    print(c)
+
+# c = create_card(55, exactly=True)
+# print(c)
+
+# %%
