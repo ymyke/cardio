@@ -79,6 +79,15 @@ class Card:
         s += f"costs: {coststr or '-'} has: {hasstr or '-'} pot: {self.potency}"
         return s
 
+    def __repr__(self) -> str:
+        skillstr = ", ".join("skills." + t.__name__ for t in self.skills.get_types())
+        return (
+            f"Card(name='{self.name}', power={self.power}, health={self.health}, "
+            f"costs_fire={self.costs_fire}, costs_spirits={self.costs_spirits}, "
+            f"has_spirits={self.has_spirits}, has_fire={self.has_fire}, "
+            f"skills=[{skillstr}])"
+        )
+
     def is_human(self) -> bool:
         return self in gg.humanplayer.get_all_human_cards()
         # FIXME Not nice, rethink the `is_human` test.
