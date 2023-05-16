@@ -5,9 +5,8 @@
 
 # TODO Need to think about seed?
 
-#%%
 import logging
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 import random
 import numpy as np
 from cardio import Card
@@ -160,9 +159,15 @@ def random_card(ignore_levels: int = 0) -> Card:
 def add_name(card: Card) -> None:
     card.name = "Randy Rowdy"
 
-def create_card(wanted_potency: Optional[int] = None, exactly: bool = False) -> Card:
-    min_, max_, _ = Card.get_raw_potency_range()
-    assert wanted_potency is None or min_ <= wanted_potency <= max_
+
+def create_noname_card(
+    wanted_potency: Optional[int] = None, exactly: bool = False
+) -> Card:
+    """Create a card with a default name. We add names separately to avoid costly
+    operations. `wanted_potency` is the potency we want to card to have. (Normalized
+    potency, i.e., [0, 100], not raw potency.)
+    """
+    assert wanted_potency is None or 0 <= wanted_potency <= 100
     i = 0
     while True:
         card = random_card(i // 1000)
@@ -170,33 +175,19 @@ def create_card(wanted_potency: Optional[int] = None, exactly: bool = False) -> 
         if i % 1000 == 0:
             logging.debug("Tried %s cards", i)
             logging.debug("Current card:\n%s", card)
-        if wanted_potency is None:
-            break
-        if exactly:
-            if card.potency == wanted_potency:
-                break
-        else:
-            if abs(card.potency - wanted_potency) < 3:
-                break
 
-    # if not registered:
-    add_name(card)
-    # add card to register
-    # else:
-    #    look up card in register
-    return card
+        if (
+            (wanted_potency is None)
+            or (exactly and card.potency == wanted_potency)
+            or (not exactly and abs(card.potency - wanted_potency) < 3)
+        ):
+            return card
 
-#%%
-import logging
-logging.basicConfig()
-logging.getLogger().setLevel(logging.INFO)
 
-minpot, maxpot, _ = Card.get_raw_potency_range()
-for pot in range(max(minpot+1,0), maxpot):
-    c = create_card(pot, exactly=True)
-    print(c)
+def create_noname_cards(potencies: List[int], exactly: bool = False) -> List[Card]:
+    return [create_noname_card(p, exactly) for p in potencies]
 
-# c = create_card(55, exactly=True)
-# print(c)
 
-# %%
+
+
+
