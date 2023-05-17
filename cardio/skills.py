@@ -131,6 +131,11 @@ class SkillSet:
     def __contains__(self, skill):
         return self.has(skill)
 
+    def __eq__(self, other: SkillSet) -> bool:
+        return isinstance(other, SkillSet) and (
+            set(self.get_types()) == set(other.get_types())
+        )
+
 
 # FIXME Need more skills in the 1-4 range.
 
