@@ -176,18 +176,9 @@ def create_noname_card(
             logging.debug("Tried %s cards", i)
             logging.debug("Current card:\n%s", card)
 
-        if (
-            (wanted_potency is None)
-            or (exactly and card.potency == wanted_potency)
-            or (not exactly and abs(card.potency - wanted_potency) < 3)
-        ):
+        if (wanted_potency is None) or card.has_potency(wanted_potency, exactly):
             return card
 
 
 def create_noname_cards(potencies: List[int], exactly: bool = False) -> List[Card]:
     return [create_noname_card(p, exactly) for p in potencies]
-
-
-
-
-

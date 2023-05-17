@@ -88,6 +88,20 @@ class Card:
             f"skills=[{skillstr}])"
         )
 
+    def is_gameplay_equal(self, other: Card) -> bool:
+        """Return whether this card is gameplay-wise equal to `other`. That is, whether
+        they have the same values for all non-cosmetic attributes.
+        """
+        return (
+            self.power == other.power
+            and self.health == other.health
+            and self.costs_fire == other.costs_fire
+            and self.costs_spirits == other.costs_spirits
+            and self.has_fire == other.has_fire
+            and self.has_spirits == other.has_spirits
+            and self.skills == other.skills
+        )
+
     def is_human(self) -> bool:
         return self in gg.humanplayer.get_all_human_cards()
         # FIXME Not nice, rethink the `is_human` test.
@@ -123,6 +137,14 @@ class Card:
         (Note that it can actually also be <0, but usually isn't.)
         """
         return int(self.raw_potency / self.get_raw_potency_range()[1] * 100)
+
+    def has_potency(self, potency: int, exactly: bool = False) -> bool:
+        """Return whether this card has the given potency exactly (`exactly == True`) or
+        approximately (`exactly == False`).
+        """
+        return (exactly and self.potency == potency) or (
+            not exactly and abs(self.potency - potency) < 3
+        )
 
     @classmethod
     def get_raw_potency_range(cls) -> Tuple[int, int, int]:
