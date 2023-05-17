@@ -142,6 +142,7 @@ class Card:
         """Return whether this card has the given potency exactly (`exactly == True`) or
         approximately (`exactly == False`).
         """
+        assert 0 <= potency <= 100
         return (exactly and self.potency == potency) or (
             not exactly and abs(self.potency - potency) < 3
         )
