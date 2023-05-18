@@ -3,8 +3,6 @@
 # collection of existing cards in a statistically sound manner. How to do that? Would
 # have to define the new skills somehow and tweak their probabilities.
 
-# TODO Need to think about seed?
-
 import logging
 from typing import List, Optional, Tuple
 import random
