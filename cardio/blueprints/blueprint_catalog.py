@@ -15,6 +15,10 @@ class BlueprintEquivalentExistsError(Exception):
     pass
 
 
+class BlueprintNameNotFoundError(Exception):
+    pass
+
+
 class BlueprintCatalog:
     _blueprints: List[Blueprint]
 
@@ -28,9 +32,13 @@ class BlueprintCatalog:
     def get(self, name: str) -> Blueprint:
         res = self.find_by_name(name)
         if len(res) > 1:
-            raise ValueError(f"Several blueprints with name '{name}' found in catalog.")
+            raise BlueprintNameExistsError(
+                f"Several blueprints with name '{name}' found in catalog."
+            )
         if len(res) == 0:
-            raise ValueError(f"No blueprint with name '{name}' found in catalog.")
+            raise BlueprintNameNotFoundError(
+                f"No blueprint with name '{name}' found in catalog."
+            )
         return res[0]
 
     def find_by_potency(
@@ -51,7 +59,7 @@ class BlueprintCatalog:
         eqs = self.find_gameplay_equals(blueprint)
         if eqs:
             raise BlueprintEquivalentExistsError(
-                f"Equivalent blueprint to '{blueprint.name}' already exists: {eqs[0]}."
+                f"Equivalent blueprint to '{blueprint.name}' already exists: {eqs[0].name}."
             )
         self._blueprints.append(blueprint)
 
