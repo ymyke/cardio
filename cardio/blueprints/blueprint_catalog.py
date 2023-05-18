@@ -1,6 +1,6 @@
 from typing import List, Optional, Union
 from cardio import Card
-from .blueprint import Blueprint
+from .blueprint import Blueprint, BlueprintList
 from . import all_blueprints
 
 # TODO:
@@ -20,16 +20,16 @@ class BlueprintNameNotFoundError(Exception):
 
 
 class BlueprintCatalog:
-    _blueprints: List[Blueprint]
+    _blueprints: BlueprintList
 
     def __init__(self) -> None:
-        self._blueprints = []
+        self._blueprints = BlueprintList([])
         for b in all_blueprints.all_blueprints:
             self.add_blueprint(b)
 
-    def find_by_name(self, name: str) -> List[Blueprint]:
+    def find_by_name(self, name: str) -> BlueprintList:
         """Find all blueprints with name `name`."""
-        return [b for b in self._blueprints if b.name == name]
+        return BlueprintList([b for b in self._blueprints if b.name == name])
 
     def get(self, name: str) -> Blueprint:
         res = self.find_by_name(name)
@@ -43,15 +43,31 @@ class BlueprintCatalog:
             )
         return res[0]
 
+    def find_by_names(self, names: List[str]) -> BlueprintList:
+        return BlueprintList([self.get(name) for name in names])
+
     def find_by_potency(
         self, wanted_potency: int, exactly: bool = False
-    ) -> List[Blueprint]:
+    ) -> BlueprintList:
         """Find all blueprints with potency `potency` (normalized, i.e., [0, 100])."""
-        return [b for b in self._blueprints if b.has_potency(wanted_potency, exactly)]
+        return BlueprintList(
+            [b for b in self._blueprints if b.has_potency(wanted_potency, exactly)]
+        )
 
-    def find_gameplay_equals(self, other: Union[Blueprint, Card]) -> List[Blueprint]:
+    def find_by_potency_range(
+        self, min_potency: int, max_potency: int
+    ) -> BlueprintList:
+        """Find all blueprints with potency in the range [min_potency, max_potency]."""
+        res = []
+        for p in range(min_potency, max_potency + 1):
+            res.extend(self.find_by_potency(p, exactly=True))
+        return BlueprintList(res)
+
+    def find_gameplay_equals(self, other: Union[Blueprint, Card]) -> BlueprintList:
         """Return all blueprints that are gameplay-equal to `other`."""
-        return [b for b in self._blueprints if b.is_gameplay_equal(other)]
+        return BlueprintList(
+            [b for b in self._blueprints if b.is_gameplay_equal(other)]
+        )
 
     def add_blueprint(self, blueprint: Blueprint) -> None:
         if self.find_by_name(blueprint.name):
@@ -77,3 +93,7 @@ class BlueprintCatalog:
                 f.write(repr(b))
                 f.write(",\n")
             f.write("]\n")
+
+
+# Create the one catalog that is used throughout the game:
+thecatalog = BlueprintCatalog()

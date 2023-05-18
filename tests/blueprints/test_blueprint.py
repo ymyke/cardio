@@ -1,5 +1,5 @@
 from cardio import Card
-from cardio.blueprints.blueprint import Blueprint
+from cardio.blueprints.blueprint import Blueprint, BlueprintList
 
 
 def test_init():
@@ -25,3 +25,12 @@ def test_methods():
     d = b.instantiate()
     assert b.has_potency(c.potency, exactly=True)
     assert b.is_gameplay_equal(c)
+
+def test_blueprintlist():
+    b1 = Blueprint(Card("X", 1, 2, 3), "desc1")
+    b2 = Blueprint(Card("Y", 1, 2, 3), "desc2")
+    bpl = BlueprintList([b1, b2])
+    assert bpl[0] == b1
+    assert bpl[1] == b2
+    assert all(isinstance(b, Blueprint) for b in bpl)
+    assert all(isinstance(c, Card) for c in bpl.instantiate())

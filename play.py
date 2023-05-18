@@ -1,9 +1,9 @@
 import logging
 from cardio import gg, HumanPlayer
-from cardio.card_blueprints import create_cards_from_blueprints
 from cardio.run import Run
 from cardio.tui.mapview import TUIMapView
 from cardio.locations.location_directory import view_directory
+from cardio.blueprints import thecatalog
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.DEBUG)
 ### If create new player:
 humanplayer = HumanPlayer(name="Schnuzgi", lives=1, spirits=3)
 HUMAN_START_CARDS = ["Church Mouse", "Weasel", "Lynx", "Porcupine"]
-humanplayer.deck.cards = create_cards_from_blueprints(HUMAN_START_CARDS)
+humanplayer.deck.cards = thecatalog.find_by_names(HUMAN_START_CARDS).instantiate()
 gg.humanplayer = humanplayer
 
 ### If load player:

@@ -1,6 +1,9 @@
+"""`Blueprint` and `BlueprintList` classes."""
+
 from __future__ import annotations
-from typing import Union
-from cardio import Card
+from collections import UserList
+from typing import List, Union
+from cardio import Card, CardList
 
 
 class Blueprint:
@@ -31,3 +34,11 @@ class Blueprint:
 
     def instantiate(self) -> Card:
         return self._original.copy()
+
+
+class BlueprintList(UserList[Blueprint]):
+    def __init__(self, data: List[Blueprint]) -> None:
+        super().__init__(data)
+
+    def instantiate(self) -> CardList:
+        return [b.instantiate() for b in self.data]

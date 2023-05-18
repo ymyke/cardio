@@ -2,6 +2,30 @@ from cardio import Card, skills
 from .blueprint import Blueprint
 
 all_blueprints = [
+    Blueprint(
+        original=Card("Hamster", 0, 1, 0),
+        description="",
+    ),
+    Blueprint(
+        original=Card("Koala", 1, 3, 1),
+        description="",
+    ),
+    Blueprint(
+        original=Card("Porcupine", 1, 2, 1, skills=[skills.Airdefense]),
+        description="",
+    ),
+    Blueprint(
+        original=Card("Lynx", 3, 2, 2),
+        description="",
+    ),
+    Blueprint(
+        original=Card("Weasel", 1, 1, 0, costs_spirits=2),
+        description="",
+    ),
+    Blueprint(
+        original=Card("Church Mouse", 1, 1, 1, skills=[skills.Fertility]),
+        description="",
+    ),
     # Spikelet 🦔 1p 2h
     # costs: 🔥🔥 has: 🔥👻👻👻👻 pot: 10
     Blueprint(

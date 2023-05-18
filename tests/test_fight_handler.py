@@ -4,8 +4,8 @@ from cardio import GridPos, gg
 from cardio.card import Card
 from tests.utils.humanstrategyvnc import HumanStrategyVnC
 from cardio.computer_strategies import Round0OnlyStrategy, PredefinedStrategy
-from cardio.card_blueprints import create_cards_from_blueprints
 from cardio.agent_damage_state import AgentDamageState
+from cardio.blueprints import thecatalog
 
 
 def equal_logs(generatedlog: str, targetlog: str) -> bool:
@@ -18,9 +18,9 @@ def equal_logs(generatedlog: str, targetlog: str) -> bool:
 
 def test_simple_initial_setup(gg_setup):
     human, grid, vnc, ff = gg_setup
-    original_cards = create_cards_from_blueprints(
+    original_cards = thecatalog.find_by_names(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
-    )
+    ).instantiate()
     human.deck.cards = copy.deepcopy(original_cards)
     vnc.computerstrategy = Round0OnlyStrategy(
         grid=grid,
@@ -164,9 +164,9 @@ def test_human_gets_gems(gg_setup):
 
 def test_human_decks_managed_correctly(gg_setup):  # FIXME Should get different name?
     human, grid, _, _ = gg_setup
-    original_cards = create_cards_from_blueprints(
+    original_cards = thecatalog.find_by_names(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
-    )
+    ).instantiate()
     human.deck.cards = copy.deepcopy(original_cards)
     cs = Round0OnlyStrategy(
         grid=grid,
@@ -265,9 +265,9 @@ Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1
 
 def test_humanplayer_deck_gets_set_correctly_after_fight(gg_setup):
     human, grid, vnc, _ = gg_setup
-    original_cards = create_cards_from_blueprints(
+    original_cards = thecatalog.find_by_names(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
-    )
+    ).instantiate()
     human.deck.cards = copy.deepcopy(original_cards)
     cs = Round0OnlyStrategy(grid=grid, cards=[])
     vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs)
@@ -284,9 +284,9 @@ def test_card_humanity(gg_setup):
     """
     human, grid, vnc, _ = gg_setup
 
-    original_cards = create_cards_from_blueprints(
+    original_cards = thecatalog.find_by_names(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
-    )
+    ).instantiate()
     assert not any(c.is_human() for c in original_cards)
     human.deck.cards = original_cards
     assert all(c.is_human() for c in original_cards)
