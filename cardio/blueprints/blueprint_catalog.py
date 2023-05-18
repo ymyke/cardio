@@ -3,9 +3,6 @@ from cardio import Card
 from .blueprint import Blueprint, BlueprintList
 from . import all_blueprints
 
-# TODO:
-# - incorporate blueprints here
-
 
 class BlueprintNameExistsError(Exception):
     pass
