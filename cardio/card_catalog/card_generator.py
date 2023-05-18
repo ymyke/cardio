@@ -133,11 +133,9 @@ def gen_skills(ignore_levels: int = 0) -> list:
 
 
 def random_card(ignore_levels: int = 0) -> Card:
-
     power, health = gen_power_health(ignore_levels)
     has_fire, has_spirits = gen_has(ignore_levels)
     costs_fire, costs_spirits = gen_costs(ignore_levels)
-
     card = Card(
         name="Randy Rowdy",
         power=power,
@@ -149,9 +147,6 @@ def random_card(ignore_levels: int = 0) -> Card:
         skills=gen_skills(ignore_levels),
     )
     return card
-
-    # TODO Create name later bc costly op?
-    # TODO Have a register and look up card in there and reuse name if already exists?
 
 
 def add_name(card: Card) -> None:
@@ -173,10 +168,10 @@ def create_noname_card(
         if i % 1000 == 0:
             logging.debug("Tried %s cards", i)
             logging.debug("Current card:\n%s", card)
-
         if (wanted_potency is None) or card.has_potency(wanted_potency, exactly):
             return card
 
 
 def create_noname_cards(potencies: List[int], exactly: bool = False) -> List[Card]:
+    """Create a list of cards, one for each potency in `potencies`."""
     return [create_noname_card(p, exactly) for p in potencies]
