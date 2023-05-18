@@ -23,7 +23,9 @@ class BlueprintCatalog:
     _blueprints: List[Blueprint]
 
     def __init__(self) -> None:
-        self._blueprints = all_blueprints.all_blueprints
+        self._blueprints = []
+        for b in all_blueprints.all_blueprints:
+            self.add_blueprint(b)
 
     def find_by_name(self, name: str) -> List[Blueprint]:
         """Find all blueprints with name `name`."""
