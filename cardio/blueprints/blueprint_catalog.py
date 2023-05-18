@@ -1,3 +1,4 @@
+import os
 from typing import List, Optional, Union
 from cardio import Card
 from .blueprint import Blueprint, BlueprintList
@@ -80,7 +81,9 @@ class BlueprintCatalog:
 
     def save(self, filename: Optional[str] = None) -> None:
         filename = filename or "all_blueprints.py"
-        with open(filename, "w", encoding="utf-8") as f:
+        folder = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.join(folder, filename)
+        with open(path, "w", encoding="utf-8") as f:
             f.write("from cardio import Card, skills\n")
             f.write("from .blueprint import Blueprint\n")
             f.write("all_blueprints = [\n")
