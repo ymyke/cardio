@@ -13,8 +13,8 @@ for pot in range(max(minpot + 1, 0), maxpot):
 # print(c)
 
 # %%
-from cardio.card_catalog import create_noname_card, create_noname_cards
-from cardio.card_catalog.query_openai import add_names_to_cards
+from cardio.blueprints import create_noname_card, create_noname_cards
+from cardio.blueprints.query_openai import add_names_to_cards
 cards = create_noname_cards([10, 20, 22], exactly=True)
 add_names_to_cards(cards)
 for c in cards:
@@ -23,7 +23,7 @@ for c in cards:
 
 
 #%%
-from cardio.card_catalog.query_openai import query_openai
+from cardio.blueprints.query_openai import query_openai
 res = query_openai("""
 Card(name='1', power=0, health=1, costs_fire=0, costs_spirits=0, has_spirits=1, has_fire=1, skills=[])
 Card(name='2', power=1, health=2, costs_fire=1, costs_spirits=0, has_spirits=1, has_fire=1, skills=[skills.Spines]) 
@@ -35,8 +35,8 @@ print(res)
 
 #%%
 import re
-from cardio.card_catalog import create_noname_cards
-from cardio.card_catalog.query_openai import query_openai
+from cardio.blueprints import create_noname_cards
+from cardio.blueprints.query_openai import query_openai
 
 cards = create_noname_cards([100, 100, 200, 200], exactly=False)
 for i, c in enumerate(cards):
@@ -69,7 +69,13 @@ for c in cards:
     print()
 
 
-
+# Workflow:
+# - Load catalog
+# - Repeat:
+#   - Pick a sample of cards from the catalog / or all cards to seed the openai query
+#   - Create cards
+#   - Add all that are not yet in the catalog to the catalog
+# - Save catalog
 
 # Need to register??
 # # if not registered:
@@ -80,3 +86,7 @@ for c in cards:
 # return card
 
 # %%
+from cardio.blueprints.blueprint_catalog import BlueprintCatalog
+bc = BlueprintCatalog()
+bc.get("Spikelet")
+bc.save()
