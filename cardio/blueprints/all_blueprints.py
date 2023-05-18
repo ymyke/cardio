@@ -2,28 +2,94 @@ from cardio import Card, skills
 from .blueprint import Blueprint
 
 all_blueprints = [
+    # Hamster  0p 1h
+    # costs: - has: 🔥👻 pot: 12
     Blueprint(
-        original=Card("Hamster", 0, 1, 0),
+        original=Card(
+            name="Hamster",
+            power=0,
+            health=1,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
         description="",
     ),
+    # Koala  1p 3h
+    # costs: 🔥 has: 🔥👻 pot: 7
     Blueprint(
-        original=Card("Koala", 1, 3, 1),
+        original=Card(
+            name="Koala",
+            power=1,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
         description="",
     ),
+    # Porcupine 🚀 1p 2h
+    # costs: 🔥 has: 🔥👻 pot: 7
     Blueprint(
-        original=Card("Porcupine", 1, 2, 1, skills=[skills.Airdefense]),
+        original=Card(
+            name="Porcupine",
+            power=1,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Airdefense],
+        ),
         description="",
     ),
+    # Lynx  3p 2h
+    # costs: 🔥🔥 has: 🔥👻 pot: 8
     Blueprint(
-        original=Card("Lynx", 3, 2, 2),
+        original=Card(
+            name="Lynx",
+            power=3,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
         description="",
     ),
+    # Weasel  1p 1h
+    # costs: 👻👻 has: 🔥👻 pot: 3
     Blueprint(
-        original=Card("Weasel", 1, 1, 0, costs_spirits=2),
+        original=Card(
+            name="Weasel",
+            power=1,
+            health=1,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
         description="",
     ),
+    # Church Mouse 🐭 1p 1h
+    # costs: 🔥 has: 🔥👻 pot: 12
     Blueprint(
-        original=Card("Church Mouse", 1, 1, 1, skills=[skills.Fertility]),
+        original=Card(
+            name="Church Mouse",
+            power=1,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
         description="",
     ),
     # Spikelet 🦔 1p 2h
