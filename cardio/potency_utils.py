@@ -38,4 +38,6 @@ and a card can have no more than {Card.MAX_SKILLS} skills.
 all potencies other than raw potencies are normalized
 to that range.
 """
+    # TODO I think potency is [-100, 100] currently! What does this mean? Add Overload
+    # to Weasel to check.
     )
