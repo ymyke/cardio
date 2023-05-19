@@ -21,7 +21,8 @@ class Blueprint:
         self.description = description
 
     def __repr__(self) -> str:
-        return f"Blueprint(original={repr(self._original)}, description='{self.description}')"
+        desc = self.description.replace("'", "\\'").replace('"', '\\"')
+        return f"Blueprint(original={repr(self._original)}, description='{desc}')"
 
     def is_gameplay_equal(self, other: Union[Blueprint, Card]) -> bool:
         if isinstance(other, Blueprint):
