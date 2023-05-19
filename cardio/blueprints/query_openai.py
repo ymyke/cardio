@@ -1,3 +1,5 @@
+from typing import List, Optional
+import random
 import openai
 
 openai.api_key = "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"
@@ -25,15 +27,19 @@ RULES:
 - Keep in mind the min max values per attribute and relate to these as well: power: [0-10], health: [1-10], costs_fire: [0-6], costs_spirits: [0-8], has_spirits: [0-8], has_fire: [0-6], and a card can have up to 6 skills.
 - Answer only with the number and the name for each card and a short explanation, nothing else.
 - The explanation should argue how the name is related to the card's attributes and skills.
-- Make sure the name is not any of these: Hedgehog, Hamster, Koala, Porcupine
+- Do NOT use any of the skill names in the name of the card.
+- Make sure the name is not any of these: {}
 """
 
-# TODO Start adding all the existing cards to the query?
 
-
-def query_openai(cards_str: str) -> str:
+def query_openai(cards_str: str, existing_names: Optional[List[str]] = None) -> str:
+    existing_names = existing_names or []
+    # Take a random sample if there are too many existing names:
+    namestr = ", ".join(random.sample(existing_names, min(250, len(existing_names))))
     chat_completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": query_blueprint.format(cards_str)}],
+        messages=[
+            {"role": "user", "content": query_blueprint.format(cards_str, namestr)}
+        ],
     )
     return chat_completion.choices[0].message.content
