@@ -1,4 +1,7 @@
+"""Rough script to generate new cards."""
+
 #%%
+import random
 import re
 from typing import List, Tuple
 from cardio.blueprints.card_generator import create_noname_cards
@@ -34,7 +37,7 @@ def parse_line(line: str) -> Tuple[int, str, str]:
     return i, name, desc
 
 
-def create_cards_and_add_to_catalog(listofwantedpotencies: List[int]):
+def create_blueprints_and_add_to_catalog(listofwantedpotencies: List[int]):
     # Create a couple of random cards:
     cards = create_noname_cards(listofwantedpotencies, exactly=False)
     for i, c in enumerate(cards):  # Set an index as the name
@@ -49,7 +52,7 @@ def create_cards_and_add_to_catalog(listofwantedpotencies: List[int]):
     clashes_gameplay = []
 
     print(TITLE.format("Raw response"))
-    res = query_openai(query)
+    res = query_openai(query, existing_names=[b.name for b in thecatalog._blueprints])
     print(res)
 
     print(TITLE.format("Parsed response"))
@@ -78,21 +81,23 @@ def create_cards_and_add_to_catalog(listofwantedpotencies: List[int]):
         print(b.name)
 
 
-for i in range(5, 80):
+# ----- main -----
+
+wanted_potencies = list(range(5, 81)) * 10
+random.shuffle(wanted_potencies)
+while wanted_potencies:
+    potencies = wanted_potencies[:5]
     while True:
-        print(f"********** Potency {i} **********")
+        print(f"********** Potencies {potencies} **********")
         try:
-            create_cards_and_add_to_catalog([i] * 5)
+            create_blueprints_and_add_to_catalog(potencies)
         except ValueError:
             print("\n😱😱😱😱😱 VALUE ERROR 😱😱😱😱😱\n")
         except RateLimitError:
             print("\n⏱️⏱️⏱️⏱️⏱️ RATE LIMIT ERROR ⏱️⏱️⏱️⏱️⏱️\n")
         else:
+            wanted_potencies = wanted_potencies[5:]
             break
 
 
 # Don't forget to save!!
-
-
-# TODO send all names along? → Most likely not possible.
-# TODO Sample
