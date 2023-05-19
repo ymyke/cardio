@@ -1,92 +1,98 @@
 #%%
-import logging
-
-logging.basicConfig()
-logging.getLogger().setLevel(logging.INFO)
-
-minpot, maxpot, _ = Card.get_raw_potency_range()
-for pot in range(max(minpot + 1, 0), maxpot):
-    c = create_card(pot, exactly=True)
-    print(c)
-
-# c = create_card(55, exactly=True)
-# print(c)
-
-# %%
-from cardio.blueprints import create_noname_card, create_noname_cards
-from cardio.blueprints.query_openai import add_names_to_cards
-cards = create_noname_cards([10, 20, 22], exactly=True)
-add_names_to_cards(cards)
-for c in cards:
-    print(c)
-    print()
-
-
-#%%
-from cardio.blueprints.query_openai import query_openai
-res = query_openai("""
-Card(name='1', power=0, health=1, costs_fire=0, costs_spirits=0, has_spirits=1, has_fire=1, skills=[])
-Card(name='2', power=1, health=2, costs_fire=1, costs_spirits=0, has_spirits=1, has_fire=1, skills=[skills.Spines]) 
-Card(name='3', power=6, health=4, costs_fire=3, costs_spirits=0, has_spirits=1, has_fire=1, skills=[])
-Card(name='4', power=1, health=4, costs_fire=2, costs_spirits=0, has_spirits=1, has_fire=1, skills=[])
-Card(name='5', power=0, health=1, costs_fire=1, costs_spirits=0, has_spirits=10, has_fire=1, skills=[])
-""")
-print(res)
-
-#%%
 import re
-from cardio.blueprints import create_noname_cards
+from typing import List, Tuple
+from cardio.blueprints.card_generator import create_noname_cards
 from cardio.blueprints.query_openai import query_openai
+from cardio.blueprints.blueprint_catalog import (
+    BlueprintEquivalentExistsError,
+    BlueprintNameExistsError,
+)
+from cardio.blueprints import Blueprint, thecatalog
+from openai.error import RateLimitError
 
-cards = create_noname_cards([100, 100, 200, 200], exactly=False)
-for i, c in enumerate(cards):
-    c.name = str(i)
-query = "\n".join(repr(c) for c in cards)
-print(query)
-print()
 
-res = query_openai(query)
-lines = res.split("\n")
-for line in lines:
+TITLE = "\n---------- {} ----------\n"
+
+
+def parse_line(line: str) -> Tuple[int, str, str]:
     i, rest = line.split(":")
-    i = int(re.sub(r'[^\d]', '', i))
-    name, rest = rest.split("[")
-    name = name.strip()
-    name = re.sub(r'[^A-Za-z ]', '', name)
-    desc = rest.split("]")[0]
-    desc = re.sub(r'[^A-Za-z ,"\']', '', desc)
-    print(i, name, desc)
-    cards[i].name = name
-    cards[i]._openai_desc = desc
-print()
-for c in cards:
-    print("{")
-    s = "# " + "\n# ".join(str(c).split("\n"))
-    print(s)
-    print(f"'desc': '{c._openai_desc}',")
-    print(f"'card': {repr(c)},")
-    print("},")
-    print()
+    i = int(re.sub(r"[^\d]", "", i))
+    if "[" in rest:
+        name, rest = rest.split("[")
+        name = name.strip()
+        name = re.sub(r"[^A-Za-z ]", "", name)
+        desc = rest.split("]")[0]
+        desc = re.sub(r'[^A-Za-z ,"\']', "", desc)
+    elif "-" in rest:
+        name, desc = rest.split("-", 1)
+        name = name.strip()
+        name = re.sub(r"[^A-Za-z ]", "", name)
+        desc = desc.strip()
+        desc = re.sub(r'[^A-Za-z ,"\']', "", desc)
+    else:
+        raise ValueError(f"Could not parse line.")
+    return i, name, desc
 
 
-# Workflow:
-# - Load catalog
-# - Repeat:
-#   - Pick a sample of cards from the catalog / or all cards to seed the openai query
-#   - Create cards
-#   - Add all that are not yet in the catalog to the catalog
-# - Save catalog
+def create_cards_and_add_to_catalog(listofwantedpotencies: List[int]):
+    # Create a couple of random cards:
+    cards = create_noname_cards(listofwantedpotencies, exactly=False)
+    for i, c in enumerate(cards):  # Set an index as the name
+        c.name = str(i)
 
-# Need to register??
-# # if not registered:
-# add_name(card)
-# # add card to register
-# # else:
-# #    look up card in register
-# return card
+    # Prepare openai query:
+    print(TITLE.format("Query"))
+    query = "\n".join(repr(c) for c in cards)
+    print(query)
 
-# %%
-from cardio.blueprints.blueprint_catalog import BlueprintCatalog
-bc = BlueprintCatalog()
-bc.get("Spikelet")
-bc.save()
+    clashes_names = []
+    clashes_gameplay = []
+
+    print(TITLE.format("Raw response"))
+    res = query_openai(query)
+    print(res)
+
+    print(TITLE.format("Parsed response"))
+    lines = res.split("\n")
+    for line in lines:
+        if not line.strip():
+            continue
+        i, name, desc = parse_line(line)
+        print(i, name, desc)
+        cards[i].name = name
+        b = Blueprint(cards[i], desc)
+
+        try:
+            thecatalog.add_blueprint(b)
+        except BlueprintNameExistsError as e:
+            clashes_names.append(b)
+        except BlueprintEquivalentExistsError as e:
+            clashes_gameplay.append(b)
+
+    print(TITLE.format(f"{len(clashes_names)} name clashes"))
+    for b in clashes_names:
+        print(b.name)
+
+    print(TITLE.format(f"{len(clashes_gameplay)} gameplay clashes"))
+    for b in clashes_gameplay:
+        print(b.name)
+
+
+for i in range(5, 80):
+    while True:
+        print(f"********** Potency {i} **********")
+        try:
+            create_cards_and_add_to_catalog([i] * 5)
+        except ValueError:
+            print("\n😱😱😱😱😱 VALUE ERROR 😱😱😱😱😱\n")
+        except RateLimitError:
+            print("\n⏱️⏱️⏱️⏱️⏱️ RATE LIMIT ERROR ⏱️⏱️⏱️⏱️⏱️\n")
+        else:
+            break
+
+
+# Don't forget to save!!
+
+
+# TODO send all names along? → Most likely not possible.
+# TODO Sample
