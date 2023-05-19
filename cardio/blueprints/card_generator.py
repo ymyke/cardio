@@ -149,10 +149,6 @@ def random_card(ignore_levels: int = 0) -> Card:
     return card
 
 
-def add_name(card: Card) -> None:
-    card.name = "Randy Rowdy"
-
-
 def create_noname_card(
     wanted_potency: Optional[int] = None, exactly: bool = False
 ) -> Card:
