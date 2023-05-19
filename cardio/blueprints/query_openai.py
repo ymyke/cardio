@@ -20,7 +20,7 @@ TASK: Suggest a name for the following cards:
 
 RULES: 
 - The name must have no more than 12 characters. 
-- Use only animal names. Names of other cards in the game are: Hamster, Koala, Porcupine, Lynx, Weasel, Church Mouse. 
+- Use only animal names, but fantastical ones. Names of other cards in the game are: Hamster, Koala, Porcupine, Lynx, Weasel, Church Mouse. 
 - Take the attribute values (and their min/max) and the skill names into account and suggest a name that fits with the overall character of a card. 
 - Keep in mind the min max values per attribute and relate to these as well: power: [0-10], health: [1-10], costs_fire: [0-6], costs_spirits: [0-8], has_spirits: [0-8], has_fire: [0-6], and a card can have up to 6 skills.
 - Answer only with the number and the name for each card and a short explanation, nothing else.
