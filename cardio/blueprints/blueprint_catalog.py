@@ -1,8 +1,11 @@
 import os
 from typing import List, Optional, Union
-from cardio import Card
+from cardio import Card, skills
 from .blueprint import Blueprint, BlueprintList
 from . import all_blueprints
+
+
+MAX_NAME_LENGTH = 14
 
 
 class BlueprintNameExistsError(Exception):
@@ -14,6 +17,14 @@ class BlueprintEquivalentExistsError(Exception):
 
 
 class BlueprintNameNotFoundError(Exception):
+    pass
+
+
+class BlueprintNameTooLongError(Exception):
+    pass
+
+
+class BlueprintSkillNameIncludedError(Exception):
     pass
 
 
@@ -71,6 +82,21 @@ class BlueprintCatalog:
         )
 
     def add_blueprint(self, blueprint: Blueprint) -> None:
+        def skillname_included(name: str) -> bool:
+            skillnames = [
+                c.__name__ for c in skills.get_skilltypes(implemented_only=True)
+            ]
+            skillnames.remove("Underdog")  # Because there's nice under* names
+            return any(s.lower()[:5] in name.lower() for s in skillnames)
+
+        if len(blueprint.name) > MAX_NAME_LENGTH:
+            raise BlueprintNameTooLongError(
+                f"Blueprint name '{blueprint.name}' too long (max {MAX_NAME_LENGTH})."
+            )
+        if skillname_included(blueprint.name):
+            raise BlueprintSkillNameIncludedError(
+                f"Blueprint name '{blueprint.name}' includes a skill name."
+            )
         if self.find_by_name(blueprint.name):
             raise BlueprintNameExistsError(
                 f"Blueprint with name '{blueprint.name}' already exists."

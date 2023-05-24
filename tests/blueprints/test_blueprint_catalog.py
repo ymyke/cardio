@@ -12,6 +12,8 @@ from cardio.blueprints.blueprint_catalog import (
     BlueprintNameNotFoundError,
     BlueprintNameExistsError,
     BlueprintEquivalentExistsError,
+    BlueprintNameTooLongError,
+    BlueprintSkillNameIncludedError,
 )
 
 
@@ -57,6 +59,22 @@ def test_add_blueprint_successfully():
     assert b in tc._blueprints
 
 
+def test_add_blueprint_name_too_long():
+    c = Card("X", 1, 1, 1)
+    b = Blueprint(c, "desc")
+    b.name = "thisnameisdefinitelyverymuchtoooverlylong"
+    with pytest.raises(BlueprintNameTooLongError):
+        tc.add_blueprint(b)
+
+
+def test_add_blueprint_skill_name_included():
+    c = Card("X", 1, 1, 1)
+    b = Blueprint(c, "desc")
+    b.name = "xinstanty"
+    with pytest.raises(BlueprintSkillNameIncludedError):
+        tc.add_blueprint(b)
+
+
 def test_add_blueprint_name_exists():
     c = tc._blueprints[0]._original
     c.skills = ["xxx"]
@@ -67,7 +85,7 @@ def test_add_blueprint_name_exists():
 
 def test_add_blueprint_equivalent_exists():
     c = tc._blueprints[0]._original
-    c.name = "thisnamedoesnotexistforsure"
+    c.name = "DSNTXST"
     b = Blueprint(c, "desc")
     with pytest.raises(BlueprintEquivalentExistsError):
         tc.add_blueprint(b)
