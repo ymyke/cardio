@@ -15,8 +15,8 @@ def test_generate():
     # Try different seed and higher rung:
     l = FightLocation("2", 30, 1, [0])
     assert [(loc, card.name) for loc, card in l.computerstrategy.cards] == [
-        (GridPos(line=0, slot=0), "Lynx"),
-        (GridPos(line=1, slot=3), "Weasel"),
-        (GridPos(line=1, slot=0), "Lynx"),
-        (GridPos(line=0, slot=2), "Koala"),
+        (GridPos(line=0, slot=0), "Chameleon"),
+        (GridPos(line=1, slot=3), "Koala"),
+        (GridPos(line=1, slot=0), "Mole"),
+        (GridPos(line=0, slot=2), "Falcon"),
     ]
