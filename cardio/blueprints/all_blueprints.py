@@ -533,51 +533,6 @@ all_blueprints = [
         ),
         description="high fire costs, average attributes, and no skills This name suggests a fiery creature that lacks any special abilities, fitting with the card's attributes ",
     ),
-    # Faeox Fairy Fox 🐩 1p 2h
-    # costs: 🔥 has: - pot: 7
-    Blueprint(
-        original=Card(
-            name="Faeox Fairy Fox",
-            power=1,
-            health=2,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=0,
-            has_fire=0,
-            skills=[skills.Underdog],
-        ),
-        description="Underdog, weak but with potential",
-    ),
-    # Spriggle Sprite Squirrel  1p 1h
-    # costs: 🔥 has: 👻👻👻👻 pot: 6
-    Blueprint(
-        original=Card(
-            name="Spriggle Sprite Squirrel",
-            power=1,
-            health=1,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=0,
-            skills=[],
-        ),
-        description="Small, but with high spirit power",
-    ),
-    # Shadowolf Shadow Wolf  2p 2h
-    # costs: 🔥🔥🔥 has: - pot: 4
-    Blueprint(
-        original=Card(
-            name="Shadowolf Shadow Wolf",
-            power=2,
-            health=2,
-            costs_fire=3,
-            costs_spirits=0,
-            has_spirits=0,
-            has_fire=0,
-            skills=[],
-        ),
-        description="Expensive, but very strong and powerful, with no magic abilities",
-    ),
     # Griffox  3p 2h
     # costs: 👻👻👻👻 has: 👻👻👻 pot: 7
     Blueprint(
@@ -652,21 +607,6 @@ all_blueprints = [
             skills=[],
         ),
         description="a fantasy creature with thorns on its wings and body The name relates to the power, cost, and fire element of the card",
-    ),
-    # Shieldcat 🔰 2p 1h
-    # costs: 👻👻👻👻👻👻 has: 🔥👻 pot: 7
-    Blueprint(
-        original=Card(
-            name="Shieldcat",
-            power=2,
-            health=1,
-            costs_fire=0,
-            costs_spirits=6,
-            has_spirits=1,
-            has_fire=1,
-            skills=[skills.Shield],
-        ),
-        description="a catlike creature with a shield The name relates to the skills and high spirit cost of the card",
     ),
     # Treewhisper  1p 6h
     # costs: 👻👻👻👻 has: 👻👻 pot: 10
@@ -1343,21 +1283,6 @@ all_blueprints = [
         ),
         description="This name is a nod to the dragon's firebreathing abilities, as well as its fertility skill The card's name also reflects its lower power and health values",
     ),
-    # Shield Beetle 🔰 4p 4h
-    # costs: 👻 has: 🔥👻 pot: 21
-    Blueprint(
-        original=Card(
-            name="Shield Beetle",
-            power=4,
-            health=4,
-            costs_fire=0,
-            costs_spirits=1,
-            has_spirits=1,
-            has_fire=1,
-            skills=[skills.Shield],
-        ),
-        description="The name Shield Beetle is perfect for a creature with high health and a shield skill, fitting with its armorlike defenses",
-    ),
     # Phoenix Cub 🐭 2p 3h
     # costs: 🔥 has: 🔥🔥🔥👻 pot: 19
     Blueprint(
@@ -1762,36 +1687,6 @@ all_blueprints = [
             ],
         ),
         description='relates to the instant death skill, while "Drake" sounds powerful and mythical The high fire cost suggests a creature that is difficult to summon, while the high spirit attribute supports its omenlike nature',
-    ),
-    # FertileAves 🪁🧺🔰🐭 2p 1h
-    # costs: 🔥 has: 🔥👻 pot: 27
-    Blueprint(
-        original=Card(
-            name="FertileAves",
-            power=2,
-            health=1,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=1,
-            skills=[skills.Soaring, skills.Packrat, skills.Shield, skills.Fertility],
-        ),
-        description='relates to the fertility skill, while "Aves" sounds dignified The card\'s low power and health and high spirits attribute suggest a spirit animal instead of a real one The low fire cost might reflect a creature that is easy to summon',
-    ),
-    # ShieldBug 🐩🔰 1p 3h
-    # costs: - has: 🔥👻👻👻👻 pot: 29
-    Blueprint(
-        original=Card(
-            name="ShieldBug",
-            power=1,
-            health=3,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=1,
-            skills=[skills.Underdog, skills.Shield],
-        ),
-        description='relates to the shield skill, while "Bug" sounds humble The high spirit attribute reflects the card\'s ability to function as an underdog The high health and low power suggest a creature that can absorb a lot of damage while dealing only little The absence of fire attribute suggests a creature that does not possess any innate magic power',
     ),
     # Kraken 🔰🐩💀 7p 1h
     # costs: 👻👻👻👻 has: 🔥🔥 pot: 28
@@ -2307,26 +2202,6 @@ all_blueprints = [
             ],
         ),
         description="related to the card's ability to fly soaring skill, high health, and the underdog skill which suggests that this creature is capable of defending itself from attacks Krakens are mythical creatures that have a reputation for being huge, strong, and hard to defeat",
-    ),
-    # ShieldTurtle 🔰🐩🐭💀 5p 3h
-    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 39
-    Blueprint(
-        original=Card(
-            name="ShieldTurtle",
-            power=5,
-            health=3,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=2,
-            has_fire=2,
-            skills=[
-                skills.Shield,
-                skills.Underdog,
-                skills.Fertility,
-                skills.InstantDeath,
-            ],
-        ),
-        description="related to its high defense and ability to shield itself shield skill, high power but relatively low health, and ability to come back to life after being defeated thanks to its fertility skill",
     ),
     # ShadowCub 🐭💀🧺 2p 10h
     # costs: 🔥 has: 🔥👻 pot: 41
@@ -3036,21 +2911,6 @@ all_blueprints = [
         ),
         description="This card's high health and power, combined with the InstantDeath skill, suggests a powerful and formidable bird of prey The name Stormcrow reflects its power and possible affinity with air elements",
     ),
-    # Banshee InstantDeath 💀 2p 2h
-    # costs: 🔥 has: 👻 pot: 13
-    Blueprint(
-        original=Card(
-            name="Banshee InstantDeath",
-            power=2,
-            health=2,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=0,
-            skills=[skills.InstantDeath],
-        ),
-        description="Banshees are mystical creatures known for their ability to induce instant death through their scream The high powerhealth and the skill align with their deadly reputation",
-    ),
     # PhoenixDeath 💀 1p 2h
     # costs: 🔥🔥 has: 🔥👻👻👻👻 pot: 14
     Blueprint(
@@ -3095,36 +2955,6 @@ all_blueprints = [
             skills=[skills.Underdog],
         ),
         description="relates to the high fire cost and the Underdog skill, suggesting a fierce and powerful creature with flames",
-    ),
-    # ChimeraStrength  2p 4h
-    # costs: 🔥 has: 🔥🔥👻👻👻 pot: 14
-    Blueprint(
-        original=Card(
-            name="ChimeraStrength",
-            power=2,
-            health=4,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=2,
-            skills=[],
-        ),
-        description="relates to the relatively high power and health values, and the mixed element cost, suggesting a mythical and powerful creature",
-    ),
-    # FairyFertility 🐭 1p 2h
-    # costs: 🔥 has: 🔥 pot: 13
-    Blueprint(
-        original=Card(
-            name="FairyFertility",
-            power=1,
-            health=2,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=0,
-            has_fire=1,
-            skills=[skills.Fertility],
-        ),
-        description="relates to the Fertility skill and the low attribute values, suggesting a small and magical creature with the ability to enhance growth",
     ),
     # Gryphoness 🪁 5p 2h
     # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 15
@@ -3516,21 +3346,6 @@ all_blueprints = [
         ),
         description="low powerhealth, high cost due to spirits, focused on instakill and spines",
     ),
-    # Inferno Chameleon  2p 1h
-    # costs: 🔥 has: 🔥🔥🔥🔥👻 pot: 8
-    Blueprint(
-        original=Card(
-            name="Inferno Chameleon",
-            power=2,
-            health=1,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=4,
-            skills=[],
-        ),
-        description="low health, versatile fire element, ability to adapt to different situations",
-    ),
     # Ember Fox  1p 2h
     # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻 pot: 8
     Blueprint(
@@ -3665,21 +3480,6 @@ all_blueprints = [
             skills=[skills.Shield],
         ),
         description="This card is low on spirit but has high defense skill Shield and  power The name Crustaceon relates to its ability to defend itself with its shell, like a crustacean, while still having enough power to attack",
-    ),
-    # Packrally 🧺 1p 4h
-    # costs: 🔥 has: 👻👻 pot: 14
-    Blueprint(
-        original=Card(
-            name="Packrally",
-            power=1,
-            health=4,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=2,
-            has_fire=0,
-            skills=[skills.Packrat],
-        ),
-        description="This card has good health and skill Packrat, which suggests hoarding and gathering resources The name Packrally evokes the idea of a group of creatures working together to gather resources and protect each other",
     ),
     # Aardvark  0p 7h
     # costs: 🔥 has: 🔥👻 pot: 13
@@ -3876,21 +3676,6 @@ all_blueprints = [
         ),
         description='combining the skills and attributes power and InstantDeath with the mythical creature Basilisk, and the "kin" ending suggests a smaller version of it',
     ),
-    # Shieldturtle 🐩 1p 8h
-    # costs: 🔥🔥🔥 has: 🔥🔥👻 pot: 19
-    Blueprint(
-        original=Card(
-            name="Shieldturtle",
-            power=1,
-            health=8,
-            costs_fire=3,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=2,
-            skills=[skills.Underdog],
-        ),
-        description="a turtle represents high defense and health while the Shield skill supports this, and the name has a nice ring to it",
-    ),
     # Spritelion 🔰🐭 1p 3h
     # costs: 👻👻 has: 🔥🔥 pot: 21
     Blueprint(
@@ -3996,21 +3781,6 @@ all_blueprints = [
         ),
         description="medium strength, good endurance, low flame cost, heartening, shielded, flying",
     ),
-    # Spirit Tortoise 🔰🐭 4p 1h
-    # costs: 🔥🔥🔥 has: 🔥👻 pot: 21
-    Blueprint(
-        original=Card(
-            name="Spirit Tortoise",
-            power=4,
-            health=1,
-            costs_fire=3,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=1,
-            skills=[skills.Shield, skills.Fertility],
-        ),
-        description="slow, with high defense, having the ability to breed rapidly",
-    ),
     # Diamondback  2p 6h
     # costs: - has: 👻 pot: 23
     Blueprint(
@@ -4055,21 +3825,6 @@ all_blueprints = [
             skills=[skills.Fertility],
         ),
         description="an explosive and fiery creature with high power and fire costs, suggested by the card's high power and fire attributes, and the Fertility skill, which could represent the ability to multiply",
-    ),
-    # Packrider 🧺💀 3p 3h
-    # costs: 🔥 has: 🔥👻 pot: 22
-    Blueprint(
-        original=Card(
-            name="Packrider",
-            power=3,
-            health=3,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=1,
-            skills=[skills.Packrat, skills.InstantDeath],
-        ),
-        description="a quick and cunning animal with the ability to hoard resources and instant death powers, suggested by the Packrat and InstantDeath skills, and wellbalanced power and health attributes",
     ),
     # Flamefang 🧺🐭 4p 2h
     # costs: 🔥🔥🔥 has: 🔥🔥 pot: 22
@@ -4727,28 +4482,6 @@ all_blueprints = [
         ),
         description="the name suggests a powerful and undead feline, fitting for a card with high power and health The skills Fertility and Underdog suggest a cunning and dangerous creature, while InstantDeath hints at its vampiric nature",
     ),
-    # Drakespine 🔰🦔🧺💀🚀🪁 4p 3h
-    # costs: 🔥🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 41
-    Blueprint(
-        original=Card(
-            name="Drakespine",
-            power=4,
-            health=3,
-            costs_fire=3,
-            costs_spirits=0,
-            has_spirits=5,
-            has_fire=5,
-            skills=[
-                skills.Shield,
-                skills.Spines,
-                skills.Packrat,
-                skills.InstantDeath,
-                skills.Airdefense,
-                skills.Soaring,
-            ],
-        ),
-        description="the name refers to a mythical creature with dragonlike features and defensive spines The skills Shield, Spines, Airdefense, and Soaring emphasize its defensive and aerial traits Costsfire and hasfire also align with the creature's draconic nature, while Packrat and InstantDeath show that it can be resourceful and dangerous",
-    ),
     # Spiritsquirrel 🧺💀🐭 2p 7h
     # costs: 🔥 has: 🔥🔥👻👻👻👻 pot: 39
     Blueprint(
@@ -5080,26 +4813,6 @@ all_blueprints = [
         ),
         description="referring to the high instant death skill and the spines, as well as the relatively low power",
     ),
-    # Armashield 🦔🔰💀🐭 4p 8h
-    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻 pot: 49
-    Blueprint(
-        original=Card(
-            name="Armashield",
-            power=4,
-            health=8,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=4,
-            skills=[
-                skills.Spines,
-                skills.Shield,
-                skills.InstantDeath,
-                skills.Fertility,
-            ],
-        ),
-        description="a mix between an armadillo and a shield, referring to the high health and spines, as well as its shield and instant death skills",
-    ),
     # Phoenixcat 💀🐭🔰 9p 4h
     # costs: 🔥 has: 🔥🔥🔥👻👻👻👻 pot: 48
     Blueprint(
@@ -5416,26 +5129,6 @@ all_blueprints = [
         ),
         description="The high spirit score and Fertility skill of this card suggest a magical creature with healing abilities Its high power and health make it a formidable opponent The name Faeunicorn represents the creature's magical essence and physical toughness",
     ),
-    # Shieldrhino 🐭💀🧺🔰 5p 7h
-    # costs: 🔥 has: 🔥🔥👻👻 pot: 49
-    Blueprint(
-        original=Card(
-            name="Shieldrhino",
-            power=5,
-            health=7,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=2,
-            has_fire=2,
-            skills=[
-                skills.Fertility,
-                skills.InstantDeath,
-                skills.Packrat,
-                skills.Shield,
-            ],
-        ),
-        description="This creature has the skills Shield and Packrat, indicating that it's an invincible collector The high health score and the rhinolike strength make it difficult to defeat Shieldrhino represents the creature's strength, protective qualities, and natural armor",
-    ),
     # Firebug 💀🔰🐭 9p 4h
     # costs: 👻👻👻👻👻 has: 🔥🔥👻👻 pot: 42
     Blueprint(
@@ -5589,21 +5282,6 @@ all_blueprints = [
             skills=[skills.Fertility, skills.Underdog, skills.Packrat],
         ),
         description="low powerhealth, high fire cost, packrat, underdog",
-    ),
-    # ShieldArmadillo 🧺🔰 4p 6h
-    # costs: 🔥🔥🔥 has: 👻👻 pot: 28
-    Blueprint(
-        original=Card(
-            name="ShieldArmadillo",
-            power=4,
-            health=6,
-            costs_fire=3,
-            costs_spirits=0,
-            has_spirits=2,
-            has_fire=0,
-            skills=[skills.Packrat, skills.Shield],
-        ),
-        description="low power, high health, high fire cost, packrat, shield",
     ),
     # Fungaloid 🧺🦔🔰🐭💀 8p 8h
     # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 75
@@ -5814,21 +5492,6 @@ all_blueprints = [
         ),
         description="This card has low power and health but the Underdog skill, which makes it stronger when it is outnumbered The name Undergnat plays on this theme of being small but able to annoy opponents, like a pesky little insect",
     ),
-    # Shieldpup 💀🔰 2p 1h
-    # costs: 🔥🔥 has: 👻 pot: 16
-    Blueprint(
-        original=Card(
-            name="Shieldpup",
-            power=2,
-            health=1,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=0,
-            skills=[skills.InstantDeath, skills.Shield],
-        ),
-        description="With a few defensive skills but low power and health, this card seems like a scrappy little puppy that can bark a lot but isn't too intimidating on its own The name Shieldpup reflects its resilience and potential to grow into a stronger protector",
-    ),
     # Bansheeowl 💀🐭🐩 1p 1h
     # costs: 🔥🔥🔥 has: 🔥🔥👻 pot: 21
     Blueprint(
@@ -6027,21 +5690,6 @@ all_blueprints = [
         ),
         description="powerful, fiery, low spirits cost, low spirits value, moderate health",
     ),
-    # Luckythorn 🍀💀 1p 1h
-    # costs: 🔥 has: 🔥 pot: 9
-    Blueprint(
-        original=Card(
-            name="Luckythorn",
-            power=1,
-            health=1,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=0,
-            has_fire=1,
-            skills=[skills.LuckyStrike, skills.InstantDeath],
-        ),
-        description="lucky and deadly, but weak, firebased, no spirits",
-    ),
     # Flamegrizzly 🐭🔰💀 2p 2h
     # costs: 🔥🔥 has: 🔥🔥🔥🔥👻 pot: 29
     Blueprint(
@@ -6056,36 +5704,6 @@ all_blueprints = [
             skills=[skills.Fertility, skills.Shield, skills.InstantDeath],
         ),
         description="strong, high fire cost and fire value, can shield and procreate",
-    ),
-    # Shieldrex 💀🔰🐭 7p 6h
-    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻 pot: 48
-    Blueprint(
-        original=Card(
-            name="Shieldrex",
-            power=7,
-            health=6,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=3,
-            skills=[skills.InstantDeath, skills.Shield, skills.Fertility],
-        ),
-        description="highly protective, strong and enduring, high spirits value, high fire value",
-    ),
-    # Fertigore 💀🧺🐭 8p 8h
-    # costs: 🔥🔥 has: 🔥🔥🔥👻👻👻👻 pot: 51
-    Blueprint(
-        original=Card(
-            name="Fertigore",
-            power=8,
-            health=8,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=3,
-            skills=[skills.InstantDeath, skills.Packrat, skills.Fertility],
-        ),
-        description="Fertile and has  power and health, with the skills InstantDeath and Packrat",
     ),
     # Coralynx  5p 1h
     # costs: 🔥 has: 🔥👻 pot: 11
@@ -6147,27 +5765,6 @@ all_blueprints = [
         ),
         description="A strong card with high power and moderate health, with an expensive cost in fire to play",
     ),
-    # FertilitySage 🧺💀🔰🐩🐭 3p 5h
-    # costs: 👻👻 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 51
-    Blueprint(
-        original=Card(
-            name="FertilitySage",
-            power=3,
-            health=5,
-            costs_fire=0,
-            costs_spirits=2,
-            has_spirits=7,
-            has_fire=5,
-            skills=[
-                skills.Packrat,
-                skills.InstantDeath,
-                skills.Shield,
-                skills.Underdog,
-                skills.Fertility,
-            ],
-        ),
-        description='This card has a high health and spirit cost and specializes in increasing the fertility of other cards Its packrat skill helps keep it supplied with enough spirits, and its instant death skill can neutralize a powerful enemy The name "FertilitySage" fits its nurturing nature and speciality in providing support to other cards',
-    ),
     # ThornedLynx 💀🐭🔰🦔 4p 6h
     # costs: 🔥🔥 has: 🔥🔥👻👻👻 pot: 42
     Blueprint(
@@ -6202,26 +5799,6 @@ all_blueprints = [
             skills=[skills.Spines],
         ),
         description='This cheap card has high power and low health, plus useful spines and moderate fire and spirit costs Its name "SpinyImp" represents its mischievous and spiky nature, with the ability to inflict damage',
-    ),
-    # ShieldedBasilisk 🧺💀🔰🐭 5p 6h
-    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 61
-    Blueprint(
-        original=Card(
-            name="ShieldedBasilisk",
-            power=5,
-            health=6,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=5,
-            skills=[
-                skills.Packrat,
-                skills.InstantDeath,
-                skills.Shield,
-                skills.Fertility,
-            ],
-        ),
-        description='This card has moderate stats overall, with high fire and spirit costs and shield, instant death, packrat, and fertility skills Its name "ShieldedBasilisk" emphasizes its defensive capabilities, and the instant death skill represents its dangerous nature',
     ),
     # ArmoredRhino 💀🧺🐭🔰 8p 3h
     # costs: 🔥 has: 🔥🔥👻👻 pot: 47
@@ -6382,21 +5959,6 @@ all_blueprints = [
         ),
         description="high health, lots of firespirit, defensive skills, and name relates to defensive skill and animal combination",
     ),
-    # FertilityFox 🐭 1p 2h
-    # costs: 🔥 has: 👻 pot: 13
-    Blueprint(
-        original=Card(
-            name="FertilityFox",
-            power=1,
-            health=2,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=0,
-            skills=[skills.Fertility],
-        ),
-        description="low powerhealth, minimal fire, one fertility skill, and animal name relates to skill",
-    ),
     # Spiritox 🐭🧺💀 5p 10h
     # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 50
     Blueprint(
@@ -6442,28 +6004,6 @@ all_blueprints = [
         ),
         description="a dangerous reptilian creature that requires spirit to summon and is quite fragile Despite this, its flight skills make it difficult to attack Its name references both its ability to fly and its venomous bite",
     ),
-    # ShieldBear 🦔🪁🔰🐭🧺🐩 6p 7h
-    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 66
-    Blueprint(
-        original=Card(
-            name="ShieldBear",
-            power=6,
-            health=7,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=5,
-            skills=[
-                skills.Spines,
-                skills.Soaring,
-                skills.Shield,
-                skills.Fertility,
-                skills.Packrat,
-                skills.Underdog,
-            ],
-        ),
-        description="a massive creature with high health and strength but no fire cost Its skills, particularly shield and underdog, indicate a tanklike role Its name references its ability to protect other creatures and take heavy hits",
-    ),
     # Featherbat 🪁 2p 2h
     # costs: 🔥 has: 🔥👻👻👻👻👻 pot: 13
     Blueprint(
@@ -6478,21 +6018,6 @@ all_blueprints = [
             skills=[skills.Soaring],
         ),
         description="a flying creature with medium powerhealth and moderate fire cost Its soaring skill makes it difficult to attack, while its name references its feathered wings and its batlike appearance",
-    ),
-    # Shieldbear 🐭🔰💀 3p 9h
-    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 42
-    Blueprint(
-        original=Card(
-            name="Shieldbear",
-            power=3,
-            health=9,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=2,
-            has_fire=2,
-            skills=[skills.Fertility, skills.Shield, skills.InstantDeath],
-        ),
-        description="The card has high health and is equipped with several shield skills The name Shieldbear indicates a sturdy, armored creature that is tough to take down",
     ),
     # Faeferret 🐭 1p 2h
     # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 14
@@ -6595,21 +6120,6 @@ all_blueprints = [
             ],
         ),
         description="related to the protective skills and the equally balanced attributes",
-    ),
-    # Packratle 🧺🔰💀 2p 3h
-    # costs: - has: 🔥🔥👻👻👻 pot: 39
-    Blueprint(
-        original=Card(
-            name="Packratle",
-            power=2,
-            health=3,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=2,
-            skills=[skills.Packrat, skills.Shield, skills.InstantDeath],
-        ),
-        description="related to the packrat skill and the name similarity to Armadillo",
     ),
     # Thunderhorn 🐭💀🧺🐩🦔🔰 8p 8h
     # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 78
@@ -6935,21 +6445,6 @@ all_blueprints = [
         ),
         description="a fierce leader of underground armies, with low power and average health but an expert at underdog and packrat skills He costs a bit of fire but has a good spirit supply",
     ),
-    # Fertilebacks 🐭🔰 1p 2h
-    # costs: 🔥🔥🔥 has: 👻 pot: 17
-    Blueprint(
-        original=Card(
-            name="Fertilebacks",
-            power=1,
-            health=2,
-            costs_fire=3,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=0,
-            skills=[skills.Fertility, skills.Shield],
-        ),
-        description="a creature skilled at fertility and has shield skill, meaning it can protect itself and its pack with a good health supply He has a higher cost of fire to summon and no fire attribute, but still a valuable addition to a deck",
-    ),
     # Flowhound 🐭 1p 5h
     # costs: 🔥🔥 has: 🔥👻 pot: 18
     Blueprint(
@@ -7099,21 +6594,6 @@ all_blueprints = [
             ],
         ),
         description="a fiery bug with spines and shield skills, with high power and low health stats",
-    ),
-    # Spinefury 🦔 6p 3h
-    # costs: - has: 🔥👻👻👻 pot: 30
-    Blueprint(
-        original=Card(
-            name="Spinefury",
-            power=6,
-            health=3,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=1,
-            skills=[skills.Spines],
-        ),
-        description='This creature has relatively low power and health stats, but it does have Spines, which suggests a certain level of defensiveness Its spirits and fire stats are both relatively low, so the name should reflect that "Spinefury" plays off the "spines" skill, while also conveying a sense of urgency and intensity',
     ),
     # Flame 🔰 5p 5h
     # costs: 🔥 has: 👻👻👻 pot: 25
@@ -7296,21 +6776,6 @@ all_blueprints = [
             skills=[],
         ),
         description="low power, low health, high fire costs, moderate spirits, no skills",
-    ),
-    # Shell Shield 🔰 1p 3h
-    # costs: 👻 has: 🔥👻 pot: 14
-    Blueprint(
-        original=Card(
-            name="Shell Shield",
-            power=1,
-            health=3,
-            costs_fire=0,
-            costs_spirits=1,
-            has_spirits=1,
-            has_fire=1,
-            skills=[skills.Shield],
-        ),
-        description="low power, moderate health, no fire cost, high spirits, defensive skills",
     ),
     # Blossomice 🐭🔰💀🧺 10p 5h
     # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 59
@@ -7500,21 +6965,6 @@ all_blueprints = [
         ),
         description="a highly offensive, high health, and nocost card with various skills The name incorporates a reference to the fire and skills for air defense, and a powerful beak attack",
     ),
-    # FertilityCat 🔰🐭💀 2p 1h
-    # costs: 🔥 has: 🔥👻👻👻 pot: 28
-    Blueprint(
-        original=Card(
-            name="FertilityCat",
-            power=2,
-            health=1,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=1,
-            skills=[skills.Shield, skills.Fertility, skills.InstantDeath],
-        ),
-        description="a card with average health and decent attack power, capable of breeding new cards and populating the field with multiple units to overpower opponents, also has the ability to instantly kill opposing cards",
-    ),
     # PackWyvern 🐭💀🧺🔰 7p 8h
     # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻 pot: 58
     Blueprint(
@@ -7534,41 +6984,6 @@ all_blueprints = [
             ],
         ),
         description="a formidable card with high health and strong attack, also has several skills like Fertility, InstantDeath and Shield that makes it the leader of the pack, symbolizing a loyal and powerful dragon",
-    ),
-    # AirSpine 🐭💀🚀🦔 8p 8h
-    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 52
-    Blueprint(
-        original=Card(
-            name="AirSpine",
-            power=8,
-            health=8,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=5,
-            skills=[
-                skills.Fertility,
-                skills.InstantDeath,
-                skills.Airdefense,
-                skills.Spines,
-            ],
-        ),
-        description="a versatile card with high attack and defense power, has skills that can make it a powerful flying force on the battlefield, yet spines that provide great defense when under attack, symbolizing a deadly air defense unit",
-    ),
-    # Packratling 💀🧺🐭 4p 3h
-    # costs: 👻 has: 🔥👻 pot: 32
-    Blueprint(
-        original=Card(
-            name="Packratling",
-            power=4,
-            health=3,
-            costs_fire=0,
-            costs_spirits=1,
-            has_spirits=1,
-            has_fire=1,
-            skills=[skills.InstantDeath, skills.Packrat, skills.Fertility],
-        ),
-        description="a small card with low power but decent health and skills like Fertility and Packrat, that allows it to breed and store greater units, symbolizing a sneaky and resourceful creature",
     ),
     # Furylynx 🧺💀🔰🦔🐭 7p 5h
     # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 66
@@ -7621,28 +7036,6 @@ all_blueprints = [
         ),
         description='This card has moderate power and high health, with a high spirit cost and a single skill to take out opponents The name combines "death" to represent its instant death skill and "screech" to represent its ferocity',
     ),
-    # Shieldedspine 🐭🔰🐩🦔🧺💀 5p 8h
-    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 61
-    Blueprint(
-        original=Card(
-            name="Shieldedspine",
-            power=5,
-            health=8,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=5,
-            skills=[
-                skills.Fertility,
-                skills.Shield,
-                skills.Underdog,
-                skills.Spines,
-                skills.Packrat,
-                skills.InstantDeath,
-            ],
-        ),
-        description='This card has high power and health, moderate fire costs, and multiple skills to protect itself and take down opponents The name combines "shielded" to represent its skills to protect itself and "spine" to represent its spines skill and general toughness',
-    ),
     # Armogator 🧺 6p 4h
     # costs: 🔥🔥 has: 🔥👻 pot: 22
     Blueprint(
@@ -7672,21 +7065,6 @@ all_blueprints = [
             skills=[skills.Shield],
         ),
         description="This card has moderate power and low health, costs low fire resource and has a skill Shield, so it feels like an offensive card that has a defense mechanism The name Flamebug is related to its fire attribute and small size, making it more likely for players to underestimate its potential",
-    ),
-    # Fertilecat 🐭 5p 4h
-    # costs: 🔥 has: 🔥👻 pot: 24
-    Blueprint(
-        original=Card(
-            name="Fertilecat",
-            power=5,
-            health=4,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=1,
-            skills=[skills.Fertility],
-        ),
-        description="This card has high power and health, costs low fire resource, and has a Fertility skill, which suggests it fights together with more allies The name Fertilecat plays into the high health and strength of the card, while the cat part suggests that it's a fastmoving and aggressive card",
     ),
     # Nightox 🐭🔰🐩🍀🧺🪁 9p 8h
     # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 74
@@ -7764,26 +7142,6 @@ all_blueprints = [
             skills=[skills.Shield, skills.Fertility, skills.Soaring, skills.Spines],
         ),
         description="strong and spirited, great for defense, able to soar",
-    ),
-    # Shadowarmadillo 🔰🧺💀🐭 0p 4h
-    # costs: 🔥🔥 has: 🔥👻👻 pot: 33
-    Blueprint(
-        original=Card(
-            name="Shadowarmadillo",
-            power=0,
-            health=4,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=2,
-            has_fire=1,
-            skills=[
-                skills.Shield,
-                skills.Packrat,
-                skills.InstantDeath,
-                skills.Fertility,
-            ],
-        ),
-        description="low power and health, shielded and sneaky",
     ),
     # Fangedrake 🧺🔰🐭💀🦔 9p 10h
     # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 70
@@ -8375,26 +7733,6 @@ all_blueprints = [
         ),
         description="The balance of the health and power stats of this card is reflected in a name that captures both aspects The Fertility skill suggests the creature is quick to breed, so bring lots of little ones with them  Fire and  Spirit cost",
     ),
-    # Shieldonix 🔰🧺💀🐭 5p 6h
-    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 49
-    Blueprint(
-        original=Card(
-            name="Shieldonix",
-            power=5,
-            health=6,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=3,
-            skills=[
-                skills.Shield,
-                skills.Packrat,
-                skills.InstantDeath,
-                skills.Fertility,
-            ],
-        ),
-        description="The Shield skill is an important characteristic for this card, and as a creature with high health and power, it can be related to a shield being solid and sturdy The Packrat skill refers to a tendency to hoard items or resources, and as such, Shieldonix should be related to an armadillo or a creature with armor scales",
-    ),
     # Grimshark 💀🔰🧺🐭 9p 9h
     # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 64
     Blueprint(
@@ -8543,42 +7881,6 @@ all_blueprints = [
             ],
         ),
         description="A fantastical lynx with a coat that glimmers in various colors Its power and health attributes are above average, denoted by its attribute values, and are complemented by a variety of skills Its inclusion of InstantDeath and Shield skills speaks to its overall cleverness and fighting prowess in battle",
-    ),
-    # Soaringphoenix 🪁💀🔰🐭🐩 9p 10h
-    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 77
-    Blueprint(
-        original=Card(
-            name="Soaringphoenix",
-            power=9,
-            health=10,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=6,
-            has_fire=5,
-            skills=[
-                skills.Soaring,
-                skills.InstantDeath,
-                skills.Shield,
-                skills.Fertility,
-                skills.Underdog,
-            ],
-        ),
-        description="A majestic and highly valuable bird that costs no fire to put on the board and has high spirit requirements Its power and health attributes are very strong and suggest the bird's overall strength, making it hard to defeat Its multiple skills, including Soaring, suggest its ability to rise above opponents and avoid attacks while delivering powerful blows",
-    ),
-    # Fertilemole 🐭💀🧺 2p 6h
-    # costs: 🔥 has: 🔥🔥👻👻👻 pot: 36
-    Blueprint(
-        original=Card(
-            name="Fertilemole",
-            power=2,
-            health=6,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=2,
-            skills=[skills.Fertility, skills.InstantDeath, skills.Packrat],
-        ),
-        description="A cute and furry animal that has very low offensive attributes but high health, denoting it is harder to defeat It requires few resources to put on the board and has skills that suggest its value in creating new allies Fertility, while still possessing enough defensive capabilities to be a useful ally in battle with its InstantDeath and Packrat skills",
     ),
     # Flamebeast 💀🐭🪁🐩🔰 5p 10h
     # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 69
@@ -8780,28 +8082,6 @@ all_blueprints = [
             ],
         ),
         description="a strong creature with instantdeath and protection skills",
-    ),
-    # Soarspine 🐭🪁💀🦔🔰🧺 6p 8h
-    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 71
-    Blueprint(
-        original=Card(
-            name="Soarspine",
-            power=6,
-            health=8,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=5,
-            has_fire=5,
-            skills=[
-                skills.Fertility,
-                skills.Soaring,
-                skills.InstantDeath,
-                skills.Spines,
-                skills.Shield,
-                skills.Packrat,
-            ],
-        ),
-        description="an animal with a very high health, soaring, and spines skills",
     ),
     # Voodoomonkey 🐭💀 6p 5h
     # costs: - has: 🔥🔥👻👻👻👻👻👻👻 pot: 50
@@ -9285,28 +8565,6 @@ all_blueprints = [
         ),
         description='With its small size and average attributes, this card is a basic mole creature with no skills The card was named after a combination of the words "mole" and "dynamite" to give it a more memorable and unique name that fits its explosive potential',
     ),
-    # Shieldfin 🐩🦔🐭🔰🧺💀 10p 9h
-    # costs: 👻 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 74
-    Blueprint(
-        original=Card(
-            name="Shieldfin",
-            power=10,
-            health=9,
-            costs_fire=0,
-            costs_spirits=1,
-            has_spirits=6,
-            has_fire=6,
-            skills=[
-                skills.Underdog,
-                skills.Spines,
-                skills.Fertility,
-                skills.Shield,
-                skills.Packrat,
-                skills.InstantDeath,
-            ],
-        ),
-        description="With a high spirit attribute and multiple skills, this card has a variety of unique abilities It is named for its physical appearance, which resembles a fish with armor plating that can defend itself against attacks Its high spirit score further emphasizes its powerful defense",
-    ),
     # Flamelete 🐭🧺💀🔰 2p 1h
     # costs: 👻 has: 🔥👻 pot: 31
     Blueprint(
@@ -9357,28 +8615,6 @@ all_blueprints = [
         ),
         description="This animal name fits well with the card's high power and low health, but is also associated with agility and quick attacks The card's fire cost and fire property is also reflected in the fox's fiery nature",
     ),
-    # Shieldserpent 🐭🧺🔰🚀💀🐩 7p 8h
-    # costs: 👻 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 65
-    Blueprint(
-        original=Card(
-            name="Shieldserpent",
-            power=7,
-            health=8,
-            costs_fire=0,
-            costs_spirits=1,
-            has_spirits=7,
-            has_fire=5,
-            skills=[
-                skills.Fertility,
-                skills.Packrat,
-                skills.Shield,
-                skills.Airdefense,
-                skills.InstantDeath,
-                skills.Underdog,
-            ],
-        ),
-        description="This animal name combines the card's high power, low spirit and high health, which is reflective of the serpent's strong and tough nature Its Shield and Underdog skills also make it particularly hard to defeat",
-    ),
     # Krystaur 💀🐭 3p 2h
     # costs: 👻👻 has: 🔥🔥👻 pot: 23
     Blueprint(
@@ -9415,27 +8651,6 @@ all_blueprints = [
             ],
         ),
         description="powerful, expensive, versatile, many skills",
-    ),
-    # Shieldwolf 🔰🐩💀🧺🐭 4p 3h
-    # costs: 🔥🔥 has: 🔥🔥👻👻👻 pot: 43
-    Blueprint(
-        original=Card(
-            name="Shieldwolf",
-            power=4,
-            health=3,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=2,
-            skills=[
-                skills.Shield,
-                skills.Underdog,
-                skills.InstantDeath,
-                skills.Packrat,
-                skills.Fertility,
-            ],
-        ),
-        description="defensive, affordable, skilled, underdog",
     ),
     # Ratwizard  2p 2h
     # costs: 🔥🔥🔥 has: 🔥🔥👻 pot: 7
@@ -9623,21 +8838,6 @@ all_blueprints = [
         ),
         description="a strong and spiky creature with high health and the skills Spines and Fertility the name relates to its spiky appearance",
     ),
-    # Shieldox 🐭🔰🧺🦔 4p 7h
-    # costs: 🔥🔥 has: 🔥🔥🔥👻👻👻👻 pot: 45
-    Blueprint(
-        original=Card(
-            name="Shieldox",
-            power=4,
-            health=7,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=3,
-            skills=[skills.Fertility, skills.Shield, skills.Packrat, skills.Spines],
-        ),
-        description="a defensive card with average power and high health, and powerful skills such as Shield and Packrat the name relates to its strong defense capabilities",
-    ),
     # Springhare 🐭 1p 1h
     # costs: 🔥 has: 👻 pot: 11
     Blueprint(
@@ -9689,21 +8889,6 @@ all_blueprints = [
             ],
         ),
         description="this card is a strong allaround character with multiple skills, fairly high cost, and highly balanced attributes",
-    ),
-    # Shieldagon 🔰 3p 7h
-    # costs: - has: 🔥👻 pot: 34
-    Blueprint(
-        original=Card(
-            name="Shieldagon",
-            power=3,
-            health=7,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=1,
-            skills=[skills.Shield],
-        ),
-        description="this card's strong shield and health can make it exceptionally difficult to attack in battle, and the name 'Shieldagon' plays up this concept of a shieldlike creature",
     ),
     # Baneviper 🔰🐭💀 2p 4h
     # costs: - has: 🔥🔥👻👻 pot: 42
@@ -10094,21 +9279,6 @@ all_blueprints = [
         ),
         description="related to the high spirits and has fire attributes, also the skill Soaring",
     ),
-    # FertilityBat 🐭💀 4p 4h
-    # costs: 🔥🔥 has: 🔥 pot: 27
-    Blueprint(
-        original=Card(
-            name="FertilityBat",
-            power=4,
-            health=4,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=0,
-            has_fire=1,
-            skills=[skills.Fertility, skills.InstantDeath],
-        ),
-        description="relates to the Fertility skill, also has fire attribute",
-    ),
     # Hoarderhorn 🔰💀🧺🐭 4p 6h
     # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 49
     Blueprint(
@@ -10407,36 +9577,6 @@ all_blueprints = [
         ),
         description="This card has balanced attributes, both for spirits and fire, and the Fertility and Spines skills The name invokes the idea of a small but potent bird, with flaming feathers and spiky defense mechanisms",
     ),
-    # Shieldratle 🔰🧺🦔 1p 4h
-    # costs: - has: 🔥 pot: 32
-    Blueprint(
-        original=Card(
-            name="Shieldratle",
-            power=1,
-            health=4,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=0,
-            has_fire=1,
-            skills=[skills.Shield, skills.Packrat, skills.Spines],
-        ),
-        description="With low spirits but spiky skills, this card evokes the image of a small, tough rodent with an armadillolike defense mechanism The name hints at both its spines and its shielding ability",
-    ),
-    # Fertilebear 🔰🐭🦔 7p 3h
-    # costs: 🔥 has: 🔥🔥👻👻👻👻👻 pot: 39
-    Blueprint(
-        original=Card(
-            name="Fertilebear",
-            power=7,
-            health=3,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=5,
-            has_fire=2,
-            skills=[skills.Shield, skills.Fertility, skills.Spines],
-        ),
-        description="With high spirits and fire costs, this card is both strong and expensive Its name references not only its fertility skill but also its strength and bearlike attributes",
-    ),
     # Infernodillo 🐩🐭🔰 3p 5h
     # costs: 🔥🔥🔥 has: - pot: 28
     Blueprint(
@@ -10503,26 +9643,6 @@ all_blueprints = [
             ],
         ),
         description="strong, wellrounded, especially useful against underdog skills, and with great health, even though it's quite expensive",
-    ),
-    # Shieldhog 🔰🐭💀🧺 6p 9h
-    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 57
-    Blueprint(
-        original=Card(
-            name="Shieldhog",
-            power=6,
-            health=9,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=4,
-            skills=[
-                skills.Shield,
-                skills.Fertility,
-                skills.InstantDeath,
-                skills.Packrat,
-            ],
-        ),
-        description="exceptionally good defense, OK offense, low cost, and with good health, armored with shield, instant death, and packrat skills, making it useful in a lot of situations",
     ),
     # Embermoose 🐭💀 7p 4h
     # costs: 👻 has: 👻 pot: 33
@@ -10644,26 +9764,6 @@ all_blueprints = [
             skills=[skills.Packrat, skills.Fertility, skills.InstantDeath],
         ),
         description="relates to the InstantDeath skill, and the fact that this card has relatively high health with decent power",
-    ),
-    # Shieldon 🧺🐭🔰💀 5p 2h
-    # costs: 👻👻👻 has: 🔥👻 pot: 36
-    Blueprint(
-        original=Card(
-            name="Shieldon",
-            power=5,
-            health=2,
-            costs_fire=0,
-            costs_spirits=3,
-            has_spirits=1,
-            has_fire=1,
-            skills=[
-                skills.Packrat,
-                skills.Fertility,
-                skills.Shield,
-                skills.InstantDeath,
-            ],
-        ),
-        description="relates to the Shield skill, and the fact that this card has high power with lower health and costsspirits",
     ),
     # Mysticat 🐭🔰 7p 6h
     # costs: 🔥 has: 🔥🔥👻👻 pot: 39
@@ -10935,21 +10035,6 @@ all_blueprints = [
         ),
         description="related to the high health attribute and shield and fertility skills, makes the card appear strong defensively and indirectly deadly",
     ),
-    # Fertipod 🐭🧺💀 2p 2h
-    # costs: 🔥🔥 has: - pot: 24
-    Blueprint(
-        original=Card(
-            name="Fertipod",
-            power=2,
-            health=2,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=0,
-            has_fire=0,
-            skills=[skills.Fertility, skills.Packrat, skills.InstantDeath],
-        ),
-        description='The name is related to the fertility skill and low cost "Pod" represents a small size, also related to low power and health',
-    ),
     # Polarcheon 🔰🧺💀🦔🐭 9p 10h
     # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 67
     Blueprint(
@@ -11135,26 +10220,6 @@ all_blueprints = [
         ),
         description='related to "spines" skill, high attack and defense, and no costs for spirits, medium costs for fire',
     ),
-    # Shieldkitten 🔰🧺🐭💀 7p 7h
-    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 56
-    Blueprint(
-        original=Card(
-            name="Shieldkitten",
-            power=7,
-            health=7,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=4,
-            skills=[
-                skills.Shield,
-                skills.Packrat,
-                skills.Fertility,
-                skills.InstantDeath,
-            ],
-        ),
-        description='related to "shield" and "packrat" skills, medium attack and defense, and mediumlow costs for fire and spirits',
-    ),
     # Phoenixape 🐩💀🔰🐭🚀🦔 10p 8h
     # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 79
     Blueprint(
@@ -11264,71 +10329,6 @@ all_blueprints = [
             skills=[skills.Fertility, skills.InstantDeath],
         ),
         description='This card has a high power and health but is quite costly to play Additionally, it has the skills Fertility and InstantDeath, which indicate a powerful creature with the ability to both create life and destroy it The name "Gorgonbear" encompasses the monsterlike nature of the card, as well as the idea of death and transformation associated with the Gorgon legend',
-    ),
-    # Skypackrat 🦔💀🧺🪁🐭🐩 8p 8h
-    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 74
-    Blueprint(
-        original=Card(
-            name="Skypackrat",
-            power=8,
-            health=8,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=6,
-            has_fire=6,
-            skills=[
-                skills.Spines,
-                skills.InstantDeath,
-                skills.Packrat,
-                skills.Soaring,
-                skills.Fertility,
-                skills.Underdog,
-            ],
-        ),
-        description="With a high power and health and multiple skills including Spines, InstantDeath, and Packrat, this card suggests a nimble, scavenging creature that can hold its own in battle The name Skypackrat conveys the idea of an agile, airborne rodent that is both resourceful and potentially dangerous",
-    ),
-    # Spineviper 💀🐭🦔🔰🧺 3p 8h
-    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 53
-    Blueprint(
-        original=Card(
-            name="Spineviper",
-            power=3,
-            health=8,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=4,
-            skills=[
-                skills.InstantDeath,
-                skills.Fertility,
-                skills.Spines,
-                skills.Shield,
-                skills.Packrat,
-            ],
-        ),
-        description="This card has moderate power and health, but its skills  InstantDeath, Fertility, Spines, Shield, and Packrat  make it a formidable adversary The name Spineviper conveys the sense of a sleek, deadly creature that can attack from multiple angles and also defend itself",
-    ),
-    # Airshielder 🚀🐭🐩🔰💀🧺 4p 5h
-    # costs: 🔥🔥 has: 🔥🔥🔥👻👻👻 pot: 49
-    Blueprint(
-        original=Card(
-            name="Airshielder",
-            power=4,
-            health=5,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=3,
-            skills=[
-                skills.Airdefense,
-                skills.Fertility,
-                skills.Underdog,
-                skills.Shield,
-                skills.InstantDeath,
-                skills.Packrat,
-            ],
-        ),
-        description='With aboveaverage power and health and skills including Airdefense, Shield, InstantDeath, Packrat, and Fertility, this card suggests a creature that is wellrounded and hard to defeat The name "Airshielder" emphasizes the protective aspect of the card\'s skills, while also implying a creature that is mobile and quick to evade attack',
     ),
     # Spiritedhog 🐭🐩🧺💀🔰 5p 6h
     # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 68
@@ -11454,21 +10454,6 @@ all_blueprints = [
         ),
         description='This card has low stats and no skills, but its attributes suggest a small but agile creature with a fiery spirit The name "Emberbat" sounds like a nimble and fiery critter that could become stronger with the right support',
     ),
-    # Fertiledillo 🐭 5p 3h
-    # costs: 🔥 has: 🔥🔥🔥 pot: 23
-    Blueprint(
-        original=Card(
-            name="Fertiledillo",
-            power=5,
-            health=3,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=0,
-            has_fire=3,
-            skills=[skills.Fertility],
-        ),
-        description='This card\'s high "Fertility" skill and modest stats suggest a nurturing creature with a lot of offspring The name "Fertiledillo" combines "fertile" with "armadillo," which either suggests an armored critter that provides a lot of support for its young or a sticky creature that multiplies quickly',
-    ),
     # Wingrat 🐭🧺🪁 7p 2h
     # costs: 🔥 has: 🔥🔥🔥👻 pot: 33
     Blueprint(
@@ -11534,21 +10519,6 @@ all_blueprints = [
         ),
         description="With power level  and health , the Lumberaptor is a highly spirited creature with deadly spines that can take down any opponent",
     ),
-    # Fertifowl 🐭 3p 5h
-    # costs: - has: 🔥🔥👻 pot: 33
-    Blueprint(
-        original=Card(
-            name="Fertifowl",
-            power=3,
-            health=5,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=2,
-            skills=[skills.Fertility],
-        ),
-        description='related to the skill Fertility and the high health and moderate power of the card combines "fertile" with "fowl" to fit the fantastical animal theme',
-    ),
     # Thornviper 🦔 2p 1h
     # costs: 🔥🔥🔥 has: 🔥🔥👻 pot: 7
     Blueprint(
@@ -11594,36 +10564,6 @@ all_blueprints = [
         ),
         description='related to the skillless card\'s high powerlow health and cost in fire combines "blaze" with "worm" to suggest a creature that is both fiery and slippery',
     ),
-    # Shieldjag 💀🔰🐭 6p 3h
-    # costs: 👻 has: 🔥👻👻 pot: 37
-    Blueprint(
-        original=Card(
-            name="Shieldjag",
-            power=6,
-            health=3,
-            costs_fire=0,
-            costs_spirits=1,
-            has_spirits=2,
-            has_fire=1,
-            skills=[skills.InstantDeath, skills.Shield, skills.Fertility],
-        ),
-        description='related to the skills Shield and Fertility and the moderate powerhealthattribute values of the card combines "shield" with "jag" to suggest a creature that is both protective and powerful',
-    ),
-    # Shieldrake 🐭💀🔰 2p 4h
-    # costs: 🔥 has: 👻👻👻 pot: 32
-    Blueprint(
-        original=Card(
-            name="Shieldrake",
-            power=2,
-            health=4,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=0,
-            skills=[skills.Fertility, skills.InstantDeath, skills.Shield],
-        ),
-        description="A mythical creature that resembles a dragon, yet shedding its scales to form a powerful shield to protect itself Shieldrake has relatively high power and health, a medium spirit cost, and a fire cost that suits its scaly nature Shieldrake's abilities include Instant Death for attacking, Shield for protection, and Fertility, which represents the creatures ability to reproduce and shed its scales",
-    ),
     # Stormjaw 💀🔰 4p 2h
     # costs: 🔥🔥 has: 👻👻👻 pot: 23
     Blueprint(
@@ -11638,21 +10578,6 @@ all_blueprints = [
             skills=[skills.InstantDeath, skills.Shield],
         ),
         description="A fierce mythical beast resembling a wolf with electrifying powers Stormjaw packs a real punch with high power and a medium spirit cost Its cost in fire matches its electric energy This cards abilities include Instant Death for targeting enemy creatures and Shield for protection The name suggests the creature's ability to attack swiftly and fiercely with its powerful jaws and electric energy",
-    ),
-    # Packrat 🧺 1p 4h
-    # costs: 🔥🔥🔥 has: 👻👻 pot: 13
-    Blueprint(
-        original=Card(
-            name="Packrat",
-            power=1,
-            health=4,
-            costs_fire=3,
-            costs_spirits=0,
-            has_spirits=2,
-            has_fire=0,
-            skills=[skills.Packrat],
-        ),
-        description="A nimble rat skilled at collecting things Packrat has low attacking power, but its high health and Packrat ability means it can collect other cards from the deck Like a real packrat, this card is useful in collecting useful items other cards and has high survivability when threatened",
     ),
     # Sparrowcat 🐭 2p 3h
     # costs: - has: 🔥 pot: 26
@@ -11865,36 +10790,6 @@ all_blueprints = [
         ),
         description="high stats and multiple skills",
     ),
-    # Fertileant 🐭 0p 8h
-    # costs: - has: - pot: 30
-    Blueprint(
-        original=Card(
-            name="Fertileant",
-            power=0,
-            health=8,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=0,
-            has_fire=0,
-            skills=[skills.Fertility],
-        ),
-        description="low attack, high health and one skill, Fertility",
-    ),
-    # Shieldshark 🔰 10p 6h
-    # costs: 🔥 has: 🔥🔥👻👻 pot: 36
-    Blueprint(
-        original=Card(
-            name="Shieldshark",
-            power=10,
-            health=6,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=2,
-            has_fire=2,
-            skills=[skills.Shield],
-        ),
-        description="high powerhealth, has a shield skill and requires some fire and spirits to play",
-    ),
     # Moondove 🐭🔰 5p 4h
     # costs: 👻👻👻👻👻👻👻👻 has: 👻👻 pot: 24
     Blueprint(
@@ -11929,43 +10824,6 @@ all_blueprints = [
             ],
         ),
         description="low powerhealth, air defense skill, packrat skill, instant death skill, requires fire to play",
-    ),
-    # Luckyhorn 🍀🐭💀 5p 5h
-    # costs: 🔥 has: 🔥👻👻👻👻👻 pot: 35
-    Blueprint(
-        original=Card(
-            name="Luckyhorn",
-            power=5,
-            health=5,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=5,
-            has_fire=1,
-            skills=[skills.LuckyStrike, skills.Fertility, skills.InstantDeath],
-        ),
-        description="high powerhealth, lucky strike and fertility skills, requires fire and spirits to play",
-    ),
-    # Shieldhorn 🔰🧺🐭🐩💀🦔 5p 7h
-    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 70
-    Blueprint(
-        original=Card(
-            name="Shieldhorn",
-            power=5,
-            health=7,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=5,
-            has_fire=5,
-            skills=[
-                skills.Shield,
-                skills.Packrat,
-                skills.Fertility,
-                skills.Underdog,
-                skills.InstantDeath,
-                skills.Spines,
-            ],
-        ),
-        description="relating to the Shield skill and high health, power is strong, but not OP, the name represents protection with a fantastical twist, the horns could be some sort of shield or armor",
     ),
     # Charmowl 🐭🧺💀🚀🍀 8p 7h
     # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 64
@@ -12198,21 +11056,6 @@ all_blueprints = [
         ),
         description="high power, low health, spines and fertility",
     ),
-    # Shieldhawk 🔰🐭🦔 7p 8h
-    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻 pot: 48
-    Blueprint(
-        original=Card(
-            name="Shieldhawk",
-            power=7,
-            health=8,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=3,
-            skills=[skills.Shield, skills.Fertility, skills.Spines],
-        ),
-        description="high health, some power, shield, and high fire and spirits cost",
-    ),
     # Foxfair 🐭 4p 1h
     # costs: - has: 🔥🔥👻👻 pot: 28
     Blueprint(
@@ -12418,28 +11261,6 @@ all_blueprints = [
             skills=[skills.Fertility, skills.Packrat, skills.InstantDeath],
         ),
         description="low fire and spirit attributes, with skills like fertility and packrat suggesting a shrewd or sneaky creature",
-    ),
-    # Shieldclaw 🐩🔰💀🦔🧺🐭 7p 10h
-    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 69
-    Blueprint(
-        original=Card(
-            name="Shieldclaw",
-            power=7,
-            health=10,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=5,
-            has_fire=5,
-            skills=[
-                skills.Underdog,
-                skills.Shield,
-                skills.InstantDeath,
-                skills.Spines,
-                skills.Packrat,
-                skills.Fertility,
-            ],
-        ),
-        description="very strong, with skills like shield and spines for defense, but also capable of dealing damage with high power and skills like underdog and instant death",
     ),
     # Valkyriege 🐭🔰🐩🧺💀 7p 8h
     # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 63
@@ -13083,21 +11904,6 @@ all_blueprints = [
         ),
         description="With high power and low health, the 'dra' is inspired by dragons and 'konix' refers to a powerful creature that is difficult to defeat",
     ),
-    # Fertileon 🐭🔰🧺 3p 2h
-    # costs: 🔥 has: 🔥👻 pot: 28
-    Blueprint(
-        original=Card(
-            name="Fertileon",
-            power=3,
-            health=2,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=1,
-            skills=[skills.Fertility, skills.Shield, skills.Packrat],
-        ),
-        description="With average stats and 'fertility' as a skill, the name 'Fertileon' combines 'fertile' and 'leon' lion to suggest a strong, thriving animal",
-    ),
     # Wyverndillo 🪁🧺🐭🐩🦔🔰 7p 10h
     # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 76
     Blueprint(
@@ -13196,21 +12002,6 @@ all_blueprints = [
         ),
         description="Despite its low power, SkyHare excels at dodging and retreating Its moderately high health and Soaring skill make it a hard target to catch, and its InstantDeath and Packrat skills can significantly lower a card's effectiveness This makes it a fantastic addition to any deck that needs a quick support card",
     ),
-    # ShieldCrab 🔰 8p 1h
-    # costs: 🔥🔥 has: 🔥👻👻👻 pot: 23
-    Blueprint(
-        original=Card(
-            name="ShieldCrab",
-            power=8,
-            health=1,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=1,
-            skills=[skills.Shield],
-        ),
-        description="With a high power rating, ShieldCrab can hit hard and effectively Its Shield skill also makes it an excellent protective card to have in a more defensive team Its high cost and relatively low health make it a card that requires strategic placement",
-    ),
     # Furyhorn 🪁💀🧺🐭 8p 5h
     # costs: - has: 🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 63
     Blueprint(
@@ -13245,21 +12036,6 @@ all_blueprints = [
             skills=[skills.Packrat, skills.Fertility],
         ),
         description="relates to high health and the skill Fertility, and the fact that it doesn't have fire",
-    ),
-    # Shieldgoat 🔰🐭 1p 2h
-    # costs: 🔥🔥 has: 🔥🔥🔥👻 pot: 21
-    Blueprint(
-        original=Card(
-            name="Shieldgoat",
-            power=1,
-            health=2,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=3,
-            skills=[skills.Shield, skills.Fertility],
-        ),
-        description="relates to having a Shield skill, the high cost to fire ratio, and its low power and health",
     ),
     # Turtleshell 🔰 0p 2h
     # costs: 🔥🔥 has: 🔥👻 pot: 9
@@ -13395,21 +12171,6 @@ all_blueprints = [
         ),
         description="With high power and health, and almost all elemental costs, this card is a true powerhouse Furthermore, it has a variety of skills including InstantDeath, Packrat and Fertility, that imply it's a fearsome card that can be difficult to put down Chimerafel is a combination of Chimera and Felfire, fitting for a fiery, multiheaded creature that spells doom for its opponents",
     ),
-    # Fertileclipse 🦔🐭💀 7p 9h
-    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻👻 pot: 50
-    Blueprint(
-        original=Card(
-            name="Fertileclipse",
-            power=7,
-            health=9,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=5,
-            has_fire=3,
-            skills=[skills.Spines, skills.Fertility, skills.InstantDeath],
-        ),
-        description="Another strong card with very high health and a mixture of elemental costs The card's Spines, Fertility and InstantDeath skills make it a fearsome defense card, meaning that Fertileclipse is a fitting name for a dark, magical creature that radiates power and fertility, but also brings darkness and destruction",
-    ),
     # Firehawk  2p 1h
     # costs: 🔥🔥🔥🔥 has: 🔥👻👻 pot: 4
     Blueprint(
@@ -13439,21 +12200,6 @@ all_blueprints = [
             skills=[],
         ),
         description="low power and health, low costs for both fire and spirits, has some spirit",
-    ),
-    # Shellshield 🔰 1p 2h
-    # costs: 🔥🔥 has: 👻👻 pot: 11
-    Blueprint(
-        original=Card(
-            name="Shellshield",
-            power=1,
-            health=2,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=2,
-            has_fire=0,
-            skills=[skills.Shield],
-        ),
-        description="low power and health, moderate cost for fire, has some spirit, a shielding skill",
     ),
     # Gryphonix 🧺🔰🐩🐭🦔🪁 8p 6h
     # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 69
@@ -13492,26 +12238,6 @@ all_blueprints = [
         ),
         description="A small, highly spirited and powerful creature with no elemental affinity The name relates to its high power and health, as well as its pack rat skill which might suggest it likes collecting things and is therefore wise",
     ),
-    # Spinekraken 🐭🔰💀🦔 5p 8h
-    # costs: - has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 62
-    Blueprint(
-        original=Card(
-            name="Spinekraken",
-            power=5,
-            health=8,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=5,
-            has_fire=4,
-            skills=[
-                skills.Fertility,
-                skills.Shield,
-                skills.InstantDeath,
-                skills.Spines,
-            ],
-        ),
-        description="A big creature with spines and an affinity for spirits, but no elemental affinity The name relates to its big size, good health and power stats, its high spirit count, and its spines skill",
-    ),
     # Turtleling 🐭🔰 1p 1h
     # costs: 🔥 has: 🔥👻👻 pot: 19
     Blueprint(
@@ -13526,21 +12252,6 @@ all_blueprints = [
             skills=[skills.Fertility, skills.Shield],
         ),
         description="A small, slow creature with a shell and a fire affinity The name relates to its low power and health stats, its high defense rating due to its shield skill, and its fire element",
-    ),
-    # Fertilepanther 🐭 3p 3h
-    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 20
-    Blueprint(
-        original=Card(
-            name="Fertilepanther",
-            power=3,
-            health=3,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=2,
-            has_fire=2,
-            skills=[skills.Fertility],
-        ),
-        description="A highly skilled predator with no elemental affinity The name relates to its fertility skill, which suggests it breeds quickly and is therefore quite common, as well as its good powerhealth balance, and its other skills which aid in its hunting abilities",
     ),
     # Titanosaur 🐩🐭💀🔰 7p 8h
     # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 65
@@ -13649,26 +12360,6 @@ all_blueprints = [
         ),
         description="Related to low power, low health, and probably a small animal that you can't catch with ease Like a bird, bat, or squirrel, but infused with fantasy elements",
     ),
-    # Fertilepuma 🧺🐩🐭💀 5p 10h
-    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 55
-    Blueprint(
-        original=Card(
-            name="Fertilepuma",
-            power=5,
-            health=10,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=5,
-            has_fire=4,
-            skills=[
-                skills.Packrat,
-                skills.Underdog,
-                skills.Fertility,
-                skills.InstantDeath,
-            ],
-        ),
-        description="Related to skills Fertility, Packrat, Underdog and its high powerhealth attributes Suggests a powerful and fertile feline that can draw allies and produces many offspring, but is prone to being underestimated or treated as a lesser animal by other fantasy creatures",
-    ),
     # Phantombear 🐭💀🧺🐩 9p 5h
     # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 53
     Blueprint(
@@ -13768,26 +12459,6 @@ all_blueprints = [
         ),
         description="This card has moderate power and health, but high costs for fire and skills such as spines and shield The name suggests a powerful, dangerous animal with a focus on defense and protection, fitting for a card with high shield and spines skills The thorn element in the name also hints at its spines skill and high fire costs",
     ),
-    # Fertilityfrog 🔰💀🐩🐭 3p 8h
-    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 49
-    Blueprint(
-        original=Card(
-            name="Fertilityfrog",
-            power=3,
-            health=8,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=5,
-            skills=[
-                skills.Shield,
-                skills.InstantDeath,
-                skills.Underdog,
-                skills.Fertility,
-            ],
-        ),
-        description="This card has low power, but high health and a range of skills including shield, instant death, and fertility The name hints at its high fertility skill, suggesting an animal that is good at breeding and growing its numbers The frog element in the name relates to its low power and suggests a small, hopping animal",
-    ),
     # Wyvernan 💀🔰🧺 7p 7h
     # costs: 🔥 has: 🔥🔥🔥👻👻👻👻👻👻 pot: 49
     Blueprint(
@@ -13862,21 +12533,6 @@ all_blueprints = [
             skills=[skills.InstantDeath, skills.Shield, skills.Fertility],
         ),
         description="With a high cost of fire and spirit dependency, FaeriePhant's fertility skill comes in handy to make up for its lack of spirits in terms of defense its offense is powerful with high power and good health",
-    ),
-    # Packrataur 🐭🧺 2p 9h
-    # costs: 🔥🔥 has: 🔥👻 pot: 32
-    Blueprint(
-        original=Card(
-            name="Packrataur",
-            power=2,
-            health=9,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=1,
-            skills=[skills.Fertility, skills.Packrat],
-        ),
-        description="A midrange priced card, Packrataur has moderate power and good health, plus the Fertility skill to increase your army, while its Packrat skill will help it build up the required resources faster",
     ),
     # Soaragon 🧺🐭🐩💀🪁 9p 7h
     # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 70
@@ -14533,28 +13189,6 @@ all_blueprints = [
         ),
         description='The card has high power and health making it ideal to fight battles, while the high costs of spirits and fire, make it much more special Costly but useful skills like "Fertility" and "Shield" make it a very special card',
     ),
-    # Spinegrizz 🐭🐩🧺💀🦔🔰 7p 5h
-    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 59
-    Blueprint(
-        original=Card(
-            name="Spinegrizz",
-            power=7,
-            health=5,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=5,
-            skills=[
-                skills.Fertility,
-                skills.Underdog,
-                skills.Packrat,
-                skills.InstantDeath,
-                skills.Spines,
-                skills.Shield,
-            ],
-        ),
-        description='With high power, health, and skills like "Fertility", "Underdog", and "Spines", this card is a combination of a grizzly bear and spines, making it hard to defeat The name is a combination of the words \'spine\' and \'grizz\' which accurately represents the card\'s attributes and skills',
-    ),
     # Fantiguar 🐭🧺🦔 10p 9h
     # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 57
     Blueprint(
@@ -14672,21 +13306,6 @@ all_blueprints = [
         ),
         description="relates to the InstantDeath skill and strong overall attributes",
     ),
-    # Spinespike 💀🧺🦔 4p 4h
-    # costs: 🔥 has: 👻 pot: 28
-    Blueprint(
-        original=Card(
-            name="Spinespike",
-            power=4,
-            health=4,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=0,
-            skills=[skills.InstantDeath, skills.Packrat, skills.Spines],
-        ),
-        description="relates to the Spines skill and strong allaround attributes",
-    ),
     # Spiritant 🐭🧺🔰🪁 3p 8h
     # costs: 👻👻 has: 🔥🔥🔥👻👻👻 pot: 43
     Blueprint(
@@ -14716,21 +13335,6 @@ all_blueprints = [
             skills=[],
         ),
         description="relates to the high fire attribute , the sharp claws of the lynx, and high power ",
-    ),
-    # Shieldkraken 💀🧺🔰 6p 7h
-    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻👻 pot: 46
-    Blueprint(
-        original=Card(
-            name="Shieldkraken",
-            power=6,
-            health=7,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=5,
-            has_fire=3,
-            skills=[skills.InstantDeath, skills.Packrat, skills.Shield],
-        ),
-        description="relates to the shield skill and high health , with a nod to the sea since krakens are often depicted guarding treasure",
     ),
     # Fatedrake 🐩💀🔰🐭 5p 7h
     # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 51
@@ -14861,21 +13465,6 @@ all_blueprints = [
             skills=[skills.InstantDeath, skills.Fertility],
         ),
         description="The card's power and health are high, and the blue attribute value indicates that it has a connection to spirits The skill InstantDeath suggests that it is a very powerful creature that can kill its enemies instantly The skill Fertility could indicate that it has a lot of offspring The name Radiantox implies that it is a shining, mystical, and powerful beast that is able to transcend between the physical and spiritual realms",
-    ),
-    # Fertilehare 🐭🧺 1p 2h
-    # costs: 👻👻👻👻👻 has: - pot: 14
-    Blueprint(
-        original=Card(
-            name="Fertilehare",
-            power=1,
-            health=2,
-            costs_fire=0,
-            costs_spirits=5,
-            has_spirits=0,
-            has_fire=0,
-            skills=[skills.Fertility, skills.Packrat],
-        ),
-        description="The card's power and health are low, but the high cost in spirits indicates that it has great potential The skills Fertility and Packrat suggest that it is a creature that can quickly multiply and hoard resources The name Fertilehare implies that it is a prolific and swift creature that is able to thrive in any environment",
     ),
     # Empressant 🐩💀🐭🔰🧺🦔 7p 8h
     # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 78
@@ -15012,26 +13601,6 @@ all_blueprints = [
         ),
         description="The name combines fire and a fierce animal, which is fitting for a card with high power, moderate health, and moderately high fire cost The skills add a bit of unpredictability, showcasing the fire and agility of the puma",
     ),
-    # Shieldram 🐩🔰💀🐭 9p 6h
-    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 66
-    Blueprint(
-        original=Card(
-            name="Shieldram",
-            power=9,
-            health=6,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=5,
-            skills=[
-                skills.Underdog,
-                skills.Shield,
-                skills.InstantDeath,
-                skills.Fertility,
-            ],
-        ),
-        description="The name emphasizes the Shield and Underdog skills, both of which are reflected in the card's high health and low power The high cost of fire and spirits suggest a more defensive strategy, which fits well with the image of a ram defending its flock with its sturdy horns",
-    ),
     # Spiketurtle 🦔🔰🚀🐭💀🧺 10p 7h
     # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 78
     Blueprint(
@@ -15053,21 +13622,6 @@ all_blueprints = [
             ],
         ),
         description="The card has high power, health, and great defences by having both Shield and Airdefense skills The name suggests a durable, wellprotected creature with spines and a tough shell, fitting the card's abilities",
-    ),
-    # Shieldrat 🔰🧺 9p 4h
-    # costs: 🔥🔥 has: 👻 pot: 33
-    Blueprint(
-        original=Card(
-            name="Shieldrat",
-            power=9,
-            health=4,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=0,
-            skills=[skills.Shield, skills.Packrat],
-        ),
-        description="The card is nimble and has high shield value, mitigating the low health The name suggests a small, agile creature that evades attacks and protects itself from those it cannot dodge",
     ),
     # Thornpup 🔰 3p 2h
     # costs: 🔥🔥 has: 🔥👻 pot: 14
@@ -15154,21 +13708,6 @@ all_blueprints = [
             skills=[skills.Soaring, skills.InstantDeath],
         ),
         description="midpower, midhealth, high fire cost, with the ability to fly and the threat of instant death",
-    ),
-    # Fertigoat 🔰🐩🐭 10p 9h
-    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 57
-    Blueprint(
-        original=Card(
-            name="Fertigoat",
-            power=10,
-            health=9,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=5,
-            skills=[skills.Shield, skills.Underdog, skills.Fertility],
-        ),
-        description="goatlike creature with fertility aspect, balanced fire and spirits, strong but costly",
     ),
     # Stonetusk 🐭 3p 8h
     # costs: 🔥 has: 🔥🔥🔥🔥 pot: 29
@@ -15381,21 +13920,6 @@ all_blueprints = [
             skills=[skills.Fertility, skills.Packrat, skills.InstantDeath],
         ),
         description="small rodentlike creature with no spirits and low fire, fertility and instant death skills, weak in both power and health",
-    ),
-    # Shield 🔰🐭💀 3p 10h
-    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻 pot: 48
-    Blueprint(
-        original=Card(
-            name="Shield",
-            power=3,
-            health=10,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=3,
-            skills=[skills.Shield, skills.Fertility, skills.InstantDeath],
-        ),
-        description="Taur  This card has a lot of health and is quite powerful, but is also quite expensive to deploy The ShieldTaur combines the protective qualities of a shield with the legendary fearsomeness of the Minotaur, making it a fitting name",
     ),
     # Gauntreeper 🐭 10p 5h
     # costs: 🔥 has: 🔥🔥👻 pot: 35
@@ -15624,26 +14148,6 @@ all_blueprints = [
             ],
         ),
         description="high power and health, no spiritfire cost, underdog skill",
-    ),
-    # Fertiledon 🦔💀🐭🐩 9p 6h
-    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻👻 pot: 52
-    Blueprint(
-        original=Card(
-            name="Fertiledon",
-            power=9,
-            health=6,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=5,
-            has_fire=3,
-            skills=[
-                skills.Spines,
-                skills.InstantDeath,
-                skills.Fertility,
-                skills.Underdog,
-            ],
-        ),
-        description="high power, low health, fertility and instant death skill",
     ),
     # Soarshark 🚀🔰🐩🪁💀🐭 8p 10h
     # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 64
@@ -16365,27 +14869,6 @@ all_blueprints = [
         ),
         description="This card has low power and health, no fire requirements, and low spirit requirements However, it has all of its spirit requirements and no weaknesses The name Whelpix describes a small, magical creature that is easy to care for but still needs attention",
     ),
-    # Shieldlynx 🔰💀🐭🐩🧺 4p 5h
-    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 49
-    Blueprint(
-        original=Card(
-            name="Shieldlynx",
-            power=4,
-            health=5,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=3,
-            skills=[
-                skills.Shield,
-                skills.InstantDeath,
-                skills.Fertility,
-                skills.Underdog,
-                skills.Packrat,
-            ],
-        ),
-        description="With an even mix of fire and spirit requirements, this card has average power and health values but also has a range of skills making it adaptable to different situations The name Shieldlynx suggests a sturdy creature with sharp reflexes to avoid danger",
-    ),
     # Gorgonmole 🐭💀🧺🔰🐩 9p 6h
     # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 63
     Blueprint(
@@ -16406,28 +14889,6 @@ all_blueprints = [
             ],
         ),
         description="With high power and good health values, as well as a range of skills, this card is a fairly strong allrounder The mole part of the name, however, emphasizes its lack of fire requirements The Gorgon aspect adds a feeling of danger and awe",
-    ),
-    # Shielddrake 🔰🐭🧺🪁🦔💀 6p 7h
-    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 72
-    Blueprint(
-        original=Card(
-            name="Shielddrake",
-            power=6,
-            health=7,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=7,
-            has_fire=6,
-            skills=[
-                skills.Shield,
-                skills.Fertility,
-                skills.Packrat,
-                skills.Soaring,
-                skills.Spines,
-                skills.InstantDeath,
-            ],
-        ),
-        description="The card has high power and health, giving it a tanklike quality It also has the skills Shield and Packrat, so the name Shielddrake conveys both its defensive capabilities and toughness",
     ),
     # Faelemur 🧺🐭 3p 2h
     # costs: 👻👻👻 has: 🔥🔥 pot: 21
@@ -16806,21 +15267,6 @@ all_blueprints = [
         ),
         description="relates to the Packrat skill and its ability to collect items phage making it sound like an animal with a tendency to consume things",
     ),
-    # PorcuniDefender 🔰🦔🐭🐩 3p 5h
-    # costs: - has: 🔥🔥🔥👻👻👻 pot: 48
-    Blueprint(
-        original=Card(
-            name="PorcuniDefender",
-            power=3,
-            health=5,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=3,
-            skills=[skills.Shield, skills.Spines, skills.Fertility, skills.Underdog],
-        ),
-        description='relates to the Porcupine card that has similar health and spines skill ni as a suffix reminiscent of Latin language that relates to the fact that the card is very defensive, and sounds like porcine, which means "like a pig"',
-    ),
     # Scissoright 💀🧺 6p 6h
     # costs: 🔥 has: 🔥👻 pot: 33
     Blueprint(
@@ -17060,21 +15506,6 @@ all_blueprints = [
         ),
         description='With increased fire but no spirits, this card also has no cost and is equipped with a pack rat skill The name "Pyrocat" references its affinity for fire and strong feline characteristics',
     ),
-    # Shieldfle 🔰 10p 1h
-    # costs: 🔥 has: - pot: 24
-    Blueprint(
-        original=Card(
-            name="Shieldfle",
-            power=10,
-            health=1,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=0,
-            has_fire=0,
-            skills=[skills.Shield],
-        ),
-        description='With the skill "Shield" and a high health attribute compared to other creature cards, Shieldfle is designed to protect your other creatures The name "Shieldfle" plays off the card\'s defensive nature and evokes images of a small, agile creature like a flying insect',
-    ),
     # Grimbear 🐭🔰💀🧺🐩 8p 6h
     # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 60
     Blueprint(
@@ -17095,21 +15526,6 @@ all_blueprints = [
             ],
         ),
         description='The final card in our deck is a fortified and wellrounded warrior, with high power and health, several skills like "Fertility" and "Shield," and mostly fire and spirits The name "Grimbear" implies a fierce and resilient predator, while still nodding to its ursine form',
-    ),
-    # Shieldback 🔰💀🧺 2p 8h
-    # costs: 🔥🔥🔥 has: 🔥🔥👻👻 pot: 35
-    Blueprint(
-        original=Card(
-            name="Shieldback",
-            power=2,
-            health=8,
-            costs_fire=3,
-            costs_spirits=0,
-            has_spirits=2,
-            has_fire=2,
-            skills=[skills.Shield, skills.InstantDeath, skills.Packrat],
-        ),
-        description="high health and power, expensive, Shield skill, Packrat skill, InstantDeath skill",
     ),
     # Packweasel 🐭🧺💀🔰 3p 3h
     # costs: 🔥 has: 🔥🔥👻👻👻 pot: 39
@@ -17228,26 +15644,6 @@ all_blueprints = [
         ),
         description="very high power and health, with a variety of skills Fertility, Shield, Packrat, Spines, InstantDeath, and Underdog, but at a high fire cost",
     ),
-    # FertilityHawk 🐭💀🪁🔰 1p 1h
-    # costs: 🔥 has: 🔥👻 pot: 26
-    Blueprint(
-        original=Card(
-            name="FertilityHawk",
-            power=1,
-            health=1,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=1,
-            skills=[
-                skills.Fertility,
-                skills.InstantDeath,
-                skills.Soaring,
-                skills.Shield,
-            ],
-        ),
-        description='The name fits the card as it has the skill Fertility and has a low cost in fire spirits The "Hawk" part of the name references the Soaring skill, which enables the card to attack flying creatures as well as ground creatures',
-    ),
     # FrostRhino 💀🐭🪁 6p 7h
     # costs: 🔥 has: 🔥👻 pot: 39
     Blueprint(
@@ -17277,28 +15673,6 @@ all_blueprints = [
             skills=[],
         ),
         description='A small and cheap creature that benefits from spirits, the name needed to reflect its low cost "Aura" represents its low cost in spirits and "Frog" brings to mind small size and weaker power attributes',
-    ),
-    # ShieldedBear 🔰🚀🧺💀🦔🐭 7p 7h
-    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 62
-    Blueprint(
-        original=Card(
-            name="ShieldedBear",
-            power=7,
-            health=7,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=6,
-            has_fire=5,
-            skills=[
-                skills.Shield,
-                skills.Airdefense,
-                skills.Packrat,
-                skills.InstantDeath,
-                skills.Spines,
-                skills.Fertility,
-            ],
-        ),
-        description='A very strong creature with the Shield skill, the name reflects the high power and skill attributes "Bear" tells us that it is a big and strong animal and "Shielded" shows us the skill the card has',
     ),
     # ThornWeasel 🧺💀🐭 2p 2h
     # costs: 🔥 has: 👻 pot: 26
@@ -17344,21 +15718,6 @@ all_blueprints = [
             skills=[],
         ),
         description="The name suggests a small and nimble creature with a sharp or dangerous tail, fitting for a creature with low power and health but high fire costs",
-    ),
-    # Fertigiant 🧺🔰🐭 2p 8h
-    # costs: 🔥 has: 👻 pot: 36
-    Blueprint(
-        original=Card(
-            name="Fertigiant",
-            power=2,
-            health=8,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=0,
-            skills=[skills.Packrat, skills.Shield, skills.Fertility],
-        ),
-        description='This name combines "fertility" with "giant," fitting for a creature with high health and three fertility skills The name also suggests a large and powerful creature, fitting for a card with decent power',
     ),
     # Aquaspark 🧺🔰🐭 3p 7h
     # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 54
@@ -17523,28 +15882,6 @@ all_blueprints = [
         ),
         description="high health, spiritheavy, with the Fertility and InstantDeath skills",
     ),
-    # Luckyhippo 🐭💀🧺🐩🔰🍀 8p 7h
-    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 75
-    Blueprint(
-        original=Card(
-            name="Luckyhippo",
-            power=8,
-            health=7,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=7,
-            has_fire=6,
-            skills=[
-                skills.Fertility,
-                skills.InstantDeath,
-                skills.Packrat,
-                skills.Underdog,
-                skills.Shield,
-                skills.LuckyStrike,
-            ],
-        ),
-        description="high powerhealth, spiritheavy, with a range of skills including Fertility, InstantDeath, Packrat, Underdog, Shield, and LuckyStrike",
-    ),
     # Firecrustacean  2p 1h
     # costs: 🔥🔥🔥 has: 🔥👻 pot: 4
     Blueprint(
@@ -17602,27 +15939,6 @@ all_blueprints = [
             ],
         ),
         description="extremely strong, high health, spines and wings, mythical creature",
-    ),
-    # Fertilechimera 🐭💀🔰🧺🦔 3p 5h
-    # costs: - has: 🔥🔥🔥👻👻👻👻 pot: 57
-    Blueprint(
-        original=Card(
-            name="Fertilechimera",
-            power=3,
-            health=5,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=4,
-            has_fire=3,
-            skills=[
-                skills.Fertility,
-                skills.InstantDeath,
-                skills.Shield,
-                skills.Packrat,
-                skills.Spines,
-            ],
-        ),
-        description="relatively strong, various skills including fertility, mythical creature made up of many animals",
     ),
     # Fiercecat  1p 1h
     # costs: 🔥 has: 🔥🔥🔥🔥👻 pot: 7
@@ -18081,26 +16397,6 @@ all_blueprints = [
         ),
         description="medium power, low health, costs fire, instant death",
     ),
-    # Shieldmouse 🐭🔰🧺💀 3p 4h
-    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 46
-    Blueprint(
-        original=Card(
-            name="Shieldmouse",
-            power=3,
-            health=4,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=7,
-            has_fire=4,
-            skills=[
-                skills.Fertility,
-                skills.Shield,
-                skills.Packrat,
-                skills.InstantDeath,
-            ],
-        ),
-        description="low power, medium health, high spirits, various skills including shield and fertility",
-    ),
     # Shadowkraken 🐩💀🧺🔰 7p 8h
     # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 53
     Blueprint(
@@ -18515,21 +16811,6 @@ all_blueprints = [
         ),
         description="The card has low power and medium health, very low fire, and high spirit values The card has fertility skills, hence the name Spirithare  a magical rabbitlike creature that brings life and spirits to the battlefield",
     ),
-    # Packraven 🐭🧺🔰🪁 0p 3h
-    # costs: 🔥🔥 has: 🔥🔥👻 pot: 27
-    Blueprint(
-        original=Card(
-            name="Packraven",
-            power=0,
-            health=3,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=2,
-            skills=[skills.Fertility, skills.Packrat, skills.Shield, skills.Soaring],
-        ),
-        description="The card has low power, high health, medium fire, and high spirit values The card has multiple skills including fertility, packrat, shield and soaring, hence the name Packraven  a bird known for being a pack animal, intelligent and able to soar and protect its pack",
-    ),
     # Warwisp 🔰🐭💀 5p 6h
     # costs: - has: 🔥🔥🔥🔥👻👻👻 pot: 54
     Blueprint(
@@ -18656,21 +16937,6 @@ all_blueprints = [
             skills=[],
         ),
         description="Sproutmole represents the card's spirit attribute and low overall cost, with the attribute name being indicative of the card's ability to regenerate thanks to its high spirit, while mole represents its average power and health attributes",
-    ),
-    # Armoshield 🔰🐩🧺 5p 3h
-    # costs: 🔥 has: 🔥🔥🔥🔥🔥 pot: 32
-    Blueprint(
-        original=Card(
-            name="Armoshield",
-            power=5,
-            health=3,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=0,
-            has_fire=5,
-            skills=[skills.Shield, skills.Underdog, skills.Packrat],
-        ),
-        description="related to the Shield skill, high health, low spirit, high fire cost",
     ),
     # Rosefinch 🔰 3p 3h
     # costs: 🔥 has: 🔥👻👻 pot: 18
@@ -18861,28 +17127,6 @@ all_blueprints = [
         ),
         description='A name that corresponds with the card\'s ability to both cause instant death and have high fertility "Bristle" plays on its spiky abilities, such as fertility and instant death, while "Puma" connects with its high power and health attributes',
     ),
-    # Shadowcat This name suits the card as it is quite powerful in terms of its power and health Additionally its skills allow it to defend itself Shield gather resources Packrat and cause destruction InstantDeath The name Shadowcat invokes the image of a stealthy powerful and ready 🔰🧺🐭💀🦔🐩 8p 8h
-    # costs: 👻 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 70
-    Blueprint(
-        original=Card(
-            name="Shadowcat This name suits the card as it is quite powerful in terms of its power and health Additionally its skills allow it to defend itself Shield gather resources Packrat and cause destruction InstantDeath The name Shadowcat invokes the image of a stealthy powerful and ready",
-            power=8,
-            health=8,
-            costs_fire=0,
-            costs_spirits=1,
-            has_spirits=8,
-            has_fire=5,
-            skills=[
-                skills.Shield,
-                skills.Packrat,
-                skills.Fertility,
-                skills.InstantDeath,
-                skills.Spines,
-                skills.Underdog,
-            ],
-        ),
-        description="forbattle creature",
-    ),
     # Serpenthorn 💀🔰🧺🪁🐭🐩 8p 8h
     # costs: 👻 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 68
     Blueprint(
@@ -19007,21 +17251,6 @@ all_blueprints = [
         ),
         description='This card\'s high power and low health suggest a fast, attacking animal The skill set includes underdog, which implies that this card is underestimated but has a lot of potential The name "Lightfawn" suggests a young, agile animal, while the costsfire attribute suggests it has a fiery or energetic nature',
     ),
-    # Fertiletoad 🐭🧺 5p 10h
-    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 41
-    Blueprint(
-        original=Card(
-            name="Fertiletoad",
-            power=5,
-            health=10,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=2,
-            has_fire=2,
-            skills=[skills.Fertility, skills.Packrat],
-        ),
-        description='This card has high health but relatively low power, suggesting an animal that is hard to kill but not very aggressive The skill set includes Fertility, implying that this is an animal that is good at reproducing and propagating itself The name "Fertiletoad" suggests a creature that is both gross and useful, and may even have supernatural abilities',
-    ),
     # Thornpuma 🐭🧺 3p 3h
     # costs: - has: 🔥🔥👻👻 pot: 35
     Blueprint(
@@ -19088,95 +17317,6 @@ all_blueprints = [
             skills=[skills.Soaring],
         ),
         description="relates to low powerhealth, costsspirits, and the Soaring skill",
-    ),
-    # Thornet thornet 🦔 2p 1h
-    # costs: 🔥🔥🔥🔥 has: 🔥🔥🔥👻👻👻 pot: 9
-    Blueprint(
-        original=Card(
-            name="Thornet thornet",
-            power=2,
-            health=1,
-            costs_fire=4,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=3,
-            skills=[skills.Spines],
-        ),
-        description='This name comes from the combination of "thorn" and "hornet" The card has spines and high costs to play and represents a small, but painful enemy to defeat',
-    ),
-    # Shieldox shield  fox 🔰 5p 2h
-    # costs: 🔥 has: 🔥👻👻 pot: 20
-    Blueprint(
-        original=Card(
-            name="Shieldox shield  fox",
-            power=5,
-            health=2,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=2,
-            has_fire=1,
-            skills=[skills.Shield],
-        ),
-        description='A fox is known for its agility, and with the Shield skill, this card can defend itself well The name "Shieldox" represents both the foxlike nature and the protective skill of the card',
-    ),
-    # Manticora manticore  ora 🔰🐭💀🪁🐩🦔 6p 8h
-    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 73
-    Blueprint(
-        original=Card(
-            name="Manticora manticore  ora",
-            power=6,
-            health=8,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=8,
-            has_fire=6,
-            skills=[
-                skills.Shield,
-                skills.Fertility,
-                skills.InstantDeath,
-                skills.Soaring,
-                skills.Underdog,
-                skills.Spines,
-            ],
-        ),
-        description="The name is a combination of two mythological creatures, Manticores and Chimeras, and represents the strength and versatility of the card",
-    ),
-    # Ursulon ursus  lion 🔰🧺🐭💀🐩🦔 8p 10h
-    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 72
-    Blueprint(
-        original=Card(
-            name="Ursulon ursus  lion",
-            power=8,
-            health=10,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=6,
-            has_fire=6,
-            skills=[
-                skills.Shield,
-                skills.Packrat,
-                skills.Fertility,
-                skills.InstantDeath,
-                skills.Underdog,
-                skills.Spines,
-            ],
-        ),
-        description='A lion is known for its strength and bravery, and a bear is known for its resilience and toughness The name "Ursulon" represents both of these attributes, making the card a formidable opponent',
-    ),
-    # Emberkin ember  kin 🐭 8p 7h
-    # costs: 🔥🔥 has: 🔥🔥👻 pot: 35
-    Blueprint(
-        original=Card(
-            name="Emberkin ember  kin",
-            power=8,
-            health=7,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=2,
-            skills=[skills.Fertility],
-        ),
-        description='The card has high power, but only medium health, and has the Fertility skill, which represents its ability to create more cards The name "Emberkin" symbolizes the card\'s fiery nature and its familial ties to other cards it can create',
     ),
     # Thornrhino 🔰🚀🧺🪁💀🐭 8p 8h
     # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 77
@@ -19350,28 +17490,6 @@ all_blueprints = [
         ),
         description="This card has high power and health with decent fire and spirit but is expensive to use The skills involve Packrat, Underdog, and Fertility The name Kodiak relates to the card's bearlike characteristics and strength",
     ),
-    # Thornback Rhino 🧺🦔🔰💀🚀🐭 10p 9h
-    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 73
-    Blueprint(
-        original=Card(
-            name="Thornback Rhino",
-            power=10,
-            health=9,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=8,
-            has_fire=6,
-            skills=[
-                skills.Packrat,
-                skills.Spines,
-                skills.Shield,
-                skills.InstantDeath,
-                skills.Airdefense,
-                skills.Fertility,
-            ],
-        ),
-        description="This card is very powerful, has high health, and has significant fire and spirit The skills involve Packrat, Spines, Shield, InstantDeath, Airdefense, and Fertility, meaning the card has a lot of attributes The name Thornback Rhino relates to the card's dangerouslooking spines, strength, and rhinolike appearance",
-    ),
     # Armadillox 🐩🔰💀🧺 2p 4h
     # costs: 🔥🔥 has: 🔥👻👻 pot: 32
     Blueprint(
@@ -19411,43 +17529,6 @@ all_blueprints = [
             ],
         ),
         description="expensive, high spirits and fire, soaring",
-    ),
-    # Spinebear 🦔🧺💀🐭🐩🔰 7p 9h
-    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 68
-    Blueprint(
-        original=Card(
-            name="Spinebear",
-            power=7,
-            health=9,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=6,
-            has_fire=5,
-            skills=[
-                skills.Spines,
-                skills.Packrat,
-                skills.InstantDeath,
-                skills.Fertility,
-                skills.Underdog,
-                skills.Shield,
-            ],
-        ),
-        description="very strong, spines, packrat, underdog, shield, fertility",
-    ),
-    # Fertifax 🐭🧺💀 3p 6h
-    # costs: - has: 🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 53
-    Blueprint(
-        original=Card(
-            name="Fertifax",
-            power=3,
-            health=6,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=7,
-            has_fire=4,
-            skills=[skills.Fertility, skills.Packrat, skills.InstantDeath],
-        ),
-        description="related to fertility and packrat skills and high spiritfire presence",
     ),
     # Flamestoat 💀 2p 3h
     # costs: 🔥 has: 🔥👻 pot: 15
@@ -19493,43 +17574,6 @@ all_blueprints = [
             skills=[],
         ),
         description="related to fire, small size, and mediumhigh presence of spiritsfire",
-    ),
-    # Shieldmantis 💀🐭🔰 7p 8h
-    # costs: 🔥🔥 has: 🔥🔥🔥👻👻👻 pot: 50
-    Blueprint(
-        original=Card(
-            name="Shieldmantis",
-            power=7,
-            health=8,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=3,
-            skills=[skills.InstantDeath, skills.Fertility, skills.Shield],
-        ),
-        description="related to shield and armor skills, high powerhealth, and high presence of spirits and fire",
-    ),
-    # Fertilitydrake 🐭🔰🧺🦔🚀💀 6p 10h
-    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 77
-    Blueprint(
-        original=Card(
-            name="Fertilitydrake",
-            power=6,
-            health=10,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=7,
-            has_fire=6,
-            skills=[
-                skills.Fertility,
-                skills.Shield,
-                skills.Packrat,
-                skills.Spines,
-                skills.Airdefense,
-                skills.InstantDeath,
-            ],
-        ),
-        description="The card has high power and health and skills like Fertility, Shield, and Packrat Fertilitydrake implies the fertility of its abilities, and drake represents its high power and health",
     ),
     # Shadowlynx  2p 3h
     # costs: 🔥🔥 has: 🔥🔥 pot: 8
@@ -19673,21 +17717,6 @@ all_blueprints = [
         ),
         description="The name Skyjaguar incorporates the card's high fire attribute, as well as its agility instant death skill and packrat skill The reference to the sky also relates to the card's high cost of fire",
     ),
-    # Shieldermade 🐭💀🔰 8p 8h
-    # costs: - has: 🔥🔥🔥👻👻👻 pot: 62
-    Blueprint(
-        original=Card(
-            name="Shieldermade",
-            power=8,
-            health=8,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=3,
-            skills=[skills.Fertility, skills.InstantDeath, skills.Shield],
-        ),
-        description="The name Shieldermade relates to the card's high defense attributes shield skill and the idea of a creature made for battle The lowcost fire and spirit attribute aligns with the idea of a creature made for defense rather than offense",
-    ),
     # Chimerafin 💀🐭🧺🪁 9p 10h
     # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 61
     Blueprint(
@@ -19707,43 +17736,6 @@ all_blueprints = [
             ],
         ),
         description="The name Chimerafin incorporates the card's high power and health attributes, as well as its ability to soar soaring skill The card also has a balanced mix of fire and spirit, which relates to the idea of a chimera being a mix of different creatures The inclusion of the packrat skill refers to the card's resourcefulness and ability to collect valuable items",
-    ),
-    # Shieldowl 🐩🐭🧺🔰 3p 3h
-    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻 pot: 49
-    Blueprint(
-        original=Card(
-            name="Shieldowl",
-            power=3,
-            health=3,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=5,
-            skills=[skills.Underdog, skills.Fertility, skills.Packrat, skills.Shield],
-        ),
-        description="This name fits the card as it has skills that allow it to shield itself and gather resources while it can also defend itself with its high health The name is inspired by the image of a wise and powerful owl that always has its shield up to protect its allies",
-    ),
-    # Spinepuma 💀🔰🧺🐩🐭🦔 6p 5h
-    # costs: 👻👻👻 has: 🔥🔥🔥🔥👻👻👻 pot: 54
-    Blueprint(
-        original=Card(
-            name="Spinepuma",
-            power=6,
-            health=5,
-            costs_fire=0,
-            costs_spirits=3,
-            has_spirits=3,
-            has_fire=4,
-            skills=[
-                skills.InstantDeath,
-                skills.Shield,
-                skills.Packrat,
-                skills.Underdog,
-                skills.Fertility,
-                skills.Spines,
-            ],
-        ),
-        description="This name suits the card as it is very powerful in terms of its power and health while also having a skill that adds spines to its arsenal, making it a fearsome attacker The name invokes the image of a sleek and dangerous puma covered in sharp spines",
     ),
     # Faelion 🐭🧺🦔🔰🐩💀 8p 8h
     # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 67
@@ -19766,21 +17758,6 @@ all_blueprints = [
             ],
         ),
         description="This name fits the card as it has a very high power and health and a skillset that makes it more versatile both offensively and defensively The name is inspired by the image of a magical and otherworldly feline with a strong presence",
-    ),
-    # Fertileturtle 🐭 1p 4h
-    # costs: 🔥 has: 🔥👻 pot: 17
-    Blueprint(
-        original=Card(
-            name="Fertileturtle",
-            power=1,
-            health=4,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=1,
-            has_fire=1,
-            skills=[skills.Fertility],
-        ),
-        description="This name fits the card as it has a good amount of health and a skill that focuses on fertility, which allows it to gather resources and multiply The name invokes the image of a wise and slowmoving turtle that carries with it a spirit of fertility and growth",
     ),
     # Glitterrat 🧺🐭🔰💀 4p 4h
     # costs: 👻 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 47
@@ -19846,21 +17823,6 @@ all_blueprints = [
             skills=[skills.Underdog, skills.Fertility, skills.Shield],
         ),
         description="With moderate power and health, this card has the underdog and fertility skills The name suggests a creature with a tough exterior that can defend against predators, but also capable of producing offspring, like a hedgehog",
-    ),
-    # Shadowspine 🦔 1p 9h
-    # costs: 🔥 has: 👻👻 pot: 21
-    Blueprint(
-        original=Card(
-            name="Shadowspine",
-            power=1,
-            health=9,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=2,
-            has_fire=0,
-            skills=[skills.Spines],
-        ),
-        description="The card has low fire and high spirits, as well as the Spines skill The name suggests a small creature known for its spikey and stealthy nature",
     ),
     # Sparkwing 🪁🐭🔰💀 6p 7h
     # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 60
@@ -19938,41 +17900,6 @@ all_blueprints = [
         ),
         description="The name suggests that the animal is trained to be ridden and commanded It has high power and health stats, and the 'Underdog' skill implies that it can take a hit and come back stronger The 'Fertility' skill in combination with a name like 'Wyvernrider' can suggest that it is a mythic creature, perhaps even majestic",
     ),
-    # Shieldtortoise 🔰🐭🧺 4p 4h
-    # costs: 🔥🔥 has: 🔥👻👻 pot: 34
-    Blueprint(
-        original=Card(
-            name="Shieldtortoise",
-            power=4,
-            health=4,
-            costs_fire=2,
-            costs_spirits=0,
-            has_spirits=2,
-            has_fire=1,
-            skills=[skills.Shield, skills.Fertility, skills.Packrat],
-        ),
-        description="The name of the animal comes from its 'Shield' skill and high health stat The fact that it has low power but high defense fits the image and behavior of a tortoise It has 'Fertility' and 'Packrat' skills which suggest it is wellprotected, and the 'Fire' and 'Spirits' compatibility can hint at some kind of animistic or spiritual power",
-    ),
-    # Rampartkangaroo 💀🔰🧺🐭 6p 8h
-    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 58
-    Blueprint(
-        original=Card(
-            name="Rampartkangaroo",
-            power=6,
-            health=8,
-            costs_fire=1,
-            costs_spirits=0,
-            has_spirits=6,
-            has_fire=5,
-            skills=[
-                skills.InstantDeath,
-                skills.Shield,
-                skills.Packrat,
-                skills.Fertility,
-            ],
-        ),
-        description="The name implies strength and defense a rampart is a protective wall around a fortress The 'Shield' and 'Packrat' skills fit well with the idea of a fortress, in this case, the kangaroo itself The card's 'InstantDeath' skill can suggest a powerful attack, and its high spirits make it quite energetic",
-    ),
     # Thundercrab 💀🐩🔰🐭 2p 6h
     # costs: 🔥 has: 🔥 pot: 37
     Blueprint(
@@ -20007,36 +17934,6 @@ all_blueprints = [
             skills=[skills.Spines],
         ),
         description="SpinesHigh Spirit, Snails are known for their hard, protective shells, and adding spines to it make it a formidable opponent and high spirit implies it's stubborn and hard to defeat",
-    ),
-    # Fertilityrock 🐭 3p 1h
-    # costs: 👻👻👻 has: 🔥👻👻 pot: 14
-    Blueprint(
-        original=Card(
-            name="Fertilityrock",
-            power=3,
-            health=1,
-            costs_fire=0,
-            costs_spirits=3,
-            has_spirits=2,
-            has_fire=1,
-            skills=[skills.Fertility],
-        ),
-        description='SpiritFertility, with moderate power and low health "Fertility" hints at something that continually produces something, and in this case is producing spirit "Rock" implies it harder to take down It has moderate power which implies it needs time to build up, but it has low health since it\'s not meant to be the main attacker',
-    ),
-    # Fertileowl 🐭🧺 5p 2h
-    # costs: - has: 🔥👻👻👻 pot: 37
-    Blueprint(
-        original=Card(
-            name="Fertileowl",
-            power=5,
-            health=2,
-            costs_fire=0,
-            costs_spirits=0,
-            has_spirits=3,
-            has_fire=1,
-            skills=[skills.Fertility, skills.Packrat],
-        ),
-        description="related to the high spirit value, Fertility skill, and sound association of owls with wisdom and magic",
     ),
     # Thorn Gecko 🐭🔰🧺🦔 2p 2h
     # costs: 🔥 has: - pot: 28
@@ -20323,27 +18220,10697 @@ all_blueprints = [
         ),
         description="With high power, health, and costs fire, this card is reminiscent of a fearsome predator Its skills Packrat, Fertility, and Shield also speak to its strength and resilience The name Stormlion embodies power, strength, and ferocity",
     ),
-    # Packratty 🐩🧺 1p 5h
+    # Sirenwhelp 🐭💀 2p 5h
+    # costs: - has: 🔥🔥🔥👻👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Sirenwhelp",
+            power=2,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description="related to the skills and spirits attribute, the creature is a young mystical creature with a voice able to lure sailors at sea and has fertility and instant death skills",
+    ),
+    # Skyhoarder 🧺🪁🐭 2p 8h
+    # costs: 👻 has: 🔥🔥🔥🔥🔥👻👻 pot: 37
+    Blueprint(
+        original=Card(
+            name="Skyhoarder",
+            power=2,
+            health=8,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=2,
+            has_fire=5,
+            skills=[skills.Packrat, skills.Soaring, skills.Fertility],
+        ),
+        description="related to the spirits attribute, the creature is a flying animal that stores things in its fur and has fertility, soaring, and packrat skills",
+    ),
+    # Flamefury 💀🔰🐭 8p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Flamefury",
+            power=8,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[skills.InstantDeath, skills.Shield, skills.Fertility],
+        ),
+        description="related to the fire attribute, the creature is an infernal being full of rage that has instant death, shield, fertility skills",
+    ),
+    # Firecrest 🧺🔰🐭🐩 7p 5h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Firecrest",
+            power=7,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=6,
+            skills=[skills.Packrat, skills.Shield, skills.Fertility, skills.Underdog],
+        ),
+        description='This card has a great emphasis on the fire attribute, it has a packrat skill, which suggests hoarding of some sort, and its underdog skill shows the tenacity of the animal The "crest" refers to both the fire attribute and the animal\'s proud nature',
+    ),
+    # Wyveron 🧺🐭💀🪁 5p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Wyveron",
+            power=5,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Soaring,
+            ],
+        ),
+        description="strong, expensive, with packrat skill and fertility to boost multiple card effectiveness, and soaring skill to overcome its shortcomings",
+    ),
+    # Lupinx 🔰💀🐭🧺 3p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻 pot: 48
+    Blueprint(
+        original=Card(
+            name="Lupinx",
+            power=3,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description="midrange power and health, with shield skill and instant death skill making them a good defensive option or to go on the offensive",
+    ),
+    # Spikadeer 🔰💀🧺🐭🦔 5p 10h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 72
+    Blueprint(
+        original=Card(
+            name="Spikadeer",
+            power=5,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Spines,
+            ],
+        ),
+        description="high health and strong with skill set to protect against enemies and hurt them back, like the spines skill",
+    ),
+    # Gravedog 🧺🐭🔰💀 5p 2h
+    # costs: 🔥🔥 has: 🔥👻 pot: 37
+    Blueprint(
+        original=Card(
+            name="Gravedog",
+            power=5,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+            ],
+        ),
+        description="strong but vulnerable, but has skills to protect it such as resurrection ability A deadly but risky option",
+    ),
+    # Baneling 💀🐭 7p 1h
+    # costs: 🔥 has: 👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Baneling",
+            power=7,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.InstantDeath, skills.Fertility],
+        ),
+        description="high power and low health but the instant death skill makes them an effective attack option against enemies",
+    ),
+    # Colossus 🐩💀🔰🪁🧺 6p 10h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 69
+    Blueprint(
+        original=Card(
+            name="Colossus",
+            power=6,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Soaring,
+                skills.Packrat,
+            ],
+        ),
+        description="With high power and exceptional health, this giant creature is really hard to take down It has a lot of spirits and with Underdog skill can turn the tide in its favor It is a mighty Wind Dragon, soaring high Soaring skill and crushing enemies with its weight InstantDeath skill It is also reflective against fire  costsfire",
+    ),
+    # Ladybug 🐭 2p 3h
+    # costs: 🔥 has: 👻 pot: 16
+    Blueprint(
+        original=Card(
+            name="Ladybug",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description="With low power but high health, this tiny beetle is hardy and resilient It has some fire and can create fiery spheres Fertility skill to ward off enemies It is also reflective Shield skill against larger predators, which it can outlast thanks to its high health",
+    ),
+    # Ravenclaw 🐭💀🧺 7p 2h
+    # costs: 🔥 has: 🔥👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Ravenclaw",
+            power=7,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Packrat],
+        ),
+        description='This card has high power, low health, and several skills The name "Ravenclaw" is related to the bird raven, which is often associated with intelligence and learning This fits the card\'s high power and range of skills, which suggest a strategic and cunning approach to gameplay',
+    ),
+    # Glimmerkit  1p 2h
+    # costs: - has: 🔥 pot: 14
+    Blueprint(
+        original=Card(
+            name="Glimmerkit",
+            power=1,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[],
+        ),
+        description='This card has low power, low health, and no skills The name "Glimmerkit" relates to the idea of a small, delicate creature that is also alluring and captivating This name plays off of the card\'s lack of power and suggests that instead of fighting, the creature is more focused on drawing in opponents with its beauty or charm',
+    ),
+    # Bristleleo 🔰 3p 5h
+    # costs: - has: 🔥👻👻 pot: 31
+    Blueprint(
+        original=Card(
+            name="Bristleleo",
+            power=3,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Shield],
+        ),
+        description='This card has moderate power and health, as well as a shield skill The name "Bristleleo" evokes the image of a fierce and spiky lion, which fits with the card\'s moderate power and health The shield skill also suggests an element of protection, which is implied by the "bristle" part of the name Overall, the name adds to the sense of a card that is tough and hard to defeat',
+    ),
+    # Nightviper 💀🐭 3p 3h
+    # costs: 🔥 has: 🔥👻👻 pot: 26
+    Blueprint(
+        original=Card(
+            name="Nightviper",
+            power=3,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Fertility],
+        ),
+        description="related to 'instant death' skill that suggests fast and deadly, as well as the cost of fire, which is a red snake, a lethal animal usually more active during the night",
+    ),
+    # Glitchimp  6p 1h
+    # costs: 🔥🔥 has: 🔥👻👻👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Glitchimp",
+            power=6,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[],
+        ),
+        description="mix of glitch and imp as the creature has a mix of high power and low health, suggesting a quick burst of damage that can be easily eliminated, inspired by the costs of fire and the creature's health",
+    ),
+    # Skyshrike 💀🚀 2p 1h
+    # costs: 🔥 has: 🔥👻👻👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Skyshrike",
+            power=2,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Airdefense],
+        ),
+        description="'airdefense' skill and the cost of fire suggest a bird, combined with the creature's low power",
+    ),
+    # Beasthorde 🐭💀🧺🐩🔰🦔 8p 6h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Beasthorde",
+            power=8,
+            health=6,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Shield,
+                skills.Spines,
+            ],
+        ),
+        description="as the creature has many different skills and both fire and spirits",
+    ),
+    # PackPanther 🧺🐩🐭🔰 9p 5h
+    # costs: 👻👻👻👻 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="PackPanther",
+            power=9,
+            health=5,
+            costs_fire=0,
+            costs_spirits=4,
+            has_spirits=3,
+            has_fire=5,
+            skills=[skills.Packrat, skills.Underdog, skills.Fertility, skills.Shield],
+        ),
+        description="A fierce and loyal creature, the PackPanther gains power and skills when it's part of a group Its packrat skill allows it to hoard resources, while underdog makes it more powerful when facing stronger foes With fertility and shield, this panther can lead your deck to victory",
+    ),
+    # ThornDragon 🧺🪁💀🐭🔰 3p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="ThornDragon",
+            power=3,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.Soaring,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+            ],
+        ),
+        description="This powerful creature has sharp thorns covering its body, making it dangerous to attack Its skills allow it to take out enemies instantly, make it more powerful in battle, and even create more cards With moderate power and high health, the ThornDragon can hold its own in any fight",
+    ),
+    # Frbolt 🐭🧺💀🔰🦔 10p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 65
+    Blueprint(
+        original=Card(
+            name="Frbolt",
+            power=10,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Spines,
+            ],
+        ),
+        description='relates to fire attribute and skill names "Fertility" and "InstantDeath", while also invoking a lightningfast bolt of power',
+    ),
+    # Rookwing 🐩🧺🔰🐭 7p 5h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 51
+    Blueprint(
+        original=Card(
+            name="Rookwing",
+            power=7,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[skills.Underdog, skills.Packrat, skills.Shield, skills.Fertility],
+        ),
+        description='mediumtohigh power and health, with "Packrat" and "Underdog" skills making the card feel cagy and strategic, and the "Shield" skill referencing the tough, protective nature of a rook in chess',
+    ),
+    # Sprouton 🐭 1p 2h
+    # costs: - has: 🔥👻👻👻👻 pot: 26
+    Blueprint(
+        original=Card(
+            name="Sprouton",
+            power=1,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description='summons images of a wideeyed, bushytailed creature with potential to grow and develop via "Fertility" skill while also being safe in a grassy, wooded environment via small powerhealth and "Shield" skill',
+    ),
+    # Deathspike 🐭🦔💀 4p 5h
+    # costs: 🔥 has: 🔥👻👻 pot: 34
+    Blueprint(
+        original=Card(
+            name="Deathspike",
+            power=4,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Spines, skills.InstantDeath],
+        ),
+        description='combining the "InstantDeath" skill with the "Spines" skill to represent a deadly creature "Fertility" skill is ignored given the name and theme of the card',
+    ),
+    # Specterbat 💀 3p 2h
+    # costs: 🔥 has: - pot: 14
+    Blueprint(
+        original=Card(
+            name="Specterbat",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.InstantDeath],
+        ),
+        description='short name that references the "InstantDeath" skill and the fact that the card has no element type "Bat" is a quick way of indicating a small and agile creature',
+    ),
+    # Moonrat 🐭💀🧺 3p 4h
+    # costs: - has: 🔥🔥🔥👻👻👻👻 pot: 46
+    Blueprint(
+        original=Card(
+            name="Moonrat",
+            power=3,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Packrat],
+        ),
+        description='given the high values of spirits and the "Packrat" skill, "Moonrat" suits as the creature of the night that excels at hoarding and collecting resources The "InstantDeath" skill references the fact that even though the creature is small, it can be deadly',
+    ),
+    # Bloodvine  0p 3h
+    # costs: 🔥 has: 🔥👻 pot: 6
+    Blueprint(
+        original=Card(
+            name="Bloodvine",
+            power=0,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description='The card has a high health attribute and a low power attribute, which means it has a good chance of lasting long in the game The name "Bloodvine" represents this durabilitylongevity, and also gives the impression of thorniness because of the "vine" part, which reinforces the fact that the card has a high health attribute',
+    ),
+    # Moonmole  2p 4h
+    # costs: 🔥 has: 🔥👻 pot: 11
+    Blueprint(
+        original=Card(
+            name="Moonmole",
+            power=2,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description='The card has a low power attribute but a decent health attribute Additionally, the card does not have any skills The name "Moonmole" fits the card well as it represents the card\'s fairly weak power attribute underground animal, and the word "moon" gives the sense that the card is active at night and has a sneaky or shadowy aspect to it',
+    ),
+    # Packtiger 💀🐭🧺 5p 10h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Packtiger",
+            power=5,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.InstantDeath, skills.Fertility, skills.Packrat],
+        ),
+        description="relating to its skills Packrat and Fertility and high stats",
+    ),
+    # Thornsnail 💀🔰🦔 1p 1h
+    # costs: - has: 🔥👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Thornsnail",
+            power=1,
+            health=1,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Shield, skills.Spines],
+        ),
+        description="relating to its low powerhealth and high defense spines",
+    ),
+    # Shadowgorilla 💀🧺 9p 3h
+    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 34
+    Blueprint(
+        original=Card(
+            name="Shadowgorilla",
+            power=9,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.InstantDeath, skills.Packrat],
+        ),
+        description="relating to its high power and dark, mysterious feel",
+    ),
+    # Faelever 🐭 1p 3h
+    # costs: 🔥 has: 👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Faelever",
+            power=1,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description="relating to its low fire cost and Fertility skill, with a whimsical and mystical name",
+    ),
+    # Seedwyrm 🐭🧺🔰 6p 9h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="Seedwyrm",
+            power=6,
+            health=9,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Fertility, skills.Packrat, skills.Shield],
+        ),
+        description="a large, resilient creature with a strong connection to nature and a skill set focused on reproduction, and shielding",
+    ),
+    # Stoneotter  2p 9h
     # costs: 🔥 has: 👻 pot: 19
     Blueprint(
         original=Card(
-            name="Packratty",
+            name="Stoneotter",
+            power=2,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[],
+        ),
+        description="a sturdy, waterloving animal with moderate power and resilient health",
+    ),
+    # Bloodthorn 🧺🐭💀🔰🦔 3p 6h
+    # costs: 👻 has: 🔥🔥🔥👻👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="Bloodthorn",
+            power=3,
+            health=6,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=4,
+            has_fire=3,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Spines,
+            ],
+        ),
+        description="an aggressive, spiky creature with moderate power and health and a range of lethal abilities focused on protection and damage",
+    ),
+    # Spiritlion 🔰🐭🧺🚀💀 9p 7h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Spiritlion",
+            power=9,
+            health=7,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=6,
+            skills=[
+                skills.Shield,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Airdefense,
+                skills.InstantDeath,
+            ],
+        ),
+        description="high spirit attribute, powerful and provides protection with shield skill",
+    ),
+    # Deathroach 💀 3p 3h
+    # costs: - has: - pot: 25
+    Blueprint(
+        original=Card(
+            name="Deathroach",
+            power=3,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.InstantDeath],
+        ),
+        description="instant death skill, low powerhealth, small and nimble like a cockroach but deadly like a scorpion",
+    ),
+    # Fireling 🪁 0p 1h
+    # costs: 🔥 has: 🔥🔥🔥👻 pot: 6
+    Blueprint(
+        original=Card(
+            name="Fireling",
+            power=0,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=3,
+            skills=[skills.Soaring],
+        ),
+        description="With low power and health values, this card is best used for support or as cannon fodder The Fire in the name reflects the cost to play and the Soaring skill suggests a type of flying creature",
+    ),
+    # Spikerat 🧺🦔💀 3p 3h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Spikerat",
+            power=3,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=4,
+            skills=[skills.Packrat, skills.Spines, skills.InstantDeath],
+        ),
+        description="The Spines skill and midlevel power and health values suggest a defensive rattype creature The name focuses on the spines and the combination with rat suggests an almost dangerous type of creature",
+    ),
+    # Blazewolf 🧺🐭🔰 8p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻 pot: 54
+    Blueprint(
+        original=Card(
+            name="Blazewolf",
+            power=8,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[skills.Packrat, skills.Fertility, skills.Shield],
+        ),
+        description="related to fire, high powerhealth, packrat skill",
+    ),
+    # Seraphin 🔰🐭🐩🧺🪁💀 10p 5h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 63
+    Blueprint(
+        original=Card(
+            name="Seraphin",
+            power=10,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Shield,
+                skills.Fertility,
+                skills.Underdog,
+                skills.Packrat,
+                skills.Soaring,
+                skills.InstantDeath,
+            ],
+        ),
+        description="high powerhealth, shield skill, underdog skill, soaring skill, packrat skill, instant death skill, fertility skill",
+    ),
+    # Darkmole 💀 2p 2h
+    # costs: 🔥 has: 🔥👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Darkmole",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="low powerhealth, instant death skill, related to darkness",
+    ),
+    # Ironhawk 🔰🪁 10p 8h
+    # costs: 🔥🔥 has: 🔥👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Ironhawk",
+            power=10,
+            health=8,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Shield, skills.Soaring],
+        ),
+        description="powerful, relatively expensive, has shield and soaring abilities",
+    ),
+    # Plumebird 🐩🧺🐭🔰 2p 3h
+    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 33
+    Blueprint(
+        original=Card(
+            name="Plumebird",
+            power=2,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Underdog, skills.Packrat, skills.Fertility, skills.Shield],
+        ),
+        description="moderate power and health, higher spirits and fire, multiple skills including fertility and underdog abilities",
+    ),
+    # Forestgiant 🔰🧺🐭 2p 9h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥👻👻 pot: 40
+    Blueprint(
+        original=Card(
+            name="Forestgiant",
+            power=2,
+            health=9,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[skills.Shield, skills.Packrat, skills.Fertility],
+        ),
+        description="high health and power, high fire and spirit cost, has shield, packrat and fertility abilities",
+    ),
+    # Thornbug 🦔 3p 1h
+    # costs: 🔥 has: 🔥👻 pot: 10
+    Blueprint(
+        original=Card(
+            name="Thornbug",
+            power=3,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Spines],
+        ),
+        description="low power, low health, small, low fire cost, has spines ability",
+    ),
+    # Spiritstag 🐭🔰💀🦔🐩🧺 7p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 80
+    Blueprint(
+        original=Card(
+            name="Spiritstag",
+            power=7,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Spines,
+                skills.Underdog,
+                skills.Packrat,
+            ],
+        ),
+        description="strong, highHP, highspirit card with multiple skills, deerlike appearance",
+    ),
+    # Sunfalcon 🦔💀🐭🔰🐩🪁 7p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 73
+    Blueprint(
+        original=Card(
+            name="Sunfalcon",
+            power=7,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Spines,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+                skills.Underdog,
+                skills.Soaring,
+            ],
+        ),
+        description="strong, highHP, flying card with spines, shield and instant death skills, associated with the sun",
+    ),
+    # Magmapebble 🐭🔰💀🧺 6p 8h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 60
+    Blueprint(
+        original=Card(
+            name="Magmapebble",
+            power=6,
+            health=8,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description="highHP, highspirit cost with packrat skill, associated with volcanic terrain",
+    ),
+    # Lizardling  0p 7h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Lizardling",
+            power=0,
+            health=7,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[],
+        ),
+        description="lowpower, lowHP, fire and spirit costs, no skills, small cute Lizard",
+    ),
+    # Shellotter  0p 3h
+    # costs: 🔥🔥 has: 👻👻 pot: 5
+    Blueprint(
+        original=Card(
+            name="Shellotter",
+            power=0,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=0,
+            skills=[],
+        ),
+        description="low power, but high health, armored, with a hint of water fire vs water",
+    ),
+    # Nightfennec 🐩💀🧺 2p 6h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻 pot: 33
+    Blueprint(
+        original=Card(
+            name="Nightfennec",
+            power=2,
+            health=6,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[skills.Underdog, skills.InstantDeath, skills.Packrat],
+        ),
+        description="low cost, balanced, with underdog presence and packrat tendencies",
+    ),
+    # Lunarfox 💀🔰 7p 6h
+    # costs: 👻👻👻 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Lunarfox",
+            power=7,
+            health=6,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=3,
+            has_fire=5,
+            skills=[skills.InstantDeath, skills.Shield],
+        ),
+        description="relates to the use of spirits to summon a nocturnal creature with high power and moderate health, and the Shield skill a mystical fox that harnesses the power of the moon",
+    ),
+    # Umbratiger 🐩💀🐭 4p 8h
+    # costs: 🔥 has: 🔥🔥👻👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Umbratiger",
+            power=4,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.Underdog, skills.InstantDeath, skills.Fertility],
+        ),
+        description="relates to using fire and spirits to summon a creature with moderate power and high health, and the skills Underdog and Fertility a tigerlike beast that strides through the shadows",
+    ),
+    # Flamechilla 🔰🧺🐭 2p 8h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻 pot: 40
+    Blueprint(
+        original=Card(
+            name="Flamechilla",
+            power=2,
+            health=8,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=4,
+            skills=[skills.Shield, skills.Packrat, skills.Fertility],
+        ),
+        description="relates to using fire to summon a creature with low power but high health, and the skills Shield, Packrat, and Fertility a fireresistant creature that can burrow underground and enjoy a long lifespan",
+    ),
+    # Spikefelis 💀🐭🐩🔰 5p 3h
+    # costs: 🔥 has: 🔥👻👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Spikefelis",
+            power=5,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Underdog,
+                skills.Shield,
+            ],
+        ),
+        description="relates to high power and the skills InstantDeath, Fertility, and Underdog a speedy and sly feline with sharp spines",
+    ),
+    # Beetlejuice 🔰🧺 1p 3h
+    # costs: 🔥 has: 👻 pot: 18
+    Blueprint(
+        original=Card(
+            name="Beetlejuice",
+            power=1,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Shield, skills.Packrat],
+        ),
+        description="This card has average health and an ability to shield itself The name relates to the idea of a beetle that can shield itself, while also sounding like a name that belongs in the fantastical world of the game",
+    ),
+    # Mythox 🧺🔰🐭🦔🪁 5p 6h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Mythox",
+            power=5,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.Spines,
+                skills.Soaring,
+            ],
+        ),
+        description="This card is very strong and expensive to play It has quite a few abilities and is wellbalanced in terms of fire and spirits The name relates to the idea of a mythical ox, a powerful and elusive being",
+    ),
+    # Firefawn  1p 3h
+    # costs: 👻👻👻 has: - pot: 4
+    Blueprint(
+        original=Card(
+            name="Firefawn",
+            power=1,
+            health=3,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=0,
+            has_fire=0,
+            skills=[],
+        ),
+        description="This card has low power and health but is highly spirited The name reflects the idea of a cute, deerlike creature with a fiery spirit",
+    ),
+    # Illusnake 💀🐩🦔 2p 1h
+    # costs: 🔥🔥 has: 👻👻👻👻👻 pot: 20
+    Blueprint(
+        original=Card(
+            name="Illusnake",
+            power=2,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=0,
+            skills=[skills.InstantDeath, skills.Underdog, skills.Spines],
+        ),
+        description="related to the skill InstantDeath and the spines it's not a real snake, but a mix of illusion and a snake",
+    ),
+    # Firefinch 🐭🪁🧺 3p 10h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻 pot: 52
+    Blueprint(
+        original=Card(
+            name="Firefinch",
+            power=3,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[skills.Fertility, skills.Soaring, skills.Packrat],
+        ),
+        description="related to the cost of fire, and the card have quite a lot of fire with only  spirits, and the skills also indicate a fiery bird",
+    ),
+    # Silverwing 🐭🔰 4p 3h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻 pot: 41
+    Blueprint(
+        original=Card(
+            name="Silverwing",
+            power=4,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[skills.Fertility, skills.Shield],
+        ),
+        description="no fire or spirits, has the skill Shield and Fertility related to healing, and has quite an average powerhealth",
+    ),
+    # Phoenixgriff 🔰💀🧺🐭 5p 5h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Phoenixgriff",
+            power=5,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=6,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description="related to the cost of fire, high cost of spirits, strong and fiery with the InstantDeath skill, and the Packrat skill implies it carries something valuable",
+    ),
+    # Titanarmor 🔰💀🐭🧺 6p 6h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Titanarmor",
+            power=6,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description="high powerhealth, low spirits, has the Shield skill, and looks tough as nails with InstantDeath and Fertility Also, Shieldserpent and Shieldbear are already taken",
+    ),
+    # Drakonport 🐭🔰🧺🐩🪁💀 10p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 76
+    Blueprint(
+        original=Card(
+            name="Drakonport",
+            power=10,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Soaring,
+                skills.InstantDeath,
+            ],
+        ),
+        description="related to dragons, high powerhealthcosts, fertility, shield, packrat, soaring, instant death",
+    ),
+    # Fairopa 🐭💀 4p 1h
+    # costs: 🔥 has: 👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Fairopa",
+            power=4,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description="related to fairies, low powerhealthcosts, fertility, instant death",
+    ),
+    # Chirrita 🐭🦔🧺💀 5p 7h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Chirrita",
+            power=5,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Fertility,
+                skills.Spines,
+                skills.Packrat,
+                skills.InstantDeath,
+            ],
+        ),
+        description="related to birds, decent powerhealthspirits, no fire costs, fertility, spines, packrat, instant death",
+    ),
+    # Flametail 🔰💀🐭 4p 6h
+    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Flametail",
+            power=4,
+            health=6,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Shield, skills.InstantDeath, skills.Fertility],
+        ),
+        description="related to fire element, low powerhigh health, moderate fire costs, shield, instant death, fertility",
+    ),
+    # Sparrowwolf 🧺🐭 10p 4h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Sparrowwolf",
+            power=10,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[skills.Packrat, skills.Fertility],
+        ),
+        description="fast, powerful, lowcost, packrat",
+    ),
+    # Skyotter  1p 1h
+    # costs: 👻👻 has: 🔥👻👻👻 pot: 5
+    Blueprint(
+        original=Card(
+            name="Skyotter",
+            power=1,
+            health=1,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=3,
+            has_fire=1,
+            skills=[],
+        ),
+        description="spiritheavy, aquatic, small, nonskilled",
+    ),
+    # FaeWhale 💀🧺🐭 5p 6h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 55
+    Blueprint(
+        original=Card(
+            name="FaeWhale",
+            power=5,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[skills.InstantDeath, skills.Packrat, skills.Fertility],
+        ),
+        description="sea creature, high health, spirited, packrat, fertility",
+    ),
+    # Thundertoad 🐭 3p 2h
+    # costs: 🔥 has: 🔥🔥👻 pot: 18
+    Blueprint(
+        original=Card(
+            name="Thundertoad",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Fertility],
+        ),
+        description="fireheavy, spiky, average powerhealth, fertility",
+    ),
+    # Dreadbeast 💀🧺🐭🔰🦔🪁 6p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="Dreadbeast",
+            power=6,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+                skills.Spines,
+                skills.Soaring,
+            ],
+        ),
+        description="high power and health, balance of fire and spirits, multiple skills including InstantDeath and Shield",
+    ),
+    # Pixiedeer 🐭🐩 2p 2h
+    # costs: 🔥 has: 🔥👻👻👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Pixiedeer",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Underdog],
+        ),
+        description="small in stature, balance of fire and spirits, some fertility and ability to be an underdog",
+    ),
+    # Foxscorch 🧺🐩 3p 2h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥 pot: 21
+    Blueprint(
+        original=Card(
+            name="Foxscorch",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=5,
+            skills=[skills.Packrat, skills.Underdog],
+        ),
+        description="balance of fire and spirits, packratlike tendencies, ability to be an underdog",
+    ),
+    # Titanrhino 🔰🧺🐭 3p 10h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Titanrhino",
+            power=3,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[skills.Shield, skills.Packrat, skills.Fertility],
+        ),
+        description="very high health, heavy focus on spirits, mostly defensive skills including Shield and Packrat",
+    ),
+    # Fireshriek 💀 4p 1h
+    # costs: 🔥🔥🔥 has: - pot: 12
+    Blueprint(
+        original=Card(
+            name="Fireshriek",
+            power=4,
+            health=1,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.InstantDeath],
+        ),
+        description="high power, very low health, very expensive, one deadly skill  InstantDeath",
+    ),
+    # Thunderfox 🧺💀🪁🔰 6p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 46
+    Blueprint(
+        original=Card(
+            name="Thunderfox",
+            power=6,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[skills.Packrat, skills.InstantDeath, skills.Soaring, skills.Shield],
+        ),
+        description="high powerhealth, strong skills, both fire and spirits",
+    ),
+    # Diamondcat 🧺 2p 9h
+    # costs: 🔥 has: 🔥👻 pot: 25
+    Blueprint(
+        original=Card(
+            name="Diamondcat",
+            power=2,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Packrat],
+        ),
+        description="high health, no spirits or fire, good defense",
+    ),
+    # Pixiewasp 🧺 1p 1h
+    # costs: 🔥🔥 has: 🔥 pot: 7
+    Blueprint(
+        original=Card(
+            name="Pixiewasp",
+            power=1,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Packrat],
+        ),
+        description="very low stats, but has Packrat skill",
+    ),
+    # Seaotter 🔰💀🐭🧺 6p 8h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 66
+    Blueprint(
+        original=Card(
+            name="Seaotter",
+            power=6,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description="strong, low cost, mainly spirits",
+    ),
+    # Magmahog 💀 1p 3h
+    # costs: 🔥 has: 👻👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Magmahog",
+            power=1,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=0,
+            skills=[skills.InstantDeath],
+        ),
+        description="low power, decent health, fire skill",
+    ),
+    # Phoenixlife 🐭 2p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 36
+    Blueprint(
+        original=Card(
+            name="Phoenixlife",
+            power=2,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[skills.Fertility],
+        ),
+        description="Phoenixes are fire creatures themselves and  mana is quite expensive, but Phoenixlife is a very resilient card, having high health and fertility skills It needs to gain all the life back to regenerate, so adding 'life' to the name seems fitting",
+    ),
+    # SpiritDrake 🧺🔰🐭💀 9p 4h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻👻👻👻 pot: 52
+    Blueprint(
+        original=Card(
+            name="SpiritDrake",
+            power=9,
+            health=4,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+            ],
+        ),
+        description="This name fits the card's high power and health, with the added attribute of spirit and fire affinity The skills of Packrat and Shield make it a formidable opponent, and the InstantDeath skill means it can take down even the toughest of foes",
+    ),
+    # FaeBloom 🐭 5p 2h
+    # costs: - has: 🔥👻👻👻👻👻👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="FaeBloom",
+            power=5,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="This name fits the card's spiritheavy attributes, with a midrange power and health The Fertility skill makes sense with the name and the card's general theme, invoking the image of nature and life",
+    ),
+    # Shadowhog 🧺🐩💀🐭 5p 4h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻 pot: 43
+    Blueprint(
+        original=Card(
+            name="Shadowhog",
+            power=5,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Fertility,
+            ],
+        ),
+        description="This name fits the card's midrange power and health, with a focus on fire affinity The Packrat and Underdog skills make sense with the image of a small but tenacious animal, while InstantDeath and Fertility emphasize its deadly and cunning nature",
+    ),
+    # Nymphodile 🐭💀🧺 2p 3h
+    # costs: 👻👻👻👻 has: 🔥👻 pot: 26
+    Blueprint(
+        original=Card(
+            name="Nymphodile",
+            power=2,
+            health=3,
+            costs_fire=0,
+            costs_spirits=4,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Packrat],
+        ),
+        description="related to Fertility and Packrat skills, and low cost in spirits  nymphs are often portrayed as being associated with nature and life, while crocodiles are typically seen as powerful predators, a combination that reflects a card with a packrat skill that can bring many creatures into the game also has the ability to quickly eliminate them with InstantDeath",
+    ),
+    # Infernowyrm 🔰🚀🧺🐭 7p 5h
+    # costs: 🔥 has: 🔥🔥🔥👻👻 pot: 44
+    Blueprint(
+        original=Card(
+            name="Infernowyrm",
+            power=7,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[skills.Shield, skills.Airdefense, skills.Packrat, skills.Fertility],
+        ),
+        description="related to the Fire attribute, defensive skills of Shield and Airdefense, and Packrat skill a wyvern is an airborne mythical creature that is known to breathe fire, which reflects the Fire attribute and Airdefense skill, while Inferno reflects the fire aspect of the card Also, this card has a packrat skill so it can deliver a large number of wyverns to the game at a lower price",
+    ),
+    # Firehedge 🐭🐩 2p 3h
+    # costs: 🔥 has: 🔥 pot: 20
+    Blueprint(
+        original=Card(
+            name="Firehedge",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Underdog],
+        ),
+        description='reflects the Fire attribute and Fertility skill The name "Hedge" defines the high health which gives protection like a wall, and the Fire aspect makes it more agile, fast and more hostile to enemies than a hedgehog This card is dependable because of its health and economy in Fire spirit cost and it can release Fertility to summon new creatures to the game fast ',
+    ),
+    # Foxkit  1p 3h
+    # costs: 🔥 has: 👻👻 pot: 7
+    Blueprint(
+        original=Card(
+            name="Foxkit",
+            power=1,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=0,
+            skills=[],
+        ),
+        description="small, weak, lowcost, with a bit of spirit",
+    ),
+    # Behemoth 🐭🐩🔰🦔🧺💀 8p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 65
+    Blueprint(
+        original=Card(
+            name="Behemoth",
+            power=8,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Underdog,
+                skills.Shield,
+                skills.Spines,
+                skills.Packrat,
+                skills.InstantDeath,
+            ],
+        ),
+        description="massive and powerful, with various skills",
+    ),
+    # Shadebeast 🐩💀🔰🧺🐭 6p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 69
+    Blueprint(
+        original=Card(
+            name="Shadebeast",
+            power=6,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description="powerful, elusive, and tricky, with many skills",
+    ),
+    # Shadowfang 💀🔰🧺🐭 10p 5h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Shadowfang",
+            power=10,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description="extremely strong, with deadly skills and some spirit and fire",
+    ),
+    # Thordespike 💀🐭🦔 7p 8h
+    # costs: 👻👻👻 has: 🔥🔥🔥🔥👻👻👻 pot: 46
+    Blueprint(
+        original=Card(
+            name="Thordespike",
+            power=7,
+            health=8,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=3,
+            has_fire=4,
+            skills=[skills.InstantDeath, skills.Fertility, skills.Spines],
+        ),
+        description="a fearsome creature with high powerhealth, spines and the ability to cause instant death and fertility for your team",
+    ),
+    # Serendfawn 💀🐭🔰 1p 2h
+    # costs: 👻👻👻 has: 🔥👻 pot: 24
+    Blueprint(
+        original=Card(
+            name="Serendfawn",
+            power=1,
+            health=2,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Fertility, skills.Shield],
+        ),
+        description="a small and graceful creature with low powerhealth, but with the ability to cause instant death, fertility and to shield your team",
+    ),
+    # Skyrburner 🪁💀🐭 10p 3h
+    # costs: 🔥🔥 has: 🔥🔥👻👻👻 pot: 41
+    Blueprint(
+        original=Card(
+            name="Skyrburner",
+            power=10,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.Soaring, skills.InstantDeath, skills.Fertility],
+        ),
+        description="a powerful creature with high power and the ability to fly, cause instant death and fertility",
+    ),
+    # Phoenixight 💀🔰🐭🪁 5p 5h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Phoenixight",
+            power=5,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+                skills.Soaring,
+            ],
+        ),
+        description="strong, spirited, fiery, shielded, fertile, soaring, instant death ability",
+    ),
+    # Spiketiger 🦔🔰 10p 2h
+    # costs: 🔥🔥 has: 🔥👻 pot: 29
+    Blueprint(
+        original=Card(
+            name="Spiketiger",
+            power=10,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Spines, skills.Shield],
+        ),
+        description="powerful, spines, low health, expensive, fiery, shielded",
+    ),
+    # Fairygoose 🐭 2p 3h
+    # costs: 🔥 has: 🔥 pot: 16
+    Blueprint(
+        original=Card(
+            name="Fairygoose",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="inexpensive, with fertility, not spirited, not skilled",
+    ),
+    # Thornlion 🦔🧺🐭🐩🔰💀 9p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 80
+    Blueprint(
+        original=Card(
+            name="Thornlion",
+            power=9,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Spines,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Underdog,
+                skills.Shield,
+                skills.InstantDeath,
+            ],
+        ),
+        description="very strong with spines, high health, inexpensive, spirited, protective, fertile, underdog, instant death ability",
+    ),
+    # Thundernix 🧺🐭💀🔰🪁 7p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Thundernix",
+            power=7,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Soaring,
+            ],
+        ),
+        description="relating to the card's high health and skill of Shield, and the balance between its Spirit and Fire attributes",
+    ),
+    # Dreamwhisp 🐭💀 4p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻 pot: 44
+    Blueprint(
+        original=Card(
+            name="Dreamwhisp",
+            power=4,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description="relating to the card's low attributes and the Fertility and InstantDeath skills",
+    ),
+    # Sylphshroom 🐭🔰 4p 4h
+    # costs: 👻👻👻 has: 🔥👻👻👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Sylphshroom",
+            power=4,
+            health=4,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Shield],
+        ),
+        description="relating to the card's moderate attributes as well as the Fertility and Shield skills, while also referencing the card's moderate Spirit attribute through the \"sylph\" aspect of the name",
+    ),
+    # Spidercat 🐭 2p 3h
+    # costs: 🔥🔥 has: - pot: 14
+    Blueprint(
+        original=Card(
+            name="Spidercat",
+            power=2,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description="The spiderlike skills of Fertility give this card the ability to weave its way out of its opponent's attacks and the catlike qualities of being a sneaky attacker, difficult to catch off guard",
+    ),
+    # Hoarderhog 🧺🐩🐭💀 8p 10h
+    # costs: 👻👻👻👻 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Hoarderhog",
+            power=8,
+            health=10,
+            costs_fire=0,
+            costs_spirits=4,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.Underdog,
+                skills.Fertility,
+                skills.InstantDeath,
+            ],
+        ),
+        description="With Packrat, Underdog, Fertility, and Instant Death skills, this large hedgehog collects powerful resources and defends them fiercely, taking down opponents who underestimate its abilities",
+    ),
+    # Fenixfox  1p 2h
+    # costs: - has: 👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Fenixfox",
+            power=1,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[],
+        ),
+        description="Combination of Phoenix and Fox, reflecting the relatively low power and cost but health and spirits , , , as well as the lack of Fire skill, conveying a sense of revival and rebirth",
+    ),
+    # Volemite 🧺 3p 2h
+    # costs: - has: 🔥👻👻👻 pot: 26
+    Blueprint(
+        original=Card(
+            name="Volemite",
+            power=3,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Packrat],
+        ),
+        description="Combination of Vole and Mite, reflecting the middlelevel power and spirits, but health, and packrat skill , , , while also lacking fire and overall expensive cost , conveying a sense of smallness but resourcefulness",
+    ),
+    # Lava turtle 🐭🧺 3p 3h
+    # costs: 🔥 has: 🔥 pot: 23
+    Blueprint(
+        original=Card(
+            name="Lava turtle",
+            power=3,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Packrat],
+        ),
+        description="Reflecting the moderate power and health but significant costs of fire, fire skill, packrat and fertility skills, as well as the lack of spirits skill , , , , conveying a sense of defense and a hard exterior that can withstand danger",
+    ),
+    # Spellosaur  1p 4h
+    # costs: 👻 has: 🔥👻 pot: 9
+    Blueprint(
+        original=Card(
+            name="Spellosaur",
+            power=1,
+            health=4,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description="With a high health and low cost in spirits, this card is one that can take some heavy punishment, just like our imagined Spellosaur that has a thick hide to protect itself in its battles",
+    ),
+    # Critterfly 🐩 2p 2h
+    # costs: 👻👻 has: 🔥👻 pot: 10
+    Blueprint(
+        original=Card(
+            name="Critterfly",
+            power=2,
+            health=2,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Underdog],
+        ),
+        description="With its modest attributes and underdog skill, it's hard to envision this card as anything other than a cute bug with wings, that many would underestimate The name Critterfly sounds similar to Butterfly but reimagines it as some sort of misjudged critter",
+    ),
+    # Thornix 🐭💀🐩🧺🔰 7p 4h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻👻 pot: 54
+    Blueprint(
+        original=Card(
+            name="Thornix",
+            power=7,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=3,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Packrat,
+                skills.Shield,
+            ],
+        ),
+        description="The name Thornix is inspired by the thorny armored skin of this card and its high power and moderate health This card is able to deal instant damage with InstantDeath and has skills like Fertility and Packrat, making it a fierce and cunning opponent",
+    ),
+    # Pixiedorm  2p 4h
+    # costs: 🔥🔥 has: 🔥👻 pot: 10
+    Blueprint(
+        original=Card(
+            name="Pixiedorm",
+            power=2,
+            health=4,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description=" power,  health, fire cost , no skills",
+    ),
+    # SpiritTortoise 🐭💀🔰 6p 10h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="SpiritTortoise",
+            power=6,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Shield],
+        ),
+        description="With high health and skills like Shield and Fertility, this name revolves around endurance and protection, embodying what a tortoise represents",
+    ),
+    # FlameMoth 🐭 2p 4h
+    # costs: 🔥 has: 🔥🔥👻 pot: 20
+    Blueprint(
+        original=Card(
+            name="FlameMoth",
+            power=2,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Fertility],
+        ),
+        description="A small but fiery creature, with low power and a cost in fire spirits this moth's flames burn brightly",
+    ),
+    # ThornBeast 🦔🧺🔰 10p 6h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 46
+    Blueprint(
+        original=Card(
+            name="ThornBeast",
+            power=10,
+            health=6,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[skills.Spines, skills.Packrat, skills.Shield],
+        ),
+        description="A card with high power and health but a high cost in both Fire and Spirit, and skills like Spines and Packrat the most apt name would be one that highlights its resilience and ferocity, like the name ThornBeast",
+    ),
+    # Armosaur 🐭🔰 3p 6h
+    # costs: 🔥🔥 has: 🔥👻👻 pot: 30
+    Blueprint(
+        original=Card(
+            name="Armosaur",
+            power=3,
+            health=6,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Shield],
+        ),
+        description="powerful, durable, shielded",
+    ),
+    # Shadowfrog 🧺💀🔰 7p 2h
+    # costs: 🔥🔥 has: 🔥👻👻 pot: 34
+    Blueprint(
+        original=Card(
+            name="Shadowfrog",
+            power=7,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Packrat, skills.InstantDeath, skills.Shield],
+        ),
+        description="very powerful, but low health, tricky and with defensive skills",
+    ),
+    # Thornycorn 💀🐭🦔🧺 10p 6h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 66
+    Blueprint(
+        original=Card(
+            name="Thornycorn",
+            power=10,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Spines,
+                skills.Packrat,
+            ],
+        ),
+        description="related to unicorn, but with thorns, suggesting that it's dangerous to approach High power, high health, and instant death skill tell us that it's a very dangerous card, very much like a unicorn, but with the spine skill and more fire than spirits",
+    ),
+    # Faeleap 🐭🧺🪁💀 2p 5h
+    # costs: - has: 🔥🔥👻👻 pot: 45
+    Blueprint(
+        original=Card(
+            name="Faeleap",
+            power=2,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.Soaring,
+                skills.InstantDeath,
+            ],
+        ),
+        description="relates to the packrat skill suggesting that this card is great at collecting items The short name means it is fast and an air defense skill gives it an added flavor of mobility Power is average and health high, which opposes the usual characteristics of such swift creatures",
+    ),
+    # Flameko 🔰💀🚀 3p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="Flameko",
+            power=3,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=6,
+            skills=[skills.Shield, skills.InstantDeath, skills.Airdefense],
+        ),
+        description="relates to koala, but as a flaming one, and with a shield ability, so could be seen as a protector High fire and at the middle spirit stats suggest that its true nature is somewhere inbetween, but the focus on fire leans towards an aggressive stance",
+    ),
+    # Thornspike 🐭🦔🔰💀 6p 7h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Thornspike",
+            power=6,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Spines,
+                skills.Shield,
+                skills.InstantDeath,
+            ],
+        ),
+        description="relates to porcupine but suggests that the card isn't afraid to attack with spines and instant death skills, and average power and high health indicate a mix between offense and defense high spirit and fire values suggest that the card is quite aloof and carefree, impeding its ability to work well with others Rarity of  in appearance suggests it's one of the stronger cards in the game",
+    ),
+    # Fateweaver 🐭💀 3p 3h
+    # costs: - has: 🔥🔥🔥👻 pot: 36
+    Blueprint(
+        original=Card(
+            name="Fateweaver",
+            power=3,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=3,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description="This name represents the mystical and magical nature of the card, with its skills of Fertility and InstantDeath The combined values of its power and health imply a sense of destiny or fate",
+    ),
+    # Ratguard 🧺🔰 4p 2h
+    # costs: - has: 🔥👻👻 pot: 33
+    Blueprint(
+        original=Card(
+            name="Ratguard",
+            power=4,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Packrat, skills.Shield],
+        ),
+        description="Ratguard is a good name for this defensive card with its Packrat and Shield skills Its moderate power and low health values align with the image of a small but scrappy defender",
+    ),
+    # Flamearmor 🔰 3p 2h
+    # costs: 🔥 has: 🔥🔥🔥 pot: 16
+    Blueprint(
+        original=Card(
+            name="Flamearmor",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=3,
+            skills=[skills.Shield],
+        ),
+        description="This name suggests a heavily armored creature like an armadillo Its fire cost and Shield skill contribute to its defense, while its moderate power and health values clearly indicate its role in battle",
+    ),
+    # Spriterant 🐭🧺 3p 3h
+    # costs: - has: 🔥👻👻👻👻 pot: 36
+    Blueprint(
+        original=Card(
+            name="Spriterant",
+            power=3,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Packrat],
+        ),
+        description="A small but reproductive creature that can easily collect items, with decent health and power, some fire protection, and a touch of magic The name comes from being 'spry', 'small', and 'errant' or always on the move",
+    ),
+    # Pyropanther 🐭💀🧺🔰 8p 3h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="Pyropanther",
+            power=8,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+            ],
+        ),
+        description="A firepowered panther with high power and a good amount of health, some protection, and deadly skills The name comes from 'pyro', 'panther', and the idea of a mythological creature, a sort of hybrid between a panther and some fiery animal",
+    ),
+    # Wingaraptor 🪁🐭💀 6p 5h
+    # costs: - has: 🔥🔥🔥👻👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Wingaraptor",
+            power=6,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[skills.Soaring, skills.Fertility, skills.InstantDeath],
+        ),
+        description="A raptor with wings, the ability to fly, and a decent amount of power, health, and magic The name comes from 'winged', 'raptor', and the idea of a mythological creature, a sort of hybrid between a raptor and a winged animal",
+    ),
+    # Guardian 🐩🔰🐭 2p 1h
+    # costs: 👻 has: 👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Guardian",
+            power=2,
+            health=1,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Underdog, skills.Shield, skills.Fertility],
+        ),
+        description="A small creature with little power and health, but some magic and a protective skill set The name refers to its skillset, which includes 'shield' and 'underdog', as well as its role as a defensive card",
+    ),
+    # Soulspider 💀 1p 2h
+    # costs: 👻👻👻👻👻 has: 🔥 pot: 7
+    Blueprint(
+        original=Card(
+            name="Soulspider",
+            power=1,
+            health=2,
+            costs_fire=0,
+            costs_spirits=5,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="With low physical attributes and relatively high cost in spirits, Soulspider has the ability to kill with a single attack",
+    ),
+    # Guardiancat 🔰🧺🐭 5p 7h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Guardiancat",
+            power=5,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[skills.Shield, skills.Packrat, skills.Fertility],
+        ),
+        description="With strong protective skills and equally strong attributes in both fire and spirits, Guardiancat is a force to be reckoned with",
+    ),
+    # Chimerabug 🐭🔰 3p 5h
+    # costs: - has: 🔥👻👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Chimerabug",
+            power=3,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Shield],
+        ),
+        description="A card with limited power and traits that relate to protection and fertility, Chimerabug's name still refers to its combination of traits reminiscent of a chimera and a bug",
+    ),
+    # Voodoopod 💀🐭 5p 2h
+    # costs: - has: 🔥👻 pot: 36
+    Blueprint(
+        original=Card(
+            name="Voodoopod",
+            power=5,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Fertility],
+        ),
+        description="has fire and spirits, high power, low health, no fire cost, InstantDeath and Fertility skills",
+    ),
+    # Mystileaf 💀🐭🐩🔰 3p 9h
+    # costs: 👻👻 has: 🔥🔥🔥👻👻👻 pot: 48
+    Blueprint(
+        original=Card(
+            name="Mystileaf",
+            power=3,
+            health=9,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Underdog,
+                skills.Shield,
+            ],
+        ),
+        description="has fire and spirits, high health, average power, high spirits cost, InstantDeath, Fertility, Underdog and Shield skills",
+    ),
+    # Magmaroo  3p 3h
+    # costs: 🔥🔥 has: 🔥👻👻 pot: 11
+    Blueprint(
+        original=Card(
+            name="Magmaroo",
+            power=3,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[],
+        ),
+        description="has fire, average powerhealth, low spirits, expensive fire cost, no skills",
+    ),
+    # Leafcat 🐭 1p 5h
+    # costs: 🔥 has: 👻 pot: 18
+    Blueprint(
+        original=Card(
+            name="Leafcat",
             power=1,
             health=5,
             costs_fire=1,
             costs_spirits=0,
             has_spirits=1,
             has_fire=0,
-            skills=[skills.Underdog, skills.Packrat],
+            skills=[skills.Fertility],
         ),
-        description="relates to cheapness, weak power and ability to stealspare resources",
+        description="With high health and the Fertility skill, this card has a lot of survivability and is hard to kill, just like a feline creature that lives in the forest and blends in with its environment",
     ),
-    # Fertilego 💀🚀🧺🐭 6p 8h
-    # costs: 🔥🔥 has: 🔥🔥🔥👻👻👻 pot: 48
+    # Spikedragon 💀🧺🦔🐭 8p 7h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 55
     Blueprint(
         original=Card(
-            name="Fertilego",
+            name="Spikedragon",
+            power=8,
+            health=7,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=4,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Spines,
+                skills.Fertility,
+            ],
+        ),
+        description="A card that's difficult to kill due to its high power and health, but can also use its Spines skill to inflict damage to opponents Its high spirit count is represented in its dragonlike name",
+    ),
+    # Ashshell 🐭🧺💀 6p 4h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Ashshell",
             power=6,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=3,
+            skills=[skills.Fertility, skills.Packrat, skills.InstantDeath],
+        ),
+        description="A midtier card that's hard to kill but doesn't do much damage, just like an armadillo but its Fertility and InstantDeath skills give it an extra boost The name references its hard shell, which is like an ashcovered armor",
+    ),
+    # Foxshade 🔰 3p 3h
+    # costs: 🔥🔥 has: 🔥 pot: 15
+    Blueprint(
+        original=Card(
+            name="Foxshade",
+            power=3,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Shield],
+        ),
+        description="a small, but elusive creature known for its ability to protect itself and sneak away from danger Its speed and evade tactics are reminiscent of the Shield skill, which allows it to avoid the effects of enemy spells",
+    ),
+    # Phoenixfin 🐭 3p 3h
+    # costs: 🔥🔥🔥 has: 🔥👻👻 pot: 18
+    Blueprint(
+        original=Card(
+            name="Phoenixfin",
+            power=3,
+            health=3,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="a fantastical creature with both fire and spirits running through its veins It has midrange stats, but also has the Fertility skill that may symbolize its ability to adapt and evolve over time  rising from the ashes like the mythical phoenix",
+    ),
+    # Skyturtle 🚀🔰 2p 1h
+    # costs: 🔥 has: 🔥👻 pot: 13
+    Blueprint(
+        original=Card(
+            name="Skyturtle",
+            power=2,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Airdefense, skills.Shield],
+        ),
+        description="a little creature that is both armored and has an Airdefense Its low power makes it not particularly offensive, but its Shield skill makes it difficult to take out It can be thought of as slow and steady with a protective shell ",
+    ),
+    # Razorback 🦔🔰🐭🐩 4p 7h
+    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 41
+    Blueprint(
+        original=Card(
+            name="Razorback",
+            power=4,
+            health=7,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Spines, skills.Shield, skills.Fertility, skills.Underdog],
+        ),
+        description="related to the spines skill, high health, and decent power",
+    ),
+    # Unicornic 🐭 7p 9h
+    # costs: 🔥 has: 🔥👻👻👻 pot: 38
+    Blueprint(
+        original=Card(
+            name="Unicornic",
+            power=7,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="related to the fertility skill and high spirited attribute",
+    ),
+    # Dragonant 🐭🔰💀🧺 6p 9h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Dragonant",
+            power=6,
+            health=9,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description="related to the high fire attribute, multiple skills, and decent powerhealth",
+    ),
+    # Necrolynx 🐭💀🐩 9p 8h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Necrolynx",
+            power=9,
+            health=8,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Underdog],
+        ),
+        description="related to the Instant Death and Underdog skills, high power attribute, and low spiritsfire attributes",
+    ),
+    # Celestiger 🔰🧺🐩🐭💀🪁 7p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 74
+    Blueprint(
+        original=Card(
+            name="Celestiger",
+            power=7,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Shield,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Soaring,
+            ],
+        ),
+        description=" powerhealth, high spiritsfire, Shield, Packrat, Underdog, Fertility, InstantDeath, Soaring  this card is a majestic and powerful creature born from the celestial fires, capable of soaring through the skies with its wings and its shield protects it from harm Its fierce claws and teeth make it a force to be reckoned with, while its ability to hoard resources and reproduce quickly make it a valuable asset in any battle",
+    ),
+    # Magmamoth  2p 4h
+    # costs: 🔥🔥🔥🔥 has: 🔥👻 pot: 8
+    Blueprint(
+        original=Card(
+            name="Magmamoth",
+            power=2,
+            health=4,
+            costs_fire=4,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description=" power,  health, high fire cost, no skills  this card is a massive and powerful creature, born from the deep earth Its fiery hide protects it from harm, while its massive tusks can crush anything in its path Its high cost makes it a rare and valuable card",
+    ),
+    # Faejellyfish 🐭 1p 5h
+    # costs: - has: 👻👻👻 pot: 29
+    Blueprint(
+        original=Card(
+            name="Faejellyfish",
+            power=1,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description=" power,  health, no fire cost, Fertility  this card is a delicate and stunning creature, born from the magic of the fae Its gentle tendrils can charm and captivate, while its ability to reproduce quickly make it an excellent defense against attackers",
+    ),
+    # Phoenixhord 🐭🧺💀 10p 4h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="Phoenixhord",
+            power=10,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[skills.Fertility, skills.Packrat, skills.InstantDeath],
+        ),
+        description=" power,  health, low fire cost, Fertility, Packrat, InstantDeath  this card is a powerful and rare creature, born from the ashes of the phoenix Its ability to reproduce and hoard resources makes it a valuable asset in battle, while its fiery breath and deathly touch can overcome even the strongest opponents",
+    ),
+    # Grovewolf 🧺🐭🐩🔰💀🦔 9p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Grovewolf",
+            power=9,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.Underdog,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Spines,
+            ],
+        ),
+        description="relates to its high power and health and its multiple defensive skills like Shield and Underdog, while its skills of Fertility and Packrat emphasize its hoarding, wolflike tendencies",
+    ),
+    # Spikestoat 💀🐭🔰🦔 6p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Spikestoat",
+            power=6,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+                skills.Spines,
+            ],
+        ),
+        description="low power and health but armed with Spines and InstaDeath, packs a punch like the stoat before it falls The name reflects its Spines skill",
+    ),
+    # Nightfrog 💀🔰🧺🐭 4p 5h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻 pot: 46
+    Blueprint(
+        original=Card(
+            name="Nightfrog",
+            power=4,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description="sneaky like its skills InstantDeath and Shield, and its relatively low attributes fit with the toadlike image Night reflects the dark art of battle",
+    ),
+    # Thornyra 🦔💀🐭 2p 7h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Thornyra",
+            power=2,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Spines, skills.InstantDeath, skills.Fertility],
+        ),
+        description="relatively high health and Spines skill match the name, while also connecting to the Armadillo card ra ending adds dragonesque attributes without being a dragon",
+    ),
+    # Runicowl 🐭💀🔰 5p 7h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥👻👻👻👻👻👻 pot: 46
+    Blueprint(
+        original=Card(
+            name="Runicowl",
+            power=5,
+            health=7,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=3,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Shield],
+        ),
+        description="a magical owl with high powerhealth, expensive, skills related to fertility, instant death, and shield",
+    ),
+    # Magmaresk 🔰💀 8p 5h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥🔥🔥👻👻 pot: 38
+    Blueprint(
+        original=Card(
+            name="Magmaresk",
+            power=8,
+            health=5,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=5,
+            skills=[skills.Shield, skills.InstantDeath],
+        ),
+        description="a mythical creature with high power, some health, fire skills, and a shield for protection",
+    ),
+    # Vitalsprite 🐭🔰💀 5p 4h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻 pot: 51
+    Blueprint(
+        original=Card(
+            name="Vitalsprite",
+            power=5,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[skills.Fertility, skills.Shield, skills.InstantDeath],
+        ),
+        description="a small, spirited creature with low powerhealth, no fire skills, but has a skill for fertility and a shield for protection",
+    ),
+    # Thornsoul 🐭 2p 3h
+    # costs: 👻👻👻👻👻 has: 🔥👻👻👻👻👻 pot: 17
+    Blueprint(
+        original=Card(
+            name="Thornsoul",
+            power=2,
+            health=3,
+            costs_fire=0,
+            costs_spirits=5,
+            has_spirits=5,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="a creature with some power and health, no fire skills, but a skill for fertility and a high spirit attribute",
+    ),
+    # Flamewhip 🧺🔰🐭 8p 5h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="Flamewhip",
+            power=8,
+            health=5,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=6,
+            skills=[skills.Packrat, skills.Shield, skills.Fertility],
+        ),
+        description="A fantastical lizardlike creature with a fiery whiplike tail, embodying its high power and fire costs, and the skills Packrat and Shield",
+    ),
+    # Spiketooth 🧺🦔🐭🔰💀🐩 8p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 68
+    Blueprint(
+        original=Card(
+            name="Spiketooth",
+            power=8,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.Spines,
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Underdog,
+            ],
+        ),
+        description="A fierce mythical beast with razorsharp teeth, embodying its high power and health, as well as its Spines and Instant Death skills",
+    ),
+    # Faeclaw 🧺🐭💀 3p 6h
+    # costs: 🔥 has: 🔥🔥🔥👻👻 pot: 38
+    Blueprint(
+        original=Card(
+            name="Faeclaw",
+            power=3,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[skills.Packrat, skills.Fertility, skills.InstantDeath],
+        ),
+        description="A small and agile creature with sharp claws, embodying its low power but high mobility low fire and spirit costs and its skills Fertility and Instant Death",
+    ),
+    # Firepanda 🐭🧺🔰 6p 4h
+    # costs: - has: 🔥🔥🔥👻👻👻👻👻👻👻 pot: 54
+    Blueprint(
+        original=Card(
+            name="Firepanda",
+            power=6,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=3,
+            skills=[skills.Fertility, skills.Packrat, skills.Shield],
+        ),
+        description="A cuddly but powerful creature with fiery tendencies, embodying its high spirits but low fire costs, and the skills Fertility and Shield",
+    ),
+    # Vixenstrike 🔰💀🧺🐭 4p 7h
+    # costs: - has: 🔥🔥👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Vixenstrike",
+            power=4,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description="relates to high power and shield skill, but low health, can attack hard but also vulnerable",
+    ),
+    # Chimeraflight 🧺💀🐭🪁🔰🐩 5p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 69
+    Blueprint(
+        original=Card(
+            name="Chimeraflight",
+            power=5,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Soaring,
+                skills.Shield,
+                skills.Underdog,
+            ],
+        ),
+        description="relates to high powerhealth, broad range of skills including flight, also has high spirits and fire attributes",
+    ),
+    # Gauntlet 🐩 0p 2h
+    # costs: 🔥🔥🔥🔥 has: 🔥👻👻👻 pot: 7
+    Blueprint(
+        original=Card(
+            name="Gauntlet",
+            power=0,
+            health=2,
+            costs_fire=4,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Underdog],
+        ),
+        description="relates to high fire costs and underdog skill, representing a costly yet determined warrior",
+    ),
+    # Seedling  2p 1h
+    # costs: 🔥 has: 🔥👻👻👻 pot: 7
+    Blueprint(
+        original=Card(
+            name="Seedling",
+            power=2,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[],
+        ),
+        description="relates to low powerhealth but high spirits and relations to nature, can grow and develop through Fertility skill",
+    ),
+    # Sky Viper 🪁🔰💀 2p 3h
+    # costs: 🔥 has: 🔥👻 pot: 23
+    Blueprint(
+        original=Card(
+            name="Sky Viper",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Soaring, skills.Shield, skills.InstantDeath],
+        ),
+        description="This card has a balanced power and health with a low fire cost The card has soaring and shield attributes which makes it an airborne creature which would naturally have a defense mechanism similar to how vipers would act as predators and protect themselves",
+    ),
+    # Shadow Dragon 🧺🔰💀🐭 8p 4h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥🔥👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Shadow Dragon",
+            power=8,
+            health=4,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+            ],
+        ),
+        description='This card has a high power and health with a high cost of fire and spirits The card has a vast array of skills and a "hasfire" and "hasspirits" attribute both at  The combination of skills, toughness, and elemental attributes would seem to be wellsuited for a powerful dragon',
+    ),
+    # Pack Bison 🧺🐩💀🔰🐭 7p 9h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 66
+    Blueprint(
+        original=Card(
+            name="Pack Bison",
+            power=7,
+            health=9,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description='This card has a high power and health with a lower cost of fire and a higher amount of spirits The card has a several skills and both its "hasspirits" and "hasfire" attributes are strong The card gives the feeling of a formidable, stampeding creature, moving as a unit with other bison in its pack to take down even stronger opponents',
+    ),
+    # Thundergoose 🐭🐩💀🔰🧺🪁 9p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 81
+    Blueprint(
+        original=Card(
+            name="Thundergoose",
+            power=9,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+                skills.Soaring,
+            ],
+        ),
+        description='The name relates to the card\'s high power, high spirits, and "Soaring" skill Adding the underdog and fertility skills suggested a bird, and "Thunder" is a powerful element, in addition to speaking of the card\'s attributes and initial cost Naming it "Goose" adds humor or lovable attributes to create playful mythical animals',
+    ),
+    # Muddark  3p 1h
+    # costs: 🔥🔥🔥🔥 has: 🔥👻 pot: 5
+    Blueprint(
+        original=Card(
+            name="Muddark",
+            power=3,
+            health=1,
+            costs_fire=4,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description='The name concisely captures the essence of the card, a lowpowerhighhealth animal with no skills "Mud" relates to the low power, and "dark" to the apparent imbalance in the attributes, creating a roughlooking creature, such as a burly bearlike creature',
+    ),
+    # Deathhound 🧺💀🔰🐩🐭🦔 10p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 74
+    Blueprint(
+        original=Card(
+            name="Deathhound",
+            power=10,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Underdog,
+                skills.Fertility,
+                skills.Spines,
+            ],
+        ),
+        description="related to InstantDeath skill and high attack power, with decent health",
+    ),
+    # Harpyaire 💀🔰🐭 1p 3h
+    # costs: 👻👻👻 has: 🔥👻 pot: 26
+    Blueprint(
+        original=Card(
+            name="Harpyaire",
+            power=1,
+            health=3,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Shield, skills.Fertility],
+        ),
+        description="flying creature with low powerhealth but capable of wielding magic high costsspirits",
+    ),
+    # Turtrosity 🐭🧺 2p 9h
+    # costs: 🔥🔥 has: 🔥 pot: 31
+    Blueprint(
+        original=Card(
+            name="Turtrosity",
+            power=2,
+            health=9,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Packrat],
+        ),
+        description="turtlelike creature with extremely high health and decent power, but slow no spirits",
+    ),
+    # Ratflame 🧺 1p 5h
+    # costs: 🔥 has: 🔥🔥👻 pot: 17
+    Blueprint(
+        original=Card(
+            name="Ratflame",
+            power=1,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Packrat],
+        ),
+        description="small, cheap, but can sneak in a surprising attack with Packrat skill and hasfire attribute",
+    ),
+    # Chimnecro 🐩💀🧺🔰🐭 9p 9h
+    # costs: 👻👻👻 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="Chimnecro",
+            power=9,
+            health=9,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=5,
+            has_fire=6,
+            skills=[
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description="powerful creature with several skills related to defense Shield, Underdog and the ability to revive other cards Fertility",
+    ),
+    # Quickowl 🦔💀🐩🐭 5p 7h
+    # costs: 🔥 has: 🔥🔥👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Quickowl",
+            power=5,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[
+                skills.Spines,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Fertility,
+            ],
+        ),
+        description="highly skilled, fast, and deadly like a ninja, with thorny spines to defend itself",
+    ),
+    # Thundersnail 🔰🐭 5p 9h
+    # costs: 👻👻👻👻👻👻 has: 🔥👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Thundersnail",
+            power=5,
+            health=9,
+            costs_fire=0,
+            costs_spirits=6,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Shield, skills.Fertility],
+        ),
+        description="extremely high health, low power, but slowmoving and has a shield, like a snail Thunder represents its ability to shock attackers",
+    ),
+    # Nightdweller 🔰💀🐩 2p 4h
+    # costs: 🔥🔥🔥 has: 🔥👻👻 pot: 26
+    Blueprint(
+        original=Card(
+            name="Nightdweller",
+            power=2,
+            health=4,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Shield, skills.InstantDeath, skills.Underdog],
+        ),
+        description="with  spirits and  fire costs, it lives in the darkness and has a shield and instant death capabilities",
+    ),
+    # Chimerargo 🧺🔰💀🦔🐭🐩 9p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Chimerargo",
+            power=9,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Spines,
+                skills.Fertility,
+                skills.Underdog,
+            ],
+        ),
+        description="with high powerhealth, strong packrat abilities, and  spirits and  fire It also has spines, fertility, and shield capabilities",
+    ),
+    # WindWisp 🐭🪁 4p 1h
+    # costs: - has: 🔥 pot: 28
+    Blueprint(
+        original=Card(
+            name="WindWisp",
+            power=4,
+            health=1,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Soaring],
+        ),
+        description="with no spirits and low health, it has a soaring ability but also fertilizes the ground it is on",
+    ),
+    # Songbirdon 🪁🐭💀🔰🧺 8p 6h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="Songbirdon",
+            power=8,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Soaring,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+            ],
+        ),
+        description="a fast and agile birdlike creature with Soaring skill, midrange powerhealth, and abilities like InstantDeath, Shield, and Packrat",
+    ),
+    # Hydrafox 💀 5p 6h
+    # costs: 👻👻 has: 🔥👻 pot: 25
+    Blueprint(
+        original=Card(
+            name="Hydrafox",
+            power=5,
+            health=6,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="a mystical creature with a potent InstantDeath skill, ability to use spirits, and a mix of strength and health",
+    ),
+    # Serenabear 🐭🔰🧺🐩💀 8p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 70
+    Blueprint(
+        original=Card(
+            name="Serenabear",
+            power=8,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Packrat,
+                skills.Underdog,
+                skills.InstantDeath,
+            ],
+        ),
+        description="a powerful yet gentle creature with a good balance of strength and health, abilities like Fertility, Shield, Packrat, and Underdog, and high spirit affinity",
+    ),
+    # Gleamstag 🐭🔰💀🧺 4p 7h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="Gleamstag",
+            power=4,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description="A mystical deer with the ability to enhance fertility The high health and power of this card make it a formidable presence on the battlefield, while its skills  Shield, InstantDeath, Packrat and Fertility  give it an edge in both attack and defense",
+    ),
+    # Thundervine 🦔🔰🐩 9p 3h
+    # costs: - has: 🔥🔥👻👻 pot: 45
+    Blueprint(
+        original=Card(
+            name="Thundervine",
+            power=9,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Spines, skills.Shield, skills.Underdog],
+        ),
+        description="A fantastical plant with sharp spines and an underdog spirit The combination of high power and low health make this card a risky play, but the addition of the Shield and Underdog skills help to level the playing field",
+    ),
+    # Flamephibian 💀🧺🔰 7p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻 pot: 45
+    Blueprint(
+        original=Card(
+            name="Flamephibian",
+            power=7,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[skills.InstantDeath, skills.Packrat, skills.Shield],
+        ),
+        description="A fiery amphibian that is equal parts dangerous and skilled The high cost of fire and spirits required to play this card is justified by its impressive stats and abilities With InstantDeath, Packrat, and Shield skills, this card is a force to be reckoned with",
+    ),
+    # Sparkquill 🐭 1p 2h
+    # costs: 🔥 has: 🔥🔥👻👻👻👻👻👻👻👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Sparkquill",
+            power=1,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=2,
+            skills=[skills.Fertility],
+        ),
+        description="A small but speedy creature with a talent for fertility While the power and health of this card are low, its high spirit count and Fertility skill give it an edge in longer battles",
+    ),
+    # Drifficat  0p 2h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻 pot: 5
+    Blueprint(
+        original=Card(
+            name="Drifficat",
+            power=0,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=3,
+            skills=[],
+        ),
+        description="a small creature that drifts through time and space, emphasizing its low cost  fire, health , and lack of any spirits",
+    ),
+    # Thunderjaw 💀🔰🐭🧺🐩🚀 10p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 70
+    Blueprint(
+        original=Card(
+            name="Thunderjaw",
+            power=10,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Airdefense,
+            ],
+        ),
+        description="a giant mythical beast that exudes power and toughness, reflecting its high power  and health  The multiple skills like Shield and Packrat suggest this creature is difficult to kill and holds its ground in battle",
+    ),
+    # Demonpanth 💀🐭🔰🧺 10p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Demonpanth",
+            power=10,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=4,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+                skills.Packrat,
+            ],
+        ),
+        description='relates to high power, cost and fire attributes, and "InstantDeath" skill',
+    ),
+    # Blazearmor 💀🔰🧺🦔🐭 10p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 63
+    Blueprint(
+        original=Card(
+            name="Blazearmor",
+            power=10,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+                skills.Spines,
+                skills.Fertility,
+            ],
+        ),
+        description="relates to high powercost attributes and spines skill has a fiery and heavily armed presence",
+    ),
+    # Dragoclaw 🔰🐭🧺🪁🐩 10p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻 pot: 60
+    Blueprint(
+        original=Card(
+            name="Dragoclaw",
+            power=10,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=6,
+            skills=[
+                skills.Shield,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Soaring,
+                skills.Underdog,
+            ],
+        ),
+        description='With high power and health, and multiple skills including Shield, Packrat, and Underdog, this card exudes strength and ferocity The name Dragoclaw emphasizes this power, with "drag" implying a dragonlike creature and "claw" suggesting its sharp and deadly nature',
+    ),
+    # Skywisp 🐩🧺🔰🪁🐭 4p 5h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻 pot: 44
+    Blueprint(
+        original=Card(
+            name="Skywisp",
+            power=4,
+            health=5,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[
+                skills.Underdog,
+                skills.Packrat,
+                skills.Shield,
+                skills.Soaring,
+                skills.Fertility,
+            ],
+        ),
+        description='This card has a decent balance of power, health, and skills, including Underdog, Packrat, and Soaring Its name should suggest something light and nimble, like a breeze or a cloud "Sky" gives it a sense of freedom and "wisp" makes it feel ethereal',
+    ),
+    # Thornscale 🔰🦔🐩💀 8p 8h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Thornscale",
+            power=8,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[skills.Shield, skills.Spines, skills.Underdog, skills.InstantDeath],
+        ),
+        description='With high power and health, as well as skills like Shield and Spines, this card is clearly a tough customer "Thorn" emphasizes its prickly nature, while "scale" makes it feel like a dragon or other scaly beast',
+    ),
+    # Soarflea 🐩🐭🔰🪁 5p 1h
+    # costs: 🔥 has: 🔥👻👻👻 pot: 32
+    Blueprint(
+        original=Card(
+            name="Soarflea",
+            power=5,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Underdog, skills.Fertility, skills.Shield, skills.Soaring],
+        ),
+        description="related to the skill Soaring, low powerhealthfire, low spirits, air defense",
+    ),
+    # MysticFox 🔰🐭💀🐩 5p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 63
+    Blueprint(
+        original=Card(
+            name="MysticFox",
+            power=5,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Underdog,
+            ],
+        ),
+        description="This card has a lot of skills making it a versatile card and needs to be protected with skills like Shield Foxes are known for their intelligence and cunning nature making the name MysticFox suitable for a card that is both protective and dangerous",
+    ),
+    # Frightgoose 💀🔰🦔🐭 7p 7h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Frightgoose",
+            power=7,
+            health=7,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Spines,
+                skills.Fertility,
+            ],
+        ),
+        description="This card's power and health stats are both high with spines making it one of the deadliest creatures in the deck Moreover, InstantDeath skill can cause terror among other cards, hence the name Frightgoose",
+    ),
+    # Spikebison 🐭🦔🐩 3p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 45
+    Blueprint(
+        original=Card(
+            name="Spikebison",
+            power=3,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[skills.Fertility, skills.Spines, skills.Underdog],
+        ),
+        description="With high health and spines, this card can take a lot of damage before dying making the name Spikebison appropriate for its attributes The Fertility skill may reference the habitat of bisons in the wild",
+    ),
+    # Sunbat 🪁 1p 2h
+    # costs: 🔥 has: 🔥🔥👻👻👻 pot: 10
+    Blueprint(
+        original=Card(
+            name="Sunbat",
+            power=1,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.Soaring],
+        ),
+        description="mix of Sun and Bat",
+    ),
+    # Molpecker 🐭 3p 2h
+    # costs: 🔥 has: 👻 pot: 16
+    Blueprint(
+        original=Card(
+            name="Molpecker",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description="mix of Mole and Woodpecker",
+    ),
+    # Shroomdillo 🔰💀🐩🐭 3p 4h
+    # costs: 👻👻👻 has: 🔥👻👻👻 pot: 36
+    Blueprint(
+        original=Card(
+            name="Shroomdillo",
+            power=3,
+            health=4,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=3,
+            has_fire=1,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Fertility,
+            ],
+        ),
+        description="Mix of Mushroom and Armadillo",
+    ),
+    # Gemturtle 🧺🐭🚀 2p 6h
+    # costs: 🔥 has: 🔥👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Gemturtle",
+            power=2,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Packrat, skills.Fertility, skills.Airdefense],
+        ),
+        description="Gem  Turtle",
+    ),
+    # Valravn 🔰🐩🐭 8p 5h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Valravn",
+            power=8,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[skills.Shield, skills.Underdog, skills.Fertility],
+        ),
+        description="Val  Raven",
+    ),
+    # Skydancer 🪁🔰🧺🐭 10p 6h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Skydancer",
+            power=10,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[skills.Soaring, skills.Shield, skills.Packrat, skills.Fertility],
+        ),
+        description="Sky  Dancer",
+    ),
+    # Spiritrat 🧺 4p 1h
+    # costs: 👻 has: 🔥👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Spiritrat",
+            power=4,
+            health=1,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Packrat],
+        ),
+        description="Spirit  rat",
+    ),
+    # Fangfox 🐭 2p 1h
+    # costs: 🔥 has: 🔥👻👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Fangfox",
+            power=2,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="combines the attributes of power, fire and spirits with the skill of fertility into a name that evokes a fantastical image of a creature with sharp teeth and a foxlike agility",
+    ),
+    # Mosquito 🐭💀🧺 2p 3h
+    # costs: - has: 🔥👻👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Mosquito",
+            power=2,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Packrat],
+        ),
+        description="with low power but high health and fertility, as well as a range of skills including packrat and instant death, this card is named after the small but relentless insect that can multiply rapidly and drain the life out of larger creatures",
+    ),
+    # Butterfly 🐭 5p 1h
+    # costs: 🔥🔥 has: 🔥👻👻 pot: 19
+    Blueprint(
+        original=Card(
+            name="Butterfly",
+            power=5,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="despite its respectable power, this card's high fertility and fire symbol suggest a gentle creature that evokes the image of a graceful and colorful butterfly, while its skill of fertility underscores its ability to multiply and grow stronger over time",
+    ),
+    # Titanodile 🔰🧺🐩💀🐭🪁 8p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 66
+    Blueprint(
+        original=Card(
+            name="Titanodile",
+            power=8,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.Packrat,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Soaring,
+            ],
+        ),
+        description="With high power and health, a Titanodile could be seen as a formidable competitor However, given its high cost and relatively few skills, finding the right time to play it becomes a strategic move",
+    ),
+    # Sylphlynx 🔰🧺🐭💀 4p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Sylphlynx",
+            power=4,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+                skills.InstantDeath,
+            ],
+        ),
+        description="A quick and deadly Lynx with a high movement speed, swift in attacking and escaping when needed",
+    ),
+    # Infernoble 💀 9p 2h
+    # costs: 🔥🔥🔥 has: 👻 pot: 23
+    Blueprint(
+        original=Card(
+            name="Infernoble",
+            power=9,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.InstantDeath],
+        ),
+        description="With very high power and strong instant death, Infernoble can take down even the strongest prey with ease, despite its low health",
+    ),
+    # Hedgeturtle 🐭🧺 2p 8h
+    # costs: 🔥🔥🔥 has: 👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Hedgeturtle",
+            power=2,
+            health=8,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Fertility, skills.Packrat],
+        ),
+        description="With high health and fertility, Hedgeturtle is resilient and can reproduce, though it isn't as deadly as some other cards",
+    ),
+    # Spiritwing 🔰🐭🪁🧺 8p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 59
+    Blueprint(
+        original=Card(
+            name="Spiritwing",
+            power=8,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[skills.Shield, skills.Fertility, skills.Soaring, skills.Packrat],
+        ),
+        description="This name references the card's high spirit attribute as well as the four flightrelated skills it possesses It also sounds light and fluid like a creature that is skilled at aerial maneuvers",
+    ),
+    # Nymphling 🐭 1p 6h
+    # costs: 🔥 has: 🔥👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Nymphling",
+            power=1,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="A small, dainty creature with only one skill Fertility The name fits with the general tone and feel of the game, being a fantastical animal with an air of mystery and magic",
+    ),
+    # Packsting 🧺🔰🐭💀🦔🐩 10p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="Packsting",
+            power=10,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Spines,
+                skills.Underdog,
+            ],
+        ),
+        description='This card has a lot of skills and overall high values in all attributes A "pack" animal, stinging indicates a possible spines ability and a threat to opponents',
+    ),
+    # Midmouse 💀🔰🦔 2p 1h
+    # costs: 🔥 has: 🔥🔥👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Midmouse",
+            power=2,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.InstantDeath, skills.Shield, skills.Spines],
+        ),
+        description='This cards has fairly low power and health, but its skills make up for it A small and nimble creature with a "mid"range amount of skills Mouse implies sneakiness, while the name doesn\'t sound threatening, which might lure opponents into underestimating it',
+    ),
+    # Barrierhog 🔰 1p 7h
+    # costs: 🔥🔥 has: 🔥👻 pot: 20
+    Blueprint(
+        original=Card(
+            name="Barrierhog",
+            power=1,
+            health=7,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Shield],
+        ),
+        description='With high health and the shield ability, this card can hold its ground The name implies sturdiness, in addition to the inclusion of "hog"',
+    ),
+    # Frostbeast  6p 3h
+    # costs: 🔥 has: 🔥👻 pot: 16
+    Blueprint(
+        original=Card(
+            name="Frostbeast",
+            power=6,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description="With high power and decent health, Frostbeast is a formidable creature that summons icy winds to try and defeat the opposing force",
+    ),
+    # Packbeaver 🐭🧺🐩 2p 8h
+    # costs: 🔥 has: 🔥 pot: 34
+    Blueprint(
+        original=Card(
+            name="Packbeaver",
+            power=2,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Packrat, skills.Underdog],
+        ),
+        description="With high health and multiple skills, this card is great for those who prioritize combining skills to create more strategic attacks Its cost to fire is relatively low, compared to its overall strength",
+    ),
+    # Milktooth 🧺💀 1p 1h
+    # costs: 🔥 has: - pot: 14
+    Blueprint(
+        original=Card(
+            name="Milktooth",
+            power=1,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.Packrat, skills.InstantDeath],
+        ),
+        description="This small card does not look like much but do not underestimate its power to destroy your opponent's cards with its InstantDeath skill Its ability to be used by decks devoid of fire resources makes it quite versatile",
+    ),
+    # Flamepup 💀 2p 2h
+    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Flamepup",
+            power=2,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.InstantDeath],
+        ),
+        description="With average powerhealth, Flamepup sounds like a basic card But its InstantDeath skill might just be your key to defeating your opponent Its requirement for fire resources makes the card a bit more strategic to use, perfect for those looking to win with finesse",
+    ),
+    # Magmawisp 🐭💀🪁🔰🧺 10p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 68
+    Blueprint(
+        original=Card(
+            name="Magmawisp",
+            power=10,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Soaring,
+                skills.Shield,
+                skills.Packrat,
+            ],
+        ),
+        description="This name suggests a fiery nature and magical abilities The high power and health of the card reflect the strength and the low cost in fire magic reflects how easy it is to summon this creature The skills, like Fertility and Instant Death suggest strong powers and Soaring and Shield are both useful skills to have in a fight Packrat, on the other hand, suggests that Magmawisp likes to collect things, possibly implying that it is intelligent and resourceful",
+    ),
+    # Foxfirebird  3p 8h
+    # costs: 🔥 has: 🔥👻👻👻👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Foxfirebird",
+            power=3,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=1,
+            skills=[],
+        ),
+        description="This name highlights the presence of fire magic, as well as the agility of the creature, like a fox The high health suggests durability, while the low power suggests that Foxfirebird relies on her skills to be effective",
+    ),
+    # Thornedillo 🔰💀🐭🦔🧺🐩 8p 6h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="Thornedillo",
+            power=8,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Spines,
+                skills.Packrat,
+                skills.Underdog,
+            ],
+        ),
+        description="This name uses the Spines and Shield skills again and mixes them with the animal it most closely resembles The high power and health of the card reflect the toughness of the Armadillo, while its relatively high number in fire magic indicates that it might have some sort of affinity with flames",
+    ),
+    # Spiritdragon 🐭🔰🐩💀 9p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Spiritdragon",
+            power=9,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Underdog,
+                skills.InstantDeath,
+            ],
+        ),
+        description='This name suits a card with high power and health, and a few skills, especially Fertility and Shield The four spirits and fire resources also indicate a powerful card, and the name "dragon" fits perfectly',
+    ),
+    # Soarling 🪁🧺🐭💀 1p 7h
+    # costs: 🔥🔥 has: 👻 pot: 34
+    Blueprint(
+        original=Card(
+            name="Soarling",
+            power=1,
+            health=7,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[
+                skills.Soaring,
+                skills.Packrat,
+                skills.Fertility,
+                skills.InstantDeath,
+            ],
+        ),
+        description="This name fits a card with Soaring skill and costsfire With costsfire, it may not be as cheap to play as other cards, but its health and the Packrat skill make it quite resilient",
+    ),
+    # Flamejumper 🚀🐭💀 8p 2h
+    # costs: 🔥 has: 🔥🔥🔥👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Flamejumper",
+            power=8,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=3,
+            skills=[skills.Airdefense, skills.Fertility, skills.InstantDeath],
+        ),
+        description="This card has high power, low health, and the Airdefense skill, which makes it a fiery beast The name fits the attributes and skill of the card very well",
+    ),
+    # Infernopod 🐭 5p 2h
+    # costs: 🔥🔥🔥🔥 has: 🔥👻 pot: 18
+    Blueprint(
+        original=Card(
+            name="Infernopod",
+            power=5,
+            health=2,
+            costs_fire=4,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="This name suits a card with high costsfire and minimum on other attributes The card is hellish and has only the Fertility skill The name matches the fiery and potent side of the card",
+    ),
+    # Arcanodon 🔰🧺🦔🐩💀🐭 9p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 72
+    Blueprint(
+        original=Card(
+            name="Arcanodon",
+            power=9,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Shield,
+                skills.Packrat,
+                skills.Spines,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Fertility,
+            ],
+        ),
+        description="powerful, high health, costly, multiple skills",
+    ),
+    # Faeleopard 💀🐭🔰🧺 7p 8h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Faeleopard",
+            power=7,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=4,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+                skills.Packrat,
+            ],
+        ),
+        description="powerful, high health, multiple skills, spirit heavy",
+    ),
+    # Mantipede 🐭🧺💀🔰 10p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Mantipede",
+            power=10,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Shield,
+            ],
+        ),
+        description="powerful, high health, costly, multiple skills, spirit heavy",
+    ),
+    # Spindletail 🦔🐭💀 1p 3h
+    # costs: 🔥🔥 has: 🔥👻👻 pot: 24
+    Blueprint(
+        original=Card(
+            name="Spindletail",
+            power=1,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Spines, skills.Fertility, skills.InstantDeath],
+        ),
+        description="The name adds a sense of spininess which reflects the skills of the card spines  fertility Relating to its power and costs, this card is not very strong but deals with spikes in battle",
+    ),
+    # Underhoarder 🔰🐭💀🐩 2p 5h
+    # costs: 👻👻👻👻 has: 🔥🔥🔥👻👻👻 pot: 37
+    Blueprint(
+        original=Card(
+            name="Underhoarder",
+            power=2,
+            health=5,
+            costs_fire=0,
+            costs_spirits=4,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Underdog,
+            ],
+        ),
+        description="This name reflects the card's unusual combination of being a high SPIRIT card with shield skill, fertility, and low power This enigmatic card is hiding something under its defense mechanism which might come into play later in the game",
+    ),
+    # Lifebrute 🐭🔰💀 3p 8h
+    # costs: - has: 🔥🔥🔥👻👻👻👻 pot: 54
+    Blueprint(
+        original=Card(
+            name="Lifebrute",
+            power=3,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[skills.Fertility, skills.Shield, skills.InstantDeath],
+        ),
+        description='This card has high health and the Fertility skill which can help increase its longevity, making it a "brute" on the battlefield The name also plays off of the InstantDeath skill it possesses, as it is capable of outliving its opponents',
+    ),
+    # Shadowpanth 💀🐭 2p 6h
+    # costs: 🔥 has: 👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Shadowpanth",
+            power=2,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.InstantDeath, skills.Fertility],
+        ),
+        description="This card has moderate power and health, but the InstantDeath and Fertility skills make it a force to be reckoned with The name plays off of the card's shadowy abilities and feline nature",
+    ),
+    # Skygrasp 🦔🪁🧺🐭🔰 6p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 68
+    Blueprint(
+        original=Card(
+            name="Skygrasp",
+            power=6,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=5,
+            skills=[
+                skills.Spines,
+                skills.Soaring,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+            ],
+        ),
+        description="With soaring abilities and the Packrat skill, this card is reminiscent of a bird of prey Its Spines and Fertility skills also suggest a tenacity and ability to cling on to victory",
+    ),
+    # Thornyback 🦔💀🔰🧺🐩 1p 2h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻 pot: 32
+    Blueprint(
+        original=Card(
+            name="Thornyback",
+            power=1,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=4,
+            skills=[
+                skills.Spines,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+                skills.Underdog,
+            ],
+        ),
+        description="This lowpower, defensivelyoriented card has high health, Shield, Spines, and InstantDeath skills The name references both the card's defensive capabilities and its Spines skill",
+    ),
+    # Flamebrute 💀🐭🔰 7p 3h
+    # costs: 🔥🔥🔥 has: 🔥🔥👻👻 pot: 38
+    Blueprint(
+        original=Card(
+            name="Flamebrute",
+            power=7,
+            health=3,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.InstantDeath, skills.Fertility, skills.Shield],
+        ),
+        description="The high power and Fertility skills of this card suggest a fiery, aggressive creature The name plays off of this fiery nature and its overall impression of brute strength",
+    ),
+    # Spiritabat 🔰🐩🐭🧺 5p 9h
+    # costs: 👻 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻 pot: 55
+    Blueprint(
+        original=Card(
+            name="Spiritabat",
+            power=5,
+            health=9,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=4,
+            has_fire=6,
+            skills=[skills.Shield, skills.Underdog, skills.Fertility, skills.Packrat],
+        ),
+        description="The card's high spirit value  and skills  Fertility, Packrat, Shield  suggest that the card is very capable and valuable when used in supporting, protection and conservation roles The flying, nocturnal, and mystical aspects of a bat further accentuates these ideas Additionally, bats are often associated with spiritual symbolism, hence the name",
+    ),
+    # Thornfawn 🐭💀🦔🔰 2p 3h
+    # costs: 🔥🔥 has: 🔥🔥👻 pot: 32
+    Blueprint(
+        original=Card(
+            name="Thornfawn",
+            power=2,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Spines,
+                skills.Shield,
+            ],
+        ),
+        description="The low powerhealth values and Spines skill suggest a card that relies more on obstacles and defense than direct combat The Fire cost  suggests that the card has a bit of an edge, but not an overwhelmingly deadly one The goatlike appearance of a fawn paired with spiky thorns gives off a distinct fantastical feel to this defender",
+    ),
+    # Thornsquid 🦔💀🔰🧺🐩 6p 4h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Thornsquid",
+            power=6,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[
+                skills.Spines,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+                skills.Underdog,
+            ],
+        ),
+        description='A card with spines, shields, and the ability to instantaneously kill an opponent The name relates to the card\'s spiny nature as well as the oceanic theme implied by the "squid" part of the name',
+    ),
+    # Skydragon 🚀🐩🐭💀🔰🦔 7p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Skydragon",
+            power=7,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Airdefense,
+                skills.Underdog,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Spines,
+            ],
+        ),
+        description="A costly card with impressive power and health, as well as air defense and fertility skills The name relates to the card's aerial theme and dragonlike appearance",
+    ),
+    # Diregrizzly 🚀🦔🐭🧺💀 10p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 65
+    Blueprint(
+        original=Card(
+            name="Diregrizzly",
+            power=10,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.Airdefense,
+                skills.Spines,
+                skills.Fertility,
+                skills.Packrat,
+                skills.InstantDeath,
+            ],
+        ),
+        description="A very strong and moderately costly card with air defense, spines, and the packrat skill The name implies a beast that is both very strong and ferocious",
+    ),
+    # Moontiger 🐭🔰🧺 10p 7h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Moontiger",
+            power=10,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Fertility, skills.Shield, skills.Packrat],
+        ),
+        description="powerful, mystical, balanced",
+    ),
+    # Dustmole 🧺 2p 2h
+    # costs: 🔥 has: 🔥 pot: 12
+    Blueprint(
+        original=Card(
+            name="Dustmole",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Packrat],
+        ),
+        description="low attribute values, no spirits, small",
+    ),
+    # Flamespirit 🐩🐭🧺💀🔰 10p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 77
+    Blueprint(
+        original=Card(
+            name="Flamespirit",
+            power=10,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Underdog,
+                skills.Fertility,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Shield,
+            ],
+        ),
+        description="fire attribute, highly spirited, diverse set of skills",
+    ),
+    # Chaosaur 🧺🐭💀 5p 7h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻 pot: 45
+    Blueprint(
+        original=Card(
+            name="Chaosaur",
+            power=5,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[skills.Packrat, skills.Fertility, skills.InstantDeath],
+        ),
+        description="The name represents the chaotic combination of the card's attributes and skills It's powerful and has high health, but also requires a significant amount of fire and spirit resources to bring onto the field Its skills of packrat and fertility indicate it can influence the resources on the field while instant death represents the level of destruction that can be unleashed on opposing cards",
+    ),
+    # Vampnix 💀 4p 10h
+    # costs: 🔥 has: 🔥👻👻 pot: 32
+    Blueprint(
+        original=Card(
+            name="Vampnix",
+            power=4,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="With high power and health, this card can easily take down weaker cards Its skills of instant death indicate its lethality on the field The name is a combination of vampire and phoenix, representing the card's strength and potential for resurrection",
+    ),
+    # Cycloron 🐩💀 8p 2h
+    # costs: - has: 🔥 pot: 36
+    Blueprint(
+        original=Card(
+            name="Cycloron",
+            power=8,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Underdog, skills.InstantDeath],
+        ),
+        description="The name represents the speed and agility of the card, with high power but low health The fact that it costs no fire resources to bring onto the field reflects its ability to quickly strike at opponents without expending many resources Its skills of underdog and instant death indicate it can be used strategically to take down stronger cards",
+    ),
+    # Enfire  1p 4h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Enfire",
+            power=1,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[],
+        ),
+        description="The name represents the card's strong fire attribute and its fiery nature It requires both fire and spirit resources to bring onto the field, indicating its complexity Its power and health are moderate, but it has a relatively high amount of fire resources No skills are included, indicating a straightforward card",
+    ),
+    # Terrafluff 🪁🔰🐭🧺🐩💀 9p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 78
+    Blueprint(
+        original=Card(
+            name="Terrafluff",
+            power=9,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Soaring,
+                skills.Shield,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Underdog,
+                skills.InstantDeath,
+            ],
+        ),
+        description="The name represents the card's high power and health, which make it a formidable opponent on the field Its multiple skills reflect its versatility, with soaring allowing it to evade other cards, shield helping to defend against attacks, packrat allowing it to manipulate resources, underdog making it more effective against stronger cards, and instant death increasing its lethality",
+    ),
+    # Shellmoth 🧺 1p 5h
+    # costs: 🔥🔥🔥 has: 👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Shellmoth",
+            power=1,
+            health=5,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Packrat],
+        ),
+        description="The high health and packrat skill suggest a creature with a shell that protects it from attacks, while the low fire cost and no fire attribute suggest a more calm and gentle being The moth aspect fits well with this idea",
+    ),
+    # Stonecat 🐩🧺 2p 4h
+    # costs: 🔥 has: 🔥 pot: 19
+    Blueprint(
+        original=Card(
+            name="Stonecat",
+            power=2,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Underdog, skills.Packrat],
+        ),
+        description="The high health and underdog skill suggest a resilient creature that is not afraid to fight The low fire cost and no fire attribute suggest a more grounded and downtoearth being, which led to the name Stonecat The cat aspect fits well with this idea",
+    ),
+    # Sunfox 🐭 1p 2h
+    # costs: 🔥🔥 has: 🔥👻👻👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Sunfox",
+            power=1,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="The card has moderate power and health, as well as a fertility skill The name Sunfox represents this card's bright and warm energy",
+    ),
+    # Crystalion 🐭🧺🦔💀🐩🔰 6p 6h
+    # costs: 👻👻👻 has: 🔥🔥🔥🔥👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Crystalion",
+            power=6,
+            health=6,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.Spines,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Shield,
+            ],
+        ),
+        description='This name was inspired by the card\'s high power and health stats, as well as its Fertility skill, which gives it the ability to reproduce The "Crystal" part of the name relates to the card\'s high spirits and Fire costs, while the "ion" part suggests that it\'s a creature with electric or magical qualities',
+    ),
+    # CrownedEagle 🐭🧺🔰🪁💀🚀 6p 10h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="CrownedEagle",
+            power=6,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.Shield,
+                skills.Soaring,
+                skills.InstantDeath,
+                skills.Airdefense,
+            ],
+        ),
+        description="With high power and health stats, as well as the Shield skill, this card is a stalwart defender It also has high spirits and Fire attributes, which suggest it's a regal or majestic creature The name \"CrownedEagle\" fits with this theme, suggesting a creature that's both powerful and regal",
+    ),
+    # Airfox 🐭🚀 1p 2h
+    # costs: 🔥 has: 🔥 pot: 14
+    Blueprint(
+        original=Card(
+            name="Airfox",
+            power=1,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Airdefense],
+        ),
+        description="The card has skills related to air defense and fertility The name Airfox nods to the air defense skills but also to the fertility skill that allows it to create more spirits on the board",
+    ),
+    # Packdillo 🧺 2p 7h
+    # costs: 🔥 has: 🔥👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Packdillo",
+            power=2,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Packrat],
+        ),
+        description="The card has relatively low power, but high health, and Pack Rat skill The name Packdillo reflects its animal counterpart, the armadillo, and the Pack Rat skill",
+    ),
+    # Thorneyote 🦔🐭💀 1p 3h
+    # costs: 👻 has: 👻 pot: 23
+    Blueprint(
+        original=Card(
+            name="Thorneyote",
+            power=1,
+            health=3,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Spines, skills.Fertility, skills.InstantDeath],
+        ),
+        description="This name relates to the card's spiny qualities and relatively low power and high health It also plays off the fact that it has both spirits and is skilled in Fertility, suggesting an animal that is one with nature, able to grow and prosper in even the harshest of conditions",
+    ),
+    # Furydragon 🪁🐭💀🔰🧺🐩 10p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 74
+    Blueprint(
+        original=Card(
+            name="Furydragon",
+            power=10,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.Soaring,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+                skills.Underdog,
+            ],
+        ),
+        description="This name relates to the high power and health of the card, as well as has spirits and fire attributes The skills, Soaring, InstantDeath, and Packrat, suggest a fierce animal that is always on the move, unpredictable, and deadly The dragon aspect adds a sense of majesty and awe",
+    ),
+    # Ironlizard 🔰 5p 2h
+    # costs: 🔥🔥 has: 🔥🔥 pot: 18
+    Blueprint(
+        original=Card(
+            name="Ironlizard",
+            power=5,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=2,
+            skills=[skills.Shield],
+        ),
+        description="This card has moderate power and low health but has a moderate amount of fire The card's skill is Shield which is usually associated with defensive creatures The name Ironlizard plays on the defensive nature of the card while also referencing the creature's reptilian qualities",
+    ),
+    # Skydefender 🚀🐭 5p 5h
+    # costs: 🔥🔥🔥 has: 🔥👻👻 pot: 26
+    Blueprint(
+        original=Card(
+            name="Skydefender",
+            power=5,
+            health=5,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Airdefense, skills.Fertility],
+        ),
+        description="This card has moderate power and moderate health with a focus on fire and some spirits The skills of this card suggest that it's good at defending against airborne enemies The name Skydefender plays on the air defense skill and reinforces the idea of the card's defensive nature",
+    ),
+    # Deathspire 💀🧺🐭🔰 1p 2h
+    # costs: 🔥🔥 has: 🔥👻 pot: 30
+    Blueprint(
+        original=Card(
+            name="Deathspire",
+            power=1,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+            ],
+        ),
+        description="relates to the skill names InstantDeath, Packrat, and Shield, which allude to protection from death or instant death, while the card has a higher powerhealth, and requires a higher cost in fire",
+    ),
+    # Stormwhelp 🐭💀🔰 9p 7h
+    # costs: 🔥🔥🔥🔥 has: 🔥🔥🔥👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Stormwhelp",
+            power=9,
+            health=7,
+            costs_fire=4,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Shield],
+        ),
+        description="relates to having quite balanced attributes, high cost in spirits, and the skills InstantDeath and Shield, which could symbolize destruction and protection The name also reflects that it's a child of storm and thunder, probably able to cause great damage with its powers",
+    ),
+    # ThornyCat 🦔 2p 3h
+    # costs: 🔥 has: 🔥👻👻 pot: 13
+    Blueprint(
+        original=Card(
+            name="ThornyCat",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Spines],
+        ),
+        description="With a moderate power and health, but equipped with Spines skill, this catlike creature is not to be underestimated, especially with its low fire cost and moderate spirit costs",
+    ),
+    # Flameboar  3p 4h
+    # costs: 🔥🔥🔥 has: 🔥👻 pot: 11
+    Blueprint(
+        original=Card(
+            name="Flameboar",
+            power=3,
+            health=4,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description="relates to the fire cost and high power, and the boar represents strength and toughness",
+    ),
+    # Airspike 🚀 1p 2h
+    # costs: 🔥🔥 has: 🔥🔥👻 pot: 7
+    Blueprint(
+        original=Card(
+            name="Airspike",
+            power=1,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Airdefense],
+        ),
+        description="relates to the skill airdefense, low power, and high fire cost Spike represents toughness, and air represents a defense mechanism",
+    ),
+    # Thunderlynx 🐭💀🔰🪁🦔 9p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="Thunderlynx",
+            power=9,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Soaring,
+                skills.Spines,
+            ],
+        ),
+        description="This name suits the card as it has high powerhealth and firespirits attributes, making it a fierce predator Its Spines skill adds to its defensive capabilities, and the Fertility, InstantDeath, Shield, and Soaring skills make it even more dynamic and powerful",
+    ),
+    # Emberfly 💀 6p 1h
+    # costs: 🔥🔥 has: 🔥👻 pot: 18
+    Blueprint(
+        original=Card(
+            name="Emberfly",
+            power=6,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="This name fits the card as it has low health and moderate power but a high fire attribute, making it a creature symbolic of flames The InstantDeath skill adds to its deadly and aggressive nature",
+    ),
+    # Fieryote 🧺💀 5p 3h
+    # costs: - has: 🔥🔥👻👻 pot: 37
+    Blueprint(
+        original=Card(
+            name="Fieryote",
+            power=5,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Packrat, skills.InstantDeath],
+        ),
+        description='related to "InstantDeath" and "Packrat" skills, high power, high spirit attributes, fiery character with references to coyote, a cunning and adaptable animal',
+    ),
+    # Spritemoth 🐭💀🧺🔰🐩 2p 3h
+    # costs: 👻 has: 🔥🔥👻👻 pot: 40
+    Blueprint(
+        original=Card(
+            name="Spritemoth",
+            power=2,
+            health=3,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=2,
+            has_fire=2,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+                skills.Underdog,
+            ],
+        ),
+        description='related to "Fertility" and "InstantDeath" skills, high spirit attribute, moderate cost, fantastical character with references to butterfly and sprite',
+    ),
+    # Blazeferno 🐭 2p 1h
+    # costs: 👻 has: 🔥🔥👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Blazeferno",
+            power=2,
+            health=1,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Fertility],
+        ),
+        description='related to "Fertility" skill, high fire attribute, low powerhealth, fiery character with references to fire and inferno',
+    ),
+    # Pyrratrox 🧺💀🐩 8p 2h
+    # costs: 🔥 has: 🔥👻 pot: 33
+    Blueprint(
+        original=Card(
+            name="Pyrratrox",
+            power=8,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Packrat, skills.InstantDeath, skills.Underdog],
+        ),
+        description="This name suits the card as it has relatively low power and health, but is cheap and can gather resources with its packrat skill Its instant death and underdog skills suggest a kamikazelike strategy, sacrificing itself for a greater cause The name Pyrratrox combines the imagery of fire pyro and sacrifice atrox, fitting the card's high spirits and low cost",
+    ),
+    # Moonesc  2p 2h
+    # costs: - has: 👻 pot: 16
+    Blueprint(
+        original=Card(
+            name="Moonesc",
+            power=2,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[],
+        ),
+        description="This name suits the card as it has low power and health, no cost in fire or spirits, and no skills It suggests a humble and unassuming nature, fit for a card that can still be of use in certain situations The name Moonesc combines the imagery of a soft and gentle celestial body moon with the concept of a minuscule and insignificant creature nesc, fitting the card's low attributes",
+    ),
+    # Swarmdrake 🔰💀🧺🐩🪁🐭 7p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 76
+    Blueprint(
+        original=Card(
+            name="Swarmdrake",
+            power=7,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Soaring,
+                skills.Fertility,
+            ],
+        ),
+        description="high powerhealth, many spirits and fire, various skills including fertility, packrat, and shield, making it seem like a small, but highly efficient and adaptable army",
+    ),
+    # Starfawn 🐭🧺🔰 6p 8h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 48
+    Blueprint(
+        original=Card(
+            name="Starfawn",
+            power=6,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Fertility, skills.Packrat, skills.Shield],
+        ),
+        description="moderate powerhealth and spirits, low fire cost, fertility and shield skills, plus packrat, hinting at the idea of a small, but noble creature, perhaps of magical origin",
+    ),
+    # Ashworm 🐭💀 2p 2h
+    # costs: 🔥🔥 has: 🔥🔥👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Ashworm",
+            power=2,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description="low powerhealth, but with some fire, and instant death and fertility skills, which counterbalances the idea of it being a weak creature, while evoking something that comes from the depths of some dark, fiery underworld",
+    ),
+    # Cycloheiress 🧺💀🐭 8p 3h
+    # costs: 🔥 has: 🔥🔥👻👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Cycloheiress",
+            power=8,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.Packrat, skills.InstantDeath, skills.Fertility],
+        ),
+        description="high power, low health, fire cost, and fertility skill, plus packrat and instant death, recalling an imposing female presence, that is not to be trifled with, despite its fragility",
+    ),
+    # Shellspike 💀🐭🔰🧺 2p 7h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 43
+    Blueprint(
+        original=Card(
+            name="Shellspike",
+            power=2,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+                skills.Packrat,
+            ],
+        ),
+        description="low power, high healthfires, plus shield and packrat skills, imbuing an image of a heavilyarmoured creature that can store resources for long periods and come out victorious in battles",
+    ),
+    # Follyfish 🐭🔰 2p 1h
+    # costs: 🔥🔥 has: 🔥 pot: 18
+    Blueprint(
+        original=Card(
+            name="Follyfish",
+            power=2,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Shield],
+        ),
+        description="relatively weak, expensive due to the cost of fire  and not helpful magicwise",
+    ),
+    # Chimerace 💀🚀🧺🐭🦔🔰 8p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 77
+    Blueprint(
+        original=Card(
+            name="Chimerace",
+            power=8,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Airdefense,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Spines,
+                skills.Shield,
+            ],
+        ),
+        description="a mix of high powerhealth and a variety of different skills",
+    ),
+    # Goliathus 🐭🔰 7p 7h
+    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 40
+    Blueprint(
+        original=Card(
+            name="Goliathus",
+            power=7,
+            health=7,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Fertility, skills.Shield],
+        ),
+        description="very powerful with high cost, but with shield and fertility skills",
+    ),
+    # Armadog 🔰 5p 2h
+    # costs: - has: 👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Armadog",
+            power=5,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Shield],
+        ),
+        description="good health and shield skills  but no fire attribute",
+    ),
+    # Fantire 🐭 8p 1h
+    # costs: 🔥 has: 👻👻👻 pot: 25
+    Blueprint(
+        original=Card(
+            name="Fantire",
+            power=8,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description="fantastical, tireless, ferocious, high power, low health",
+    ),
+    # Bladewisp 🐭💀 1p 3h
+    # costs: 👻👻👻👻 has: 🔥🔥🔥👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Bladewisp",
+            power=1,
+            health=3,
+            costs_fire=0,
+            costs_spirits=4,
+            has_spirits=1,
+            has_fire=3,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description="bladelike, quick, elusive, costly, spiritheavy, lethal",
+    ),
+    # Urspring 🧺🐭🔰🐩💀🦔 7p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Urspring",
+            power=7,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Spines,
+            ],
+        ),
+        description="bearlike, animalistic, pack leader, spiny, skilful, expensive",
+    ),
+    # Scarnyx 🔰🐭🐩💀 6p 5h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Scarnyx",
+            power=6,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.Fertility,
+                skills.Underdog,
+                skills.InstantDeath,
+            ],
+        ),
+        description="scary, intimidating, underdog, fertile, armored",
+    ),
+    # Faehawk 🐭🐩💀 7p 2h
+    # costs: 🔥 has: 🔥👻 pot: 34
+    Blueprint(
+        original=Card(
+            name="Faehawk",
+            power=7,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Underdog, skills.InstantDeath],
+        ),
+        description="A fearsome predator with high power, low health, and skills such as Fertility and Underdog, which allow it to quickly overwhelm its prey with their ferocity and speed",
+    ),
+    # FaeGorgon 🐭🔰💀 5p 3h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="FaeGorgon",
+            power=5,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=5,
+            skills=[skills.Fertility, skills.Shield, skills.InstantDeath],
+        ),
+        description="related to Medusa and her instant death skill, but also with high power",
+    ),
+    # LilWeasel 🧺🐩 2p 3h
+    # costs: 🔥 has: 🔥👻👻 pot: 19
+    Blueprint(
+        original=Card(
+            name="LilWeasel",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Packrat, skills.Underdog],
+        ),
+        description="small with underdog skill and has packrat skill, but not very strong",
+    ),
+    # InfernoViper 🔰🧺💀 8p 2h
+    # costs: 🔥 has: 🔥👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="InfernoViper",
+            power=8,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Shield, skills.Packrat, skills.InstantDeath],
+        ),
+        description="high power and the shield makes it more immune to attacks, but also has instant death",
+    ),
+    # GhostSquid 💀🧺🐭 2p 2h
+    # costs: 🔥🔥 has: 👻 pot: 25
+    Blueprint(
+        original=Card(
+            name="GhostSquid",
+            power=2,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.InstantDeath, skills.Packrat, skills.Fertility],
+        ),
+        description="no fire and high spirit, with instant death skill",
+    ),
+    # SpiritAnt  0p 3h
+    # costs: 👻👻👻 has: 🔥👻👻 pot: 5
+    Blueprint(
+        original=Card(
+            name="SpiritAnt",
+            power=0,
+            health=3,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=2,
+            has_fire=1,
+            skills=[],
+        ),
+        description="no fire but high spirits, and no power but high health",
+    ),
+    # Chimerahawk 🔰🧺🦔🐭💀 5p 8h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Chimerahawk",
+            power=5,
+            health=8,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=6,
+            skills=[
+                skills.Shield,
+                skills.Packrat,
+                skills.Spines,
+                skills.Fertility,
+                skills.InstantDeath,
+            ],
+        ),
+        description="with its high power and health, combined with Shield and InstantDeath, this card is a fierce flying predator",
+    ),
+    # Ironcrab 🐩🔰💀🐭 7p 6h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 63
+    Blueprint(
+        original=Card(
+            name="Ironcrab",
+            power=7,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.Underdog,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+            ],
+        ),
+        description="With high power and health but no spirit cost, this card is all about brute strength The name references its tough exterior, like an iron shell, as well as the crablike claws some fantasy adaptations may have",
+    ),
+    # Flamewurm 🦔🐩🧺💀🐭🪁 10p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 76
+    Blueprint(
+        original=Card(
+            name="Flamewurm",
+            power=10,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Spines,
+                skills.Underdog,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Soaring,
+            ],
+        ),
+        description="The name of this fiery legendary creature embodies its high power, high cost, and devastating Spines and Instant Death skills As a wormlike monster, it can also burrow and emerge from the ground to surprise opponents",
+    ),
+    # Spiritwolf 💀🔰🧺 6p 7h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 58
+    Blueprint(
+        original=Card(
+            name="Spiritwolf",
+            power=6,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=4,
+            skills=[skills.InstantDeath, skills.Shield, skills.Packrat],
+        ),
+        description="This card has high spirits and fire and has the ability to instantly kill, packrat and shield itself A wolf is known for its pack mentality and strong spirit, which fits well with this card's attributes",
+    ),
+    # Cindersnake 🐩🐭💀 2p 1h
+    # costs: 🔥🔥🔥 has: 👻👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Cindersnake",
+            power=2,
+            health=1,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=0,
+            skills=[skills.Underdog, skills.Fertility, skills.InstantDeath],
+        ),
+        description="This card has low fire but high power and the skills underdog, fertility and instant death A Cindersnake is a fantastical creature that is born from ashes and has the power to destroy, which fits with this card's attributes",
+    ),
+    # Glasswing 🐭🧺🔰 3p 3h
+    # costs: 🔥🔥 has: 🔥🔥👻👻👻👻👻👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Glasswing",
+            power=3,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=2,
+            skills=[skills.Fertility, skills.Packrat, skills.Shield],
+        ),
+        description="This card has high spirits and moderate fire, and the skills fertility, packrat and shield A Glasswing is a beautiful but fragile creature that can fly, which fits with this card's high spirit attribute The packrat skill also fits with the idea that the creature values pretty, shiny things",
+    ),
+    # Nightstalker 💀 4p 5h
+    # costs: - has: 🔥 pot: 31
+    Blueprint(
+        original=Card(
+            name="Nightstalker",
+            power=4,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="This card has low fire and high power and health, with the InstantDeath skill A Nightstalker is a creature that is known for lurking in the shadows and attacking unsuspecting prey, which fits with this card's InstantDeath skill and high power and health attributes",
+    ),
+    # Flamegriff 🪁🧺💀 8p 7h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Flamegriff",
+            power=8,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Soaring, skills.Packrat, skills.InstantDeath],
+        ),
+        description="Fiery, high power, Packrat, InstantDeath, and Soaring",
+    ),
+    # Thornmite 🔰🐭💀🧺 2p 2h
+    # costs: 🔥 has: 🔥 pot: 32
+    Blueprint(
+        original=Card(
+            name="Thornmite",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description="combining 'thorn' and 'mite' infers a creature that is small, tough and venomous, having Shield toughness, Fertility quick breeding which infers growing fast, InstantDeath the venom, and Packrat hey, it's a mite",
+    ),
+    # Spiketail 🦔🔰🐭🧺 0p 3h
+    # costs: 🔥 has: 🔥👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Spiketail",
+            power=0,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Spines, skills.Shield, skills.Fertility, skills.Packrat],
+        ),
+        description="combining 'spines' and 'tail' suggests a creature with great mobility or attack options or both, with Spines naturally but also Shield to be able to take a hit and Packrat a scorpion has a big stinger Rattata",
+    ),
+    # Armoryx 🔰🐭🧺🐩💀🦔 10p 7h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 69
+    Blueprint(
+        original=Card(
+            name="Armoryx",
+            power=10,
+            health=7,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=6,
+            skills=[
+                skills.Shield,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Spines,
+            ],
+        ),
+        description="combining 'armadillo' and the suffix 'ryx' a popular way in Latin names to describe antlers, suggests a creature that is tough, has great attack options and can really dish it out, with Shield obviously, Fertility because healthy individuals develop redcolored armor plates for mating season, Packrat junk in the plates make a great deal of protection in tough times, Underdog don't underestimate my plates",
+    ),
+    # Thornwhip 🐭💀🔰🧺🦔 10p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 70
+    Blueprint(
+        original=Card(
+            name="Thornwhip",
+            power=10,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+                skills.Spines,
+            ],
+        ),
+        description="The high power and health, and the skills Spines and InstantDeath make this card a force to be reckoned with, and the name suggests an aggressive and dangerous creature, fitting with these attributes",
+    ),
+    # Sprygiant 🧺🐩🐭 6p 5h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 38
+    Blueprint(
+        original=Card(
+            name="Sprygiant",
+            power=6,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Packrat, skills.Underdog, skills.Fertility],
+        ),
+        description="With Packrat and Fertility, this card seems to gather resources quickly and become powerful, but with low spirits and fire, it may struggle to keep up The name suggests a large, sturdy creature suited for strength and growth",
+    ),
+    # Firelark  2p 2h
+    # costs: 🔥 has: 🔥🔥 pot: 7
+    Blueprint(
+        original=Card(
+            name="Firelark",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=2,
+            skills=[],
+        ),
+        description="This card has low attributes across the board, but the name is fitting for its low cost and fire attribute The lark is small, nimble, and often associated with fire",
+    ),
+    # Skirmouse  1p 1h
+    # costs: 🔥 has: 🔥🔥 pot: 4
+    Blueprint(
+        original=Card(
+            name="Skirmouse",
+            power=1,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=2,
+            skills=[],
+        ),
+        description="With low attributes and no skills, this card seems like a weak combatant, but with its low cost and fire attribute, it may be useful in certain situations The name suggests a small, agile creature, skilled at quick movements and avoiding danger",
+    ),
+    # Hallowhip 🐭🧺🐩🔰 2p 8h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 44
+    Blueprint(
+        original=Card(
+            name="Hallowhip",
+            power=2,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Fertility, skills.Packrat, skills.Underdog, skills.Shield],
+        ),
+        description='related to a powerful, sturdy creature with supernatural qualities, combining hollow bonelike qualities, while the "hip" could refer to its steedlike or powerful movement abilities, fertility skill descriptor could come from its pegasuslike appearance',
+    ),
+    # Glidrawn 🪁🦔🐭 2p 4h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 25
+    Blueprint(
+        original=Card(
+            name="Glidrawn",
+            power=2,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Soaring, skills.Spines, skills.Fertility],
+        ),
+        description='gliding ability comes from Soaring skill, with drawn giving a sense of sharpness or pointedness for the Spines skill, while the "glid" part could be suggestive of its graceful movement abilities',
+    ),
+    # Thunderius 🐭💀🔰🪁🐩🧺 8p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 78
+    Blueprint(
+        original=Card(
+            name="Thunderius",
+            power=8,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Soaring,
+                skills.Underdog,
+                skills.Packrat,
+            ],
+        ),
+        description='name combines thunderous ability with "ius" which is common for Latin animal names, gives a sense of regalness or deitylike qualities, "pack rat" skill is reflected in the large size and strength, while other skills like "soaring" and "fertility" add a mythic dimension',
+    ),
+    # Thornhide 🐭🧺🔰💀🪁🚀 9p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 78
+    Blueprint(
+        original=Card(
+            name="Thornhide",
+            power=9,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Soaring,
+                skills.Airdefense,
+            ],
+        ),
+        description='relating to physical attributes of power, strength, and armored qualities of the card, as well as the spikinessskewering qualities of skills like "spines" and "instant death", while the "hide" part emphasizes its durable and protective qualities',
+    ),
+    # Sylphkitty  2p 4h
+    # costs: 🔥 has: 👻👻 pot: 11
+    Blueprint(
+        original=Card(
+            name="Sylphkitty",
+            power=2,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=0,
+            skills=[],
+        ),
+        description="relates to modest powerhealth, low costsfirecostsspirits, has spirits, and no fire, no skills",
+    ),
+    # Blazebeast 💀🔰🦔🐭🧺 7p 9h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Blazebeast",
+            power=7,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Spines,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description="relates to high powerhealth, low costsfire, costsspirits , has both spiritsfire, and multiple skills",
+    ),
+    # Icehound  4p 2h
+    # costs: - has: 🔥👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Icehound",
+            power=4,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description="relates to modest powerhealth, and has both spiritsfire but few of each, no skills",
+    ),
+    # Steelback 💀🐭🔰🧺🦔 8p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="Steelback",
+            power=8,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+                skills.Packrat,
+                skills.Spines,
+            ],
+        ),
+        description="relates to very high powerhealth, modest costsfire, costsspirits , has both spiritsfire, and multiple skills",
+    ),
+    # Redscale 🐩🐭🧺💀 10p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻👻👻 pot: 66
+    Blueprint(
+        original=Card(
+            name="Redscale",
+            power=10,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=4,
+            skills=[
+                skills.Underdog,
+                skills.Fertility,
+                skills.Packrat,
+                skills.InstantDeath,
+            ],
+        ),
+        description="This card has high power and health with no fire or spirits costs, but a moderate amount of spirits and fire Its skills include Underdog, which makes it stronger when behind, Fertility, which means it can produce offspring, and InstantDeath which presumably allows it to kill weaker foes Packrat suggests that this might be a highly territorial card, which is backed up by its relatively high spirit allocation Redscale seems like a great name for this kind of card  the term \"redscale\" usually refers to a type of photographic film that produces warm, reddish hues This could be interpreted to mean that the card is fiery and fierce, or maybe it's just a nod to the card's evidently high fire attribute",
+    ),
+    # Violeaf 🔰🧺🐭 1p 3h
+    # costs: 👻👻 has: 🔥🔥👻 pot: 27
+    Blueprint(
+        original=Card(
+            name="Violeaf",
+            power=1,
+            health=3,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Shield, skills.Packrat, skills.Fertility],
+        ),
+        description="Violeaf has a moderate power and health, low fire cost, and seemingly high spirits cost Its skills include Shield, which suggests it can protect itself or allies, Packrat territorial and probably a collector, and Fertility Violeaf might be some sort of plant creature, given the name and the references to fertility and packs Its power and health are not particularly high, but it has skills that allow it to be more effective in specific situations Maybe its leaves have healing properties, which would explain the high spirit cost",
+    ),
+    # Frostpaw 🐩🧺🔰💀🐭 7p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Frostpaw",
+            power=7,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Underdog,
+                skills.Packrat,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+            ],
+        ),
+        description='Frostpaw has high health and moderate power, with a relatively low fire cost and high spirits cost It has a range of skills, including Underdog, Packrat, Shield, Fertility, and Instant Death The "frost" in the name suggests that it is powerful in cold conditions, though it\'s not exactly an icebased creature Perhaps it\'s a snowy owl or another predator that is adapted to frigid temperatures "Paw" suggests an animal, which is fitting for this type of game Its packoriented skills and high spirit allocation suggest that it might be the leader of a group of creatures',
+    ),
+    # Thundertail 🧺🚀🐭 4p 7h
+    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Thundertail",
+            power=4,
+            health=7,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Packrat, skills.Airdefense, skills.Fertility],
+        ),
+        description='Thundertail has moderate power and health, a moderate fire cost, and low spirit allocation Its skills include Packrat, Air Defense ability to avoid aerial attacks or launch its own, and Fertility The card might be an armadillo or another ground creature with the ability to ward off aerial attackers "Thunder" seems like a fitting name for this type of card since it suggests electricity, power, and energy "Tail" is an obvious reference to the card\'s physical attributes',
+    ),
+    # Firelion 🐭🐩🔰 4p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Firelion",
+            power=4,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=6,
+            skills=[skills.Fertility, skills.Underdog, skills.Shield],
+        ),
+        description="This card has high power and health and requires a lot of fire and spirits to summon, making it a powerful card The skill Shield also enhances its defensive capabilities, making it a resilient beast The name Firelion is fitting for its fiery origins and powerful lionlike attributes",
+    ),
+    # Glimmerfly 🧺🔰🪁🐭 3p 2h
+    # costs: 🔥 has: 🔥👻 pot: 30
+    Blueprint(
+        original=Card(
+            name="Glimmerfly",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Packrat, skills.Shield, skills.Soaring, skills.Fertility],
+        ),
+        description="This card has moderate power and health, but its skill set is highly strategic, with abilities like Packrat and Soaring, which brings to mind an agile and intelligent creature Its name relates to the small yet dazzling nature of the card, with a sense of whimsicality that suits its magical skills",
+    ),
+    # Shellcrab 🐭🧺💀🪁 4p 7h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Shellcrab",
+            power=4,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Soaring,
+            ],
+        ),
+        description="This card is a highly defensive card, with low fire cost and high spirit cost, and several defensive skills that include InstantDeath Its name reflects its hardy shelllike quality, with a sense of crustaceanlike details",
+    ),
+    # Spikebadger 🧺🐭💀 3p 10h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Spikebadger",
+            power=3,
+            health=10,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[skills.Packrat, skills.Fertility, skills.InstantDeath],
+        ),
+        description="This card is a highly durable card with low power but high health Its skill set includes Packrat which emphasizes toughness in adverse situations, which makes it a very stable and defensive creature Its name reflects the sharp and sturdy aspects of its qualities",
+    ),
+    # Blazeowl  3p 5h
+    # costs: 🔥 has: 🔥🔥👻 pot: 15
+    Blueprint(
+        original=Card(
+            name="Blazeowl",
+            power=3,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[],
+        ),
+        description="This card has average power and high health and requires a moderate resource investment The card is associated with fire and is stronger than other birds previously released in the game, hence the name Blazeowl",
+    ),
+    # Quicksand 💀🐭🧺 2p 1h
+    # costs: 🔥🔥 has: 🔥🔥👻 pot: 25
+    Blueprint(
+        original=Card(
+            name="Quicksand",
+            power=2,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.InstantDeath, skills.Fertility, skills.Packrat],
+        ),
+        description="The card deals moderate damage with moderate health and has a mixed skill set which includes InstantDeath, Fertility, and Packrat The name symbolizes the card's skillset, as InstaDeath is like quicksand, Fertility is like the bog which helps growth, while Packrat points to the idea of hoarding things",
+    ),
+    # Thornbat 🐭💀🔰🧺 3p 5h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Thornbat",
+            power=3,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+            ],
+        ),
+        description="With high health and moderate power, this card requires moderate resource investment, and is quite versatile with InstantDeath, Fertility, Shield, and Packrat skills As the name suggests, Thornbat is a vicious creature with thorns growing from its wings, making it a challenging adversary",
+    ),
+    # Seedviper 🐭🦔💀 2p 4h
+    # costs: 👻 has: 🔥👻👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Seedviper",
+            power=2,
+            health=4,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Spines, skills.InstantDeath],
+        ),
+        description="spiny, fertility skill, fireless",
+    ),
+    # Skyarmor 🦔🐭💀🪁🔰 5p 6h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 59
+    Blueprint(
+        original=Card(
+            name="Skyarmor",
+            power=5,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Spines,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Soaring,
+                skills.Shield,
+            ],
+        ),
+        description="flying with soaring skill, high in spirits and fire, strong with spines and shield",
+    ),
+    # Faewisp 🔰🐩🐭 1p 1h
+    # costs: 👻👻👻👻👻 has: 🔥👻 pot: 18
+    Blueprint(
+        original=Card(
+            name="Faewisp",
+            power=1,
+            health=1,
+            costs_fire=0,
+            costs_spirits=5,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Shield, skills.Underdog, skills.Fertility],
+        ),
+        description='With the emphasis on spirits and the minor powerhealth figures, as well as the skills, this card is very much linked to a ghostly or faerie essence The name "Faewisp" is elegant, stands out and has some mythological connotations',
+    ),
+    # Thornwing 💀🪁🔰🐭 3p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Thornwing",
+            power=3,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=4,
+            skills=[
+                skills.InstantDeath,
+                skills.Soaring,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description='This card\'s attributes suggest a flying creature, and the skills imply a certain amount of danger The name "Thornwing" has a cool ring to it and could relate to a bird or a battype creature with sharp thorns or spines',
+    ),
+    # Shadowdrake 🧺💀🐭🔰🐩 7p 5h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Shadowdrake",
+            power=7,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+                skills.Underdog,
+            ],
+        ),
+        description="high power and health, costs fire but also has strong fire attribute and strong spirit attribute",
+    ),
+    # Skykitsune 🧺 2p 2h
+    # costs: 🔥🔥🔥 has: 🔥🔥👻 pot: 12
+    Blueprint(
+        original=Card(
+            name="Skykitsune",
+            power=2,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Packrat],
+        ),
+        description="low power and health, high fire cost, but has a few tricks up its sleeve with the Packrat skill",
+    ),
+    # Bramblerat  2p 7h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Bramblerat",
+            power=2,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[],
+        ),
+        description="high health and spirit attributes, but a low power and a lack of other skills Likely to be used as a defensive card",
+    ),
+    # Drakehulk 🐩🐭🧺💀 2p 8h
+    # costs: - has: 🔥🔥👻👻 pot: 52
+    Blueprint(
+        original=Card(
+            name="Drakehulk",
+            power=2,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[
+                skills.Underdog,
+                skills.Fertility,
+                skills.Packrat,
+                skills.InstantDeath,
+            ],
+        ),
+        description='A massive creature with incredible strength and resilience, but without any special abilities besides being fearsome to behold The name is derived from the mythical dragonlike creature "drake," and the word "hulk," which suggests something large and powerful',
+    ),
+    # Phoenixclaw 🐭🧺💀🐩 5p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Phoenixclaw",
+            power=5,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Underdog,
+            ],
+        ),
+        description='A strong and fiery creature capable of dealing heavy damage to opponents, with the ability to resurrect itself once fallen The name is inspired by the mythical Phoenix bird, known for its ability to rise from the ashes, and the word "claw," which suggests strength and ferocity',
+    ),
+    # Fireshrimp 💀 4p 2h
+    # costs: 🔥 has: 🔥👻 pot: 17
+    Blueprint(
+        original=Card(
+            name="Fireshrimp",
+            power=4,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="A small but deadly creature capable of instantly killing opponents with its fiery breath The name is a playful oxymoron, combining the fiery nature of the shrimp with its diminutive size",
+    ),
+    # Mystitaur 🐭💀🧺 5p 5h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Mystitaur",
+            power=5,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Packrat],
+        ),
+        description="The name conjures images of a mythical beast  part bull, part something else  which suits the card's abilities, and the balance of its stats It's powerful and has a decent amount of health, but requires some resources to play",
+    ),
+    # Faewalker 🐭💀🔰🧺 4p 8h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Faewalker",
+            power=4,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+            ],
+        ),
+        description="'Fae' is a term often used to describe mythical beings in folklore and literature, which fits the theme of the game The card has a high health stat, and its skills  instant death and shield  echo the mystical origins of the name",
+    ),
+    # Thornmantis 💀🦔🔰🧺🐭 8p 6h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Thornmantis",
+            power=8,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Spines,
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description='A combination of the words "thorn" and "mantis", this name is suitable for a highly skilled card with many abilities and spines The word "thorn" references the skill Spines, and "mantis" refers to the card\'s powerful combination of skills and high powerhealth',
+    ),
+    # Underfey 🐭🐩 8p 3h
+    # costs: 🔥 has: 🔥👻 pot: 31
+    Blueprint(
+        original=Card(
+            name="Underfey",
+            power=8,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Underdog],
+        ),
+        description='This name references the skill Underdog, which is appropriate for a card that is powerful despite having relatively low health A "fey" is a mythical creature, giving the card a magical quality, and the word "under" suggests the card has a hidden strength',
+    ),
+    # Spikephoenix 🐭🔰💀 9p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Spikephoenix",
+            power=9,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[skills.Fertility, skills.Shield, skills.InstantDeath],
+        ),
+        description='This name references the card\'s skills Fertility and Shield and high power The word "spike" refers to the card\'s spines and "phoenix" suggests the card\'s strength and ability to rise from the ashes, just like a mythical phoenix',
+    ),
+    # Fawndog 🐩 2p 3h
+    # costs: - has: 🔥👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Fawndog",
+            power=2,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Underdog],
+        ),
+        description="This name is derived from the attributes and skills of the card With underdog, it can be suggested that it is an underappreciated animal, and the name Fawndog hints at a cute yet underestimated creature The high power and health levels hint at a doglike creature, which is why 'dog' is used in the name",
+    ),
+    # Flametiger 💀🔰 3p 3h
+    # costs: - has: 🔥🔥🔥👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Flametiger",
+            power=3,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=3,
+            skills=[skills.InstantDeath, skills.Shield],
+        ),
+        description="This card has a high cost in fire, is skilled in instant death, and has a shield These attributes hint at a wild, powerful, and dangerous creature similar to a tiger The name derives from the fire aspect, along with tiger to imply a fierce and strong animal",
+    ),
+    # Skygriffin 🔰🪁🐭💀🧺 3p 2h
+    # costs: 🔥🔥🔥 has: 🔥🔥👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Skygriffin",
+            power=3,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[
+                skills.Shield,
+                skills.Soaring,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description="This card has a high cost in fire, soaring skills, and shield abilities These attributes introduce the image of something magical and skyborne like a griffin, hence the name SkyGriffin",
+    ),
+    # Thornbull 💀 5p 3h
+    # costs: - has: 🔥👻 pot: 30
+    Blueprint(
+        original=Card(
+            name="Thornbull",
+            power=5,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="This card has high power, low health, and instant death as its skill The name comes from the thorn skill set and the animal's appearance, which is somewhat bullish",
+    ),
+    # Lavasnake  2p 5h
+    # costs: - has: 🔥👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Lavasnake",
+            power=2,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description="This card has high power and health but costs no fire to play, suggesting a creature either already adapted to or immune to volcanic environments",
+    ),
+    # Thornsquad 🦔🐭🔰🧺 4p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Thornsquad",
+            power=4,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[skills.Spines, skills.Fertility, skills.Shield, skills.Packrat],
+        ),
+        description="A balanced card with a mix of fire and spirit costs, multiple skills, and decent power and health The name reflects its spiny appearance and the idea that it's part of a group or team",
+    ),
+    # Serenaguard 🐭🔰🦔🐩💀🧺 6p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Serenaguard",
+            power=6,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Spines,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description="A card with high health and multiple skills like Shield and Packrat, but high spirit and fire costs The name suggests a benevolent, peaceful creature that guards and protects its allies",
+    ),
+    # Shadeviper 💀 3p 1h
+    # costs: 🔥🔥 has: 🔥👻 pot: 13
+    Blueprint(
+        original=Card(
+            name="Shadeviper",
+            power=3,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="A card with low health and a deadly InstantDeath skill, but moderate power and considerable fire cost The name reflects its deadly nature and shadowy appearance, while acknowledging its snakelike qualities",
+    ),
+    # Beastback 🔰💀🐭🐩🦔 1p 2h
+    # costs: 👻👻 has: 🔥👻 pot: 31
+    Blueprint(
+        original=Card(
+            name="Beastback",
+            power=1,
+            health=2,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=1,
+            has_fire=1,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Underdog,
+                skills.Spines,
+            ],
+        ),
+        description="an animal that relies on its shield skill and has spines moderately weak but able to withstand some damage before dying",
+    ),
+    # Elefosia 🐭🧺🚀💀🔰 9p 10h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 77
+    Blueprint(
+        original=Card(
+            name="Elefosia",
+            power=9,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.Airdefense,
+                skills.InstantDeath,
+                skills.Shield,
+            ],
+        ),
+        description="elephantinspired creature with high powerhealth stats and fertility skill, signifying its ability to multiply the species and increase its army",
+    ),
+    # Pegasaurus 🐭🔰🧺🪁💀🐩 10p 8h
+    # costs: 👻 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 73
+    Blueprint(
+        original=Card(
+            name="Pegasaurus",
+            power=10,
+            health=8,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=8,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Packrat,
+                skills.Soaring,
+                skills.InstantDeath,
+                skills.Underdog,
+            ],
+        ),
+        description="flying, birdlike creature with high power and health stats and the ability to both soar and shelter using its shield skill higher spirit cost represents its mythical properties",
+    ),
+    # Lynxi 🐭🐩💀🔰🧺 7p 5h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 66
+    Blueprint(
+        original=Card(
+            name="Lynxi",
+            power=7,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+            ],
+        ),
+        description="catinspired animal with underdog skill, allowing it to gain power when weaker cards are on the field moderate powerhealth and low spirits cost",
+    ),
+    # Vampiraptor 🔰🧺🐭🐩🪁🚀 7p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 68
+    Blueprint(
+        original=Card(
+            name="Vampiraptor",
+            power=7,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Underdog,
+                skills.Soaring,
+                skills.Airdefense,
+            ],
+        ),
+        description="an animal with underdog and instant death skills that gains power by taking health away from other cards, signifying its vampiric nature",
+    ),
+    # Dreamfawn 🐭 1p 1h
+    # costs: 👻👻👻👻👻👻 has: - pot: 6
+    Blueprint(
+        original=Card(
+            name="Dreamfawn",
+            power=1,
+            health=1,
+            costs_fire=0,
+            costs_spirits=6,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description="with skills Fertility, this card allows for growth and reproduction, which fits with the fantastical idea of a dreamy and magical fawn",
+    ),
+    # Moonsnake 🐭💀 0p 5h
+    # costs: - has: - pot: 31
+    Blueprint(
+        original=Card(
+            name="Moonsnake",
+            power=0,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description="with high health and the skills Fertility and InstantDeath, this card represents a snake associated with the mystical powers of the moon",
+    ),
+    # Wispwing 🧺 6p 1h
+    # costs: 🔥 has: 🔥👻 pot: 18
+    Blueprint(
+        original=Card(
+            name="Wispwing",
+            power=6,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Packrat],
+        ),
+        description="This creature has high power and low health, making it vulnerable but dangerous The skill Packrat suggests a creature that hoards or collects things like a magpie, but to make it more fantastical, I suggest the name Wispwing The creature is small and agile, like a fairy, but also strong and fierce, like a dragonfly It collects anything that glitters or shines, but also loves to fight",
+    ),
+    # Armashell 🐩🧺🐭🔰💀 4p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Armashell",
+            power=4,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=4,
+            skills=[
+                skills.Underdog,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+            ],
+        ),
+        description="A creature with high health but lower power, and a lot of skills The name suggests an armored turtle like creature that has a hard outer shell The Armashell is able to defend itself, but also has magical abilities like Packrat and Fertility, which suggest the creature is resourceful and able to reproduce quickly",
+    ),
+    # Glitterratt 💀🧺 2p 3h
+    # costs: 👻👻 has: 🔥🔥🔥🔥👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Glitterratt",
+            power=2,
+            health=3,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=1,
+            has_fire=4,
+            skills=[skills.InstantDeath, skills.Packrat],
+        ),
+        description='This card is a combination of a glittery rat, living up to the high cost of Fire points and the highly skilled packrat ability The "Instant Death" ability suggests that this rat is not to be underestimated',
+    ),
+    # Thundergiant 🔰🐩🚀 5p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 45
+    Blueprint(
+        original=Card(
+            name="Thundergiant",
+            power=5,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=5,
+            skills=[skills.Shield, skills.Underdog, skills.Airdefense],
+        ),
+        description="This card represents a giant in both power and strength Thunder giants are mythical creatures with the ability to call down lighting bolts from the sky, reflected in the skills and  available spirit points The name reflects this massive character with the thunder attribute",
+    ),
+    # Seedwings 🔰🐭🧺🪁 1p 6h
+    # costs: 👻 has: 🔥👻👻👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Seedwings",
+            power=1,
+            health=6,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Shield, skills.Fertility, skills.Packrat, skills.Soaring],
+        ),
+        description='This card is the kindhearted protector, using its skills to shield allies and a high cost in spirits reflects its spiritual magic The name contains "wings," in reference to the high points available for spirits and the card\'s probable magical abilities, while seed refers to "Fertility" skill it shows',
+    ),
+    # Blancher 🍀 3p 2h
+    # costs: 🔥 has: - pot: 7
+    Blueprint(
+        original=Card(
+            name="Blancher",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.LuckyStrike],
+        ),
+        description="midrange power but fragile, with a high fire cost A fast and flashy name that would fit a critter that can strike quickly but doesn't last long",
+    ),
+    # Nimbacorn 🐭💀🐩🔰 9p 5h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Nimbacorn",
+            power=9,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Shield,
+            ],
+        ),
+        description="massive spirit power but somewhat fragile, with a mixture of both fire and spirit The skills are defensive, which fits well with the mystical and somewhat whimsical name",
+    ),
+    # Armospike 🔰🐩 3p 6h
+    # costs: 🔥 has: 🔥👻👻 pot: 27
+    Blueprint(
+        original=Card(
+            name="Armospike",
+            power=3,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Shield, skills.Underdog],
+        ),
+        description="good midrange power and high health, with a moderate mix of fire and spirits The skills are defensive and the name is tough, much like an armored spiked animal",
+    ),
+    # Hornweasel 🔰 2p 1h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Hornweasel",
+            power=2,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Shield],
+        ),
+        description="low powerhealth, cheap, with shield",
+    ),
+    # Pyratwolf 🧺🔰 2p 3h
+    # costs: 🔥🔥🔥 has: 🔥👻👻 pot: 20
+    Blueprint(
+        original=Card(
+            name="Pyratwolf",
+            power=2,
+            health=3,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Packrat, skills.Shield],
+        ),
+        description="expensive, with packrat and shield skills and high firespirit costs",
+    ),
+    # Thornkraken 🧺🦔💀🔰🐭🪁 10p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Thornkraken",
+            power=10,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.Spines,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+                skills.Soaring,
+            ],
+        ),
+        description="This name suits the card as it has very high power and health, but is extremely costly with fire and spirit Its skills of Packrat, Spines, InstantDeath, Shield, Fertility, and Soaring give it a monstrous ability Thornkraken invokes the image of a fearsome sea creature that is surrounded by thorns and can both fly and attack from afar with its spines",
+    ),
+    # Dreadbug 💀 2p 2h
+    # costs: 🔥🔥🔥 has: 🔥👻👻👻👻👻 pot: 15
+    Blueprint(
+        original=Card(
+            name="Dreadbug",
+            power=2,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="This card has a high power and health, which suggests a threatening and intimidating creature The InstantDeath skill also adds to this idea of a creature that strikes fear into its foes The name Dreadbug plays off this idea, as it combines the concept of dread with a small, normally harmless insect",
+    ),
+    # Soarerfly 🐩🐭💀🪁 1p 1h
+    # costs: 👻👻👻👻👻👻👻👻 has: - pot: 15
+    Blueprint(
+        original=Card(
+            name="Soarerfly",
+            power=1,
+            health=1,
+            costs_fire=0,
+            costs_spirits=8,
+            has_spirits=0,
+            has_fire=0,
+            skills=[
+                skills.Underdog,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Soaring,
+            ],
+        ),
+        description="This card has relatively low power and health, with no Fire or Spirit cost However, it has several skills that could make it a useful card in certain situations, such as Underdog and Soaring The name Soarerfly plays off the latter skill, as it suggests a small creature that is able to fly at great heights and avoid danger",
+    ),
+    # Grizzlyfox 🐭 4p 7h
+    # costs: 🔥 has: 🔥 pot: 27
+    Blueprint(
+        original=Card(
+            name="Grizzlyfox",
+            power=4,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="This card has high power and health, low Fire cost, and the Fertility skill The combination of these attributes suggests a strong and highly reproductive creature, such as a bear The name Grizzlyfox plays off this idea, as it combines the name of a wellknown powerhouse animal with the idea of a canid creature",
+    ),
+    # Shellrat 🍀 1p 4h
+    # costs: 🔥 has: 👻 pot: 8
+    Blueprint(
+        original=Card(
+            name="Shellrat",
+            power=1,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.LuckyStrike],
+        ),
+        description="This card has relatively low power, good health, low Fire cost, and the LuckyStrike skill The name Shellrat plays off the card's high health attribute, as well as its ability to evade danger via the LuckyStrike skill The concept of a small rodentlike creature with a protective shell also fits with the name",
+    ),
+    # Nixnut  2p 1h
+    # costs: 🔥 has: 👻👻👻 pot: 7
+    Blueprint(
+        original=Card(
+            name="Nixnut",
+            power=2,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=0,
+            skills=[],
+        ),
+        description='"Nix" refers to something small and insignificant, while "nut" reflects the low health and power of the card The fire attribute suggests a fiery and hotheaded creature, while the spirits attribute is reflected in the name\'s spunky and playful connotation',
+    ),
+    # Magmacub 🧺🔰💀🦔🐭 2p 2h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻 pot: 38
+    Blueprint(
+        original=Card(
+            name="Magmacub",
+            power=2,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Spines,
+                skills.Fertility,
+            ],
+        ),
+        description='medium cost, high fire, various skills, small size and high powerhealth matching "cub" theme, and "magma" because of fire attribute',
+    ),
+    # Nightscorn 🦔🧺💀🐩🐭 5p 4h
+    # costs: 👻👻👻👻 has: 🔥🔥👻👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Nightscorn",
+            power=5,
+            health=4,
+            costs_fire=0,
+            costs_spirits=4,
+            has_spirits=3,
+            has_fire=2,
+            skills=[
+                skills.Spines,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Fertility,
+            ],
+        ),
+        description='The card has high power and health, and a lot of spirit, but requires  spirit to deploy "Night" relates to the dark purple of the spirit icon, and "Scorn" to the spines, Instant Death, and Underdog skills',
+    ),
+    # Chimastorm 🐭💀🔰🚀 3p 6h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥👻👻 pot: 38
+    Blueprint(
+        original=Card(
+            name="Chimastorm",
+            power=3,
+            health=6,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Airdefense,
+            ],
+        ),
+        description='The card has average power and high health, requires  fire to deploy, and has  fire and air skills, which relate to the "Chimaera" and "Storm" parts of the name',
+    ),
+    # Dragonmeld 🧺🔰🐭🐩🚀 6p 6h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Dragonmeld",
+            power=6,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.Underdog,
+                skills.Airdefense,
+            ],
+        ),
+        description='The card is a strong one with high power and health, no cost to deploy, and many skills including Packrat and Fertility The name is a blend of "Dragon" and "Meld" which suggests a powerful combination of things in its name',
+    ),
+    # Armorsky 🧺🔰🐭💀🪁🐩 7p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 78
+    Blueprint(
+        original=Card(
+            name="Armorsky",
+            power=7,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Soaring,
+                skills.Underdog,
+            ],
+        ),
+        description='The card has high power and health, no fire cost to deploy, and many skills including Shield and Soaring The name relates to the Armadillo from the examples, and the "Sky" to its Soaring skill',
+    ),
+    # Shadowrike 🐩🧺🔰🦔💀 10p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="Shadowrike",
+            power=10,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Underdog,
+                skills.Packrat,
+                skills.Shield,
+                skills.Spines,
+                skills.InstantDeath,
+            ],
+        ),
+        description="high powerhealth, low spiritfire, mixed skills",
+    ),
+    # Diremite 🐩 1p 1h
+    # costs: 👻👻 has: 🔥🔥👻👻👻 pot: 9
+    Blueprint(
+        original=Card(
+            name="Diremite",
+            power=1,
+            health=1,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.Underdog],
+        ),
+        description="low powerhealth, some spirit, some fire, one skill",
+    ),
+    # Streelt 🧺 2p 7h
+    # costs: 🔥 has: 👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Streelt",
+            power=2,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Packrat],
+        ),
+        description="low power, high health, some fire, one skill",
+    ),
+    # Lifecat 🐭 4p 2h
+    # costs: 🔥 has: 🔥 pot: 18
+    Blueprint(
+        original=Card(
+            name="Lifecat",
+            power=4,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="A catlike creature that uses its fertility skill to heal other cards It's moderately powered with a low spirit and high fire consumption",
+    ),
+    # Dreamlynx 🧺💀🐭 5p 8h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 46
+    Blueprint(
+        original=Card(
+            name="Dreamlynx",
+            power=5,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Packrat, skills.InstantDeath, skills.Fertility],
+        ),
+        description="This card has high health and power, and skills such as InstantDeath, Fertility and Packrat The name suggests a mystical, graceful creature that is elusive and represents the elusiveness of this card",
+    ),
+    # Flutterbee 💀🐭🧺🚀 3p 2h
+    # costs: 🔥 has: 👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Flutterbee",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Airdefense,
+            ],
+        ),
+        description="This card has modest stats across the board, with average skills such as Packrat, Fertility, and Airdefense The name evokes a small, delicate and nonthreatening creature that nonetheless is nimble, fitting for a low impact card",
+    ),
+    # Shadowgrizzly 💀🔰🐩🐭🧺🦔 8p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Shadowgrizzly",
+            power=8,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Underdog,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Spines,
+            ],
+        ),
+        description="This card has impressive power and health stats paired with many skills, including Shield, Packrat, Spines and others The name suggests a dark, ominous creature who commands respect and fear, befitting this strong card",
+    ),
+    # Sunthorn 🐭🧺🔰🐩 2p 4h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻 pot: 48
+    Blueprint(
+        original=Card(
+            name="Sunthorn",
+            power=2,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=5,
+            skills=[skills.Fertility, skills.Packrat, skills.Shield, skills.Underdog],
+        ),
+        description="This card has a small power and solid health, few skilled abilities its main benefit is its low cost spirit The name evokes a small fiery creature with sharp thorns that are dangerous when encountered, like this card",
+    ),
+    # Windhawk 🚀 7p 1h
+    # costs: 🔥🔥 has: 🔥👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Windhawk",
+            power=7,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Airdefense],
+        ),
+        description="relates to the Airdefense skill of the card, high power and low health, thus quick and sharp, expensive due to needing resources to use its defense",
+    ),
+    # Chimeraconda 🔰🐭🧺🐩💀🦔 8p 6h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Chimeraconda",
+            power=8,
+            health=6,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Spines,
+            ],
+        ),
+        description='a combination of "chimera" relating to the numerous skills of the card and "anaconda" relating to high power, heavy and dominating aspects of the card',
+    ),
+    # Sunlion 💀🔰🐭🐩🪁 8p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Sunlion",
+            power=8,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+                skills.Underdog,
+                skills.Soaring,
+            ],
+        ),
+        description="relates to the Soaring skill of the card, high power and defense, rare zero fire costs but requires good resources  spirits, radiates power like the sun",
+    ),
+    # Thornbuck 🐭💀🧺🪁🦔 6p 6h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 60
+    Blueprint(
+        original=Card(
+            name="Thornbuck",
+            power=6,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Soaring,
+                skills.Spines,
+            ],
+        ),
+        description="relates to the Spines skill of the card, armored, strong and with sharp defenses, but also requiring some resources  spirits and fire to play",
+    ),
+    # Flamecat 🐩🧺💀🔰🐭 10p 5h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 60
+    Blueprint(
+        original=Card(
+            name="Flamecat",
+            power=10,
+            health=5,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.Underdog,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description='relates to high power and fire costs, also suggests a fast and agile card due to the "cat" part of the name',
+    ),
+    # Turtlerock 🐭🧺🐩🔰💀 5p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 69
+    Blueprint(
+        original=Card(
+            name="Turtlerock",
+            power=5,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Shield,
+                skills.InstantDeath,
+            ],
+        ),
+        description="relates to high health, fire resistance, and being slow, as well as the packrat and shield skills, suggests a tough, hardtokill card that does not move fast",
+    ),
+    # Thorneater 🚀🐭🦔🧺🔰 10p 5h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 63
+    Blueprint(
+        original=Card(
+            name="Thorneater",
+            power=10,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Airdefense,
+                skills.Fertility,
+                skills.Spines,
+                skills.Packrat,
+                skills.Shield,
+            ],
+        ),
+        description="relates to high power, health, and spines, as well as the airdefense and shield skills, suggests a card that excels at dealing damage and blocking attacks",
+    ),
+    # Thunderdrake 🐩💀🐭🔰🦔 5p 10h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 58
+    Blueprint(
+        original=Card(
+            name="Thunderdrake",
+            power=5,
+            health=10,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+                skills.Spines,
+            ],
+        ),
+        description="powerful, expensive, complex",
+    ),
+    # Chestnutrix 🐭💀🔰🧺 8p 9h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Chestnutrix",
+            power=8,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=3,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+            ],
+        ),
+        description="strong, naturelinked, skilled",
+    ),
+    # Nightjaguar 💀🐭 7p 5h
+    # costs: 🔥🔥 has: 🔥🔥👻👻👻 pot: 37
+    Blueprint(
+        original=Card(
+            name="Nightjaguar",
+            power=7,
+            health=5,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.InstantDeath, skills.Fertility],
+        ),
+        description="balanced, agile, deadly",
+    ),
+    # Fangstorm 🦔💀🐭🧺🔰🚀 7p 10h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 78
+    Blueprint(
+        original=Card(
+            name="Fangstorm",
+            power=7,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.Spines,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Shield,
+                skills.Airdefense,
+            ],
+        ),
+        description="relates to high powerspinesinstant death, also the high fire attribute",
+    ),
+    # Mysticwolf  2p 3h
+    # costs: 🔥 has: 🔥👻👻 pot: 10
+    Blueprint(
+        original=Card(
+            name="Mysticwolf",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[],
+        ),
+        description="relates to skills and both lowmid attributes for other features",
+    ),
+    # Glimmerhare 🔰🐭 2p 3h
+    # costs: 🔥 has: 🔥👻 pot: 23
+    Blueprint(
+        original=Card(
+            name="Glimmerhare",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Shield, skills.Fertility],
+        ),
+        description="medium powerhealth, cheap, shielded and fertile",
+    ),
+    # Firefalcon 🐭 1p 9h
+    # costs: - has: 🔥🔥🔥👻 pot: 37
+    Blueprint(
+        original=Card(
+            name="Firefalcon",
+            power=1,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=3,
+            skills=[skills.Fertility],
+        ),
+        description="low power, high health, strong fire affinity, fertile",
+    ),
+    # Spirithawk 🧺🚀🐩🔰💀🐭 6p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 76
+    Blueprint(
+        original=Card(
+            name="Spirithawk",
+            power=6,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.Airdefense,
+                skills.Underdog,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+            ],
+        ),
+        description="very strong, quite expensive, highly spirited, packs a punch with packrat, air defense, underdog, shield, instant death and fertile skills",
+    ),
+    # Thornarmadillo 🔰🐭🦔💀 7p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻👻 pot: 58
+    Blueprint(
+        original=Card(
+            name="Thornarmadillo",
+            power=7,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=4,
+            skills=[
+                skills.Shield,
+                skills.Fertility,
+                skills.Spines,
+                skills.InstantDeath,
+            ],
+        ),
+        description="very strong, highly spirited, spiky and shielded, fertile, without skills",
+    ),
+    # Sunleopard 🔰🧺🐭🍀💀 8p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Sunleopard",
+            power=8,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+                skills.LuckyStrike,
+                skills.InstantDeath,
+            ],
+        ),
+        description="The high fire attribute and LuckyStrike skill suggest that this card is associated with the suns power and its name reflects that Additionally, the Packrat, Fertility, Shield, and InstantDeath skills a show a cunning and powerful hunter eager to protect itself at all costs",
+    ),
+    # Thornlizard 🧺🦔🐭🐩🔰 4p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 55
+    Blueprint(
+        original=Card(
+            name="Thornlizard",
+            power=4,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.Spines,
+                skills.Fertility,
+                skills.Underdog,
+                skills.Shield,
+            ],
+        ),
+        description="The spines skill reflects on the cards defense mechanism, and its fire attribute suggests that this creature is closely related to fire The high health attribute and several skills such as Packrat and Shield indicate that this card has a strong defense system, making it harder to defeat",
+    ),
+    # Nightfury 🔰🧺💀 0p 9h
+    # costs: 👻👻👻👻 has: 🔥👻👻 pot: 32
+    Blueprint(
+        original=Card(
+            name="Nightfury",
+            power=0,
+            health=9,
+            costs_fire=0,
+            costs_spirits=4,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Shield, skills.Packrat, skills.InstantDeath],
+        ),
+        description="The relatively high costsspirits suggests that this creature is not of this world and comes only to the mortal realm at night The Shield, Packrat, and InstantDeath skills may signify this creature is equal parts cautious and destructive",
+    ),
+    # Moongator  4p 2h
+    # costs: 🔥🔥 has: 🔥👻👻 pot: 11
+    Blueprint(
+        original=Card(
+            name="Moongator",
+            power=4,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[],
+        ),
+        description="low health, medium power, has fire, airdefense skill",
+    ),
+    # Phoenixfox 💀🚀🐭🧺🔰 1p 2h
+    # costs: 🔥🔥🔥 has: 🔥👻👻 pot: 31
+    Blueprint(
+        original=Card(
+            name="Phoenixfox",
+            power=1,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[
+                skills.InstantDeath,
+                skills.Airdefense,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Shield,
+            ],
+        ),
+        description="low healthpower, high costsfire, instant death, airdefense, fertility and shield skills",
+    ),
+    # Shellraptor 💀🧺🐭🔰🐩 6p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Shellraptor",
+            power=6,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+                skills.Underdog,
+            ],
+        ),
+        description="medium healthpower, no costsfire, high hasspirits and hasfire, instant death, packrat, fertility, shield and underdog skills",
+    ),
+    # Gorgonixi 💀🪁 9p 6h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻👻 pot: 36
+    Blueprint(
+        original=Card(
+            name="Gorgonixi",
+            power=9,
+            health=6,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[skills.InstantDeath, skills.Soaring],
+        ),
+        description="The name is related to the high power of the card Gorgon is a creature from Greek mythology that is known for its ability to turn people into stone The addition of 'ixi' makes the name more fantasylike and fitting for the game",
+    ),
+    # Lynxling  4p 1h
+    # costs: 🔥🔥 has: 🔥👻 pot: 8
+    Blueprint(
+        original=Card(
+            name="Lynxling",
+            power=4,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description="The name is related to the small size and power of the card It also relates to the existing card 'Lynx' in the game",
+    ),
+    # Packmancer 💀🐩🐭🪁🧺 5p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 65
+    Blueprint(
+        original=Card(
+            name="Packmancer",
+            power=5,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Fertility,
+                skills.Soaring,
+                skills.Packrat,
+            ],
+        ),
+        description="The name is related to the high health and hasspirits of the card, indicating it is a powerful creature that can summon and control packs The 'mancer' suffix implies magical ability",
+    ),
+    # Thunderhide 🧺💀🦔🔰🐭🐩 5p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="Thunderhide",
+            power=5,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Spines,
+                skills.Shield,
+                skills.Fertility,
+                skills.Underdog,
+            ],
+        ),
+        description="The name is related to the high health and power of the card, indicating it is a strong and tough creature that is almost unstoppable The 'thunder' part adds to the majesty and ferocity of the creature",
+    ),
+    # Heartworm 🐭💀 1p 2h
+    # costs: - has: 🔥👻👻 pot: 30
+    Blueprint(
+        original=Card(
+            name="Heartworm",
+            power=1,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description="with skills Fertility and InstantDeath, this name relates to the idea of something small and seemingly harmless being able to kill or greatly affect a much larger beast",
+    ),
+    # Wavering 🧺 2p 1h
+    # costs: 🔥 has: 🔥👻 pot: 11
+    Blueprint(
+        original=Card(
+            name="Wavering",
+            power=2,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Packrat],
+        ),
+        description="relates to the card's average stats, and its single fire cost The skill Packrat suggests the card is about accumulating, and therefore the name Wavering fits well as it suggests movement or change",
+    ),
+    # Bonewyrm 💀🐩🔰🦔🐭 9p 7h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Bonewyrm",
+            power=9,
+            health=7,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Shield,
+                skills.Spines,
+                skills.Fertility,
+            ],
+        ),
+        description="relates to the card's high offensive and defensive stats, as well as its skills like Spines and InstantDeath, suggesting an animal that is both powerful and dangerous",
+    ),
+    # Bramblebat 🦔🐭 3p 3h
+    # costs: 🔥🔥 has: 🔥👻👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Bramblebat",
+            power=3,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Spines, skills.Fertility],
+        ),
+        description="With its high power and health and the ability to deal damage back to attackers, Bramblebat is a unique fantasy animal that is feared by opponents Its spines and defences make it hard to defeat without taking significant damage",
+    ),
+    # Soarhog 🪁🐩🔰 3p 2h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Soarhog",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Soaring, skills.Underdog, skills.Shield],
+        ),
+        description="An agile creature that can evade attacks whilst offering good value for its relatively low cost Its shield and underdog skills give it a degree of protection against larger, more powerful cards",
+    ),
+    # Stargazer 🧺🔰🐭 5p 4h
+    # costs: 🔥 has: 🔥🔥🔥👻👻 pot: 38
+    Blueprint(
+        original=Card(
+            name="Stargazer",
+            power=5,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[skills.Packrat, skills.Shield, skills.Fertility],
+        ),
+        description="relates to the high hasspirits value, and Packrat skill as packrats are known to hoard shiny things, hence the 'gazing' at the stars being a fitting description for it",
+    ),
+    # Stormfowl  2p 2h
+    # costs: 🔥🔥🔥 has: 👻👻 pot: 6
+    Blueprint(
+        original=Card(
+            name="Stormfowl",
+            power=2,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=0,
+            skills=[],
+        ),
+        description="a fowl that can withstand strong winds and storms, fitting for a card with moderate health and high costsfire",
+    ),
+    # Flickertail 🐭 2p 3h
+    # costs: 🔥 has: 🔥🔥🔥 pot: 18
+    Blueprint(
+        original=Card(
+            name="Flickertail",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=3,
+            skills=[skills.Fertility],
+        ),
+        description="a type of squirrel known for its very fast movements, relating to the card's low power and high fire cost but swift movements due to the Fertility skill",
+    ),
+    # Styrix 🔰🧺🐭🐩🪁💀 7p 6h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Styrix",
+            power=7,
+            health=6,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Underdog,
+                skills.Soaring,
+                skills.InstantDeath,
+            ],
+        ),
+        description="related to Styx River in Greek mythology, which was the river that separated the living world from the underworld The high health and power values paired with skills such as Shield and InstantDeath suggest the card has a powerful and dangerous nature",
+    ),
+    # Quillmare 🦔🔰 0p 2h
+    # costs: 🔥 has: 🔥👻👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Quillmare",
+            power=0,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Spines, skills.Shield],
+        ),
+        description='a mix of "quill" from the Spines skill and "mare" meaning a female horse The name fits the low power but high health and Spines skill of the card',
+    ),
+    # Ghostcat 🐩🧺 2p 10h
+    # costs: - has: 🔥👻 pot: 40
+    Blueprint(
+        original=Card(
+            name="Ghostcat",
+            power=2,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Underdog, skills.Packrat],
+        ),
+        description='a mix of two animals, Ghost from the Underdog skill, and "cat" A lowcost card with relatively low power, but high health and skills such as Packrat and Underdog suggest a survivor that can stealthily sneak through the battlefield',
+    ),
+    # Thornyfly 🦔💀🐭 5p 3h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 38
+    Blueprint(
+        original=Card(
+            name="Thornyfly",
+            power=5,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[skills.Spines, skills.InstantDeath, skills.Fertility],
+        ),
+        description='a combination of "thorny" from the Spines skill and "fly" Featuring moderate power, low health, and skills such as Spines, Fertility, and InstantDeath, this card could be interpreted as a small but prickly critter that can grow in numbers and deal fatal damage if left unchecked',
+    ),
+    # Sparkrat 🐭🔰🧺 3p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="Sparkrat",
+            power=3,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[skills.Fertility, skills.Shield, skills.Packrat],
+        ),
+        description="The name takes into account the multiple skills, the lower costs, and the attributes leaning towards speed and spirit It also plays up the smallness of the creature Spark relates to the fire attribute and hints at the agility and speed a rat might have",
+    ),
+    # Deathdragon 💀🧺🐩🪁🐭🦔 10p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 69
+    Blueprint(
+        original=Card(
+            name="Deathdragon",
+            power=10,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Soaring,
+                skills.Fertility,
+                skills.Spines,
+            ],
+        ),
+        description="This name is meant to reflect the high values in power and health, as well as the skills that suggest a deadly or powerful creature Underdog relates to the fighting spirit of a weaker creature, while InstantDeath suggests a power to finish off enemies quickly The dragon part suggests a formidable creature that can fly Soaring and deal damage Spines, power",
+    ),
+    # Armcaster 🔰 4p 1h
+    # costs: 🔥🔥 has: 👻👻👻 pot: 15
+    Blueprint(
+        original=Card(
+            name="Armcaster",
+            power=4,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=0,
+            skills=[skills.Shield],
+        ),
+        description='simple, yet direct with the skills, a mix between the "armadillo" and the "caster" titles',
+    ),
+    # Hippostrate  8p 2h
+    # costs: - has: 🔥👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Hippostrate",
+            power=8,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description="a bulky creature with great power that can pack a punch and play defense when the opponent attacks",
+    ),
+    # Mysticamorph 💀🧺🦔🐭🪁🚀 8p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 74
+    Blueprint(
+        original=Card(
+            name="Mysticamorph",
+            power=8,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Spines,
+                skills.Fertility,
+                skills.Soaring,
+                skills.Airdefense,
+            ],
+        ),
+        description="A mystical, shapeshifting creature which holds a wide range of abilities, reflecting the multiple mix of colors in its attributes",
+    ),
+    # Cinderdillo 🐩🧺 4p 4h
+    # costs: - has: 🔥🔥👻 pot: 34
+    Blueprint(
+        original=Card(
+            name="Cinderdillo",
+            power=4,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Underdog, skills.Packrat],
+        ),
+        description="A creature with a balance of both fire and health that can withstand the most offensive opponents while still putting up a decent fight",
+    ),
+    # Spikestar 🐭🔰💀🦔 6p 5h
+    # costs: - has: 🔥🔥🔥👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Spikestar",
+            power=6,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Spines,
+            ],
+        ),
+        description="The card has high power and health, along with spines that can cause damage to opponent's cards The name Spikestar fits with the spines skill and the strong attributes, adding a starlike quality",
+    ),
+    # Firespout 🦔🧺🔰🐭💀 9p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Firespout",
+            power=9,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Spines,
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+            ],
+        ),
+        description="The card has high power and low costsfire, along with the spines skill The name relates to the fire attribute and also suggests a burst of power or energy",
+    ),
+    # Birdheart 🐭🔰💀🦔 9p 5h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 65
+    Blueprint(
+        original=Card(
+            name="Birdheart",
+            power=9,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Spines,
+            ],
+        ),
+        description="The card has high power, health, and hasfire attributes, along with skills that suggest both defense and attacking The name Birdheart suggests courage and strength, fitting with its overall character",
+    ),
+    # Ironshell 💀🔰 2p 3h
+    # costs: - has: 🔥🔥👻 pot: 32
+    Blueprint(
+        original=Card(
+            name="Ironshell",
+            power=2,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.InstantDeath, skills.Shield],
+        ),
+        description="The card has high health, along with the Shield skill and InstantDeath skill The name Ironshell relates to the shield and the card's durability, suggesting toughness and resilience",
+    ),
+    # Doombeetle 💀🐭 2p 2h
+    # costs: 🔥 has: 🔥👻👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Doombeetle",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Fertility],
+        ),
+        description='This card has the InstantDeath skill and has two fire cost The name "Doombeetle" fits the card\'s theme of death and destruction',
+    ),
+    # Thunderchimp 🐭💀🔰 7p 6h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="Thunderchimp",
+            power=7,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=3,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Shield],
+        ),
+        description='This card has high power and health, and requires three fire to play The name "Thunderchimp" relates to the card\'s high power and reflects its elemental affiliation',
+    ),
+    # Firesprite 🚀 7p 2h
+    # costs: - has: 🔥🔥🔥🔥👻 pot: 29
+    Blueprint(
+        original=Card(
+            name="Firesprite",
+            power=7,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=4,
+            skills=[skills.Airdefense],
+        ),
+        description='This card has high fire costs and the Airdefense skill The name "Firesprite" reflects its elemental affiliation and its ability to defend against airborne attacks',
+    ),
+    # Nightliger 🧺💀🐭🐩🔰 5p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Nightliger",
+            power=5,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Underdog,
+                skills.Shield,
+            ],
+        ),
+        description='With high power and health, along with the skills Packrat and Shield, this card evokes a strong and stealthy predator The name combines "night" to represent its stealthy nature, and "liger" as a nod to its large size and strength',
+    ),
+    # Armadon 🐭 2p 4h
+    # costs: - has: 🔥🔥🔥👻 pot: 30
+    Blueprint(
+        original=Card(
+            name="Armadon",
+            power=2,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=3,
+            skills=[skills.Fertility],
+        ),
+        description='With a low power but decent health, this card is supported by the skill Fertility Its name combines "armadillo" for its tough exterior and "don" to suggest its durability and strength',
+    ),
+    # Magphoenix 🔰🧺🐭 10p 5h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻👻 pot: 51
+    Blueprint(
+        original=Card(
+            name="Magphoenix",
+            power=10,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=3,
+            skills=[skills.Shield, skills.Packrat, skills.Fertility],
+        ),
+        description='This card has high power and health, moderate cost, and has several skills including Shield, Packrat, and Fertility The name "Magphoenix" sounds powerful and coherent with the idea of a creature that is magical and fiery, like a phoenix',
+    ),
+    # Lynxagram 🐭🔰💀🧺 6p 9h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="Lynxagram",
+            power=6,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description='This card has high power and health, costs no fire, moderate cost, and has several skills including Fertility, Shield, InstantDeath, and Packrat The name "Lynxagram" sounds like a combination of Lynx and anagram, implying a creature that is skilled and cunning with its powers',
+    ),
+    # Krakensprout 💀 3p 10h
+    # costs: 👻👻 has: 👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Krakensprout",
+            power=3,
+            health=10,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.InstantDeath],
+        ),
+        description='This card has moderate power and high health, costs no fire, costs some spirits, has one skill, InstantDeath The name "Krakensprout" sounds like a combination of the mythical creature Kraken and Sprout, which implies a small, but deadly creature',
+    ),
+    # Crikoceros 🐭🔰🧺🦔💀 2p 3h
+    # costs: 👻👻👻👻👻 has: 🔥🔥👻👻👻👻 pot: 37
+    Blueprint(
+        original=Card(
+            name="Crikoceros",
+            power=2,
+            health=3,
+            costs_fire=0,
+            costs_spirits=5,
+            has_spirits=4,
+            has_fire=2,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Packrat,
+                skills.Spines,
+                skills.InstantDeath,
+            ],
+        ),
+        description="Crikoceros has an unusual mix of attributes, but its high spirit cost and many skills, including Fertility, Shield, and InstantDeath, make it a valuable and adaptable card Its name is inspired by a mix of a cricket and a unicorn, reflecting its unique and versatile character",
+    ),
+    # Wispmoth 🐭 5p 5h
+    # costs: 🔥 has: 🔥🔥👻 pot: 27
+    Blueprint(
+        original=Card(
+            name="Wispmoth",
+            power=5,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Fertility],
+        ),
+        description="Wispmoth has a decent mix of power and health, but its high fire and low spirit attributes make it a card that requires strategy to play Its only skill, Fertility, is reflected in its name, which combines the idea of a wisp with that of a moth",
+    ),
+    # Thornwhale 🐭💀🔰🐩 5p 7h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 63
+    Blueprint(
+        original=Card(
+            name="Thornwhale",
+            power=5,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Underdog,
+            ],
+        ),
+        description="Thornwhale has high health and spirit attributes and multiple skills, including Fertility, InstantDeath, and Shield Its name is inspired by a combination of a whale and a thorny plant, making it a card that can both deal damage and protect itself",
+    ),
+    # Soulfox 💀 3p 3h
+    # costs: 🔥🔥 has: 🔥👻 pot: 16
+    Blueprint(
+        original=Card(
+            name="Soulfox",
+            power=3,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="This name reflects the card's ability to instantly kill another card and its relatively high health, which indicates it could be capable of stealing or absorbing energy from other creatures, thus making it a 'fox of the soul'",
+    ),
+    # Demoneagle 🧺🔰🪁🍀🐭 5p 3h
+    # costs: 🔥 has: 🔥👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Demoneagle",
+            power=5,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.Soaring,
+                skills.LuckyStrike,
+                skills.Fertility,
+            ],
+        ),
+        description="With a fairly high power and a wide variety of skills, this card is wellsuited to the role of a demon bird of prey, capturing and destroying its opponents with ease",
+    ),
+    # Dragonwolf 💀🐭🧺🐩🔰🦔 10p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 76
+    Blueprint(
+        original=Card(
+            name="Dragonwolf",
+            power=10,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Shield,
+                skills.Spines,
+            ],
+        ),
+        description="Dragons are traditional symbols of power and destruction, while wolves suggest both strength and a pack mentality The name reflects the card's massive power and health, as well as its high spirit and fire costs, indicating a fearsome dragonwolf hybrid",
+    ),
+    # Weaselfly 🧺🔰🐭 2p 3h
+    # costs: 🔥 has: 🔥🔥👻👻👻👻👻 pot: 33
+    Blueprint(
+        original=Card(
+            name="Weaselfly",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=2,
+            skills=[skills.Packrat, skills.Shield, skills.Fertility],
+        ),
+        description="related to the skill 'Packrat', moderate powerhealth, high spirits, multiple skills",
+    ),
+    # Firedillo 💀🔰🐭 2p 5h
+    # costs: 🔥 has: 🔥🔥 pot: 33
+    Blueprint(
+        original=Card(
+            name="Firedillo",
+            power=2,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=2,
+            skills=[skills.InstantDeath, skills.Shield, skills.Fertility],
+        ),
+        description="related to 'Fire' attribute, high health, 'Shield' skill, no spirits, low power",
+    ),
+    # Soarturtle 🪁🔰🧺💀🐭🐩 5p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 63
+    Blueprint(
+        original=Card(
+            name="Soarturtle",
+            power=5,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Soaring,
+                skills.Shield,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Underdog,
+            ],
+        ),
+        description="related to the 'Soaring' skill, high powerhealth, reasonably high spiritsfire, multiple skills including 'InstantDeath'",
+    ),
+    # Pandora 🐩🧺💀🐭🚀🔰 10p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="Pandora",
+            power=10,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.Underdog,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Airdefense,
+                skills.Shield,
+            ],
+        ),
+        description="high powerhealth, lots of spirits and fire, multiple complex skills",
+    ),
+    # Sandsnake 🐭💀🦔 7p 3h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻👻 pot: 36
+    Blueprint(
+        original=Card(
+            name="Sandsnake",
+            power=7,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Spines],
+        ),
+        description="moderate powerhealth, lower spirits, spines and fertility skills",
+    ),
+    # Needlebat 🦔 2p 2h
+    # costs: 🔥🔥 has: 👻 pot: 8
+    Blueprint(
+        original=Card(
+            name="Needlebat",
+            power=2,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Spines],
+        ),
+        description="This flying mammal lives high among the treetops, using its needlelike spines to ward off predators Its decent power and health, plus the added bonus of spines, make it a force to be reckoned with",
+    ),
+    # Packlizard 🧺🦔🐩🔰 3p 7h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="Packlizard",
+            power=3,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Packrat, skills.Spines, skills.Underdog, skills.Shield],
+        ),
+        description="A large and durable creature that travels in groups to protect its own Its high health and fire rating make it difficult to take down, and its array of skills, including pack ratting and shielding, make it an excellent team player",
+    ),
+    # Foxfaerie 🧺💀🐭 8p 6h
+    # costs: 🔥 has: 🔥🔥🔥👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="Foxfaerie",
+            power=8,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[skills.Packrat, skills.InstantDeath, skills.Fertility],
+        ),
+        description="the card has medium fire attribute and low spirit attribute The skills Fertility, Instant Death, and Packrat could relate to a foxfaerie's trickery and cunning nature The color associated with fire is redorangeyellow, which could reflect a red fox while the greenblue associated with spirits could suggest a faerie",
+    ),
+    # Darkling  6p 4h
+    # costs: 🔥 has: 🔥🔥👻 pot: 19
+    Blueprint(
+        original=Card(
+            name="Darkling",
+            power=6,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[],
+        ),
+        description="the card has neither high spirit nor fire attributes, and no skills, which could suggest someone in the shadows, lurking and underhanded",
+    ),
+    # Hallowed 🐩💀🐭🧺 6p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 59
+    Blueprint(
+        original=Card(
+            name="Hallowed",
+            power=6,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=4,
+            skills=[
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description="the card has high spirit and medium fire attributes, which suggests a creature with a divine, purifying presence The skills Fertility, Instant Death, and Packrat could suggest someone who judges, but also blesses and is blessed such as a priestess or a martyr Underdog could suggest this holy being is looked down upon, but also can survive and potentially prevail",
+    ),
+    # Thornmare 🐭🔰 4p 6h
+    # costs: - has: 🔥🔥👻👻👻 pot: 44
+    Blueprint(
+        original=Card(
+            name="Thornmare",
+            power=4,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.Fertility, skills.Shield],
+        ),
+        description="the card has low fire and spirit attributes, but high health and the skills Fertility and Shield This could suggest a being that is slowmoving and at times stubborn, but has defensive capabilities and growth potential The name Thornmare plays off the armored nature of the card shield as well as any potential thorny or brambly features Fertility the creature might have",
+    ),
+    # Shadowbat 💀🐭🧺 2p 10h
+    # costs: - has: 🔥🔥👻👻 pot: 52
+    Blueprint(
+        original=Card(
+            name="Shadowbat",
+            power=2,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.InstantDeath, skills.Fertility, skills.Packrat],
+        ),
+        description="A fast and lethal batlike creature with instant kill abilities, perfect for quickly eliminating adversaries The high health and low cost make it ideal to have in a pack",
+    ),
+    # Starpanth 💀🦔🪁🧺 9p 7h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 59
+    Blueprint(
+        original=Card(
+            name="Starpanth",
+            power=9,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[skills.InstantDeath, skills.Spines, skills.Soaring, skills.Packrat],
+        ),
+        description="A fierce feline with sharp spines that can cause major damage The soaring ability allows it to be an excellent attacking unit, though it also has solid health to endure hits",
+    ),
+    # Magmadon 🔰💀🐭🧺 6p 10h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻 pot: 60
+    Blueprint(
+        original=Card(
+            name="Magmadon",
+            power=6,
+            health=10,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=6,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description="A creature born of fire and earth, the Magmadon has powerful flames capable of destroying any opponent, though it comes at a cost for fire The shield ability and high health make it difficult to take down",
+    ),
+    # Luckdragon 🔰💀🧺🍀🐭 10p 10h
+    # costs: 👻👻 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="Luckdragon",
+            power=10,
+            health=10,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.LuckyStrike,
+                skills.Fertility,
+            ],
+        ),
+        description="A highly spiritual creature with the lucky strike ability, capable of turning any situation in its favor The high health and power makes it a formidable opponent, though fire and spirit costs are relatively high",
+    ),
+    # Thornant 🧺🐭💀 5p 3h
+    # costs: 👻👻 has: 🔥👻👻 pot: 34
+    Blueprint(
+        original=Card(
+            name="Thornant",
+            power=5,
+            health=3,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Packrat, skills.Fertility, skills.InstantDeath],
+        ),
+        description="With armorlike skin and sharp spines, this creature is wellprepared to battle High health and skills like instant death and fertility make it a beast to contend with",
+    ),
+    # Ghostcub 💀 3p 3h
+    # costs: 🔥 has: - pot: 15
+    Blueprint(
+        original=Card(
+            name="Ghostcub",
+            power=3,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.InstantDeath],
+        ),
+        description="small, frail, instant death, but haunting chosen for its eerie sound and small build, which relates to the card's low stats",
+    ),
+    # Earthmole 🔰🧺💀🐩 2p 8h
+    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 40
+    Blueprint(
+        original=Card(
+            name="Earthmole",
+            power=2,
+            health=8,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[
+                skills.Shield,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Underdog,
+            ],
+        ),
+        description="high health, packrat, shielded, underdog strong, but hidden underground and overlooked",
+    ),
+    # Phoenixhawk 🔰🐩🐭💀🦔🧺 3p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Phoenixhawk",
+            power=3,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.Underdog,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Spines,
+                skills.Packrat,
+            ],
+        ),
+        description='moderate power and health, low cost, and multiple skills including Shield and Packrat The name Phoenix fits with its resilience and ability to rise from the ashes, while the "hawk" relates to its aerial combat abilities',
+    ),
+    # Chimure 🧺🐭🦔💀🔰 10p 5h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 60
+    Blueprint(
+        original=Card(
+            name="Chimure",
+            power=10,
+            health=5,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.Spines,
+                skills.InstantDeath,
+                skills.Shield,
+            ],
+        ),
+        description="a mix of Chimera and creature",
+    ),
+    # Hippogriff 💀🐭🧺🔰🦔🐩 9p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="Hippogriff",
+            power=9,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Shield,
+                skills.Spines,
+                skills.Underdog,
+            ],
+        ),
+        description="fantasy hybrid of a horse and eagle",
+    ),
+    # Griffonix 🪁🐭💀🔰🧺🦔 10p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 78
+    Blueprint(
+        original=Card(
+            name="Griffonix",
+            power=10,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Soaring,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+                skills.Spines,
+            ],
+        ),
+        description="combination of Griffin and Phoenix",
+    ),
+    # Shelltort 🐭 2p 4h
+    # costs: 🔥🔥 has: 🔥 pot: 17
+    Blueprint(
+        original=Card(
+            name="Shelltort",
+            power=2,
+            health=4,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="Shell and tortoise",
+    ),
+    # Cindertail  2p 2h
+    # costs: 🔥 has: 🔥👻👻👻 pot: 9
+    Blueprint(
+        original=Card(
+            name="Cindertail",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[],
+        ),
+        description="fire attribute, small but fiery, low cost",
+    ),
+    # Possessor 🐭🔰🧺💀 4p 9h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Possessor",
+            power=4,
+            health=9,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Packrat,
+                skills.InstantDeath,
+            ],
+        ),
+        description="high power and health, resourceful, skillful",
+    ),
+    # Guardatello 🐭💀 0p 2h
+    # costs: 🔥 has: 🔥👻 pot: 18
+    Blueprint(
+        original=Card(
+            name="Guardatello",
+            power=0,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description="defensive, resourceful, skillful",
+    ),
+    # Topazhare 🐭 1p 3h
+    # costs: 🔥 has: 🔥🔥👻 pot: 16
+    Blueprint(
+        original=Card(
+            name="Topazhare",
+            power=1,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Fertility],
+        ),
+        description="low powerhealth, firecentric, fertile",
+    ),
+    # Spiremole 🐭🧺🦔🔰 7p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 59
+    Blueprint(
+        original=Card(
+            name="Spiremole",
+            power=7,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[skills.Fertility, skills.Packrat, skills.Spines, skills.Shield],
+        ),
+        description="high powerhealth, spiritcentric, packrat, spines, shielded",
+    ),
+    # Underbug 💀🐩 1p 1h
+    # costs: 🔥 has: 🔥👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Underbug",
+            power=1,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Underdog],
+        ),
+        description="low powerhealth, firecentric, deadly, underdog",
+    ),
+    # Heavyshell 💀 3p 3h
+    # costs: - has: 🔥👻 pot: 27
+    Blueprint(
+        original=Card(
+            name="Heavyshell",
+            power=3,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="balanced powerhealth, no skills, no spirit, no fire, tough",
+    ),
+    # Icefang 🐩💀 10p 3h
+    # costs: 🔥🔥 has: 🔥 pot: 31
+    Blueprint(
+        original=Card(
+            name="Icefang",
+            power=10,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Underdog, skills.InstantDeath],
+        ),
+        description="The high power and low health scores mixed with the skill Underdog represent a fierce and dangerous card The Ice in the name symbolizes the fire element's opposite and the fang infers harmful intent related to the InstantDeath skill",
+    ),
+    # Moonfox 🐩🧺🐭💀🔰 10p 6h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 74
+    Blueprint(
+        original=Card(
+            name="Moonfox",
+            power=10,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Underdog,
+                skills.Packrat,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+            ],
+        ),
+        description='relates to the card\'s high power, the Packrat skill, its agility implied by "fox" and the fact that it requires spirits to be played',
+    ),
+    # Skyhydra 🐭🔰🦔 6p 9h
+    # costs: 👻 has: 🔥🔥🔥🔥👻👻👻 pot: 48
+    Blueprint(
+        original=Card(
+            name="Skyhydra",
+            power=6,
+            health=9,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=3,
+            has_fire=4,
+            skills=[skills.Fertility, skills.Shield, skills.Spines],
+        ),
+        description='relates to the card\'s nearmaximum health, its wings implied by "sky" and the Spines skill',
+    ),
+    # Firescourge 🐭🔰🧺 8p 2h
+    # costs: 🔥🔥🔥 has: 🔥👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Firescourge",
+            power=8,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Shield, skills.Packrat],
+        ),
+        description='relates to the card\'s high power and the Fire costs, while "Scourge" invokes destruction that fits with InstantDeath and Packrat skills',
+    ),
+    # Nivra 🐭 0p 2h
+    # costs: 🔥🔥 has: 🔥👻👻👻 pot: 13
+    Blueprint(
+        original=Card(
+            name="Nivra",
+            power=0,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="Although small, this creature has relatively high health for its power The skill Fertility suggests that it's continuously able to reproduce and sustain itself over time Its high fire cost suggests that it's not easily accessible, but it may be worth it if played tactically",
+    ),
+    # LoreHog 💀🐩🔰🐭 2p 5h
+    # costs: 🔥 has: 🔥🔥🔥👻👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="LoreHog",
+            power=2,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description="This card has modest attributes, but its skills make it a force to reckon with InstantDeath, Underdog, Shield and Fertility make the creature unpredictable and able to come out strong in unexpected ways",
+    ),
+    # ShoreSpan 🧺🐭🔰 6p 7h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="ShoreSpan",
+            power=6,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[skills.Packrat, skills.Fertility, skills.Shield],
+        ),
+        description="This creature has high health and is quite adaptable Packrat and Fertility suggest that it's able to hoard and store things that help it in battle as well as sustain itself The lack of need for spirits or fire makes it less expensive to play",
+    ),
+    # Infernofly 🧺🐭🐩🔰💀🪁 6p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 76
+    Blueprint(
+        original=Card(
+            name="Infernofly",
+            power=6,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.Underdog,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Soaring,
+            ],
+        ),
+        description="The creature has high power and health, and the name is suggestive of being something that is able to survive in very harsh conditions Its skills include Packrat, Fertility, Underdog, Shield, InstantDeath, and Soaring, which means that it's able to store useful items, is highly adaptive and able to thrive and fight at a disadvantage, while also having high defenses and capabilities to deal damage Soaring suggests the creature is also capable of some sort of flight or maybe boosted attack",
+    ),
+    # Starlion 💀🔰🐭🧺🦔 5p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Starlion",
+            power=5,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Spines,
+            ],
+        ),
+        description="high power and health, expensive, multiple skills",
+    ),
+    # Sunrat 🐭🔰💀🧺🐩 3p 6h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Sunrat",
+            power=3,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Underdog,
+            ],
+        ),
+        description="medium power and health, low cost, multiple skills",
+    ),
+    # Skyferret 🪁🐭 10p 5h
+    # costs: - has: 🔥🔥👻👻 pot: 48
+    Blueprint(
+        original=Card(
+            name="Skyferret",
+            power=10,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Soaring, skills.Fertility],
+        ),
+        description="The card has high power and health, but low costs for spirits and fire, so the animal name should be small and agile Ferrets are also known for being fertile, which matches one of the card's skills",
+    ),
+    # Earthsnake 🐭 4p 4h
+    # costs: 🔥 has: - pot: 21
+    Blueprint(
+        original=Card(
+            name="Earthsnake",
+            power=4,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description="The card has average power and health, but requires fire mana to play The name relates to the earth element, represented by the fire mana requirement",
+    ),
+    # Packscorpion 🐩🔰💀🦔🧺🐭 6p 10h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 79
+    Blueprint(
+        original=Card(
+            name="Packscorpion",
+            power=6,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.Underdog,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Spines,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description="The card has high power and health, a lot of spirits, and some fire, and has several skills including Packrat and Spines The name illustrates a creature that is part of a pack, and the scorpion reference deals with the sharp quills and spines on the card",
+    ),
+    # Dustsprite  3p 2h
+    # costs: - has: 👻 pot: 18
+    Blueprint(
+        original=Card(
+            name="Dustsprite",
+            power=3,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[],
+        ),
+        description="The card has low power and health and needs no mana to play The name relates to the low power and health statistics, and it is fitting to have a creature that is dustlike when not requiring any mana",
+    ),
+    # Spiritdeer 🐭🔰 3p 2h
+    # costs: 🔥 has: 👻👻👻 pot: 24
+    Blueprint(
+        original=Card(
+            name="Spiritdeer",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=0,
+            skills=[skills.Fertility, skills.Shield],
+        ),
+        description="This card has average power and health, but requires spirits to summon The name is fitting because of the high spirit cost and the card having  spirits The deer is a graceful and mystical animal, which fits with the card's skills",
+    ),
+    # Packwizard 🐭🧺🔰💀🐩 9p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 70
+    Blueprint(
+        original=Card(
+            name="Packwizard",
+            power=9,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Underdog,
+            ],
+        ),
+        description="This card has high power and health, and requires spirits and fire to summon The name refers to the card's packrat skill and its many skills The wizard aspect is related to the card's high cost, power, and spirits",
+    ),
+    # Firemoth  5p 2h
+    # costs: 🔥🔥 has: 🔥 pot: 11
+    Blueprint(
+        original=Card(
+            name="Firemoth",
+            power=5,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[],
+        ),
+        description="This card has average power and low health, but high fire cost The name is related to the fire attribute and the moth's fragility Moths are also associated with light and flames, which fits with the card's fire attribute",
+    ),
+    # Shadowpincer 💀🧺 5p 7h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 36
+    Blueprint(
+        original=Card(
+            name="Shadowpincer",
+            power=5,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.InstantDeath, skills.Packrat],
+        ),
+        description="This card has a moderate power and health score, with only a slightly increased fire cost However, the presence of the Instant Death and Packrat skills suggests a creature with lethal abilities Shadowpincer sounds like something that would quietly approach its prey before striking suddenly with a deadly pincer attack",
+    ),
+    # ArcaneHorn 💀🧺🐩🐭 3p 4h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="ArcaneHorn",
+            power=3,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Fertility,
+            ],
+        ),
+        description="This card has moderate scores across the board, plus four different skills The fact that the card is spiritbased suggests a creature with magical abilities ArcaneHorn refers to a creature with an impressive magical horn or antler, capable of varying effects depending on the creature's will",
+    ),
+    # Vampbats 💀 2p 2h
+    # costs: - has: 🔥👻 pot: 23
+    Blueprint(
+        original=Card(
+            name="Vampbats",
+            power=2,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="With low power and health, and no skills, this card needed a less imposing name Vampbats sounds like a swarm of tiny bats that suck the blood of their prey, and would be an appropriate name for a lowlevel, yet numerous, card",
+    ),
+    # Firelynx 🍀 2p 1h
+    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 7
+    Blueprint(
+        original=Card(
+            name="Firelynx",
+            power=2,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.LuckyStrike],
+        ),
+        description="The name relates to the primary attribute of the card, which is fire The card has moderate powerhealth and a moderate cost The skills only include LuckyStrike suggesting the card might be quick and nimble, able to dodge attacks and strike when the opportunity presents itself",
+    ),
+    # Stonefox  2p 8h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 20
+    Blueprint(
+        original=Card(
+            name="Stonefox",
+            power=2,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[],
+        ),
+        description="This creature has low power and moderate health, combined with moderate cost and a fire attribute The lack of skills suggests this creature is not particularly skilled in combat The name relates to the creature's toughness and durability, and suggests it may have an ability to blend in with its surroundings or strike from hiding",
+    ),
+    # Spinygrizzly 🦔🐭🐩🧺 6p 9h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Spinygrizzly",
+            power=6,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[skills.Spines, skills.Fertility, skills.Underdog, skills.Packrat],
+        ),
+        description="This card has high health and a spines skill, combined with high power and a fertility skill The name combines the spines skill with the powerful grizzly bear image",
+    ),
+    # Vampirass 💀🐩🔰 5p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻 pot: 41
+    Blueprint(
+        original=Card(
+            name="Vampirass",
+            power=5,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=4,
+            skills=[skills.InstantDeath, skills.Underdog, skills.Shield],
+        ),
+        description="A powerful and costly card with high health and power The skills of Instant Death, Underdog, and Shield reflect a character that is elusive and hard to get rid of, but also one that strikes with brutal force and precision",
+    ),
+    # Sphinxcat 🔰🐭💀🧺 6p 8h
+    # costs: 👻👻 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Sphinxcat",
+            power=6,
+            health=8,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description="This card is a magically enhanced feline with high spirit power and quite a few skills The name captures the enigmatic nature of the card and its magical powers, reflected in its skills of Shield, Fertility, Instant Death, and Packrat",
+    ),
+    # Pixiefrog  2p 3h
+    # costs: 🔥 has: 🔥👻 pot: 9
+    Blueprint(
+        original=Card(
+            name="Pixiefrog",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description="A smaller card with low power and health, with only minor costs in fire The attributes and lack of skills of the card compare to that of a small, fast creature The name draws from the fantastical animal kingdom and captures the nimbleness and agility of the card",
+    ),
+    # Krakenhawk 🦔🧺🔰🐭💀🐩 7p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="Krakenhawk",
+            power=7,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Spines,
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Underdog,
+            ],
+        ),
+        description="This card stands out for its high stats, especially its allaround high spirit and fire powers Its skills reflect a tough, almost mythological creature that can withstand many attacks The name reflects the seaair nature of the card, with the ability to vanquish opponents hard to match in normal battles",
+    ),
+    # Demonporc 🦔💀 7p 5h
+    # costs: 🔥🔥🔥🔥 has: 🔥 pot: 27
+    Blueprint(
+        original=Card(
+            name="Demonporc",
+            power=7,
+            health=5,
+            costs_fire=4,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Spines, skills.InstantDeath],
+        ),
+        description="This card is unique for its high power and health attributes, matched with its highly destructive powers The Spines and Instant Death skills make it one of the most feared cards in the game The name captures its infernal nature and lethal abilities",
+    ),
+    # Thornling 🦔🔰🐭 2p 4h
+    # costs: 🔥 has: 🔥🔥 pot: 28
+    Blueprint(
+        original=Card(
+            name="Thornling",
+            power=2,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=2,
+            skills=[skills.Spines, skills.Shield, skills.Fertility],
+        ),
+        description="The name Thornling evokes an image of a small and agile creature that is also able to pack a punch The card's attributes reflect this, with moderate power and health and a cost of fire resources The skills of the card, like Spines and Shield, are in line with the name and add to its overall flavor",
+    ),
+    # Skydra 🪁🧺🔰🐭💀 7p 7h
+    # costs: 👻👻 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Skydra",
+            power=7,
+            health=7,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.Soaring,
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+            ],
+        ),
+        description='The name Skydra is a combination of "sky" and "hydra," which is fitting for a card that has both spirit and fire resources and the skill Soaring The card is also quite powerful and has skills like Packrat and InstantDeath, which further highlights its deadly nature',
+    ),
+    # Firemite  3p 2h
+    # costs: 🔥🔥 has: 🔥👻👻 pot: 9
+    Blueprint(
+        original=Card(
+            name="Firemite",
+            power=3,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[],
+        ),
+        description="The name Firemite suggests a small creature that is adept at handling fire The card has a moderate power and health, but requires a cost of fire resources to be played The name also reflects the absence of spirit resources and skills, as the card is focused solely on fire",
+    ),
+    # Spikecat 🦔🐭🔰🐩🧺🍀 10p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="Spikecat",
+            power=10,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.Spines,
+                skills.Fertility,
+                skills.Shield,
+                skills.Underdog,
+                skills.Packrat,
+                skills.LuckyStrike,
+            ],
+        ),
+        description="The name Spikecat immediately brings to mind a nimble and dangerous predator The card's high power and health values, as well as its skills like Spines and Underdog, support this image The card also requires a cost of no fire resources, which is in line with the name",
+    ),
+    # Mintaur  2p 2h
+    # costs: 👻👻👻👻 has: 🔥👻👻 pot: 6
+    Blueprint(
+        original=Card(
+            name="Mintaur",
+            power=2,
+            health=2,
+            costs_fire=0,
+            costs_spirits=4,
+            has_spirits=2,
+            has_fire=1,
+            skills=[],
+        ),
+        description="a creature with mystical powers that comes from the spirit realm and can only be summoned through spiritual alignment It has a balance of power and health, is quite costly in spirits and has no fire element but has a mediumhigh lifesource",
+    ),
+    # Faelepard 🐭 1p 8h
+    # costs: 👻 has: 🔥 pot: 23
+    Blueprint(
+        original=Card(
+            name="Faelepard",
+            power=1,
+            health=8,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="a largesized, graceful predatory cat with high health, average power, and no fire element It has a low amount of spirits needed and is skilled in fertility which fits well with its name, Faelepard",
+    ),
+    # Spinygnat 🦔🐭 2p 5h
+    # costs: - has: 🔥👻 pot: 33
+    Blueprint(
+        original=Card(
+            name="Spinygnat",
+            power=2,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Spines, skills.Fertility],
+        ),
+        description="a small insect creature with average power and health, low cost in fire and spirit, and a few spines Its high spirits shows it to be very lively and nimble, while its spines give it some defensive capabilities",
+    ),
+    # Greatdrake 🐭🧺🔰🦔💀🐩 7p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 78
+    Blueprint(
+        original=Card(
+            name="Greatdrake",
+            power=7,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.Shield,
+                skills.Spines,
+                skills.InstantDeath,
+                skills.Underdog,
+            ],
+        ),
+        description='A dragonlike name fitting for a card with very high power and health, as well as multiple skills The "great" emphasizes the card\'s strength while "drake" is a nod to the idea of a winged reptile',
+    ),
+    # Infernohare 💀🧺🪁🐭 8p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 59
+    Blueprint(
+        original=Card(
+            name="Infernohare",
+            power=8,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Soaring,
+                skills.Fertility,
+            ],
+        ),
+        description='This card combines "inferno" as a nod to the lack of fire cost, high spirit cost and skills, and high power, while "hare" evokes high speed, swift attacks, and jumpinghopping movements',
+    ),
+    # Deathmouse 💀🧺 2p 3h
+    # costs: 🔥🔥 has: 👻👻 pot: 20
+    Blueprint(
+        original=Card(
+            name="Deathmouse",
+            power=2,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=0,
+            skills=[skills.InstantDeath, skills.Packrat],
+        ),
+        description="This card has the ability to instantaneously kill another creature, and it has the skill of Packrat The name Deathmouse is fitting since it is a small animal that can pack a serious punch with its unique abilities",
+    ),
+    # Blazebear 🧺🐭🔰 8p 7h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Blazebear",
+            power=8,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Packrat, skills.Fertility, skills.Shield],
+        ),
+        description="A formidable creature with a high power, health, and fire costs The bear is a symbol of courage, strength, and determination, which fits the card's attributes well The \"blaze\" part of the name references the card's fire costs and suggests a creature with fiery capabilities",
+    ),
+    # Skyworm 🧺🐭🐩 3p 9h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Skyworm",
+            power=3,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[skills.Packrat, skills.Fertility, skills.Underdog],
+        ),
+        description='A gentle yet powerful creature, with high health and spirit costs and a focus on underdog skills The "sky" part of the name suggests a creature that is light and airy, while the "worm" part of the name connotes a resilient and nurturing creature',
+    ),
+    # Ratling 🐭🧺🐩 1p 7h
+    # costs: 🔥 has: 🔥👻 pot: 31
+    Blueprint(
+        original=Card(
+            name="Ratling",
+            power=1,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Packrat, skills.Underdog],
+        ),
+        description='A card with low power and health but a range of fertility and underdog skills, the name "ratling" references the card\'s packrat skill and portrays it as a small but mighty creature with a knack for survival',
+    ),
+    # Armornix 💀🐭🔰🧺 2p 4h
+    # costs: 🔥 has: 🔥👻👻 pot: 37
+    Blueprint(
+        original=Card(
+            name="Armornix",
+            power=2,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+                skills.Packrat,
+            ],
+        ),
+        description='A creature with instant death and shield skills but low power and high health, the name "Armornix" references the card\'s armored capabilities and connotes a creature with a strong, protective shell The "nix" part of the name suggests a creature that is nimble and quick',
+    ),
+    # Skyquill 🔰🪁💀🧺 1p 2h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥🔥🔥 pot: 26
+    Blueprint(
+        original=Card(
+            name="Skyquill",
+            power=1,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=5,
+            skills=[skills.Shield, skills.Soaring, skills.InstantDeath, skills.Packrat],
+        ),
+        description='This card has a mix of abilities, from Shield and Soaring to InstantDeath and Packrat The name Skyquill is a combination of "sky" to reference its ability to fly and "quill" to reference its spining attack',
+    ),
+    # Seedwing 🐭💀 0p 2h
+    # costs: - has: 🔥🔥👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Seedwing",
+            power=0,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description='This card is able to reproduce with Fertility and has the ability to instantly kill with InstantDeath The name Seedwing refers to the seeds that the animal might carry to fertilize new plants and the "wing" to reference its high health',
+    ),
+    # Bearfly 🔰🐭💀🪁🐩 6p 4h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻👻👻 pot: 46
+    Blueprint(
+        original=Card(
+            name="Bearfly",
+            power=6,
+            health=4,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Soaring,
+                skills.Underdog,
+            ],
+        ),
+        description="This card has a mix of skills from Shield and InstantDeath to Soaring and Underdog The name Bearfly is a combination of the powerful and strong Grizzly Bear reference and the flying reference from Soaring",
+    ),
+    # Thornyhog 🐭🦔💀 6p 5h
+    # costs: - has: 🔥🔥👻👻 pot: 48
+    Blueprint(
+        original=Card(
+            name="Thornyhog",
+            power=6,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Fertility, skills.Spines, skills.InstantDeath],
+        ),
+        description='This card is quite strong with high power and health, it has the abilities of Spines, Fertility and InstantDeath The name Thornyhog references the spikes that the animal might have and its resemblance to a hedgehog with the "hog" part of the name',
+    ),
+    # Packwisp 🐩🧺🔰🐭🦔💀 8p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Packwisp",
+            power=8,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Underdog,
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.Spines,
+                skills.InstantDeath,
+            ],
+        ),
+        description="a small, sneaky creature with the ability to steal and shield, high powerhealthcosts, and many skills",
+    ),
+    # Inferninx 💀🧺🔰🐭 10p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Inferninx",
+            power=10,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description="The name is derived from 'inferno' and 'sphinx', suggesting a creature with the same power and aweinspiring characteristics as the latter With power and health at their max, and a mix of skills that includes InstantDeath, Packrat, Shield, and Fertility, this card is one of the most formidable in the game",
+    ),
+    # Wispwill 🐭 3p 2h
+    # costs: 👻👻👻👻 has: 👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Wispwill",
+            power=3,
+            health=2,
+            costs_fire=0,
+            costs_spirits=4,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description="A smaller creature with a single Fertility skill, this card has a deceptive quality to it, much like the small size of a will o' wisp It is not very powerful, but the multiple sparks of Spirit it has to offer make it a handy addition to a player's hand",
+    ),
+    # Spirex 🦔💀🐭 8p 6h
+    # costs: 👻👻👻 has: 🔥🔥🔥👻👻👻 pot: 43
+    Blueprint(
+        original=Card(
+            name="Spirex",
+            power=8,
+            health=6,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Spines, skills.InstantDeath, skills.Fertility],
+        ),
+        description="Short for 'spire' and 'rhexis', this creature packs an impressive punch with Spines, InstantDeath, and Fertility abilities at its disposal It is a solid tank that delivers heavy damage, but its high cost requirements and somewhat lower health value could restrict its usage",
+    ),
+    # Dracoclaw 🧺🔰🐭💀 5p 8h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Dracoclaw",
+            power=5,
+            health=8,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+            ],
+        ),
+        description="high power, high health, costly, packrat, shield, fertility, instant death",
+    ),
+    # Sylphshrew 🪁🐭🐩 4p 8h
+    # costs: 👻👻👻👻👻👻👻 has: 🔥🔥 pot: 29
+    Blueprint(
+        original=Card(
+            name="Sylphshrew",
+            power=4,
+            health=8,
+            costs_fire=0,
+            costs_spirits=7,
+            has_spirits=0,
+            has_fire=2,
+            skills=[skills.Soaring, skills.Fertility, skills.Underdog],
+        ),
+        description="high health, costly, soaring, fertility, underdog, highly spirited",
+    ),
+    # Kirinwing 🐭 2p 3h
+    # costs: 👻👻👻 has: 🔥🔥👻 pot: 16
+    Blueprint(
+        original=Card(
+            name="Kirinwing",
+            power=2,
+            health=3,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Fertility],
+        ),
+        description="low powerhealth, highly spirited, fertility",
+    ),
+    # Armorhog 🐭🧺🔰🐩 4p 5h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Armorhog",
+            power=4,
+            health=5,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=4,
+            skills=[skills.Fertility, skills.Packrat, skills.Shield, skills.Underdog],
+        ),
+        description="high powerhealth, costly, packrat, shield, underdog",
+    ),
+    # Stonewall 🔰🧺 6p 6h
+    # costs: 🔥🔥🔥 has: 🔥👻 pot: 31
+    Blueprint(
+        original=Card(
+            name="Stonewall",
+            power=6,
+            health=6,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Shield, skills.Packrat],
+        ),
+        description="This name fits since the card has high health and a Shield skill, making it a tough wall to break through The card also has Packrat, suggesting an affinity for hoarding and protecting resources",
+    ),
+    # Unicornus 🐭🐩🔰💀🦔 6p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 66
+    Blueprint(
+        original=Card(
+            name="Unicornus",
+            power=6,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Underdog,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Spines,
+            ],
+        ),
+        description="The name fits since the card has high spirits, Fertility and Underdog skills An equine creature, the Unicornus is a mystical creature with healing powers, in this case paired with a rare skill such as Underdog, making it a force to be reckoned with",
+    ),
+    # Harmonia 🐭🚀🔰🐩🧺💀 9p 6h
+    # costs: 👻👻 has: 🔥🔥🔥🔥👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Harmonia",
+            power=9,
+            health=6,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Airdefense,
+                skills.Shield,
+                skills.Underdog,
+                skills.Packrat,
+                skills.InstantDeath,
+            ],
+        ),
+        description="The name Harmonia fits well with the card's skills, which include Fertility, Packrat, and Airdefense, meaning that it's a defender card which supports other cards The attribute costsspirits is also high, and Harmonia could reflect how the card's playstyle helps bring harmony into the card deck",
+    ),
+    # Elderdrake 💀🐭🔰 2p 8h
+    # costs: 🔥 has: 🔥👻👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Elderdrake",
+            power=2,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Fertility, skills.Shield],
+        ),
+        description="This card has high power and health, a low fire cost, and two spirits The skills include InstantDeath, Fertility, and Shield Elderdrake sounds like a wise and powerful dragon befitting its impressive abilities and skills",
+    ),
+    # Thornkite 🔰🐭🦔 3p 2h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Thornkite",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Shield, skills.Fertility, skills.Spines],
+        ),
+        description="This card has three power, two health, and a low fire cost, and two spirits Its skills include Shield, Fertility, and Spines Thornkite conjures up an image of a small but sharp and agile bird with thorny feathers that can protect itself while dealing damage",
+    ),
+    # Packwarden 🦔💀🐭🐩🧺🔰 6p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="Packwarden",
+            power=6,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Spines,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Underdog,
+                skills.Packrat,
+                skills.Shield,
+            ],
+        ),
+        description="This card has six power and ten health, a low fire cost, and five spirits and fire each Its skills include Spines, InstantDeath, Fertility, Underdog, Packrat, and Shield Packwarden sounds like the name of a wise and powerful beast who leads and protects a pack with its various skills",
+    ),
+    # Fireshell 🐭 3p 2h
+    # costs: 🔥🔥 has: 🔥 pot: 15
+    Blueprint(
+        original=Card(
+            name="Fireshell",
+            power=3,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="This card has three power, two health, and a high fire cost, and no spirits Its only skill is Fertility Fireshell evokes the image of a small creature with a tough exterior and fiery nature but without other remarkable qualities",
+    ),
+    # Phoenixflame 🔰💀🐭 9p 5h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Phoenixflame",
+            power=9,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[skills.Shield, skills.InstantDeath, skills.Fertility],
+        ),
+        description='This name reflects the high power and health of the card, as well as the deadly skills it possesses The "phoenix" part of the name suits the fire attribute and the instant death skill, while "flame" also fits with the fiery aspect and the fertility skill',
+    ),
+    # Shadowpack 💀🐩🧺🔰🐭 10p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 78
+    Blueprint(
+        original=Card(
+            name="Shadowpack",
+            power=10,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description='With its high power and health, this card inspires a sense of strength and unity The name "shadow" relates to the absence of a fire cost and the multiple skills that allow this card to be unpredictable "Pack" refers to the underdog and packrat skills, which allow the card to work best as part of a group',
+    ),
+    # Fluffox 🐭🧺🔰 6p 2h
+    # costs: 🔥🔥 has: 🔥🔥👻👻👻👻👻👻 pot: 38
+    Blueprint(
+        original=Card(
+            name="Fluffox",
+            power=6,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=2,
+            skills=[skills.Fertility, skills.Packrat, skills.Shield],
+        ),
+        description="high power, low health, high fire and spirit, fertility, packrat, shield",
+    ),
+    # Direlynx 💀🧺🔰🐭 3p 4h
+    # costs: - has: 🔥🔥👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Direlynx",
+            power=3,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description="moderate powerhealth, low spirit and fire, instant death, packrat, shield, fertility",
+    ),
+    # Fireblade 🐭🐩 8p 2h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻 pot: 31
+    Blueprint(
+        original=Card(
+            name="Fireblade",
+            power=8,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=4,
+            skills=[skills.Fertility, skills.Underdog],
+        ),
+        description="very high power, low health, high fire, fertility, underdog",
+    ),
+    # Thornmire 🐭🔰🦔🧺💀 5p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Thornmire",
+            power=5,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Spines,
+                skills.Packrat,
+                skills.InstantDeath,
+            ],
+        ),
+        description="moderatehigh powerhealth, high health, high spirit, spines, shield, packrat, instant death, no fire cost",
+    ),
+    # Dragonback 💀🧺🐭🔰 8p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 58
+    Blueprint(
+        original=Card(
+            name="Dragonback",
+            power=8,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+            ],
+        ),
+        description="This card has high power and health, and skills like InstantDeath, Packrat, Fertility, and Shield The name should be reflective of its power and strength, so Dragonback seems appropriate given the aura of fire and spirits that the card exudes",
+    ),
+    # Blazeboar 💀🐭🔰🐩 7p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 52
+    Blueprint(
+        original=Card(
+            name="Blazeboar",
+            power=7,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+                skills.Underdog,
+            ],
+        ),
+        description="This card has high power and health, and skills like InstantDeath, Shield, Underdog, and Fertility The name should reflect the card's fire and spirit, and Blazeboar fits the bill",
+    ),
+    # StormDrake 🚀💀🧺🐭🦔 8p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 69
+    Blueprint(
+        original=Card(
+            name="StormDrake",
+            power=8,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=5,
+            skills=[
+                skills.Airdefense,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Spines,
+            ],
+        ),
+        description='With high power and health, this card is ready to take on any opponent Its combination of skills, including air defense and spines, make it a formidable opponent The name "StormDrake" accurately conveys the power and might of this creature',
+    ),
+    # FireFlea 💀🧺 1p 1h
+    # costs: 🔥🔥 has: 👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="FireFlea",
+            power=1,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.InstantDeath, skills.Packrat],
+        ),
+        description='Despite its low power and health values, FireFlea strikes fear into the hearts of its enemies with its instant death and packrat skills Its low fire cost also makes it accessible early in the game The name "FireFlea" conveys its fire attribute and small size, which is also reflected in its low powerhealth stats',
+    ),
+    # Cristalisk 🔰🐩🐭 2p 3h
+    # costs: 🔥🔥 has: 🔥👻👻 pot: 27
+    Blueprint(
+        original=Card(
+            name="Cristalisk",
+            power=2,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Shield, skills.Underdog, skills.Fertility],
+        ),
+        description='This creature\'s shield and underdog skills make it a great defensive card, while its fertility skill boosts its stats and makes it an asset to any team Its name, "Cristalisk," evokes the idea of crystal armor, which is fitting given its shield skill',
+    ),
+    # HellHedge 💀🧺🔰 4p 3h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻 pot: 44
+    Blueprint(
+        original=Card(
+            name="HellHedge",
+            power=4,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=5,
+            skills=[skills.InstantDeath, skills.Packrat, skills.Shield],
+        ),
+        description='With a high fire attribute and instant death and packrat skills, HellHedge is a force to be reckoned with Its name, "HellHedge," captures the danger and threat that it poses to its opponents',
+    ),
+    # Thornet 🔰🐭💀 8p 5h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="Thornet",
+            power=8,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Shield, skills.Fertility, skills.InstantDeath],
+        ),
+        description="powerful, high health, fire and spirit, defensive and destructive skills",
+    ),
+    # Spectralray 💀🪁🦔 9p 1h
+    # costs: 🔥 has: 🔥👻👻 pot: 29
+    Blueprint(
+        original=Card(
+            name="Spectralray",
+            power=9,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Soaring, skills.Spines],
+        ),
+        description="relating to the high power, low health, and InstantDeath",
+    ),
+    # Entwinder 🐭💀🔰 10p 5h
+    # costs: 👻👻👻👻 has: 🔥🔥🔥👻👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="Entwinder",
+            power=10,
+            health=5,
+            costs_fire=0,
+            costs_spirits=4,
+            has_spirits=4,
+            has_fire=3,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Shield],
+        ),
+        description='This name is related to its skill  fertility  by taking inspiration from the word "entwine", meaning to twist together It also relates to its high health and the fact that it requires multiple spirits to use The "winder" part relates to its ability to protect itself with a shield The name suggests a strong, winding creature that may use its coils to protect and grow',
+    ),
+    # Stargator 🐭🧺💀 6p 7h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="Stargator",
+            power=6,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[skills.Fertility, skills.Packrat, skills.InstantDeath],
+        ),
+        description='The name suggests a strong, large beast with the ability to gather resources packrat and protect itself instant death, akin to a powerful alligator among the stars The word "stargator" can also be interpreted as stargazer, alluding to the creature\'s intelligent gaze',
+    ),
+    # Flitterray 🔰🐭🧺🐩 2p 10h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻👻 pot: 46
+    Blueprint(
+        original=Card(
+            name="Flitterray",
+            power=2,
+            health=10,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[skills.Shield, skills.Fertility, skills.Packrat, skills.Underdog],
+        ),
+        description="The name relates to its low stats, but high spirits cost Flitting refers to quick, delicate movement, which relates to the card's low power and high speed related to the skill underdog Ray refers to a type of sea creature, which relates to the fact that the card requires fire to cast and may be associated with the ocean Fertility and packrat skills don't necessarily play into the name",
+    ),
+    # Ghostpup 🐭💀🐩🧺🚀 1p 4h
+    # costs: 🔥🔥 has: 🔥👻👻 pot: 33
+    Blueprint(
+        original=Card(
+            name="Ghostpup",
+            power=1,
+            health=4,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Packrat,
+                skills.Airdefense,
+            ],
+        ),
+        description="The name relates to its instant death, air defense, and underdog abilities Ghost refers to a spectral aspect, tying in with the instant death and air defense ghosts being associated with the deceased Pup relates to its low stats as a young animal and ties in with the underdog ability  the card may be weak, but can hold its own in a fight",
+    ),
+    # Healrhino 🔰 2p 10h
+    # costs: 🔥 has: 🔥👻👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Healrhino",
+            power=2,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Shield],
+        ),
+        description="With high health and power, along with a Shield skill and low fire spirits, Healrhino is a name that matches its tanklike attributes",
+    ),
+    # SpinyChimera 💀🧺🦔🐭🔰 6p 10h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 73
+    Blueprint(
+        original=Card(
+            name="SpinyChimera",
+            power=6,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Spines,
+                skills.Fertility,
+                skills.Shield,
+            ],
+        ),
+        description="With a variety of skills like InstantDeath, Packrat, and Spines, along with balanced firespirit costs, SpinyChimera is a fantastical creature with the attributes of a chimera that's covered with spikes",
+    ),
+    # Chimercrow 🧺🐭🔰🪁💀🐩 6p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Chimercrow",
+            power=6,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+                skills.Soaring,
+                skills.InstantDeath,
+                skills.Underdog,
+            ],
+        ),
+        description='a play on the Chimera\'s mythical creature, this card is a mix of attributes for health, fire, and spirits, as well as  different skills The name combines the word "chimera" and "crow" which gives its specific nature and ties it to creatures of the air',
+    ),
+    # Scorpionix 🦔 7p 2h
+    # costs: 🔥 has: 🔥👻 pot: 19
+    Blueprint(
+        original=Card(
+            name="Scorpionix",
+            power=7,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Spines],
+        ),
+        description='relates to the Spines skill and its attributes of health and power "Scorpion" represents its Sharpness and venom, whereas the "ix" ending makes it sound more technically sophisticated',
+    ),
+    # Soarspik 🪁🐩🐭🧺💀🔰 3p 5h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="Soarspik",
+            power=3,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Soaring,
+                skills.Underdog,
+                skills.Fertility,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Shield,
+            ],
+        ),
+        description='relates to the Soaring and Underdog skills, as well as its fire attribute "Soar" represents the flying nature, and "spik" relates to the sharpness and skills Combined, they give the card a unique identity',
+    ),
+    # Bubblefrog 🔰💀🐭🧺 4p 3h
+    # costs: 🔥 has: - pot: 36
+    Blueprint(
+        original=Card(
+            name="Bubblefrog",
+            power=4,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description='With relatively high health and an array of skills including Shield and Packrat, this card is hard to get rid of The name reflects that, as it is inspired by an animal that is difficult to catch and can be quite resilient the frog The "bubble" part represents the Shield skill, as it creates a protective bubble around the card',
+    ),
+    # Volchick 💀🐭🧺🚀 6p 3h
+    # costs: - has: 🔥🔥👻👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Volchick",
+            power=6,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=2,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Airdefense,
+            ],
+        ),
+        description='A powerful card with high power and an InstantDeath skill that can take out an opponent\'s card immediately It has a decent amount of spirit and fire but no physical abilities The name reflects the card\'s fiery and deadly nature, as "vol" is inspired by "volcano" and "chick" implies a small, but fierce creature',
+    ),
+    # Wyverb 🧺🐭🐩💀🪁🔰 8p 6h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 73
+    Blueprint(
+        original=Card(
+            name="Wyverb",
+            power=8,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Soaring,
+                skills.Shield,
+            ],
+        ),
+        description='The Wyverb is one of the largest cards with very high values in power, health, and spiritfire, and six different skills The name is a combination of "wyvern" a dragonlike creature and "verb," implying a card that is capable of doing many things thanks to its diverse skill set and that is a powerful force to be reckoned with',
+    ),
+    # Charmeleon 🐩🐭 3p 3h
+    # costs: - has: 🔥👻👻👻👻👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Charmeleon",
+            power=3,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=1,
+            skills=[skills.Underdog, skills.Fertility],
+        ),
+        description="This name is related to its spirit attribute Charmeleon is also known for its underdog skill, and fertility skill that shows potential to grow",
+    ),
+    # Ignifury 🐩🧺🐭💀🔰🚀 10p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 72
+    Blueprint(
+        original=Card(
+            name="Ignifury",
+            power=10,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Underdog,
+                skills.Packrat,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Airdefense,
+            ],
+        ),
+        description="This name is related to its strong fire attribute and is associated with power and strength Its other attributes such as good health and spirit are also represented in the name The skills of the card, particularly air defense, complement the fiery attributes of the creature",
+    ),
+    # Diamosaur 🐭🔰🧺💀 5p 4h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="Diamosaur",
+            power=5,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Packrat,
+                skills.InstantDeath,
+            ],
+        ),
+        description="A diamondlike creature with multicolored facets that represent its various attributes Its skills also reflect the creature's multifaceted nature",
+    ),
+    # Thunderlamb 💀🔰🧺🐭 5p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻 pot: 65
+    Blueprint(
+        original=Card(
+            name="Thunderlamb",
+            power=5,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description="A powerful creature with very high health and fire attribute But because of its woolly appearance, it's not an obvious threat Its skills also reflect its internal power and ability to protect itself",
+    ),
+    # Thornicorn 🦔🐩💀🔰🐭🧺 7p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Thornicorn",
+            power=7,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=6,
+            skills=[
+                skills.Spines,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description="A powerful creature with high health and multiple skills, but with dangerous thorny exterior It's a bit expensive to obtain, but it comes with many options, represented by its skills and attributes",
+    ),
+    # Ryusky 🪁🔰🐭 7p 5h
+    # costs: 🔥 has: 🔥👻👻 pot: 38
+    Blueprint(
+        original=Card(
+            name="Ryusky",
+            power=7,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Soaring, skills.Shield, skills.Fertility],
+        ),
+        description="A creature with high power and soaring ability It's not very strong, but it can fly over other creatures and is hard to catch Its shield ability represents its agility and quickness",
+    ),
+    # Shadowangel 🐭🔰💀 7p 3h
+    # costs: 🔥🔥 has: 🔥🔥👻👻👻👻 pot: 41
+    Blueprint(
+        original=Card(
+            name="Shadowangel",
+            power=7,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=2,
+            skills=[skills.Fertility, skills.Shield, skills.InstantDeath],
+        ),
+        description="A creature with highpower and skills, which gives it the ability to both protect and destroy However, because of its dark nature, it's often difficult to identify its true allegiance Its skills and attributes make it wellrounded and versatile",
+    ),
+    # Thornclaw 🐭🧺🔰🦔 5p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 55
+    Blueprint(
+        original=Card(
+            name="Thornclaw",
+            power=5,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[skills.Fertility, skills.Packrat, skills.Shield, skills.Spines],
+        ),
+        description="relates to the Spines skill and high power, low health",
+    ),
+    # Nightfang 🔰🐭💀 7p 8h
+    # costs: 👻 has: 🔥🔥🔥🔥👻👻👻 pot: 51
+    Blueprint(
+        original=Card(
+            name="Nightfang",
+            power=7,
+            health=8,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=3,
+            has_fire=4,
+            skills=[skills.Shield, skills.Fertility, skills.InstantDeath],
+        ),
+        description="a name that suggests that the card is nocturnal and has high power and spirits",
+    ),
+    # Wispmite 🧺🔰💀🐭 3p 5h
+    # costs: - has: 🔥🔥🔥👻👻👻👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Wispmite",
+            power=3,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=3,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+            ],
+        ),
+        description="relates to the Packrat skill and low powerspirits, but high health and fire",
+    ),
+    # Fireturtle 🔰💀🧺 2p 6h
+    # costs: 🔥🔥🔥 has: 🔥👻👻 pot: 31
+    Blueprint(
+        original=Card(
+            name="Fireturtle",
+            power=2,
+            health=6,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Shield, skills.InstantDeath, skills.Packrat],
+        ),
+        description="relates to having fire, and high costsfire and low power",
+    ),
+    # Manticores 🐭🧺🔰 7p 10h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻 pot: 54
+    Blueprint(
+        original=Card(
+            name="Manticores",
+            power=7,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[skills.Fertility, skills.Packrat, skills.Shield],
+        ),
+        description="related to its high powerhealth and shield skill, and packrat skill to hoard things",
+    ),
+    # Rocbats 🧺🔰💀🐭🪁🚀 6p 6h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="Rocbats",
+            power=6,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Soaring,
+                skills.Airdefense,
+            ],
+        ),
+        description="related to its fierce character, high spirits and fire, and soaringair defense skills",
+    ),
+    # Moltenboar 💀🐭🪁🧺🔰 9p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 76
+    Blueprint(
+        original=Card(
+            name="Moltenboar",
+            power=9,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Soaring,
+                skills.Packrat,
+                skills.Shield,
+            ],
+        ),
+        description="related to its high power and fire attribute, instant death skill, and tough armor",
+    ),
+    # Flamevole 🧺 4p 1h
+    # costs: 🔥🔥🔥 has: 🔥🔥👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Flamevole",
+            power=4,
+            health=1,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Packrat],
+        ),
+        description="This card has high fire costs, has fire, and can get quite powerful with a packrat skill Flame suggests the fire theme and vole is a small and speedy animal",
+    ),
+    # Stone  1p 4h
+    # costs: 🔥🔥🔥 has: 🔥👻 pot: 7
+    Blueprint(
+        original=Card(
+            name="Stone",
+            power=1,
+            health=4,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description="mouse  This card is tiny and unskilled, but quite defensive Stone suggests that it can protect itself well, while mouse refers to its small size",
+    ),
+    # Necrobug 💀 0p 1h
+    # costs: 👻👻👻 has: 👻👻 pot: 7
+    Blueprint(
+        original=Card(
+            name="Necrobug",
+            power=0,
+            health=1,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=2,
+            has_fire=0,
+            skills=[skills.InstantDeath],
+        ),
+        description="This card has no fire attribute, but plenty of spirits and an InstantDeath skill The name Necrobug, which implies a combination of death and bug, suits its dark and deadly nature",
+    ),
+    # Gargantua 🔰🦔🪁🐩🐭 9p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 59
+    Blueprint(
+        original=Card(
+            name="Gargantua",
+            power=9,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Shield,
+                skills.Spines,
+                skills.Soaring,
+                skills.Underdog,
+                skills.Fertility,
+            ],
+        ),
+        description="With high power, high health, and multiple skills including Shield and Spines, this card is a force to be reckoned with The name Gargantua, meaning of immense size, perfectly reflects its strength and size",
+    ),
+    # Packspirit 💀🐭🔰🐩🧺 5p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Packspirit",
+            power=5,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+                skills.Underdog,
+                skills.Packrat,
+            ],
+        ),
+        description="This card has high spirits and fire attributes, multiple skills including Fertility and Packrat, but no fire or spirit costs The name Packspirit suggests a powerful and cooperative group of animals, with strong bonds and high spirits",
+    ),
+    # Deathstag 💀🐩🐭 6p 6h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 52
+    Blueprint(
+        original=Card(
+            name="Deathstag",
+            power=6,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.InstantDeath, skills.Underdog, skills.Fertility],
+        ),
+        description="powerful, balanced, deadly, hybrid",
+    ),
+    # Frognome  2p 2h
+    # costs: 🔥🔥🔥 has: 🔥👻👻👻👻👻 pot: 9
+    Blueprint(
+        original=Card(
+            name="Frognome",
+            power=2,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=1,
+            skills=[],
+        ),
+        description="weak, amphibious, costly, unskilled",
+    ),
+    # Healthwolf 🔰🐭💀 3p 9h
+    # costs: 🔥 has: 🔥🔥🔥👻👻 pot: 44
+    Blueprint(
+        original=Card(
+            name="Healthwolf",
+            power=3,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[skills.Shield, skills.Fertility, skills.InstantDeath],
+        ),
+        description="resilient, ferocious, low cost, versatile",
+    ),
+    # Hoardermunk 🐭🧺🔰 2p 2h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Hoardermunk",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Fertility, skills.Packrat, skills.Shield],
+        ),
+        description="timid, small, collectible, protective",
+    ),
+    # Sylphling 🐭🪁 3p 2h
+    # costs: 👻👻 has: 🔥🔥👻 pot: 19
+    Blueprint(
+        original=Card(
+            name="Sylphling",
+            power=3,
+            health=2,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Fertility, skills.Soaring],
+        ),
+        description="Fits with the card's high cost in spirits, but also the soaring skill  suggesting a light and agile creature",
+    ),
+    # Flameant 🧺 1p 1h
+    # costs: - has: 🔥🔥 pot: 19
+    Blueprint(
+        original=Card(
+            name="Flameant",
+            power=1,
+            health=1,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=2,
+            skills=[skills.Packrat],
+        ),
+        description="Has a high fire cost and the packrat skill  suggesting an ant that collects resources and can use fire to defend itself",
+    ),
+    # Arachlight 💀 1p 7h
+    # costs: 🔥🔥 has: 🔥👻 pot: 20
+    Blueprint(
+        original=Card(
+            name="Arachlight",
+            power=1,
+            health=7,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="High health, instant death skill  suggesting a spiderlike creature that is strong and can kill instantly",
+    ),
+    # Underwyrm 🐩 8p 2h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 25
+    Blueprint(
+        original=Card(
+            name="Underwyrm",
+            power=8,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Underdog],
+        ),
+        description="relates to the skill Underdog and the card's high power and relatively low health The name also invokes a sense of a creature that is lurking underground, ready to strike",
+    ),
+    # Steelshell 🔰🦔🐭💀🧺🐩 7p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="Steelshell",
+            power=7,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.Spines,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Underdog,
+            ],
+        ),
+        description="powerful, costly, heavilyskilled",
+    ),
+    # Packfish 🧺 0p 1h
+    # costs: 🔥 has: 🔥👻👻 pot: 8
+    Blueprint(
+        original=Card(
+            name="Packfish",
+            power=0,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Packrat],
+        ),
+        description="no fire, spirits or powerhealth but a lowcost spirits skilful fightersurvivor",
+    ),
+    # Leapingvine 🔰💀🐭🧺🦔🪁 6p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 73
+    Blueprint(
+        original=Card(
+            name="Leapingvine",
+            power=6,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=6,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Spines,
+                skills.Soaring,
+            ],
+        ),
+        description="high powerhealthcard cost ratio, high spirits, no fire, multiskilled shield, instant death, fertility, packrat, spines, soaring",
+    ),
+    # Fae 🔰 1p 1h
+    # costs: 👻👻 has: 🔥👻👻👻 pot: 11
+    Blueprint(
+        original=Card(
+            name="Fae",
+            power=1,
+            health=1,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Shield],
+        ),
+        description="Bat  With low attributes and a single Shield skill, this card seems like a fragile, fantastical creature that might be able to fly but lacks power or health The name suggests a tiny, illusionlike creature that can disappear at will",
+    ),
+    # Stonearmadillo 🐭🧺 3p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻 pot: 40
+    Blueprint(
+        original=Card(
+            name="Stonearmadillo",
+            power=3,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=4,
+            skills=[skills.Fertility, skills.Packrat],
+        ),
+        description="A creature with high health but low power, this suggested name indicates toughness, durability, and a capability for defense The skills Fertility and Packrat suggest strength in multiplication and hoarding, valuable qualities in a creature willing to withstand attacks and outlast its foes",
+    ),
+    # Thunderpet 🧺💀 10p 3h
+    # costs: 🔥 has: 🔥🔥👻👻👻 pot: 37
+    Blueprint(
+        original=Card(
+            name="Thunderpet",
+            power=10,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.Packrat, skills.InstantDeath],
+        ),
+        description="This name relates to the card's strong power attribute and its ability to cost fire The addition of \"pet\" in the name implies that it is a loyal companion that will help its owner get the job done The skills Packrat and InstantDeath add to the card's utility and deadly nature",
+    ),
+    # Empresscat 🔰🧺🐩🐭💀 5p 8h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Empresscat",
+            power=5,
+            health=8,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Shield,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Fertility,
+                skills.InstantDeath,
+            ],
+        ),
+        description="With a high power and health attribute, this card is fit to rule The name Empresscat implies power and grace, as well as the ability to hold its own in a fight The skills Shield, Underdog, Packrat, Fertility, and InstantDeath add to the card's strategic value",
+    ),
+    # Cinderbat 🐩 1p 2h
+    # costs: 🔥🔥🔥 has: 🔥👻 pot: 7
+    Blueprint(
+        original=Card(
+            name="Cinderbat",
+            power=1,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Underdog],
+        ),
+        description="This card's low power and health attributes are compensated for by its high cost in fire The name Cinderbat relates to its fire attribute and the skills Underdog, which gives it a boost in battle, making it a fiery underdog ready to take on any challenge",
+    ),
+    # Daemonicorn 💀🧺🔰🐭 1p 2h
+    # costs: 🔥🔥🔥 has: 👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Daemonicorn",
+            power=1,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description="The skills InstantDeath, Packrat, Shield, and Fertility add to the card's sinister nature, emphasized in its name, Daemonicorn Its fire attribute and lack of fire attribute, coupled with its low power and health attributes, show that it is a dark and magical creature not to be taken lightly",
+    ),
+    # Fairabbit 🐩 0p 2h
+    # costs: 🔥 has: 🔥👻 pot: 7
+    Blueprint(
+        original=Card(
+            name="Fairabbit",
+            power=0,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Underdog],
+        ),
+        description='With low power and health, Fairabbit fits with its weak appearance and the underdog skill However, it also has a high spirit cost, indicating it\'s a card that requires wisdom to use properly The name plays both sides it\'s a fantastical creature name but also incorporates the words "fair" and "rabbit"',
+    ),
+    # Packcalyx 🧺🐭💀🚀 10p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Packcalyx",
+            power=10,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Airdefense,
+            ],
+        ),
+        description="Packrat and fertility are both included in this card's set of skills, and its name alludes to a plant that opens or bursts open to release its contents This fits with its skillset, suggesting that it's a card meant to generate a lot of little cards",
+    ),
+    # Hornspike 🔰🐭🦔🧺 8p 4h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="Hornspike",
+            power=8,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Shield, skills.Fertility, skills.Spines, skills.Packrat],
+        ),
+        description="With high power and low health, Hornspike is a card that relies on its sturdiness to deal damage The skills also suggest a spike in power, as it includes shield and spines, and the name plays with the image of a horn so sharp it becomes a weapon on its own",
+    ),
+    # Underhog 🐭🧺🐩🔰 6p 4h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻👻 pot: 46
+    Blueprint(
+        original=Card(
+            name="Underhog",
+            power=6,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=3,
+            skills=[skills.Fertility, skills.Packrat, skills.Underdog, skills.Shield],
+        ),
+        description="high power, low health, packrat and underdog skills",
+    ),
+    # Sparklion 🔰🐩🐭🧺 8p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 63
+    Blueprint(
+        original=Card(
+            name="Sparklion",
+            power=8,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[skills.Shield, skills.Underdog, skills.Fertility, skills.Packrat],
+        ),
+        description="powerful, high health, with Shield, Underdog, Fertility, and Packrat skills",
+    ),
+    # Coralion  0p 3h
+    # costs: 🔥🔥 has: 🔥👻👻 pot: 6
+    Blueprint(
+        original=Card(
+            name="Coralion",
+            power=0,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[],
+        ),
+        description="related to watersea creatures, and has moderate health and fire costs",
+    ),
+    # Pyrogriff 🪁🧺💀 9p 6h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 46
+    Blueprint(
+        original=Card(
+            name="Pyrogriff",
+            power=9,
+            health=6,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=3,
+            skills=[skills.Soaring, skills.Packrat, skills.InstantDeath],
+        ),
+        description="related to fire and flying creatures, high power and health, and multiple skills",
+    ),
+    # Frosprout 🧺 9p 2h
+    # costs: 🔥 has: 👻👻👻 pot: 26
+    Blueprint(
+        original=Card(
+            name="Frosprout",
+            power=9,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=0,
+            skills=[skills.Packrat],
+        ),
+        description="a creature with high power, low health, and costs fire to summon, suggesting it may come from a cold place or its body is made of ice, amplyfying the idea of a sprout growing in a cold environment",
+    ),
+    # Flameshrew 🔰 0p 1h
+    # costs: 🔥 has: 🔥👻 pot: 8
+    Blueprint(
+        original=Card(
+            name="Flameshrew",
+            power=0,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Shield],
+        ),
+        description="a small creature with fire as one of its attributes that can defend itself with a shield, suggesting it may burrow through fiery areas unharmed or stand ground when facing flames",
+    ),
+    # Thornfly 💀🧺🔰🐭🪁 9p 6h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Thornfly",
+            power=9,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.Soaring,
+            ],
+        ),
+        description="a creature with high power, health and fury that has versatile skills, which may suggest a highly resilient insect that can easily take down foes, with its spike creating damage and effects Its name implies thorn, keeping in line with other creature names, which have a spiky appearance, and fly, as it has wings but is also a powerful creature, suggesting it has both aerial and ground attacks",
+    ),
+    # Elementaur 🔰🐭💀 5p 5h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 51
+    Blueprint(
+        original=Card(
+            name="Elementaur",
+            power=5,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Shield, skills.Fertility, skills.InstantDeath],
+        ),
+        description="relating to the balanced attributes, with equal fire and spirits",
+    ),
+    # Wandermole 🧺🔰 3p 2h
+    # costs: 🔥 has: 🔥👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Wandermole",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Packrat, skills.Shield],
+        ),
+        description="with low power and health but can adapt well with skills like Shield and Packrat",
+    ),
+    # Sunshell 🐭🔰💀🧺🚀🐩 1p 6h
+    # costs: 🔥 has: 🔥👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Sunshell",
+            power=1,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Airdefense,
+                skills.Underdog,
+            ],
+        ),
+        description="high health and skills like Fertility, Shield and Airdefense, but with low power and cost",
+    ),
+    # Viziercat 🐩🐭🪁🧺 9p 6h
+    # costs: 👻 has: 🔥🔥🔥🔥👻👻👻👻👻👻 pot: 52
+    Blueprint(
+        original=Card(
+            name="Viziercat",
+            power=9,
+            health=6,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=6,
+            has_fire=4,
+            skills=[skills.Underdog, skills.Fertility, skills.Soaring, skills.Packrat],
+        ),
+        description="With the highest power attribute in the game, this cat is a powerful wizard The Fertility skill suggests a wise and experienced creature, while Soaring and Underdog refer to its intelligence and cunning",
+    ),
+    # Mindrake 🐭 6p 7h
+    # costs: 👻👻 has: 🔥👻👻 pot: 31
+    Blueprint(
+        original=Card(
+            name="Mindrake",
+            power=6,
+            health=7,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description='This card has high health and moderate power, but also costs a lot of spirits However, it has the skill Fertility, which allows it to multiply quickly The name "Mindrake" reflects its high spirit cost and its ability to create multiple copies of itself',
+    ),
+    # Joyfox 🐭 2p 2h
+    # costs: - has: 🔥👻👻👻 pot: 27
+    Blueprint(
+        original=Card(
+            name="Joyfox",
+            power=2,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="related to the Fertility skill, and the overall playfulness of the card with decent attributes and low cost",
+    ),
+    # Fangleopard 🧺🐭🦔💀 8p 4h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="Fangleopard",
+            power=8,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.Spines,
+                skills.InstantDeath,
+            ],
+        ),
+        description="combination of fang and leopard, indicating its power and skills spines and instant death",
+    ),
+    # Lumenowl 💀 2p 2h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻 pot: 19
+    Blueprint(
+        original=Card(
+            name="Lumenowl",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=6,
+            skills=[skills.InstantDeath],
+        ),
+        description="Lumen refers to light, indicating its low costs and fire attribute Owl fits with its moderate power and health, as well as its instant death skill",
+    ),
+    # Phantomfly 🐭 8p 5h
+    # costs: 🔥 has: - pot: 29
+    Blueprint(
+        original=Card(
+            name="Phantomfly",
+            power=8,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description="Phantom refers to its absence of spirits and fly indicates its moderate health Additionally, it has the fertility skill",
+    ),
+    # Ironclad 🔰 1p 8h
+    # costs: 🔥 has: 👻👻👻 pot: 23
+    Blueprint(
+        original=Card(
+            name="Ironclad",
+            power=1,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=0,
+            skills=[skills.Shield],
+        ),
+        description="This card has high health and a shield skill, making it difficult to defeat The name Ironclad invokes an image of a heavily armored creature that is hard to penetrate",
+    ),
+    # Dragonhawk 🐭🪁💀🧺🔰🦔 8p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="Dragonhawk",
+            power=8,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Soaring,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+                skills.Spines,
+            ],
+        ),
+        description="This card has high power and health, with six skills including spines and instant death The name Dragonhawk suggests a powerful and dangerous creature, combining the strength of a dragon with the agility of a hawk",
+    ),
+    # Thorned Toad 🐭🦔🐩 2p 3h
+    # costs: 🔥 has: 👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Thorned Toad",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Fertility, skills.Spines, skills.Underdog],
+        ),
+        description="With low power and health but a fertility skill to create more cards, as well as spines and the underdog skill, this card is durable and surprising The name Thorned Toad plays off the spines skill as well as the toad's ability to adapt to tough conditions",
+    ),
+    # DragonBear 💀🧺🐩🔰 8p 8h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻👻👻 pot: 52
+    Blueprint(
+        original=Card(
+            name="DragonBear",
+            power=8,
             health=8,
             costs_fire=2,
             costs_spirits=0,
@@ -20351,11 +28918,6900 @@ all_blueprints = [
             has_fire=3,
             skills=[
                 skills.InstantDeath,
-                skills.Airdefense,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Shield,
+            ],
+        ),
+        description="powerful, high health, fire and spirits, skilled with Packrat and Shield",
+    ),
+    # ThornCheetah 🧺🐩🐭🔰🦔 8p 3h
+    # costs: 🔥🔥 has: 🔥🔥👻👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="ThornCheetah",
+            power=8,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[
+                skills.Packrat,
+                skills.Underdog,
+                skills.Fertility,
+                skills.Shield,
+                skills.Spines,
+            ],
+        ),
+        description="powerful, but low health, agile, skilled with Packrat, Underdog, Fertility, Shield and Spines",
+    ),
+    # FlameSlug 💀 4p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥 pot: 33
+    Blueprint(
+        original=Card(
+            name="FlameSlug",
+            power=4,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=4,
+            skills=[skills.InstantDeath],
+        ),
+        description="low power, but high health, fire resistant, no spirits, skilled with InstantDeath",
+    ),
+    # Flamesnake  4p 8h
+    # costs: 🔥 has: 🔥🔥👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Flamesnake",
+            power=4,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[],
+        ),
+        description="Flamesnake's cost is high in fire and its power isn't the strongest, but it could be seen as a deceptive, fiery opponent like a snake",
+    ),
+    # Packgrizzly 🧺🐭🔰💀 10p 8h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Packgrizzly",
+            power=10,
+            health=8,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+            ],
+        ),
+        description="This card's high power and health with skills like Packrat and Shield make it feel like a tough and protective animal, like a grizzly bear",
+    ),
+    # Spirit Bear 💀🔰 6p 7h
+    # costs: 🔥 has: 🔥🔥👻👻👻👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Spirit Bear",
+            power=6,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=2,
+            skills=[skills.InstantDeath, skills.Shield],
+        ),
+        description='This card has high health and is quite costly to use, but also has strong power The "spirit" attribute fits with its high spirit cost but also its strength, while "bear" conveys its toughness and durability The skill set includes Instant Death, which could be seen as a form of spiritual power',
+    ),
+    # Mind Seer 🐭💀🔰 2p 4h
+    # costs: 👻👻 has: 🔥👻👻 pot: 31
+    Blueprint(
+        original=Card(
+            name="Mind Seer",
+            power=2,
+            health=4,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Shield],
+        ),
+        description='This card\'s low fire attribute suggests a creature that is not very aggressive, while its decent spirit attribute and skill set suggest telepathic abilities "Mind" reflects this aspect, while "seer" suggests the ability to sense hidden things, in this case an opponent\'s hand and next move',
+    ),
+    # Embermouse  1p 2h
+    # costs: 🔥🔥🔥 has: 🔥🔥👻 pot: 5
+    Blueprint(
+        original=Card(
+            name="Embermouse",
+            power=1,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[],
+        ),
+        description='With a low power attribute, a modest fire presence, and no skills, this creature seems quite timid "Ember" conveys the reduced fire presence, while "mouse" fits with its small size and weakness',
+    ),
+    # Razorhorn 🦔 7p 2h
+    # costs: 🔥 has: 🔥🔥 pot: 19
+    Blueprint(
+        original=Card(
+            name="Razorhorn",
+            power=7,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=2,
+            skills=[skills.Spines],
+        ),
+        description="with high power and low health, we imagine this animal is fierce and more dangerous for the opponents than for itself The name emphasizes its power and roughness, evocative of a horned or spiky creature",
+    ),
+    # Archmagestic 🐭🧺🔰🦔 7p 5h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 45
+    Blueprint(
+        original=Card(
+            name="Archmagestic",
+            power=7,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Fertility, skills.Packrat, skills.Shield, skills.Spines],
+        ),
+        description='this card is a true allrounder, with high power, high health, and a handful of varied skills The name incorporates the words "mage" and "majestic," both implying wisdom, power, and awe We imagine an elegant creature with powers beyond the ordinary',
+    ),
+    # Fyregeist 🐭🔰🐩💀🧺 2p 4h
+    # costs: 🔥🔥🔥🔥 has: 🔥👻👻 pot: 38
+    Blueprint(
+        original=Card(
+            name="Fyregeist",
+            power=2,
+            health=4,
+            costs_fire=4,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description='this card is expensive to bring into the game and has skills that imply it may weaken other cards "underdog" and "instant death", but doesn\'t have very high power or health The name combines "fire" and "ghost," straightforwardly indicating a creature that\'s bound to fire and has ghostlike qualities',
+    ),
+    # Wormling  4p 3h
+    # costs: 🔥 has: 🔥👻 pot: 13
+    Blueprint(
+        original=Card(
+            name="Wormling",
+            power=4,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description="with moderate power and health, this card is quite cheap and has no skills We imagine it as a small, wriggly creature, hence the name",
+    ),
+    # Bloodsparrow 🔰💀🧺🐩🐭🍀 9p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 76
+    Blueprint(
+        original=Card(
+            name="Bloodsparrow",
+            power=9,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Fertility,
+                skills.LuckyStrike,
+            ],
+        ),
+        description='a very strong card, with high power and health as well as six different skills The name incorporates the word "blood," hinting at the creature\'s fierceness, and "sparrow," implying quickness and agility We picture it as a birdlike creature with sharp claws or beak',
+    ),
+    # Magmosaur 💀🐩🪁🔰🧺🐭 8p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 78
+    Blueprint(
+        original=Card(
+            name="Magmosaur",
+            power=8,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Soaring,
+                skills.Shield,
                 skills.Packrat,
                 skills.Fertility,
             ],
         ),
-        description="relates to high spirits, fertility skills and powerful attributes",
+        description="powerful, highly spirited, fiery, skilled with shield, death, and fertility",
+    ),
+    # Skyechidna 🔰🪁🐭💀🚀🦔 2p 8h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 45
+    Blueprint(
+        original=Card(
+            name="Skyechidna",
+            power=2,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[
+                skills.Shield,
+                skills.Soaring,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Airdefense,
+                skills.Spines,
+            ],
+        ),
+        description="airbased, moderate powerhealth, skilled with shield, soaring, and spines",
+    ),
+    # Packdrake 💀🧺🔰🐭🪁🐩 8p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Packdrake",
+            power=8,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.Soaring,
+                skills.Underdog,
+            ],
+        ),
+        description='The card has several skills, one of them being Packrat The name contains "pack" which indicates a group of animals working together to hunt or survive "Drake" is used due to the high power attribute the card has',
+    ),
+    # Spikeferret 💀🐭🔰🧺🐩 3p 4h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 45
+    Blueprint(
+        original=Card(
+            name="Spikeferret",
+            power=3,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+                skills.Packrat,
+                skills.Underdog,
+            ],
+        ),
+        description='The card has several skills, one of them being Spikes "Ferret" is included in the name due to the small size and quickness of the animal "Spike" is used to indicate the skill the card has',
+    ),
+    # Packmule 🐭🧺 3p 10h
+    # costs: 🔥 has: 🔥👻 pot: 36
+    Blueprint(
+        original=Card(
+            name="Packmule",
+            power=3,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Packrat],
+        ),
+        description='This card has high health, a mixed bag of skills, and a unique balance of fire and spirit costs, making it a useful "pack mule" for any deck The name plays off the typical "donkey" trope for this type of creature, but with a fantasy twist',
+    ),
+    # Necrobird 💀🐩🔰🐭 2p 3h
+    # costs: 🔥 has: 🔥👻👻 pot: 34
+    Blueprint(
+        original=Card(
+            name="Necrobird",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description="With instant death comes the name Necrobird whose powers can kill any opponent instantly in one hit The underdog feature helps it to come back stronger with multiple powers of shield, increase productivity, and fertility",
+    ),
+    # Guardianctus  6p 1h
+    # costs: 🔥🔥 has: - pot: 10
+    Blueprint(
+        original=Card(
+            name="Guardianctus",
+            power=6,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[],
+        ),
+        description="High power, high defense in a small body with no skills, quite difficult to defeat, and a perfect guard for any strong defense",
+    ),
+    # Spinyrat 🧺💀🦔🐭 8p 5h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Spinyrat",
+            power=8,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Spines,
+                skills.Fertility,
+            ],
+        ),
+        description="With the highest power and health, accompanied by one of the most useful abilities, Packrat that helps increase its defense a lot Another ability of spines offers an additional attack so the opponent will think twice before attacking it",
+    ),
+    # Underdrake 🧺🔰🦔🐭💀🐩 9p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 78
+    Blueprint(
+        original=Card(
+            name="Underdrake",
+            power=9,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.Spines,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Underdog,
+            ],
+        ),
+        description="Outstanding stats with all across the board including the underdog feature The skills include packrat, shield, spines, fertility, instant death, and underdog, making it even more humanely impossible to defeat",
+    ),
+    # Gryphonfire 🚀 4p 10h
+    # costs: 🔥🔥 has: 👻 pot: 24
+    Blueprint(
+        original=Card(
+            name="Gryphonfire",
+            power=4,
+            health=10,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Airdefense],
+        ),
+        description="related to the value of power and the attribute hasfire, as well as the skill Airdefense",
+    ),
+    # Thunderkrush 💀🔰🚀🧺🐭🐩 10p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 73
+    Blueprint(
+        original=Card(
+            name="Thunderkrush",
+            power=10,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Airdefense,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Underdog,
+            ],
+        ),
+        description="relates to the high power and health, as well as the skills InstantDeath and Shield",
+    ),
+    # Smokestall 🐭🧺🔰 7p 5h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 48
+    Blueprint(
+        original=Card(
+            name="Smokestall",
+            power=7,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[skills.Fertility, skills.Packrat, skills.Shield],
+        ),
+        description="relates to the fire attribute and the spiky skills Fertility and Shield",
+    ),
+    # Nightquill 🐩🦔🔰💀🧺 7p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 68
+    Blueprint(
+        original=Card(
+            name="Nightquill",
+            power=7,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Underdog,
+                skills.Spines,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description="relates to the skill InstantDeath and the attributes hasspirit and power",
+    ),
+    # Saddleback 💀🔰🧺🐭 4p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Saddleback",
+            power=4,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description="relates to the high health and the spiky skills Shield, Packrat, and Fertility",
+    ),
+    # Bloodwhale 💀🐭 3p 5h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻 pot: 32
+    Blueprint(
+        original=Card(
+            name="Bloodwhale",
+            power=3,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=5,
+            skills=[skills.InstantDeath, skills.Fertility],
+        ),
+        description="This creature is large and tough, with high power and health values Its skills include Instant Death and Fertility, which suggest a predator of some kind The name Bloodwhale evokes a creature that is both fierce and elusive, prowling the depths with deadly intent",
+    ),
+    # Owlbear 🐭🚀 4p 2h
+    # costs: 🔥🔥 has: 🔥👻 pot: 19
+    Blueprint(
+        original=Card(
+            name="Owlbear",
+            power=4,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Airdefense],
+        ),
+        description="A classic fantasy creature, the owlbear is fierce and menacing, with high power and decent health Its skills include Fertility suggesting it might breed quickly and Airdefense perhaps it can fly This name fits its attributes and abilities while conjuring up an image of a powerful predator",
+    ),
+    # Pixiewing 🐭 1p 2h
+    # costs: - has: 🔥👻👻👻 pot: 25
+    Blueprint(
+        original=Card(
+            name="Pixiewing",
+            power=1,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="This creature has low power and health but a high Spirit stat and the Fertility skill The name Pixiewing suggests a small, nimble creature with some magical ability or flight It fits the idea of a quick, elusive creature that breeds quickly",
+    ),
+    # Titanowl 🐭🐩 8p 2h
+    # costs: - has: 🔥👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Titanowl",
+            power=8,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Underdog],
+        ),
+        description="This creature is extremely powerful but has no special abilities beyond Fertility and Underdog suggesting it might be underestimated The name Titanowl evokes a creature of immense size and strength, perhaps with some kind of elemental power",
+    ),
+    # Ironhide  2p 8h
+    # costs: - has: 👻👻👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Ironhide",
+            power=2,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=0,
+            skills=[],
+        ),
+        description="fits with the high health and power of the card Iron portrays strength and durability, and hiding itself refers to the massive health it has to survive opponent attacks",
+    ),
+    # Skyshard 🚀💀🐭🧺 2p 2h
+    # costs: 🔥 has: 🔥🔥👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Skyshard",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[
+                skills.Airdefense,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description="refers to its air defense potential skills while still being quite lethal in attack power and fire Shards are also known for their reflective properties which could fit with its instant death skill",
+    ),
+    # Flamegeist 🐭🔰💀 6p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 55
+    Blueprint(
+        original=Card(
+            name="Flamegeist",
+            power=6,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[skills.Fertility, skills.Shield, skills.InstantDeath],
+        ),
+        description="fitting name for this expensive card that has fire attribute of  and an impressive  power Geist flickers in and out of existence, fitting with the skills and the balance of two elemental attributes",
+    ),
+    # Fyreant  3p 4h
+    # costs: 🔥🔥🔥🔥 has: 🔥👻 pot: 10
+    Blueprint(
+        original=Card(
+            name="Fyreant",
+            power=3,
+            health=4,
+            costs_fire=4,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description="fitting name for a card with high fire attribute and moderate health Ant symbolizes the low power, but the ant's presence creates formidable anthills as the player might find other synergies with this card",
+    ),
+    # ReaperRat 💀🧺🐭 1p 3h
+    # costs: - has: 🔥👻👻 pot: 37
+    Blueprint(
+        original=Card(
+            name="ReaperRat",
+            power=1,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Packrat, skills.Fertility],
+        ),
+        description="Relates to the Instant Death skill and Packrat, seems like a low cost, sneaky card",
+    ),
+    # FlamePhantom 🔰💀🐭🧺 5p 10h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻👻👻👻 pot: 58
+    Blueprint(
+        original=Card(
+            name="FlamePhantom",
+            power=5,
+            health=10,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=4,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description="Relates to high Fire attribute, Shield skill sounds quite formidable",
+    ),
+    # SkyOwl 🐭🧺🚀 9p 5h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 52
+    Blueprint(
+        original=Card(
+            name="SkyOwl",
+            power=9,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Fertility, skills.Packrat, skills.Airdefense],
+        ),
+        description="Relates to Airdefense skill, has good Spirit attribute perfect for flying creature",
+    ),
+    # ThornArmadon 🐭💀🧺🔰🦔🐩 10p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 69
+    Blueprint(
+        original=Card(
+            name="ThornArmadon",
+            power=10,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+                skills.Spines,
+                skills.Underdog,
+            ],
+        ),
+        description="Relates to Spines and Underdog skill, has high power and spiky armor",
+    ),
+    # BlazeToad 🐭💀 4p 4h
+    # costs: 👻 has: 🔥👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="BlazeToad",
+            power=4,
+            health=4,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description="combines the idea of fire costsfire, hasfire and death skillsInstantDeath with an animal that could be associated with spirits hasspirits and has decent power and health attributes power, health",
+    ),
+    # MysticWolf 💀🪁🦔🧺🐭🔰 7p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="MysticWolf",
+            power=7,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Soaring,
+                skills.Spines,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+            ],
+        ),
+        description="a fantastical animal that combines several skills InstantDeath, Soaring, Packrat, Fertility into one mythical beast The name suggests a wise and powerful creature with the ability to harness magic, perhaps even being able to speak or communicate telepathically",
+    ),
+    # FireDragon 💀🪁🧺🐭 2p 10h
+    # costs: 🔥🔥🔥🔥🔥 has: 🔥🔥🔥👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="FireDragon",
+            power=2,
+            health=10,
+            costs_fire=5,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[
+                skills.InstantDeath,
+                skills.Soaring,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description="an animal that combines fire costsfire, hasfire and skill InstantDeath, Soaring, Packrat, Fertility attributes This suggests a powerful mythical creature with formidable abilities",
+    ),
+    # ThornBear 🐭🦔🔰💀 7p 10h
+    # costs: 🔥🔥🔥🔥 has: 🔥🔥🔥👻👻👻👻 pot: 55
+    Blueprint(
+        original=Card(
+            name="ThornBear",
+            power=7,
+            health=10,
+            costs_fire=4,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[
+                skills.Fertility,
+                skills.Spines,
+                skills.Shield,
+                skills.InstantDeath,
+            ],
+        ),
+        description="this name suggests an animal with sharp spines skillsSpines and high defense skillsShield as well as solid attacking power power, health The name also implies a strength and ferocity characteristic of a bear, but with the added element of thorns or spikes",
+    ),
+    # SpiritWarthog 🔰🐭💀🐩 7p 9h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="SpiritWarthog",
+            power=7,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Underdog,
+            ],
+        ),
+        description="the name suggests that this animal has high spiritedness hasspirits and defensive capabilities skillsShield as well as being an underdog skillsUnderdog The Warthog part of the name suggests a slightly aggressive, but also somewhat comical animal with a distinctive physical appearance The Spirit part of the name also suggests a link to the spiritual realm or the supernatural",
+    ),
+    # Spiritpuma 🐭🦔🔰🐩🧺 6p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 60
+    Blueprint(
+        original=Card(
+            name="Spiritpuma",
+            power=6,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Spines,
+                skills.Shield,
+                skills.Underdog,
+                skills.Packrat,
+            ],
+        ),
+        description="This card has strong attributes in both power and health, making it a formidable opponent It also has multiple skills including Fertility and Spines, adding to its versatility The name Spiritpuma reflects the card's strength and its connection to the spiritual realm",
+    ),
+    # Thundercratch 💀🚀🧺 5p 4h
+    # costs: 🔥 has: 🔥🔥🔥👻👻 pot: 31
+    Blueprint(
+        original=Card(
+            name="Thundercratch",
+            power=5,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[skills.InstantDeath, skills.Airdefense, skills.Packrat],
+        ),
+        description="With high power and health, this card packs a punch Its skills include InstantDeath and Airdefense, making it a valuable member of any deck The name Thundercratch reflects the card's strength and its ability to strike fear into the hearts of its opponents",
+    ),
+    # Voidwolf 🐩 6p 2h
+    # costs: 🔥🔥🔥 has: - pot: 14
+    Blueprint(
+        original=Card(
+            name="Voidwolf",
+            power=6,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.Underdog],
+        ),
+        description="This card has moderate power and low health, along with high fire costs and no spirit count The name reflects its skill of being an underdog, as well as its lack of spiritual attributes",
+    ),
+    # Glowmole 🐭 2p 8h
+    # costs: - has: 🔥👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Glowmole",
+            power=2,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="high health, low power, no costs, fertility skill",
+    ),
+    # Stormphoenix 🪁🐭💀🧺🔰 9p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 65
+    Blueprint(
+        original=Card(
+            name="Stormphoenix",
+            power=9,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=6,
+            skills=[
+                skills.Soaring,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+            ],
+        ),
+        description="very high power, reasonably high health, moderate costs, multiple skills including soaring",
+    ),
+    # Hailstorm 🔰💀🐭 2p 4h
+    # costs: 👻👻 has: 👻 pot: 29
+    Blueprint(
+        original=Card(
+            name="Hailstorm",
+            power=2,
+            health=4,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Shield, skills.InstantDeath, skills.Fertility],
+        ),
+        description="has high health, high power and a shield, while also being costly to summon",
+    ),
+    # Skyray 💀🔰 3p 2h
+    # costs: 🔥 has: 🔥👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Skyray",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Shield],
+        ),
+        description="has moderate power with a shield and instant death ability",
+    ),
+    # Packbat 🧺 3p 1h
+    # costs: 🔥 has: 🔥 pot: 12
+    Blueprint(
+        original=Card(
+            name="Packbat",
+            power=3,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Packrat],
+        ),
+        description='This card has a skill name "Packrat" and has a low spirit stat no spirits The name "Packbat" plays with the idea of a furry creature that hoards things in a dark little cave somewhere, while also reflecting its lackluster spirit ability',
+    ),
+    # Spirithorn  1p 6h
+    # costs: 🔥 has: 👻👻👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Spirithorn",
+            power=1,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=0,
+            skills=[],
+        ),
+        description='This card has high health and a decent spirit ability, but low fire ability and no fire cost The name "Spirithorn" reflects its high spirit stat and the animal chosen horn reflects its high health stat',
+    ),
+    # Cheetahowl 🐭 4p 2h
+    # costs: - has: 👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Cheetahowl",
+            power=4,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description='This card with average health and high power and fertility skills can be a gamble but comes with high riskhigh reward The name "Cheetahowl" matches the animallike appearance with the cheetahinspired power speed and the wise owl\'s powerful sight fertility skill',
+    ),
+    # Thundersaurus 💀🐭🐩 3p 8h
+    # costs: 🔥🔥 has: 🔥🔥👻👻👻👻👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Thundersaurus",
+            power=3,
+            health=8,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=2,
+            skills=[skills.InstantDeath, skills.Fertility, skills.Underdog],
+        ),
+        description="This powerful card has high health and packs a punch with its combo of InstantDeath and Underdog skills Its broad range of attributes makes it one of the elite cards in the game Thundersaurus fits well, both with its dark theme and the ominous power it possesses",
+    ),
+    # Flameflea  4p 4h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 16
+    Blueprint(
+        original=Card(
+            name="Flameflea",
+            power=4,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[],
+        ),
+        description="This card has decent power, good health combined with low fire costs making it an excellent addition to the game Its attribute values match those of Flameflea, tiny but mighty The name is based on its small size, fiery nature, and fast speed, just like a little flea",
+    ),
+    # Emberwolf  2p 1h
+    # costs: 🔥🔥 has: 🔥🔥👻 pot: 6
+    Blueprint(
+        original=Card(
+            name="Emberwolf",
+            power=2,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[],
+        ),
+        description='With high power and fire costs, and low health, the name "Emberwolf" represents a small but aggressive creature, fiercely attacking with quick bursts of flame',
+    ),
+    # Sparkrodent 🐭 2p 3h
+    # costs: 🔥 has: 🔥🔥🔥👻👻 pot: 20
+    Blueprint(
+        original=Card(
+            name="Sparkrodent",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[skills.Fertility],
+        ),
+        description="quick and nimble, agile and magically inclined with medium power and low health, but skilled in fertility",
+    ),
+    # Bloodrat 💀🧺 3p 1h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Bloodrat",
+            power=3,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=5,
+            skills=[skills.InstantDeath, skills.Packrat],
+        ),
+        description='This name suits the card as it has high power and low health The "blood" in the name represents the danger associated with the card\'s InstantDeath skill, while "rat" represents its small size and speedy movements',
+    ),
+    # Fireflycat 🐭💀 1p 4h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥 pot: 26
+    Blueprint(
+        original=Card(
+            name="Fireflycat",
+            power=1,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=5,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description='This name suits the card as it has a low power attribute, but a high fire attribute The "firefly" in the name represents the card\'s fiery attributes, while "cat" represents its small size and nimbleness',
+    ),
+    # Skyspirit 🪁🧺🔰🐭 9p 5h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Skyspirit",
+            power=9,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[skills.Soaring, skills.Packrat, skills.Shield, skills.Fertility],
+        ),
+        description='This name suits the card as it has high spirit attributes and a Soaring skill The "sky" in the name represents the card\'s high spirits and its Soaring skill, while "spirit" represents its high spirit attribute',
+    ),
+    # Goliathorn 🐩🧺🐭🔰💀🪁 5p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Goliathorn",
+            power=5,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Underdog,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Soaring,
+            ],
+        ),
+        description='This name suits the card as it has high power and health attributes The "Goliath" in the name represents the card\'s massive power and strength, while "thorn" represents its defensive abilities with the Shield and Underdog skills',
+    ),
+    # Fathomoon 🐭🔰💀 2p 3h
+    # costs: - has: 🔥🔥🔥🔥👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Fathomoon",
+            power=2,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=4,
+            skills=[skills.Fertility, skills.Shield, skills.InstantDeath],
+        ),
+        description='related to "fathom" meaning depth and "moon", fitting with the card\'s high health and depth of power and skills',
+    ),
+    # Bladetrix 🧺 2p 4h
+    # costs: - has: 👻👻👻 pot: 27
+    Blueprint(
+        original=Card(
+            name="Bladetrix",
+            power=2,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=0,
+            skills=[skills.Packrat],
+        ),
+        description='related to "blade" fitting with the card\'s nonfirespiritual attack and "trix" for slyness, fitting with the Packrat skill',
+    ),
+    # Thunderfoot 🐭🪁💀🔰🚀 10p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 66
+    Blueprint(
+        original=Card(
+            name="Thunderfoot",
+            power=10,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Soaring,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Airdefense,
+            ],
+        ),
+        description='related to "thunder" fitting with the air skills and "foot" fitting with high powerhealth values',
+    ),
+    # Spriglett 🐭 2p 3h
+    # costs: 🔥🔥 has: 👻 pot: 15
+    Blueprint(
+        original=Card(
+            name="Spriglett",
+            power=2,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description='related to "sprig" for a small plant shoot, fitting with card\'s low powerhealth and Fertility skill',
+    ),
+    # Vampyresque 🔰🐭💀 3p 9h
+    # costs: 👻👻👻👻👻👻 has: 🔥🔥👻👻👻 pot: 40
+    Blueprint(
+        original=Card(
+            name="Vampyresque",
+            power=3,
+            health=9,
+            costs_fire=0,
+            costs_spirits=6,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.Shield, skills.Fertility, skills.InstantDeath],
+        ),
+        description="related to high spirits and health, and Fertility skill also has a slightly spooky feel",
+    ),
+    # Armatank 🔰🦔🐭 5p 8h
+    # costs: 🔥🔥 has: 🔥🔥👻 pot: 40
+    Blueprint(
+        original=Card(
+            name="Armatank",
+            power=5,
+            health=8,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Shield, skills.Spines, skills.Fertility],
+        ),
+        description="related to high health and Shield skill also suggests a toughness and durability",
+    ),
+    # Stellerant 🐩🦔🐭 4p 8h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="Stellerant",
+            power=4,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Underdog, skills.Spines, skills.Fertility],
+        ),
+        description="stellar  elephant",
+    ),
+    # Fiercefox 🔰 2p 6h
+    # costs: 🔥🔥 has: 🔥👻👻👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Fiercefox",
+            power=2,
+            health=6,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Shield],
+        ),
+        description='The name combines the attribute of high power and the skill "shield", to exemplify a formidable foe',
+    ),
+    # Shadowoze 💀🔰🐭 1p 5h
+    # costs: 🔥 has: 🔥👻 pot: 31
+    Blueprint(
+        original=Card(
+            name="Shadowoze",
+            power=1,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Shield, skills.Fertility],
+        ),
+        description="shadow  ocelot",
+    ),
+    # Ironshrew 🔰 1p 4h
+    # costs: - has: 🔥👻 pot: 25
+    Blueprint(
+        original=Card(
+            name="Ironshrew",
+            power=1,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Shield],
+        ),
+        description='The name combines the high health and "shield" skill with the low power and evasive attributes of the card, forming a small but tough creature',
+    ),
+    # Flameferal 🔰 2p 5h
+    # costs: 🔥🔥 has: 🔥 pot: 17
+    Blueprint(
+        original=Card(
+            name="Flameferal",
+            power=2,
+            health=5,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Shield],
+        ),
+        description="related to high fire cost and aggressive nature",
+    ),
+    # Nightlash 🐭💀 3p 6h
+    # costs: 🔥 has: 🔥👻 pot: 30
+    Blueprint(
+        original=Card(
+            name="Nightlash",
+            power=3,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description="related to low power and InstantDeath skill",
+    ),
+    # Nightpanth 🐩🔰💀🐭🧺 9p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 66
+    Blueprint(
+        original=Card(
+            name="Nightpanth",
+            power=9,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Underdog,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description="relates to the high power and health and adds a mystical flair for the skills Underdog, Shield, InstantDeath, Fertility, and Packrat",
+    ),
+    # Firebeetl  3p 1h
+    # costs: 🔥 has: 👻 pot: 7
+    Blueprint(
+        original=Card(
+            name="Firebeetl",
+            power=3,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[],
+        ),
+        description="relates to its fire attribute, while low stats and no skills emphasize vulnerability",
+    ),
+    # Shadowturt  1p 5h
+    # costs: 🔥🔥🔥 has: - pot: 7
+    Blueprint(
+        original=Card(
+            name="Shadowturt",
+            power=1,
+            health=5,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[],
+        ),
+        description="relates to the low powerhealth and has no spiritfire attributes, while the high fire cost emphasizes the difficult choice of using fire to summon it",
+    ),
+    # Jaguarmor 🔰🐩🐭💀 2p 6h
+    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Jaguarmor",
+            power=2,
+            health=6,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[
+                skills.Shield,
+                skills.Underdog,
+                skills.Fertility,
+                skills.InstantDeath,
+            ],
+        ),
+        description="relates to the Shield, Underdog, Fertility, and InstantDeath skills, while the modest powerhealth and balanced spiritfire attributes emphasize versatility and adaptation",
+    ),
+    # Mysticlion 🧺🐭💀🚀🔰🐩 8p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 77
+    Blueprint(
+        original=Card(
+            name="Mysticlion",
+            power=8,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Airdefense,
+                skills.Shield,
+                skills.Underdog,
+            ],
+        ),
+        description="high power and health, balanced costs, wellrounded skills",
+    ),
+    # Pixiefawn 🐩🐭 1p 1h
+    # costs: 🔥 has: - pot: 14
+    Blueprint(
+        original=Card(
+            name="Pixiefawn",
+            power=1,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.Underdog, skills.Fertility],
+        ),
+        description="very low power and health, cheap, fertility",
+    ),
+    # Shadowfowl  1p 2h
+    # costs: 🔥 has: 👻👻 pot: 6
+    Blueprint(
+        original=Card(
+            name="Shadowfowl",
+            power=1,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=0,
+            skills=[],
+        ),
+        description="low tier card, moderate powerhealth, low fire affinity",
+    ),
+    # Spikehoarder 🐭💀🐩🧺 8p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Spikehoarder",
+            power=8,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Packrat,
+            ],
+        ),
+        description="high tier card, balanced powerhealth, good skills and spirit affinity",
+    ),
+    # Thunderfowl 🔰💀🐩🪁🦔🐭 7p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 70
+    Blueprint(
+        original=Card(
+            name="Thunderfowl",
+            power=7,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Soaring,
+                skills.Spines,
+                skills.Fertility,
+            ],
+        ),
+        description="The name suggests a large bird with impressive firepower The card's high power and health stats support this name, especially when combined with the Shield skill The InstantDeath skill suggests that the bird's lightning attacks can take down opponents with a single blow The Spines skill might be interpreted as electric feathers on the Thunderfowl's body, further enhancing its deadly reputation",
+    ),
+    # Packmantis 🧺💀🔰🐭🐩 5p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 69
+    Blueprint(
+        original=Card(
+            name="Packmantis",
+            power=5,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+                skills.Underdog,
+            ],
+        ),
+        description="The name suggests an insect that operates in groups and is highly skilled at combat The Packrat and Underdog skills support this interpretation, suggesting a creature that benefits from having other members of its species around The Shield skill further enhances the idea of a creature that is tough to bring down Finally, the Fertility skill suggests that the Packmantis has a communal breeding strategy, further emphasizing its pack mentality",
+    ),
+    # Blazejaguar 💀🔰🐭🧺 7p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Blazejaguar",
+            power=7,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description="The name suggests a big cat that is capable of shooting flame from its body The card's high power and health stats, as well as the InstantDeath and Shield skills, support this concept The Fertility and Packrat skills suggest that the Blazejaguar has a communal lifestyle, much like a pride of lions It's also possible to interpret the name as suggesting a jaguar that is highly skilled at moving through dangerous terrain like fire, reinforcing the card's high stats",
+    ),
+    # Dreadox 🐩🐭🧺💀 8p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Dreadox",
+            power=8,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Underdog,
+                skills.Fertility,
+                skills.Packrat,
+                skills.InstantDeath,
+            ],
+        ),
+        description="The name suggests a type of insect or arachnid that is both fearsome and resilient The card's high power and moderate health stats support this concept The Underdog and Fertility skills suggest that the Dreadox is part of a community of similar creatures, emphasizing its resilient nature The InstantDeath skill suggests that opponents have reason to fear the Dreadox's attacks, while the Packrat skill suggests that it might have an affinity for hoarding gems",
+    ),
+    # Pyrolion  3p 2h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥👻 pot: 9
+    Blueprint(
+        original=Card(
+            name="Pyrolion",
+            power=3,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=3,
+            skills=[],
+        ),
+        description='This name combines "pyro" meaning fire with "lion", a strong and fierce animal, reflecting the high costsfire attribute and high power of the card',
+    ),
+    # Packbite 🔰🧺🐭💀🐩 7p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 65
+    Blueprint(
+        original=Card(
+            name="Packbite",
+            power=7,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Underdog,
+            ],
+        ),
+        description='The skill "Packrat" suggests that this card cares about gathering resources, fitting with the high hasspirits attribute "Bite" invokes the high power of this card and the fact that it can defend itself',
+    ),
+    # MysticKraken 🔰🧺🐭💀 4p 4h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="MysticKraken",
+            power=4,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+                skills.InstantDeath,
+            ],
+        ),
+        description="The card has high power and health stats and is protected with skills like shield and instant death The name MysticKraken fits as it invokes the image of a powerful and mysterious sea creature",
+    ),
+    # Firegriff 🐭 5p 9h
+    # costs: 🔥 has: 🔥👻 pot: 33
+    Blueprint(
+        original=Card(
+            name="Firegriff",
+            power=5,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="The card has high power and health for a relatively low cost and has the skill of fertility The name Firegriff suits the card as it relates to its fire attribute and also gives a sense of power and strength",
+    ),
+    # Emberarmor 🪁🦔🐭💀🔰🧺 6p 10h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 78
+    Blueprint(
+        original=Card(
+            name="Emberarmor",
+            power=6,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.Soaring,
+                skills.Spines,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+            ],
+        ),
+        description="The card has high power and health stats and is protected with skills like shield and packrat The name Emberarmor fits the card as it relates to its fire attribute and also gives a sense of protection and strength",
+    ),
+    # SpiritHare 🧺🔰🐭 0p 2h
+    # costs: 👻👻👻 has: 🔥👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="SpiritHare",
+            power=0,
+            health=2,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Packrat, skills.Shield, skills.Fertility],
+        ),
+        description="relatively weak, but high health and a packrat skill depicts a hare that is agile and survives by collecting essentials for sustenance The Shield skill highlights this agility and the Fertility skill allows it to become an even more valued member of its species",
+    ),
+    # TreeNymph  2p 2h
+    # costs: 👻👻👻👻👻 has: 🔥👻👻 pot: 5
+    Blueprint(
+        original=Card(
+            name="TreeNymph",
+            power=2,
+            health=2,
+            costs_fire=0,
+            costs_spirits=5,
+            has_spirits=2,
+            has_fire=1,
+            skills=[],
+        ),
+        description="low stats overall, with significant spirit resources creates a response in kind of a small, delicate creature, rarely found, that is fragile in strength but powerful in spirit, with no skills except for the implicit ability to create a magical environment around it",
+    ),
+    # DwarvenMole 🐭🐩🔰 2p 1h
+    # costs: 🔥🔥 has: 👻👻👻👻 pot: 24
+    Blueprint(
+        original=Card(
+            name="DwarvenMole",
+            power=2,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=0,
+            skills=[skills.Fertility, skills.Underdog, skills.Shield],
+        ),
+        description="a skilled digger, Shield skill explains how well this creature can protect itself and its skills of fertility and underdog suit a creature that spends most of its time underground, except for the rare occasions when it chooses to come to the surface to wreak havoc",
+    ),
+    # Cheetahawk 🐩💀🧺 3p 1h
+    # costs: 🔥 has: 🔥🔥👻👻👻 pot: 25
+    Blueprint(
+        original=Card(
+            name="Cheetahawk",
+            power=3,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.Underdog, skills.InstantDeath, skills.Packrat],
+        ),
+        description="Combining the speed and power of a cheetah with the sharp eyesight and deadly talons of a hawk, this card has a high power and underdog skill, and its packrat skill allows it to hoard resources for later use",
+    ),
+    # Thundersaur 🔰🧺🦔💀🐭🪁 10p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 70
+    Blueprint(
+        original=Card(
+            name="Thundersaur",
+            power=10,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.Packrat,
+                skills.Spines,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Soaring,
+            ],
+        ),
+        description="This card has high health and power, and is fairly expensive in terms of fire cost, which portrays a strong, powerful and threatening creature The addition of skills like Shield and Spines suggest that the creature's defense and attack mechanisms are enhanced, portraying an image of a creature that is challenging to defeat The name Thundersaur thus represents a creature that is tough and powerful, much like a dinosaur, with the added imagery of thunderbolts and lightning that strengthens the overall imagery of the creature",
+    ),
+    # Igniweasel 🐭🧺🐩💀 7p 7h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Igniweasel",
+            power=7,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.Underdog,
+                skills.InstantDeath,
+            ],
+        ),
+        description='This card, with its average health and high power, has a low fire cost and a moderate spirit cost, indicating a balance of aggression and strategic play The skills Fertility and InstantDeath suggest the card is versatile in the way it can be used, making it difficult to predict strategies to counter it The name Igniweasel combines the word "Ignite" and "Weasel," suggesting that this creature is agile and quickwitted, and has the ability to flare bright and fiery, to represent its high power',
+    ),
+    # Witherwing 💀🔰🧺🐭🦔🐩 8p 9h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 70
+    Blueprint(
+        original=Card(
+            name="Witherwing",
+            power=8,
+            health=9,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Spines,
+                skills.Underdog,
+            ],
+        ),
+        description='With high power, health, and fire cost, this is an expensive and powerful card The variety of skills such as Fertility and InstantDeath show that the creature can produce unpredictable outcomes, while skills like Shield and Spines can be interpreted to represent toughness and strength The name Witherwing combines the words "Wither" and "Wing", which portrays a vision of a massive and aweinspiring creature, a master of its abilities',
+    ),
+    # Sycamoth 🐭🐩🧺 8p 8h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="Sycamoth",
+            power=8,
+            health=8,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[skills.Fertility, skills.Underdog, skills.Packrat],
+        ),
+        description='This creature has high power and health but has a low spirit and fire cost, which indicates a balance between its ability to attack and defend The skills Fertility and Underdog suggest a creature that is versatile and is not afraid of challenges The name Sycamoth combines the word "Sycamore" and "Moth," reflecting its balance and versatility, while the "Moth" component represents its resilience',
+    ),
+    # Armobreeze 💀🐭🧺🐩🍀🔰 4p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Armobreeze",
+            power=4,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Underdog,
+                skills.LuckyStrike,
+                skills.Shield,
+            ],
+        ),
+        description='This creature has average health and low power, with a moderate fire cost However, the addition of skills like InstantDeath, Fertility, and Shield, suggests that the creature can be difficult to kill or damage, making it a strategic play for defensive moves The name "Armobreeze" combines the words "Armor" and "Breeze," portraying a creature that is light and brisk, but armored and protected well, representing the ability to move quickly while also being highly resilient',
+    ),
+    # Miraclefox 🧺🐩🐭💀 9p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Miraclefox",
+            power=9,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.Underdog,
+                skills.Fertility,
+                skills.InstantDeath,
+            ],
+        ),
+        description="Another powerhouse, this card combines both Packrat and Fertility skills, making it able to build powerful combos and quickly overcome enemies The name Miraclefox reflects this ability to create miracles, as well as the cunning and agility of a fox",
+    ),
+    # Firegeist 💀 3p 2h
+    # costs: 🔥🔥 has: 🔥👻👻 pot: 15
+    Blueprint(
+        original=Card(
+            name="Firegeist",
+            power=3,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="This card seems to be focused on the Instant Death skill, which is reflected in this name The Fire part relates to the fire cost and the overall power of the card, while the Geist German for ghostspirit part hints at the spectral and immaterial nature of the Instant Death effect",
+    ),
+    # GhostRat  1p 2h
+    # costs: 🔥 has: 🔥🔥👻👻👻👻 pot: 9
+    Blueprint(
+        original=Card(
+            name="GhostRat",
+            power=1,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=2,
+            skills=[],
+        ),
+        description="With only  health and no skills, this card seems frail and weak, but its high spirit count and low cost make it a tricky card to deal with The Ghost part relates to the high spirit count and the ability to evade enemies, while the Rat part reflects the small size and low power of the card",
+    ),
+    # Funguscat  2p 2h
+    # costs: 👻👻 has: - pot: 5
+    Blueprint(
+        original=Card(
+            name="Funguscat",
+            power=2,
+            health=2,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=0,
+            has_fire=0,
+            skills=[],
+        ),
+        description="This card seems to be focused on the spirit attribute and has no fire attribute at all The name Funguscat reflects this, as it relates to a mystical creature that draws power from the earth and grows in dark, damp places The Cat part relates to the agility and versatility of the card",
+    ),
+    # Stormhorn 🧺🔰💀🐭 7p 5h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 52
+    Blueprint(
+        original=Card(
+            name="Stormhorn",
+            power=7,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+            ],
+        ),
+        description="high power and health, balanced costs, Packrat and Shield skills",
+    ),
+    # Craglion 🧺💀🔰🐭🪁🦔 7p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="Craglion",
+            power=7,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+                skills.Soaring,
+                skills.Spines,
+            ],
+        ),
+        description="high health, balanced costs, Spines and Packrat skills",
+    ),
+    # Darkmite 🐩💀 2p 4h
+    # costs: - has: 🔥👻👻 pot: 31
+    Blueprint(
+        original=Card(
+            name="Darkmite",
+            power=2,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Underdog, skills.InstantDeath],
+        ),
+        description="low power and health, low costs, Underdog and InstantDeath skills",
+    ),
+    # Infernogon 🧺🔰🐭🐩💀 9p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="Infernogon",
+            power=9,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.Underdog,
+                skills.InstantDeath,
+            ],
+        ),
+        description="The name suggests a creature of immense power and fire, fitting with card's high power and fire costs The multiple skills suggest a creature with many abilities, making it a force to be reckoned with",
+    ),
+    # Fionarachnid 🐭 6p 4h
+    # costs: 👻👻 has: 👻👻👻 pot: 26
+    Blueprint(
+        original=Card(
+            name="Fionarachnid",
+            power=6,
+            health=4,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=3,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description='A combination of the words "Fertility" and "Arachnid", the name suggests a creature that is both deadly and fertile The high spirit value and fertility skill imply that this creature is magical and brings life to the battlefield',
+    ),
+    # Quillsprite 🐭🦔🐩💀🔰🧺 9p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 79
+    Blueprint(
+        original=Card(
+            name="Quillsprite",
+            power=9,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Spines,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+            ],
+        ),
+        description='The name combines the words "Spines" and "Sprite", implying a creature that is small and magical but dangerous with its spines The many skills suggest a creature that is versatile and can adapt to different situations',
+    ),
+    # Spiritbeetle 🐭💀 1p 3h
+    # costs: 🔥 has: 🔥👻👻👻👻 pot: 24
+    Blueprint(
+        original=Card(
+            name="Spiritbeetle",
+            power=1,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=1,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description='The name combines the words "Spirit" and "Beetle", implying a creature that is small but with a strong spirit and resilience, fitting with its low power but high health The skills suggest a creature that can both give and take life, making it a versatile addition to any deck',
+    ),
+    # Forestcat 🐩 3p 4h
+    # costs: 🔥 has: 👻 pot: 15
+    Blueprint(
+        original=Card(
+            name="Forestcat",
+            power=3,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Underdog],
+        ),
+        description="This card has balanced power and health, with a high amount of cost to get on the field The only fire cost is quite low, and there are no spirits, so forest seemed like a fitting theme for this card The cat theme fits both the forest setting but also the balanced nature of the attributes with a stealthy and agile character",
+    ),
+    # Wolferno 🐭 3p 4h
+    # costs: 🔥 has: 🔥🔥👻👻👻👻👻 pot: 25
+    Blueprint(
+        original=Card(
+            name="Wolferno",
+            power=3,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=2,
+            skills=[skills.Fertility],
+        ),
+        description="This card has a low fire cost, with medium power and low health The card has a fertility skill, which implies growth and abundance Combining these factors with the mixed fire and spirits, and the wolf theme fits perfectly for the theme of fire and growth",
+    ),
+    # Gorgonox 💀🔰🐭 3p 9h
+    # costs: - has: 🔥🔥🔥👻👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Gorgonox",
+            power=3,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[skills.InstantDeath, skills.Shield, skills.Fertility],
+        ),
+        description='The card has a very high power, health, and a Shield skill, which suggests a strong and almost invincible creature The "Gorgon" part of the name refers to the mythological creature that was known for its ability to turn people into stone, while the "ox" part of the name reinforces the idea of strength and endurance',
+    ),
+    # Gryphacean 🐭💀🔰 5p 5h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Gryphacean",
+            power=5,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Shield],
+        ),
+        description='The card has a mix of abilities high power, high health, no spirit costs, and three skills, which suggests a wellrounded creature that is difficult to beat The "gryph" part of the name refers to the mythical creature with a lion\'s body and an eagle\'s head, while the "acea" ending signifies belonging to a certain class or group of creatures, hence "Gryphacean"',
+    ),
+    # Soarquill 🐭💀🦔🪁🐩 2p 3h
+    # costs: 🔥 has: 🔥 pot: 30
+    Blueprint(
+        original=Card(
+            name="Soarquill",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Spines,
+                skills.Soaring,
+                skills.Underdog,
+            ],
+        ),
+        description='The card is lowcost, has a relatively low power and health, but has several skills, including Soaring, which suggests an agile and fast creature that can fly The "soar" part of the name refers to this ability to fly, while the "quill" part of the name refers to the Spines skill that the card also has',
+    ),
+    # Frostgiant 🐭🧺🔰💀 7p 5h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Frostgiant",
+            power=7,
+            health=5,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.Shield,
+                skills.InstantDeath,
+            ],
+        ),
+        description="high power and health, costly, has fire and spirits, packrat and fertility skills make him a valuable ally",
+    ),
+    # Moongazer 🐩🐭🔰 6p 2h
+    # costs: 🔥 has: 🔥👻👻 pot: 33
+    Blueprint(
+        original=Card(
+            name="Moongazer",
+            power=6,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Underdog, skills.Fertility, skills.Shield],
+        ),
+        description="moderate power and high health, low cost, has spirits, skills are defensive in nature",
+    ),
+    # Sunbison 🪁💀🐭🔰 5p 10h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="Sunbison",
+            power=5,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.Soaring,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+            ],
+        ),
+        description="high power and health, no fire cost, has high spirits, four skills make it a versatile ally",
+    ),
+    # Shelldrake 🐭🔰🦔 7p 9h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Shelldrake",
+            power=7,
+            health=9,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[skills.Fertility, skills.Shield, skills.Spines],
+        ),
+        description='The card\'s high health and skills like Shield and Spines make it a durable option The name "Shelldrake" brings to mind a dragonlike creature with tough armor shell and the power to breathe fire drake',
+    ),
+    # Thunderelk 💀🐩🔰🧺🐭🚀 6p 10h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 77
+    Blueprint(
+        original=Card(
+            name="Thunderelk",
+            power=6,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Airdefense,
+            ],
+        ),
+        description="highly spirited and strong, air defense and packrat skills",
+    ),
+    # FaeGriffin 🧺💀🐭🐩 6p 6h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 48
+    Blueprint(
+        original=Card(
+            name="FaeGriffin",
+            power=6,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Underdog,
+            ],
+        ),
+        description="powerful and balanced with multiple skills, but has low spiritsfire costs",
+    ),
+    # PyroDragon 🐭🔰🐩💀🧺 10p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 68
+    Blueprint(
+        original=Card(
+            name="PyroDragon",
+            power=10,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description="very strong, but expensive with many skills and strong relation to fire",
+    ),
+    # UnderLynx 🐩💀🔰🐭🧺 6p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="UnderLynx",
+            power=6,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description="balanced card with good skills and relation to being an underdog, low spiritsfire costs",
+    ),
+    # Seedhog 🐭💀🧺🔰 8p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 60
+    Blueprint(
+        original=Card(
+            name="Seedhog",
+            power=8,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+            ],
+        ),
+        description="strong, high spirits, fertility skill but relation to being a naturebased card",
+    ),
+    # Deathstreak 💀🐭🧺🐩🔰 9p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 66
+    Blueprint(
+        original=Card(
+            name="Deathstreak",
+            power=9,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Shield,
+            ],
+        ),
+        description="relates to the skill InstantDeath and high power and health values",
+    ),
+    # Hoppet 🧺🐭 6p 3h
+    # costs: - has: 🔥🔥👻👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Hoppet",
+            power=6,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.Packrat, skills.Fertility],
+        ),
+        description="this name relates to the fertility skill, as well as the low values in fire and spirit costs, and the small and fast nature of the card",
+    ),
+    # Widowbite 💀 1p 3h
+    # costs: 🔥🔥 has: 👻 pot: 12
+    Blueprint(
+        original=Card(
+            name="Widowbite",
+            power=1,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.InstantDeath],
+        ),
+        description="relates to the InstantDeath skill, as well as the low power and high health of the card",
+    ),
+    # Flamethrower  8p 2h
+    # costs: 🔥🔥🔥 has: 🔥👻 pot: 16
+    Blueprint(
+        original=Card(
+            name="Flamethrower",
+            power=8,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description="this name relates to the high value in costfire and the high power of the card",
+    ),
+    # Chitinous 🔰🪁💀🐭🧺 7p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 70
+    Blueprint(
+        original=Card(
+            name="Chitinous",
+            power=7,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.Soaring,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description="relates to the spiky nature of the card skills Shield and Soaring, as well as its high power and health values",
+    ),
+    # Shadowtalon 🐭🔰🦔💀 10p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 60
+    Blueprint(
+        original=Card(
+            name="Shadowtalon",
+            power=10,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Spines,
+                skills.InstantDeath,
+            ],
+        ),
+        description="relates to high power and instant death skill, while the high health and shield skill make the card difficult to kill",
+    ),
+    # Faeleech 🧺🔰🐭💀 5p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Faeleech",
+            power=5,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+            ],
+        ),
+        description="relates to health and fertility skill, while packrat skill represents the leech's penchant for taking what it needs",
+    ),
+    # Underbear 🐭🔰🐩🧺 4p 2h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻 pot: 38
+    Blueprint(
+        original=Card(
+            name="Underbear",
+            power=4,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=5,
+            skills=[skills.Fertility, skills.Shield, skills.Underdog, skills.Packrat],
+        ),
+        description="spirits cost and underdog skill, while fire cost and shield skill represent the bear's resilience and strength",
+    ),
+    # Pixiehorn 🐭 0p 1h
+    # costs: 🔥 has: 🔥👻 pot: 10
+    Blueprint(
+        original=Card(
+            name="Pixiehorn",
+            power=0,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="fertility skill and high spirit, while low health and fire cost represent the pixie's delicate nature",
+    ),
+    # Fawnix 🐭🔰🐩🦔💀🧺 7p 7h
+    # costs: 👻👻👻 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Fawnix",
+            power=7,
+            health=7,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Underdog,
+                skills.Spines,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description="With a balance of fire and spirit, and a mix of defensive and offensive skills, this card invokes the image of a mythical healing deer rising from the ashes",
+    ),
+    # Darkhog 🐭🔰🧺 7p 6h
+    # costs: 🔥🔥🔥🔥 has: 🔥🔥🔥👻👻👻👻 pot: 44
+    Blueprint(
+        original=Card(
+            name="Darkhog",
+            power=7,
+            health=6,
+            costs_fire=4,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[skills.Fertility, skills.Shield, skills.Packrat],
+        ),
+        description="With a high fire cost and a focus on defensive skills, this card evokes the image of a tough, spiny hedgehog hiding in the shadows",
+    ),
+    # Emberling 🐭🐩 2p 1h
+    # costs: 🔥 has: 🔥👻👻 pot: 18
+    Blueprint(
+        original=Card(
+            name="Emberling",
+            power=2,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Underdog],
+        ),
+        description="With low power and health but high spirits, this card represents the fiery spirit of a small, yet fierce, creature",
+    ),
+    # ThunderLion 🔰🧺🐩🦔💀🐭 9p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 76
+    Blueprint(
+        original=Card(
+            name="ThunderLion",
+            power=9,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=6,
+            skills=[
+                skills.Shield,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Spines,
+                skills.InstantDeath,
+                skills.Fertility,
+            ],
+        ),
+        description="high powerhealth, high firespirit costs, many skills including Shield, Packrat, and InstantDeath",
+    ),
+    # DrakeBear 🔰💀🐭 7p 9h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻👻👻👻👻👻 pot: 54
+    Blueprint(
+        original=Card(
+            name="DrakeBear",
+            power=7,
+            health=9,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=3,
+            skills=[skills.Shield, skills.InstantDeath, skills.Fertility],
+        ),
+        description="high powerhealth, moderate fire cost, high spirit cost, skills include Shield and Fertility",
+    ),
+    # Armachimp 🧺🐩🐭🔰🪁💀 6p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 74
+    Blueprint(
+        original=Card(
+            name="Armachimp",
+            power=6,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.Underdog,
+                skills.Fertility,
+                skills.Shield,
+                skills.Soaring,
+                skills.InstantDeath,
+            ],
+        ),
+        description="powerful, high health, packrat, shielded, soaring, risky due to instant death skill",
+    ),
+    # Dragonette 🐩🧺💀🔰🐭 10p 5h
+    # costs: 👻👻👻 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 60
+    Blueprint(
+        original=Card(
+            name="Dragonette",
+            power=10,
+            health=5,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.Underdog,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description="powerful, low health, high spirit cost, underdog, packrat, shielded, fertile",
+    ),
+    # Fyrelion 🧺🔰💀 3p 6h
+    # costs: 🔥 has: 🔥👻👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Fyrelion",
+            power=3,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Packrat, skills.Shield, skills.InstantDeath],
+        ),
+        description="moderate powerhealth, moderate fire cost, shielded, packrat, risky due to instant death skill",
+    ),
+    # Snapjaw 🐭💀🐩🧺 7p 4h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Snapjaw",
+            power=7,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Packrat,
+            ],
+        ),
+        description="powerful, low cost to summon, moderate spirits cost, fertile, underdog, packrat",
+    ),
+    # Packhide 🐩🧺 5p 3h
+    # costs: 🔥🔥 has: 👻👻👻 pot: 23
+    Blueprint(
+        original=Card(
+            name="Packhide",
+            power=5,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=0,
+            skills=[skills.Underdog, skills.Packrat],
+        ),
+        description="This name suggests a creature that is tough and resilient, which relates well to the card's attributes of high power and low health Its skills of Underdog and Packrat also support the idea of it being part of a group or pack, and the name \"Packhide\" indicates that it's a creature that can take a lot of damage before succumbing to its wounds",
+    ),
+    # Furydeath 💀🐭🪁 9p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 51
+    Blueprint(
+        original=Card(
+            name="Furydeath",
+            power=9,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[skills.InstantDeath, skills.Fertility, skills.Soaring],
+        ),
+        description='This card has extremely high power, health, and spirit and its skills include InstantDeath and Fertility, which suggests that it is a powerful and dangerous creature The name "Furydeath" emphasizes this dangerous power and the fact that it is a creature to be feared and respected',
+    ),
+    # Ironboar 🐭🐩🔰 7p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻👻 pot: 48
+    Blueprint(
+        original=Card(
+            name="Ironboar",
+            power=7,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=4,
+            skills=[skills.Fertility, skills.Underdog, skills.Shield],
+        ),
+        description="high power and health, high cost, fertility, underdog, shield",
+    ),
+    # Windhare 🚀 2p 2h
+    # costs: 🔥🔥🔥 has: 👻👻 pot: 7
+    Blueprint(
+        original=Card(
+            name="Windhare",
+            power=2,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=0,
+            skills=[skills.Airdefense],
+        ),
+        description="low fire cost, air defense skill, low attack and health",
+    ),
+    # Wispfox 💀🐭 2p 2h
+    # costs: 🔥 has: 👻👻👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Wispfox",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=0,
+            skills=[skills.InstantDeath, skills.Fertility],
+        ),
+        description="low fire cost, instant death and fertility skill, high spirits",
+    ),
+    # Grifftail 🪁🦔🧺🔰💀🐭 6p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 74
+    Blueprint(
+        original=Card(
+            name="Grifftail",
+            power=6,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.Soaring,
+                skills.Spines,
+                skills.Packrat,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Fertility,
+            ],
+        ),
+        description="very strong, flying, spiny, can store extra items, fertility, underdog, shield",
+    ),
+    # Flarvalet 🐩 2p 1h
+    # costs: - has: 🔥👻👻👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Flarvalet",
+            power=2,
+            health=1,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Underdog],
+        ),
+        description='This card has a decent power stat and is costefficient, which makes it very valuable Its abilities are centered around the "Underdog" skill, meaning it could become quite powerful if the player employs the right strategy The name Flarvalet is derived from "flame" which corresponds to the card\'s fire element costs and "valet" which means "servant" or "assistant," possibly referencing the card\'s Underdog skill',
+    ),
+    # Skyraptor 🦔🔰🧺💀🐭 2p 7h
+    # costs: 🔥🔥 has: 🔥🔥👻👻👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="Skyraptor",
+            power=2,
+            health=7,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=2,
+            skills=[
+                skills.Spines,
+                skills.Shield,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Fertility,
+            ],
+        ),
+        description='This card has high power and health, while also having multiple abilities like Spines, Shield, Packrat, InstantDeath, and Fertility "Sky" in the name refers to this card\'s "Soaring" skill, as well as its high stats, while "raptor" refers to the card\'s Spines ability, as well as its overall ferocity',
+    ),
+    # Shadowpaw 🐩🐭🔰💀 7p 6h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 63
+    Blueprint(
+        original=Card(
+            name="Shadowpaw",
+            power=7,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.Underdog,
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+            ],
+        ),
+        description='This card has high power and health, as well as a diverse set of skills including Underdog, Fertility, Shield, and InstantDeath The name is derived from "shadow" alluding to the card\'s dark element and "paw" an animal body part, referencing the card\'s overall strength',
+    ),
+    # Shellcat 🔰 2p 2h
+    # costs: 🔥 has: 🔥👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Shellcat",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Shield],
+        ),
+        description='This card has more health than power and specializes in defense with its Shield ability Its name is derived from the "shell" aspect of its defense, as well as its feline appearance',
+    ),
+    # Vixentaur 🧺🐭 2p 3h
+    # costs: 🔥 has: 🔥👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Vixentaur",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Packrat, skills.Fertility],
+        ),
+        description="This card has high power and health and is capable of summoning additional cards 'Fertility' Vixentaur is a strong and intelligent creature that embodies characteristics of both a fox and a centaur, making it a formidable presence on the playing field",
+    ),
+    # Mythbird 🪁🔰🐭🦔🐩 10p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 69
+    Blueprint(
+        original=Card(
+            name="Mythbird",
+            power=10,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Soaring,
+                skills.Shield,
+                skills.Fertility,
+                skills.Spines,
+                skills.Underdog,
+            ],
+        ),
+        description='With high power, health, and skills, this card deserves a powerfulsounding name "Myth" connotes the magical flair of the game, while "bird" fits the game\'s general animal theme',
+    ),
+    # Shimmerant 💀🐭🔰🐩🧺 5p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 70
+    Blueprint(
+        original=Card(
+            name="Shimmerant",
+            power=5,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+                skills.Underdog,
+                skills.Packrat,
+            ],
+        ),
+        description="This card has no fire cost but it could use Spirits, has some health, and skills that suggest a creature that relies on tricks and illusions Shimmerant adds a bit of whimsy to this stealthy creature",
+    ),
+    # Seedwolf 🐭💀🐩🔰🧺 6p 6h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="Seedwolf",
+            power=6,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Shield,
+                skills.Packrat,
+            ],
+        ),
+        description="This card has decent power and health and a few skills, and is constrained by having no fire or spirit cost A creature that is inspired by the natural world and sows fertility fits well here",
+    ),
+    # Necrospore 🐭 10p 3h
+    # costs: 👻👻 has: 🔥👻👻👻👻👻👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Necrospore",
+            power=10,
+            health=3,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=6,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="This card is a bit difficult to summon, with some spirit cost and a good amount of power, but low health, and only one skill A creature that can damage others, but that could also be burned out easily, is reminiscent of a naturalist's curse, a parasite that infects organisms and sucks their life out So we've chosen \"Necrospore\" as a name",
+    ),
+    # Miradillo 💀🧺🔰🐭 3p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="Miradillo",
+            power=3,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description='A combination of "mirage" and "armadillo", as this card has a high health and a shield skill, making it hard to kill and almost illusory The instant death skill also adds to this illusion, as the opponent might think it\'s an easy target but be surprised by its durability',
+    ),
+    # Shardfox 🧺🐭🔰 6p 3h
+    # costs: - has: 🔥🔥👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="Shardfox",
+            power=6,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Packrat, skills.Fertility, skills.Shield],
+        ),
+        description="The name references the two fire attributes of the card, as well as its somewhat fragile health The skills of the card are somewhat defensive, but also have an element of creativity and ingenuity, which are both qualities that could be associated with a creature called the Shardfox",
+    ),
+    # Wyvernwing 🔰🧺🐭 7p 6h
+    # costs: - has: 🔥🔥🔥👻👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Wyvernwing",
+            power=7,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=3,
+            skills=[skills.Shield, skills.Packrat, skills.Fertility],
+        ),
+        description="With strong offensive power and a assertive health level, the name Wyvernwing emphasizes the card's aerial nature and combative skills The combination of Spirit and Fire elements are also represented in the moniker",
+    ),
+    # Spikeliger 🐭🧺🦔 8p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 48
+    Blueprint(
+        original=Card(
+            name="Spikeliger",
+            power=8,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[skills.Fertility, skills.Packrat, skills.Spines],
+        ),
+        description="With high power and health, and the ability to fend off attackers with spines, this card evokes a fierce and powerful big cat, but with an added element of fantasy and magic",
+    ),
+    # Embermice 🧺🔰🍀 1p 1h
+    # costs: 🔥 has: 🔥🔥 pot: 15
+    Blueprint(
+        original=Card(
+            name="Embermice",
+            power=1,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=2,
+            skills=[skills.Packrat, skills.Shield, skills.LuckyStrike],
+        ),
+        description="Despite being small and weak, this creature has an affinity for fire and possesses a lucky strike ability The name plays on the idea of a mouse being drawn to the flame and also suggests a potential for fiery surprises",
+    ),
+    # Felipard 💀🐭🧺 2p 7h
+    # costs: 🔥 has: 🔥🔥👻 pot: 36
+    Blueprint(
+        original=Card(
+            name="Felipard",
+            power=2,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.InstantDeath, skills.Fertility, skills.Packrat],
+        ),
+        description="Felis catus  leopard",
+    ),
+    # Faeotaur 🐭🐩🧺🍀 10p 7h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥🔥👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Faeotaur",
+            power=10,
+            health=7,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Underdog,
+                skills.Packrat,
+                skills.LuckyStrike,
+            ],
+        ),
+        description="Fae  minotaur",
+    ),
+    # Spellkraken 🧺🐩💀 6p 5h
+    # costs: 🔥🔥 has: 🔥👻👻👻👻 pot: 36
+    Blueprint(
+        original=Card(
+            name="Spellkraken",
+            power=6,
+            health=5,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=1,
+            skills=[skills.Packrat, skills.Underdog, skills.InstantDeath],
+        ),
+        description="relatively expensive, high powerhealth, with the ability to instantly kill and the features of a packrat and an underdog",
+    ),
+    # Whisptaur 🐭🧺 3p 2h
+    # costs: 🔥 has: 🔥 pot: 21
+    Blueprint(
+        original=Card(
+            name="Whisptaur",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Packrat],
+        ),
+        description="low powerhealth, but moderate costs, highly spiritual, with packratlike features and fertility",
+    ),
+    # Charthorn 🐩 1p 2h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻 pot: 10
+    Blueprint(
+        original=Card(
+            name="Charthorn",
+            power=1,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=3,
+            skills=[skills.Underdog],
+        ),
+        description="low power, moderate health, somewhat expensive, highly on fire magic, the ability to be an underdog, and small flames around its body",
+    ),
+    # Shellwyvern 🐭🔰💀🧺 3p 9h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻👻👻👻 pot: 54
+    Blueprint(
+        original=Card(
+            name="Shellwyvern",
+            power=3,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=3,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description="moderately expensive, beastly health, high spirits, shield feature, packratlike features, and the ability to instantly kill",
+    ),
+    # Iriswolf 🔰 3p 2h
+    # costs: - has: 👻 pot: 24
+    Blueprint(
+        original=Card(
+            name="Iriswolf",
+            power=3,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Shield],
+        ),
+        description='no fire, nocturnal, "Shield" skill, low power, decent health',
+    ),
+    # Skygrizzly 🦔🐭💀🧺🔰🪁 8p 7h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Skygrizzly",
+            power=8,
+            health=7,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.Spines,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+                skills.Soaring,
+            ],
+        ),
+        description="combines the card's high power and health with a dominance of spirit resources, evoking the image of a massive grizzly bear soaring through the sky Skills like Spines and Soaring represent its formidable abilities in battle, while Fertility and Shield emphasize its adaptability and strength",
+    ),
+    # Aerogator 🐭🚀🔰💀🧺🦔 7p 5h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻 pot: 54
+    Blueprint(
+        original=Card(
+            name="Aerogator",
+            power=7,
+            health=5,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Airdefense,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Spines,
+            ],
+        ),
+        description="relates to its air defense skill, while also implying speed and power",
+    ),
+    # Goldmite  3p 2h
+    # costs: 🔥 has: 🔥🔥👻 pot: 10
+    Blueprint(
+        original=Card(
+            name="Goldmite",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[],
+        ),
+        description="a small, valuable creature that relates to its low attribute values but still having value with the costsfire",
+    ),
+    # Fireshark  4p 5h
+    # costs: 🔥🔥 has: 🔥👻👻👻👻👻 pot: 19
+    Blueprint(
+        original=Card(
+            name="Fireshark",
+            power=4,
+            health=5,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=1,
+            skills=[],
+        ),
+        description="relates to its fire costs and power, while also implying strength and danger",
+    ),
+    # Frogling 💀🧺🐭 5p 4h
+    # costs: 👻👻👻👻👻 has: 🔥🔥👻👻👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Frogling",
+            power=5,
+            health=4,
+            costs_fire=0,
+            costs_spirits=5,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.InstantDeath, skills.Packrat, skills.Fertility],
+        ),
+        description="relates to its costsspirits, packrat and fertility skills, and lower power attribute",
+    ),
+    # Baneagle 🐭💀 2p 6h
+    # costs: 🔥 has: - pot: 27
+    Blueprint(
+        original=Card(
+            name="Baneagle",
+            power=2,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description='The bird of terror, combining high power and health with two dangerous skills The "ban" prefix of the name meaning misfortune, an appropriate name for a card which brings terror to the enemy and good fortune to the player',
+    ),
+    # Chimppunk 🚀🧺🐭🔰💀🦔 8p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="Chimppunk",
+            power=8,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.Airdefense,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Spines,
+            ],
+        ),
+        description="A hybrid of a chimpanzee and a chipmunk, combining high power and health with many skills Its name starts with the chimp of chimpanzee and ends with the punk of chipmunk, fitting the fierce and mischievous character of the card",
+    ),
+    # Flickerfin 🦔 10p 2h
+    # costs: 🔥 has: 👻 pot: 23
+    Blueprint(
+        original=Card(
+            name="Flickerfin",
+            power=10,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Spines],
+        ),
+        description='A creature with very high power but low health, with a single spines skill Its fins "flicker," giving the impression of a hybrid between a fish and another animal, almost like a unicorn fish',
+    ),
+    # Dragonox 🔰🐩💀🐭🧺 7p 4h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 52
+    Blueprint(
+        original=Card(
+            name="Dragonox",
+            power=7,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Shield,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description="The dragon part of the name suggests the card's high power, while the ox part suggests the high health The skills Shield and Fertility also hint at a strong, protective creature that can aid in breeding other cards",
+    ),
+    # Griffphoenix 🐭💀🧺🪁🔰 7p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Griffphoenix",
+            power=7,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Soaring,
+                skills.Shield,
+            ],
+        ),
+        description="The name combines two mythical creatures griffin and phoenix to suggest a strong, majestic and highly spirited creature The high attribute values and skill set also hint at a creature fit for a king",
+    ),
+    # Treasureat 🧺 1p 1h
+    # costs: 👻 has: 🔥👻 pot: 9
+    Blueprint(
+        original=Card(
+            name="Treasureat",
+            power=1,
+            health=1,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Packrat],
+        ),
+        description="The name suggests a small creature the 'at' suffix with a skill for collecting and hoarding Packrat The low attribute values suggest a small, unimposing creature, while the spirit attribute hints at a sort of magical quality that encourages players to keep the creature around",
+    ),
+    # Flamelion 🔰 3p 1h
+    # costs: 🔥🔥🔥 has: 🔥 pot: 11
+    Blueprint(
+        original=Card(
+            name="Flamelion",
+            power=3,
+            health=1,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Shield],
+        ),
+        description="high fire cost, damage dealer, Shield skill",
+    ),
+    # Hedgehoggo 🦔 1p 9h
+    # costs: - has: 🔥 pot: 29
+    Blueprint(
+        original=Card(
+            name="Hedgehoggo",
+            power=1,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Spines],
+        ),
+        description="This name plays on the card's Spines skill and its high health The cute and friendlysounding name is a reference to the card's low power and the nature of hedgehogs as being small and cute, yet they're still able to protect themselves effectively",
+    ),
+    # Flamemite 💀🐭 6p 2h
+    # costs: 🔥 has: 🔥👻👻👻👻👻👻 pot: 33
+    Blueprint(
+        original=Card(
+            name="Flamemite",
+            power=6,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Fertility],
+        ),
+        description="This name is inspired by the card's high Spirit attribute and its affinity for fire The skill of InstantDeath also plays into the dangerous and fiery nature of the card, while its high power and low health are wellsuited to the concept of a tiny but powerful mite that can do considerable damage",
+    ),
+    # Firelioness 🔰💀 1p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻 pot: 33
+    Blueprint(
+        original=Card(
+            name="Firelioness",
+            power=1,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[skills.Shield, skills.InstantDeath],
+        ),
+        description='This card has high fire and decent spirits stats, and the Shield and InstantDeath skills only add to its ferocity The name combines "fire" and "lioness" to reflect its power',
+    ),
+    # Driftheart  2p 7h
+    # costs: - has: 🔥👻 pot: 26
+    Blueprint(
+        original=Card(
+            name="Driftheart",
+            power=2,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description='As this card has no fire or spirits costs and no skills, we chose a name that reflects its relatively neutral attributes "Drift" could relate to the card\'s overall lack of specialization, while "heart" suggests its high health stat',
+    ),
+    # Diamondhog 🐭🔰🚀💀🐩🧺 6p 10h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 78
+    Blueprint(
+        original=Card(
+            name="Diamondhog",
+            power=6,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Airdefense,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Packrat,
+            ],
+        ),
+        description="With high spirits and fire stats and several useful skills, this is a powerful card that's also quite expensive to play The name \"Diamondhog\" suggests the card's toughness like a diamond and its overall hoglike shape",
+    ),
+    # Infernova 🧺🔰🐭💀🐩🦔 6p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 60
+    Blueprint(
+        original=Card(
+            name="Infernova",
+            power=6,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Spines,
+            ],
+        ),
+        description='This card has a high power and health, and multiple skills, including the Packrat skill which suggests hoarding The name "Infernova" combines "inferno" to denote the card\'s high power and "nova" to allude to the card\'s association with the Packrat skill, which hints at stockpiling resources for a cataclysmic event',
+    ),
+    # Driftclaw 🧺 4p 1h
+    # costs: 🔥 has: 🔥👻👻👻 pot: 16
+    Blueprint(
+        original=Card(
+            name="Driftclaw",
+            power=4,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Packrat],
+        ),
+        description='This card has average power but low health and the Packrat skill The name "Driftclaw" relates to this card\'s Packrat skill because a "drift" is a collection of items that have accumulated, and "claw" is a reference to the ratlike quality of being a hoarder',
+    ),
+    # Fatespider 🐭🐩💀 3p 6h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="Fatespider",
+            power=3,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Fertility, skills.Underdog, skills.InstantDeath],
+        ),
+        description='This card has low power but high health and three skills Fertility, Underdog, and InstantDeath The name "Fatespider" implies a creature with the ability to manipulate fate, which references the InstantDeath skill The "spider" part of the name alludes to the card\'s high health, which relates to the idea of a creature being hard to kill',
+    ),
+    # Stoneshell  2p 4h
+    # costs: - has: 🔥👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Stoneshell",
+            power=2,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description='This card has low power and health but no skills The name "Stoneshell" is fitting for a creature with high defense and a low attack, suggesting that the creature is tough to take down or penetrate',
+    ),
+    # Empressfly 🧺💀🐭🔰 9p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 65
+    Blueprint(
+        original=Card(
+            name="Empressfly",
+            power=9,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+            ],
+        ),
+        description="using the high spirits attribute and skill names to suggest power, dominance",
+    ),
+    # Underthorn 🐩🧺💀 7p 5h
+    # costs: 🔥 has: 🔥🔥👻👻👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Underthorn",
+            power=7,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.Underdog, skills.Packrat, skills.InstantDeath],
+        ),
+        description="using the underdog skill and thorn attribute to suggest cunningness and danger",
+    ),
+    # Shadowclaw 🦔🔰🐭🧺🚀💀 7p 6h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 69
+    Blueprint(
+        original=Card(
+            name="Shadowclaw",
+            power=7,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Spines,
+                skills.Shield,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Airdefense,
+                skills.InstantDeath,
+            ],
+        ),
+        description="This name suits the card as it is quite powerful in terms of its power and health Additionally, its skills allow it to defend itself Shield, gather resources Packrat, and cause destruction InstantDeath The name Shadowclaw invokes the image of a stealthy, powerful, and readytostrike creature",
+    ),
+    # Packowl 🧺🐭🔰💀 4p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Packowl",
+            power=4,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+            ],
+        ),
+        description="With a decent amount of power and health and the ability to gather resources Packrat and reproduce Fertility, this creature seems like a useful creature to have on your team The name Packowl invokes the image of a wise animal that is constantly building up its resources, ready to use them in battle",
+    ),
+    # Emberhawk  3p 6h
+    # costs: 🔥 has: 🔥🔥🔥 pot: 17
+    Blueprint(
+        original=Card(
+            name="Emberhawk",
+            power=3,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=3,
+            skills=[],
+        ),
+        description="relatively high power and health, with a moderate fire attribute",
+    ),
+    # Faeotter 🧺💀🐭🦔🔰 5p 10h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 71
+    Blueprint(
+        original=Card(
+            name="Faeotter",
+            power=5,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Spines,
+                skills.Shield,
+            ],
+        ),
+        description="has multiple skills and high spirit attributes",
+    ),
+    # Skywolf 🐩🪁💀🔰🐭 5p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 68
+    Blueprint(
+        original=Card(
+            name="Skywolf",
+            power=5,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Underdog,
+                skills.Soaring,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description="relatively high spirit attributes with a skill that involves soaring",
+    ),
+    # Hornedowl 🪁🔰 9p 3h
+    # costs: 🔥 has: 👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Hornedowl",
+            power=9,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Soaring, skills.Shield],
+        ),
+        description="high power and the skill of shield, emphasizes the defensive aspect",
+    ),
+    # Thornlemur 🐭🪁🔰🦔🧺 5p 5h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Thornlemur",
+            power=5,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Soaring,
+                skills.Shield,
+                skills.Spines,
+                skills.Packrat,
+            ],
+        ),
+        description="relatively balanced and has multiple skills and high spine attribute",
+    ),
+    # DiamondDrake 💀🪁🔰🐩🧺🐭 8p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 70
+    Blueprint(
+        original=Card(
+            name="DiamondDrake",
+            power=8,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Soaring,
+                skills.Shield,
+                skills.Underdog,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description="high power and health, high cost, and a mix of various defensive and offensive skills",
+    ),
+    # SaberPup  6p 3h
+    # costs: - has: 🔥👻 pot: 26
+    Blueprint(
+        original=Card(
+            name="SaberPup",
+            power=6,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description='moderate power and health, no cost to play, no skills, implied "underdog" status',
+    ),
+    # StormHare 💀🔰🧺🐭 2p 6h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="StormHare",
+            power=2,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description='moderate power and health, low cost, a mix of offensive and defensive skills, and the implication of agility with "soaring"',
+    ),
+    # PhoenixBear 💀🐩🧺🐭🔰 7p 3h
+    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 48
+    Blueprint(
+        original=Card(
+            name="PhoenixBear",
+            power=7,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+            ],
+        ),
+        description="high power, moderate health and cost, and a mix of offensive and defensive skills, suggesting a powerful and fiery beast",
+    ),
+    # ThornyDragon 🔰🦔🐭 7p 4h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="ThornyDragon",
+            power=7,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Shield, skills.Spines, skills.Fertility],
+        ),
+        description='high power, moderate health, no cost to play, and a mix of defensive and offensive skills, with the "thorny" attribute perhaps suggesting added damage to opponents',
+    ),
+    # Flightdove 🪁🐭 3p 2h
+    # costs: 🔥 has: 🔥 pot: 18
+    Blueprint(
+        original=Card(
+            name="Flightdove",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Soaring, skills.Fertility],
+        ),
+        description="This card has the skill Soaring which suggests that it can fly It has low health, suggesting that it can fly out of reach of the opponent's card Flightdove is a fitting fantastical name for a bird that can fly, with 'flight' in the name representing the skill Soaring and 'dove' representing the low health",
+    ),
+    # Firewolfpack 🔰🪁🐭🧺💀 8p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Firewolfpack",
+            power=8,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Shield,
+                skills.Soaring,
+                skills.Fertility,
+                skills.Packrat,
+                skills.InstantDeath,
+            ],
+        ),
+        description="This card has high power and health, and both fire and spirits as resources The skills of the card reflect a strong and unpredictable pack of wolves Firewolfpack is also a fitting name to suggest a group of wolves that control fire",
+    ),
+    # Gloomkraken 🐭 0p 4h
+    # costs: 👻 has: 🔥👻 pot: 15
+    Blueprint(
+        original=Card(
+            name="Gloomkraken",
+            power=0,
+            health=4,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="This card has high health and costs only spirits to play, which suggests a more defensive playstyle The name Gloomkraken sounds dark and mysterious, fitting for a fantastical creature that can protect itself with the skill Fertility",
+    ),
+    # Spiritnaga  0p 6h
+    # costs: 👻👻👻👻 has: 🔥 pot: 7
+    Blueprint(
+        original=Card(
+            name="Spiritnaga",
+            power=0,
+            health=6,
+            costs_fire=0,
+            costs_spirits=4,
+            has_spirits=0,
+            has_fire=1,
+            skills=[],
+        ),
+        description="This card has no fire resources but is built around spirits It has high health, low power, and no skills Spiritnaga is fitting name that captures an image of a serpentlike creature that can only control spirits, but makes up for it with durability",
+    ),
+    # Glittersnail  2p 3h
+    # costs: 🔥🔥 has: 🔥👻 pot: 8
+    Blueprint(
+        original=Card(
+            name="Glittersnail",
+            power=2,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description='This fantastical creature is slow but steady, with a hard shell that makes it difficult to defeat The attribute values of Card  are balanced and not too extreme, but the card requires a decent amount of fire energy The name Glittersnail fits well with the idea of a small creature that shines and catches your eye, while the "snail" part references the card\'s low speed',
+    ),
+    # Faedancer 🐭 1p 3h
+    # costs: - has: 🔥👻 pot: 25
+    Blueprint(
+        original=Card(
+            name="Faedancer",
+            power=1,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description='This card has a relatively low power and health, but a fertility skill that allows it to reproduce quickly and overwhelm opponents The name Faedancer invokes a graceful, elegant creature that is also evocative of the card\'s skill of "Fertility"',
+    ),
+    # Packhoard 🧺🔰🐭🐩 5p 3h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻👻👻 pot: 40
+    Blueprint(
+        original=Card(
+            name="Packhoard",
+            power=5,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Packrat, skills.Shield, skills.Fertility, skills.Underdog],
+        ),
+        description='This card is expensive to play and has a high power and some useful skills, but has low health The name Packhoard references the card\'s skill of "Packrat," and the idea of a creature that is willing to hoard and protect valuable items at all costs',
+    ),
+    # Spiritclaw 🐩🔰🧺🐭 5p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Spiritclaw",
+            power=5,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[skills.Underdog, skills.Shield, skills.Packrat, skills.Fertility],
+        ),
+        description="This card has very high power and health, as well as several useful skills The name Spiritclaw conveys the idea of a powerful creature that is difficult to defeat in battle",
+    ),
+    # Shadowstalker 💀🔰🐩🐭🦔 5p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 59
+    Blueprint(
+        original=Card(
+            name="Shadowstalker",
+            power=5,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Underdog,
+                skills.Fertility,
+                skills.Spines,
+            ],
+        ),
+        description="moderate health and power, several skills including shield and instant death",
+    ),
+    # Lavaox 🐭🔰🐩 9p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="Lavaox",
+            power=9,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[skills.Fertility, skills.Shield, skills.Underdog],
+        ),
+        description="expensive, fiery, high power and health, with multiple skills including fertility and shield",
+    ),
+    # Violethog 🚀 2p 2h
+    # costs: 🔥 has: 🔥👻👻👻👻 pot: 11
+    Blueprint(
+        original=Card(
+            name="Violethog",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=1,
+            skills=[skills.Airdefense],
+        ),
+        description="moderate health and power, with air defense skill",
+    ),
+    # Shadowcrow 🔰🐭💀🦔🧺 6p 10h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Shadowcrow",
+            power=6,
+            health=10,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Spines,
+                skills.Packrat,
+            ],
+        ),
+        description="high power and health, relatively expensive to play, with a mix of skills including Shield, Fertility, and Spines the name evokes a dark, ominous creature that is hard to kill and highly adaptable",
+    ),
+    # Fangbat 💀🐩 4p 10h
+    # costs: 👻 has: 🔥👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Fangbat",
+            power=4,
+            health=10,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Underdog],
+        ),
+        description="no fire cost, high spirit cost, low power but high health, with skills including Instant Death and Underdog the name evokes a small, sneaky creature with sharp teeth that can outlast its opponents",
+    ),
+    # Pyraptor 🧺💀🐩🔰🐭 10p 7h
+    # costs: 👻 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 65
+    Blueprint(
+        original=Card(
+            name="Pyraptor",
+            power=10,
+            health=7,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description="high power and moderate health, no fire cost but a moderate spirit cost, with a range of skills including Packrat, Instant Death, and Shield the name evokes a bird of prey that thrives in fiery environments, and is fiercely loyal to its allies",
+    ),
+    # Infernopede 🐩💀🦔🧺🐭 10p 5h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 58
+    Blueprint(
+        original=Card(
+            name="Infernopede",
+            power=10,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Spines,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description="With a high power and low health, and skills like InstantDeath, Spines, and Underdog, this card has a fiery and dangerous vibe to it Its name is related to both its high fire cost costsfire and its numerous legs pede, which connect to its high power and ability to strike from below Underdog The Inferno part adds to the burn damage it can cause with its skills",
+    ),
+    # Deathsting 💀🐭🧺🐩🦔 10p 10h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 67
+    Blueprint(
+        original=Card(
+            name="Deathsting",
+            power=10,
+            health=10,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Spines,
+            ],
+        ),
+        description="The card has a very high power and health making it almost unbeatable Instant death and spines skills make it more lethal",
+    ),
+    # Magmuse 💀 2p 5h
+    # costs: 🔥🔥🔥 has: 🔥🔥👻👻👻 pot: 20
+    Blueprint(
+        original=Card(
+            name="Magmuse",
+            power=2,
+            health=5,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.InstantDeath],
+        ),
+        description="Low power, not much fire cost, and instant death skill makes this card fit for roleplaying a muse from the underworld",
+    ),
+    # Hollowflame  4p 2h
+    # costs: 🔥🔥 has: 🔥 pot: 9
+    Blueprint(
+        original=Card(
+            name="Hollowflame",
+            power=4,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[],
+        ),
+        description="Not many attributes except for moderate power and fire cost, this card is named that because it gives you the impression of something that looks and sounds hot, powerful but also fragile",
+    ),
+    # Frostlion 🐩🧺🐭🔰 8p 8h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻👻👻 pot: 54
+    Blueprint(
+        original=Card(
+            name="Frostlion",
+            power=8,
+            health=8,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Underdog, skills.Packrat, skills.Fertility, skills.Shield],
+        ),
+        description="powerful, has both fire and spirits, expensive, has high health and power, several skills including Shield and Packrat",
+    ),
+    # Flamefly 🪁 0p 1h
+    # costs: 🔥 has: 🔥🔥🔥🔥 pot: 6
+    Blueprint(
+        original=Card(
+            name="Flamefly",
+            power=0,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=4,
+            skills=[skills.Soaring],
+        ),
+        description="low powerhealth, skill Soaring, costs only fire, has fire but no spirits, quick and cheap",
+    ),
+    # Dreamwolf 🐩 6p 2h
+    # costs: - has: 🔥🔥👻👻👻👻👻 pot: 32
+    Blueprint(
+        original=Card(
+            name="Dreamwolf",
+            power=6,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=2,
+            skills=[skills.Underdog],
+        ),
+        description="expensive, has spirits but no fire, skill Underdog, high power, low health",
+    ),
+    # Leechbat 🔰💀🧺 3p 10h
+    # costs: 🔥 has: 🔥🔥👻👻👻 pot: 43
+    Blueprint(
+        original=Card(
+            name="Leechbat",
+            power=3,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.Shield, skills.InstantDeath, skills.Packrat],
+        ),
+        description="skill Shield, Instant Death and Packrat, high health, low power, costs little fire, some spirits",
+    ),
+    # Deathsparrow 💀🐭🔰 2p 4h
+    # costs: 🔥 has: 🔥 pot: 30
+    Blueprint(
+        original=Card(
+            name="Deathsparrow",
+            power=2,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Fertility, skills.Shield],
+        ),
+        description="powerful and deadly yet delicate and vulnerable, with balanced stats, high cost, and defensive skills",
+    ),
+    # Souljaguar 🔰💀🪁🧺 7p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Souljaguar",
+            power=7,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[skills.Shield, skills.InstantDeath, skills.Soaring, skills.Packrat],
+        ),
+        description="powerful and spirited, with high stats, no cost to play, and versatile defensive and offensive skills",
+    ),
+    # Emberweasel  1p 4h
+    # costs: 🔥🔥 has: 🔥👻👻👻 pot: 10
+    Blueprint(
+        original=Card(
+            name="Emberweasel",
+            power=1,
+            health=4,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[],
+        ),
+        description="low power and high spirit, with moderate health and cost, and no skills",
+    ),
+    # Soulspike 🐭🦔💀 1p 2h
+    # costs: 🔥 has: - pot: 21
+    Blueprint(
+        original=Card(
+            name="Soulspike",
+            power=1,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.Fertility, skills.Spines, skills.InstantDeath],
+        ),
+        description="This card has a lot of offensive and defensive skills so I went for a name that sounded strong and mystical",
+    ),
+    # Growlfang 💀🐭🔰🧺🐩 7p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 59
+    Blueprint(
+        original=Card(
+            name="Growlfang",
+            power=7,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+                skills.Packrat,
+                skills.Underdog,
+            ],
+        ),
+        description='I wanted a name that highlighted the high power and health stats "Growlfang" connotes strength and ferocity',
+    ),
+    # Dreameon 🧺🐭💀 3p 8h
+    # costs: - has: 🔥🔥🔥👻👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Dreameon",
+            power=3,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[skills.Packrat, skills.Fertility, skills.InstantDeath],
+        ),
+        description='This card is inexpensive, but has high health and a several useful skills The name "Dreameon" sounds mystical and powerful, with a nod to the dreamrelated "Fertility" skill',
+    ),
+    # Spikewing 🦔🐭🪁 5p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Spikewing",
+            power=5,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[skills.Spines, skills.Fertility, skills.Soaring],
+        ),
+        description="This card's spines, fertility, and soaring abilities are a perfect fit for the name Spikewing A creature both fearsome and nimble, it suits its min max values and skills well",
+    ),
+    # Spikefin 🚀💀🐩🦔 6p 2h
+    # costs: 👻 has: 🔥🔥🔥🔥🔥👻👻 pot: 32
+    Blueprint(
+        original=Card(
+            name="Spikefin",
+            power=6,
+            health=2,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=2,
+            has_fire=5,
+            skills=[
+                skills.Airdefense,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Spines,
+            ],
+        ),
+        description="This card has relatively low health but decent power, coupled with skills such as air defense, instant death, underdog, and spines The Spikefin name leverages the spines and aquatic nature of the card, suggesting a fishlike creature that can surprise its foes",
+    ),
+    # Deathweave 💀🧺🔰🐭 6p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 60
+    Blueprint(
+        original=Card(
+            name="Deathweave",
+            power=6,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description="related to the InstantDeath skill and the Shield skill, suggesting a deadly, yet protected creature",
+    ),
+    # Redjay  5p 4h
+    # costs: 🔥🔥 has: 🔥👻 pot: 15
+    Blueprint(
+        original=Card(
+            name="Redjay",
+            power=5,
+            health=4,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description="referring to its red fire attribute and its nimble nature",
+    ),
+    # Lavakitten  1p 2h
+    # costs: 🔥 has: 🔥🔥 pot: 6
+    Blueprint(
+        original=Card(
+            name="Lavakitten",
+            power=1,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=2,
+            skills=[],
+        ),
+        description="cute and harmless name for a small creature with a fiery attribute",
+    ),
+    # Spikeheart 🧺🔰💀🦔🐭 8p 8h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 63
+    Blueprint(
+        original=Card(
+            name="Spikeheart",
+            power=8,
+            health=8,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Spines,
+                skills.Fertility,
+            ],
+        ),
+        description="strong, with spines and high health",
+    ),
+    # Sprouturtle 🐭 2p 3h
+    # costs: - has: 🔥👻 pot: 27
+    Blueprint(
+        original=Card(
+            name="Sprouturtle",
+            power=2,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="referring to the Fertility skill and low powerhealth, suggesting a small creature that can grow and become stronger over time",
+    ),
+    # Frostwolf 🐭 3p 2h
+    # costs: 🔥 has: 🔥 pot: 16
+    Blueprint(
+        original=Card(
+            name="Frostwolf",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="has fire, but low spirits, frostwinterthemed, quite strong health",
+    ),
+    # Earthboar  2p 2h
+    # costs: 🔥🔥🔥 has: 🔥👻👻 pot: 7
+    Blueprint(
+        original=Card(
+            name="Earthboar",
+            power=2,
+            health=2,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[],
+        ),
+        description="low powerhealth, but tough, high fire  cost, earththemed, no skills",
+    ),
+    # Skybadger 🐭💀🪁🚀🧺🔰 3p 4h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="Skybadger",
+            power=3,
+            health=4,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Soaring,
+                skills.Airdefense,
+                skills.Packrat,
+                skills.Shield,
+            ],
+        ),
+        description="high spirit, multiple skills including air defense and soaring, high cost, relate to fantasy and aerial abilities",
+    ),
+    # SpinyKraken 🐩🦔🐭🔰💀 3p 6h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="SpinyKraken",
+            power=3,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Underdog,
+                skills.Spines,
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+            ],
+        ),
+        description="This card has a mix of high offense, defense, and a lot of skills that help it stay alive in various situations The name reflects its high health and spikelike abilities while also being a fantastical creature",
+    ),
+    # Quickspike 🐩🔰🪁🐭 3p 5h
+    # costs: - has: 🔥🔥👻👻👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="Quickspike",
+            power=3,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=2,
+            skills=[skills.Underdog, skills.Shield, skills.Soaring, skills.Fertility],
+        ),
+        description="With moderate power and high health, plus several skills including Shield and Underdog, this card is a sturdy fighter with some tricks up its sleeve Its name reflects its moderate offensive power and spiny nature",
+    ),
+    # FieryOcto 🧺🚀🐭 0p 2h
+    # costs: 🔥🔥 has: 👻 pot: 16
+    Blueprint(
+        original=Card(
+            name="FieryOcto",
+            power=0,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Packrat, skills.Airdefense, skills.Fertility],
+        ),
+        description='This card has no fire, but requires a high cost of fire to be played The name "FieryOcto" implies an octopus with fiery qualities, despite not having any literal fire attributes This name reflects the fire cost required to play the card',
+    ),
+    # SpiritElephant 💀🔰🐭 1p 8h
+    # costs: 👻👻👻👻 has: 🔥🔥👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="SpiritElephant",
+            power=1,
+            health=8,
+            costs_fire=0,
+            costs_spirits=4,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.InstantDeath, skills.Shield, skills.Fertility],
+        ),
+        description='Although it has a low cost of fire and high cost of spirits, this card is powerful thanks to skills like InstantDeath The name "SpiritElephant" reflects its high spirit attribute, while also emphasizing its toughness and strength through the elephant aspect',
+    ),
+    # SkyTurtle 🪁🚀🔰🐭 8p 5h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="SkyTurtle",
+            power=8,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[skills.Soaring, skills.Airdefense, skills.Shield, skills.Fertility],
+        ),
+        description='With high power and health, plus skills like Soaring and Airdefense, this card has an aerial advantage The name "SkyTurtle" implies a turtle with airbased abilities, reflecting this card\'s ability to fly and defend against airborne attacks',
+    ),
+    # Skyspike 🪁🧺💀🔰🦔 6p 5h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Skyspike",
+            power=6,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.Soaring,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Spines,
+            ],
+        ),
+        description="high fire and spirits, soaring ability, spines, high power and health",
+    ),
+    # Darkmamba 💀 3p 5h
+    # costs: 🔥 has: 🔥👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Darkmamba",
+            power=3,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="low cost, instant death skill, moderate powerhealth, moderate fire",
+    ),
+    # Spikegryphon 🐩🪁🔰🧺💀🐭 3p 7h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻👻👻 pot: 51
+    Blueprint(
+        original=Card(
+            name="Spikegryphon",
+            power=3,
+            health=7,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Underdog,
+                skills.Soaring,
+                skills.Shield,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Fertility,
+            ],
+        ),
+        description="moderate cost, balanced fire and spirits, multiple skills",
+    ),
+    # Earthquake 🔰🪁 1p 9h
+    # costs: 🔥🔥 has: 🔥👻 pot: 25
+    Blueprint(
+        original=Card(
+            name="Earthquake",
+            power=1,
+            health=9,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Shield, skills.Soaring],
+        ),
+        description="high health, shielded",
+    ),
+    # Chimeraforce 🔰🐭🪁💀🧺 8p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Chimeraforce",
+            power=8,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.Fertility,
+                skills.Soaring,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description="powerful, versatile, spirited",
+    ),
+    # Faelarva 🐭 0p 5h
+    # costs: 🔥 has: 🔥👻 pot: 17
+    Blueprint(
+        original=Card(
+            name="Faelarva",
+            power=0,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="fertile, fragile, small",
+    ),
+    # Thunderstorm 🔰🪁💀🐭🧺🐩 10p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="Thunderstorm",
+            power=10,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=6,
+            skills=[
+                skills.Shield,
+                skills.Soaring,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Packrat,
+                skills.Underdog,
+            ],
+        ),
+        description="very powerful, shielded, versatile, spirited, underdog",
+    ),
+    # Stormpanth 🐩🐭💀🧺🔰 6p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 74
+    Blueprint(
+        original=Card(
+            name="Stormpanth",
+            power=6,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.Underdog,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Shield,
+            ],
+        ),
+        description='This card has high power and health, and skills such as InstantDeath and Shield, which are associated with a powerful warrior The name "Stormpanth" captures this strength and resilience',
+    ),
+    # Skyjelly 🐭🔰🚀💀🧺 3p 7h
+    # costs: 👻👻👻 has: 🔥🔥👻👻 pot: 44
+    Blueprint(
+        original=Card(
+            name="Skyjelly",
+            power=3,
+            health=7,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=2,
+            has_fire=2,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Airdefense,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description='With higher spirit costs and skills such as Shield and Airdefense, this card evokes ideas of floating, ethereal creatures The name "Skyjelly" suggests a translucent and mystical essence',
+    ),
+    # MysticRoach 💀🧺🐭🔰 3p 8h
+    # costs: 👻👻 has: 🔥🔥🔥👻👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="MysticRoach",
+            power=3,
+            health=8,
+            costs_fire=0,
+            costs_spirits=2,
+            has_spirits=4,
+            has_fire=3,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+            ],
+        ),
+        description="This card is a tank with a high health and uses its Shield skill to protect itself Its InstantDeath skill can take down enemies quickly, and its Packrat skill allows it to stockpile resources The name MysticRoach relates to its ability to stockpile resources and its shieldlike armor, which also relates to a shield bug",
+    ),
+    # SeaSquirt  5p 1h
+    # costs: 👻 has: 🔥🔥👻👻 pot: 13
+    Blueprint(
+        original=Card(
+            name="SeaSquirt",
+            power=5,
+            health=1,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=2,
+            has_fire=2,
+            skills=[],
+        ),
+        description="This card has low stats but doesn't require much to play and has quick mobility with spirit and fire costs of only  The name SeaSquirt relates to its quick movement and low requirements, like that of sea creatures that dart around the ocean floor",
+    ),
+    # SkyFalcon 🚀💀🐭 5p 1h
+    # costs: 🔥 has: 🔥👻 pot: 26
+    Blueprint(
+        original=Card(
+            name="SkyFalcon",
+            power=5,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Airdefense, skills.InstantDeath, skills.Fertility],
+        ),
+        description="This card is a flying unit with the ability to defend against air attacks with its Airdefense skill The name SkyFalcon relates to its ability to fly and its strength in defending airborne threats",
+    ),
+    # ArmoredToad 🐭🔰 2p 7h
+    # costs: 👻 has: 🔥🔥👻👻👻👻 pot: 34
+    Blueprint(
+        original=Card(
+            name="ArmoredToad",
+            power=2,
+            health=7,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=4,
+            has_fire=2,
+            skills=[skills.Fertility, skills.Shield],
+        ),
+        description="This card has high health but low attack power and the Fertility skill, which allows it to reproduce more units The name ArmoredToad relates to its armorlike shell, which hints at its high health, and its Fertility skill is similar to that of amphibians that can lay many eggs",
+    ),
+    # Pricktail 🦔💀🐭 8p 6h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 45
+    Blueprint(
+        original=Card(
+            name="Pricktail",
+            power=8,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Spines, skills.InstantDeath, skills.Fertility],
+        ),
+        description="high powerhealth, spines, instant death, fertility",
+    ),
+    # Glimmernix 🐭 10p 2h
+    # costs: 🔥🔥 has: 🔥👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Glimmernix",
+            power=10,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="very high power, low health, fertility",
+    ),
+    # Bonemite 💀 1p 8h
+    # costs: 🔥 has: 🔥👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Bonemite",
+            power=1,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="high health, instant death",
+    ),
+    # Thornscape 🔰💀🐭 2p 4h
+    # costs: 🔥 has: 🔥🔥👻👻👻👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Thornscape",
+            power=2,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=2,
+            skills=[skills.Shield, skills.InstantDeath, skills.Fertility],
+        ),
+        description="low power, moderate health, shield, fertility, related to nature or thorns",
+    ),
+    # Spiritogre 🐭🐩🔰🧺💀 8p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 68
+    Blueprint(
+        original=Card(
+            name="Spiritogre",
+            power=8,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Underdog,
+                skills.Shield,
+                skills.Packrat,
+                skills.InstantDeath,
+            ],
+        ),
+        description="The card has high power and health, making it strong and almost invincible It also has the Instant Death skill, adding to its power The name Spiritogre reflects its terrifying and otherworldly nature",
+    ),
+    # Shadowchim 🧺💀🐩🔰🐭 6p 9h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Shadowchim",
+            power=6,
+            health=9,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description="The card has medium power, high health, and is quite costly in terms of both fire and spirits The name Shadowchim reflects its dark, mysterious nature and tough exterior given its high health",
+    ),
+    # Spinytail 💀🐭🦔 2p 6h
+    # costs: 🔥 has: 🔥👻👻👻 pot: 33
+    Blueprint(
+        original=Card(
+            name="Spinytail",
+            power=2,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Fertility, skills.Spines],
+        ),
+        description="The card has low power and health, but also has the Spines skill, making it a formidable opponent The name Spinytail reflects its spiky nature, which is its greatest weapon",
+    ),
+    # Spiritleo 💀🧺🪁🐭🔰🦔 9p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 78
+    Blueprint(
+        original=Card(
+            name="Spiritleo",
+            power=9,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Soaring,
+                skills.Fertility,
+                skills.Shield,
+                skills.Spines,
+            ],
+        ),
+        description="The card has high power and health, is free in terms of fire cost, and has six skills The name Spiritleo reflects the card's regal nature, strength, and spiritual power",
+    ),
+    # Crabwraith  3p 1h
+    # costs: 🔥🔥 has: - pot: 5
+    Blueprint(
+        original=Card(
+            name="Crabwraith",
+            power=3,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[],
+        ),
+        description="With its low health and no defensive skills, this card is quick to die, like a crab However, its high damage output  power and moderate cost in fire  make it an aggressive creature Wraith, as the second part of the name, brings to mind ghostly, spectral creatures",
+    ),
+    # Grypharoo 🪁 2p 1h
+    # costs: 🔥🔥 has: 👻👻 pot: 7
+    Blueprint(
+        original=Card(
+            name="Grypharoo",
+            power=2,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=0,
+            skills=[skills.Soaring],
+        ),
+        description="This card has a cost in spirits  and the Soaring skill, which suggests it has wings It also has low fire , but moderate power  and low health  The name is a combination of Gryphon a creature with wings and kangaroo another animal known for jumping and being agile",
+    ),
+    # Lavaclaw  6p 1h
+    # costs: 🔥 has: 🔥👻👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Lavaclaw",
+            power=6,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[],
+        ),
+        description="This card is very strong  power and relatively cheap  fire It has no skills, so its strength is in its power alone Lavaclaw suggests a creature with fiery claws that can probably melt or burn things",
+    ),
+    # Pyrolynx 💀🐭 3p 2h
+    # costs: 🔥🔥🔥🔥 has: 🔥👻 pot: 21
+    Blueprint(
+        original=Card(
+            name="Pyrolynx",
+            power=3,
+            health=2,
+            costs_fire=4,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Fertility],
+        ),
+        description=" power,  health, high fire cost, relatively low cost otherwise, instant death, fertility",
+    ),
+    # Nightbat 💀 2p 1h
+    # costs: 👻 has: 👻 pot: 11
+    Blueprint(
+        original=Card(
+            name="Nightbat",
+            power=2,
+            health=1,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.InstantDeath],
+        ),
+        description=" power,  health, low spirit cost, no fire cost, instant death",
+    ),
+    # Flamedragon 🔰🧺💀🐭 9p 5h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻 pot: 55
+    Blueprint(
+        original=Card(
+            name="Flamedragon",
+            power=9,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[
+                skills.Shield,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Fertility,
+            ],
+        ),
+        description='this card is very powerful and has a high cost to summon, symbolized by the "flame" in its name, and the high power and health values The dragon element in the name adds to its fantastical nature Its skills, such as Shield and Packrat, are fitting of a dragon protecting its hoard',
+    ),
+    # Moledemon 💀🔰 4p 2h
+    # costs: 🔥🔥🔥🔥🔥 has: - pot: 18
+    Blueprint(
+        original=Card(
+            name="Moledemon",
+            power=4,
+            health=2,
+            costs_fire=5,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.InstantDeath, skills.Shield],
+        ),
+        description="the low attribute values and costly summoning make this card appear underwhelming but the powerful InstantDeath and Shield abilities make it a formidable opponent The demon aspect of the name adds a fantastical element to the mole, suggesting something far more dangerous than it first appears",
+    ),
+    # Underpup 🐩 2p 2h
+    # costs: 🔥 has: 🔥🔥👻 pot: 12
+    Blueprint(
+        original=Card(
+            name="Underpup",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Underdog],
+        ),
+        description="the attributes of this card are not the highest but it has the skills Shield and Underdog, which make it a tenacious and plucky fighter The name suggests a young dog or wolf, which would be fitting for a loyal and determined animal fighter",
+    ),
+    # Flamewing 🔰 0p 4h
+    # costs: 🔥🔥🔥 has: 🔥 pot: 11
+    Blueprint(
+        original=Card(
+            name="Flamewing",
+            power=0,
+            health=4,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Shield],
+        ),
+        description="costs Fire, skill Shield, and Fire attribute suggest a fiery creature that can withstand its own element",
+    ),
+    # Chimeraflame 🔰🐭🦔🐩 10p 5h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 52
+    Blueprint(
+        original=Card(
+            name="Chimeraflame",
+            power=10,
+            health=5,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[skills.Shield, skills.Fertility, skills.Spines, skills.Underdog],
+        ),
+        description="high power and Fire attribute, along with skills Shield and Spines suggest a fierce creature that embodies both fire and protection",
+    ),
+    # Arcanebeast 🐩🔰🐭🧺💀 9p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="Arcanebeast",
+            power=9,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Underdog,
+                skills.Shield,
+                skills.Fertility,
+                skills.Packrat,
+                skills.InstantDeath,
+            ],
+        ),
+        description="powerful, high health, high spirits and fire, diverse in skills",
+    ),
+    # Foxfirecat  3p 3h
+    # costs: 🔥🔥 has: 🔥👻 pot: 10
+    Blueprint(
+        original=Card(
+            name="Foxfirecat",
+            power=3,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[],
+        ),
+        description="moderate powerhealth, costs fire, low spirits, no skills",
+    ),
+    # Quickdeath 💀🔰🧺🐭🐩 1p 4h
+    # costs: 🔥🔥🔥 has: 🔥👻 pot: 36
+    Blueprint(
+        original=Card(
+            name="Quickdeath",
+            power=1,
+            health=4,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Underdog,
+            ],
+        ),
+        description="fits with InstantDeath skill and low health, implying a high riskhigh reward card, but powerful enough to potentially take out an opposing card quickly",
+    ),
+    # Radiantowl 🐭💀🔰🧺 6p 6h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Radiantowl",
+            power=6,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Packrat,
+            ],
+        ),
+        description="fits with high spirits and fire, and high powerhealth, suggesting a majestic bird with glowing feathers",
+    ),
+    # Platedbear 💀🧺🐭 7p 8h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 51
+    Blueprint(
+        original=Card(
+            name="Platedbear",
+            power=7,
+            health=8,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[skills.InstantDeath, skills.Packrat, skills.Fertility],
+        ),
+        description="fits with high health and Shield skill, implying a durable bear with armor plating",
+    ),
+    # Nightshell 🔰💀🧺🐩🐭 4p 4h
+    # costs: - has: 🔥🔥🔥👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Nightshell",
+            power=4,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Fertility,
+            ],
+        ),
+        description="suggests a creature that is hard to detect at night, fitting with the Underdog skill, and has high health and Shield skill, implying a wellprotected shell",
+    ),
+    # Flame Rat  4p 2h
+    # costs: 🔥 has: 🔥👻👻 pot: 12
+    Blueprint(
+        original=Card(
+            name="Flame Rat",
+            power=4,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[],
+        ),
+        description="This small card has decent power and low health, but is lowcost and balanced by having one fire and two spirit Fire and spirit overlap with the themes of rats, known for tenacity, agility, and being unpredictable",
+    ),
+    # Thorn Turtle 🐭🔰 2p 5h
+    # costs: 🔥 has: 🔥 pot: 26
+    Blueprint(
+        original=Card(
+            name="Thorn Turtle",
+            power=2,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Shield],
+        ),
+        description="The high health of this card and the two skills of Fertility and Shield, suggest a defensive nature to the creature The turtle is known for being a slow and steady companion, while 'thorn' evokes a layer of protection and durability to this fantastic creature",
+    ),
+    # Fire Kitten 🐭 2p 1h
+    # costs: 🔥🔥🔥 has: 🔥👻👻 pot: 13
+    Blueprint(
+        original=Card(
+            name="Fire Kitten",
+            power=2,
+            health=1,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="The skills and attributes of this card suggest a small, but feisty animal that can deal some damage, but doesn't have staying power The three cost in fire symbols adds an element of heat and danger to this kitten, while its high spiritedness suggests high energy levels",
+    ),
+    # Death Scorpion 🐭💀 3p 2h
+    # costs: 🔥🔥 has: 🔥👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Death Scorpion",
+            power=3,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description="The skills of Instant Death and Fertility suggest a creature that can quickly eliminate opponents, however, it does not have a high amount of power or health The two fire symbols suggest that it is a dangerous creature, and the name 'death scorpion' adds a layer of fear and intimidation to this fantastic animal",
+    ),
+    # Firehound  3p 1h
+    # costs: 🔥 has: 🔥 pot: 7
+    Blueprint(
+        original=Card(
+            name="Firehound",
+            power=3,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[],
+        ),
+        description="The card has average power and low health, but is relatively expensive to play Fire represents power and passion, and hounds are loyal and fierce, making this name a good fit The card also requires fire to play, further connecting it to the element",
+    ),
+    # Widowmoth 🧺💀 6p 1h
+    # costs: 🔥 has: - pot: 22
+    Blueprint(
+        original=Card(
+            name="Widowmoth",
+            power=6,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=0,
+            skills=[skills.Packrat, skills.InstantDeath],
+        ),
+        description="low health, low cost, instant death, pack rat",
+    ),
+    # DoomPuma 💀🔰 2p 2h
+    # costs: 🔥🔥 has: 🔥👻 pot: 19
+    Blueprint(
+        original=Card(
+            name="DoomPuma",
+            power=2,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Shield],
+        ),
+        description="InstantDeath, Shield",
+    ),
+    # Ghostwhale 🐭 2p 5h
+    # costs: 🔥 has: 🔥 pot: 20
+    Blueprint(
+        original=Card(
+            name="Ghostwhale",
+            power=2,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="high health, low fire and spirits, fertility",
+    ),
+    # Wispmouse 🐭🔰💀🧺 2p 3h
+    # costs: 🔥 has: 🔥🔥👻👻👻 pot: 37
+    Blueprint(
+        original=Card(
+            name="Wispmouse",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description="small, nimble, high spirits, multiple skills",
+    ),
+    # Glimmernaga 🐭 2p 6h
+    # costs: 🔥🔥🔥 has: 👻 pot: 20
+    Blueprint(
+        original=Card(
+            name="Glimmernaga",
+            power=2,
+            health=6,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description="high health, expensive, fertility",
+    ),
+    # Emberbeast 🐭💀🔰 2p 2h
+    # costs: 🔥 has: 🔥👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Emberbeast",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Shield],
+        ),
+        description="low health, fatal skills, high spirits",
+    ),
+    # Faelem 🐭 2p 2h
+    # costs: 👻👻👻 has: 🔥👻👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Faelem",
+            power=2,
+            health=2,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="This card has a low power but an okay health value but it has multiple skills including Fertility which stood out Since the card has a high spirit cost, Faelem sounds like a name that would befit a magical creature",
+    ),
+    # Fireworm 💀🐭 1p 6h
+    # costs: 🔥 has: 🔥 pot: 26
+    Blueprint(
+        original=Card(
+            name="Fireworm",
+            power=1,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Fertility],
+        ),
+        description="A low powerhigh health card with  fire cost Fireworm encompasses all these characteristics with the idea of fire representing power and strength while the worm represents the resilience of the card",
+    ),
+    # Galewing 🪁 3p 1h
+    # costs: 🔥🔥 has: 🔥👻 pot: 8
+    Blueprint(
+        original=Card(
+            name="Galewing",
+            power=3,
+            health=1,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Soaring],
+        ),
+        description="related to Soaring skill, moderate power, low health, fast, sleek",
+    ),
+    # Packmaster 🔰🧺🐭 5p 4h
+    # costs: 🔥 has: 🔥🔥👻👻👻 pot: 38
+    Blueprint(
+        original=Card(
+            name="Packmaster",
+            power=5,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.Shield, skills.Packrat, skills.Fertility],
+        ),
+        description="strong, healthy, good with skills, costs fire, spirited",
+    ),
+    # Seasquid 🐭 9p 10h
+    # costs: 👻 has: 🔥🔥👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Seasquid",
+            power=9,
+            health=10,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=1,
+            has_fire=2,
+            skills=[skills.Fertility],
+        ),
+        description="related to Fertility skill, highest health, high spirits, aquatic, expensive",
+    ),
+    # Emberhorn 🦔🧺🐭🪁 8p 6h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 60
+    Blueprint(
+        original=Card(
+            name="Emberhorn",
+            power=8,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=4,
+            skills=[skills.Spines, skills.Packrat, skills.Fertility, skills.Soaring],
+        ),
+        description='With a mix of offensive and defensive skills, this creature is a wellrounded addition to any deck The name "Emberhorn" reflects its fiery nature and the horn skill it possesses',
+    ),
+    # Whirlpool 🔰 0p 7h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥👻👻 pot: 20
+    Blueprint(
+        original=Card(
+            name="Whirlpool",
+            power=0,
+            health=7,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[skills.Shield],
+        ),
+        description="high health, lots of fire, and a shield skill",
+    ),
+    # Fennec Fox 🧺 1p 3h
+    # costs: 🔥 has: 🔥👻👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Fennec Fox",
+            power=1,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Packrat],
+        ),
+        description="small, agile, a packrat skill, and average healthpower",
+    ),
+    # Thorny Boar 💀🐭🦔🔰 2p 6h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Thorny Boar",
+            power=2,
+            health=6,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Spines,
+                skills.Shield,
+            ],
+        ),
+        description="deals damage spines skill, has shield, and respectable powerhealth",
+    ),
+    # Tempestowl 🐩🔰💀🚀 8p 4h
+    # costs: - has: 🔥🔥🔥👻👻👻👻👻👻 pot: 54
+    Blueprint(
+        original=Card(
+            name="Tempestowl",
+            power=8,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=3,
+            skills=[
+                skills.Underdog,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Airdefense,
+            ],
+        ),
+        description="relates to the skill Airdefense, has a high spirit count, costs a lot of fire to play, and has a high powerhealth",
+    ),
+    # Sunswan  9p 7h
+    # costs: 👻 has: 🔥🔥👻👻 pot: 30
+    Blueprint(
+        original=Card(
+            name="Sunswan",
+            power=9,
+            health=7,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=2,
+            has_fire=2,
+            skills=[],
+        ),
+        description="relates to the high powerhealth, the low cost of fire, and the lack of spirits or fire required to play",
+    ),
+    # Stonescorpion 🐭 2p 2h
+    # costs: 🔥🔥 has: 👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Stonescorpion",
+            power=2,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description="relates to the fact that it has no fire attribute, and has high health with low power, and a skill called Fertility",
+    ),
+    # Phoenixferret 🐭🧺🔰💀 9p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 59
+    Blueprint(
+        original=Card(
+            name="Phoenixferret",
+            power=9,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.Shield,
+                skills.InstantDeath,
+            ],
+        ),
+        description="With high power and a decent health, this card is balanced and has a variety of skills including Fertility, Packrat, Shield, and InstantDeath The name Phoenixferret denotes a creature that is agile and quickwitted, yet strong and enduring, which aligns with the card's attributes and skills",
+    ),
+    # Skyhawk 🪁 0p 3h
+    # costs: 👻👻👻 has: 🔥👻 pot: 6
+    Blueprint(
+        original=Card(
+            name="Skyhawk",
+            power=0,
+            health=3,
+            costs_fire=0,
+            costs_spirits=3,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Soaring],
+        ),
+        description="With no power and decent health, this card relies on its only skill, Soaring, to swoop in for a surprise attack The name Skyhawk suggests a creature that is agile and swift, perfectly capturing the essence of the card's skill",
+    ),
+    # Dreadshrew 🔰🧺 5p 5h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻 pot: 44
+    Blueprint(
+        original=Card(
+            name="Dreadshrew",
+            power=5,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[skills.Shield, skills.Packrat],
+        ),
+        description="relatively cheap, high powerhealth, shield, packrat",
+    ),
+    # Baphospar 🐭💀🔰 7p 5h
+    # costs: 🔥🔥🔥🔥🔥 has: 🔥🔥🔥🔥🔥👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Baphospar",
+            power=7,
+            health=5,
+            costs_fire=5,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=5,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Shield],
+        ),
+        description="expensive, highly skilled, high powerhealth, fertility, shield",
+    ),
+    # Faeriawolf 🧺💀🐭🔰 2p 5h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻 pot: 44
+    Blueprint(
+        original=Card(
+            name="Faeriawolf",
+            power=2,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=5,
+            skills=[
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Fertility,
+                skills.Shield,
+            ],
+        ),
+        description="relatively cheap, high spirit, moderate fire, packrat, instant death, fertility, shield",
+    ),
+    # Scalehearth 🦔🔰🐭🧺💀 4p 6h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Scalehearth",
+            power=4,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.Spines,
+                skills.Shield,
+                skills.Fertility,
+                skills.Packrat,
+                skills.InstantDeath,
+            ],
+        ),
+        description="relatively expensive, high health, moderate power, packrat, spines, shield, fertility",
+    ),
+    # Quetzalcoatl 🧺🪁🐩💀🔰🐭 5p 6h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻👻 pot: 55
+    Blueprint(
+        original=Card(
+            name="Quetzalcoatl",
+            power=5,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[
+                skills.Packrat,
+                skills.Soaring,
+                skills.Underdog,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description="named after the mythical serpentbird god, this card has both fire and spirit energy, soaring ability, is an underdog, has high fertility and is both shielded and deadly",
+    ),
+    # Sparkcrab  2p 2h
+    # costs: 👻👻👻👻👻 has: 🔥👻👻👻👻 pot: 7
+    Blueprint(
+        original=Card(
+            name="Sparkcrab",
+            power=2,
+            health=2,
+            costs_fire=0,
+            costs_spirits=5,
+            has_spirits=4,
+            has_fire=1,
+            skills=[],
+        ),
+        description="with abilities to only store spirit energy and no fire, this card is small but powerful and quick, and named after a fantastical crab known for its electric abilities",
+    ),
+    # Thornsaurus 🐩🔰🧺💀🐭 6p 10h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 64
+    Blueprint(
+        original=Card(
+            name="Thornsaurus",
+            power=6,
+            health=10,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Underdog,
+                skills.Shield,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Fertility,
+            ],
+        ),
+        description="this card is a powerful and highly spirited creature but costly to deploy, is strong in defense and can pack items named after a fictional dinosaur that has a thorny hide and is therefore very resilient and dangerous",
+    ),
+    # Heartspike 🐭💀🦔 7p 5h
+    # costs: - has: 🔥🔥🔥👻👻👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Heartspike",
+            power=7,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=3,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Spines],
+        ),
+        description="named after a fantastical creature that is part hedgehog and part armadillo, this card has high power, fairly high health, is deadly and fertile, and has no fire energy",
+    ),
+    # Ghostpuma 💀 3p 3h
+    # costs: - has: 🔥🔥🔥👻 pot: 28
+    Blueprint(
+        original=Card(
+            name="Ghostpuma",
+            power=3,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=3,
+            skills=[skills.InstantDeath],
+        ),
+        description='This card has a low cost, low power, and low health, but the "Ghostpuma" name implies a spiritlike creature that can easily escape danger with its instant death skill',
+    ),
+    # Diamondhedge 🔰💀🐭 4p 3h
+    # costs: 🔥 has: 🔥👻👻 pot: 34
+    Blueprint(
+        original=Card(
+            name="Diamondhedge",
+            power=4,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Shield, skills.InstantDeath, skills.Fertility],
+        ),
+        description='This card has a decent powertohealth ratio and its shield skills make it hard to kill The name "Diamondhedge" implies a creature that is hard and sharp, fitting its shield abilities',
+    ),
+    # Voodoomoth 🐭💀 9p 3h
+    # costs: 🔥 has: 🔥🔥👻👻👻👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Voodoomoth",
+            power=9,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=2,
+            skills=[skills.Fertility, skills.InstantDeath],
+        ),
+        description="This card has high power and some health, with a low cost of fire and some spirits It also has two strong and opposing skills, with Fertility and InstantDeath Voodoomoth evokes a sense of dark power and magic that suits this card well",
+    ),
+    # DragonThunder 💀🐩🐭 8p 8h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻 pot: 50
+    Blueprint(
+        original=Card(
+            name="DragonThunder",
+            power=8,
+            health=8,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[skills.InstantDeath, skills.Underdog, skills.Fertility],
+        ),
+        description="This card is a powerhouse, with high power and health, a moderate cost of fire, and some spirits It also has three skills, including InstantDeath, Underdog, and Fertility, which make it a versatile and dangerous card The name DragonThunder suggests a mighty and fierce dragon with the power to summon lightning strikes",
+    ),
+    # Ferretflame 🧺💀 6p 4h
+    # costs: - has: 🔥🔥🔥👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Ferretflame",
+            power=6,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[skills.Packrat, skills.InstantDeath],
+        ),
+        description="This card has moderate power and health, some fire and spirits, and two opposing skills, Packrat and InstantDeath The name Ferretflame conjures the image of a fiery and agile creature, much like a ferret, that can set the battlefield alight when it chooses",
+    ),
+    # Sproutpup 🐭🔰🧺 2p 3h
+    # costs: - has: 🔥🔥👻👻👻 pot: 41
+    Blueprint(
+        original=Card(
+            name="Sproutpup",
+            power=2,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.Fertility, skills.Shield, skills.Packrat],
+        ),
+        description="This card has moderate power and health, but is quite affordable Its passive skill, Fertility, allows the player to generate more cards, much like how a sprout grows into a tree The name reflects its small size and growth potential",
+    ),
+    # Dreadlurker 🐭🔰💀🐩 4p 10h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻 pot: 55
+    Blueprint(
+        original=Card(
+            name="Dreadlurker",
+            power=4,
+            health=10,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Underdog,
+            ],
+        ),
+        description="This powerful card has high health and good power making it expensive, but worth it Its skills, Shield and Underdog, reflect its intimidating presence on the battlefield The name reflects its ability to intimidate opponents and hover unseen in the shadows",
+    ),
+    # Shrikehawk 🐭🦔🪁 2p 2h
+    # costs: 🔥 has: 🔥🔥🔥 pot: 21
+    Blueprint(
+        original=Card(
+            name="Shrikehawk",
+            power=2,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=3,
+            skills=[skills.Fertility, skills.Spines, skills.Soaring],
+        ),
+        description="This card is relatively weak, but has the Soaring ability that allows it to move fast along the battlefield The card's moderate attack strength is complemented by its spines, which allow it to make a strong defensive play The name reflects its agility and attack prowess",
+    ),
+    # Hivehound  3p 2h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻 pot: 23
+    Blueprint(
+        original=Card(
+            name="Hivehound",
+            power=3,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=4,
+            skills=[],
+        ),
+        description="This card has moderate power and health, with no skills Its name reflects its ability to work in a pack and support others, much like bees do in a hive",
+    ),
+    # Soulcoatl 💀 6p 9h
+    # costs: 🔥 has: 🔥👻 pot: 33
+    Blueprint(
+        original=Card(
+            name="Soulcoatl",
+            power=6,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="related to the instant death skill, this name suggests a mythical creature from the underworld that is powerful and deadly",
+    ),
+    # Chimeralynx 🔰💀🐩🧺🐭 10p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 65
+    Blueprint(
+        original=Card(
+            name="Chimeralynx",
+            power=10,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=6,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description="a fusion of different animals, this name fits with the different skills and high attributes of the card",
+    ),
+    # Pyrowisp 🐭 2p 2h
+    # costs: 🔥🔥🔥🔥🔥🔥 has: 🔥👻 pot: 11
+    Blueprint(
+        original=Card(
+            name="Pyrowisp",
+            power=2,
+            health=2,
+            costs_fire=6,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="relates to the high fire cost and the fertility skill, and suggests a small, fast creature that can cause damage",
+    ),
+    # Spiritape 🐩💀🐭 3p 10h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 45
+    Blueprint(
+        original=Card(
+            name="Spiritape",
+            power=3,
+            health=10,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[skills.Underdog, skills.InstantDeath, skills.Fertility],
+        ),
+        description="high on spirits, good power and health, expensive",
+    ),
+    # Airsprite 🐭🪁🚀🧺🔰💀 9p 10h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 82
+    Blueprint(
+        original=Card(
+            name="Airsprite",
+            power=9,
+            health=10,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Soaring,
+                skills.Airdefense,
+                skills.Packrat,
+                skills.Shield,
+                skills.InstantDeath,
+            ],
+        ),
+        description="very good powerhealth, high on spirits, fast and evasive but not too costly",
+    ),
+    # Shimmercat 🔰💀🐭 4p 4h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 48
+    Blueprint(
+        original=Card(
+            name="Shimmercat",
+            power=4,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Shield, skills.InstantDeath, skills.Fertility],
+        ),
+        description="good powerhealth, no cost for fire, evasion with shield, quite cheap",
+    ),
+    # Underpanther 🐩🧺🐭🔰 9p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Underpanther",
+            power=9,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[skills.Underdog, skills.Packrat, skills.Fertility, skills.Shield],
+        ),
+        description="very good power with 'Underdog' skill, decent health, low cost for fire, good for taking out opposing highpower cards",
+    ),
+    # Skyrat 🐭🪁🧺 3p 2h
+    # costs: 👻👻👻👻 has: 🔥👻👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Skyrat",
+            power=3,
+            health=2,
+            costs_fire=0,
+            costs_spirits=4,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Soaring, skills.Packrat],
+        ),
+        description='The card has low fire cost and high spirit cost, as well as the skills Fertility, Soaring, and Packrat, which suggests a creature that is nimble, intelligent, and able to gather resources The name "Skyrat" fits this description, suggesting a creature that is both flying due to the "Sky" part of the name and resourceful due to the association with rats',
+    ),
+    # Spikedrak 🔰💀🐩🐭 5p 6h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 58
+    Blueprint(
+        original=Card(
+            name="Spikedrak",
+            power=5,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Fertility,
+            ],
+        ),
+        description='This card has high power and health, no fire cost, and several skills including Shield and InstantDeath The name "Spikedrak" suggests a fearsome creature that is both powerful and deadly, with sharp spines or spikes that can deal damage to any who dare attack it The "Shield" skill implies that the creature is also welldefended',
+    ),
+    # Dragoose 🧺 3p 3h
+    # costs: 🔥🔥 has: 🔥👻👻 pot: 16
+    Blueprint(
+        original=Card(
+            name="Dragoose",
+            power=3,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Packrat],
+        ),
+        description="fire and spirit oriented, tough with moderate stats and a packrat skill",
+    ),
+    # Airwhisp  2p 5h
+    # costs: 🔥 has: 👻 pot: 12
+    Blueprint(
+        original=Card(
+            name="Airwhisp",
+            power=2,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[],
+        ),
+        description="airy and light, low fire with better health, not firespirits oriented",
+    ),
+    # Skyblade 🪁🔰🐩 5p 2h
+    # costs: 🔥🔥 has: 🔥👻👻 pot: 24
+    Blueprint(
+        original=Card(
+            name="Skyblade",
+            power=5,
+            health=2,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Soaring, skills.Shield, skills.Underdog],
+        ),
+        description='relates to the "Soaring" skill, and the high power and moderate health of the card, as well as its moderate cost to bring out',
+    ),
+    # Spritelite 🐭 0p 1h
+    # costs: - has: 👻 pot: 19
+    Blueprint(
+        original=Card(
+            name="Spritelite",
+            power=0,
+            health=1,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Fertility],
+        ),
+        description='relates to the "Fertility" skill and the low powerhealth of the card, as well as its cheap cost to bring out',
+    ),
+    # Armormite 🐩🔰 5p 10h
+    # costs: 🔥🔥 has: 🔥👻👻👻👻 pot: 38
+    Blueprint(
+        original=Card(
+            name="Armormite",
+            power=5,
+            health=10,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=1,
+            skills=[skills.Underdog, skills.Shield],
+        ),
+        description='relates to the "Shield" and "Underdog" skills, as well as the high powerhealth and moderate cost of the card, also has a buglike feel',
+    ),
+    # Spidertaur 🦔🔰🧺🐭💀 2p 5h
+    # costs: 🔥 has: 🔥🔥👻👻👻👻 pot: 44
+    Blueprint(
+        original=Card(
+            name="Spidertaur",
+            power=2,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=2,
+            skills=[
+                skills.Spines,
+                skills.Shield,
+                skills.Packrat,
+                skills.Fertility,
+                skills.InstantDeath,
+            ],
+        ),
+        description="With low power but high health, this card's name references both its spines skill and its hybrid creature nature, combining the traits of a spider and a centaur Its other skills, Packrat, Fertility, and Shield, add to its versatility and usefulness",
+    ),
+    # Deathstork 💀🧺🐭🔰 4p 5h
+    # costs: - has: 🔥🔥🔥👻👻👻 pot: 55
+    Blueprint(
+        original=Card(
+            name="Deathstork",
+            power=4,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+            ],
+        ),
+        description='This card has high health and power, making it tough to defeat, but also expensive to summon The skills make it even more of a challenge, with the packrat skill allowing it to hoard cards, while the fertility skill makes sure it has plenty of allies to back it up The name "Deathstork" evokes an image of a lethal, yet regal bird of prey',
+    ),
+    # FaeLioness 🐭🧺🐩💀 4p 6h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 44
+    Blueprint(
+        original=Card(
+            name="FaeLioness",
+            power=4,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.Underdog,
+                skills.InstantDeath,
+            ],
+        ),
+        description='With moderate power and high health, this card is a sturdy fighter to have on your side The fertility skill fits well with the name, as a lioness is known for her strong maternal instincts The instant death skill is a powerful addition to her already formidable arsenal The name "FaeLioness" fits well with the fantastical animal theme and gives the impression of a mystical, powerful creature',
+    ),
+    # Thunderdragon 🚀🔰💀🐩🐭 10p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="Thunderdragon",
+            power=10,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[
+                skills.Airdefense,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Fertility,
+            ],
+        ),
+        description='This card is a beast With high power and health, and a host of skills at its disposal, this dragon is a force to be reckoned with The air defense skill helps protect it from flying enemies, while the shield skill adds even more protection The name "Thunderdragon" implies raw power and energy, which suits this card perfectly',
+    ),
+    # Sandhawk 🐩🚀🔰 2p 4h
+    # costs: 🔥 has: 👻👻👻👻👻 pot: 24
+    Blueprint(
+        original=Card(
+            name="Sandhawk",
+            power=2,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=0,
+            skills=[skills.Underdog, skills.Airdefense, skills.Shield],
+        ),
+        description='This card has moderate power and health, but the underdog skill makes it a clever choice for an unexpected attack The air defense and shield skills allow it to defend itself against enemies The sandy terrain is also a perfect match for this card\'s attributes The name "Sandhawk" feels dignified but also implies a fast and nimble creature',
+    ),
+    # Fantispike 🐭🔰💀🦔 10p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻 pot: 58
+    Blueprint(
+        original=Card(
+            name="Fantispike",
+            power=10,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=6,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Spines,
+            ],
+        ),
+        description="high powerhealth, lots of fire, multiple skills",
+    ),
+    # Owlyger 🧺🐭 5p 2h
+    # costs: - has: 🔥🔥🔥🔥🔥👻 pot: 39
+    Blueprint(
+        original=Card(
+            name="Owlyger",
+            power=5,
+            health=2,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=5,
+            skills=[skills.Packrat, skills.Fertility],
+        ),
+        description="moderate powerhealth, low cost, packrat skill",
+    ),
+    # Skyshrew 🚀🧺🔰 6p 5h
+    # costs: - has: 🔥🔥🔥👻👻👻👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="Skyshrew",
+            power=6,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=3,
+            skills=[skills.Airdefense, skills.Packrat, skills.Shield],
+        ),
+        description="moderate powerhealth, lots of spirits, air defense skill",
+    ),
+    # Dreadmole 💀🐭 3p 9h
+    # costs: 🔥🔥🔥🔥 has: 🔥🔥👻👻👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Dreadmole",
+            power=3,
+            health=9,
+            costs_fire=4,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=2,
+            skills=[skills.InstantDeath, skills.Fertility],
+        ),
+        description="high health, high cost, instant death skill",
+    ),
+    # Wraithdev 💀 3p 1h
+    # costs: 👻👻👻👻 has: 🔥👻 pot: 11
+    Blueprint(
+        original=Card(
+            name="Wraithdev",
+            power=3,
+            health=1,
+            costs_fire=0,
+            costs_spirits=4,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="with InstantDeath skill and high spirit, it suits the ghostlike suggestion of the name",
+    ),
+    # Butterbuff 🔰🐭🧺 1p 6h
+    # costs: 👻 has: 🔥👻 pot: 32
+    Blueprint(
+        original=Card(
+            name="Butterbuff",
+            power=1,
+            health=6,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Shield, skills.Fertility, skills.Packrat],
+        ),
+        description="with Shield, Fertility, and Packrat skills and good health, it suggests a plump and wellprotected creature like a fairy tale forest animal",
+    ),
+    # Tickhaste 💀 1p 1h
+    # costs: 🔥 has: 🔥👻 pot: 10
+    Blueprint(
+        original=Card(
+            name="Tickhaste",
+            power=1,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath],
+        ),
+        description="with InstantDeath skill and low health and spirit, it suggests a fragile and fast creature with a deadly touch",
+    ),
+    # Thornodon 🦔🐭💀🧺 7p 5h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="Thornodon",
+            power=7,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Spines,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description="with Spines, InstantDeath, Packrat, Fertility skills, and high power and fire attributes, it suggests a powerful beast with a thorny defense",
+    ),
+    # Stonetant 🔰 3p 2h
+    # costs: 🔥 has: 🔥🔥👻👻👻👻👻 pot: 20
+    Blueprint(
+        original=Card(
+            name="Stonetant",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=2,
+            skills=[skills.Shield],
+        ),
+        description="This name suits the card as it is wellrounded in terms of its power and health Additionally, its skill 'Shield' adds to its defensive abilities The name Stonetant invokes an image of a strong and sturdy creature with a tough exterior",
+    ),
+    # Necrolisk 💀🧺🐭🔰🦔 6p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 69
+    Blueprint(
+        original=Card(
+            name="Necrolisk",
+            power=6,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Fertility,
+                skills.Shield,
+                skills.Spines,
+            ],
+        ),
+        description="This name suits the card as it is very powerful and has a high health, with skills such as 'InstantDeath' and 'Spines' making it a formidable opponent The name Necrolisk invokes an image of a fearsome undead creature, with a sharp and dangerous presence",
+    ),
+    # Thunderbrute 🔰🐭💀 8p 10h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Thunderbrute",
+            power=8,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[skills.Shield, skills.Fertility, skills.InstantDeath],
+        ),
+        description="This name suits the card as it is very powerful with a high health, and skills such as 'Shield' and 'Fertility' making it a valuable asset on the battlefield The name Thunderbrute invokes an image of a strong and imposing creature, with a thunderous presence that commands respect",
+    ),
+    # Bramblecrust 🔰💀🐩🧺🐭 5p 9h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 61
+    Blueprint(
+        original=Card(
+            name="Bramblecrust",
+            power=5,
+            health=9,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Underdog,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description="This name suits the card as it has a moderate power and a high health, with skills such as 'Shield', 'InstantDeath', and 'Packrat' making it a wellrounded fighter The name Bramblecrust invokes an image of a creature that is welldefended with a tough exterior, like a fortress made of thorns and brambles",
+    ),
+    # Fyrewyrm 🐩🔰🧺💀🐭 8p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="Fyrewyrm",
+            power=8,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=6,
+            skills=[
+                skills.Underdog,
+                skills.Shield,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Fertility,
+            ],
+        ),
+        description="a dragonlike creature with high power, fire capabilities, and a hoarder instinct, with instantkill, shield, and packrat abilities",
+    ),
+    # Molemunk 💀🧺🐭 3p 4h
+    # costs: 🔥🔥🔥🔥 has: 🔥👻 pot: 29
+    Blueprint(
+        original=Card(
+            name="Molemunk",
+            power=3,
+            health=4,
+            costs_fire=4,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Packrat, skills.Fertility],
+        ),
+        description="a small but defensive creature with burrowing capabilities, instantkill ability, and fertility",
+    ),
+    # Chimeraheart 🧺💀🔰🐭 7p 4h
+    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 46
+    Blueprint(
+        original=Card(
+            name="Chimeraheart",
+            power=7,
+            health=4,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.Fertility,
+            ],
+        ),
+        description="This card has a high power, high health and a lot of skills, making it a special animal indeed Chimeraheart is a powerful and magical name for a creature that can do almost anything thanks to its various skills",
+    ),
+    # Deathmole 🔰💀🧺 9p 3h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Deathmole",
+            power=9,
+            health=3,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[skills.Shield, skills.InstantDeath, skills.Packrat],
+        ),
+        description="The name suggests death and decay, which fits with the InstantDeath skill The mole part relates to its packrat skill, as moles are known to store food for later",
+    ),
+    # Quillhare 💀🐭🔰 5p 5h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻 pot: 44
+    Blueprint(
+        original=Card(
+            name="Quillhare",
+            power=5,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=6,
+            skills=[skills.InstantDeath, skills.Fertility, skills.Shield],
+        ),
+        description="The name is a combination of quills related to the Spines skill and hare, which fits with its speed and agility, indicated by its low health but high power",
+    ),
+    # Infernobat 💀🐭🔰 5p 6h
+    # costs: 🔥🔥🔥🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻👻 pot: 46
+    Blueprint(
+        original=Card(
+            name="Infernobat",
+            power=5,
+            health=6,
+            costs_fire=4,
+            costs_spirits=0,
+            has_spirits=7,
+            has_fire=5,
+            skills=[skills.InstantDeath, skills.Fertility, skills.Shield],
+        ),
+        description="The name suggests a creature that is fiery and fierce, much like the InstantDeath and Fertility skills The bat part relates to its low health and high attack power, as bats are known to be swift and agile",
+    ),
+    # Magmouse 🧺🐭 10p 3h
+    # costs: 🔥🔥🔥 has: 🔥👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Magmouse",
+            power=10,
+            health=3,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Packrat, skills.Fertility],
+        ),
+        description="high power, low health, able to gather resources, able to reproduce",
+    ),
+    # Mermancer  1p 2h
+    # costs: 👻👻👻👻 has: 🔥🔥👻 pot: 4
+    Blueprint(
+        original=Card(
+            name="Mermancer",
+            power=1,
+            health=2,
+            costs_fire=0,
+            costs_spirits=4,
+            has_spirits=1,
+            has_fire=2,
+            skills=[],
+        ),
+        description="low powerhealth, high spirits cost, low fire cost, no fire skill, expert in using spirits",
+    ),
+    # Doomleopard 💀🧺 9p 3h
+    # costs: 🔥 has: 🔥👻 pot: 33
+    Blueprint(
+        original=Card(
+            name="Doomleopard",
+            power=9,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.InstantDeath, skills.Packrat],
+        ),
+        description="very high power, average health, low fire cost, able to deal instant death, able to gather resources",
+    ),
+    # Spinythorn 🐭🧺🔰🐩💀 7p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 75
+    Blueprint(
+        original=Card(
+            name="Spinythorn",
+            power=7,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Packrat,
+                skills.Shield,
+                skills.Underdog,
+                skills.InstantDeath,
+            ],
+        ),
+        description="very high powerhealth, highly spirited and fiery, defensive skills, able to reproduce, able to deal instant death",
+    ),
+    # Wingturtle 🔰 2p 3h
+    # costs: 🔥 has: 🔥👻👻👻 pot: 17
+    Blueprint(
+        original=Card(
+            name="Wingturtle",
+            power=2,
+            health=3,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=1,
+            skills=[skills.Shield],
+        ),
+        description="This name fits the card's attributes because it has low fire costs, and decent health, which may represent the turtle shell The shield skill could also represent the turtle's natural defense mechanism The flying skill might be seen as unexpected or unusual for a turtle, which is why \"wing\" was added to the name",
+    ),
+    # Griffodile 💀🧺🐩🐭🔰 8p 7h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 63
+    Blueprint(
+        original=Card(
+            name="Griffodile",
+            power=8,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Fertility,
+                skills.Shield,
+            ],
+        ),
+        description='This name fits because the card has a high power and health, which evoke the image of a fierce predator, while also having a lot of fire and spirits, suggesting a magical or fantastical aspect The skills are mostly focused on survival so the "dile" part of the name fits the idea of a resilient survivor',
+    ),
+    # Pyromanticore 🧺🐭💀🪁🔰 6p 10h
+    # costs: 🔥🔥🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Pyromanticore",
+            power=6,
+            health=10,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=6,
+            skills=[
+                skills.Packrat,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Soaring,
+                skills.Shield,
+            ],
+        ),
+        description="A play on the classic mythical creature Manticore, but with the \"Pyro\" prefix added to reflect the high fire costs and the theme of fire The high health and power suggest it's a powerful force on the battlefield The skill Packrat fits the concept of a creature that's resourceful and can gather up valuable things to protect its lair and build its nest The Fertility skill might hint at its ability to reproduce rapidly, while InstantDeath and Soaring might imply that it's deadly and unpredictable in battle Shield fits the card's high health and defensive capabilities",
+    ),
+    # Soulleopard 🐭🔰🐩🧺💀 9p 5h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻 pot: 59
+    Blueprint(
+        original=Card(
+            name="Soulleopard",
+            power=9,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Underdog,
+                skills.Packrat,
+                skills.InstantDeath,
+            ],
+        ),
+        description='"Soul" emphasizes the card\'s having no spirit cost and being a highpower card The "leopard" part reflects the card\'s high power and the skilfulness, shown by a range of skills present on the card While it is a strong card being one of the highest in power, it still has average health, making it less resilient than other cards, hence it\'s just a leopard not a more powerful animal',
+    ),
+    # Scaleback 🦔🧺🐭🔰 10p 3h
+    # costs: 🔥🔥 has: 🔥🔥🔥👻👻 pot: 47
+    Blueprint(
+        original=Card(
+            name="Scaleback",
+            power=10,
+            health=3,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=3,
+            skills=[skills.Spines, skills.Packrat, skills.Fertility, skills.Shield],
+        ),
+        description="relates to spines, high power, and moderate health",
+    ),
+    # Budfox 🔰🐭🐩 1p 2h
+    # costs: 🔥 has: 👻 pot: 22
+    Blueprint(
+        original=Card(
+            name="Budfox",
+            power=1,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=0,
+            skills=[skills.Shield, skills.Fertility, skills.Underdog],
+        ),
+        description="relates to shield and fertility skills and being small in size",
+    ),
+    # Skymajesty 🐭🪁🧺💀🔰🍀 9p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥👻👻👻👻👻👻 pot: 69
+    Blueprint(
+        original=Card(
+            name="Skymajesty",
+            power=9,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=6,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Soaring,
+                skills.Packrat,
+                skills.InstantDeath,
+                skills.Shield,
+                skills.LuckyStrike,
+            ],
+        ),
+        description="relates to being very expensive and having skills that are related to flying and luck",
+    ),
+    # Stonespike 🔰🚀🐭💀 8p 4h
+    # costs: 🔥 has: 🔥🔥🔥👻👻👻 pot: 46
+    Blueprint(
+        original=Card(
+            name="Stonespike",
+            power=8,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=3,
+            skills=[
+                skills.Shield,
+                skills.Airdefense,
+                skills.Fertility,
+                skills.InstantDeath,
+            ],
+        ),
+        description="relates to being very defensive with shield and air defense skills and having a high power attribute",
+    ),
+    # Drakewing 💀🪁🐭🧺 4p 8h
+    # costs: - has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 60
+    Blueprint(
+        original=Card(
+            name="Drakewing",
+            power=4,
+            health=8,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=6,
+            skills=[
+                skills.InstantDeath,
+                skills.Soaring,
+                skills.Fertility,
+                skills.Packrat,
+            ],
+        ),
+        description='The card has high power and health, combined with the skill "Soaring" which could give the card the ability to fly The name "Drakewing" suggests a powerful dragonlike creature with wings, perfectly capturing the essence of the card',
+    ),
+    # Gildedragon 🪁🐭🐩 7p 3h
+    # costs: - has: 🔥🔥👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Gildedragon",
+            power=7,
+            health=3,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Soaring, skills.Fertility, skills.Underdog],
+        ),
+        description='With high power but low health, and no cost on fire or spirits, combined with the "Soaring", "Fertility", and "Underdog" skills, Gildedragon represents a powerful, majestic creature that can fly and produce offspring The name "Gildedragon" implies a creature with shimmering golden scales, a sign of wealth and power',
+    ),
+    # Wispshell 🔰💀🧺🐭 2p 5h
+    # costs: - has: 🔥🔥👻👻👻👻 pot: 51
+    Blueprint(
+        original=Card(
+            name="Wispshell",
+            power=2,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=2,
+            skills=[
+                skills.Shield,
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Fertility,
+            ],
+        ),
+        description='Featuring moderate power and health, with high spirit and low fire, and the skills "Shield", "InstantDeath", "Packrat", and "Fertility", Wispshell represents a mystical creature that is rather defensive and has a variety of useful abilities The name "Wispshell" incorporates both the idea of willo\'thewisp, a magical floating light, and a protective shell, which fits well with the defensive skills of the card',
+    ),
+    # Spikemouse  3p 2h
+    # costs: 🔥 has: 🔥🔥🔥 pot: 10
+    Blueprint(
+        original=Card(
+            name="Spikemouse",
+            power=3,
+            health=2,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=3,
+            skills=[],
+        ),
+        description='With low power and health, and low cost on fire, combined with no skills, Spikemouse represents a small rodentlike creature that can defend itself with sharp spines on its back The name "Spikemouse" refers to the creature\'s defensive mechanism, but still suggests a cute and harmless appearance, much like a regular mouse',
+    ),
+    # Packphelid 🧺🔰🐭🐩🦔 6p 6h
+    # costs: 🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 53
+    Blueprint(
+        original=Card(
+            name="Packphelid",
+            power=6,
+            health=6,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[
+                skills.Packrat,
+                skills.Shield,
+                skills.Fertility,
+                skills.Underdog,
+                skills.Spines,
+            ],
+        ),
+        description='This name combines "pack" from the Packrat skill and "phelid," meaning catlike The high amount of spirits and fire suggests a more fantastical creature, and the skills  Spines, Shield, Fertility, Underdog, and Packrat  could be associated with a catlike creature',
+    ),
+    # Microdrake 🦔🐩🧺 2p 4h
+    # costs: 🔥🔥🔥🔥 has: 🔥👻 pot: 20
+    Blueprint(
+        original=Card(
+            name="Microdrake",
+            power=2,
+            health=4,
+            costs_fire=4,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Spines, skills.Underdog, skills.Packrat],
+        ),
+        description="A small dragonlike creature suggested by the skills Spines a characteristic of dragons, Underdog suggesting a smaller creature fighting against larger foes, and Packrat small creatures often hoard things The higher cost of fire suggests a more fantastical creature, as well",
+    ),
+    # Oceanclaw  2p 5h
+    # costs: 🔥 has: 🔥👻👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Oceanclaw",
+            power=2,
+            health=5,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[],
+        ),
+        description="The card has moderate power and high health, reflecting a strong, animalistic feel The  spirits needed for this card is represented in the name as \"ocean\" the spirit source of water The 'claw' part is the animalistic feel of the card",
+    ),
+    # Mythotaur 🐭🔰🐩💀 6p 6h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 62
+    Blueprint(
+        original=Card(
+            name="Mythotaur",
+            power=6,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.Fertility,
+                skills.Shield,
+                skills.Underdog,
+                skills.InstantDeath,
+            ],
+        ),
+        description="The name for the card uses the suffix 'taur' to depict the animal part of card 'Mytho' part is indicative of the various skills such as underdog, packrat and instant death, reflecting its unique skillset The card has high attributes in all categories with no fire or spirit cost",
+    ),
+    # Pyrogoon 🐭💀🧺 10p 4h
+    # costs: - has: 🔥🔥🔥👻👻👻👻 pot: 58
+    Blueprint(
+        original=Card(
+            name="Pyrogoon",
+            power=10,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=3,
+            skills=[skills.Fertility, skills.InstantDeath, skills.Packrat],
+        ),
+        description="The name for this card reflects the high power and lower health of the card with a suffix 'goon'  The card has skills such as instant death and fertility, so the prefix 'pyro' was added to represent its firebased abilities",
+    ),
+    # Vampitaur 🧺💀🐭 2p 8h
+    # costs: 🔥🔥🔥 has: 🔥👻 pot: 35
+    Blueprint(
+        original=Card(
+            name="Vampitaur",
+            power=2,
+            health=8,
+            costs_fire=3,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Packrat, skills.InstantDeath, skills.Fertility],
+        ),
+        description="A combination of vampire and centaur, a creature with high health and powerful skills that feed off other creatures",
+    ),
+    # Aquawisp 🐭🚀🧺 1p 2h
+    # costs: 👻 has: 🔥👻 pot: 20
+    Blueprint(
+        original=Card(
+            name="Aquawisp",
+            power=1,
+            health=2,
+            costs_fire=0,
+            costs_spirits=1,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Airdefense, skills.Packrat],
+        ),
+        description="A creature with a high spirit attribute and waterrelated skills, giving it an aquatic, mystical feel The name also implies a tricky and elusive nature",
+    ),
+    # Ironbull 🔰🧺🐩🐭 6p 10h
+    # costs: 🔥🔥 has: 🔥🔥🔥🔥👻👻👻👻👻 pot: 57
+    Blueprint(
+        original=Card(
+            name="Ironbull",
+            power=6,
+            health=10,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=4,
+            skills=[skills.Shield, skills.Packrat, skills.Underdog, skills.Fertility],
+        ),
+        description="A name that evokes a strong, sturdy creature with high power and health attributes The skills also suggest a resilient and durable character",
+    ),
+    # Flamephib 🐩🔰🧺🐭 5p 5h
+    # costs: - has: 🔥🔥🔥🔥👻👻👻👻 pot: 56
+    Blueprint(
+        original=Card(
+            name="Flamephib",
+            power=5,
+            health=5,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=4,
+            has_fire=4,
+            skills=[skills.Underdog, skills.Shield, skills.Packrat, skills.Fertility],
+        ),
+        description="related to amphibians, a balanced card that has many attributes but none in high value, with a touch of fire",
+    ),
+    # Armormole 🔰 2p 6h
+    # costs: - has: 🔥🔥🔥🔥👻 pot: 33
+    Blueprint(
+        original=Card(
+            name="Armormole",
+            power=2,
+            health=6,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=4,
+            skills=[skills.Shield],
+        ),
+        description="animal that reflects the shield skill with its protective armor and burrows underground, hence mole",
+    ),
+    # Spikeling 🐭🦔 1p 1h
+    # costs: 🔥 has: 🔥👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Spikeling",
+            power=1,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Fertility, skills.Spines],
+        ),
+        description="This card has spines and a fertility skill, so the name Spikeling makes sense as it is small and spiky, but has the potential to grow and become more powerful with the fertility skill",
+    ),
+    # Treefawn 🐭 2p 10h
+    # costs: 🔥 has: 🔥👻👻 pot: 30
+    Blueprint(
+        original=Card(
+            name="Treefawn",
+            power=2,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[skills.Fertility],
+        ),
+        description="The card has high health and spirit attributes, and a fertility skill The name Treefawn suggests a small and delicate creature that is both connected to nature and able to grow and mature",
+    ),
+    # Flamefish  5p 1h
+    # costs: 🔥 has: 🔥 pot: 10
+    Blueprint(
+        original=Card(
+            name="Flamefish",
+            power=5,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=0,
+            has_fire=1,
+            skills=[],
+        ),
+        description="With a high power and fire attribute, the name Flamefish suggests a small but fierce creature that is able to become quite powerful and dangerous",
+    ),
+    # Deaddragon 💀🐭🐩 7p 7h
+    # costs: 🔥🔥 has: 🔥🔥👻👻 pot: 43
+    Blueprint(
+        original=Card(
+            name="Deaddragon",
+            power=7,
+            health=7,
+            costs_fire=2,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.InstantDeath, skills.Fertility, skills.Underdog],
+        ),
+        description="high powerhealth, expensive but with lethal skills, so it can take down other powerful creatures",
+    ),
+    # Phenolfly 🪁🐭🔰 7p 7h
+    # costs: 🔥 has: 🔥🔥👻👻 pot: 42
+    Blueprint(
+        original=Card(
+            name="Phenolfly",
+            power=7,
+            health=7,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=2,
+            skills=[skills.Soaring, skills.Fertility, skills.Shield],
+        ),
+        description="high spirits and fire, expensive but with valuable skills that make it formidable",
+    ),
+    # Shimmernaga 💀🐩🔰 3p 7h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻 pot: 49
+    Blueprint(
+        original=Card(
+            name="Shimmernaga",
+            power=3,
+            health=7,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=3,
+            has_fire=5,
+            skills=[skills.InstantDeath, skills.Underdog, skills.Shield],
+        ),
+        description="high spirits, low fire, lethal skills and high health, so it can bite and take all the damage",
+    ),
+    # Spiderfly 🦔 0p 1h
+    # costs: - has: 🔥👻 pot: 14
+    Blueprint(
+        original=Card(
+            name="Spiderfly",
+            power=0,
+            health=1,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Spines],
+        ),
+        description="a small creature with spines, low health, and only helpful in certain situations",
+    ),
+    # Glimmercat 💀🧺🐩🐭🦔🔰 7p 9h
+    # costs: - has: 🔥🔥🔥🔥🔥👻👻👻👻👻 pot: 77
+    Blueprint(
+        original=Card(
+            name="Glimmercat",
+            power=7,
+            health=9,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=5,
+            has_fire=5,
+            skills=[
+                skills.InstantDeath,
+                skills.Packrat,
+                skills.Underdog,
+                skills.Fertility,
+                skills.Spines,
+                skills.Shield,
+            ],
+        ),
+        description="high power and health, costly to play, skills imply stealth and quickness",
+    ),
+    # Radiantrex 🐩🔰🦔🐭💀🧺 10p 10h
+    # costs: 🔥 has: 🔥🔥🔥🔥🔥🔥👻👻👻👻👻👻👻👻 pot: 78
+    Blueprint(
+        original=Card(
+            name="Radiantrex",
+            power=10,
+            health=10,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=8,
+            has_fire=6,
+            skills=[
+                skills.Underdog,
+                skills.Shield,
+                skills.Spines,
+                skills.Fertility,
+                skills.InstantDeath,
+                skills.Packrat,
+            ],
+        ),
+        description="very powerful and highly spirited, costly to play, has skills that imply dominance and fearlessness",
+    ),
+    # Vinesnake  1p 4h
+    # costs: - has: 🔥👻👻 pot: 20
+    Blueprint(
+        original=Card(
+            name="Vinesnake",
+            power=1,
+            health=4,
+            costs_fire=0,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[],
+        ),
+        description="moderate health, low cost, not very strong",
+    ),
+    # Dustmouse 🧺🐭 1p 1h
+    # costs: 🔥 has: 🔥👻 pot: 17
+    Blueprint(
+        original=Card(
+            name="Dustmouse",
+            power=1,
+            health=1,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=1,
+            has_fire=1,
+            skills=[skills.Packrat, skills.Fertility],
+        ),
+        description="small, low powerhealth, skilled, only costs  fire to play",
+    ),
+    # Salamanders  1p 4h
+    # costs: 🔥 has: 🔥👻👻 pot: 10
+    Blueprint(
+        original=Card(
+            name="Salamanders",
+            power=1,
+            health=4,
+            costs_fire=1,
+            costs_spirits=0,
+            has_spirits=2,
+            has_fire=1,
+            skills=[],
+        ),
+        description="low power, moderate health, good on fire and spirits",
     ),
 ]
