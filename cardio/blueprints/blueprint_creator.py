@@ -1,15 +1,12 @@
 """Rough script to generate new cards."""
 
 #%%
+from collections import defaultdict
 import random
 import re
 from typing import List, Tuple
 from cardio.blueprints.card_generator import create_noname_cards
 from cardio.blueprints.query_openai import query_openai
-from cardio.blueprints.blueprint_catalog import (
-    BlueprintEquivalentExistsError,
-    BlueprintNameExistsError,
-)
 from cardio.blueprints import Blueprint, thecatalog
 from openai.error import RateLimitError
 
@@ -48,14 +45,12 @@ def create_blueprints_and_add_to_catalog(listofwantedpotencies: List[int]):
     query = "\n".join(repr(c) for c in cards)
     print(query)
 
-    clashes_names = []
-    clashes_gameplay = []
-
     print(TITLE.format("Raw response"))
     res = query_openai(query, existing_names=[b.name for b in thecatalog._blueprints])
     print(res)
 
     print(TITLE.format("Parsed response"))
+    not_added = defaultdict(list)
     lines = res.split("\n")
     for line in lines:
         if not line.strip():
@@ -67,28 +62,27 @@ def create_blueprints_and_add_to_catalog(listofwantedpotencies: List[int]):
 
         try:
             thecatalog.add_blueprint(b)
-        except BlueprintNameExistsError as e:
-            clashes_names.append(b)
-        except BlueprintEquivalentExistsError as e:
-            clashes_gameplay.append(b)
+        except Exception as e:
+            not_added[e.__class__.__name__].append(b)
 
-    print(TITLE.format(f"{len(clashes_names)} name clashes"))
-    for b in clashes_names:
-        print(b.name)
-
-    print(TITLE.format(f"{len(clashes_gameplay)} gameplay clashes"))
-    for b in clashes_gameplay:
-        print(b.name)
+    print(TITLE.format("Not added"))
+    for reason, blueprints in not_added.items():
+        print(f"{len(blueprints)} blueprints not added because {reason}: ")
+        print(", ".join(b.name for b in blueprints))
+        print()
 
 
 # ----- main -----
 
-wanted_potencies = list(range(5, 81)) * 10
+wanted_potencies = list(range(5, 81))
 random.shuffle(wanted_potencies)
 while wanted_potencies:
     potencies = wanted_potencies[:5]
     while True:
-        print(f"********** Potencies {potencies} **********")
+        print()
+        print(
+            f"********** Potencies {potencies} ({len(wanted_potencies)} left) **********"
+        )
         try:
             create_blueprints_and_add_to_catalog(potencies)
         except ValueError:
