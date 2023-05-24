@@ -1,3 +1,9 @@
+"""Test blueprint catalog.
+
+Note that this relies on the catalog being loaded (`thecatalog`/`tc`) and non-empty. No
+tests will change the catalog in its persisted state.
+"""
+
 import pytest
 from cardio import Card
 from cardio.blueprints.blueprint import Blueprint
@@ -65,6 +71,13 @@ def test_add_blueprint_equivalent_exists():
     b = Blueprint(c, "desc")
     with pytest.raises(BlueprintEquivalentExistsError):
         tc.add_blueprint(b)
+
+
+def test_remove():
+    b = tc._blueprints[-1]
+    tc.remove(b)
+    assert b not in tc._blueprints
+    tc.add_blueprint(b)
 
 
 def test_instantiate():

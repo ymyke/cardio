@@ -41,6 +41,9 @@ class BlueprintCatalog:
             )
         return res[0]
 
+    def remove(self, b: Blueprint) -> None:
+        self._blueprints.remove(b)
+
     def find_by_names(self, names: List[str]) -> BlueprintList:
         return BlueprintList([self.get(name) for name in names])
 
