@@ -1,18 +1,18 @@
 from . import Card
 from .skills import get_skilltypes
+from cardio.blueprints import thecatalog
 
 
 def print_potency_stats():
-    """Print potencies of all cards and skills as well as the theoretical current
+    """Print potencies of all blueprints and skills as well as the theoretical current
     potency range.
     """
-    # Import this here to prevent some circular import issues:
-    from cardio.card_blueprints import _BLUEPRINTS
-
-    print("Cards by potency:")
-    cards = sorted(_BLUEPRINTS, key=lambda c: c.potency, reverse=True)
-    for c in cards:
-        print(f"{c.potency:3} {c.name}")
+    print("Blueprints by potency:")
+    blueprints = sorted(
+        thecatalog._blueprints, key=lambda b: b._original.potency, reverse=True
+    )
+    for b in blueprints:
+        print(f"{b._original.potency:3} {b.name}")
 
     print("\nSkills by potency:")
     skills = sorted(
@@ -38,4 +38,6 @@ and a card can have no more than {Card.MAX_SKILLS} skills.
 all potencies other than raw potencies are normalized
 to that range.
 """
+    # TODO I think potency is [-100, 100] currently! What does this mean? Add Overload
+    # to Weasel to check.
     )

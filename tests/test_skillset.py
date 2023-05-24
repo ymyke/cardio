@@ -25,6 +25,12 @@ def test_has():
     assert sl.has(Fertility()) == False
 
 
+def test_eq():
+    sl = SkillSet([Spines, InstantDeath])
+    assert sl == SkillSet([Spines, InstantDeath])
+    assert sl != SkillSet([Spines, InstantDeath, Fertility])
+
+
 def test_call():
     sl = SkillSet([Spines, InstantDeath])
     for s in sl:

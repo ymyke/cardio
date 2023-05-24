@@ -1,10 +1,10 @@
 import random
 from typing import Protocol, Type
 from cardio import Grid, GridPos, gg
-from cardio.card_blueprints import _BLUEPRINTS, create_cards_from_blueprints
 from cardio.computer_strategies import ComputerStrategy, Round0OnlyStrategy
 from .location import Location
 from .baseview import BaseLocationView
+from cardio.blueprints import thecatalog, BlueprintList
 
 
 class FightView(BaseLocationView, Protocol):
@@ -30,8 +30,11 @@ class FightLocation(Location):
         super().generate()
         self.grid = Grid(4)
         nofcards = random.randint(1, 4)
-        cardnames = [random.choice(_BLUEPRINTS).name for _ in range(nofcards)]
-        cards = create_cards_from_blueprints(cardnames)
+        max_potency = max(self.rung // 3, 5)
+        blueprint_candidates = thecatalog.find_by_potency_range(0, max_potency)
+        # TODO ^ should be -100 instead of 0, I believe
+        blueprints = random.choices(blueprint_candidates, k=nofcards)
+        cards = BlueprintList(blueprints).instantiate()
         positions = [
             GridPos(line, slot) for line in (0, 1) for slot in range(self.grid.width)
         ]

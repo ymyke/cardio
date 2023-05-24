@@ -75,3 +75,37 @@ def test_is_human(gg_setup):
     assert not c.is_human()
     gg.humanplayer.deck.add_card(c)
     assert c.is_human()
+
+
+def test_is_gameplay_equal():
+    c = Card("X", 1, 2, 3)
+    d = Card("X", 1, 2, 3)
+    assert c.is_gameplay_equal(d)
+    d.name = "Y"
+    assert c.is_gameplay_equal(d)
+    d.power = 2
+    assert not c.is_gameplay_equal(d)
+
+
+def test_has_potency():
+    c = Card(
+        "X",
+        power=1,
+        health=2,
+        costs_fire=3,
+        costs_spirits=0,
+        has_fire=5,
+        has_spirits=6,
+        skills=[skills.Shield],
+    )
+    potency = c.potency
+    assert c.has_potency(potency, exactly=True)
+    potency += 1
+    assert not c.has_potency(potency, exactly=True)
+    assert c.has_potency(potency, exactly=False)
+    potency += 1
+    assert not c.has_potency(potency, exactly=True)
+    assert c.has_potency(potency, exactly=False)
+    potency += 1
+    assert not c.has_potency(potency, exactly=True)
+    assert not c.has_potency(potency, exactly=False)

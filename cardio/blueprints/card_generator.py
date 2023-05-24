@@ -3,11 +3,8 @@
 # collection of existing cards in a statistically sound manner. How to do that? Would
 # have to define the new skills somehow and tweak their probabilities.
 
-# TODO Need to think about seed?
-
-#%%
 import logging
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 import random
 import numpy as np
 from cardio import Card
@@ -136,11 +133,9 @@ def gen_skills(ignore_levels: int = 0) -> list:
 
 
 def random_card(ignore_levels: int = 0) -> Card:
-
     power, health = gen_power_health(ignore_levels)
     has_fire, has_spirits = gen_has(ignore_levels)
     costs_fire, costs_spirits = gen_costs(ignore_levels)
-
     card = Card(
         name="Randy Rowdy",
         power=power,
@@ -153,16 +148,15 @@ def random_card(ignore_levels: int = 0) -> Card:
     )
     return card
 
-    # TODO Create name later bc costly op?
-    # TODO Have a register and look up card in there and reuse name if already exists?
 
-
-def add_name(card: Card) -> None:
-    card.name = "Randy Rowdy"
-
-def create_card(wanted_potency: Optional[int] = None, exactly: bool = False) -> Card:
-    min_, max_, _ = Card.get_raw_potency_range()
-    assert wanted_potency is None or min_ <= wanted_potency <= max_
+def create_noname_card(
+    wanted_potency: Optional[int] = None, exactly: bool = False
+) -> Card:
+    """Create a card with a default name. We add names separately to avoid costly
+    operations. `wanted_potency` is the potency we want to card to have. (Normalized
+    potency, i.e., [0, 100], not raw potency.)
+    """
+    assert wanted_potency is None or 0 <= wanted_potency <= 100
     i = 0
     while True:
         card = random_card(i // 1000)
@@ -170,33 +164,10 @@ def create_card(wanted_potency: Optional[int] = None, exactly: bool = False) -> 
         if i % 1000 == 0:
             logging.debug("Tried %s cards", i)
             logging.debug("Current card:\n%s", card)
-        if wanted_potency is None:
-            break
-        if exactly:
-            if card.potency == wanted_potency:
-                break
-        else:
-            if abs(card.potency - wanted_potency) < 3:
-                break
+        if (wanted_potency is None) or card.has_potency(wanted_potency, exactly):
+            return card
 
-    # if not registered:
-    add_name(card)
-    # add card to register
-    # else:
-    #    look up card in register
-    return card
 
-#%%
-import logging
-logging.basicConfig()
-logging.getLogger().setLevel(logging.INFO)
-
-minpot, maxpot, _ = Card.get_raw_potency_range()
-for pot in range(max(minpot+1,0), maxpot):
-    c = create_card(pot, exactly=True)
-    print(c)
-
-# c = create_card(55, exactly=True)
-# print(c)
-
-# %%
+def create_noname_cards(potencies: List[int], exactly: bool = False) -> List[Card]:
+    """Create a list of cards, one for each potency in `potencies`."""
+    return [create_noname_card(p, exactly) for p in potencies]

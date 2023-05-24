@@ -1,9 +1,10 @@
 import pytest
 from cardio import HumanPlayer, Grid, FightVnC, gg, Card, FightCard
+from cardio.blueprints import thecatalog
+
 
 @pytest.fixture
 def gg_setup():
-
     def fightify(*args, **kwargs) -> FightCard:
         """Convenenience function to create FightCards easily."""
         return FightCard.from_card(Card(*args, **kwargs))
@@ -22,3 +23,11 @@ def never_shuffle(mocker, request):
     if "disable_never_shuffle" in request.keywords:
         return
     mocker.patch("cardio.deck.Deck.shuffle")
+
+
+@pytest.fixture(autouse=True)
+def truncate_the_catalog():
+    """To make tests determistic and faster by truncating the blueprint catalog to the
+    first 20 entries.
+    """
+    thecatalog._blueprints = thecatalog._blueprints[:20]

@@ -53,15 +53,35 @@ Refer to the documentation with each class or module for details.
   of a run, the probability of a card/skill to be drawn in a lottery, and the
   difficulty/value of a card/skill in a fight.
 
+# Cards vs Blueprints vs FightCards
+
+- Blueprints are unique.
+- Cards are not unique, e.g., there can be several identical "Weasel" cards in a
+  player's deck.
+- FightCards are not unique either. Also, there can be just 1 "Church Mouse" (with
+  fertility skill) in a player's deck but several identical "Church Mouse" FightCards
+  during a fight.
+- Blueprint [0-1] <-> [0-n] Card.
+  - Not all blueprints must be instantiated as cards, obviously.
+  - Not all cards are derived from blueprints, e.g., when two cards get merged in a
+    location.
+- Card [1] <-> [1-n] FightCard. -- During a fight and for all cards in the human's deck.
+- Blueprints must never be modified, they are immutable. Blueprints should only modified
+  outside the game.
+- Cards can be modified, e.g., in locations such as the upgrade locations. Modifications
+  on cards are permanent.
+- FightCards are modified during a fight, e.g., when they take damage. Those
+  modifications are only effective for the current fight.
+
 
 # Card "buckets"
 
 There are the following broad "buckets" of cards:
 
 1. All that conceptually exist. New cards (e.g., via lottery or similar) will typically
-   be selected from this bucket.
+   be selected from this bucket. -- The blueprints.
    - This is the only bucket where the philosophies I vs II make any difference.
-2. The ones the player owns.
+2. The ones the player owns. TODO This needs to be implemented.
    - Player can only choose from those to put together their starting deck.
    - Maybe there will be certain locations that only apply to cards the player owns in
      the future?
@@ -70,7 +90,7 @@ There are the following broad "buckets" of cards:
      spirits)? (But at least one?) 
    - Or maybe the subset of initial cards is also randomly selected from the cards the
      player owns (and up to a max score)? 
-4. (The ones in different decks during a fight.)
+4. (The ones in different decks during a fight. -- The FightCards.)
 
 ## Example run
 
