@@ -38,25 +38,6 @@
   amount of Power/Health a card has already?
 
 
-# MVC Thoughts
-
-(Not sure, how good the thoughts here are...)
-
-- MVC: Could I have the basic FightVnC, which takes a Controller object, that does the
-  playcard stuff etc. and an Animator object that makes all the animations available
-  that are necessary?
-  - QQ: How many of the controller-related functions in FightVnC are actually
-    subclassed? How much subclassing is necessary there?
-  - How many methods could really be moved to the Animator class? I.e., how many methods
-    use information from the model?
-  - Is the differentiation between methods that have r/o access to the model and ones
-    that have r/w access?
-- In `Card`: Should all the methods that need access to the vnc simply take a vnc object
-  as a paramter? -- This could work. The methods in Card that should work with or w/o
-  vnc could take vnc as an option and just not do the vnc part if no vnc was passed
-  (e.g., `_die_silently`).
-
-
 # Architectural considerations
 
 - Rethink how the session module works. Maybe get rid of it? Maybe have a common way
@@ -73,11 +54,19 @@
   - Draw all modules and their dependencies and think about them.
   - Should cards have a game attribute which they use to query the world (e.g., who the
     opposing agent is) and to update the world (instead of the view directly)?
+- MVC: Could I have the basic FightVnC, which takes a Controller object, that does the
+  playcard stuff etc. and an Animator object that makes all the animations available
+  that are necessary?
+  - QQ: How many of the controller-related functions in FightVnC are actually
+    subclassed? How much subclassing is necessary there?
+  - How many methods could really be moved to the Animator class? I.e., how many methods
+    use information from the model?
+  - Is the differentiation between methods that have r/o access to the model and ones
+    that have r/w access?
+
 
 # Todo
 
-- Have some generic animation (just some color change for 0.2 seconds?) for skill
-  effects that get activated. E.g., for shield.
 - Start the game w/ 0 skills.
 - QQ: Spirits: keep them between fights (as it is now)? (Maybe have to sacrifice 1 life
   if you want to keep them?)
@@ -85,21 +74,17 @@
   skills a card can have? If so, those should be introduced and enforced. -- Note: There
   are at least implicit maxima now with the introduction of the potency range (see
   Card.MAX_*).
-- In cursor-based views: Flash cursor red when an action is not possible.
 - Check for right minimum resolution at the beginning.
-- Can we add the new fire and spirits placement logic to the hypo-driven tests? Maybe
-  using the placement mgr in the hypo test?
 - Terminology: agent vs player everywhere? Which is the better term? Make it consistent.
   -- Or: Terminology: Player 1 or H and Player C?
 - Look for all `grid.*=None` and use `remove_card` instead.
-- Write tests for all card characteristics and skills.
 - Edge case: What if the grid is empty or powerless at some point during a fight? Who
   will win?
 - Reduce the number of places the session module gets imported to a sensible minimum.
-- Add items? What kinds of items are there? (Can a number of items be derived from
-  skills as one-time-skills?)
 - Turn all the notes here and in DOMAIN into a Github wiki.
 - Check TUI on linux / wsl.
+- Add titles to locations.
+
 
 # More animations
 
@@ -109,7 +94,6 @@
 
 # Ideas: All prios
 
-- Add titles to locations.
 - Location ideas:
   - Card shop: Buy cards for gems
   - Exchange: Change spirits to gems and vice versa
@@ -134,14 +118,14 @@
   - Locations around items...? Item shop, ...?
   - Treasure location? ✘✘✘ -- Pick one of several digging locations and get a random
     item in return (or nothing).
-- Maybe there can be inanimate cards that do not provide a fire? (So: Should cards have
-  a `has_fire` attribute that can be 0, 1 or more? Or would this rather be subclasses?)
-- Vast range of items: E.g., rucksack 🎒, bigger rucksack 🎒🎒, some item that allows me
-  to keep my leftover spirits between fights but that I can also spend to get one-time
-  somethingsomething.
-- Could shorten the player's name according to its damage. Schnuzgi -> Schnuz -> Schn ->
-  ...
-- Use asciimatics' arrow as an avatar for the human player? (Or the computer?)
+  - Have a location that allows me to create new cards, combining health, power and
+    skills, and give them a name and keep them. -- Or some other mechanism to create new
+    cards?
+  - Location where I can name a card in my deck? (Or possibility to name a new card when
+    I get one in one of the other locations?)
+- Items? -- Item ideas: E.g., rucksack 🎒, bigger rucksack 🎒🎒, some item that allows
+  me to keep my leftover spirits between fights but that I can also spend to get
+  one-time somethingsomething.
 - Display some help output in the lower right corner? Current state of the app, allowed
   keys, unrecognized keys, ...?
 - Check out performance of animations: Esp. when running on battery power. -> Add some
@@ -150,9 +134,6 @@
   animation takes too long or too short).
 - could cards gain experience with fights and other things and evolve over time (stats
   would be permanent) but also die for real?
-- Have a location that allows me to create new cards, combining health, power and
-  skills, and give them a name and keep them. -- Or some other mechanism to create new
-  cards?
 - Terrain and weather conditions etc. that affect the cards?
 - Maybe you can lose cards for good in a run -- in a fight? Or as a downside risk when
   going for a particularly strong upgrade? E.g., the stronger the upgrade the higher the
@@ -171,10 +152,12 @@
 - Have floor tiles with special effects? I.e., more strength if a create is on it?
 - Can there be shops where you can buy stuff, including additional lives?
 - Maybe spirits could be persistent and can be taken over to the next fight?
-- Could cards have an icon that gets displayed, e.g., top right of the card? Then only
-  pick animal (and plant?) types that have an emoji?
 - Explain locations in the map view? Or have some keystroke that opens explanatory text
   in any view?
+- Have some generic animation (just some color change for 0.2 seconds?) for skill
+  effects that get activated. E.g., for shield.
+- Make fire effect work on WSL.
+
 
 # Low Prio Ideas
 
@@ -186,18 +169,16 @@
   cards.
 - For convenience: Placement cursor could pick the first slot that makes sense for the
   current card, i.e., the first empty slot for cards with `costs_fire == 0`.
-- Mark cards in a color other than blue.
-- Turn marked positions from blue to green when the placement manager is ready to pick.
 - Don't show costs in computer cards.
 - Different tribes?
 - If there are more and more cards, maybe they get some meta information around
   curation, likes, etc.?
 - Achievements/badges for the player?
 - Upgrading the game should invalidate all running/saved runs.
+- Can we add the new fire and spirits placement logic to the hypo-driven tests? Maybe
+  using the placement mgr in the hypo test?
+- Use asciimatics' arrow as an avatar for the human player? (Or the computer?)
 
-# Low Prio Todos
-
-- Make fire effect work on WSL.
 
 # Debugging hints
 

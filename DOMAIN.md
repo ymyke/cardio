@@ -20,8 +20,7 @@ Refer to the documentation with each class or module for details.
 - **Run:** A run is a single game.
   - A run starts with a starting deck that is determined according to a certain
     mechanism, see below. 
-  - Runs are fully predetermined based on some seed, i.e., they don't adapt based on the
-    player's behavior in any way.
+  - Runs are fully predetermined based on some seed.
   - Runs are indefinite. A player gets as far as she gets.
   - A run represents the entire map and keeps track of the current location and the path
     taken so far.
@@ -67,7 +66,7 @@ Refer to the documentation with each class or module for details.
     location.
 - Card [1] <-> [1-n] FightCard. -- During a fight and for all cards in the human's deck.
 - Blueprints must never be modified, they are immutable. Blueprints should only modified
-  outside the game.
+  outside the game by developers of the game.
 - Cards can be modified, e.g., in locations such as the upgrade locations. Modifications
   on cards are permanent.
 - FightCards are modified during a fight, e.g., when they take damage. Those
@@ -78,14 +77,14 @@ Refer to the documentation with each class or module for details.
 
 There are the following broad "buckets" of cards:
 
-1. All that conceptually exist. New cards (e.g., via lottery or similar) will typically
-   be selected from this bucket. -- The blueprints.
-   - This is the only bucket where the philosophies I vs II make any difference.
-2. The ones the player owns. TODO This needs to be implemented.
-   - Player can only choose from those to put together their starting deck.
+1. Blueprints: All that conceptually exist. New cards (e.g., via lottery or similar)
+   will typically be selected from this bucket.
+2. Collection: The ones the player owns. TODO This needs to be implemented.
+   - Player can only choose from those to put together their starting deck at the
+     beginning of a run.
    - Maybe there will be certain locations that only apply to cards the player owns in
      the future?
-3. The ones a player actually starts a run with.
+3. Main deck: The ones a player actually starts a run with.
    - Maybe she can choose? Based on a number of points (and maybe also gems and
      spirits)? (But at least one?) 
    - Or maybe the subset of initial cards is also randomly selected from the cards the
@@ -106,41 +105,4 @@ There are the following broad "buckets" of cards:
 - I can start the next run with a subset of these.
 
 
-# Philosophy I: All cards pre-generated
-
-- The game does not generate new cards dynamically. I.e., all cards are known (to the
-  game at least, maybe not to the player) at the start of the game.
-- Note that here we also need a potency score for cards in order to decide how
-  expensive (start of the game or shop) or rare (lottery) or difficult (fight) they are.
-  However, under this philosophy does not necessarily be calculated but can be
-  pre-generated as well, as all cards are known beforehand.
-
-
-# Philosophy II: All cards randomly generated
-
-- Locations, where the player can get a card, randomly generate cards.
-- Computer strategy randomly generates cards.
-- Need some way to generate the cards (including names) and especially a way to derive a
-  score from a card, which should hint at the cards overall potency.
-  - Such a score would require the skills to have a score as well.
-- (Such a generator would make sense anyway to generate card proposals for Philosophy
-  I.)
-
-Details:
-
-- Options on how to get the name: a) live from ChatGPT, b) fully random from a
-  pre-generated list, c) from a pre-generated list that is categorized by potency.
-- Maybe make sure that cards with the same attribute always get the same name?
-
-
-# Philosophy III: Hybrid
-
-- Cards are usually taken from a pre-generated list.
-- But with a certain probability, a card is generated randomly.
-
-
-# Philosophy IV: Options
-
-- Maybe the player can choose between the philosophies at the start of a game (but not
-  at the start of a run)?
 
