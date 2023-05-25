@@ -103,8 +103,7 @@ class Card:
         )
 
     def is_human(self) -> bool:
-        return self in gg.humanplayer.get_all_human_cards()
-        # FIXME Not nice, rethink the `is_human` test.
+        return self in gg.humanplayer.deck.cards + gg.humanplayer.collection.cards
 
     def is_skilled(self) -> bool:
         return self.skills.count() > 0

@@ -56,6 +56,9 @@ class FightCard(Card):
     def from_cards(cls, cards: list[Card]) -> List[FightCard]:
         return [cls.from_card(c) for c in cards]
 
+    def is_human(self) -> bool:
+        return self in self.vnc.decks.get_all_cards() + self.grid.lines[2]
+
     def copy(self) -> FightCard:
         """Copy the card. Use case: temporary copies of cards during a fight. E.g., for
         fertility.

@@ -11,34 +11,4 @@ class HumanPlayer:
     gems: int = 0  # 💎
     spirits: int = 0  # 👻 (or droplets/essence? 💧)
     deck: Deck = field(default_factory=lambda: Deck("main"))
-
-    def get_all_human_cards(self, fightonly: bool = False) -> CardList:
-        """Return all cards that are currently in the human player's possession. By
-        default returns all cards it can find. If `fightonly` is True, only
-        right-related cards are returned.
-        """
-        cards = []
-
-        # During fights I: Add fight decks
-        try:
-            cards.extend(gg.vnc.decks.get_all_cards())
-        except AttributeError:
-            pass
-
-        # During fights II: Add cards on the grid in the human player's line
-        # (Adding this as a separate try-except clause bc it makes tests easier without
-        # having to mock up the entire decks in FightVnC.)
-        try:
-            cards.extend([c for c in gg.grid.lines[2] if c is not None])
-        except AttributeError:
-            pass
-
-        # Outside fights: Add human player's deck
-        # (Note that tis test does not suffice during a fight bc new cards could be
-        # created (e.g., via fertility) during a fight which are added to one of the
-        # fight decks but not yet to a player's deck (which gets recreated only after a
-        # fight).)
-        if not fightonly:
-            cards.extend(self.deck.cards)
-
-        return cards
+    collection: Deck = field(default_factory=lambda: Deck("collection"))

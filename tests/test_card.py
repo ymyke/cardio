@@ -64,15 +64,6 @@ def test_copy():
 def test_is_human(gg_setup):
     c = Card("A", 1, 1, 1)
     assert not c.is_human()
-    gg.grid[2][2] = c
-    assert c.is_human()
-    gg.grid[2][2] = None
-    assert not c.is_human()
-    gg.vnc.decks = FightDecks()
-    gg.vnc.decks.draw.add_card(c)
-    assert c.is_human()
-    gg.vnc.decks = FightDecks()
-    assert not c.is_human()
     gg.humanplayer.deck.add_card(c)
     assert c.is_human()
 
