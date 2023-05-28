@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from collections import UserList
-from typing import List, Union
+from typing import List, Optional, Union
 from cardio import Card, CardList
 
 
@@ -38,8 +38,8 @@ class Blueprint:
 
 
 class BlueprintList(UserList[Blueprint]):
-    def __init__(self, data: List[Blueprint]) -> None:
-        super().__init__(data)
+    def __init__(self, data: Optional[List[Blueprint]] = None) -> None:
+        super().__init__(data or [])
 
     def instantiate(self) -> CardList:
         return [b.instantiate() for b in self.data]
