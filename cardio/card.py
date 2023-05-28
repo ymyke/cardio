@@ -1,4 +1,5 @@
 from __future__ import annotations
+from functools import lru_cache
 from typing import List, Optional, Tuple, TYPE_CHECKING
 import copy
 from . import gg
@@ -147,6 +148,7 @@ class Card:
         )
 
     @classmethod
+    @lru_cache(maxsize=None)
     def get_raw_potency_range(cls) -> Tuple[int, int, int]:
         """Return the current potency range: (min, max, theoretical max)."""
         skills = sorted(
