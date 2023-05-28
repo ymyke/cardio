@@ -41,7 +41,11 @@ def test_get_non_existing():
 
 
 def test_find_by_potency():
-    assert len(tc.find_by_potency(tc._blueprints[0]._original.potency)) > 0
+    # Just test a sample of potencies:
+    for whichpotency in [10, 12, 17, 23, 24, 30, 33, 48]:
+        isopotencies = tc.find_by_potency(whichpotency)
+        assert len(isopotencies) > 0
+        assert all(b._original.potency == whichpotency for b in isopotencies)
 
 
 def test_find_by_potency_range():
