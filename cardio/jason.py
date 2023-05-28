@@ -74,3 +74,9 @@ def load_all() -> Tuple[HumanPlayer, Run]:
     assert isinstance(player, HumanPlayer)
     assert isinstance(run, Run)
     return player, run
+
+
+def reset_all() -> None:
+    if BASE_PATH.exists():
+        for f in BASE_PATH.iterdir():
+            f.unlink()

@@ -1,4 +1,5 @@
 import logging
+import argparse
 from cardio import gg, HumanPlayer
 from cardio.run import Run
 from cardio.tui.mapview import TUIMapView
@@ -16,7 +17,18 @@ def create_new_player() -> HumanPlayer:
     return hp
 
 
+# ----- command line arguments -----
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--reset", action="store_true", help="Delete save files")
+args = parser.parse_args()
+
+if args.reset:
+    jason.reset_all()
+
+
 # ----- main -----
+
 
 try:  # Existing game/player?
     gg.humanplayer, run = jason.load_all()
