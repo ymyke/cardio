@@ -34,7 +34,6 @@ while True:  # Forever start new runs:
         mapview.move_to(chosen_loc)
         run.move_to(chosen_loc)
         view = view_directory[type(chosen_loc)]  # type: ignore
-        # mapview.close()
         run_on = chosen_loc.handle(view)
         jason.save_all(gg.humanplayer, run)
 
