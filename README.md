@@ -1,18 +1,29 @@
 
 
-
 # Next up
 
+- Use jason also to store the blueprints.
+
+- Get rid of non-exact potencies.
+
+- Bug-like: The potency that is used to for computer cards should maybe ignore the
+  costs. Otherwise, a card like muddark has too low potency I think. (Keep in mind that
+  the bluprint catalog has a special data structure for potencies that might need to be
+  adjusted.)
+  - Should potency be it's own class that can encapsulate raw, normalized and
+    computer/net variants?
+
 - Bug: Aborting card placement with ESC will lead to a card flash like an error.
+
+- Bug: Aquafox vs Aqua fox
+- UI Bug: Can't recognize cards w/ 0 spirits and 0 fire.
+- CHECK: Are lives handled correctly? If I have several lives, can I continue a run
+  after losing a live?
 
 - Maybe also cards the human can get are randomly generated and the human can give them
   names? Or at least sometimes can give them names? (Or there are locations where she
   can (re)name cards?)
 - Add more skills.
-- Add a way to determine the starting deck for a run.
-  - Makes an additional deck necessary in humanplayer: "main" (existing) and "all" or
-    "known" or so.
-  - Reread stuff in this file and in DOMAIN.
 - Scoring and difficulty progress:
   - Should there be additional scores in addition to the rung? Something that better
     reflects the difficulty mastered by that run? E.g., number of fights? Or should
@@ -28,6 +39,7 @@
     some useful format? (Would replace log and maybe also the stateslogger) -- Keep in
     mind that some cards can die during a run but should still keep their stats
     available. How to do that exactly?
+  - And history to runs, and all histories need to be saved.
 - Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
 - Resolve the shield deadlock and general deadlock issue. Cf. `_has_computer_won` in
   fightvnc.
@@ -123,6 +135,8 @@
     cards?
   - Location where I can name a card in my deck? (Or possibility to name a new card when
     I get one in one of the other locations?)
+  - Location where the player can pick another card from his collection to add to his
+    deck?
 - Items? -- Item ideas: E.g., rucksack 🎒, bigger rucksack 🎒🎒, some item that allows
   me to keep my leftover spirits between fights but that I can also spend to get
   one-time somethingsomething.
@@ -161,6 +175,14 @@
 
 # Low Prio Ideas
 
+- Instead of picking random cards from the player's collection to compile the deck,
+  maybe the player can choose which cards from her collection to start a run with.
+  Choosing could be based on a pure number of cards basis. Or based on points (and maybe
+  also gems and spirits). Or based on a combination of both.
+- Some kind of main menu?
+  - Add a way to create a new game.
+  - Add a way to set a player name when a new game gets created.
+  - Add a way to set a seed.
 - Add a quick "FIGHT!" splash screen before a fight? (Maybe after the initial grid has
   been set up?)
 - Maybe NoLocations can have minor "on the way" events? I.e., gain/lose some gems, ...?
