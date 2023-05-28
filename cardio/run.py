@@ -36,17 +36,17 @@ class Run:
         self.current_rung += 1
         self.current_index = loc.index
 
-    def _nof_locations(self, at_rung: int) -> int:
+    def nof_locations(self, at_rung: int) -> int:
         assert at_rung >= 0
         if at_rung == 0:  # Always start with 1 location on rung 0
             return 1
         random.seed(f"N{at_rung}_{self.base_seed}")
         return random.randint(1, 3)
 
-    def _get_paths(self, at_rung: int) -> PathPattern:
+    def get_paths(self, at_rung: int) -> PathPattern:
         assert at_rung >= 0
-        in_locs = self._nof_locations(at_rung)
-        out_locs = self._nof_locations(at_rung + 1)
+        in_locs = self.nof_locations(at_rung)
+        out_locs = self.nof_locations(at_rung + 1)
         random.seed(f"P{at_rung}_{self.base_seed}")
         return random.choice(PATH_PATTERNS[f"{in_locs}-{out_locs}"])
 
@@ -60,8 +60,8 @@ class Run:
         """
         at_rung = at_rung or self.current_rung
         locations = []
-        noflocations = range(self._nof_locations(at_rung))
-        pathpattern = self._get_paths(at_rung)
+        noflocations = range(self.nof_locations(at_rung))
+        pathpattern = self.get_paths(at_rung)
         if at_rung == 0:  # Always start with a NoLocation on rung 0
             return [NoLocation(self.base_seed, 0, 0, pathpattern.paths[0])]
         for i in noflocations:
@@ -117,7 +117,7 @@ class Run:
         res = ""
         for i in range(upper, lower - 1, -1):
             # Get and format the path pattern:
-            pattern = self._get_paths(i).pattern
+            pattern = self.get_paths(i).pattern
             lines = filter(None, pattern.split("\n"))
             lines = list(map(v_stretch, lines))
             if h_condense:
