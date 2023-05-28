@@ -3,6 +3,14 @@ from cardio.run import Run
 from cardio.locations.location import Location
 
 
+def test_init():
+    run = Run("someseed")
+    assert run.base_seed == "someseed"
+    assert run.current_rung == 0
+    assert run.current_index == 0
+    assert run.is_on
+
+
 def test_get_locations():
     run = Run("someseed")
     locs = run.get_locations(10)

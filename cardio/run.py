@@ -20,16 +20,19 @@ class Run:
     base_seed: str
     current_rung: int
     current_index: int
+    is_on: bool
 
     def __init__(
         self,
         base_seed: Optional[str] = None,
         current_rung: int = 0,
         current_index: int = 0,
+        is_on: bool = True,
     ) -> None:
         self.base_seed = base_seed or str(time.time_ns())
         self.current_rung = current_rung
         self.current_index = current_index
+        self.is_on = is_on
 
     def move_to(self, loc: Location) -> None:
         assert loc.rung == self.current_rung + 1

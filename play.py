@@ -40,13 +40,12 @@ except FileNotFoundError:  # New game/player
 
 mapview = TUIMapView(run, debug=True)
 while True:  # Forever start new runs:
-    run_on = True
-    while run_on:  # Visit locations in run:
+    while run.is_on:  # Visit locations in run:
         chosen_loc = mapview.get_next_location()
         mapview.move_to(chosen_loc)
         run.move_to(chosen_loc)
         view = view_directory[type(chosen_loc)]  # type: ignore
-        run_on = chosen_loc.handle(view)
+        run.is_on = chosen_loc.handle(view)
         jason.save_all(gg.humanplayer, run)
 
     # Run is over:
