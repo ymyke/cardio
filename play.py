@@ -4,35 +4,42 @@ from cardio.run import Run
 from cardio.tui.mapview import TUIMapView
 from cardio.locations.location_directory import view_directory
 from cardio.blueprints import thecatalog
+from cardio import jason
 
 logging.basicConfig(level=logging.DEBUG)
 
-### Start menu: Create new or load existing player | start new run
 
-### If create new player:
-humanplayer = HumanPlayer(name="Schnuzgi", lives=1, spirits=3)
-HUMAN_START_CARDS = ["Church Mouse", "Weasel", "Lynx", "Porcupine"]
-humanplayer.deck.cards = thecatalog.find_by_names(HUMAN_START_CARDS).instantiate()
-gg.humanplayer = humanplayer
-
-### If load player:
-# (Load and just use the main deck the player has.)
-
-### Start new run:
-run = Run()  # <- This generates a new seed
-# (or load seed + current location + player state if existing game is being continued)
+def create_new_player() -> HumanPlayer:
+    HUMAN_START_CARDS = ["Church Mouse", "Weasel", "Lynx", "Porcupine"]
+    hp = HumanPlayer(name="Schnuzgi", lives=1, spirits=3)
+    hp.deck.cards = thecatalog.find_by_names(HUMAN_START_CARDS).instantiate()
+    return hp
 
 
-### While not game over:
+# ----- main -----
+
+try:  # Existing game/player?
+    gg.humanplayer, run = jason.load_all()
+except FileNotFoundError:  # New game/player
+    logging.debug("No save file found. Starting new game")
+    gg.humanplayer = create_new_player()
+    run = Run()
+    jason.save_all(gg.humanplayer, run)
+
 mapview = TUIMapView(run, debug=True)
-game_on = True
-while game_on:
-    chosen_loc = mapview.get_next_location()
-    mapview.move_to(chosen_loc)
-    run.move_to(chosen_loc)
-    view = view_directory[type(chosen_loc)]  # type: ignore
-    game_on = chosen_loc.handle(view)
+while True:  # Forever start new runs:
+    run_on = True
+    while run_on:  # Visit locations in run:
+        chosen_loc = mapview.get_next_location()
+        mapview.move_to(chosen_loc)
+        run.move_to(chosen_loc)
+        view = view_directory[type(chosen_loc)]  # type: ignore
+        # mapview.close()
+        run_on = chosen_loc.handle(view)
+        jason.save_all(gg.humanplayer, run)
 
-
-### Game over:
-###   ...
+    # Run is over:
+    # FIXME Maybe do some other stuff here, like saying something to the user, showing
+    # run stats, somehow add run stats to player's history, etc.
+    run = Run()
+    jason.save_all(gg.humanplayer, run)

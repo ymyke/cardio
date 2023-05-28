@@ -1,6 +1,4 @@
 from dataclasses import dataclass, field
-from cardio import gg
-from cardio.card import CardList
 from .deck import Deck
 
 
