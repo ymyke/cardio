@@ -20,7 +20,7 @@ class TUIMapView(TUIBaseMixin):
     def dpos_from_location(self, loc: Location) -> dPos:
         # FIXME This is not nice bc it hardcodes all kinds of things that are flexible
         # in run.get_string.
-        num_locations = len(self.run.get_locations(loc.rung))
+        num_locations = self.run.nof_locations(loc.rung)
         if num_locations == 1:
             view_index = 1
         elif num_locations == 2:

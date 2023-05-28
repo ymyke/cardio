@@ -1,4 +1,5 @@
 import os
+from collections import defaultdict
 from typing import List, Optional, Union
 from cardio import Card, skills
 from .blueprint import Blueprint, BlueprintList
@@ -30,11 +31,15 @@ class BlueprintSkillNameIncludedError(Exception):
 
 class BlueprintCatalog:
     _blueprints: BlueprintList
+    # `_by_potency` allows for fast lookup of blueprints with a given potency:
+    _by_potency: dict[int, BlueprintList]
 
     def __init__(self) -> None:
-        self._blueprints = BlueprintList([])
+        self._blueprints = BlueprintList()
+        self._by_potency = defaultdict(BlueprintList)
         for b in all_blueprints.all_blueprints:
             self.add_blueprint(b)
+            self._by_potency[b._original.potency].append(b)
 
     def find_by_name(self, name: str) -> BlueprintList:
         """Find all blueprints with name `name`."""
@@ -62,9 +67,7 @@ class BlueprintCatalog:
         self, wanted_potency: int, exactly: bool = False
     ) -> BlueprintList:
         """Find all blueprints with potency `potency` (normalized, i.e., [0, 100])."""
-        return BlueprintList(
-            [b for b in self._blueprints if b.has_potency(wanted_potency, exactly)]
-        )
+        return self._by_potency[wanted_potency]
 
     def find_by_potency_range(
         self, min_potency: int, max_potency: int

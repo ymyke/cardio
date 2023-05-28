@@ -121,11 +121,14 @@ class FightVnC:
         self.decks.hand.add_card(card)
 
     def _has_computer_won(self) -> bool:
-        return self.damagestate.has_computer_won() or not any(
-            c.power > 0
-            for c in set(gg.humanplayer.get_all_human_cards(fightonly=True))
-            - set(self.decks.used.cards)
+        active_human_cards = (
+            [c for c in gg.grid.lines[2] if c is not None]
+            + self.decks.hand.cards
+            + self.decks.draw.cards
+            + self.decks.hamster.cards
         )
+        is_human_powerless = not any(c.power > 0 for c in active_human_cards)
+        return self.damagestate.has_computer_won() or is_human_powerless
         # FIXME The above is not fully correct yet. There could also be a case there is
         # a card in the hand with power > 0 but that is not playable, e.g., because the
         # necessary sacrifice is not possible. That should be taken into account in the
@@ -231,7 +234,7 @@ class FightVnC:
         self.decks.draw.shuffle()
 
         # Initialize all skills:
-        for card in gg.humanplayer.get_all_human_cards(fightonly=True):
+        for card in self.decks.draw.cards + self.decks.hamster.cards:
             card.skills.call("pre_fight")
 
         # Draw the decks and show how the first cards get drawn:

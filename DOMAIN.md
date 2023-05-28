@@ -12,10 +12,13 @@ Refer to the documentation with each class or module for details.
   logic is implemented in FightCard, mainly in its `attack`, `prepare`, and
   `take_damage` methods.
 - **Card Blueprints:** Used to instantiate concrete cards from.
-- **Deck:** A collection of cards.
-  - The human player has a "main" deck with all the cards she owns.
-  - During a fight, the human player has 4 decks: the hand, the draw deck, the hamster
-    deck, and the discard pile (used deck).
+- **Deck:** A set of cards.
+  - **Collection:** All the cards the human player owns. These are not blueprints, all
+    changes to cards in the collection are permanent. The main deck will be a subset of
+    the collection, put together at the start of a run.
+  - **Main deck:** The cards the human player actually plays a run with.
+  - **Fight decks:** During a fight, the human player has 4 decks: the hand, the draw
+    deck, the hamster deck, and the discard pile (used deck).
 - **Skill:** A special ability of a card. Can be positive or negative or in-between.
 - **Run:** A run is a single game.
   - A run starts with a starting deck that is determined according to a certain
@@ -79,16 +82,8 @@ There are the following broad "buckets" of cards:
 
 1. Blueprints: All that conceptually exist. New cards (e.g., via lottery or similar)
    will typically be selected from this bucket.
-2. Collection: The ones the player owns. TODO This needs to be implemented.
-   - Player can only choose from those to put together their starting deck at the
-     beginning of a run.
-   - Maybe there will be certain locations that only apply to cards the player owns in
-     the future?
+2. Collection: The ones the player owns.
 3. Main deck: The ones a player actually starts a run with.
-   - Maybe she can choose? Based on a number of points (and maybe also gems and
-     spirits)? (But at least one?) 
-   - Or maybe the subset of initial cards is also randomly selected from the cards the
-     player owns (and up to a max score)? 
 4. (The ones in different decks during a fight. -- The FightCards.)
 
 ## Example run

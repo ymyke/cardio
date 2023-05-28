@@ -1,4 +1,5 @@
 from __future__ import annotations
+from functools import lru_cache
 from typing import List, Optional, Tuple, TYPE_CHECKING
 import copy
 from . import gg
@@ -103,8 +104,7 @@ class Card:
         )
 
     def is_human(self) -> bool:
-        return self in gg.humanplayer.get_all_human_cards()
-        # FIXME Not nice, rethink the `is_human` test.
+        return self in gg.humanplayer.deck.cards + gg.humanplayer.collection.cards
 
     def is_skilled(self) -> bool:
         return self.skills.count() > 0
@@ -148,6 +148,7 @@ class Card:
         )
 
     @classmethod
+    @lru_cache(maxsize=None)
     def get_raw_potency_range(cls) -> Tuple[int, int, int]:
         """Return the current potency range: (min, max, theoretical max)."""
         skills = sorted(
