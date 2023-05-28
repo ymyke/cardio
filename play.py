@@ -11,9 +11,13 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def create_new_player() -> HumanPlayer:
-    HUMAN_START_CARDS = ["Church Mouse", "Weasel", "Lynx", "Porcupine"]
     hp = HumanPlayer(name="Schnuzgi", lives=1, spirits=3)
-    hp.deck.cards = thecatalog.find_by_names(HUMAN_START_CARDS).instantiate()
+    # HUMAN_START_CARDS = ["Church Mouse", "Weasel", "Lynx", "Porcupine"]
+    # startcards = thecatalog.find_by_names(HUMAN_START_CARDS).instantiate()
+    startcards = thecatalog.find_by_potency_range(3, 4).instantiate()
+    startcards = [c for c in startcards if c.costs_fire + c.costs_spirits <= 2]
+    # FIXME ^ Better use net potency here too.
+    hp.collection.cards = startcards
     return hp
 
 
@@ -26,20 +30,28 @@ args = parser.parse_args()
 if args.reset:
     jason.reset_all()
 
-
 # ----- main -----
 
+run = None
 
 try:  # Existing game/player?
     gg.humanplayer, run = jason.load_all()
 except FileNotFoundError:  # New game/player
     logging.debug("No save file found. Starting new game")
     gg.humanplayer = create_new_player()
-    run = Run()
-    jason.save_all(gg.humanplayer, run)
 
-mapview = TUIMapView(run, debug=True)
 while True:  # Forever start new runs:
+    if not run or not run.is_on:
+        run = Run()
+
+    if run.current_rung == 0:  # Starting a new run:
+        # Pick random cards from collection for the deck:
+        gg.humanplayer.collection.shuffle()
+        gg.humanplayer.deck.cards = gg.humanplayer.collection.draw_cards(4)
+
+    jason.save_all(gg.humanplayer, run)
+    mapview = TUIMapView(run, debug=True)
+
     while run.is_on:  # Visit locations in run:
         chosen_loc = mapview.get_next_location()
         mapview.move_to(chosen_loc)
@@ -51,5 +63,8 @@ while True:  # Forever start new runs:
     # Run is over:
     # FIXME Maybe do some other stuff here, like saying something to the user, showing
     # run stats, somehow add run stats to player's history, etc.
-    run = Run()
-    jason.save_all(gg.humanplayer, run)
+    mapview.close()
+    # Add deck back into collection:
+    for card in gg.humanplayer.deck.cards:
+        gg.humanplayer.collection.add_card(card)
+    gg.humanplayer.deck.cards = []
