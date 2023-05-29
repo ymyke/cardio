@@ -2,8 +2,6 @@
 
 # Next up
 
-- Use jason also to store the blueprints.
-
 - Get rid of non-exact potencies.
 
 - Bug-like: The potency that is used to for computer cards should maybe ignore the
@@ -16,13 +14,9 @@
 - Bug: Aborting card placement with ESC will lead to a card flash like an error.
 
 - Bug: Aquafox vs Aqua fox
-- UI Bug: Can't recognize cards w/ 0 spirits and 0 fire.
 - CHECK: Are lives handled correctly? If I have several lives, can I continue a run
   after losing a live?
 
-- Maybe also cards the human can get are randomly generated and the human can give them
-  names? Or at least sometimes can give them names? (Or there are locations where she
-  can (re)name cards?)
 - Add more skills.
 - Scoring and difficulty progress:
   - Should there be additional scores in addition to the rung? Something that better
@@ -31,14 +25,13 @@
   - Refine FightLocation and Computerstrategy so the game becomes harder and harder as
     the rungs increase.
   - Use card generator to this end.
-- Save and load game state.
-  - Add stats to game state: number of fights won, locations visited, number and which
-    cards defeated, which cards confronted with, ... -- could have an instance of each
-    "thing" (card, location, etc.) and log the stats with these things (using a special
-    Stats class that gets added to each such thing) -- or maybe just the entire run in
-    some useful format? (Would replace log and maybe also the stateslogger) -- Keep in
-    mind that some cards can die during a run but should still keep their stats
-    available. How to do that exactly?
+- Add stats to game state: number of fights won, locations visited, number and which
+  cards defeated, which cards confronted with, ... -- could have an instance of each
+  "thing" (card, location, etc.) and log the stats with these things (using a special
+  Stats class that gets added to each such thing) -- or maybe just the entire run in
+  some useful format? (Would replace log and maybe also the stateslogger) -- Keep in
+  mind that some cards can die during a run but should still keep their stats available.
+  How to do that exactly?
   - And history to runs, and all histories need to be saved.
 - Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
 - Resolve the shield deadlock and general deadlock issue. Cf. `_has_computer_won` in
@@ -79,7 +72,6 @@
 
 # Todo
 
-- Start the game w/ 0 skills.
 - QQ: Spirits: keep them between fights (as it is now)? (Maybe have to sacrifice 1 life
   if you want to keep them?)
 - QQ: Should there be maximums for power, health, costs_*, and has_* and the number of
@@ -89,7 +81,6 @@
 - Check for right minimum resolution at the beginning.
 - Terminology: agent vs player everywhere? Which is the better term? Make it consistent.
   -- Or: Terminology: Player 1 or H and Player C?
-- Look for all `grid.*=None` and use `remove_card` instead.
 - Edge case: What if the grid is empty or powerless at some point during a fight? Who
   will win?
 - Reduce the number of places the session module gets imported to a sensible minimum.
