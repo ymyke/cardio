@@ -13,7 +13,6 @@
 
 - Bug: Aborting card placement with ESC will lead to a card flash like an error.
 
-- Bug: Aquafox vs Aqua fox
 - CHECK: Are lives handled correctly? If I have several lives, can I continue a run
   after losing a live?
 
