@@ -25,6 +25,9 @@ def test_init_load():
 def test_find_by_name():
     assert len(tc.find_by_name("thisdoesnotexist")) == 0
     assert len(tc.find_by_name(tc._blueprints[0].name)) == 1
+    tc._blueprints[-1].name = "A ..a__?"
+    assert len(tc.find_by_name("**A*******A**")) == 1
+    assert len(tc.find_by_name("**A***A***A**")) == 0
 
 
 def test_find_by_names():

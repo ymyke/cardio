@@ -46,8 +46,14 @@ class BlueprintCatalog:
             self._by_potency[b._original.potency].append(b)
 
     def find_by_name(self, name: str) -> BlueprintList:
-        """Find all blueprints with name `name`."""
-        return BlueprintList([b for b in self._blueprints if b.name == name])
+        """Find all blueprints with name `name`"""
+
+        def normalize(x: str) -> str:
+            return "".join(c.lower() for c in x if c.isalpha())
+
+        return BlueprintList(
+            [b for b in self._blueprints if normalize(b.name) == normalize(name)]
+        )
 
     def get(self, name: str) -> Blueprint:
         res = self.find_by_name(name)
@@ -116,11 +122,11 @@ class BlueprintCatalog:
         self._blueprints.append(blueprint)
 
     def save(self, filename: Optional[str] = None) -> None:
-        jason.save_file(self._blueprints, _get_path(filename))
+        jason.save_file(list(self._blueprints), _get_path(filename))
 
     @classmethod
     def load(cls, filename: Optional[str] = None) -> BlueprintCatalog:
-        return cls(jason.load_file(_get_path(filename)))
+        return cls(BlueprintList(jason.load_file(_get_path(filename))))
 
 
 # Create the one catalog that is used throughout the game:
