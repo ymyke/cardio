@@ -7,6 +7,8 @@ import toml
 import cardio
 from cardio import Card, Deck, HumanPlayer
 from cardio.run import Run
+from cardio.blueprints import Blueprint
+
 
 BASE_PATH = user_data_path("cardio")
 PLAYER_PATH = BASE_PATH / "player.json"
@@ -24,21 +26,29 @@ def encoder(x):
 
 
 def decoder(d):
+    # Skills:
     if "skills" in d:
         d["skills"] = [getattr(cardio.skills, t) for t in d["skills"]]
+    # Blueprint:
+    try:
+        return Blueprint(original=d["_original"], description=d["description"])
+    except (TypeError, KeyError):
+        pass
+    # Other classes:
     for class_ in [HumanPlayer, Deck, Card, Run]:
         try:
             return class_(**d)
         except TypeError:
             pass
+
     return d
 
 
-def encode(x) -> str:
+def encode(x):
     return json.dumps(x, default=encoder, indent=4)
 
 
-def decode(jsonstr: str) -> Card:
+def decode(jsonstr: str):
     return json.loads(jsonstr, object_hook=decoder)
 
 
