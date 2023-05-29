@@ -1,9 +1,9 @@
-import os
+from __future__ import annotations
+from pathlib import Path
 from collections import defaultdict
 from typing import List, Optional, Union
-from cardio import Card, skills
+from cardio import Card, jason, skills
 from .blueprint import Blueprint, BlueprintList
-from . import all_blueprints
 
 
 MAX_NAME_LENGTH = 14
@@ -29,16 +29,20 @@ class BlueprintSkillNameIncludedError(Exception):
     pass
 
 
+def _get_path(filename: Optional[str]) -> Path:
+    filename = filename or "_all_blueprints.json"
+    return Path(__file__).resolve().parent / filename
+
+
 class BlueprintCatalog:
     _blueprints: BlueprintList
     # `_by_potency` allows for fast lookup of blueprints with a given potency:
     _by_potency: dict[int, BlueprintList]
 
-    def __init__(self) -> None:
-        self._blueprints = BlueprintList()
+    def __init__(self, blueprints: Optional[BlueprintList] = None) -> None:
+        self._blueprints = blueprints or BlueprintList()
         self._by_potency = defaultdict(BlueprintList)
-        for b in all_blueprints.all_blueprints:
-            self.add_blueprint(b)
+        for b in self._blueprints:
             self._by_potency[b._original.potency].append(b)
 
     def find_by_name(self, name: str) -> BlueprintList:
@@ -112,20 +116,12 @@ class BlueprintCatalog:
         self._blueprints.append(blueprint)
 
     def save(self, filename: Optional[str] = None) -> None:
-        filename = filename or "all_blueprints.py"
-        folder = os.path.dirname(os.path.abspath(__file__))
-        path = os.path.join(folder, filename)
-        with open(path, "w", encoding="utf-8") as f:
-            f.write("from cardio import Card, skills\n")
-            f.write("from .blueprint import Blueprint\n")
-            f.write("all_blueprints = [\n")
-            for b in self._blueprints:
-                s = "# " + "\n# ".join(str(b._original).split("\n"))
-                f.write(s + "\n")
-                f.write(repr(b))
-                f.write(",\n")
-            f.write("]\n")
+        jason.save_file(self._blueprints, _get_path(filename))
+
+    @classmethod
+    def load(cls, filename: Optional[str] = None) -> BlueprintCatalog:
+        return cls(jason.load_file(_get_path(filename)))
 
 
 # Create the one catalog that is used throughout the game:
-thecatalog = BlueprintCatalog()
+thecatalog = BlueprintCatalog.load()
