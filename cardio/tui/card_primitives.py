@@ -68,13 +68,20 @@ def show_card_contents(
         costs = ""
     show_text_ra(screen, pos + (BOX_WIDTH - 1, 5), costs)
 
-    # Show `has_*` in lower left, only the one that is > 1 (if any):
-    if card.has_fire > 1:
-        has = render_value(card.has_fire, "🔥", 3, False, Color.YELLOW)
-    elif card.has_spirits > 1:
-        has = render_value(card.has_spirits, "👻", 3, False, Color.WHITE)
-    else:
-        has = ""
+    # Show `has_*` in lower left:
+    # (Only values != 1 are shown, since 1, 1 is the most common.)
+    fire_str = spirits_str = " "
+    if card.has_fire == 0:
+        fire_str = "_"
+    elif card.has_fire != 1:
+        fire_str = f"{card.has_fire}"
+    if card.has_spirits == 0:
+        spirits_str = "_"
+    elif card.has_spirits != 1:
+        spirits_str = f"{card.has_spirits}"
+    has = f"${{{Color.YELLOW.value}}}{fire_str}${{{Color.WHITE.value}}}"
+    has += " "
+    has += f"${{{Color.WHITE.value}}}{spirits_str}${{{Color.WHITE.value}}}"
     show_text(screen, pos + (2, 5), has)
 
 
