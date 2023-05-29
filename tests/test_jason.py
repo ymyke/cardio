@@ -2,10 +2,11 @@ import cardio.jason as jason
 from cardio import HumanPlayer
 from cardio.blueprints import thecatalog
 from cardio.run import Run
+from cardio.blueprints import Blueprint
 
 
 def test_encode_decode_humanplayer_inluding_cards_etc():
-    c = thecatalog.find_by_name("Church Mouse").instantiate()[0]
+    c = thecatalog.get("Church Mouse").instantiate()
     hp = HumanPlayer("me")
     hp.deck.add_card(c)
     hp.collection.add_card(c)
@@ -30,3 +31,12 @@ def test_encode_decode_run():
     assert nr.base_seed == r.base_seed
     assert nr.current_rung == r.current_rung
     assert nr.current_index == r.current_index
+
+
+def test_encode_decode_blueprint():
+    b = thecatalog._blueprints[-1]
+    j = jason.encode(b)
+    nb = jason.decode(j)
+    assert isinstance(nb, Blueprint)
+    assert nb.is_gameplay_equal(b)
+    assert nb.name == b.name

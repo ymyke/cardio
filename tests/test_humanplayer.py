@@ -2,10 +2,17 @@ from cardio import HumanPlayer
 
 
 def test_humanplayer_init():
-    hp = HumanPlayer("Human")
-    assert hp.name == "Human"
-    assert hp.lives == 1
-    assert hp.gems == 0
-    assert hp.spirits == 0
-    assert hp.deck.name == "main"
-    assert hp.collection.name == "collection"
+    p = HumanPlayer("Human")
+    assert p.name == "Human"
+    assert p.lives == 1
+    assert p.gems == 0
+    assert p.spirits == 0
+    assert p.deck.name == "main"
+    assert p.collection.name == "collection"
+    assert p.hamster_blueprint.name == "Hamster"
+
+
+def test_humanplayer_create_new():
+    p = HumanPlayer.create_new("Human")
+    assert p.name == "Human"
+    assert len(p.collection.cards) > 0

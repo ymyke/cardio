@@ -10,7 +10,6 @@ from . import gg, FightCard, Deck, FightDecks, Grid, GridPos, skills
 from .placement_manager import PlacementManager
 from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
-from cardio.blueprints import thecatalog
 from .states_logger import StatesLogger
 
 
@@ -229,7 +228,9 @@ class FightVnC:
         # Set up the decks for the fight:
         self.decks = FightDecks()
         self.decks.draw.cards = FightCard.from_cards(gg.humanplayer.deck.cards)
-        hamster_cards = thecatalog.find_by_names(["Hamster"] * 10).instantiate()
+        hamster_cards = [
+            gg.humanplayer.hamster_blueprint.instantiate() for _ in range(10)
+        ]
         self.decks.hamster.cards = FightCard.from_cards(hamster_cards)
         self.decks.draw.shuffle()
 
