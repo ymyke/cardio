@@ -4,6 +4,7 @@ from typing import List, Optional, Tuple, TYPE_CHECKING
 import copy
 from . import gg
 from .skills import ListOfSkillsOrSkillTypes, SkillSet, get_skilltypes
+from cardio.potency import Potency
 
 if TYPE_CHECKING:
     from .fightcard import FightCard
@@ -72,6 +73,8 @@ class Card:
             # much of either to use (unless specified algorithmically).)
         )
 
+        self.pot = Potency(self)
+
     def __str__(self) -> str:
         skillstr = "".join(s.symbol for s in self.skills)
         s = f"{self.name} {skillstr} {self.power}p {self.health}h\n"
@@ -115,21 +118,32 @@ class Card:
         return cp
 
     @property
+    def net_potency(self) -> int:
+        return self.power * 2 + self.health * 2 + sum(s.potency for s in self.skills)
+
+    @property
     def raw_potency(self) -> int:
         """Return the raw potency number of this card. Simply add a number of
         attributes, where power and health are weighted more heavily. Add a bonus for
         cards with no costs.
         """
-        strengths = (
-            self.power * 2
-            + self.health * 2
-            + self.has_fire
-            + self.has_spirits
-            + sum(s.potency for s in self.skills)
-        )
+        strengths = self.net_potency + self.has_fire + self.has_spirits
         costs = self.costs_fire + self.costs_spirits
         costs_bonus = 10 if costs == 0 else 0  # Bonus for cards with no costs at all
         return strengths - costs + costs_bonus
+
+    # Var A:
+    # c.net_potency
+    # c.raw_potency
+    # ...
+
+    # Var B:
+    # c.potency.gross
+    # c.potency.raw (always gross?)
+    # c.potency.net
+
+    # Var C:
+    # c.potency(net=True, raw=True)
 
     @property
     def potency(self) -> int:
@@ -152,7 +166,7 @@ class Card:
     def get_raw_potency_range(cls) -> Tuple[int, int, int]:
         """Return the current potency range: (min, max, theoretical max)."""
         skills = sorted(
-            get_skilltypes(implemented_only=False),
+            get_skilltypes(implemented_only=True),
             key=lambda s: s.potency,
             reverse=True,
         )
@@ -183,6 +197,35 @@ class Card:
             curmaxcard.raw_potency,
             theorymaxcard.raw_potency + Card.MAX_SKILLS * 10,
         )
+
+    @classmethod
+    def get_min_max(cls) -> Tuple[Card, Card]:
+        skills_by_potency = sorted(
+            get_skilltypes(implemented_only=True),
+            key=lambda s: s.potency,
+            reverse=True,
+        )
+        mincard = Card(
+            name="Min",
+            power=0,
+            health=1,
+            costs_fire=4,
+            skills=[s for s in skills_by_potency[-cls.MAX_SKILLS :] if s.potency < 0],
+            costs_spirits=0,  # 0, bc we can't have both types of costs in a card
+            has_spirits=0,
+            has_fire=0,
+        )
+        maxcard = Card(
+            name="Max",
+            power=cls.MAX_ATTR,
+            health=cls.MAX_ATTR,
+            costs_fire=0,
+            skills=skills_by_potency[: cls.MAX_SKILLS],  # type: ignore
+            costs_spirits=0,
+            has_spirits=cls.MAX_ATTR,
+            has_fire=cls.MAX_ATTR,
+        )
+        return mincard, maxcard
 
 
 # ----- Types -----
