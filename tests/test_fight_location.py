@@ -8,15 +8,15 @@ def test_generate():
     assert isinstance(l.grid, Grid)
     assert isinstance(l.computerstrategy, Round0OnlyStrategy)
     assert [(loc, card.name) for loc, card in l.computerstrategy.cards] == [
-        (GridPos(line=0, slot=1), "Infernorb"),
-        (GridPos(line=0, slot=2), "Gecko"),
+        (GridPos(line=0, slot=1), "Fiercecat"),
+        (GridPos(line=0, slot=2), "Drakelet"),
     ]
 
     # Try different seed and higher rung:
     l = FightLocation("2", 30, 1, [0])
     assert [(loc, card.name) for loc, card in l.computerstrategy.cards] == [
-        (GridPos(line=0, slot=0), "Flameshrew"),
-        (GridPos(line=1, slot=3), "Froglet"),
-        (GridPos(line=1, slot=0), "Turtle"),
-        (GridPos(line=0, slot=2), "Blazeworm"),
+        (GridPos(line=0, slot=0), "Necrobug"),
+        (GridPos(line=1, slot=3), "Ant"),
+        (GridPos(line=1, slot=0), "Mole"),
+        (GridPos(line=0, slot=2), "Glimmertail"),
     ]

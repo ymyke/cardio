@@ -30,8 +30,11 @@ class HumanPlayer:
         from cardio.blueprints import thecatalog
 
         p = cls(name=name, lives=1, gems=0, spirits=3)
-        start_cards = thecatalog.find_by_potency_range(3, 4).instantiate()
-        start_cards = [c for c in start_cards if c.costs_fire + c.costs_spirits <= 2]
-        # FIXME ^ Better use net potency here too.
+        start_cards = thecatalog.find_by_potency(0, 5, core=False).instantiate()
+        start_cards = [
+            c
+            for c in start_cards
+            if c.costs_fire + c.costs_spirits <= 2 and c.has_fire + c.has_spirits <= 2
+        ]
         p.collection.cards = start_cards
         return p

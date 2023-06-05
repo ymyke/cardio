@@ -117,11 +117,14 @@ def gen_skills(ignore_levels: int = 0) -> list:
     num_skills = pick_from_weights(num_skills_weights, ignore_levels)
 
     # Which skills:
-    min_potency = min(s.potency for s in get_skilltypes(implemented_only=True))
     available_skills = get_skilltypes(implemented_only=True)
-    weights = [s.potency + min_potency + 1 for s in available_skills]
+    weights = [s.potency for s in available_skills]
     sum_weights = sum(weights)
     probabilities = [w / sum_weights for w in weights]
+    for i in range(len(probabilities) - 1):
+        print(f"{available_skills[i].name}: {probabilities[i]} ({weights[i]})")
+
+    # TODO This is wrong -- need to recreate all blueprints!!
 
     skills = list(
         np.random.choice(
@@ -149,14 +152,10 @@ def random_card(ignore_levels: int = 0) -> Card:
     return card
 
 
-def create_noname_card(
-    wanted_potency: Optional[int] = None, exactly: bool = False
-) -> Card:
+def create_noname_card(wanted_potency: Optional[int] = None) -> Card:
     """Create a card with a default name. We add names separately to avoid costly
-    operations. `wanted_potency` is the potency we want to card to have. (Normalized
-    potency, i.e., [0, 100], not raw potency.)
+    operations. `wanted_potency` is the (total) potency we want to card to have.
     """
-    assert wanted_potency is None or 0 <= wanted_potency <= 100
     i = 0
     while True:
         card = random_card(i // 1000)
@@ -164,10 +163,13 @@ def create_noname_card(
         if i % 1000 == 0:
             logging.debug("Tried %s cards", i)
             logging.debug("Current card:\n%s", card)
-        if (wanted_potency is None) or card.has_potency(wanted_potency, exactly):
+        if (wanted_potency is None) or card.potency == wanted_potency:
             return card
 
 
-def create_noname_cards(potencies: List[int], exactly: bool = False) -> List[Card]:
+# TODO Test card_generator now that exactly is gone
+
+
+def create_noname_cards(potencies: List[int]) -> List[Card]:
     """Create a list of cards, one for each potency in `potencies`."""
-    return [create_noname_card(p, exactly) for p in potencies]
+    return [create_noname_card(p) for p in potencies]

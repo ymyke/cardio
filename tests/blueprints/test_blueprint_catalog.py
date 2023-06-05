@@ -46,13 +46,19 @@ def test_get_non_existing():
 def test_find_by_potency():
     # Just test a sample of potencies:
     for whichpotency in [10, 12, 17, 23, 24, 30, 33, 48]:
-        isopotencies = tc.find_by_potency(whichpotency)
+        isopotencies = tc.find_by_potency(whichpotency, core=False)
         assert len(isopotencies) > 0
         assert all(b._original.potency == whichpotency for b in isopotencies)
 
 
 def test_find_by_potency_range():
-    assert set(tc.find_by_potency_range(0, 100)) == set(tc._blueprints)
+    assert set(tc.find_by_potency(0, 100, core=False)) == set(tc._blueprints)
+
+
+def test_find_by_core_potency():
+    pc = tc.find_by_potency(10, 20, core=True)
+    pt = tc.find_by_potency(10, 20, core=False)
+    assert len(pc) != len(pt)
 
 
 def test_find_gameplay_equals():

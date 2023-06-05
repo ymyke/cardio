@@ -31,9 +31,9 @@ class FightLocation(Location):
         self.grid = Grid(4)
         nofcards = random.randint(1, 4)
         max_potency = max(self.rung // 3, 5)
-        blueprint_candidates = thecatalog.find_by_potency_range(0, max_potency)
-        # TODO ^ should be -100 instead of 0, I believe
+        blueprint_candidates = thecatalog.find_by_potency(-100, max_potency, core=True)
         blueprints = random.choices(blueprint_candidates, k=nofcards)
+        # FIXME ^ This random choice should maybe have bias for higher potency
         cards = BlueprintList(blueprints).instantiate()
         positions = [
             GridPos(line, slot) for line in (0, 1) for slot in range(self.grid.width)
