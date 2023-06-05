@@ -100,14 +100,6 @@ class Run:
         h_condense: bool = False,
         debug: bool = False,
     ) -> str:
-        """
-        Todos:
-        - Make paths dark grey. Make locations use some fitting color.
-        - Use asciimaatics to print the paths coordinates-based.
-        - With the above: Use emojis for locations (they have different widths but maybe
-          with coordinate-based positioning they can still be aligned well?).
-        """
-
         def v_stretch(line: str) -> str:
             howmuch = 6
             r = f"{line.rstrip():11s}"  # Normalize line length

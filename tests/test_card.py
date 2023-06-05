@@ -24,26 +24,24 @@ def test_is_skilled():
     assert c.is_skilled()
 
 
-def test_raw_potency():
+def test_potency():
     c = Card("X", 3, 2, 1)
-    assert c.raw_potency == 11
+    assert c.potency == 11
+    assert c.core_potency == 10
     c.skills.add(skills.Fertility)
-    assert c.raw_potency == 20
+    assert c.potency == 20
+    assert c.core_potency == 19
     c.skills.add(skills.Soaring)
-    assert c.raw_potency == 22
+    assert c.potency == 22
+    assert c.core_potency == 21
     # Another one:
     c = Card("X", 1, 1, 10)
-    assert c.raw_potency == -4
+    assert c.potency == -4
+    assert c.core_potency == 4
     # One with the costs bonus:
     c = Card("X", 0, 0, 0, costs_spirits=0, has_fire=0, has_spirits=0)
-    assert c.raw_potency == 10  # <- 10 for the costs bonus
-
-
-def test_potency(mocker):
-    c = Card("X", 3, 2, 1)
-    assert c.raw_potency == 11
-    mocker.patch("cardio.card.Card.get_raw_potency_range", return_value=(0, 22))
-    assert c.potency == 50
+    assert c.potency == 10  # <- 10 for the costs bonus
+    assert c.core_potency == 0
 
 
 def test_init_with_both_fire_and_spirit_should_fail():
@@ -76,27 +74,3 @@ def test_is_gameplay_equal():
     assert c.is_gameplay_equal(d)
     d.power = 2
     assert not c.is_gameplay_equal(d)
-
-
-def test_has_potency():
-    c = Card(
-        "X",
-        power=1,
-        health=2,
-        costs_fire=3,
-        costs_spirits=0,
-        has_fire=5,
-        has_spirits=6,
-        skills=[skills.Shield],
-    )
-    potency = c.potency
-    assert c.has_potency(potency, exactly=True)
-    potency += 1
-    assert not c.has_potency(potency, exactly=True)
-    assert c.has_potency(potency, exactly=False)
-    potency += 1
-    assert not c.has_potency(potency, exactly=True)
-    assert c.has_potency(potency, exactly=False)
-    potency += 1
-    assert not c.has_potency(potency, exactly=True)
-    assert not c.has_potency(potency, exactly=False)

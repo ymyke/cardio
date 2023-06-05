@@ -36,14 +36,17 @@ def _get_path(filename: Optional[str]) -> Path:
 
 class BlueprintCatalog:
     _blueprints: BlueprintList
-    # `_by_potency` allows for fast lookup of blueprints with a given potency:
+    # `_by*potency` allows for fast lookup of blueprints with a given (core) potency:
     _by_potency: dict[int, BlueprintList]
+    _by_core_potency: dict[int, BlueprintList]
 
     def __init__(self, blueprints: Optional[BlueprintList] = None) -> None:
         self._blueprints = blueprints or BlueprintList()
         self._by_potency = defaultdict(BlueprintList)
+        self._by_core_potency = defaultdict(BlueprintList)
         for b in self._blueprints:
             self._by_potency[b._original.potency].append(b)
+            self._by_core_potency[b._original.core_potency].append(b)
 
     def find_by_name(self, name: str) -> BlueprintList:
         """Find all blueprints with name `name`"""
@@ -74,18 +77,17 @@ class BlueprintCatalog:
         return BlueprintList([self.get(name) for name in names])
 
     def find_by_potency(
-        self, wanted_potency: int, exactly: bool = False
+        self, min_potency: int, max_potency: Optional[int] = None, *, core: bool
     ) -> BlueprintList:
-        """Find all blueprints with potency `potency` (normalized, i.e., [0, 100])."""
-        return self._by_potency[wanted_potency]
-
-    def find_by_potency_range(
-        self, min_potency: int, max_potency: int
-    ) -> BlueprintList:
-        """Find all blueprints with potency in the range [min_potency, max_potency]."""
+        """Return all blueprints with potency in the range `[min_potency, max_potency]`.
+        If only `min_potency` is given, return all blueprints with potency
+        `min_potency`. Use core potency if `core` is True, otherwise use total potency.
+        """
+        max_potency = max_potency or min_potency
+        whichpot = self._by_core_potency if core else self._by_potency
         res = []
         for p in range(min_potency, max_potency + 1):
-            res.extend(self.find_by_potency(p, exactly=True))
+            res.extend(whichpot[p])
         return BlueprintList(res)
 
     def find_gameplay_equals(self, other: Union[Blueprint, Card]) -> BlueprintList:

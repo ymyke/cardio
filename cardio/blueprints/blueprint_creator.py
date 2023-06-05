@@ -36,7 +36,7 @@ def parse_line(line: str) -> Tuple[int, str, str]:
 
 def create_blueprints_and_add_to_catalog(listofwantedpotencies: List[int]):
     # Create a couple of random cards:
-    cards = create_noname_cards(listofwantedpotencies, exactly=False)
+    cards = create_noname_cards(listofwantedpotencies)
     for i, c in enumerate(cards):  # Set an index as the name
         c.name = str(i)
 

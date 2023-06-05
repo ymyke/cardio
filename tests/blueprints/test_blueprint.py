@@ -23,7 +23,6 @@ def test_methods():
     c = Card("X", 1, 2, 3)
     b = Blueprint(c, "desc")
     d = b.instantiate()
-    assert b.has_potency(c.potency, exactly=True)
     assert b.is_gameplay_equal(c)
 
 def test_blueprintlist():

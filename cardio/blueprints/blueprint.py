@@ -30,9 +30,6 @@ class Blueprint:
         else:
             return self._original.is_gameplay_equal(other)
 
-    def has_potency(self, potency: int, exactly: bool = False) -> bool:
-        return self._original.has_potency(potency, exactly)
-
     def instantiate(self) -> Card:
         return self._original.copy()
 
