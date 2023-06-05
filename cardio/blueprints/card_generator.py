@@ -117,14 +117,23 @@ def gen_skills(ignore_levels: int = 0) -> list:
     num_skills = pick_from_weights(num_skills_weights, ignore_levels)
 
     # Which skills:
+    potency_to_weight = {
+        0: 100,
+        1: 90,
+        2: 80,
+        3: 70,
+        4: 60,
+        5: 50,
+        6: 40,
+        7: 30,
+        8: 20,
+        9: 10,
+        10: 5,
+    }
     available_skills = get_skilltypes(implemented_only=True)
-    weights = [s.potency for s in available_skills]
+    weights = [potency_to_weight[s.potency] for s in available_skills]
     sum_weights = sum(weights)
     probabilities = [w / sum_weights for w in weights]
-    for i in range(len(probabilities) - 1):
-        print(f"{available_skills[i].name}: {probabilities[i]} ({weights[i]})")
-
-    # TODO This is wrong -- need to recreate all blueprints!!
 
     skills = list(
         np.random.choice(
@@ -165,9 +174,6 @@ def create_noname_card(wanted_potency: Optional[int] = None) -> Card:
             logging.debug("Current card:\n%s", card)
         if (wanted_potency is None) or card.potency == wanted_potency:
             return card
-
-
-# TODO Test card_generator now that exactly is gone
 
 
 def create_noname_cards(potencies: List[int]) -> List[Card]:
