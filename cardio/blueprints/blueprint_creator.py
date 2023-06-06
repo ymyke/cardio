@@ -1,6 +1,7 @@
 """Rough script to generate new cards."""
 
 #%%
+import logging
 from collections import defaultdict
 import random
 import re
@@ -9,6 +10,8 @@ from cardio.blueprints.card_creator import create_noname_cards
 from cardio.blueprints.query_openai import query_openai
 from cardio.blueprints import Blueprint, thecatalog
 from openai.error import RateLimitError
+
+logging.basicConfig(level=logging.DEBUG)
 
 
 TITLE = "\n---------- {} ----------\n"
