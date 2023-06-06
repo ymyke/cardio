@@ -77,7 +77,9 @@ def create_blueprints_and_add_to_catalog(listofwantedpotencies: List[int]):
 
 # ----- main -----
 
-wanted_potencies = list(range(5, 81))
+wanted_potencies = (
+    list(range(1, 31)) * 5 + list(range(31, 46)) * 2 + list(range(46, 81))
+)
 random.shuffle(wanted_potencies)
 while wanted_potencies:
     potencies = wanted_potencies[:5]
