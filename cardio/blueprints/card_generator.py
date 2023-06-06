@@ -169,10 +169,10 @@ def create_noname_card(wanted_potency: Optional[int] = None) -> Card:
     """
     i = 0
     while True:
-        card = random_card(i // 1000)
+        card = random_card(i // 10000)
         i += 1
-        if i % 1000 == 0:
-            logging.debug("Tried %s cards", i)
+        if i % 10000 == 0:
+            logging.debug("Tried %s cards to achieve %s", i, wanted_potency)
             logging.debug("Current card:\n%s", card)
         if (wanted_potency is None) or card.potency == wanted_potency:
             return card
