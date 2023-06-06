@@ -92,6 +92,8 @@ while wanted_potencies:
             print("\n😱😱😱😱😱 VALUE ERROR 😱😱😱😱😱\n")
         except RateLimitError:
             print("\n⏱️⏱️⏱️⏱️⏱️ RATE LIMIT ERROR ⏱️⏱️⏱️⏱️⏱️\n")
+        except IndexError:
+            print("\n🤷🤷🤷🤷🤷 INDEX ERROR 🤷🤷🤷🤷🤷\n")
         else:
             wanted_potencies = wanted_potencies[5:]
             break
