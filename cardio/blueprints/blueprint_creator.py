@@ -5,7 +5,7 @@ from collections import defaultdict
 import random
 import re
 from typing import List, Tuple
-from cardio.blueprints.card_generator import create_noname_cards
+from cardio.blueprints.card_creator import create_noname_cards
 from cardio.blueprints.query_openai import query_openai
 from cardio.blueprints import Blueprint, thecatalog
 from openai.error import RateLimitError
