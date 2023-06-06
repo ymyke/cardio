@@ -100,5 +100,4 @@ while wanted_potencies:
             wanted_potencies = wanted_potencies[5:]
             break
 
-
-# Don't forget to save!!
+thecatalog.save()
