@@ -118,6 +118,8 @@ class Card:
         """Card's potency, i.e., its value for the player."""
         core = self.power * 2 + self.health * 2
         if which == "human":
+            # Potency for human player will take into account everything, including all
+            # human-relevant skills.
             skills = sum(
                 s.potency for s in self.skills if not s.forwhom == ForWhom.COMPUTER
             )
@@ -126,6 +128,9 @@ class Card:
             costs_bonus = 10 if costs == 0 else 0  # Cards with 0 costs are strong
             return core + skills + has - costs + costs_bonus
         elif which == "computer":
+            # Potency for computer player will leave out everything
+            # fire-/spirit-related, because the computer doesn't have to "pay" for
+            # cards. Also, we only use computer-relevant skills here.
             skills = sum(
                 s.potency for s in self.skills if not s.forwhom == ForWhom.HUMAN
             )
