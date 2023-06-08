@@ -120,7 +120,7 @@ class Card:
         return self.power * 2 + self.health * 2 + sum(s.potency for s in self.skills)
 
     @property
-    def potency(self, net: bool = False) -> int:
+    def potency(self) -> int:
         """(Total) potency of a card."""
         has = self.has_fire + self.has_spirits
         costs = self.costs_fire + self.costs_spirits
