@@ -1,15 +1,31 @@
 
+# Potency
+
+- Potency: health + power + skills + has_* - costs_* + costs_bonus
+  - An overall measure of a card's value.
+  - Used in certain locations
+- Computer potency: health + power + computer-relevant-skills
+  - Used for computer strategy in FightLocation.
+- Core potency: health + power + skills
+  - Used for human's initial card set.
+  - BUT could be implemented differently.
+
+- Issues:
+  - Currently, cards with higher potency become less expensive. Does that make sense?
+
 
 # Next up
 
-- Get rid of non-exact potencies.
+- Check TODOs, esp. the ones in the blueprint_stats notebook.
 
-- Bug-like: The potency that is used to for computer cards should maybe ignore the
-  costs. Otherwise, a card like muddark has too low potency I think. (Keep in mind that
-  the bluprint catalog has a special data structure for potencies that might need to be
-  adjusted.)
-  - Should potency be it's own class that can encapsulate raw, normalized and
-    computer/net variants?
+- Do we need a computer potency, which is the same as core potency but will ignore all
+  HUMAN skills? This computer potency will then be used for the computer strategy in
+  FightLocation?
+
+- Fix todos; create new blueprints.
+  - too many skills? 
+  - wrong probabilities?
+  - check skills and skill distribution
 
 - Bug: Aborting card placement with ESC will lead to a card flash like an error.
 
@@ -86,6 +102,9 @@
 - Turn all the notes here and in DOMAIN into a Github wiki.
 - Check TUI on linux / wsl.
 - Add titles to locations.
+- In FightLocation: Use some new computer strategy that brings more cards into play in
+  later rounds of a fight. And that brings overall more and more cards into play as the
+  rung increases.
 
 
 # More animations
@@ -97,21 +116,28 @@
 # Ideas: All prios
 
 - Location ideas:
-  - Card shop: Buy cards for gems
+  - Card shop: Buy cards for gems (potency: price can easily be based on raw, total
+    potency)
   - Exchange: Change spirits to gems and vice versa
-  - Card lottery: Give a card and get a random card in return
+  - Card lottery: Give a card and get a random card in return (potency: use roughly the
+    same raw, total potency as the given card)
   - Card/skill game: Play some little game and the better you are the better the card
     you get (at random) in return. Or the better a skill you can chose? Or the more
-    random skills or cards you can choose from. Or... -- Ideas for minigames:
-    - Guess the number: The computer picks a number between 1 and 100 and you have to
-      guess it. The computer tells you whether your guess is too high or too low.
-    - Rock Paper Scissors for x times.
-    - Perform calculations ever quicker.
-    - Keep up with typing text that gets produced ever faster.
-    - Press keys as they appear on screen as quickly as possible.
-    - Snakes/Tron
-    - Frogger
-  - Card buyer: Buy certain cards for gems -- usually higher value cards
+    random skills or cards you can choose from. Or...
+    - (Potency: Pick all cards and sort by potency descending with a cutoff at a potency
+      corresponding to the level the player achieved in the minigame. Then pick a card
+      from this list at random, but with heavy emphasis on the beginning.)
+    - Ideas for minigames:
+      - Guess the number: The computer picks a number between 1 and 100 and you have to
+        guess it. The computer tells you whether your guess is too high or too low.
+      - Rock Paper Scissors for x times.
+      - Perform calculations ever quicker.
+      - Keep up with typing text that gets produced ever faster.
+      - Press keys as they appear on screen as quickly as possible.
+      - Snakes/Tron
+      - Frogger
+  - Card buyer: Buy certain cards for gems -- usually higher value cards (potency: 1 gem
+    per 1 raw potency?)
   - Card disposer: Allows you to get rid of cards (just 1 maybe) at a cost in gems
   - Card merger: Merge 2 identical cards for double attributes (or, if you don't have
     any pairs, duplicate a card)
