@@ -162,6 +162,7 @@ class Fertility(Skill):
         "A fertile card creates a copy of itself in your hand when it is played."
     )
     potency: int = 9
+    forwhom: ForWhom = ForWhom.HUMAN
 
 
 @dataclass
