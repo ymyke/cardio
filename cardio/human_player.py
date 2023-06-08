@@ -30,7 +30,7 @@ class HumanPlayer:
         from cardio.blueprints import thecatalog
 
         p = cls(name=name, lives=1, gems=0, spirits=3)
-        start_cards = thecatalog.find_by_potency(0, 5, core=False).instantiate()
+        start_cards = thecatalog.find_by_potency(0, 5, which="human").instantiate()
         start_cards = [
             c
             for c in start_cards

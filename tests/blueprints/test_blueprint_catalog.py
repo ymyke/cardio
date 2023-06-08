@@ -45,19 +45,22 @@ def test_get_non_existing():
 
 def test_find_by_potency():
     # Just test a sample of potencies:
-    for whichpotency in [10, 12, 17, 23, 24, 30, 33, 48]:
-        isopotencies = tc.find_by_potency(whichpotency, core=False)
-        assert len(isopotencies) > 0
-        assert all(b._original.potency == whichpotency for b in isopotencies)
+    for whichtype in ["human", "computer"]:
+        for whichpotency in [10, 12, 17, 23, 24, 30, 33, 48]:
+            isopotencies = tc.find_by_potency(whichpotency, which=whichtype)
+            assert len(isopotencies) > 0
+            assert all(
+                b._original.potency(whichtype) == whichpotency for b in isopotencies
+            )
 
 
 def test_find_by_potency_range():
-    assert set(tc.find_by_potency(0, 100, core=False)) == set(tc._blueprints)
+    assert set(tc.find_by_potency(0, 100, which="human")) == set(tc._blueprints)
 
 
-def test_find_by_core_potency():
-    pc = tc.find_by_potency(10, 20, core=True)
-    pt = tc.find_by_potency(10, 20, core=False)
+def test_human_and_computer_potencies_differ():
+    pc = tc.find_by_potency(10, 20, which="computer")
+    pt = tc.find_by_potency(10, 20, which="human")
     assert len(pc) != len(pt)
 
 

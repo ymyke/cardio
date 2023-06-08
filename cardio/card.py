@@ -1,8 +1,8 @@
 from __future__ import annotations
-from typing import List, Optional, TYPE_CHECKING
+from typing import List, Literal, Optional, TYPE_CHECKING
 import copy
 from . import gg
-from .skills import ListOfSkillsOrSkillTypes, SkillSet
+from .skills import ListOfSkillsOrSkillTypes, SkillSet, ForWhom
 
 if TYPE_CHECKING:
     from .fightcard import FightCard
@@ -77,7 +77,7 @@ class Card:
         coststr = "🔥" * self.costs_fire + "👻" * self.costs_spirits
         hasstr = "🔥" * self.has_fire + "👻" * self.has_spirits
         s += f"costs: {coststr or '-'} has: {hasstr or '-'} "
-        s += f"pot: {self.potency}/{self.core_potency}"
+        s += f"pot: {self.potency('human')}/{self.potency('computer')}"
         return s
 
     def __repr__(self) -> str:
@@ -114,20 +114,27 @@ class Card:
         cp.skills = self.skills.copy()
         return cp
 
-    @property
-    def core_potency(self) -> int:
-        """Core potency of a card, i.e., w/o has and costs."""
-        return self.power * 2 + self.health * 2 + sum(s.potency for s in self.skills)
-
-    @property
-    def potency(self, net: bool = False) -> int:
-        """(Total) potency of a card."""
-        has = self.has_fire + self.has_spirits
-        costs = self.costs_fire + self.costs_spirits
-        costs_bonus = 10 if costs == 0 else 0  # Cards with 0 costs are strong
-        return self.core_potency + has - costs + costs_bonus
+    def potency(self, which: PotencyType = "human") -> int:
+        """Card's potency, i.e., its value for the player."""
+        core = self.power * 2 + self.health * 2
+        if which == "human":
+            skills = sum(
+                s.potency for s in self.skills if not s.forwhom == ForWhom.COMPUTER
+            )
+            has = self.has_fire + self.has_spirits
+            costs = self.costs_fire + self.costs_spirits
+            costs_bonus = 10 if costs == 0 else 0  # Cards with 0 costs are strong
+            return core + skills + has - costs + costs_bonus
+        elif which == "computer":
+            skills = sum(
+                s.potency for s in self.skills if not s.forwhom == ForWhom.HUMAN
+            )
+            return core + skills
+        else:
+            raise ValueError(f"Unknown type {which}")
 
 
 # ----- Types -----
 
 CardList = List[Card]
+PotencyType = Literal["human", "computer"]
