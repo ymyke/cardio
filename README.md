@@ -22,7 +22,6 @@
   mind that some cards can die during a run but should still keep their stats available.
   How to do that exactly?
   - And history to runs, and all histories need to be saved.
-- Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
 - Resolve the shield deadlock and general deadlock issue. Cf. `_has_computer_won` in
   fightvnc.
 - Add deadlock resolver.
@@ -165,6 +164,7 @@
 
 # Low Prio Ideas
 
+- Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
 - Instead of picking random cards from the player's collection to compile the deck,
   maybe the player can choose which cards from her collection to start a run with.
   Choosing could be based on a pure number of cards basis. Or based on points (and maybe
