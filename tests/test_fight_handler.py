@@ -1,4 +1,3 @@
-import copy  # TODO deepcopy really necessary in this module?
 import pytest
 from cardio import GridPos, gg
 from cardio.card import Card
@@ -18,10 +17,9 @@ def equal_logs(generatedlog: str, targetlog: str) -> bool:
 
 def test_simple_initial_setup(gg_setup):
     human, grid, vnc, ff = gg_setup
-    original_cards = thecatalog.find_by_names(
+    human.deck.cards = thecatalog.find_by_names(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     ).instantiate()
-    human.deck.cards = copy.deepcopy(original_cards)
     vnc.computerstrategy = Round0OnlyStrategy(
         grid=grid,
         cards=[
@@ -167,7 +165,7 @@ def test_human_decks_managed_correctly(gg_setup):  # FIXME Should get different 
     original_cards = thecatalog.find_by_names(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     ).instantiate()
-    human.deck.cards = copy.deepcopy(original_cards)
+    human.deck.cards = original_cards
     cs = Round0OnlyStrategy(
         grid=grid,
         cards=[
@@ -268,7 +266,7 @@ def test_humanplayer_deck_gets_set_correctly_after_fight(gg_setup):
     original_cards = thecatalog.find_by_names(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     ).instantiate()
-    human.deck.cards = copy.deepcopy(original_cards)
+    human.deck.cards = original_cards
     cs = Round0OnlyStrategy(grid=grid, cards=[])
     vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs)
     vnc.handle_fight()
