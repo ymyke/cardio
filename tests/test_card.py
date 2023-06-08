@@ -26,22 +26,22 @@ def test_is_skilled():
 
 def test_potency():
     c = Card("X", 3, 2, 1)
-    assert c.potency == 11
-    assert c.core_potency == 10
+    assert c.potency("human") == 11
+    assert c.potency("computer") == 10
     c.skills.add(skills.Fertility)
-    assert c.potency == 20
-    assert c.core_potency == 19
+    assert c.potency("human") == 20
+    assert c.potency("computer") == 10
     c.skills.add(skills.Soaring)
-    assert c.potency == 22
-    assert c.core_potency == 21
+    assert c.potency("human") == 22
+    assert c.potency("computer") == 12
     # Another one:
     c = Card("X", 1, 1, 10)
-    assert c.potency == -4
-    assert c.core_potency == 4
+    assert c.potency("human") == -4
+    assert c.potency("computer") == 4
     # One with the costs bonus:
     c = Card("X", 0, 0, 0, costs_spirits=0, has_fire=0, has_spirits=0)
-    assert c.potency == 10  # <- 10 for the costs bonus
-    assert c.core_potency == 0
+    assert c.potency("human") == 10  # <- 10 for the costs bonus
+    assert c.potency("computer") == 0
 
 
 def test_init_with_both_fire_and_spirit_should_fail():

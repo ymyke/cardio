@@ -2,7 +2,8 @@ from __future__ import annotations
 from pathlib import Path
 from collections import defaultdict
 from typing import List, Optional, Union
-from cardio import Card, jason, skills
+from cardio import jason, skills
+from cardio.card import Card, PotencyType
 from .blueprint import Blueprint, BlueprintList
 
 
@@ -36,17 +37,17 @@ def _get_path(filename: Optional[str]) -> Path:
 
 class BlueprintCatalog:
     _blueprints: BlueprintList
-    # `_by*potency` allows for fast lookup of blueprints with a given (core) potency:
-    _by_potency: dict[int, BlueprintList]
-    _by_core_potency: dict[int, BlueprintList]
+    # `_by*potency` allows for fast lookup of blueprints with a given potency:
+    _by_human_potency: dict[int, BlueprintList]
+    _by_computer_potency: dict[int, BlueprintList]
 
     def __init__(self, blueprints: Optional[BlueprintList] = None) -> None:
         self._blueprints = blueprints or BlueprintList()
-        self._by_potency = defaultdict(BlueprintList)
-        self._by_core_potency = defaultdict(BlueprintList)
+        self._by_human_potency = defaultdict(BlueprintList)
+        self._by_computer_potency = defaultdict(BlueprintList)
         for b in self._blueprints:
-            self._by_potency[b._original.potency].append(b)
-            self._by_core_potency[b._original.core_potency].append(b)
+            self._by_human_potency[b._original.potency("human")].append(b)
+            self._by_computer_potency[b._original.potency("computer")].append(b)
 
     def find_by_name(self, name: str) -> BlueprintList:
         """Find all blueprints with name `name`"""
@@ -77,14 +78,16 @@ class BlueprintCatalog:
         return BlueprintList([self.get(name) for name in names])
 
     def find_by_potency(
-        self, min_potency: int, max_potency: Optional[int] = None, *, core: bool
+        self, min_potency: int, max_potency: Optional[int] = None, *, which: PotencyType
     ) -> BlueprintList:
         """Return all blueprints with potency in the range `[min_potency, max_potency]`.
         If only `min_potency` is given, return all blueprints with potency
-        `min_potency`. Use core potency if `core` is True, otherwise use total potency.
+        `min_potency`.
         """
         max_potency = max_potency or min_potency
-        whichpot = self._by_core_potency if core else self._by_potency
+        whichpot = (
+            self._by_computer_potency if which == "computer" else self._by_human_potency
+        )
         res = []
         for p in range(min_potency, max_potency + 1):
             res.extend(whichpot[p])
