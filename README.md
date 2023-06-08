@@ -1,31 +1,5 @@
 
-# Potency
-
-- Potency: health + power + skills + has_* - costs_* + costs_bonus
-  - An overall measure of a card's value.
-  - Used in certain locations
-- Computer potency: health + power + computer-relevant-skills
-  - Used for computer strategy in FightLocation.
-- Core potency: health + power + skills
-  - Used for human's initial card set.
-  - BUT could be implemented differently.
-
-- Issues:
-  - Currently, cards with higher potency become less expensive. Does that make sense?
-
-
 # Next up
-
-- Check TODOs, esp. the ones in the blueprint_stats notebook.
-
-- Do we need a computer potency, which is the same as core potency but will ignore all
-  HUMAN skills? This computer potency will then be used for the computer strategy in
-  FightLocation?
-
-- Fix todos; create new blueprints.
-  - too many skills? 
-  - wrong probabilities?
-  - check skills and skill distribution
 
 - Bug: Aborting card placement with ESC will lead to a card flash like an error.
 
