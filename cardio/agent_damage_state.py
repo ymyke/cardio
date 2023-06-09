@@ -8,6 +8,9 @@ class AgentDamageState:
         self.diff = 0  # <0: computer damaged, >0: human damaged
         self.max_diff = max_diff
 
+    # FIXME Add WhichPlayer (or similar) type and use it go generalize damage_*,
+    # has_*_won as well as ForWhom in skills and instead of potency type in Card.
+
     def damage_computer(self, howmuch: int) -> None:
         assert howmuch >= 0
         self.diff -= howmuch
