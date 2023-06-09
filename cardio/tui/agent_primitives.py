@@ -17,6 +17,7 @@ class StateWidget:
         self.damagestate = damagestate
         offset = (AGENT_X_OFFSET, 0)
         self.computer_pos = dPos.from_gridpos(GridPos(0, grid_width)) + offset
+        self.deadlock_pos = dPos.from_gridpos(GridPos(2, grid_width)) + offset + (0, -4)
         self.human_pos = dPos.from_gridpos(GridPos(2, grid_width)) + offset
 
     def _show_health_bars(self, pos: dPos, diff: int, max_diff: int) -> None:
@@ -43,8 +44,19 @@ class StateWidget:
         )
         show_humanplayer(self.screen, self.human_pos + (0, 2))
 
+    def show_deadlock_counter(self) -> None:
+        if self.damagestate.is_in_deadlock_risk():
+            show_text(
+                self.screen,
+                self.deadlock_pos,
+                "🚨 Deadlock imminent 🚨 "
+                f"{self.damagestate.rounds_left_until_deadlock()} rounds left",
+                color=Color.RED,
+            )
+
     def show_all(self):
         self.show_computerplayer_state()
+        self.show_deadlock_counter()
         self.show_humanplayer_state()
 
 
