@@ -59,17 +59,3 @@ def show_humanplayer(screen: Screen, pos: dPos) -> None:
 {render_value(gg.humanplayer.spirits, '👻')}
 """
     show_text(screen, pos, s, color=Color.GRAY)
-
-
-# Alternative scale:
-#         🔳
-#         🔳
-#         🔳
-#         🔳
-#         🔳
-# ▶️ or 👉 🟥
-#         🔳
-#         🔳
-#         🔳
-#         🔳
-#         🔳
