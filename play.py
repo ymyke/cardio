@@ -32,13 +32,14 @@ while True:  # Forever start new runs:
     if not run or not run.is_on:
         run = Run()
 
+    mapview = TUIMapView(run, debug=True)
     if run.current_rung == 0:  # Starting a new run:
         # Pick random cards from collection for the deck:
         gg.humanplayer.collection.shuffle()
         gg.humanplayer.deck.cards = gg.humanplayer.collection.draw_cards(4)
+        mapview.message("Starting a new run... 🏃 Good luck! 🐞")
 
     jason.save_all(gg.humanplayer, run)
-    mapview = TUIMapView(run, debug=True)
 
     while run.is_on:  # Visit locations in run:
         chosen_loc = mapview.get_next_location()
@@ -51,6 +52,8 @@ while True:  # Forever start new runs:
     # Run is over:
     # FIXME Maybe do some other stuff here, like saying something to the user, showing
     # run stats, somehow add run stats to player's history, etc.
+    mapview.message("Game over! 🥴 For this run. Try another run. 🎮")
+    gg.humanplayer.reset_lives()
     mapview.close()
     # Add deck back into collection:
     for card in gg.humanplayer.deck.cards:

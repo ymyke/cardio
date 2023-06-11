@@ -56,4 +56,4 @@ class FightLocation(Location):
         gg.grid = self.grid
         vnc.handle_fight()
         vnc.close()
-        return vnc._has_human_won()
+        return gg.humanplayer.lives > 0

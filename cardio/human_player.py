@@ -12,24 +12,29 @@ if TYPE_CHECKING:
 @dataclass
 class HumanPlayer:
     name: str
-    lives: int = 1  # 💓
+    lives: int = 0  # 💓
     gems: int = 0  # 💎
-    spirits: int = 0  # 👻 (or droplets/essence? 💧)
+    spirits: int = 3  # 👻 (or droplets/essence? 💧)
     deck: Deck = field(default_factory=lambda: Deck("main"))
     collection: Deck = field(default_factory=lambda: Deck("collection"))
     hamster_blueprint: Blueprint = None  # type: ignore
 
     def __post_init__(self):
+        self.reset_lives()
+
         from cardio.blueprints import thecatalog
 
         if not self.hamster_blueprint:
             self.hamster_blueprint = thecatalog.get("Hamster")
 
+    def reset_lives(self) -> None:
+        self.lives = 2
+
     @classmethod
     def create_new(cls, name: str) -> HumanPlayer:
         from cardio.blueprints import thecatalog
 
-        p = cls(name=name, lives=1, gems=0, spirits=3)
+        p = cls(name=name)
         start_cards = thecatalog.find_by_potency(0, 5, which="human").instantiate()
         start_cards = [
             c
