@@ -98,12 +98,7 @@ class FightVnC:
     def redraw_view(self) -> None:
         pass
 
-    def human_wins_fight(self) -> None:
-        # QQ: Still necessary?
-        pass
-
-    def computer_wins_fight(self) -> None:
-        # QQ: Still necessary?
+    def fight_ends(self, msg: str) -> None:
         pass
 
     # --- Controller ---
@@ -242,10 +237,18 @@ class FightVnC:
 
         # Handle win/lose conditions:
         if self._has_computer_won():
-            self.computer_wins_fight()
             gg.humanplayer.lives -= 1
-            # FIXME Check for game over here or later on
+            if gg.humanplayer.lives > 0:
+                livesmsg = (
+                    f"{gg.humanplayer.lives} live(s) left. "
+                    + "💓" * gg.humanplayer.lives
+                )
+            else:
+                livesmsg = "No lives left. 😞"
+            self.fight_ends(f"You lose! 🥹  You lost 1 live. 💔 {livesmsg}")
+
         if self._has_human_won():
-            gg.humanplayer.gems += self.damagestate.get_overflow()
-            # LIXME Animate overflow damage that turns into gems
-            self.human_wins_fight()
+            gems = self.damagestate.get_overflow()
+            gg.humanplayer.gems += gems
+            gemstr = f"You gain {'💎' * gems}." if gems > 0 else ""
+            self.fight_ends(f"You win! ✌️ {gemstr}")

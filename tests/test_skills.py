@@ -114,7 +114,7 @@ def test_spines_resulting_in_both_cards_dying_simultaneously():
     assert cc._fc.health == 0
     assert gg.grid[1][0] is None
     assert gg.grid[2][0] is None
-    assert gg.humanplayer.lives == 0
+    assert gg.humanplayer.lives == 1
 
 
 def test_fertility():

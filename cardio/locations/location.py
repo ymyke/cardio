@@ -29,7 +29,9 @@ class Location(ABC):
 
     @abstractmethod
     def handle(self, view_class: type) -> bool:
-        """Returns `True` if the game is is still on, `False` if game is over."""
+        """Returns `True` if the current run is is still on, `False` if the run is to be
+        ended, e.g., because the player has lost all their lives.
+        """
         pass
 
 

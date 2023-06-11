@@ -112,6 +112,9 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
     def card_deactivate(self, pos: GridPos) -> None:
         self.redraw_view()
 
+    def fight_ends(self, msg: str) -> None:
+        self.message(msg)
+
     # --- Controller-type methods ---
 
     def show_computer_plays_card(self, card: FightCard, to: GridPos) -> None:
