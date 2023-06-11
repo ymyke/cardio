@@ -1,11 +1,16 @@
 # Great resource: https://www.hillelwayne.com/post/property-testing-complex-inputs/
 
-from hypothesis import given, settings, HealthCheck, Verbosity, assume
+import itertools
+from hypothesis import given, settings, HealthCheck, Verbosity
 import hypothesis.strategies as st
-import pytest
-from cardio import Card, HumanPlayer, FightVnC
+from cardio import Card, HumanPlayer, FightVnC, skills
 import cardio.gg as gg
 from cardio.computer_strategies import Round0OnlyStrategy
+
+all_skill_subsets = []
+for i in range(len(skills.get_skilltypes()) + 1):
+    for subset in itertools.combinations(skills.get_skilltypes(), i):
+        all_skill_subsets.append(subset)
 
 
 def slotlist_strategy():
@@ -14,11 +19,10 @@ def slotlist_strategy():
             st.builds(
                 Card,
                 name=st.text(min_size=1),
-                initial_power=st.integers(min_value=0, max_value=100),
-                initial_health=st.integers(min_value=0, max_value=100),
+                power=st.integers(min_value=0, max_value=100),
+                health=st.integers(min_value=0, max_value=100),
                 costs_fire=st.integers(min_value=0, max_value=100),
-                health=st.just(0),
-                power=st.just(0),
+                skills=st.sampled_from(all_skill_subsets),
             ),
             st.none(),
         ),
@@ -27,24 +31,18 @@ def slotlist_strategy():
     )
 
 
-@pytest.mark.skip("Producing endless loops currently.")
 @given(slotlist=slotlist_strategy())
 @settings(
     suppress_health_check=[HealthCheck.function_scoped_fixture],
     verbosity=Verbosity.normal,
 )
 def test_game_hypo(mocker, gg_setup, slotlist):
-    # We want at least one card with power that is not in the prepper line in order to
-    # prevent an endless loop when running the game:
-    assume(any(c.power > 0 for c in slotlist[4:] if c is not None))
-
     # Need to reset the following two variables because hypothesis won't rerun fixtures:
     # See also https://hypothesis.works/articles/hypothesis-pytest-fixtures/
     gg.humanplayer = HumanPlayer(name="Schnuzgi", lives=1)
     gg.vnc = FightVnC(gg.grid, None)
 
     card_activate_spy = mocker.spy(gg.vnc, "card_activate")
-    getting_attacked_spy = mocker.spy(gg.vnc, "card_getting_attacked")
 
     before_nof_cards = len([c for c in slotlist if c is not None])
     pos_and_cards = [((i // 4, i % 4), c) for i, c in enumerate(slotlist)]
@@ -64,4 +62,3 @@ def test_game_hypo(mocker, gg_setup, slotlist):
     assert after_nof_cards <= before_nof_cards
     if after_nof_cards < before_nof_cards:
         card_activate_spy.assert_called()
-        getting_attacked_spy.assert_called()

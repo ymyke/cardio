@@ -119,28 +119,11 @@ class FightVnC:
         self.show_human_draws_new_card(self.decks.hand, card, draw_from)
         self.decks.hand.add_card(card)
 
+    # TODO simplify the following 3 methods into 1?
+    # TODO use WhichPlayer type here too?
+
     def _has_computer_won(self) -> bool:
-        active_human_cards = (
-            [c for c in gg.grid.lines[2] if c is not None]
-            + self.decks.hand.cards
-            + self.decks.draw.cards
-            + self.decks.hamster.cards
-        )
-        is_human_powerless = not any(c.power > 0 for c in active_human_cards)
-        return self.damagestate.has_computer_won() or is_human_powerless
-        # FIXME The above is not fully correct yet. There could also be a case there is
-        # a card in the hand with power > 0 but that is not playable, e.g., because the
-        # necessary sacrifice is not possible. That should be taken into account in the
-        # test. Moreover, items that can have a relevant effect should be taken into
-        # account as well. Also skills that have a relevant effect such as spines or
-        # skills that increase the power of other cards etc. So this test could become
-        # very complex in the end. -- Maybe these more complex cases should be handled
-        # differently in the UI or at least explained? -- Just simply add a "give up"
-        # function to the UI? -- Or add some mechanism like Inscryption's "Starvation"?
-        # Or a simple turn countdown that activates after a certain amount of turns in
-        # which nothing meaningful has happened? -- With the introduction of shield,
-        # things become more complicated: The test for power > 0 does not suffice, since
-        # you can have to shields opposing now; cf. `test_skills.test_shield_deadlock`.
+        return self.damagestate.has_computer_won()
 
     def _has_human_won(self) -> bool:
         return self.damagestate.has_human_won()
@@ -218,6 +201,9 @@ class FightVnC:
             self._check_for_end_of_fight()
             # QQ: Here, we check end-of-fight conditions after each line. Should this
             # rather be at the end of the fight? Or after each card?
+
+        self.damagestate.add_to_history(self.round_num)
+        self._check_for_end_of_fight()
 
         self.grid.log()
         logging.debug("----- End of round %s -----", self.round_num)

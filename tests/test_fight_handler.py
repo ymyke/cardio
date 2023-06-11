@@ -1,10 +1,11 @@
-import pytest
 from cardio import GridPos, gg
 from cardio.card import Card
 from tests.utils.humanstrategyvnc import HumanStrategyVnC
 from cardio.computer_strategies import Round0OnlyStrategy, PredefinedStrategy
 from cardio.agent_damage_state import AgentDamageState
 from cardio.blueprints import thecatalog
+
+# TODO Clean up this file.
 
 
 def equal_logs(generatedlog: str, targetlog: str) -> bool:
@@ -66,20 +67,83 @@ Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
     assert equal_logs(vnc.stateslogger.log, target_states_log)
 
 
-@pytest.mark.skip(reason="Will produce an endless loop")
-def test_endless_loop(gg_setup):
+def test_fight_with_no_opponent(gg_setup):
+    _, grid, vnc, ff = gg_setup
+    hc = ff("HC", 1, 10, 1)
+    vnc.computerstrategy = PredefinedStrategy(
+        grid=grid,
+        cards_per_round={
+            0: [
+                (GridPos(2, 0), hc),  # type: ignore
+            ],
+        },
+    )
+    vnc.handle_fight()
+    assert hc.health == 10
+    assert vnc._has_human_won()
+
+
+def test_fight_with_human_power_0(gg_setup):
+    """Even though all human cards are powerless, the fight should still take place.
+    (This used to be different in earlier versions of the fight logic.)
+    """
+    _, grid, vnc, ff = gg_setup
+    cc = ff("CC", 2, 3, 1)
+    hc = ff("HC", 0, 10, 1)
+    vnc.computerstrategy = PredefinedStrategy(
+        grid=grid,
+        cards_per_round={
+            # type: ignore
+            0: [
+                (GridPos(1, 0), cc),
+                (GridPos(2, 0), hc),
+            ],
+        },
+    )
+    vnc.handle_fight()
+    assert hc.health == 0
+    assert cc.health == 3
+    assert gg.humanplayer.lives == 0
+
+
+def test_deadlock_due_to_all_0_power(gg_setup):
+    """All cards with power == 0: should produce a deadlock leading to the computer
+    winning.
+    """
     _, grid, vnc, ff = gg_setup
     vnc.computerstrategy = PredefinedStrategy(
         grid=grid,
         cards_per_round={
             # type: ignore
             0: [
-                (GridPos(1, 0), ff("X", 1, 0, 1)),
-                (GridPos(2, 1), ff("X", 1, 0, 1)),
+                (GridPos(1, 0), ff("CC", 0, 3, 1)),
+                (GridPos(2, 0), ff("HC", 0, 3, 1)),
             ],
         },
     )
     vnc.handle_fight()
+    assert gg.vnc._has_computer_won()
+    assert gg.vnc.damagestate.is_deadlocked()
+
+
+def test_deadlock_due_to_cards_not_opposing(gg_setup):
+    """Cards have power > 0, but they don't oppose each other: should produce a
+    deadlock, leading to the computer winning.
+    """
+    _, grid, vnc, ff = gg_setup
+    vnc.computerstrategy = PredefinedStrategy(
+        grid=grid,
+        cards_per_round={
+            # type: ignore
+            0: [
+                (GridPos(1, 0), ff("CC", 1, 0, 1)),
+                (GridPos(2, 1), ff("HC", 1, 0, 1)),
+            ],
+        },
+    )
+    vnc.handle_fight()
+    assert gg.vnc._has_computer_won()
+    assert gg.vnc.damagestate.is_deadlocked()
 
 
 def test_prepcard_will_not_attack(mocker, gg_setup):
@@ -247,7 +311,7 @@ Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 32 damage, 1 lives, 0 gems, 5 spirits
 
-Final state:
+Starting round 6:
 | -           | -           | -           | -           |
 | Hp2h94      | Hp2h99      | Hp2h100     | Hp2h100     |
 | -           | -           | -           | -           |
@@ -256,6 +320,26 @@ Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Hp0h0 Pp1h0🚀
 Draw:
 Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1
 38 damage, 1 lives, 0 gems, 6 spirits
+
+Starting round 7:
+| -           | -           | -           | -           |
+| Hp2h94      | Hp2h99      | Hp2h100     | Hp2h100     |
+| -           | -           | -           | -           |
+Hand: Hp0h1 Hp0h1 Hp0h1 Hp0h1
+Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Hp0h0 Pp1h0🚀 Hp0h0
+Draw:
+Hamster: Hp0h1 Hp0h1 Hp0h1
+45 damage, 1 lives, 0 gems, 7 spirits
+
+Final state:
+| -           | -           | -           | -           |
+| Hp2h94      | Hp2h99      | Hp2h100     | Hp2h100     |
+| -           | -           | -           | -           |
+Hand: Hp0h1 Hp0h1 Hp0h1 Hp0h1
+Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Hp0h0 Pp1h0🚀 Hp0h0 Hp0h0
+Draw:
+Hamster: Hp0h1 Hp0h1
+52 damage, 1 lives, 0 gems, 8 spirits
 """
 
     assert equal_logs(vnc.stateslogger.log, target_states_log)

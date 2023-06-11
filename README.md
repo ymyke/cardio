@@ -78,6 +78,7 @@
 - In FightLocation: Use some new computer strategy that brings more cards into play in
   later rounds of a fight. And that brings overall more and more cards into play as the
   rung increases.
+- Add a way for the human to give up a fight.
 
 
 # More animations
@@ -164,6 +165,7 @@
 
 # Low Prio Ideas
 
+- Show round number in fights.
 - Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
 - Instead of picking random cards from the player's collection to compile the deck,
   maybe the player can choose which cards from her collection to start a run with.
