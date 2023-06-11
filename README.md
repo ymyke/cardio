@@ -3,9 +3,6 @@
 
 - Bug: Aborting card placement with ESC will lead to a card flash like an error.
 
-- CHECK: Are lives handled correctly? If I have several lives, can I continue a run
-  after losing a live?
-
 - Add more skills.
 - Scoring and difficulty progress:
   - Should there be additional scores in addition to the rung? Something that better
