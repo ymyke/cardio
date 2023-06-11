@@ -29,7 +29,11 @@ from ..decks_primitives import (
 from ..grid_primitives import show_empty_grid, show_slot_in_grid
 from ..agent_primitives import StateWidget
 from ..utils import show_screen_resolution, get_keycode
-from ...placement_manager import PlacementManager, PlacementAbortedException
+from ...placement_manager import (
+    PlacementManager,
+    PlacementAbortedException,
+    PlacementNotPossibleException,
+)
 from ..tuibase import TUIBaseMixin
 
 
@@ -175,7 +179,7 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
         regularly when the `PlacementManager` is `ready_to_place`.
         """
         if not pmgr.is_placeable():
-            raise PlacementAbortedException
+            raise PlacementNotPossibleException
 
         cursor = 0  # Cursor within line 2
         while not pmgr.ready_to_place():
@@ -223,6 +227,8 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
                 try:
                     self._handle_card_placement_interaction(pmgr)
                 except PlacementAbortedException:
+                    pass
+                except PlacementNotPossibleException:
                     flash_card(self.screen, GridPos(4, cursor))
                 else:
                     place_card_callback(pmgr=pmgr, from_slot=cursor)

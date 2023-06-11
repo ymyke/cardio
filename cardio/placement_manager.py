@@ -7,6 +7,8 @@ from cardio import GridPos, Grid, Card
 class PlacementAbortedException(Exception):
     pass
 
+class PlacementNotPossibleException(Exception):
+    pass
 
 class PlacementManager:
     """Makes sure card placement conditions are met, especially in terms of their fire
