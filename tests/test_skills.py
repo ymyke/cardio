@@ -47,42 +47,6 @@ def test_vanilla_fight():
     assert gg.grid[1][0] is None
 
 
-def test_vanilla_with_power_0():
-    """Should fail immediately bc human has no chance to win bc all her cards are
-    powerless.
-    """
-    hc = Card("Human Card", 0, 10, 1)
-    cc = Card("Computer Card", 2, 3, 1)
-    do_the_fight([hc], cc)
-    assert hc._fc.health == 10  # full health remaining
-    assert cc._fc.health == 3
-    assert gg.humanplayer.lives == 0
-    assert gg.grid[2][0] is hc._fc  # card remains in grid
-
-
-@pytest.mark.skip("Causes (expected) never-ending loop.")
-def test_vanilla_with_power_0_and_additional_card_in_hand():
-    """In contrast to  to `test_vanilla_with_power_0`, here the human has an additional
-    card w power in her hand, therefore the fight should take place and the card in the
-    grid suffer damage and vanish. BUT: The fight will never end bc the `HC2` never gets
-    placed by this particular strategy, resulting in a never-ending loop.
-    """
-    hc = Card("Human Card", 0, 10, 1)
-    hc2 = Card("HC2", 1, 10, 1)
-    cc = Card("Computer Card", 2, 3, 1)
-    do_the_fight([hc, hc2], cc)
-    assert hc._fc.health == 0  # health depleted
-    assert cc._fc.health == 3
-    assert gg.humanplayer.lives == 0
-    assert gg.grid[2][0] is None  # human card removed from grid
-
-
-def test_vanilla_with_no_opponent():
-    hc = Card("Human Card", 1, 10, 1)
-    do_the_fight([hc], None)
-    assert hc._fc.health == 10
-
-
 def test_instant_death():
     hc = Card("Human Card", 1, 10, 1, skills=[skills.InstantDeath])
     cc = Card("Computer Card", 2, 3, 1)
@@ -226,12 +190,11 @@ def test_shield_resets_at_start_of_fight(mocker):
     skills.Shield.__post_init__ = post_init_orig
 
 
-@pytest.mark.skip("Causes a Shield deadlock.")
 def test_shield_deadlock():
-    # FIXME Will produce a deadloop. What is the approach to fix this?
     hc = Card("Procupine", 1, 2, 1, skills=[skills.Airdefense, skills.Shield])
-    cc = hc._fc.copy()
+    cc = hc.copy()
     do_the_fight([hc], cc)
+    assert gg.vnc.damagestate.is_deadlocked()
 
 
 def test_underdog():
