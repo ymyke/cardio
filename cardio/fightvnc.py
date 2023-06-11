@@ -192,7 +192,7 @@ class FightVnC:
                 if line == 0:
                     if not card.prepare():
                         continue  # Do not attack, if not prepared successfully
-                card.attack(gg.grid.get_opposing_card(card))
+                card.attack(self.grid.get_opposing_card(card))
             self._check_for_end_of_fight()
             # QQ: Here, we check end-of-fight conditions after each line. Should this
             # rather be at the end of the fight? Or after each card?
