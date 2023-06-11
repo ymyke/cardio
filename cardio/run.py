@@ -33,6 +33,7 @@ class Run:
         self.current_rung = current_rung
         self.current_index = current_index
         self.is_on = is_on
+        # QQ: Better implement the is_on logic via something like an EndOfRunException?
 
     def move_to(self, loc: Location) -> None:
         assert loc.rung == self.current_rung + 1
