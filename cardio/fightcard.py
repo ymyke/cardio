@@ -252,7 +252,7 @@ class FightCard(Card):
 
         self.skills.call("post_attack")
 
-        gg.vnc.card_deactivate(self)
+        self.vnc.card_deactivate(self)
 
     # Notes:
     #
