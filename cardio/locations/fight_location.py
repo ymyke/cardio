@@ -53,7 +53,6 @@ class FightLocation(Location):
             computerstrategy=self.computerstrategy, grid=self.grid, debug=True
         )
         gg.vnc = vnc  # Stick information into the globals
-        gg.grid = self.grid
         vnc.handle_fight()
         vnc.close()
         return gg.humanplayer.lives > 0

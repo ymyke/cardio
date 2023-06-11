@@ -1,6 +1,5 @@
 import pytest
 from cardio import HumanPlayer, Grid, FightVnC, gg, Card, FightCard
-from cardio.blueprints import thecatalog
 
 
 @pytest.fixture
@@ -11,10 +10,10 @@ def gg_setup():
 
     gg.humanplayer = HumanPlayer(name="Schnuzgi", lives=1)
     gg.humanplayer.deck.cards = [Card("C", 1, 1, 1)]
-    gg.grid = Grid(width=4)
-    gg.vnc = FightVnC(gg.grid, None)
-    FightCard.init_fight(gg.vnc, gg.grid)
-    yield gg.humanplayer, gg.grid, gg.vnc, fightify
+    grid = Grid(width=4)
+    gg.vnc = FightVnC(grid, None)
+    FightCard.init_fight(gg.vnc, grid)
+    yield gg.humanplayer, grid, gg.vnc, fightify
 
 
 @pytest.fixture(autouse=True)
