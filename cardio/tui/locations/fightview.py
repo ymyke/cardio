@@ -201,7 +201,7 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
         while True:
             keycode = get_keycode(self.screen)
             if keycode in (ord("i"), ord("I")):
-                pass  # FIXME Inventory! !BZL!
+                pass  # FIXME Inventory!
             elif keycode in (ord("c"), ord("C")):
                 break
 
