@@ -7,10 +7,10 @@ from cardio.deck import FightDecks
 @pytest.fixture
 def common_setup(mocker, gg_setup):
     _, grid, *_ = gg_setup
+    mocked_vnc = mocker.Mock()
+    mocked_vnc.decks = FightDecks()
+    FightCard.init_fight(mocked_vnc, grid)
     c = Card("X", 1, 2, 3)
-    mocked_vnc = mocker.patch("cardio.card.gg.vnc")
-    gg.vnc.decks = FightDecks()
-    FightCard.init_fight(gg.vnc, grid)
     fc = FightCard.from_card(c)
     grid[2][3] = fc
     grid[1][3] = fc.copy()
@@ -47,13 +47,13 @@ def test_fightcard_simple_method_access(common_setup):
     assert not fc.is_skilled()
 
 def test_is_human(common_setup):
-    _, fc, grid, _ = common_setup
+    _, fc, grid, mocked_vnc = common_setup
     assert fc.is_human()    # common_setup puts fc on the grid
     grid[2][3] = None
     assert not fc.is_human()
-    gg.vnc.decks.draw.add_card(fc)
+    mocked_vnc.decks.draw.add_card(fc)
     assert fc.is_human()
-    gg.vnc.decks = FightDecks()
+    mocked_vnc.decks = FightDecks()
     assert not fc.is_human()
 
 

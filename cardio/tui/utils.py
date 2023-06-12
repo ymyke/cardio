@@ -10,7 +10,7 @@ from asciimatics.event import KeyboardEvent
 from asciimatics.constants import SINGLE_LINE
 from .constants import *
 from .bufferutils import BufferCopy
-from cardio import GridPos, gg
+from cardio import GridPos
 
 
 class dPos(NamedTuple):
@@ -129,7 +129,7 @@ def start_debug_mode(screen: Screen):
     bc = BufferCopy(screen)
     screen.close()
     pdb.set_trace()
-    gg.vnc.screen = bc.screen = Screen.open(unicode_aware=True)  # type:ignore
+    screen.open(unicode_aware=True)
     bc.copyback()
 
 

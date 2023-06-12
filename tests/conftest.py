@@ -11,9 +11,9 @@ def gg_setup():
     gg.humanplayer = HumanPlayer(name="Schnuzgi", lives=1)
     gg.humanplayer.deck.cards = [Card("C", 1, 1, 1)]
     grid = Grid(width=4)
-    gg.vnc = FightVnC(grid, None)
-    FightCard.init_fight(gg.vnc, grid)
-    yield gg.humanplayer, grid, gg.vnc, fightify
+    vnc = FightVnC(grid, None)
+    FightCard.init_fight(vnc, grid)
+    yield gg.humanplayer, grid, vnc, fightify
 
 
 @pytest.fixture(autouse=True)

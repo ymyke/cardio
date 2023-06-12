@@ -1,4 +1,4 @@
-from cardio import GridPos, gg
+from cardio import GridPos
 from cardio.card import Card
 from tests.utils.humanstrategyvnc import HumanStrategyVnC
 from cardio.computer_strategies import Round0OnlyStrategy, PredefinedStrategy
@@ -87,7 +87,7 @@ def test_fight_with_human_power_0(gg_setup):
     """Even though all human cards are powerless, the fight should still take place.
     (This used to be different in earlier versions of the fight logic.)
     """
-    _, grid, vnc, ff = gg_setup
+    humanplayer, grid, vnc, ff = gg_setup
     cc = ff("CC", 2, 3, 1)
     hc = ff("HC", 0, 10, 1)
     vnc.computerstrategy = PredefinedStrategy(
@@ -103,7 +103,7 @@ def test_fight_with_human_power_0(gg_setup):
     vnc.handle_fight()
     assert hc.health == 0
     assert cc.health == 3
-    assert gg.humanplayer.lives == 1
+    assert humanplayer.lives == 1
 
 
 def test_deadlock_due_to_all_0_power(gg_setup):
@@ -122,8 +122,8 @@ def test_deadlock_due_to_all_0_power(gg_setup):
         },
     )
     vnc.handle_fight()
-    assert gg.vnc._has_computer_won()
-    assert gg.vnc.damagestate.is_deadlocked()
+    assert vnc._has_computer_won()
+    assert vnc.damagestate.is_deadlocked()
 
 
 def test_deadlock_due_to_cards_not_opposing(gg_setup):
@@ -142,8 +142,8 @@ def test_deadlock_due_to_cards_not_opposing(gg_setup):
         },
     )
     vnc.handle_fight()
-    assert gg.vnc._has_computer_won()
-    assert gg.vnc.damagestate.is_deadlocked()
+    assert vnc._has_computer_won()
+    assert vnc.damagestate.is_deadlocked()
 
 
 def test_prepcard_will_not_attack(mocker, gg_setup):
@@ -245,7 +245,6 @@ def test_human_decks_managed_correctly(gg_setup):  # FIXME Should get different 
     # Override damagestate with better health (the fight will end not because of high
     # enough damage diff but bc player H had no more unplayed cards with power > 0):
     vnc.damagestate = AgentDamageState(max_diff=50)
-    gg.vnc = vnc
     vnc.handle_fight()
 
     assert len(human.deck.cards) == len(original_cards)
