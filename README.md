@@ -1,16 +1,18 @@
 
 # Next up
 
-- Bug: Aborting card placement with ESC will lead to a card flash like an error.
-
+- gg:
+  - get rid of gg.vnc?
+  - then, even get rid of gg.humanplayer? Or rename to something else? Or some other
+    approach to architect this in a better way?
+  - Finally, maybe get rid of gg.py altogether?
+- Review TODOs and FIXMEs.
 - Add more skills.
-- Scoring and difficulty progress:
-  - Should there be additional scores in addition to the rung? Something that better
-    reflects the difficulty mastered by that run? E.g., number of fights? Or should
-    there be a score per fight (maybe something that reflects how hard the fight is)?
-  - Refine FightLocation and Computerstrategy so the game becomes harder and harder as
-    the rungs increase.
-  - Use card generator to this end.
+- Scoring and difficulty progress: Refine FightLocation and Computerstrategy so the game
+  becomes harder and harder as the rungs increase. (Refine what is there already.)
+  - In FightLocation: Use some new computer strategy that brings more cards into play in
+    later rounds of a fight. And that brings overall more and more cards into play as
+    the rung increases.
 - Add stats to game state: number of fights won, locations visited, number and which
   cards defeated, which cards confronted with, ... -- could have an instance of each
   "thing" (card, location, etc.) and log the stats with these things (using a special
@@ -18,32 +20,12 @@
   some useful format? (Would replace log and maybe also the stateslogger) -- Keep in
   mind that some cards can die during a run but should still keep their stats available.
   How to do that exactly?
-  - And history to runs, and all histories need to be saved.
-- Resolve the shield deadlock and general deadlock issue. Cf. `_has_computer_won` in
-  fightvnc.
-- Add deadlock resolver.
-  - Shields introduce deadlocks.
-  - See also notes in FightVnC.
-- Maybe destroy likelihood in UPU etc should also rise with
-  amount of Power/Health a card has already?
+  - Add history to runs, and all histories need to be saved.
+- Add more locations?
 
 
 # Architectural considerations
 
-- Rethink how the session module works. Maybe get rid of it? Maybe have a common way
-  tests get set up in a central test module and a way sandbox.py sets up the game and
-  get rid of session altogether? -- But would need some module that grants access to
-  view to Card class.
-  - Sometimes, we inject links to the model to an object (e.g., to grid) and sometimes
-    we don't (e.g., humanagent and computeragent in FightVnC). -> Better make this
-    consistent?
-  - One approach could be: Always use the session. But no code whatsoever in the
-    session. Everything gets set up outside of session and gets injected into the
-    session module.
-- Dependency chaos?
-  - Draw all modules and their dependencies and think about them.
-  - Should cards have a game attribute which they use to query the world (e.g., who the
-    opposing agent is) and to update the world (instead of the view directly)?
 - MVC: Could I have the basic FightVnC, which takes a Controller object, that does the
   playcard stuff etc. and an Animator object that makes all the animations available
   that are necessary?
@@ -66,32 +48,22 @@
 - Check for right minimum resolution at the beginning.
 - Terminology: agent vs player everywhere? Which is the better term? Make it consistent.
   -- Or: Terminology: Player 1 or H and Player C?
-- Edge case: What if the grid is empty or powerless at some point during a fight? Who
-  will win?
-- Reduce the number of places the session module gets imported to a sensible minimum.
 - Turn all the notes here and in DOMAIN into a Github wiki.
 - Check TUI on linux / wsl.
 - Add titles to locations.
-- In FightLocation: Use some new computer strategy that brings more cards into play in
-  later rounds of a fight. And that brings overall more and more cards into play as the
-  rung increases.
 - Add a way for the human to give up a fight.
 
-
-# More animations
-
-- When an agent loses a health bar.
-- Animate overflow damage that turns into gems.
-- More animations for certain skills?
 
 # Ideas: All prios
 
 - Location ideas:
-  - Card shop: Buy cards for gems (potency: price can easily be based on raw, total
-    potency)
+  - Card shop: Buy certain cards for gems -- usually higher value cards (potency: 1 gem
+    per 1 raw potency?)
   - Exchange: Change spirits to gems and vice versa
-  - Card lottery: Give a card and get a random card in return (potency: use roughly the
+  - Card lottery I: Give a card and get a random card in return (potency: use roughly the
     same raw, total potency as the given card)
+  - Card lottery II: Give a number of gems and get a random card with approximately the
+    potency corresponding to the number of gems given
   - Card/skill game: Play some little game and the better you are the better the card
     you get (at random) in return. Or the better a skill you can chose? Or the more
     random skills or cards you can choose from. Or...
@@ -107,8 +79,7 @@
       - Press keys as they appear on screen as quickly as possible.
       - Snakes/Tron
       - Frogger
-  - Card buyer: Buy certain cards for gems -- usually higher value cards (potency: 1 gem
-    per 1 raw potency?)
+  - Life shop: Buy life for x gems.
   - Card disposer: Allows you to get rid of cards (just 1 maybe) at a cost in gems
   - Card merger: Merge 2 identical cards for double attributes (or, if you don't have
     any pairs, duplicate a card)
@@ -151,12 +122,6 @@
   proof originality of code at a certain point in time? Maybe also combined with some
   proof of humanity (the minigames?) to prevent bots from playing the game?)
 - Have floor tiles with special effects? I.e., more strength if a create is on it?
-- Can there be shops where you can buy stuff, including additional lives?
-- Maybe spirits could be persistent and can be taken over to the next fight?
-- Explain locations in the map view? Or have some keystroke that opens explanatory text
-  in any view?
-- Have some generic animation (just some color change for 0.2 seconds?) for skill
-  effects that get activated. E.g., for shield.
 - Make fire effect work on WSL.
 
 
@@ -176,19 +141,16 @@
   been set up?)
 - Maybe NoLocations can have minor "on the way" events? I.e., gain/lose some gems, ...?
 - Hidden locations? I.e., locations that are not revealed until you visit them.
-- Randomize player's start cards at the beginning of a run from a set of possible start
-  cards.
 - For convenience: Placement cursor could pick the first slot that makes sense for the
   current card, i.e., the first empty slot for cards with `costs_fire == 0`.
-- Don't show costs in computer cards.
-- Different tribes?
 - If there are more and more cards, maybe they get some meta information around
   curation, likes, etc.?
 - Achievements/badges for the player?
 - Upgrading the game should invalidate all running/saved runs.
 - Can we add the new fire and spirits placement logic to the hypo-driven tests? Maybe
   using the placement mgr in the hypo test?
-- Use asciimatics' arrow as an avatar for the human player? (Or the computer?)
+- Maybe destroy likelihood in UPU etc should also rise with amount of Power/Health a
+  card has already?
 
 
 # Debugging hints
