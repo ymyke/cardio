@@ -1,10 +1,11 @@
 from typing import Optional
 from asciimatics.screen import Screen
+from cardio.human_player import HumanPlayer
 from .utils import show_screen_resolution, get_keycode, show_text, dPos
 from ..run import Run
 from ..locations.location import Location
 from .constants import Color
-from .agent_primitives import show_humanplayer
+from .agent_primitives import HumanStateWidget
 from .tuibase import TUIBaseMixin
 
 
@@ -13,9 +14,10 @@ class TUIMapView(TUIBaseMixin):
     AGENTINFO = dPos(70, 2)
     GAMEINFO = dPos(70, 18)
 
-    def __init__(self, run: Run, *args, **kwargs) -> None:
+    def __init__(self, run: Run, humanplayer: HumanPlayer, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.run = run
+        self.humanstate = HumanStateWidget(self.screen, humanplayer, self.AGENTINFO)
 
     def dpos_from_location(self, loc: Location) -> dPos:
         # FIXME This is not nice bc it hardcodes all kinds of things that are flexible
@@ -69,7 +71,7 @@ class TUIMapView(TUIBaseMixin):
             show_text(self.screen, self.dpos_from_location(loc) - (2, 0), s, color=col)
 
         # Show more agent and other information:
-        show_humanplayer(self.screen, self.AGENTINFO)
+        self.humanstate.show()
         show_text(self.screen, self.GAMEINFO, f"Rung: {self.run.current_rung}")
         show_text(
             self.screen,

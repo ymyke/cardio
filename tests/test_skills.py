@@ -7,18 +7,12 @@ card's attributes such as health have been update correctly.
 
 import random
 from typing import Optional
-import pytest
-from cardio import Card, CardList, gg, GridPos, skills, Grid
+from cardio import Card, CardList, GridPos, skills, Grid
 from cardio.computer_strategies import Round0OnlyStrategy
 from cardio.fightcard import FightCard
 from cardio.fightvnc import FightVnC
+from cardio.human_player import HumanPlayer
 from tests.utils.humanstrategyvnc import HumanStrategyVnC
-
-
-@pytest.fixture(autouse=True)
-def common_setup(mocker, request, gg_setup):
-    if "skip_common_setup" in request.keywords:
-        return
 
 
 def do_the_fight(humancards: CardList, computercard: Optional[Card]) -> FightVnC:
@@ -26,11 +20,13 @@ def do_the_fight(humancards: CardList, computercard: Optional[Card]) -> FightVnC
     the first free slot from the left, i.e., the very first human card gets placed on
     (2,0).
     """
-    gg.humanplayer.deck.cards = humancards
-    # Reset grid for good measure in case we run several fights in one test:
     grid = Grid(4)
+    humanplayer = HumanPlayer(name="Schnuzgi", lives=1)
+    humanplayer.deck.cards = humancards
     cs = Round0OnlyStrategy(grid=grid, cards=[(GridPos(1, 0), computercard)])
-    vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs, whichrounds=[0])
+    vnc = HumanStrategyVnC(
+        grid=grid, computerstrategy=cs, whichrounds=[0], humanplayer=humanplayer
+    )
     vnc.handle_fight()
     return vnc
 
@@ -43,7 +39,7 @@ def test_vanilla_fight():
     assert hc._fc.health == 8
     assert cc._fc.power == 2
     assert cc._fc.health == 0
-    assert gg.humanplayer.gems == 2
+    assert vnc.humanplayer.gems == 2
     assert vnc.grid[1][0] is None
 
 
@@ -114,7 +110,7 @@ def test_spines_resulting_in_both_cards_dying_simultaneously():
     assert cc._fc.health == 0
     assert vnc.grid[1][0] is None
     assert vnc.grid[2][0] is None
-    assert gg.humanplayer.lives == 1
+    assert vnc.humanplayer.lives == 1
 
 
 def test_fertility():
@@ -133,7 +129,7 @@ def test_fertility():
     assert copy.health == 1  # Make sure the health was reset
     assert copy.skills.get_types() == [skills.Fertility]
     # The copy should _not_ be in the player's main deck, since it is a temporary card:
-    assert copy not in gg.humanplayer.deck.cards
+    assert copy not in vnc.humanplayer.deck.cards
 
 
 def test_shield():

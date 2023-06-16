@@ -1,5 +1,5 @@
 import pytest
-from cardio import HumanPlayer, Grid, FightVnC, gg, Card, FightCard
+from cardio import HumanPlayer, Grid, FightVnC, Card, FightCard
 
 
 @pytest.fixture
@@ -8,12 +8,12 @@ def gg_setup():
         """Convenenience function to create FightCards easily."""
         return FightCard.from_card(Card(*args, **kwargs))
 
-    gg.humanplayer = HumanPlayer(name="Schnuzgi", lives=1)
-    gg.humanplayer.deck.cards = [Card("C", 1, 1, 1)]
+    humanplayer = HumanPlayer(name="Schnuzgi", lives=1)
+    humanplayer.deck.cards = [Card("C", 1, 1, 1)]
     grid = Grid(width=4)
-    vnc = FightVnC(grid, None)
+    vnc = FightVnC(grid, None, humanplayer)
     FightCard.init_fight(vnc, grid)
-    yield gg.humanplayer, grid, vnc, fightify
+    yield humanplayer, grid, vnc, fightify
 
 
 @pytest.fixture(autouse=True)

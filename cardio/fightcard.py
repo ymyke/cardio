@@ -1,7 +1,7 @@
 from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, ClassVar, List, Optional
-from . import Card, gg
+from . import Card
 from . import skills as sk
 
 if TYPE_CHECKING:
@@ -91,7 +91,7 @@ class FightCard(Card):
         self.health = 0
         pos = self.get_grid_pos()
         if self.is_human():  # QQ: Can this be done differently?
-            gg.humanplayer.spirits += self.has_spirits
+            self.vnc.humanplayer.spirits += self.has_spirits
             self.vnc.decks.used.add_card(self)
         self.grid.remove_card(self)
         self.vnc.card_died(self, pos)

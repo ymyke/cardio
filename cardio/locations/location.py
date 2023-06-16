@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 import random
+from cardio.human_player import HumanPlayer
 
 
 class Location(ABC):
@@ -28,7 +29,7 @@ class Location(ABC):
         pass
 
     @abstractmethod
-    def handle(self, view_class: type) -> bool:
+    def handle(self, view_class: type, humanplayer: HumanPlayer) -> bool:
         """Returns `True` if the current run is is still on, `False` if the run is to be
         ended, e.g., because the player has lost all their lives.
         """

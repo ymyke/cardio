@@ -1,6 +1,7 @@
 from typing import Literal, Protocol, Type
 import random
-from cardio import gg, Card, CardList
+from cardio import Card, CardList
+from cardio.human_player import HumanPlayer
 from .location import Location
 from .baseview import BaseLocationView
 
@@ -29,12 +30,12 @@ class UpgraderLocation(Location):
     def generate(self) -> None:
         super().generate()
 
-    def handle(self, view_class: Type[UpgraderView]) -> bool:
+    def handle(self, view_class: Type[UpgraderView], humanplayer: HumanPlayer) -> bool:
         def _upgrade(card: Card):
             setattr(card, self.which_attribute, getattr(card, self.which_attribute) + 1)
             view.show_upgrade(card)
 
-        upgradable_cards = gg.humanplayer.deck.cards
+        upgradable_cards = humanplayer.deck.cards
         view = view_class(upgradable_cards)
         card = view.pick()
         if self.upgrade_type == "once":
@@ -46,7 +47,7 @@ class UpgraderLocation(Location):
                 print(risk)
                 if random.randint(1, 100) <= risk:
                     view.show_destroy(card)
-                    gg.humanplayer.deck.remove_card(card)
+                    humanplayer.deck.remove_card(card)
                     break
 
                 _upgrade(card)

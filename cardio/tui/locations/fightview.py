@@ -8,7 +8,7 @@ of game-related logic must take place or be orchestrated in FightVnC.
 import itertools
 from typing import Callable, Literal, Optional
 from asciimatics.screen import Screen
-from cardio import FightCard, Deck, FightVnC, GridPos, gg
+from cardio import FightCard, Deck, FightVnC, GridPos
 from ..card_primitives import (
     VisualState,
     show_card,
@@ -221,7 +221,7 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
             elif keycode in (Screen.KEY_UP, 13):
                 pmgr = PlacementManager(
                     grid=self.grid,
-                    available_spirits=gg.humanplayer.spirits,
+                    available_spirits=self.humanplayer.spirits,
                     target_card=self.decks.hand.cards[cursor],
                 )
                 try:

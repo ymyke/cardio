@@ -241,7 +241,7 @@ def test_human_decks_managed_correctly(gg_setup):  # FIXME Should get different 
         ],
     )
 
-    vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs)
+    vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs, humanplayer=human)
     # Override damagestate with better health (the fight will end not because of high
     # enough damage diff but bc player H had no more unplayed cards with power > 0):
     vnc.damagestate = AgentDamageState(max_diff=50)
@@ -351,7 +351,7 @@ def test_humanplayer_deck_gets_set_correctly_after_fight(gg_setup):
     ).instantiate()
     human.deck.cards = original_cards
     cs = Round0OnlyStrategy(grid=grid, cards=[])
-    vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs)
+    vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs, humanplayer=human)
     vnc.handle_fight()
     assert sorted(c.name for c in human.deck.cards) == sorted(
         c.name for c in original_cards

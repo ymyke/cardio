@@ -1,6 +1,7 @@
 import random
 from typing import Protocol, Type
-from cardio import gg, Card, CardList, skills
+from cardio import Card, CardList, skills
+from cardio.human_player import HumanPlayer
 from .location import Location
 from .baseview import BaseLocationView
 
@@ -32,10 +33,10 @@ class SkillLotteryLocation(Location):
     def generate(self) -> None:
         super().generate()
 
-    def handle(self, view_class: Type[SkillLotteryView]) -> bool:
-        view = view_class(gg.humanplayer.deck.cards)
+    def handle(self, view_class: Type[SkillLotteryView], humanplayer: HumanPlayer) -> bool:
+        view = view_class(humanplayer.deck.cards)
         possible_cards = [
-            c for c in gg.humanplayer.deck.cards if c.skills.count() < Card.MAX_SKILLS
+            c for c in humanplayer.deck.cards if c.skills.count() < Card.MAX_SKILLS
         ]
         if not possible_cards:
             view.error("Sorry, you don't have any cards that can get more skills.")

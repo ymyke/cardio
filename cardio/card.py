@@ -1,7 +1,6 @@
 from __future__ import annotations
 from typing import List, Literal, Optional, TYPE_CHECKING
 import copy
-from . import gg
 from .skills import ListOfSkillsOrSkillTypes, SkillSet, ForWhom
 
 if TYPE_CHECKING:
