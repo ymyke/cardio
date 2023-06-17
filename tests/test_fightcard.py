@@ -5,11 +5,11 @@ from cardio.deck import FightDecks
 
 
 @pytest.fixture
-def common_setup(mocker, gg_setup):
-    humanplayer, grid, *_ = gg_setup
+def common_setup(mocker, tt_setup):
+    human, grid, *_ = tt_setup
     mocked_vnc = mocker.Mock()
     mocked_vnc.decks = FightDecks()
-    mocked_vnc.humanplayer = humanplayer
+    mocked_vnc.humanplayer = human
     FightCard.init_fight(mocked_vnc, grid)
     c = Card("X", 1, 2, 3)
     fc = FightCard.from_card(c)

@@ -16,8 +16,8 @@ def equal_logs(generatedlog: str, targetlog: str) -> bool:
     return are_equal
 
 
-def test_simple_initial_setup(gg_setup):
-    human, grid, vnc, ff = gg_setup
+def test_simple_initial_setup(tt_setup):
+    human, grid, vnc, ff = tt_setup
     human.deck.cards = thecatalog.find_by_names(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     ).instantiate()
@@ -67,8 +67,8 @@ Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
     assert equal_logs(vnc.stateslogger.log, target_states_log)
 
 
-def test_fight_with_no_opponent(gg_setup):
-    _, grid, vnc, ff = gg_setup
+def test_fight_with_no_opponent(tt_setup):
+    human, grid, vnc, ff = tt_setup
     hc = ff("HC", 1, 10, 1)
     vnc.computerstrategy = PredefinedStrategy(
         grid=grid,
@@ -83,11 +83,11 @@ def test_fight_with_no_opponent(gg_setup):
     assert vnc._has_human_won()
 
 
-def test_fight_with_human_power_0(gg_setup):
+def test_fight_with_human_power_0(tt_setup):
     """Even though all human cards are powerless, the fight should still take place.
     (This used to be different in earlier versions of the fight logic.)
     """
-    humanplayer, grid, vnc, ff = gg_setup
+    human, grid, vnc, ff = tt_setup
     cc = ff("CC", 2, 3, 1)
     hc = ff("HC", 0, 10, 1)
     vnc.computerstrategy = PredefinedStrategy(
@@ -103,14 +103,14 @@ def test_fight_with_human_power_0(gg_setup):
     vnc.handle_fight()
     assert hc.health == 0
     assert cc.health == 3
-    assert humanplayer.lives == 1
+    assert human.lives == 1
 
 
-def test_deadlock_due_to_all_0_power(gg_setup):
+def test_deadlock_due_to_all_0_power(tt_setup):
     """All cards with power == 0: should produce a deadlock leading to the computer
     winning.
     """
-    _, grid, vnc, ff = gg_setup
+    human, grid, vnc, ff = tt_setup
     vnc.computerstrategy = PredefinedStrategy(
         grid=grid,
         cards_per_round={
@@ -126,11 +126,11 @@ def test_deadlock_due_to_all_0_power(gg_setup):
     assert vnc.damagestate.is_deadlocked()
 
 
-def test_deadlock_due_to_cards_not_opposing(gg_setup):
+def test_deadlock_due_to_cards_not_opposing(tt_setup):
     """Cards have power > 0, but they don't oppose each other: should produce a
     deadlock, leading to the computer winning.
     """
-    _, grid, vnc, ff = gg_setup
+    human, grid, vnc, ff = tt_setup
     vnc.computerstrategy = PredefinedStrategy(
         grid=grid,
         cards_per_round={
@@ -146,8 +146,8 @@ def test_deadlock_due_to_cards_not_opposing(gg_setup):
     assert vnc.damagestate.is_deadlocked()
 
 
-def test_prepcard_will_not_attack(mocker, gg_setup):
-    _, grid, vnc, ff = gg_setup
+def test_prepcard_will_not_attack(mocker, tt_setup):
+    human, grid, vnc, ff = tt_setup
     prepcard = ff("P", 1, 1, 1)
     vnc.computerstrategy = PredefinedStrategy(
         grid=grid,
@@ -165,8 +165,8 @@ def test_prepcard_will_not_attack(mocker, gg_setup):
     spy.assert_not_called()
 
 
-def test_prepare_but_slot_taken(mocker, gg_setup):
-    _, grid, vnc, ff = gg_setup
+def test_prepare_but_slot_taken(mocker, tt_setup):
+    human, grid, vnc, ff = tt_setup
     grid[0][0] = pc = ff("P", 1, 1, 1)
     grid[1][0] = cc = ff("C", 1, 1, 1)
     spy = mocker.spy(vnc, "card_prepare")
@@ -176,8 +176,8 @@ def test_prepare_but_slot_taken(mocker, gg_setup):
     spy.assert_not_called()
 
 
-def test_prepare_with_success(mocker, gg_setup):
-    _, grid, vnc, ff = gg_setup
+def test_prepare_with_success(mocker, tt_setup):
+    human, grid, vnc, ff = tt_setup
     grid[0][0] = pc = ff("P", 1, 1, 1)
     spy = mocker.spy(vnc, "card_prepare")
     pc.prepare()
@@ -186,8 +186,8 @@ def test_prepare_with_success(mocker, gg_setup):
     spy.assert_called_once()
 
 
-def test_prepcard_gets_no_damage(gg_setup):
-    _, grid, vnc, ff = gg_setup
+def test_prepcard_gets_no_damage(tt_setup):
+    human, grid, vnc, ff = tt_setup
     vnc.computerstrategy = PredefinedStrategy(
         grid=grid,
         cards_per_round={
@@ -204,8 +204,8 @@ def test_prepcard_gets_no_damage(gg_setup):
     assert grid[0][0].health == 1  # prepcard untouched
 
 
-def test_human_gets_gems(gg_setup):
-    human, grid, vnc, ff = gg_setup
+def test_human_gets_gems(tt_setup):
+    human, grid, vnc, ff = tt_setup
     vnc.computerstrategy = PredefinedStrategy(
         grid=grid,
         cards_per_round={
@@ -224,8 +224,8 @@ def test_human_gets_gems(gg_setup):
     # Note that mouse and cat are in different slots, so mouse doesn't defend.)
 
 
-def test_human_decks_managed_correctly(gg_setup):  # FIXME Should get different name?
-    human, grid, _, _ = gg_setup
+def test_human_decks_managed_correctly(tt_setup):  # FIXME Should get different name?
+    human, grid, vnc, ff = tt_setup
     original_cards = thecatalog.find_by_names(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     ).instantiate()
@@ -344,8 +344,8 @@ Hamster: Hp0h1 Hp0h1
     assert equal_logs(vnc.stateslogger.log, target_states_log)
 
 
-def test_humanplayer_deck_gets_set_correctly_after_fight(gg_setup):
-    human, grid, vnc, _ = gg_setup
+def test_humanplayer_deck_gets_set_correctly_after_fight(tt_setup):
+    human, grid, vnc, ff = tt_setup
     original_cards = thecatalog.find_by_names(
         ["Koala", "Weasel", "Lynx", "Porcupine"]
     ).instantiate()

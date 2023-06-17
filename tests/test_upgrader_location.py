@@ -34,32 +34,32 @@ class FakeUpgraderView(UpgraderView):
         ...
 
 
-def test_powerupgraderlocation(gg_setup):
-    humanplayer, *_ = gg_setup
+def test_powerupgraderlocation(tt_setup):
+    human, *_ = tt_setup
     card = Card("X", 1, 1, 1, None)
-    humanplayer.deck = Deck("main", [card])
+    human.deck = Deck("main", [card])
     loc = PowerUpgraderLocation("0", 0, 0, [])
-    loc.handle(view_class=FakeUpgraderView, humanplayer=humanplayer)
+    loc.handle(view_class=FakeUpgraderView, humanplayer=human)
     assert card.power == 2
-    assert humanplayer.deck.size() == 1
+    assert human.deck.size() == 1
 
 
-def test_healthupgraderlocation(gg_setup):
-    humanplayer, *_ = gg_setup
+def test_healthupgraderlocation(tt_setup):
+    human, *_ = tt_setup
     card = Card("X", 1, 1, 1, None)
-    humanplayer.deck = Deck("main", [card])
+    human.deck = Deck("main", [card])
     loc = HealthUpgraderLocation("0", 0, 0, [])
-    loc.handle(view_class=FakeUpgraderView, humanplayer=humanplayer)
+    loc.handle(view_class=FakeUpgraderView, humanplayer=human)
     assert card.health == 2
-    assert humanplayer.deck.size() == 1
+    assert human.deck.size() == 1
 
 
-def test_powerupgraderlocation_multi(gg_setup):
-    humanplayer, *_ = gg_setup
+def test_powerupgraderlocation_multi(tt_setup):
+    human, *_ = tt_setup
     card = Card("X", 1, 1, 1, None)
-    humanplayer.deck = Deck("main", [card])
+    human.deck = Deck("main", [card])
     loc = PowerUpgraderMultiLocation("0", 0, 0, [])
     # Together with the fake view above, which always confirms in the `ask` method, the
     # following will upgrade the card so often that will get destroyed eventually:
-    loc.handle(view_class=FakeUpgraderView, humanplayer=humanplayer)
-    assert humanplayer.deck.is_empty()
+    loc.handle(view_class=FakeUpgraderView, humanplayer=human)
+    assert human.deck.is_empty()

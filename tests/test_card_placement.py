@@ -8,8 +8,8 @@ from cardio.placement_manager import PlacementManager
 # ----- PlacementManager tests -----
 
 
-def test_placement_manager(gg_setup):
-    _, grid, _, ff = gg_setup
+def test_placement_manager(tt_setup):
+    human, grid, vnc, ff = tt_setup
     grid[2][0] = ff("X", 1, 1, 1)
     grid[2][1] = ff("X", 1, 1, 1)
     grid[2][2] = ff("X", 1, 1, 1)
@@ -56,8 +56,8 @@ def test_placement_manager(gg_setup):
         p.mark_unmark_or_pick(GridPos(2, 3))
 
 
-def test_can_mark(gg_setup):
-    _, grid, _, ff = gg_setup
+def test_can_mark(tt_setup):
+    human, grid, vnc, ff = tt_setup
     grid[2][0] = ff("X", 1, 1, 1)
     p = PlacementManager(grid, 0, ff("T", 1, 1, 1))
 
@@ -85,14 +85,14 @@ def test_can_mark(gg_setup):
     assert not p.can_mark(GridPos(2, 1))
 
 
-def test_never_ready_without_marked_positions(gg_setup):
-    _, grid, _, ff = gg_setup
+def test_never_ready_without_marked_positions(tt_setup):
+    human, grid, vnc, ff = tt_setup
     p = PlacementManager(grid, 0, ff("T", 1, 1, 0))
     assert not p.ready_to_place()
 
 
-def test_is_placeable(gg_setup):
-    _, grid, _, ff = gg_setup
+def test_is_placeable(tt_setup):
+    human, grid, vnc, ff = tt_setup
     grid[2][0] = ff("X", 1, 1, 1)
     grid[2][1] = ff("X", 1, 1, 1)
     grid[2][2] = ff("X", 1, 1, 1)
@@ -119,8 +119,8 @@ def test_is_placeable(gg_setup):
 # ----- FightVnC._place_card tests -----
 
 
-def test_place_card_with_fire_sacrifice(gg_setup):
-    _, grid, vnc, ff = gg_setup
+def test_place_card_with_fire_sacrifice(tt_setup):
+    human, grid, vnc, ff = tt_setup
     target_card = ff("T", 1, 1, 1)
     target_pos = GridPos(2, 3)
     sacrifice_card = ff("S", 1, 1, 1)
@@ -141,8 +141,8 @@ def test_place_card_with_fire_sacrifice(gg_setup):
     assert vnc.decks.used.cards == [sacrifice_card]
 
 
-def test_place_card_with_spirits_sacrifice(gg_setup):
-    human, grid, vnc, ff = gg_setup
+def test_place_card_with_spirits_sacrifice(tt_setup):
+    human, grid, vnc, ff = tt_setup
     target_card = ff("T", 1, 1, costs_fire=0, costs_spirits=3)
     target_pos = GridPos(2, 3)
 

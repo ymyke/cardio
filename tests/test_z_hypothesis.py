@@ -35,11 +35,11 @@ def slotlist_strategy():
     suppress_health_check=[HealthCheck.function_scoped_fixture],
     verbosity=Verbosity.normal,
 )
-def test_game_hypo(mocker, gg_setup, slotlist):
+def test_game_hypo(mocker, tt_setup, slotlist):
     # Need to reset the following two variables because hypothesis won't rerun fixtures:
     # See also https://hypothesis.works/articles/hypothesis-pytest-fixtures/
-    humanplayer, grid, vnc, _ = gg_setup
-    vnc = FightVnC(grid, None, humanplayer)
+    human, grid, vnc, _ = tt_setup
+    vnc = FightVnC(grid, None, human)
     card_activate_spy = mocker.spy(vnc, "card_activate")
 
     before_nof_cards = len([c for c in slotlist if c is not None])
