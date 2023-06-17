@@ -1,4 +1,5 @@
 from .location import Location
+from cardio import HumanPlayer
 
 
 class NoLocation(Location):
@@ -7,5 +8,5 @@ class NoLocation(Location):
     def generate(self) -> None:
         super().generate()
 
-    def handle(self, view_class: type) -> bool:
+    def handle(self, view_class: type, humanplayer: HumanPlayer) -> bool:
         return True
