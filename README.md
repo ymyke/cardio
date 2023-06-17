@@ -1,11 +1,6 @@
 
 # Next up
 
-- gg:
-  - get rid of gg.vnc?
-  - then, even get rid of gg.humanplayer? Or rename to something else? Or some other
-    approach to architect this in a better way?
-  - Finally, maybe get rid of gg.py altogether?
 - Review TODOs and FIXMEs.
 - Add more skills.
 - Scoring and difficulty progress: Refine FightLocation and Computerstrategy so the game
