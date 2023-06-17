@@ -17,9 +17,6 @@ parser.add_argument("--reset", action="store_true", help="Delete save files")
 parser.add_argument("--human-name", action="store", help="Set human player's name")
 args = parser.parse_args()
 
-if args.human_name and not args.reset:
-    sys.exit("Error: --human-name can only be used with --reset")
-
 if args.reset:
     jason.reset_all()
 
@@ -32,7 +29,10 @@ try:  # Existing game/player?
     humanplayer, run = jason.load_all()
 except FileNotFoundError:  # New game/player
     logging.debug("No save file found. Starting new game")
-    humanplayer = HumanPlayer.create_new(args.human_name or "You")
+    humanplayer = HumanPlayer.create_new("You")
+
+if args.human_name:
+    humanplayer.name = args.human_name
 
 while True:  # Forever start new runs:
     if not run or not run.is_on:
