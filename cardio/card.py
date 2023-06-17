@@ -102,9 +102,6 @@ class Card:
             and self.skills == other.skills
         )
 
-    def is_human(self) -> bool:
-        return self in gg.humanplayer.deck.cards + gg.humanplayer.collection.cards
-
     def is_skilled(self) -> bool:
         return self.skills.count() > 0
 

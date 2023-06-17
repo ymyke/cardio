@@ -57,6 +57,10 @@ class FightCard(Card):
         return [cls.from_card(c) for c in cards]
 
     def is_human(self) -> bool:
+        """Whether this card belongs to the human player or not. (Note that there is no
+        `is_human` method in the `Card` class, because it is not straightforward to
+        implement there and it is also not needed there.)
+        """
         return self in self.vnc.decks.get_all_cards() + self.grid.lines[2]
 
     def copy(self) -> FightCard:

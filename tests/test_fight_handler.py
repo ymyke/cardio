@@ -356,31 +356,3 @@ def test_humanplayer_deck_gets_set_correctly_after_fight(gg_setup):
     assert sorted(c.name for c in human.deck.cards) == sorted(
         c.name for c in original_cards
     )
-
-
-def test_card_humanity(gg_setup):
-    """If `is_human` works more or less correctly. FIXME This is rather "hacky". Should
-    be simplified and moved to `test_card` once there is some new logic for cards being
-    human or not (using an explicit attribute) in place.
-    """
-    human, grid, vnc, _ = gg_setup
-
-    original_cards = thecatalog.find_by_names(
-        ["Koala", "Weasel", "Lynx", "Porcupine"]
-    ).instantiate()
-    assert not any(c.is_human() for c in original_cards)
-    human.deck.cards = original_cards
-    assert all(c.is_human() for c in original_cards)
-    cs = Round0OnlyStrategy(
-        grid=grid,
-        cards=[
-            # type: ignore
-            (GridPos(1, 0), Card("Hulk", 2, 100, 1)),
-            (GridPos(1, 1), Card("Hulk", 2, 100, 1)),
-            (GridPos(1, 2), Card("Hulk", 2, 100, 1)),
-            (GridPos(1, 3), Card("Hulk", 2, 100, 1)),
-        ],
-    )
-    vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs)
-    vnc.handle_fight()
-    assert all(c.is_human() for c in original_cards)

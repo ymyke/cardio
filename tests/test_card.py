@@ -1,5 +1,5 @@
 import pytest
-from cardio import Card, gg, FightDecks, skills
+from cardio import Card, skills
 from cardio.skills import SkillSet
 
 
@@ -57,13 +57,6 @@ def test_copy():
     assert c.power == d.power
     assert c.health == d.health
     assert c.costs_fire == d.costs_fire
-
-
-def test_is_human(gg_setup):
-    c = Card("A", 1, 1, 1)
-    assert not c.is_human()
-    gg.humanplayer.deck.add_card(c)
-    assert c.is_human()
 
 
 def test_is_gameplay_equal():
