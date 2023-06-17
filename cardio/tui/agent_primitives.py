@@ -56,7 +56,7 @@ class StateWidget:
         show(
             self.screen,
             self.computer_pos,
-            FigletText("Yshl", NAME_FONT),
+            FigletText("Le Chiffre", NAME_FONT),
             color=Color.GRAY,
         )
         self._show_health_bars(
