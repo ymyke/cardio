@@ -241,7 +241,7 @@ def test_human_decks_managed_correctly(gg_setup):  # FIXME Should get different 
         ],
     )
 
-    vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs)
+    vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs, humanplayer=human)
     # Override damagestate with better health (the fight will end not because of high
     # enough damage diff but bc player H had no more unplayed cards with power > 0):
     vnc.damagestate = AgentDamageState(max_diff=50)
@@ -351,36 +351,8 @@ def test_humanplayer_deck_gets_set_correctly_after_fight(gg_setup):
     ).instantiate()
     human.deck.cards = original_cards
     cs = Round0OnlyStrategy(grid=grid, cards=[])
-    vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs)
+    vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs, humanplayer=human)
     vnc.handle_fight()
     assert sorted(c.name for c in human.deck.cards) == sorted(
         c.name for c in original_cards
     )
-
-
-def test_card_humanity(gg_setup):
-    """If `is_human` works more or less correctly. FIXME This is rather "hacky". Should
-    be simplified and moved to `test_card` once there is some new logic for cards being
-    human or not (using an explicit attribute) in place.
-    """
-    human, grid, vnc, _ = gg_setup
-
-    original_cards = thecatalog.find_by_names(
-        ["Koala", "Weasel", "Lynx", "Porcupine"]
-    ).instantiate()
-    assert not any(c.is_human() for c in original_cards)
-    human.deck.cards = original_cards
-    assert all(c.is_human() for c in original_cards)
-    cs = Round0OnlyStrategy(
-        grid=grid,
-        cards=[
-            # type: ignore
-            (GridPos(1, 0), Card("Hulk", 2, 100, 1)),
-            (GridPos(1, 1), Card("Hulk", 2, 100, 1)),
-            (GridPos(1, 2), Card("Hulk", 2, 100, 1)),
-            (GridPos(1, 3), Card("Hulk", 2, 100, 1)),
-        ],
-    )
-    vnc = HumanStrategyVnC(grid=grid, computerstrategy=cs)
-    vnc.handle_fight()
-    assert all(c.is_human() for c in original_cards)

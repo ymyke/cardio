@@ -1,7 +1,7 @@
 from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, ClassVar, List, Optional
-from . import Card, gg
+from . import Card
 from . import skills as sk
 
 if TYPE_CHECKING:
@@ -57,6 +57,10 @@ class FightCard(Card):
         return [cls.from_card(c) for c in cards]
 
     def is_human(self) -> bool:
+        """Whether this card belongs to the human player or not. (Note that there is no
+        `is_human` method in the `Card` class, because it is not straightforward to
+        implement there and it is also not needed there.)
+        """
         return self in self.vnc.decks.get_all_cards() + self.grid.lines[2]
 
     def copy(self) -> FightCard:
@@ -91,7 +95,7 @@ class FightCard(Card):
         self.health = 0
         pos = self.get_grid_pos()
         if self.is_human():  # QQ: Can this be done differently?
-            gg.humanplayer.spirits += self.has_spirits
+            self.vnc.humanplayer.spirits += self.has_spirits
             self.vnc.decks.used.add_card(self)
         self.grid.remove_card(self)
         self.vnc.card_died(self, pos)

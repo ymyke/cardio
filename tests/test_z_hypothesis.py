@@ -3,7 +3,7 @@
 import itertools
 from hypothesis import given, settings, HealthCheck, Verbosity
 import hypothesis.strategies as st
-from cardio import Card, HumanPlayer, FightVnC, skills
+from cardio import Card, FightVnC, skills
 from cardio.computer_strategies import Round0OnlyStrategy
 
 all_skill_subsets = []
@@ -38,8 +38,8 @@ def slotlist_strategy():
 def test_game_hypo(mocker, gg_setup, slotlist):
     # Need to reset the following two variables because hypothesis won't rerun fixtures:
     # See also https://hypothesis.works/articles/hypothesis-pytest-fixtures/
-    _, grid, vnc, _ = gg_setup
-    vnc = FightVnC(grid, None)
+    humanplayer, grid, vnc, _ = gg_setup
+    vnc = FightVnC(grid, None, humanplayer)
     card_activate_spy = mocker.spy(vnc, "card_activate")
 
     before_nof_cards = len([c for c in slotlist if c is not None])

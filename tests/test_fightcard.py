@@ -1,14 +1,15 @@
 import pytest
-from cardio import Card, FightCard, GridPos, gg
+from cardio import Card, FightCard, GridPos
 from cardio import skills as sk
 from cardio.deck import FightDecks
 
 
 @pytest.fixture
 def common_setup(mocker, gg_setup):
-    _, grid, *_ = gg_setup
+    humanplayer, grid, *_ = gg_setup
     mocked_vnc = mocker.Mock()
     mocked_vnc.decks = FightDecks()
+    mocked_vnc.humanplayer = humanplayer
     FightCard.init_fight(mocked_vnc, grid)
     c = Card("X", 1, 2, 3)
     fc = FightCard.from_card(c)
@@ -46,9 +47,10 @@ def test_fightcard_simple_method_access(common_setup):
     _, fc, *_ = common_setup
     assert not fc.is_skilled()
 
+
 def test_is_human(common_setup):
     _, fc, grid, mocked_vnc = common_setup
-    assert fc.is_human()    # common_setup puts fc on the grid
+    assert fc.is_human()  # common_setup puts fc on the grid
     grid[2][3] = None
     assert not fc.is_human()
     mocked_vnc.decks.draw.add_card(fc)
@@ -80,35 +82,37 @@ def test_get_prep_card(common_setup):
 
 def test_die(common_setup):
     _, fc, grid, mocked_vnc = common_setup
-    spirits_before = gg.humanplayer.spirits
+    spirits_before = mocked_vnc.humanplayer.spirits
     assert fc.health == 2
     fc.die()
     assert fc.health == 0
-    assert gg.humanplayer.spirits == spirits_before + 1
+    assert mocked_vnc.humanplayer.spirits == spirits_before + 1
     mocked_vnc.card_died.assert_called_once()
     assert grid[2][3] is None
 
 
 def test_no_spirits_when_computer_card_dies(common_setup):
     _, fc, grid, mocked_vnc = common_setup
-    spirits_before = gg.humanplayer.spirits
+    spirits_before = mocked_vnc.humanplayer.spirits
     grid[1][3], grid[2][3] = fc, grid[1][3]  # Swap cards
     assert fc.health == 2
     fc.die()
     assert fc.health == 0
-    assert gg.humanplayer.spirits == spirits_before
+    assert mocked_vnc.humanplayer.spirits == spirits_before
     mocked_vnc.card_died.assert_called_once()
     assert grid[1][3] is None
 
 
 def test_sacrifice(common_setup):
     _, fc, grid, mocked_vnc = common_setup
-    spirits_before = gg.humanplayer.spirits
+    spirits_before = mocked_vnc.humanplayer.spirits
     assert fc.health == 2
     has_fire = fc.sacrifice()
     assert has_fire == 1
     assert fc.health == 0
-    assert gg.humanplayer.spirits == spirits_before  # sacrificing must not give spirits
+    assert (
+        mocked_vnc.humanplayer.spirits == spirits_before
+    )  # sacrificing must not give spirits
     mocked_vnc.card_died.assert_not_called()
     assert grid[2][3] is None
 

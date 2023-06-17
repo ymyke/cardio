@@ -1,6 +1,7 @@
 from typing import Protocol, Type
 import random
-from cardio import gg, Card, CardList
+from cardio import Card, CardList
+from cardio.human_player import HumanPlayer
 from .location import Location
 from .baseview import BaseLocationView
 
@@ -22,10 +23,10 @@ class SkillTransfererView(BaseLocationView, Protocol):
         ...
 
 
-def get_to_cards(from_card: Card) -> CardList:
+def get_to_cards(from_card: Card, all_cards: CardList) -> CardList:
     return [
         c
-        for c in gg.humanplayer.deck.cards
+        for c in all_cards
         if set(c.skills.get_types()) & set(from_card.skills.get_types()) == set()
     ]
 
@@ -54,20 +55,25 @@ class SkillTransfererLocation(Location):
     def generate(self) -> None:
         super().generate()
 
-    def handle(self, view_class: Type[SkillTransfererView]) -> bool:
-        view = view_class(gg.humanplayer.deck.cards)
+    def handle(
+        self, view_class: Type[SkillTransfererView], humanplayer: HumanPlayer
+    ) -> bool:
+        view = view_class(humanplayer.deck.cards)
 
         # Check error conditions:
-        if gg.humanplayer.deck.size() < 2:
+        if humanplayer.deck.size() < 2:
             view.error("Sorry, you don't have enough cards for this.")
             return True
 
-        from_cards = [c for c in gg.humanplayer.deck.cards if c.is_skilled()]
+        from_cards = [c for c in humanplayer.deck.cards if c.is_skilled()]
         if len(from_cards) == 0:
             view.error("You don't have any cards with skills unfortunately...")
             return True
 
-        if not any(len(get_to_cards(from_card)) > 0 for from_card in from_cards):
+        if not any(
+            len(get_to_cards(from_card, humanplayer.deck.cards)) > 0
+            for from_card in from_cards
+        ):
             view.error(
                 "There is no combination of cards in your deck\n"
                 "that works for a successful skill transfer. Sorry..."
@@ -78,7 +84,7 @@ class SkillTransfererLocation(Location):
         # to_cards:
         while True:
             from_card = view.pick_from(from_cards)
-            to_cards = get_to_cards(from_card)
+            to_cards = get_to_cards(from_card, humanplayer.deck.cards)
             if len(to_cards) > 0:
                 to_card = view.pick_to(to_cards)
                 break
@@ -93,7 +99,7 @@ class SkillTransfererLocation(Location):
         view.show_upgrade(to_card)
         if from_card.skills.count() == 1:
             view.show_destroy(from_card)
-            gg.humanplayer.deck.remove_card(from_card)
+            humanplayer.deck.remove_card(from_card)
         else:
             from_card.skills.remove(which_skill)
             view.show_upgrade(from_card)

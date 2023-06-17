@@ -1,7 +1,6 @@
 from __future__ import annotations
 from typing import List, Literal, Optional, TYPE_CHECKING
 import copy
-from . import gg
 from .skills import ListOfSkillsOrSkillTypes, SkillSet, ForWhom
 
 if TYPE_CHECKING:
@@ -102,9 +101,6 @@ class Card:
             and self.has_spirits == other.has_spirits
             and self.skills == other.skills
         )
-
-    def is_human(self) -> bool:
-        return self in gg.humanplayer.deck.cards + gg.humanplayer.collection.cards
 
     def is_skilled(self) -> bool:
         return self.skills.count() > 0

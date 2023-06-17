@@ -6,7 +6,8 @@ model. There is also some fight-related logic in the `Card` class.
 
 import logging
 from typing import Callable, Optional
-from . import gg, FightCard, Deck, FightDecks, Grid, GridPos, skills
+from cardio.human_player import HumanPlayer
+from . import FightCard, Deck, FightDecks, Grid, GridPos, skills
 from .placement_manager import PlacementManager
 from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
@@ -23,12 +24,15 @@ class FightVnC:
       is still in the grid when the method is called.
     """
 
-    def __init__(self, grid: Grid, computerstrategy: ComputerStrategy) -> None:
+    def __init__(
+        self, grid: Grid, computerstrategy: ComputerStrategy, humanplayer: HumanPlayer
+    ) -> None:
         self.grid = grid
         self.damagestate = AgentDamageState()
         self.stateslogger = StatesLogger(self)
         FightCard.init_fight(self, self.grid)
         self.computerstrategy = computerstrategy
+        self.humanplayer = humanplayer
 
     # --- Called by FightCard class ---
 
@@ -133,7 +137,7 @@ class FightVnC:
             card = self.grid.get_card(sacrifice_pos)
             assert card is not None
             card.sacrifice()
-        gg.humanplayer.spirits -= pmgr.target_card.costs_spirits
+        self.humanplayer.spirits -= pmgr.target_card.costs_spirits
         self.grid.set_card(pmgr.placement_position, pmgr.target_card)  # type:ignore
 
         # Update view:
@@ -208,9 +212,9 @@ class FightVnC:
 
         # Set up the decks for the fight:
         self.decks = FightDecks()
-        self.decks.draw.cards = FightCard.from_cards(gg.humanplayer.deck.cards)
+        self.decks.draw.cards = FightCard.from_cards(self.humanplayer.deck.cards)
         hamster_cards = [
-            gg.humanplayer.hamster_blueprint.instantiate() for _ in range(10)
+            self.humanplayer.hamster_blueprint.instantiate() for _ in range(10)
         ]
         self.decks.hamster.cards = FightCard.from_cards(hamster_cards)
         self.decks.draw.shuffle()
@@ -237,11 +241,11 @@ class FightVnC:
 
         # Handle win/lose conditions:
         if self._has_computer_won():
-            gg.humanplayer.lives -= 1
-            if gg.humanplayer.lives > 0:
+            self.humanplayer.lives -= 1
+            if self.humanplayer.lives > 0:
                 livesmsg = (
-                    f"{gg.humanplayer.lives} live(s) left. "
-                    + "💓" * gg.humanplayer.lives
+                    f"{self.humanplayer.lives} live(s) left. "
+                    + "💓" * self.humanplayer.lives
                 )
             else:
                 livesmsg = "No lives left. 😞"
@@ -249,6 +253,6 @@ class FightVnC:
 
         if self._has_human_won():
             gems = self.damagestate.get_overflow()
-            gg.humanplayer.gems += gems
+            self.humanplayer.gems += gems
             gemstr = f"You gain {'💎' * gems}." if gems > 0 else ""
             self.fight_ends(f"You win! ✌️ {gemstr}")

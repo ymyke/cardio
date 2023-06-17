@@ -1,7 +1,8 @@
 import random
 from typing import Protocol, Type
-from cardio import Grid, GridPos, gg
+from cardio import Grid, GridPos
 from cardio.computer_strategies import ComputerStrategy, Round0OnlyStrategy
+from cardio.human_player import HumanPlayer
 from .location import Location
 from .baseview import BaseLocationView
 from cardio.blueprints import thecatalog, BlueprintList
@@ -9,7 +10,11 @@ from cardio.blueprints import thecatalog, BlueprintList
 
 class FightView(BaseLocationView, Protocol):
     def __init__(
-        self, computerstrategy: ComputerStrategy, grid: Grid, debug=True
+        self,
+        computerstrategy: ComputerStrategy,
+        grid: Grid,
+        humanplayer: HumanPlayer,
+        debug=True,
     ) -> None:
         ...
 
@@ -48,10 +53,13 @@ class FightLocation(Location):
         # FIXME Use rung to somehow increase difficulty as more distance is traveled
         # (e.g., more cards every x steps)
 
-    def handle(self, view_class: Type[FightView]) -> bool:
+    def handle(self, view_class: Type[FightView], humanplayer: HumanPlayer) -> bool:
         vnc = view_class(
-            computerstrategy=self.computerstrategy, grid=self.grid, debug=True
+            computerstrategy=self.computerstrategy,
+            grid=self.grid,
+            humanplayer=humanplayer,
+            debug=True,
         )
         vnc.handle_fight()
         vnc.close()
-        return gg.humanplayer.lives > 0
+        return humanplayer.lives > 0
