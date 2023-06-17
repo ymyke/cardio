@@ -8,7 +8,7 @@ def gg_setup():
         """Convenenience function to create FightCards easily."""
         return FightCard.from_card(Card(*args, **kwargs))
 
-    humanplayer = HumanPlayer(name="Schnuzgi", lives=1)
+    humanplayer = HumanPlayer(name="HP", lives=1)
     grid = Grid(width=4)
     vnc = FightVnC(grid, None, humanplayer)
     FightCard.init_fight(vnc, grid)
