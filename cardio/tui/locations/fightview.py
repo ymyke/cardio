@@ -42,7 +42,9 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
         super().__init__(*args, **kwargs)
         if self.debug:
             show_screen_resolution(self.screen)
-        self.state_widget = StateWidget(self.screen, self.grid.width, self.damagestate)
+        self.state_widget = StateWidget(
+            self.screen, self.grid.width, self.damagestate, self.humanplayer
+        )
 
     # --- Methods from base class ---
 
