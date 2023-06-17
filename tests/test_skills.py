@@ -21,7 +21,7 @@ def do_the_fight(humancards: CardList, computercard: Optional[Card]) -> FightVnC
     (2,0).
     """
     grid = Grid(4)
-    humanplayer = HumanPlayer(name="Schnuzgi", lives=1)
+    humanplayer = HumanPlayer(name="HP", lives=1)
     humanplayer.deck.cards = humancards
     cs = Round0OnlyStrategy(grid=grid, cards=[(GridPos(1, 0), computercard)])
     vnc = HumanStrategyVnC(
