@@ -6,8 +6,9 @@ model. There is also some fight-related logic in the `Card` class.
 
 import logging
 from typing import Callable, Optional
-from cardio.human_player import HumanPlayer
 from . import FightCard, Deck, FightDecks, Grid, GridPos, skills
+from .whichplayer import WhichPlayer
+from .human_player import HumanPlayer
 from .placement_manager import PlacementManager
 from .agent_damage_state import AgentDamageState
 from .computer_strategies import ComputerStrategy
@@ -15,7 +16,8 @@ from .states_logger import StatesLogger
 
 
 class EndOfFightException(Exception):
-    pass
+    def __init__(self, winner: WhichPlayer):
+        self.winner = winner
 
 
 class FightVnC:
@@ -90,11 +92,9 @@ class FightVnC:
     def handle_agent_damage(self, to_computer: bool, howmuch: int) -> None:
         """Handle `howmuch` damage to the agent. `to_computer` indicates whether the
         damage is to the computer or the human.
-        """
-        if to_computer:
-            self.damagestate.damage_computer(howmuch)
-        else:
-            self.damagestate.damage_human(howmuch)
+        """  # TODO Use WhichPlayer
+        to_ = "computer" if to_computer else "human"
+        self.damagestate.apply_damage(to_, howmuch)
         self.redraw_view()
 
     # --- Misc ---
@@ -118,18 +118,10 @@ class FightVnC:
         self.show_human_draws_new_card(self.decks.hand, card, draw_from)
         self.decks.hand.add_card(card)
 
-    # TODO simplify the following 3 methods into 1?
-    # TODO use WhichPlayer type here too?
-
-    def _has_computer_won(self) -> bool:
-        return self.damagestate.has_computer_won()
-
-    def _has_human_won(self) -> bool:
-        return self.damagestate.has_human_won()
-
     def _check_for_end_of_fight(self) -> None:
-        if self._has_computer_won() or self._has_human_won():
-            raise EndOfFightException
+        winner = self.damagestate.who_won()
+        if winner:
+            raise EndOfFightException(winner)
 
     def _place_card(self, pmgr: PlacementManager, from_slot: int) -> None:
         # Update model:
@@ -202,7 +194,7 @@ class FightVnC:
             # rather be at the end of the fight? Or after each card?
 
         self.damagestate.add_to_history(self.round_num)
-        self._check_for_end_of_fight()
+        self._check_for_end_of_fight()  # To check for deadlock
 
         self.grid.log()
         logging.debug("----- End of round %s -----", self.round_num)
@@ -231,16 +223,18 @@ class FightVnC:
 
         # Run the fight:
         self.round_num = 0
+        winner = None
         while True:
             try:
                 self.handle_round_of_fight()
-            except EndOfFightException:
+            except EndOfFightException as exc:
+                winner = exc.winner
                 break
             self.round_num += 1
         self.stateslogger.log_current_state(final=True)
 
         # Handle win/lose conditions:
-        if self._has_computer_won():
+        if winner == "computer":
             self.humanplayer.lives -= 1
             if self.humanplayer.lives > 0:
                 livesmsg = (
@@ -251,7 +245,7 @@ class FightVnC:
                 livesmsg = "No lives left. 😞"
             self.fight_ends(f"You lose! 🥹  You lost 1 live. 💔 {livesmsg}")
 
-        if self._has_human_won():
+        if winner == "human":
             gems = self.damagestate.get_overflow()
             self.humanplayer.gems += gems
             gemstr = f"You gain {'💎' * gems}." if gems > 0 else ""

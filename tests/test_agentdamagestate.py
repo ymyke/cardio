@@ -15,27 +15,27 @@ def test_init():
 
 def test_damage_computer():
     ads = AgentDamageState()
-    ads.damage_computer(2)
+    ads.apply_damage("computer", 2)
     assert ads.diff == -2
-    assert not ads.has_computer_won()
-    assert not ads.has_human_won()
-    ads.damage_computer(4)
+    assert not ads.who_won() == "computer"
+    assert not ads.who_won() == "human"
+    ads.apply_damage("computer", 4)
     assert ads.diff == -6
-    assert not ads.has_computer_won()
-    assert ads.has_human_won()
+    assert not ads.who_won() == "computer"
+    assert ads.who_won() == "human"
     assert ads.get_overflow() == 1
 
 
 def test_damage_human():
     ads = AgentDamageState()
-    ads.damage_human(3)
+    ads.apply_damage("human", 3)
     assert ads.diff == 3
-    assert not ads.has_human_won()
-    assert not ads.has_computer_won()
-    ads.damage_human(8)
+    assert not ads.who_won() == "human"
+    assert not ads.who_won() == "computer"
+    ads.apply_damage("human", 8)
     assert ads.diff == 11
-    assert not ads.has_human_won()
-    assert ads.has_computer_won()
+    assert not ads.who_won() == "human"
+    assert ads.who_won() == "computer"
     assert ads.get_overflow() == 6
 
 
@@ -47,7 +47,7 @@ def test_add_to_history():
     assert ads.history == {1: 0}
     ads.add_to_history(2)
     assert ads.history == {1: 0, 2: 0}
-    ads.damage_computer(2)
+    ads.apply_damage("computer", 2)
     ads.add_to_history(3)
     assert ads.history == {1: 0, 2: 0, 3: -2}
     ads.add_to_history(4)
@@ -85,10 +85,10 @@ def test_rounds_left_until_deadlock():
 def test_is_deadlocked():
     ads = AgentDamageState()
     assert not ads.is_deadlocked()
-    assert not ads.has_computer_won()
-    assert not ads.has_human_won()
+    assert not ads.who_won() == "computer"
+    assert not ads.who_won() == "human"
     for i in range(DEADLOCK_ROUNDS_TO_START + DEADLOCK_ROUNDS_TO_RESOLVE):
         ads.add_to_history(1 + i)
     assert ads.is_deadlocked()
-    assert ads.has_computer_won()
-    assert not ads.has_human_won()
+    assert ads.who_won() == "computer"
+    assert not ads.who_won() == "human"

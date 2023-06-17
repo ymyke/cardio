@@ -1,5 +1,6 @@
 import logging
-from typing import Dict
+from typing import Dict, Optional
+from cardio.whichplayer import WhichPlayer
 
 DAMAGE_DIFF_TO_WIN = 5  # Amount of damage difference to win a fight
 DEADLOCK_ROUNDS_TO_START = 5
@@ -29,24 +30,18 @@ class AgentDamageState:
         self.max_diff = max_diff
         self.history: Dict[int, int] = {}  # round_num -> diff
 
-    # FIXME Add WhichPlayer (or similar) type and use it go generalize damage_*,
-    # has_*_won as well as ForWhom in skills and instead of potency type in Card.
-
-    def damage_computer(self, howmuch: int) -> None:
+    def apply_damage(self, to_: WhichPlayer, howmuch: int) -> None:
         assert howmuch >= 0
-        self.diff -= howmuch
-        logging.debug("Computer receives %s damage, diff now at %s", howmuch, self.diff)
+        sign = 1 if to_ == "human" else -1
+        self.diff += sign * howmuch
+        logging.debug("%s receives %s damage, diff now at %s", to_, howmuch, self.diff)
 
-    def damage_human(self, howmuch: int) -> None:
-        assert howmuch >= 0
-        self.diff += howmuch
-        logging.debug("Human receives %s damage, diff now at %s", howmuch, self.diff)
-
-    def has_human_won(self) -> bool:
-        return self.diff <= -self.max_diff and not self.is_deadlocked()
-
-    def has_computer_won(self) -> bool:
-        return self.diff >= self.max_diff or self.is_deadlocked()
+    def who_won(self) -> Optional[WhichPlayer]:
+        if self.diff >= self.max_diff or self.is_deadlocked():
+            return "computer"
+        if self.diff <= -self.max_diff:
+            return "human"
+        return None
 
     def get_overflow(self) -> int:
         return abs(self.diff) - self.max_diff

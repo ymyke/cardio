@@ -17,7 +17,7 @@ def test_fight_with_no_opponent(tt_setup):
     )
     vnc.handle_fight()
     assert hc.health == 10
-    assert vnc._has_human_won()
+    assert vnc.damagestate.who_won() == "human"
 
 
 def test_fight_with_human_power_0(tt_setup):
@@ -59,7 +59,7 @@ def test_deadlock_due_to_all_0_power(tt_setup):
         },
     )
     vnc.handle_fight()
-    assert vnc._has_computer_won()
+    assert vnc.damagestate.who_won() == "computer"
     assert vnc.damagestate.is_deadlocked()
 
 
@@ -79,7 +79,7 @@ def test_deadlock_due_to_cards_not_opposing(tt_setup):
         },
     )
     vnc.handle_fight()
-    assert vnc._has_computer_won()
+    assert vnc.damagestate.who_won() == "computer"
     assert vnc.damagestate.is_deadlocked()
 
 
