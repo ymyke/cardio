@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import List, Literal, Optional, TYPE_CHECKING
 import copy
 from .skills import ListOfSkillsOrSkillTypes, SkillSet, ForWhom
+from cardio.whichplayer import WhichPlayer
 
 if TYPE_CHECKING:
     from .fightcard import FightCard
@@ -110,7 +111,7 @@ class Card:
         cp.skills = self.skills.copy()
         return cp
 
-    def potency(self, which: PotencyType = "human") -> int:
+    def potency(self, which: WhichPlayer = "human") -> int:
         """Card's potency, i.e., its value for the player."""
         core = self.power * 2 + self.health * 2
         if which == "human":
@@ -132,10 +133,9 @@ class Card:
             )
             return core + skills
         else:
-            raise ValueError(f"Unknown type {which}")
+            raise ValueError(f"Unknown potency type {which}")
 
 
 # ----- Types -----
 
 CardList = List[Card]
-PotencyType = Literal["human", "computer"]

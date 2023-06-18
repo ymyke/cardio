@@ -3,7 +3,8 @@ from pathlib import Path
 from collections import defaultdict
 from typing import List, Optional, Union
 from cardio import jason, skills
-from cardio.card import Card, PotencyType
+from cardio.card import Card
+from cardio.whichplayer import WhichPlayer
 from .blueprint import Blueprint, BlueprintList
 
 
@@ -78,7 +79,7 @@ class BlueprintCatalog:
         return BlueprintList([self.get(name) for name in names])
 
     def find_by_potency(
-        self, min_potency: int, max_potency: Optional[int] = None, *, which: PotencyType
+        self, min_potency: int, max_potency: Optional[int] = None, *, which: WhichPlayer
     ) -> BlueprintList:
         """Return all blueprints with potency in the range `[min_potency, max_potency]`.
         If only `min_potency` is given, return all blueprints with potency
