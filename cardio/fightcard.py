@@ -151,7 +151,9 @@ class FightCard(Card):
     def attack(self, target: Optional[FightCard] = None) -> None:
         assert self.grid.find_card(self) is not None
         assert self.grid.find_card(self).line != 0
-        attacker_is_human = self.is_human()
+        attacker_player, target_player = (
+            ("human", "computer") if self.is_human() else ("computer", "human")
+        )
 
         # ----- No power? -> Return immediately -----
 
@@ -198,7 +200,7 @@ class FightCard(Card):
             power = self.power
             if sk.LuckyStrike in self.skills:
                 power = self.skills.get(sk.LuckyStrike).power_up_against_agent(power)  # type: ignore
-            self.vnc.handle_agent_damage(attacker_is_human, power)
+            self.vnc.handle_agent_damage(target_player, power)
             return
 
         # ----- Otherwise: Attack the opposing card -----
@@ -243,14 +245,14 @@ class FightCard(Card):
         # Damage to target:
         target_damage_left = target.take_damage(attacker_power)
         if target_damage_left > 0:
-            self.vnc.handle_agent_damage(attacker_is_human, target_damage_left)
+            self.vnc.handle_agent_damage(target_player, target_damage_left)
 
         # Damage to attacker: (e.g., due to Spines)
         attacker_damage_left = self.take_damage(attacker_to_lose)
         # Note that due to the call to `take_damage`, the attacker can also die here, and it
         # can also make use of shields and other skills.
         if attacker_damage_left > 0:
-            self.vnc.handle_agent_damage(not attacker_is_human, attacker_damage_left)
+            self.vnc.handle_agent_damage(attacker_player, attacker_damage_left)
 
         # ----- Cleanup -----
 

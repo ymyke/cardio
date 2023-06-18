@@ -89,11 +89,7 @@ class FightVnC:
     def handle_human_plays_cards(self, place_card_callback: Callable) -> None:
         pass
 
-    def handle_agent_damage(self, to_computer: bool, howmuch: int) -> None:
-        """Handle `howmuch` damage to the agent. `to_computer` indicates whether the
-        damage is to the computer or the human.
-        """  # TODO Use WhichPlayer
-        to_ = "computer" if to_computer else "human"
+    def handle_agent_damage(self, to_: WhichPlayer, howmuch: int) -> None:
         self.damagestate.apply_damage(to_, howmuch)
         self.redraw_view()
 
