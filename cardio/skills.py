@@ -2,7 +2,7 @@
 
 Checklist when adding a new skill:
 
-- Implement its logic in `Card` (and elsewhere, if necessary).
+- Implement its logic in `FightCard` (and elsewhere, if necessary, e.g. `FightVnC`).
 - Check for possible interdependencies with other skills and address those in the code
   accordingly.
 - Add tests for skill and all interdependencies.
@@ -12,7 +12,7 @@ Checklist when adding a new skill:
 - Any new hooks needed? (E.g., because the skill needs to be (re)set at other points in
   time such as before or after preparing a card.)
 - Does the skill need any new view animation that needs to be implemented and called?
-- Anything that needs to be saved?
+- Anything that needs to be saved in the game state (i.e., module `jason`)?
 """
 from __future__ import annotations
 from dataclasses import dataclass, field
