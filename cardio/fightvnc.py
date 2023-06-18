@@ -245,4 +245,4 @@ class FightVnC:
             gems = self.damagestate.get_overflow()
             self.humanplayer.gems += gems
             gemstr = f"You gain {'💎' * gems}." if gems > 0 else ""
-            self.fight_ends(f"You win! ✌️ {gemstr}")
+            self.fight_ends(f"You win! 🏅 {gemstr}")
