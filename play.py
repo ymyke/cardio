@@ -41,8 +41,12 @@ while True:  # Forever start new runs:
     mapview = TUIMapView(run, humanplayer, debug=True)
     if run.current_rung == 0:  # Starting a new run:
         # Pick random cards from collection for the deck:
-        humanplayer.collection.shuffle()
-        humanplayer.deck.cards = humanplayer.collection.draw_cards(4)
+        while True:
+            humanplayer.collection.shuffle()
+            humanplayer.deck.cards = humanplayer.collection.draw_cards(4)
+            if any(c.power > 0 for c in humanplayer.deck.cards):
+                # Make sure not the entire deck is powerless.
+                break
         mapview.message("Starting a new run... 🏃 Good luck! 🐞")
 
     jason.save_all(humanplayer, run)
