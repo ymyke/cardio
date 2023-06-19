@@ -1,6 +1,9 @@
 
 # Next up
 
+- Fix ✌️
+- Check the asciimatics hint
+
 - Review TODOs and FIXMEs.
 - Add more skills.
 - Scoring and difficulty progress: Refine FightLocation and Computerstrategy so the game
@@ -8,15 +11,17 @@
   - In FightLocation: Use some new computer strategy that brings more cards into play in
     later rounds of a fight. And that brings overall more and more cards into play as
     the rung increases.
-- Add stats to game state: number of fights won, locations visited, number and which
-  cards defeated, which cards confronted with, ... -- could have an instance of each
-  "thing" (card, location, etc.) and log the stats with these things (using a special
-  Stats class that gets added to each such thing) -- or maybe just the entire run in
-  some useful format? (Would replace log and maybe also the stateslogger) -- Keep in
-  mind that some cards can die during a run but should still keep their stats available.
-  How to do that exactly?
-  - Add history to runs, and all histories need to be saved.
-- Add more locations?
+- Add more locations? -- esp. some where you can get new cards as a human.
+
+
+# Todo
+
+- Check for right minimum resolution at the beginning.
+- Terminology: agent vs player everywhere? Which is the better term? Make it consistent.
+  -- Or: Terminology: Player 1 or H and Player C?
+- Turn all the notes here and in DOMAIN into a Github wiki.
+- Write a proper README here that introduces the project, plugs Inscryption, and
+  explains the different parts of the project: code, issues, discussions, wiki, ...
 
 
 # Architectural considerations
@@ -30,122 +35,6 @@
     use information from the model?
   - Is the differentiation between methods that have r/o access to the model and ones
     that have r/w access?
-
-
-# Todo
-
-- QQ: Spirits: keep them between fights (as it is now)? (Maybe have to sacrifice 1 life
-  if you want to keep them?)
-- QQ: Should there be maximums for power, health, costs_*, and has_* and the number of
-  skills a card can have? If so, those should be introduced and enforced. -- Note: There
-  are at least implicit maxima now with the introduction of the potency range (see
-  Card.MAX_*).
-- Check for right minimum resolution at the beginning.
-- Terminology: agent vs player everywhere? Which is the better term? Make it consistent.
-  -- Or: Terminology: Player 1 or H and Player C?
-- Turn all the notes here and in DOMAIN into a Github wiki.
-- Check TUI on linux / wsl.
-- Add titles to locations.
-- Add a way for the human to give up a fight.
-
-
-# Ideas: All prios
-
-- Location ideas:
-  - Card shop: Buy certain cards for gems -- usually higher value cards (potency: 1 gem
-    per 1 raw potency?)
-  - Exchange: Change spirits to gems and vice versa
-  - Card lottery I: Give a card and get a random card in return (potency: use roughly the
-    same raw, total potency as the given card)
-  - Card lottery II: Give a number of gems and get a random card with approximately the
-    potency corresponding to the number of gems given
-  - Card/skill game: Play some little game and the better you are the better the card
-    you get (at random) in return. Or the better a skill you can chose? Or the more
-    random skills or cards you can choose from. Or...
-    - (Potency: Pick all cards and sort by potency descending with a cutoff at a potency
-      corresponding to the level the player achieved in the minigame. Then pick a card
-      from this list at random, but with heavy emphasis on the beginning.)
-    - Ideas for minigames:
-      - Guess the number: The computer picks a number between 1 and 100 and you have to
-        guess it. The computer tells you whether your guess is too high or too low.
-      - Rock Paper Scissors for x times.
-      - Perform calculations ever quicker.
-      - Keep up with typing text that gets produced ever faster.
-      - Press keys as they appear on screen as quickly as possible.
-      - Snakes/Tron
-      - Frogger
-  - Life shop: Buy life for x gems.
-  - Card disposer: Allows you to get rid of cards (just 1 maybe) at a cost in gems
-  - Card merger: Merge 2 identical cards for double attributes (or, if you don't have
-    any pairs, duplicate a card)
-  - Card cost mutator: Switch card costs from fire to (many more) spirits and vice
-    versa.
-  - Locations around items...? Item shop, ...?
-  - Treasure location? ✘✘✘ -- Pick one of several digging locations and get a random
-    item in return (or nothing).
-  - Have a location that allows me to create new cards, combining health, power and
-    skills, and give them a name and keep them. -- Or some other mechanism to create new
-    cards?
-  - Location where I can name a card in my deck? (Or possibility to name a new card when
-    I get one in one of the other locations?)
-  - Location where the player can pick another card from his collection to add to his
-    deck?
-- Items? -- Item ideas: E.g., rucksack 🎒, bigger rucksack 🎒🎒, some item that allows
-  me to keep my leftover spirits between fights but that I can also spend to get
-  one-time somethingsomething.
-- Display some help output in the lower right corner? Current state of the app, allowed
-  keys, unrecognized keys, ...?
-- Check out performance of animations: Esp. when running on battery power. -> Add some
-  setting that helps speed up / slow down the animations. Then do some self-timing e.g.
-  on burning a card that will automatically adjust that setting if necessary (i.e.,
-  animation takes too long or too short).
-- could cards gain experience with fights and other things and evolve over time (stats
-  would be permanent) but also die for real?
-- Terrain and weather conditions etc. that affect the cards?
-- Maybe you can lose cards for good in a run -- in a fight? Or as a downside risk when
-  going for a particularly strong upgrade? E.g., the stronger the upgrade the higher the
-  likelihood to lose the card? -- Then, a save game and game progress score would
-  somehow take into account a hash over the entire game to make sure the game has not
-  been tampered with? Then only authoritative scores are allowed in leaderboards etc.
-  Can the TSE be used somehow to that end? Or some authoritative docker images with the
-  software? Of course one option is always to deploy on the web and run it centralized.
-  (Yet another option might be to create logs of information with each run (including
-  all user choices) that can be used to simulate and verify the run. That way, it can be
-  verified if such a run relly exists. (Such a system would still be prone to cheating
-  by creating a computer agent that brute force searches for the best run.)) (Maybe this
-  could be combined with the code taking a hash over its entire code and game state to
-  proof originality of code at a certain point in time? Maybe also combined with some
-  proof of humanity (the minigames?) to prevent bots from playing the game?)
-- Have floor tiles with special effects? I.e., more strength if a create is on it?
-- Make fire effect work on WSL.
-
-
-# Low Prio Ideas
-
-- Show round number in fights.
-- Smooth "state" changes such as map -> fight, fight won / fight -> map, game over, ...
-- Instead of picking random cards from the player's collection to compile the deck,
-  maybe the player can choose which cards from her collection to start a run with.
-  Choosing could be based on a pure number of cards basis. Or based on points (and maybe
-  also gems and spirits). Or based on a combination of both.
-- Some kind of main menu?
-  - Add a way to create a new game.
-  - Add a way to set a player name when a new game gets created.
-  - Add a way to set a seed.
-- Add a quick "FIGHT!" splash screen before a fight? (Maybe after the initial grid has
-  been set up?)
-- Maybe NoLocations can have minor "on the way" events? I.e., gain/lose some gems, ...?
-- Hidden locations? I.e., locations that are not revealed until you visit them.
-- For convenience: Placement cursor could pick the first slot that makes sense for the
-  current card, i.e., the first empty slot for cards with `costs_fire == 0`.
-- If there are more and more cards, maybe they get some meta information around
-  curation, likes, etc.?
-- Achievements/badges for the player?
-- Upgrading the game should invalidate all running/saved runs.
-- Can we add the new fire and spirits placement logic to the hypo-driven tests? Maybe
-  using the placement mgr in the hypo test?
-- Maybe destroy likelihood in UPU etc should also rise with amount of Power/Health a
-  card has already?
 
 
 # Debugging hints
