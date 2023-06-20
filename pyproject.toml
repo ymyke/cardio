@@ -13,6 +13,7 @@ platformdirs = "^3.5.1"
 toml = "^0.10.2"
 
 [tool.poetry.group.dev.dependencies]
+uniseg = "^0.7.2"   # FIXME Used to debug asciimatics, can be removed later
 black = "^22.12.0"
 ipykernel = "^6.19.2"
 pytest = "^7.2.0"
