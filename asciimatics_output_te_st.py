@@ -1,25 +1,30 @@
-from __future__ import annotations
 import time
 from asciimatics.screen import Screen
 from asciimatics.effects import Print
-from asciimatics.renderers import StaticRenderer, Renderer
-from asciimatics.constants import SINGLE_LINE
-from asciimatics.screen import Screen
-
-def show(screen: Screen, pos, renderer: Renderer):
-    Print(screen=screen, renderer=renderer, x=pos[0], y=pos[1]).update(0)
+from asciimatics.renderers import StaticRenderer
+from uniseg.graphemecluster import grapheme_clusters
 
 
 def show_text(screen: Screen, pos, text: str) -> None:
-    show(screen, pos, StaticRenderer(images=[text]))
+    Print(
+        screen=screen, renderer=StaticRenderer(images=[text]), x=pos[0], y=pos[1]
+    ).update(0)
 
-what = "⛨"
 
-screen = Screen.open(unicode_aware=False)
-show_text(screen, (0, 0), f"x{what}x")
+what = "[nok: ✌️❤️🛡️ ok: 🍀💓🔥]"
+clusters = list(grapheme_clusters(what))
+clustered = ",".join(clusters)
+
+screen = Screen.open(unicode_aware=True)
+show_text(screen, (0, 0), what)
+show_text(screen, (0, 1), clustered)
+for i, cluster in enumerate(clusters):
+    show_text(screen, (0 + i, 2), cluster)
 screen.refresh()
-time.sleep(1)
+time.sleep(10)
 screen.close()
 
-print(f"x{what}x")
-
+print(what)
+print(clustered)
+for cluster in clusters:
+    print(cluster, end="")
