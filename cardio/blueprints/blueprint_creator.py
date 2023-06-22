@@ -90,12 +90,8 @@ while wanted_potencies:
         )
         try:
             create_blueprints_and_add_to_catalog(potencies)
-        except ValueError:
-            print("\n😱😱😱😱😱 VALUE ERROR 😱😱😱😱😱\n")
-        except RateLimitError:
-            print("\n⏱️⏱️⏱️⏱️⏱️ RATE LIMIT ERROR ⏱️⏱️⏱️⏱️⏱️\n")
-        except IndexError:
-            print("\n🤷🤷🤷🤷🤷 INDEX ERROR 🤷🤷🤷🤷🤷\n")
+        except Exception as e:
+            print(f"\n😱😱😱 {type(e).__name__} ERROR: {e} 😱😱😱\n")
         else:
             wanted_potencies = wanted_potencies[5:]
             break

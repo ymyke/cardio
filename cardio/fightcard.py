@@ -129,6 +129,10 @@ class FightCard(Card):
         )
         return damage_left
 
+    def heal_damage(self, howmuch: int) -> None:
+        assert howmuch >= 0
+        self.health = min(self.health + howmuch, self._orig.health)
+
     def prepare(self) -> bool:
         """Prepare a card for attack by moving it from the prepline to the computer line.
         Returns `True` if the card was prepared, `False` if it couldn't be prepared.
@@ -175,7 +179,7 @@ class FightCard(Card):
 
         self.vnc.card_activate(self)
 
-        self.skills.call("pre_attack")
+        self.skills.call("pre_attack", self)
 
         # ----- Early special cases -----
 
@@ -256,7 +260,7 @@ class FightCard(Card):
 
         # ----- Cleanup -----
 
-        self.skills.call("post_attack")
+        self.skills.call("post_attack", self)
 
         self.vnc.card_deactivate(self)
 
