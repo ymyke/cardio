@@ -149,4 +149,13 @@ def test_take_damage_and_die(common_setup):
     mocked_vnc.card_died.assert_called_once()
 
 
+def test_heal_damage(common_setup):
+    _, fc, *_ = common_setup
+    fc.health = 1
+    fc.heal_damage(1)
+    assert fc.health == 2
+    fc.heal_damage(1)
+    assert fc.health == 2  # Cannot heal above max health
+
+
 # TODO Add tests for prepare and attack?
