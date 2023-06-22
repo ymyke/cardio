@@ -104,7 +104,7 @@ def gen_costs(ignore_levels: int = 0) -> Tuple[int, int]:
     return costs_fire, costs_spirits
 
 
-def gen_skills(ignore_levels: int = 0) -> list:
+def _gen_skills(ignore_levels: int = 0) -> list:
     # How many skills:
     num_skills_weights = {
         0: 100,
@@ -144,6 +144,17 @@ def gen_skills(ignore_levels: int = 0) -> list:
     )
 
     return skills
+
+
+def gen_skills(ignore_levels: int = 0) -> list:
+    # Use fix_skill to force a specific skill to be in the card:
+    fix_skill = None
+    # import cardio
+    # E.g.: fix_skill = cardio.skills.Regenerate
+    while True:
+        skills = _gen_skills(ignore_levels)
+        if fix_skill is None or fix_skill in skills:
+            return skills
 
 
 def random_card(ignore_levels: int = 0) -> Card:
