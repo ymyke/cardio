@@ -1,9 +1,6 @@
 
 # Next up
 
-- Fix ✌️
-- Check the asciimatics hint
-
 - Review TODOs and FIXMEs.
 - Add more skills.
 - Scoring and difficulty progress: Refine FightLocation and Computerstrategy so the game
