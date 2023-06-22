@@ -2,7 +2,9 @@
 
 Checklist when adding a new skill:
 
-- Implement its logic in `FightCard` (and elsewhere, if necessary, e.g. `FightVnC`).
+- Implement its logic preferrably only using the different hooks available in the
+  `Skill` class. If that is not possible, implement it in `FightCard` (and elsewhere, if
+  necessary, e.g. `FightVnC`).
 - Check for possible interdependencies with other skills and address those in the code
   accordingly.
 - Add tests for skill and all interdependencies.
@@ -13,13 +15,17 @@ Checklist when adding a new skill:
   time such as before or after preparing a card.)
 - Does the skill need any new view animation that needs to be implemented and called?
 - Anything that needs to be saved in the game state (i.e., module `jason`)?
+- Create new blueprints with this skill and add them to the catalog.
 """
 from __future__ import annotations
+from typing import List, Optional, Type, Union, TYPE_CHECKING
 from dataclasses import dataclass, field
 from enum import Enum, auto
 import logging
 import random
-from typing import List, Optional, Type, Union
+
+if TYPE_CHECKING:
+    from cardio import FightCard
 
 
 # QQ: Better implement this simply as a directory of names with specs and a factory?
@@ -35,6 +41,15 @@ class ForWhom(Enum):
 
 @dataclass
 class Skill:
+    """Skill base class.
+
+    Skills can have hooks that will be called at certain points in time during the
+    fight. Examples: `pre_attack`, `post_round`, etc. Hooks will be called with a
+    `carrier` argument, which is the card that has the skill. This hook can be used to
+    access the card's attributes. (Or if necessary to access the fight state, the grid,
+    or other objects/information.)
+    """
+
     name: str
     symbol: str
     description: str
@@ -43,18 +58,23 @@ class Skill:
     under_construction: bool = False
 
     def __post_init__(self) -> None:
-        self.pre_fight()
+        self.pre_fight(None)
+        # TODO ^ Not nice. Why not get rid of this and use post_init where necessary?
 
-    def pre_fight(self) -> None:
+    def pre_fight(self, carrier: FightCard) -> None:
         """Called before the fight starts. Use this to set up a pristine state in skills
         that have state.
         """
         pass
 
-    def pre_attack(self) -> None:
+    def pre_attack(self, carrier: FightCard) -> None:
         pass
 
-    def post_attack(self) -> None:
+    def post_attack(self, carrier: FightCard) -> None:
+        pass
+
+    def post_round(self, carrier: FightCard) -> None:
+        """Called after each round of fight, iff the card is still alive."""
         pass
 
 
@@ -208,7 +228,7 @@ class Shield(Skill):
     # Keep track of which turn the shield was used in:
     _turns_used: List[int] = field(default_factory=list)
 
-    def pre_fight(self):
+    def pre_fight(self, carrier: FightCard):
         self._turns_used: List[int] = []
 
     def absorbed_damage(self, damage_left: int, fight_round: int) -> int:
@@ -258,16 +278,30 @@ class LuckyStrike(Skill):
         assert self._is_lucky is not None
         return self._is_lucky
 
-    def pre_attack(self) -> None:
+    def pre_attack(self, carrier: FightCard) -> None:
         self._is_lucky = random.random() <= 0.5
         logging.debug("% is lucky: %s", self.name, self._is_lucky)
 
-    def post_attack(self) -> None:
+    def post_attack(self, carrier: FightCard) -> None:
         self._is_lucky = None
 
     def power_up_against_agent(self, power: int) -> int:
         assert self.is_lucky()
         return power * 2
+
+
+@dataclass
+class Regenerate(Skill):
+    name: str = "Regenerate"
+    symbol: str = "🩹"
+    description: str = (
+        "A card with Regenerate will heal 1 damage at the end of each fight round."
+    )
+    potency: int = 5
+
+    def post_round(self, carrier: FightCard) -> None:
+        carrier.heal_damage(1)
+        logging.debug("%s heals 1D", self.name)
 
 
 # ----- Under construction -----
@@ -316,18 +350,6 @@ class Trample(Skill):
     description: str = "A card with Trample will deal the equal amount of damage to the opposing player as it deals to the opposing card."
     potency: int = 7
     under_construction: bool = True
-
-
-@dataclass
-class Regenerate(Skill):
-    name: str = "Regenerate"
-    symbol: str = "🩹"
-    description: str = (
-        "A card with Regenerate will heal 1 damage at the end of each turn."
-    )
-    potency: int = 5
-    under_construction: bool = True
-    # ⭐
 
 
 @dataclass

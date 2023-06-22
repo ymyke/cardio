@@ -256,5 +256,20 @@ def test_luckystrike():
     assert "-6 damage," in vnc.stateslogger.log.split("Starting round")[1]
 
 
+def test_regenerate():
+    hc = Card("Human Card", 1, 5, 1, skills=[skills.Regenerate])
+    cc = Card("Computer Card", 2, 2, 1)
+    do_the_fight([hc], cc)
+    assert hc._fc.health == 5  # Back to full health (but not higher)
+    assert cc._fc.health == 0
+
+
+def test_used_card_does_not_regenerate():
+    hc = Card("Human Card", 1, 1, 1, skills=[skills.Regenerate])
+    cc = Card("Computer Card", 2, 2, 1)
+    do_the_fight([hc], cc)
+    assert hc._fc.health == 0  # Died, no regeneration
+
+
 # TODO Add tests that directly test the more complex classes such as Shield and
 # LuckyStrike. -- Also, add this step to the checklist in skills.py
