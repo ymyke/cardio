@@ -27811,5 +27811,4145 @@
         },
         "name": "Thornedon",
         "description": "related to the skill of spines, high spirit cost, low power and health, and having no fire affinity and a moderate amount of spirits"
+    },
+    {
+        "_original": {
+            "name": "Shadowgriff",
+            "power": 8,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "Underdog",
+                "Soaring"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Shadowgriff",
+        "description": "With high power and health, this card is a force to be reckoned with Its skillset includes Regeneration and Underdog, which means it can always come back for more The name Shadowgriff conveys the formidable nature of this card, with \"Shadow\" representing its dark power and \"Griff\" alluding to the strength and intimidating appearance of a griffin"
+    },
+    {
+        "_original": {
+            "name": "Poisonwing",
+            "power": 7,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "Spines",
+                "Regenerate"
+            ],
+            "costs_spirits": 3,
+            "has_spirits": 3,
+            "has_fire": 0
+        },
+        "name": "Poisonwing",
+        "description": "This card has high power and health and is equipped with Spines and Regeneration skills The name Poisonwing conjures up images of a dangerous and venomous creature Its wings symbolize its speed and agility, while the word \"poison\" reinforces the idea of a small but lethal animal, alluding to its Spines skill"
+    },
+    {
+        "_original": {
+            "name": "Regaldrake",
+            "power": 8,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Regaldrake",
+        "description": "Despite only having three health, Regaldrake has high power and the valuable Regeneration skill The name \"Regal\" emphasizes its strong power and the \"Drake\" part of the name suggests that it might have firebased abilities It alludes to the dragonlike power of the card"
+    },
+    {
+        "_original": {
+            "name": "Earthleopard",
+            "power": 2,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Earthleopard",
+        "description": "This card has low power but an impressive amount of health and the Regeneration skill The name \"Earthleopard\" emphasizes its high health, and the word \"earth\" alludes to its tenacity and sturdiness A leopard is known for its speed and agility as well as its high energy levels, characteristics that complement Regeneration"
+    },
+    {
+        "_original": {
+            "name": "Spikefox",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "LuckyStrike",
+                "Regenerate",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Spikefox",
+        "description": "Given its high power and spines skill, this card could be a small, ferocious, and tricky creature Since a fox is often perceived as sly and cunning, it fits well with the Lucky Strike skill The Regenerate skill could represent its ability to regrow its spikes"
+    },
+    {
+        "_original": {
+            "name": "Glimmer deer",
+            "power": 1,
+            "health": 9,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 7,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Glimmer deer",
+        "description": "Given its skills, this card could be viewed as a mystical and healing creature The deer fits well with this theme, and the fact that it has a higher health than power suggests a focus on light, not attack The high hasspirits attribute and Regenerate skill could suggest an ethereal essence"
+    },
+    {
+        "_original": {
+            "name": "Infernocus",
+            "power": 0,
+            "health": 5,
+            "costs_fire": 5,
+            "skills": [
+                "Underdog",
+                "Regenerate",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 4
+        },
+        "name": "Infernocus",
+        "description": "This card seems to be a sort of fire rhino The high health is characteristic of rhinos, as is the Underdog skill The high fire costs and hasfire skills suggest a firelike quality, and the Fertility skill could imply its ability to fight and impregnate other rhinos"
+    },
+    {
+        "_original": {
+            "name": "Spirizel",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 8,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Spirizel",
+        "description": "a magical creature that represents a connection to the spirit world, with high spirits and regeneration abilities, but low fire and physical strength"
+    },
+    {
+        "_original": {
+            "name": "Arcanrat",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Arcanrat",
+        "description": "a ratlike creature with magical powers that make it skilled at storing resources like a packrat, but also give it the ability to regenerate when injured"
+    },
+    {
+        "_original": {
+            "name": "Thornix",
+            "power": 3,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Spines",
+                "InstantDeath",
+                "Regenerate",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 1
+        },
+        "name": "Thornix",
+        "description": "a winged creature with sharp spines and the power of instant death, along with high spirits and regeneration abilities, but limited fire power"
+    },
+    {
+        "_original": {
+            "name": "Scalethorn",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Shield",
+                "Spines",
+                "Regenerate",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Scalethorn",
+        "description": "a creature with a protective shield, sharp spines, and the ability to regenerate when injured, with moderate strength and health"
+    },
+    {
+        "_original": {
+            "name": "Glowrhino",
+            "power": 2,
+            "health": 7,
+            "costs_fire": 1,
+            "skills": [
+                "Fertility",
+                "Regenerate",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 2
+        },
+        "name": "Glowrhino",
+        "description": "The attributes of this card are high health, moderate power, and moderate cost The skills are Fertility, which could indicate some kind of herbivorous quality, regeneration, implying it can heal itself, and packrat, implying it may collect items The name Glowrhino suggests that it is a luminous rhinoceroslike creature, which could tie into the Fertility skill and the idea of collecting or hoarding items"
+    },
+    {
+        "_original": {
+            "name": "Earthhare",
+            "power": 5,
+            "health": 1,
+            "costs_fire": 2,
+            "skills": [
+                "Packrat",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Earthhare",
+        "description": "The high power and low health of this card imply that the card is quite aggressive, but not meant for sustained combat The skills are packrat and regenerate, suggesting that the creature likes to hold onto things either resources or prey and has the ability to recover The name Earthhare implies a rabbitlike creature that is quite territorial and aggressive, but not very sturdy"
+    },
+    {
+        "_original": {
+            "name": "Ignistooth",
+            "power": 2,
+            "health": 10,
+            "costs_fire": 2,
+            "skills": [
+                "Shield",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Ignistooth",
+        "description": "The high health and moderate power of this card suggest a tanklike creature that can take a lot of damage The skills involved are shield and regenerate, further supporting this idea of a tough creature with some selfhealing abilities The name Ignistooth suggests a lizard or dragonlike creature with fiery breath or an affinity for fire"
+    },
+    {
+        "_original": {
+            "name": "Shimmermouse",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Shimmermouse",
+        "description": "The low cost and low powerhealth of this card imply a small, harmless creature The regenerate skill suggests some degree of durability, however The name Shimmermouse suggests a small, glittery creature that is easily overlooked or dismissed, but has some hidden resilience"
+    },
+    {
+        "_original": {
+            "name": "Oakenram",
+            "power": 7,
+            "health": 4,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Oakenram",
+        "description": "The high power and moderate health of this card indicate a strong, chargeforward kind of creature The regenerate skill implies it can recover from any damage it takes The name Oakenram implies a ram with antlers made of oak, suggesting that the creature is both strong and resilient"
+    },
+    {
+        "_original": {
+            "name": "Aquapod",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 7,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Aquapod",
+        "description": "short for \"aquatic octopod\""
+    },
+    {
+        "_original": {
+            "name": "Evildin",
+            "power": 6,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "Shield",
+                "Regenerate",
+                "Spines",
+                "Packrat",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 6,
+            "has_fire": 5
+        },
+        "name": "Evildin",
+        "description": "short for \"evil dingo\""
+    },
+    {
+        "_original": {
+            "name": "Glimmersnail",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 6,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Glimmersnail",
+        "description": "glimmer  shines faintly, snail  slowmoving"
+    },
+    {
+        "_original": {
+            "name": "Seedhog",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Seedhog",
+        "description": "short for \"seedeating hedgehog\""
+    },
+    {
+        "_original": {
+            "name": "Lifesteed",
+            "power": 4,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Lifesteed",
+        "description": "card with regenerating ability"
+    },
+    {
+        "_original": {
+            "name": "Bloodhound",
+            "power": 2,
+            "health": 5,
+            "costs_fire": 3,
+            "skills": [
+                "Shield",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Bloodhound",
+        "description": "high health for a relatively low cost, shield skill"
+    },
+    {
+        "_original": {
+            "name": "Pyroseer",
+            "power": 4,
+            "health": 4,
+            "costs_fire": 0,
+            "skills": [
+                "Underdog",
+                "Shield",
+                "Regenerate",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 5
+        },
+        "name": "Pyroseer",
+        "description": "balanced drawdemand on spiritfire attributes, underdog skill for a surprise attack, regenerating spikes"
+    },
+    {
+        "_original": {
+            "name": "Ironbison",
+            "power": 10,
+            "health": 6,
+            "costs_fire": 1,
+            "skills": [
+                "Airdefense",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 2
+        },
+        "name": "Ironbison",
+        "description": "very strong card with air defense ability"
+    },
+    {
+        "_original": {
+            "name": "Guardianowl",
+            "power": 6,
+            "health": 9,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "Fertility",
+                "Underdog",
+                "Spines",
+                "Airdefense"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 6,
+            "has_fire": 5
+        },
+        "name": "Guardianowl",
+        "description": "The card has high health and skills that suggest protection and regeneration The name indicates that it's a guardian and an owl because owls are often associated with wisdom and protection in folklore"
+    },
+    {
+        "_original": {
+            "name": "Fyrespirit",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 3,
+            "skills": [
+                "Soaring",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Fyrespirit",
+        "description": "Even though the card has low power, the attribute of having three costs of fire suggests that the creature is associated with fire The skill Soaring hints at the creature being a spirit, so Fyrespirit combines those elements"
+    },
+    {
+        "_original": {
+            "name": "Caldera",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 2
+        },
+        "name": "Caldera",
+        "description": "The card has low power and low health, but two costs of fire The skill Regenerate suggests that after taking damage, the creature may rise from the ashes and heal from its wounds Caldera is a name inspired by the volcanic craters and could suggest a creature that's associated with fire and resiliency"
+    },
+    {
+        "_original": {
+            "name": "Thornrino",
+            "power": 2,
+            "health": 5,
+            "costs_fire": 2,
+            "skills": [
+                "Spines",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Thornrino",
+        "description": "moderate fire and health, quite spiny, regenerative skill"
+    },
+    {
+        "_original": {
+            "name": "Emberarmadillo",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 3,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Emberarmadillo",
+        "description": "moderate fire, low health, regenerative skill"
+    },
+    {
+        "_original": {
+            "name": "Pixiepet",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Pixiepet",
+        "description": "This small creature has low power and health, but its ability to regenerate makes it difficult to defeat With no fire or spirit costs, it is easy to include in any deck The name \"Pixiepet\" reflects its small, nimble size and its ability to recover"
+    },
+    {
+        "_original": {
+            "name": "Snailtank",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Snailtank",
+        "description": "This creature has an armored shell, making it difficult to defeat It has low power but decent health, and the ability to regenerate Its name \"Snailtank\" reflects its shelllike armor and its solid defense"
+    },
+    {
+        "_original": {
+            "name": "Dreamweasel",
+            "power": 3,
+            "health": 6,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate",
+                "Airdefense",
+                "InstantDeath",
+                "Underdog",
+                "Packrat",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 3
+        },
+        "name": "Dreamweasel",
+        "description": "highly skilled, with a mix of fire and spirit costs"
+    },
+    {
+        "_original": {
+            "name": "Ironrhino",
+            "power": 5,
+            "health": 10,
+            "costs_fire": 2,
+            "skills": [
+                "Underdog",
+                "Regenerate",
+                "Shield",
+                "Spines",
+                "InstantDeath",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 6
+        },
+        "name": "Ironrhino",
+        "description": "very strong and resilient, with lots of fire and spirit"
+    },
+    {
+        "_original": {
+            "name": "Emberwing",
+            "power": 3,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Soaring",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Emberwing",
+        "description": "moderate power and health, with soaring and regeneration skills"
+    },
+    {
+        "_original": {
+            "name": "Spiritimp",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 5,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Spiritimp",
+        "description": "Combining its high cost for spirits with the fact that it can only heal itself, this card gives the impression of a difficulttosummon creature that can be a nuisance for the opponent to take it down"
+    },
+    {
+        "_original": {
+            "name": "Flarewolf",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 4
+        },
+        "name": "Flarewolf",
+        "description": "The high fire cost, combined with the high fire value means this creature is in tune with the element of fire The Regenerate skill means it can take on hits and bounce back HP easily, reminiscent of a wolf found in hot and tough climates"
+    },
+    {
+        "_original": {
+            "name": "Thornhedge",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Spines",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Thornhedge",
+        "description": "This creature's health is solid and it has the spines skill but low power It could be something of a tank in that it offers a solid defense and deterrent to those who may try to attack The name describes both its defensive capabilities and the spines attributes"
+    },
+    {
+        "_original": {
+            "name": "Gorgondragon",
+            "power": 8,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "Shield",
+                "InstantDeath",
+                "Spines",
+                "Regenerate",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 7,
+            "has_fire": 5
+        },
+        "name": "Gorgondragon",
+        "description": "With high power and health and multiple skills including instant death, this card is a formidable beast The name Gorgondragon borrows from the mythical creature of the Gorgons and the name \"dragon\" which is widely associated with ferocity and power, capturing the essence of the card"
+    },
+    {
+        "_original": {
+            "name": "Airskim",
+            "power": 3,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Shield",
+                "Airdefense",
+                "Soaring",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Airskim",
+        "description": "This card has decent power and health, along with the skill of air defense The name Airskim evokes a light and swift animal capable of gliding through the air, pointing to the card's speed and its ability to negate air attacks"
+    },
+    {
+        "_original": {
+            "name": "Fireflick",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Fireflick",
+        "description": "With low power and health but the skill of regeneration, this card plays a support role The name Fireflick is inspired by the small and agile firefly, hinting at the card's speedy nature and the ability to heal and support other cards"
+    },
+    {
+        "_original": {
+            "name": "Spectramole",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 6,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Spectramole",
+        "description": "This card has low power and health, high cost in spirits, and the skill of regeneration The name Spectramole is a combination of \"spectral\" which suggests the card's ability to regenerate and return from the dead, and \"mole\" which fits its small size and the fact that it digs with its claws, hinting at the ability to regenerate health and burrow defensively"
+    },
+    {
+        "_original": {
+            "name": "Magmice",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Packrat",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Magmice",
+        "description": "relates to the packrat and regenerate skill, suggesting there are multiple little creatures and they are able to regenerate"
+    },
+    {
+        "_original": {
+            "name": "Needlecat",
+            "power": 3,
+            "health": 4,
+            "costs_fire": 1,
+            "skills": [
+                "Spines",
+                "Regenerate",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Needlecat",
+        "description": "relates to the spines and regenerate skill, suggesting a dangerous animal that can regrow its spines"
+    },
+    {
+        "_original": {
+            "name": "Runerat",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Fertility",
+                "Underdog",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Runerat",
+        "description": "relates to the underdog skill and regenerate skill, suggesting a small creature that is able to protect itself and heal quickly"
+    },
+    {
+        "_original": {
+            "name": "Salamand",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Salamand",
+        "description": "relates to the high fire cost and the regenerate skill, suggesting a fire lizard that is resilient and can selfheal"
+    },
+    {
+        "_original": {
+            "name": "Glowolf",
+            "power": 2,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 1
+        },
+        "name": "Glowolf",
+        "description": "relates to the regenerate skill and hasspirits attribute, suggesting a mystical wolf that glows and has the ability to regenerate"
+    },
+    {
+        "_original": {
+            "name": "Pixicorn",
+            "power": 3,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Pixicorn",
+        "description": "related to \"regenerate\" the name includes \"pixi\" which generally refers to magical small creatures with healing powers, and \"unicorn\" which adds to this cutefantasy image with a magical sealike sound"
+    },
+    {
+        "_original": {
+            "name": "Chimerling",
+            "power": 4,
+            "health": 8,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate",
+                "Underdog",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 1
+        },
+        "name": "Chimerling",
+        "description": "related to \"underdog\" and \"soaring\" Chimeras in mythology are creatures composed of different animal parts Chimerling combines this idea with the suffix \"ing\" implying small size  youth This emphasizes a weaker but determined creature that can soar like its mythical counterpart and can be used as an underdog to rise to the occasion"
+    },
+    {
+        "_original": {
+            "name": "Spritefox",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "LuckyStrike",
+                "Regenerate"
+            ],
+            "costs_spirits": 4,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Spritefox",
+        "description": "related to \"lucky strike\" and \"regenerate\" Sprites are also small magical creatures Foxes are often playful and add to this The name therefore emphasizes luck and magical healing capabilities, but this creature is also a bit playful and more relaxed"
+    },
+    {
+        "_original": {
+            "name": "Flameanemone",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 5,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Flameanemone",
+        "description": "The card has regenerative properties that can protect itself and restore it to health, which is similar to an anemone that can regrow itself"
+    },
+    {
+        "_original": {
+            "name": "Frostwyrm",
+            "power": 4,
+            "health": 10,
+            "costs_fire": 0,
+            "skills": [
+                "Fertility",
+                "Spines",
+                "Soaring",
+                "Shield",
+                "LuckyStrike",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 4
+        },
+        "name": "Frostwyrm",
+        "description": "This card has high health and power, and a slew of skills which makes them dangerous, like a wrym which can live a long time and is protected by ice and sharp scales"
+    },
+    {
+        "_original": {
+            "name": "Dewferret",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Dewferret",
+        "description": "This card is nimble, quick, and knows how to hoard resources, making it a valuable asset much like a ferret that produces highly regarded musk used in perfume"
+    },
+    {
+        "_original": {
+            "name": "Gildedox",
+            "power": 9,
+            "health": 9,
+            "costs_fire": 1,
+            "skills": [
+                "Packrat",
+                "Regenerate",
+                "Fertility",
+                "LuckyStrike"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 3
+        },
+        "name": "Gildedox",
+        "description": "This card has a solid health and power score that allows it to survive and fight through anything while being financially lucrative Just like the mythical creature that can turn anything into gold, this card can give you the edge to win any battle"
+    },
+    {
+        "_original": {
+            "name": "Spikebug",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Spines",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Spikebug",
+        "description": "This card is low in power but has the attributes of low health, spines, and regenerating abilities, which are characteristics of a bug surrounded by spikes that can regrow legs and limbs"
+    },
+    {
+        "_original": {
+            "name": "Dryadragon",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 3,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Dryadragon",
+        "description": " chars"
+    },
+    {
+        "_original": {
+            "name": "Spriturtle",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 3,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Spriturtle",
+        "description": " chars"
+    },
+    {
+        "_original": {
+            "name": "Flourishant",
+            "power": 3,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Fertility",
+                "Regenerate"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Flourishant",
+        "description": "The ability to regenerate his own health and produce offspring makes this card hard to take down, but it also costs resources to do so Flourishant is a play on the words \"flourish\" and \"ant\", as in the card can build a colony and revive itself"
+    },
+    {
+        "_original": {
+            "name": "Helixling",
+            "power": 5,
+            "health": 2,
+            "costs_fire": 3,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Helixling",
+        "description": "The creature is very nimble and can regenerate, making it difficult to land critical attacks against it \"Helix\" refers to its quick movements and \"ling\" shows it's small in size"
+    },
+    {
+        "_original": {
+            "name": "Skyfortress",
+            "power": 8,
+            "health": 10,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "LuckyStrike",
+                "Airdefense",
+                "Packrat",
+                "Soaring",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 5
+        },
+        "name": "Skyfortress",
+        "description": "This creature is an airborne fortress with incredibly powerful abilities to boot It can withstand aerial attacks and strikes with deadly precision"
+    },
+    {
+        "_original": {
+            "name": "Fangling",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Fangling",
+        "description": "With low power but decent health and the ability to regenerate, fangling is hardy, making it a nuisance to deal with The name is derived from the fangs it sports on its teeth"
+    },
+    {
+        "_original": {
+            "name": "Blossomoth",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Fertility",
+                "Regenerate"
+            ],
+            "costs_spirits": 2,
+            "has_spirits": 0,
+            "has_fire": 3
+        },
+        "name": "Blossomoth",
+        "description": "This creature has lots of potential to regenerate and create offspring, but doesn't have much power to account for The name is based on the card's ability to produce a variety of offspring which blossom forth and float in the air with the moth reference "
+    },
+    {
+        "_original": {
+            "name": "Glitterfly",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 4,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 4
+        },
+        "name": "Glitterfly",
+        "description": "expensive and has skill Regenerate, suggests high value and a fantastical appearance"
+    },
+    {
+        "_original": {
+            "name": "Aquafox",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 4,
+            "has_spirits": 3,
+            "has_fire": 1
+        },
+        "name": "Aquafox",
+        "description": "has high spirit value, spends those spirits, and has a skill Regenerate, related to regeneration and mystical water"
+    },
+    {
+        "_original": {
+            "name": "Starskimmer",
+            "power": 10,
+            "health": 8,
+            "costs_fire": 0,
+            "skills": [
+                "Soaring",
+                "Shield",
+                "Regenerate",
+                "Underdog",
+                "LuckyStrike",
+                "Fertility"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 6,
+            "has_fire": 6
+        },
+        "name": "Starskimmer",
+        "description": "takes a lot of spirits and fire to get this card out, has numerous skills, suggests a very powerful and mystical creature"
+    },
+    {
+        "_original": {
+            "name": "Egret",
+            "power": 3,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Egret",
+        "description": "This card has a moderate power and low health Also, it costs very low fire to bring it onto the table The name Egret is related to the bird type and the regenerative skill It signifies the bird's characteristic of healing itself over time"
+    },
+    {
+        "_original": {
+            "name": "Roc",
+            "power": 4,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 1
+        },
+        "name": "Roc",
+        "description": "This card has a moderate power and health with Soaring and Regenerate skills The fire and spirits required to bring it into play are moderate as well Roc is a mythological bird with the ability of flight, which suits this card"
+    },
+    {
+        "_original": {
+            "name": "Jackalope",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "LuckyStrike"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Jackalope",
+        "description": "a fast and lucky creature with regenerative abilities, but low health and power"
+    },
+    {
+        "_original": {
+            "name": "Shellwing",
+            "power": 6,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "Shield",
+                "Regenerate"
+            ],
+            "costs_spirits": 2,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Shellwing",
+        "description": "The name suggests that this card has a hard shell and wings With high health and a shield skill, Shellwing is a strong defence, hence the \"shell\" part of the name Furthermore, with high spirits and a regenerate skill, the card can also heal itself and persevere, hence the \"wing\" part of the name"
+    },
+    {
+        "_original": {
+            "name": "Darewolf",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "Airdefense"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Darewolf",
+        "description": "This card is a bit of a risktaker with lower health but higher power and an air defence skill The name suggests that this card is a wolf, but also daring The defensive skill is highlighted in \"air defence\", implying that this card will counter other air attackers well"
+    },
+    {
+        "_original": {
+            "name": "Flameleopard",
+            "power": 9,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Shield",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 5
+        },
+        "name": "Flameleopard",
+        "description": "With high fire and spirit values, this card suggests a powerful and fiery character In addition, the fertility skill implies the card is capable of being born stronger The leopard part of the name plays on the card's higher power, but moderate health"
+    },
+    {
+        "_original": {
+            "name": "Skyhealer",
+            "power": 8,
+            "health": 10,
+            "costs_fire": 0,
+            "skills": [
+                "Packrat",
+                "Underdog",
+                "Soaring",
+                "Airdefense",
+                "LuckyStrike",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 8,
+            "has_fire": 6
+        },
+        "name": "Skyhealer",
+        "description": "This card is incredibly strong and with a good balance of fire and spirits Having many skills and a high spirit value, this card suggests a powerful healer that can also defend and has a lucky strike chance of attacking The name focuses on \"sky\" because of many airborne skills and \"healer\" because of the powerhouse that the card is"
+    },
+    {
+        "_original": {
+            "name": "Spikepine",
+            "power": 3,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Spines",
+                "Regenerate",
+                "Underdog",
+                "Airdefense",
+                "LuckyStrike"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 1,
+            "has_fire": 5
+        },
+        "name": "Spikepine",
+        "description": "With low power, but high health and spines, Spikepine is like no other card in the game, and the name reflects that The skill set has a bit of everything, from underdog to air defence to spines The suggested name plays on the 'spine' part of the spines skill, and the 'pine' suggests a tree with spikes, making it a great defensive card"
+    },
+    {
+        "_original": {
+            "name": "Windel",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Windel",
+        "description": "Despite its low power and health, this owllike creature can quickly move around the board Its regenerate skill makes it even harder to catch, while its lowcosts make it an ideal solution for many situations"
+    },
+    {
+        "_original": {
+            "name": "Candlecrab",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Candlecrab",
+        "description": "Wielding the power of fire, this small yet fearsome crustacean burns through any enemies Its relatively cheap cost and useful regeneration means that it's never out of the fight for long"
+    },
+    {
+        "_original": {
+            "name": "Miraclecat",
+            "power": 9,
+            "health": 10,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "InstantDeath",
+                "LuckyStrike",
+                "Underdog",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 8,
+            "has_fire": 5
+        },
+        "name": "Miraclecat",
+        "description": "A fantastical animal that embodies the power of all the card's attributes and skills It sounds magical and aweinspiring, fitting for a card that has an extraordinarily high value in all categories"
+    },
+    {
+        "_original": {
+            "name": "Sunhare",
+            "power": 7,
+            "health": 4,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Sunhare",
+        "description": "A cute and cuddly animal that distracts enemies with its regeneration ability The name implies happiness and positivity, while still fitting the card's natural ability to heal itself and stick around longer"
+    },
+    {
+        "_original": {
+            "name": "Bubblelynx",
+            "power": 6,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 4,
+            "has_fire": 1
+        },
+        "name": "Bubblelynx",
+        "description": "A small, agile creature that's hard to catch The name brings to mind a playful and bubbly nature, which is perfect for a speedy creature that dodges costeffectively and relies on quickness and strategic positioning"
+    },
+    {
+        "_original": {
+            "name": "Faedrake",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 7,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Faedrake",
+        "description": "The card has high spirit costs and has spirits instead of fire, so the name is related to fairylike creatures that often have \"fey\" or \"fae\" in their names \"Drake\" is added to give it a more dragonlike feel"
+    },
+    {
+        "_original": {
+            "name": "Thundergod",
+            "power": 7,
+            "health": 10,
+            "costs_fire": 2,
+            "skills": [
+                "Airdefense",
+                "Regenerate",
+                "InstantDeath",
+                "Fertility",
+                "Underdog"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 6,
+            "has_fire": 5
+        },
+        "name": "Thundergod",
+        "description": "Related to the high power and health stats and the multiple skills, including Airdefense and InstantDeath The high fire and spirit costs give it a \"godly\" feel as well The name is inspired by thunderbolts being associated with gods in many mythologies"
+    },
+    {
+        "_original": {
+            "name": "Shelturtle",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Underdog",
+                "Airdefense"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Shelturtle",
+        "description": "Related to the card's high health, which makes it feel like a tank or turtlelike creature, and the skills Airdefense and Underdog \"Shel\" is added to give a shelllike feel and \"turtle\" to emphasize its defensive capabilities"
+    },
+    {
+        "_original": {
+            "name": "Spritesnake",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Spritesnake",
+        "description": "related to the card's low values across the board, which make it seem small and insignificant like a sprite, but also agile and evasive like a snake"
+    },
+    {
+        "_original": {
+            "name": "Arctopus",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Arctopus",
+        "description": "A flexible creature that can regenerate and has tentacles able to latch onto and immobilize opponents"
+    },
+    {
+        "_original": {
+            "name": "Flamejinn",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 2
+        },
+        "name": "Flamejinn",
+        "description": "related to fire, high health, regenerates"
+    },
+    {
+        "_original": {
+            "name": "Stormbird",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 1
+        },
+        "name": "Stormbird",
+        "description": "related to air, medium powerhealth, regenerates, increases spirity"
+    },
+    {
+        "_original": {
+            "name": "Wispwyrm",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 6,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Wispwyrm",
+        "description": "related to spirits, low power, regenerates, requires spirits, small"
+    },
+    {
+        "_original": {
+            "name": "Spright",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 3,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Spright",
+        "description": "related to spirits, fire cost is high, regenerates health, no physicality in card"
+    },
+    {
+        "_original": {
+            "name": "Seraphine",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 3,
+            "skills": [
+                "Regenerate",
+                "Airdefense",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Seraphine",
+        "description": "related to air and spirits, high spirited, regenerates health, air defense and soaring"
+    },
+    {
+        "_original": {
+            "name": "Chrysalis",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 7,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Chrysalis",
+        "description": "has high spirit, regenerates health, no fire cost, and will arrive when ready to fight as this creature goes through metamorphosis into something new"
+    },
+    {
+        "_original": {
+            "name": "Adamant",
+            "power": 4,
+            "health": 5,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 0,
+            "has_fire": 4
+        },
+        "name": "Adamant",
+        "description": "high power and health, low spirit cost but no more spirits, high fire cost, regenerates health"
+    },
+    {
+        "_original": {
+            "name": "Runesphinx",
+            "power": 9,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "LuckyStrike",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Runesphinx",
+        "description": "A magical and powerful creature that uses its spirit magic to bolster its already impressive strength Its high power and health stats can be attributed to its mythical nature, while the spirit skills represent its magical abilities"
+    },
+    {
+        "_original": {
+            "name": "Frostspryte",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 3,
+            "has_fire": 0
+        },
+        "name": "Frostspryte",
+        "description": "The card has low fire cost, high spirit count, and has the \"regenerate\" skill \"Spryte\" suggests a creature with magical abilities which fits well with a card that has a lot of spirits \"Frost\" has a cool connotation which pairs well with the high spirit count"
+    },
+    {
+        "_original": {
+            "name": "Hydracinth",
+            "power": 8,
+            "health": 5,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 2
+        },
+        "name": "Hydracinth",
+        "description": "The card has high power and fire cost, paired with \"InstantDeath\" and \"Regenerate\" skills \"Hydra\" draws on its powerful attributes, and \"cinth\" suggests its deadly ability It conveys a sense of power and danger"
+    },
+    {
+        "_original": {
+            "name": "Regala",
+            "power": 8,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Regala",
+        "description": "The card has high power paired with \"Regenerate\" skill, and is more expensive on the fire attribute \"Regala\" is a shorter version of \"Regalado\", a Spanish name which means \"gifted ruler\" The name suggests a powerful creature that can withstand damage and keep going"
+    },
+    {
+        "_original": {
+            "name": "Clawling",
+            "power": 4,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Underdog"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 1
+        },
+        "name": "Clawling",
+        "description": "related to claws, with a powerhealth ratio skewing a bit towards power, and the ability to regenerate and be an underdog"
+    },
+    {
+        "_original": {
+            "name": "Wyvernite",
+            "power": 7,
+            "health": 7,
+            "costs_fire": 1,
+            "skills": [
+                "InstantDeath",
+                "Fertility",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 3
+        },
+        "name": "Wyvernite",
+        "description": "very expensive, with a lot of powerhealth and two types of energy needed, plus some powerful skills"
+    },
+    {
+        "_original": {
+            "name": "Soulhound",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 8,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Soulhound",
+        "description": "This name is a combination of \"soul\" and \"hound\" The card has high spirit costs and the skill regenerate, which both relate to the concept of \"soul\" The name implies a loyal and resilient doglike creature that is guided by the power of its spirit"
+    },
+    {
+        "_original": {
+            "name": "Revenant",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 9,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Revenant",
+        "description": "This name means a spirit that has returned from the dead, tying in with the high spirit costs and regenerate skill of the card The card has low power but regenerative abilities, reflecting the idea of returning to life over and over again"
+    },
+    {
+        "_original": {
+            "name": "BlazeTurtle",
+            "power": 6,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Underdog",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 3
+        },
+        "name": "BlazeTurtle",
+        "description": "This name combines \"blaze\" with \"turtle\" to create a creature that is slow but relentless like a turtle and can survive in fiery surroundings The card has high power and decent health, but requires fire costs and has the underdog skill The name implies a creature that can withstand a lot of heat and pressure while unleashing powerful attacks"
+    },
+    {
+        "_original": {
+            "name": "LifeLeech",
+            "power": 5,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "LifeLeech",
+        "description": "This name reflects the card's power to regenerate health based on damaging opponents The name suggests a parasitic creature that feeds off the life force of other animals, while being elusive and agile enough to avoid retaliation from the ones it preys on"
+    },
+    {
+        "_original": {
+            "name": "GrimWolf",
+            "power": 1,
+            "health": 5,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "GrimWolf",
+        "description": "A powerful creature with regenerative capabilities, but also slightly vulnerable to damage The name suggests a fearless predator, known for its tenacity and strength, though it's also believed to bring bad luck and ill omens"
+    },
+    {
+        "_original": {
+            "name": "FlameRat",
+            "power": 3,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "FlameRat",
+        "description": "A small, fragile creature that can potentially deal significant damage The name suggests a quick and cunning animal that can sneakily move around the battlefield to become a threat to larger creatures"
+    },
+    {
+        "_original": {
+            "name": "Magispark",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 4,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Magispark",
+        "description": "related to the cost of the card being spirits and its low attributes, but also has Regenerate, suggesting healing and magic"
+    },
+    {
+        "_original": {
+            "name": "Solarwing",
+            "power": 4,
+            "health": 7,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Solarwing",
+        "description": "a soaring creature with high health and power, solar refers to its cost with fire, not spirits, and the skill Regenerate suggests it heals under sunlight"
+    },
+    {
+        "_original": {
+            "name": "Shellheal",
+            "power": 3,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Shellheal",
+        "description": "related to the skill Regenerate, which suggests healing, and its relatively modest attributes, all its costs are low except for spirits, which assures its regeneration through magic"
+    },
+    {
+        "_original": {
+            "name": "Wiseowl",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Wiseowl",
+        "description": "This card has a low power and health but has a unique skill of regenerating its health The name Wiseowl is fitting because owls are often associated with having great wisdom and knowledge and this card uses its wisdom to regenerate its health"
+    },
+    {
+        "_original": {
+            "name": "Magicat",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 3,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Magicat",
+        "description": "This card has a low power and costs no fire but requires a lot of spirits It also has the skill of regeneration Magicat is a fitting name because it takes a lot of magic to summon it, and it uses its magical power to regenerate itself"
+    },
+    {
+        "_original": {
+            "name": "Infernodon",
+            "power": 5,
+            "health": 8,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "InstantDeath"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 3,
+            "has_fire": 5
+        },
+        "name": "Infernodon",
+        "description": "This card has very high power and health but is quite expensive in terms of fire and spirits It has the skill of regeneration and instant death The name Infernodon is fitting because it is a large, powerful mythical creature that is associated with fire Its high power comes from its fiery nature, and it has the ability to cause instant death to its enemies"
+    },
+    {
+        "_original": {
+            "name": "Ghostkrush",
+            "power": 5,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Ghostkrush",
+        "description": "This card is quite powerful with a good balance between its power and health It requires some fire but no spirits and has the skills of both regeneration and instant death The name Ghostkrush is fitting because it is a ghostly creature that is powerful enough to crush its enemies It regenerates itself using its ghostly powers"
+    },
+    {
+        "_original": {
+            "name": "Trollwisp",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Trollwisp",
+        "description": "This card has average power and low health, requires just one spirit, and has the skill of regeneration The name Trollwisp is fitting because it is a small mystical creature that uses its wisplike powers to regenerate itself Trolls are also often depicted as regenerating creatures, which ties in with the skill of this card"
+    },
+    {
+        "_original": {
+            "name": "Dracolisk",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 1,
+            "has_fire": 3
+        },
+        "name": "Dracolisk",
+        "description": "A hybrid creature with dragonlike features known for its great power and endurance Its regenerative ability makes it even harder to defeat in battle"
+    },
+    {
+        "_original": {
+            "name": "Foxsprite",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Foxsprite",
+        "description": "small, quick, and hard to catch sprite denotes a sense of otherworldly magic related to the Regenerate skill"
+    },
+    {
+        "_original": {
+            "name": "Firessence",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Firessence",
+        "description": "related to the Fire attribute and the Regenerate skill, Essence denotes an otherworldly quality and hints at a magical creature"
+    },
+    {
+        "_original": {
+            "name": "Spiritwing",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "Soaring"
+            ],
+            "costs_spirits": 3,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Spiritwing",
+        "description": "related to the Spirit attribute and the Soaring skill, Wing denotes freedom and movement Spirit denotes a fantastical element"
+    },
+    {
+        "_original": {
+            "name": "Armormouse",
+            "power": 4,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Armormouse",
+        "description": "high health and Regenerate skill, small and sturdy like a mouse Armor denotes protection"
+    },
+    {
+        "_original": {
+            "name": "Necrowyrm",
+            "power": 3,
+            "health": 5,
+            "costs_fire": 2,
+            "skills": [
+                "InstantDeath",
+                "LuckyStrike",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 2
+        },
+        "name": "Necrowyrm",
+        "description": "relates to the InstantDeath skill, high power and health, and moderate cost"
+    },
+    {
+        "_original": {
+            "name": "Packleopard",
+            "power": 10,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Fertility",
+                "Packrat",
+                "Airdefense",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 5
+        },
+        "name": "Packleopard",
+        "description": "strong, cheap, and has skills that relate to teamwork and defense"
+    },
+    {
+        "_original": {
+            "name": "Faeemote",
+            "power": 3,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 2,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Faeemote",
+        "description": "relates to the low stats and regeneration"
+    },
+    {
+        "_original": {
+            "name": "Vampyrum",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Vampyrum",
+        "description": "high fire cost and health with moderate power, and the Regenerate skill"
+    },
+    {
+        "_original": {
+            "name": "Wispwing",
+            "power": 3,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "InstantDeath",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Wispwing",
+        "description": "Wispwing is a versatile creature, causing instant death to its enemies while regenerating itself Its fire cost is high, but its power is balanced with its health and its ability to fly with its wings"
+    },
+    {
+        "_original": {
+            "name": "Wyvernix",
+            "power": 8,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Soaring",
+                "Regenerate",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 2
+        },
+        "name": "Wyvernix",
+        "description": "With soaring ability, Wyvernix is a dominant creature, using its sharp claws and ability to fly to defeat its opponents It uses both fire and spirits and is highly spirited"
+    },
+    {
+        "_original": {
+            "name": "Spiraling",
+            "power": 3,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Spiraling",
+        "description": "With regenerative ability and high spirits, Spiraling is a defensive creature With costs of spirits and no fire, this creature relies on its defensiveness and recovery ability Its power and health are lower due to its focus on defense"
+    },
+    {
+        "_original": {
+            "name": "Ironmouse",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 3,
+            "skills": [
+                "Spines",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Ironmouse",
+        "description": "short, strong, spiky, regenerates"
+    },
+    {
+        "_original": {
+            "name": "Packwolf",
+            "power": 3,
+            "health": 6,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "Underdog",
+                "Packrat",
+                "Shield"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 4
+        },
+        "name": "Packwolf",
+        "description": "powerful, high health, skilled, team player"
+    },
+    {
+        "_original": {
+            "name": "Spiricorn",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 9,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Spiricorn",
+        "description": "weak, low health, highly spirited, regenerates"
+    },
+    {
+        "_original": {
+            "name": "MysticHedge",
+            "power": 9,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "Fertility",
+                "Spines",
+                "Underdog",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 6
+        },
+        "name": "MysticHedge",
+        "description": "This card has high power and health, and multiple skills, making it a formidable opponent The name Mystic references its many skills, and Hedge relates to the high defense power and the \"underdog\" skill"
+    },
+    {
+        "_original": {
+            "name": "ShadowSlink",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "ShadowSlink",
+        "description": "Suggesting a small, sneaky creature with low health The name Shadow refers to its skill of regeneration, allowing it to hide and heal, while Slink relates to its low stats and mobility"
+    },
+    {
+        "_original": {
+            "name": "DreamWind",
+            "power": 5,
+            "health": 1,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate",
+                "Airdefense",
+                "Underdog"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "DreamWind",
+        "description": "This card is an airborne creature with skills that reflect its high mobility The name Dream refers to its skill of regeneration and the evasiveness granted by its airdefense skill, while Wind relates to the nature of being airborne"
+    },
+    {
+        "_original": {
+            "name": "FieryFawn",
+            "power": 6,
+            "health": 6,
+            "costs_fire": 0,
+            "skills": [
+                "Fertility",
+                "Underdog",
+                "InstantDeath",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 5
+        },
+        "name": "FieryFawn",
+        "description": "Suggesting a small, magical deerlike creature with high health and attack power, making it a strong attacker and defender The name Fiery refers to its high attack power, while Fawn relates to its \"fertility\" skill and makes an allusion to its magical nature"
+    },
+    {
+        "_original": {
+            "name": "Fireantler",
+            "power": 3,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 3
+        },
+        "name": "Fireantler",
+        "description": "relates to the high fire costs and no spirits"
+    },
+    {
+        "_original": {
+            "name": "Watertiger",
+            "power": 3,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Watertiger",
+        "description": "relates to the high spirits and low fire costs"
+    },
+    {
+        "_original": {
+            "name": "Heartshell",
+            "power": 1,
+            "health": 4,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Heartshell",
+        "description": "relates to the armadillo and regenerate skill"
+    },
+    {
+        "_original": {
+            "name": "Aerozealot",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "Airdefense",
+                "InstantDeath"
+            ],
+            "costs_spirits": 8,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Aerozealot",
+        "description": "Mostly related to the \"airdefense\" skill, but also to the high spirit attribute"
+    },
+    {
+        "_original": {
+            "name": "Firefern",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 2
+        },
+        "name": "Firefern",
+        "description": "The name suggests a small and fragile creature with some fire traits requires fire to summon, has a little of it, and the skill \"Regenerate\" suggests it can quickly recover from injuries, just like a fern can regrow quickly if cut"
+    },
+    {
+        "_original": {
+            "name": "Sproutankh",
+            "power": 2,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Sproutankh",
+        "description": "The name suggests a plantbased design, with high health and some regeneration potential \"ankh\" suggests the Egyptian symbol of life Low power and the \"Regenerate\" skill suggest that this creature can be hard to remove"
+    },
+    {
+        "_original": {
+            "name": "Gryphonix",
+            "power": 2,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Airdefense",
+                "Regenerate",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Gryphonix",
+        "description": "relating to its skills and ability to regenerate It possesses wings and healing abilities, as a griffin and Phoenix would have 'Gryphon' relates to its Airdefense skill, while 'Phoenix' reflects its ability to regenerate 'Ix' is a short and memorable suffix"
+    },
+    {
+        "_original": {
+            "name": "Snapling",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Snapling",
+        "description": "This name is a play on words with the word \"sapling,\" which fits with the low power and health, but also incorporates the Regenerate skill The name \"snap\" also suggests a quick attack, which might be useful for a card with only one power"
+    },
+    {
+        "_original": {
+            "name": "Sky Pup",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Airdefense",
+                "Regenerate",
+                "Packrat",
+                "Underdog",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Sky Pup",
+        "description": "This name is fitting for a card with the Airdefense and Underdog skills, indicating that it's good at defending against air attacks and thrives in difficult situations The Packrat skill is also included in the name since it sounds similar to \"pup\""
+    },
+    {
+        "_original": {
+            "name": "Pyrosloth",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 4,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Pyrosloth",
+        "description": "This name incorporates the high fire cost and the Regenerate skill, suggesting that the card is slow and methodical, but able to regenerate health over time The \"sloth\" part of the name is also fitting for a card with no power but high health"
+    },
+    {
+        "_original": {
+            "name": "Magiknight",
+            "power": 9,
+            "health": 10,
+            "costs_fire": 1,
+            "skills": [
+                "Fertility",
+                "Packrat",
+                "Soaring",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 6,
+            "has_fire": 4
+        },
+        "name": "Magiknight",
+        "description": "high power and health, balanced cost, multiple skills"
+    },
+    {
+        "_original": {
+            "name": "Thornhawk",
+            "power": 10,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "Spines",
+                "Shield",
+                "Regenerate",
+                "Packrat",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 8,
+            "has_fire": 5
+        },
+        "name": "Thornhawk",
+        "description": "balanced powerhealth with strong skills and relatively low cost"
+    },
+    {
+        "_original": {
+            "name": "Nightwyrm",
+            "power": 8,
+            "health": 6,
+            "costs_fire": 0,
+            "skills": [
+                "InstantDeath",
+                "Regenerate",
+                "Airdefense",
+                "LuckyStrike"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 6,
+            "has_fire": 4
+        },
+        "name": "Nightwyrm",
+        "description": "balanced powerhealth, no fire cost, various special skills"
+    },
+    {
+        "_original": {
+            "name": "Flamelet",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Flamelet",
+        "description": "low powerhealth, high cost, fire only"
+    },
+    {
+        "_original": {
+            "name": "Scorpturtle",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 3,
+            "skills": [
+                "Regenerate",
+                "Airdefense",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Scorpturtle",
+        "description": "balanced powerhealth, high fire cost, special skills"
+    },
+    {
+        "_original": {
+            "name": "Moonpup",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Underdog",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Moonpup",
+        "description": "relates to its underdog ability and regeneration, along with its relatively weak stats"
+    },
+    {
+        "_original": {
+            "name": "Dreamsnail",
+            "power": 0,
+            "health": 6,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Shield"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Dreamsnail",
+        "description": "With  health and the Regenerate and Shield skills, this card is a tough nut to crack The Dreamsnail emits a dreamy essence that can even charm away danger"
+    },
+    {
+        "_original": {
+            "name": "Packwhelp",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Packwhelp",
+        "description": "A card with low power and health values, but with the Regenerate and Packrat skills, this card can be surprisingly effective The Packwhelp is a small, yet ferocious creature, that can multiply quickly when backed into a corner"
+    },
+    {
+        "_original": {
+            "name": "Thornwyvern",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Thornwyvern",
+        "description": "This card combines decent stats with the Spines and Regenerate skills to create a formidable adversary The Thornwyvern is a mythical creature with thorny wings that can cause serious harm to its opponents"
+    },
+    {
+        "_original": {
+            "name": "Glowpup",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Glowpup",
+        "description": "A card with average stats, but with the Regenerate skill, the Glowpup is trying to survive by fire alone Through its Regenerate skill, the Glowpup can manifest flames to heal its wounds"
+    },
+    {
+        "_original": {
+            "name": "Scarabrat",
+            "power": 3,
+            "health": 9,
+            "costs_fire": 1,
+            "skills": [
+                "LuckyStrike",
+                "Shield",
+                "Packrat",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 5
+        },
+        "name": "Scarabrat",
+        "description": "with a packrat skill, smaller power, high health, and some fire and spirit, this name suggests a durable, armored insect"
+    },
+    {
+        "_original": {
+            "name": "Warthog",
+            "power": 2,
+            "health": 6,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Warthog",
+        "description": "powerful and with high health, but quite expensive and not very skilled"
+    },
+    {
+        "_original": {
+            "name": "Weavewyrm",
+            "power": 4,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Fertility",
+                "Regenerate",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 2
+        },
+        "name": "Weavewyrm",
+        "description": "with a lot of spirits and fire, and a few skills, it could spin webs  so resembling a dragonworm spider hybrid"
+    },
+    {
+        "_original": {
+            "name": "Thornsparrow",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Soaring",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Thornsparrow",
+        "description": "low in everything but spines, flight, and regeneration, it's small and can be a pest"
+    },
+    {
+        "_original": {
+            "name": "Regalox",
+            "power": 5,
+            "health": 6,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Regalox",
+        "description": "quite strong and healthy, with a skill to regenerate, it's an elegant and majestic creature"
+    },
+    {
+        "_original": {
+            "name": "GuardianMoth",
+            "power": 4,
+            "health": 10,
+            "costs_fire": 2,
+            "skills": [
+                "Shield",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 3
+        },
+        "name": "GuardianMoth",
+        "description": "This name fits the card's defensive power through the use of Shield and Regenerate skills as well as its high health The use of \"Moth\" relates to the card's nature of being a keeper and flying around its fellow guardians as they protect"
+    },
+    {
+        "_original": {
+            "name": "Thornsiren",
+            "power": 3,
+            "health": 5,
+            "costs_fire": 3,
+            "skills": [
+                "Spines",
+                "Regenerate",
+                "InstantDeath",
+                "Soaring",
+                "Shield"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 2
+        },
+        "name": "Thornsiren",
+        "description": "The name relates to the card's use of Spines, Regenerate, and Soaring skills \"Thorn\" fits with the Spines and \"Siren\" indicates the sudden deadly attack the InstantDeath skill provides Overall, it's a card that's perfect for attack tactics"
+    },
+    {
+        "_original": {
+            "name": "Spitfire",
+            "power": 7,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Spines",
+                "Underdog",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 0
+        },
+        "name": "Spitfire",
+        "description": "A name that relates to the card's high power and the fact that it's pretty much firebreathing since it has no spirits but two fire elements The Spines skill fits quite well with the name, too, describing the card as a fierce monster with a lot of fight"
+    },
+    {
+        "_original": {
+            "name": "Necroworm",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 4,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Necroworm",
+        "description": "This name describes a wriggling and regenerating creature that has no spirits nor fire elements The Regenerate skill fits perfectly with the name"
+    },
+    {
+        "_original": {
+            "name": "Prideguard",
+            "power": 6,
+            "health": 6,
+            "costs_fire": 0,
+            "skills": [
+                "Underdog",
+                "Fertility",
+                "Soaring",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 7,
+            "has_fire": 3
+        },
+        "name": "Prideguard",
+        "description": "This name relates to the card's high power and health, as well as skills that are mainly defensive Underdog, Soaring, and Regenerate \"Pride\" fits with the idea that this is a very \"brave\" card that guards the deck"
+    },
+    {
+        "_original": {
+            "name": "Necrosnail",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 9,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Necrosnail",
+        "description": "This name reflects the card's ability to regenerate and its reliance on spirits, as well as its low power and health It suggests a small creature that is difficult to kill and maybe a bit eerie"
+    },
+    {
+        "_original": {
+            "name": "Ghostlemur",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Ghostlemur",
+        "description": "A ghostly lemur with the ability to regenerate as well as a low fire cost and no spirit cost It is fairly weak but has a unique attribute that makes it hard to take down"
+    },
+    {
+        "_original": {
+            "name": "RegalPhoenix",
+            "power": 6,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "Fertility",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 2
+        },
+        "name": "RegalPhoenix",
+        "description": "This card has high power and health and it has Phoenic related skills of Fertility and Regenerate card The name Phoenix indicates the bird's powerful nature and its power of regeneration and its role as a symbol of life and renewal are perfect match for this card"
+    },
+    {
+        "_original": {
+            "name": "Packpanther",
+            "power": 5,
+            "health": 8,
+            "costs_fire": 0,
+            "skills": [
+                "Packrat",
+                "Regenerate",
+                "InstantDeath",
+                "Airdefense"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 4
+        },
+        "name": "Packpanther",
+        "description": "With skills such as Packrat and Airdefense this card is a perfect match for the name packpanther This card is agile, fast, and lives in packs Its high cost of hasfire reflects its ferocity and dangerousness"
+    },
+    {
+        "_original": {
+            "name": "Venomsprite",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "InstantDeath",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Venomsprite",
+        "description": "An animal that is part fairy and skilled in instant death and regeneration The name, Venomsprite suits this card because it is a small creature that can cause significant damage with its venom and yet regenerate its health points"
+    },
+    {
+        "_original": {
+            "name": "Stormshell",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 3,
+            "skills": [
+                "Shield",
+                "Underdog",
+                "Airdefense",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Stormshell",
+        "description": "a wellshielded fantasy animal with low power and health, requiring  fire to summon, air defenses, can regenerate, and be a strong underdog"
+    },
+    {
+        "_original": {
+            "name": "Radiantwolf",
+            "power": 3,
+            "health": 5,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Radiantwolf",
+        "description": "a radiant wolf with moderate power and high health, low cost of fire but no fire needed, it has the ability to regenerate itself"
+    },
+    {
+        "_original": {
+            "name": "Thornmollusk",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "Spines",
+                "InstantDeath"
+            ],
+            "costs_spirits": 3,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Thornmollusk",
+        "description": "a heavily talented shellsnail that requires  spirits and no fire to summon, has moderate health with low power but with regenerative and spine abilities, plus the ability to deal and take an instant death blow"
+    },
+    {
+        "_original": {
+            "name": "RegalHound",
+            "power": 3,
+            "health": 5,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 2
+        },
+        "name": "RegalHound",
+        "description": "powerful, high health, regenerates"
+    },
+    {
+        "_original": {
+            "name": "WispHare",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 9,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "WispHare",
+        "description": "small, low powerhealth, highly spirited, regenerates"
+    },
+    {
+        "_original": {
+            "name": "MoonLapin",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Underdog",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "MoonLapin",
+        "description": "small, low powerhealth, highly spirited, underdog, regenerates"
+    },
+    {
+        "_original": {
+            "name": "Flameporcupine",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 3,
+            "skills": [
+                "Regenerate",
+                "InstantDeath",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 1
+        },
+        "name": "Flameporcupine",
+        "description": "InstantDeath skill, high Fire cost, Regenerate skill"
+    },
+    {
+        "_original": {
+            "name": "Spikepack",
+            "power": 3,
+            "health": 2,
+            "costs_fire": 3,
+            "skills": [
+                "Spines",
+                "Regenerate",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Spikepack",
+        "description": "spines, regenerate"
+    },
+    {
+        "_original": {
+            "name": "Soulsprite",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Soulsprite",
+        "description": "low powerhealth, regenerate"
+    },
+    {
+        "_original": {
+            "name": "Mystictaur",
+            "power": 7,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "InstantDeath",
+                "Regenerate",
+                "Packrat"
+            ],
+            "costs_spirits": 4,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Mystictaur",
+        "description": "high spirits, instant death, regenerate"
+    },
+    {
+        "_original": {
+            "name": "Boneback",
+            "power": 8,
+            "health": 9,
+            "costs_fire": 3,
+            "skills": [
+                "Regenerate",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 2
+        },
+        "name": "Boneback",
+        "description": "relates to the card's high power and health the name implies a tough, durable creature"
+    },
+    {
+        "_original": {
+            "name": "Apex Fang",
+            "power": 8,
+            "health": 6,
+            "costs_fire": 0,
+            "skills": [
+                "Packrat",
+                "Regenerate",
+                "Soaring",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 4
+        },
+        "name": "Apex Fang",
+        "description": "relates to the card's high power and packrat skill, as well as the instant death and soaring skills, implying a powerful, fearsome predator"
+    },
+    {
+        "_original": {
+            "name": "Vapora",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 4,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Vapora",
+        "description": "relates to the card's high spirit attribute and the regenerate skill The name implies a creature made of pure spirit, able to regenerate itself indefinitely"
+    },
+    {
+        "_original": {
+            "name": "Jellycub",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Jellycub",
+        "description": "Regenerates and has a balanced value of power and health, but needs fire"
+    },
+    {
+        "_original": {
+            "name": "Pyrogryph",
+            "power": 9,
+            "health": 6,
+            "costs_fire": 1,
+            "skills": [
+                "Soaring",
+                "Shield",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 4
+        },
+        "name": "Pyrogryph",
+        "description": "Strong fire card with longterm defense and healing abilities"
+    },
+    {
+        "_original": {
+            "name": "Crysquid",
+            "power": 1,
+            "health": 5,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "Fertility"
+            ],
+            "costs_spirits": 8,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Crysquid",
+        "description": "Expensivespirit card with healing and regeneration abilities"
+    },
+    {
+        "_original": {
+            "name": "Spipillar",
+            "power": 0,
+            "health": 6,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Spipillar",
+        "description": "Low fire cost defensive card with regeneration"
+    },
+    {
+        "_original": {
+            "name": "Armorhorn",
+            "power": 2,
+            "health": 8,
+            "costs_fire": 3,
+            "skills": [
+                "LuckyStrike",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Armorhorn",
+        "description": "High health and regeneration card with lucky strikes"
+    },
+    {
+        "_original": {
+            "name": "Starmane",
+            "power": 5,
+            "health": 4,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 1
+        },
+        "name": "Starmane",
+        "description": "related to powerful and vigorous stallions, an agile creature with good vitality, and the Regenerate skill fits well with this name"
+    },
+    {
+        "_original": {
+            "name": "Mistquake",
+            "power": 2,
+            "health": 7,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Mistquake",
+        "description": "relates to the dual elements of the card with one related to the earth health and low cost and one to spirit and fire power and cost, as well as the Regenerate skill that can be both healing and destructive to the card"
+    },
+    {
+        "_original": {
+            "name": "Cryovolt",
+            "power": 4,
+            "health": 4,
+            "costs_fire": 0,
+            "skills": [
+                "Fertility",
+                "InstantDeath",
+                "Regenerate"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Cryovolt",
+        "description": "relates to the electricity and ice elements, as well as the Regenerate skill that invokes a feeling of energy, growth, and recovery"
+    },
+    {
+        "_original": {
+            "name": "Skyparrot",
+            "power": 10,
+            "health": 10,
+            "costs_fire": 3,
+            "skills": [
+                "Soaring",
+                "Regenerate",
+                "Packrat",
+                "Airdefense",
+                "Underdog"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 8,
+            "has_fire": 4
+        },
+        "name": "Skyparrot",
+        "description": "relates to the air element and the Soaring skill, as well as the Packrat skill that invokes images of a bird hoarding trinkets or treasures in its nest, and the Regenerate skill adds to its durability and vitality"
+    },
+    {
+        "_original": {
+            "name": "Wispsquid",
+            "power": 3,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 8,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Wispsquid",
+        "description": "relates to Spirits and Regenerate skill, has high spirits cost and low health"
+    },
+    {
+        "_original": {
+            "name": "Armorphant",
+            "power": 9,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "Underdog",
+                "Shield",
+                "InstantDeath",
+                "Regenerate",
+                "Packrat",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 6,
+            "has_fire": 6
+        },
+        "name": "Armorphant",
+        "description": "relates to Shield and Armor skills, has very high powerhealth and costsfire, and Spines skill"
+    },
+    {
+        "_original": {
+            "name": "Magmamous",
+            "power": 5,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 2
+        },
+        "name": "Magmamous",
+        "description": "related to fire element, high power, medium health, has regeneration"
+    },
+    {
+        "_original": {
+            "name": "Ratdragon",
+            "power": 7,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Packrat",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Ratdragon",
+        "description": "has a packrat skill, related to fire and spirits elements"
+    },
+    {
+        "_original": {
+            "name": "Spiricore",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 8,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Spiricore",
+        "description": "related to spirits element, high health, has regeneration, no power, no fire"
+    },
+    {
+        "_original": {
+            "name": "Healskraken",
+            "power": 2,
+            "health": 8,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "Soaring",
+                "InstantDeath",
+                "Airdefense"
+            ],
+            "costs_spirits": 2,
+            "has_spirits": 4,
+            "has_fire": 1
+        },
+        "name": "Healskraken",
+        "description": "a creature that combines healing abilities with high health and air defenses Its cost is higher in spirits, but it's worth it if you want to summon a creature that can last a long time and withstand sudden enemy attacks It's a waterbased creature, which fits with the healingregeneration theme The \"kraken\" part of the name suggests its sizestrength"
+    },
+    {
+        "_original": {
+            "name": "Faeowl",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Faeowl",
+        "description": "A small, cheap creature that has only one power and health But it's able to regenerate itself, so it's quite a pain in the neck for its foes Its final name is a combo of \"fae\" short for fairy and \"owl\", a reference to its ability and nocturnal hunting"
+    },
+    {
+        "_original": {
+            "name": "Thornowl",
+            "power": 3,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Thornowl",
+        "description": "The name is fitting because of the card's spines and regenerative ability Owls are also known for their regeneration powers in many cultures, and the name also suggests the animal's natural defensive mechanisms"
+    },
+    {
+        "_original": {
+            "name": "Fawnix",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 5,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Fawnix",
+        "description": "A name combining fawn and phoenix The card's low power and high spirit cost suggest youth and innocence, while the regenerative skill suggests rebirth and growth The name also evokes images of beauty and grace combined with the mythical power of the phoenix"
+    },
+    {
+        "_original": {
+            "name": "Troglodon",
+            "power": 3,
+            "health": 3,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 1
+        },
+        "name": "Troglodon",
+        "description": "A name based on the \"Troglo\" prefix, meaning \"cave dweller,\" and \"don\" for \"tooth,\" suggesting the animal's attack power The skill set including regeneration fits with the idea of an animal that can survive and thrive in harsh underground environments"
+    },
+    {
+        "_original": {
+            "name": "Shellfire",
+            "power": 9,
+            "health": 7,
+            "costs_fire": 3,
+            "skills": [
+                "Soaring",
+                "Regenerate",
+                "Shield",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 5
+        },
+        "name": "Shellfire",
+        "description": "A name that combines \"shell\" for the high health and shielding abilities and \"fire\" for the card's high power and fire costs The skill set, including instant death and regeneration, suggests a powerful but vulnerable animal, making the name \"Shellfire\" fitting"
+    },
+    {
+        "_original": {
+            "name": "Thornroot",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 7,
+            "skills": [
+                "Spines",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Thornroot",
+        "description": "spiky, uses Regenerate skill, expensive fire cost"
+    },
+    {
+        "_original": {
+            "name": "Skyjinn",
+            "power": 9,
+            "health": 9,
+            "costs_fire": 0,
+            "skills": [
+                "Soaring",
+                "Airdefense",
+                "LuckyStrike",
+                "Regenerate",
+                "Shield"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 6,
+            "has_fire": 5
+        },
+        "name": "Skyjinn",
+        "description": "powerful, expensive, has both Spirits and Fire, uses a combination of many different skills"
+    },
+    {
+        "_original": {
+            "name": "Shellspike",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Packrat",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Shellspike",
+        "description": "uses Packrat skill, has no elements, low powerheath, and high regeneration"
+    },
+    {
+        "_original": {
+            "name": "Necropard",
+            "power": 7,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "InstantDeath",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Necropard",
+        "description": "Name implies instant death skill, and the card's strength and quickness \"Necro\" relates to death and \"pard\" to the leopardlike agility and speed"
+    },
+    {
+        "_original": {
+            "name": "Fortunant",
+            "power": 2,
+            "health": 10,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "LuckyStrike"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Fortunant",
+        "description": "Name alludes to the card's lucky strike skill, with the \"fortuna\" prefix and suggests a creature with good fortune Its high health and moderate power could reflect its ability to survive or even turn the tide of battle"
+    },
+    {
+        "_original": {
+            "name": "Angelise",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 1
+        },
+        "name": "Angelise",
+        "description": "mostly spirit attribute, regenerates health, fantastical name"
+    },
+    {
+        "_original": {
+            "name": "Forturtle",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Forturtle",
+        "description": "high health, costeffective low fire cost, direction to \"fortify\" oneself"
+    },
+    {
+        "_original": {
+            "name": "Flamegator",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Flamegator",
+        "description": "A fiery creature with high health and a special ability to regenerate The card has moderate power level and average costs but its strong health pool and regeneration skill makes this card a tough nut to crack"
+    },
+    {
+        "_original": {
+            "name": "Mysticviper",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate",
+                "Airdefense",
+                "Packrat",
+                "LuckyStrike",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 2
+        },
+        "name": "Mysticviper",
+        "description": "A card with decent power and health that has a lot of skills to offer  Regenerate, Air Defense, Packrat, Lucky Strike, and Soaring The card is highly spirited and has both fire and water elements in it The name fits the card's abilities and nature, signifying that it could slither its way in a pack, escape danger and strike strong"
+    },
+    {
+        "_original": {
+            "name": "Naiadragon",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 4,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Naiadragon",
+        "description": "Featuring a lowcost card with a tiny attack Despite that, Naiadragon can regenerate quite well It's a purely water card, with no fire elements and no power, but it still offers something that may be useful under certain circumstances"
+    },
+    {
+        "_original": {
+            "name": "Blinkkatze",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Blinkkatze",
+        "description": "This card mainly focuses on spirits and has nothing to do with fire It has a moderate number of spirit elements on it, moderate power, and decent health and regeneration abilities It also has a cool name that signifies its agility and speed, and mystical nature"
+    },
+    {
+        "_original": {
+            "name": "Spiketiger",
+            "power": 3,
+            "health": 5,
+            "costs_fire": 3,
+            "skills": [
+                "Regenerate",
+                "LuckyStrike"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Spiketiger",
+        "description": "powerful, high health, costs a lot of fire, regenerative, lucky"
+    },
+    {
+        "_original": {
+            "name": "FortuneCat",
+            "power": 8,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "LuckyStrike",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "FortuneCat",
+        "description": "This card has a high power and health, and some valuable skills too, making it a lucky find for any player Also, its frequent use might bring good fortune, making it a fitting name"
+    },
+    {
+        "_original": {
+            "name": "Flammeleon",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 6,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Flammeleon",
+        "description": "This card has an expensive cost in fire and no spirits, but it has the ability to heal itself The name \"Flammeleon\" is a play on Chameleon  Flame Chameleons change colors, and this card heals itself while also costing a high amount of fire"
+    },
+    {
+        "_original": {
+            "name": "Arcanfenix",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 4,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Arcanfenix",
+        "description": "This card has a small amount of power and health, as well as a good cost in fire Its skills make it a tricky adversary, though The name \"Arcanfenix\" is a combination of Arcane and Phoenix A Phoenix is a mythical bird that has been burned to ashes and reborn again, and this card has the ability to \"heal\" itself every turn"
+    },
+    {
+        "_original": {
+            "name": "Deatheye",
+            "power": 3,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Deatheye",
+        "description": "This card has a decent amount of power and health, as well as some helpful skills Its instant death skill can be a game changer The name \"Deatheye\" is a nod to its instant death skill and it fits the destructive nature of the ability"
+    },
+    {
+        "_original": {
+            "name": "Regrowl",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Regrowl",
+        "description": "This card has some good potential in the game and has the ability to regenerate The name \"Regrowl\" is suggestive of both the regenerative ability and also the growling sound that some animals make when they are defending their territory"
+    },
+    {
+        "_original": {
+            "name": "Wildflower",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 5,
+            "skills": [
+                "LuckyStrike",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Wildflower",
+        "description": "This card has a relatively high cost fire which the name \"Wildflower\" is a perfect indicative Wildflowers are often found in wild areas and require fire to promote growth The name is also fitting for a card that has the ability to regenerate, tying the abilities to the cycle of growth and renewal"
+    },
+    {
+        "_original": {
+            "name": "Staghorn",
+            "power": 10,
+            "health": 9,
+            "costs_fire": 1,
+            "skills": [
+                "Shield",
+                "Soaring",
+                "Regenerate",
+                "Fertility",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 5
+        },
+        "name": "Staghorn",
+        "description": "Staghorn has high power, health, fire, and spirits The name \"Staghorn\" sounds strong and invokes the image of a large, imposing animal It is also reflective of the strength of the card and its \"horn\" like attributes such as spines and shielding"
+    },
+    {
+        "_original": {
+            "name": "Glowling",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 4,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Glowling",
+        "description": "related to spirits, cheap cost, regeneration skill"
+    },
+    {
+        "_original": {
+            "name": "Skysaur",
+            "power": 8,
+            "health": 8,
+            "costs_fire": 0,
+            "skills": [
+                "Fertility",
+                "Underdog",
+                "Soaring",
+                "Regenerate"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 3,
+            "has_fire": 3
+        },
+        "name": "Skysaur",
+        "description": "expensive, related to fire and air attributes, fertility and regeneration skills"
+    },
+    {
+        "_original": {
+            "name": "Greenboar",
+            "power": 5,
+            "health": 5,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Greenboar",
+        "description": "good balance, regeneration skill"
+    },
+    {
+        "_original": {
+            "name": "Celephante",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 10,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Celephante",
+        "description": "related to spirit attribute, expensive cost, regeneration skill"
+    },
+    {
+        "_original": {
+            "name": "Shimmerelk",
+            "power": 7,
+            "health": 10,
+            "costs_fire": 1,
+            "skills": [
+                "Packrat",
+                "Shield",
+                "Regenerate",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 5
+        },
+        "name": "Shimmerelk",
+        "description": "related to the skill Fertility, highly spirited, quite balanced in terms of powerhealth, has some fire attack"
+    },
+    {
+        "_original": {
+            "name": "Ignisbat",
+            "power": 3,
+            "health": 3,
+            "costs_fire": 3,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Ignisbat",
+        "description": "has fire, high costsfire, has no spirits, low powerhealth, and only one skill Regenerate"
+    },
+    {
+        "_original": {
+            "name": "Spectrail",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 7,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Spectrail",
+        "description": "related to the high hasspirits, has no fire, low powerhealth, and Regenerate skill healing"
+    },
+    {
+        "_original": {
+            "name": "Armourrat",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Armourrat",
+        "description": "related to the Regenerate skill, has no spirits, fairly balanced powerhealth, has fire attack, and is very cheap"
+    },
+    {
+        "_original": {
+            "name": "Wispwolf",
+            "power": 5,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate",
+                "Packrat",
+                "Airdefense"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Wispwolf",
+        "description": "low health, moderate power, no fire or spirits, but has the ability to regenerate and the packrat mentality, as well as airdefense mechanism"
+    },
+    {
+        "_original": {
+            "name": "Sunray",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 4,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Sunray",
+        "description": "low powerhealth, very expensive, fire card only, nonskilled, but regenerates"
+    },
+    {
+        "_original": {
+            "name": "Wingedpike",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Spines",
+                "Soaring",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Wingedpike",
+        "description": "low health, spines, air skills"
+    },
+    {
+        "_original": {
+            "name": "Lunafox",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 10,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Lunafox",
+        "description": "very high spirits, no fire, regenerative skill"
+    },
+    {
+        "_original": {
+            "name": "Sunmouse",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 3,
+            "skills": [
+                "LuckyStrike",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Sunmouse",
+        "description": "a small animal with a lucky strike, but dependent on the sun's fire and low health"
+    },
+    {
+        "_original": {
+            "name": "Embersnail",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 5,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Embersnail",
+        "description": "an animal that thrives in the hotter climates, has spirits, a lowcost fire, and regenerates itself"
+    },
+    {
+        "_original": {
+            "name": "Thornskunk",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 1
+        },
+        "name": "Thornskunk",
+        "description": "an animal with thorns and a strong regenerative ability, fits with the power and strength of the card"
+    },
+    {
+        "_original": {
+            "name": "Skygaze",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 4
+        },
+        "name": "Skygaze",
+        "description": "related to \"Soaring\" skill, and high fire cost , implying a creature that is hard to catch, possibly elusive, or difficult to see, yet with Regenerate skill it can heal when it becomes visible"
+    },
+    {
+        "_original": {
+            "name": "Luckijinx",
+            "power": 0,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Underdog",
+                "LuckyStrike"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Luckijinx",
+        "description": "related to \"LuckyStrike\" and \"Underdog\" skills, cost  Fire suggests a small, agile, and jittery creature relying on luck and cunning rather than brute force to win battles"
+    },
+    {
+        "_original": {
+            "name": "Steelshell",
+            "power": 7,
+            "health": 3,
+            "costs_fire": 3,
+            "skills": [
+                "Shield",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 1
+        },
+        "name": "Steelshell",
+        "description": "related to Shield and Regenerate skills, high Power and moderate Health, high Fire cost suggests an armored creature that can withstand hard hits and regenerate damaged parts"
+    },
+    {
+        "_original": {
+            "name": "Redfish",
+            "power": 3,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Redfish",
+        "description": "A small but powerful creature with regenerative abilities, hence the name Redfish"
+    },
+    {
+        "_original": {
+            "name": "Embermite",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 7,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Embermite",
+        "description": "A small creature with regenerative abilities that keeps on burning, hence the name Embermite"
+    },
+    {
+        "_original": {
+            "name": "FlamePhoenix",
+            "power": 1,
+            "health": 4,
+            "costs_fire": 0,
+            "skills": [
+                "Underdog",
+                "Soaring",
+                "InstantDeath",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "FlamePhoenix",
+        "description": "The card has a balanced power and health with a unique set of skills The name references the card's Regenerate skill and Phoenix, an animal known for rebirth"
+    },
+    {
+        "_original": {
+            "name": "Dreamwhisp",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 3,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Dreamwhisp",
+        "description": "The card has low costsfire and costsspirits values and a decent power and health The name references the card's skill Regenerate and the creature's ethereal nature, hence Whisp"
+    },
+    {
+        "_original": {
+            "name": "PhoenixDive",
+            "power": 6,
+            "health": 9,
+            "costs_fire": 2,
+            "skills": [
+                "Shield",
+                "Regenerate",
+                "Soaring",
+                "Underdog",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 5
+        },
+        "name": "PhoenixDive",
+        "description": "The card has high power and health, with balanced costs of spirits and fire The name reflects its ability to soar into battle, skill to protect itself with the shield and regenerate The fertility skill refers to the mythical nature of the Phoenix and its ability to renew"
+    },
+    {
+        "_original": {
+            "name": "Breezemite",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 2,
+            "skills": [
+                "Regenerate",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Breezemite",
+        "description": "The card has low power and health, with fire being its only attribute The name represents its speed and ability to quickly regenerate and soar into combat"
+    },
+    {
+        "_original": {
+            "name": "Golemancer",
+            "power": 10,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Golemancer",
+        "description": "The card has high power and low health, with low costs of fire The name highlights its strength and skill to regenerate, while suggesting the element of fire with the \"mancer\" suffix, which suggests mastery"
+    },
+    {
+        "_original": {
+            "name": "Shadowtail",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 3
+        },
+        "name": "Shadowtail",
+        "description": "The card has low power and health, with balanced costs of spirits and fire The name relates to its stealthy nature suggested by the \"shadow\" part, while the \"tail\" part relates to its ability to regenerate"
+    },
+    {
+        "_original": {
+            "name": "Spiritreeper",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate"
+            ],
+            "costs_spirits": 8,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Spiritreeper",
+        "description": "The card has low power and fire, with a high cost of spirits and low health The name relates to its ability to regenerate and its association with spirits, while also suggesting its somewhat creepy nature"
     }
 ]
