@@ -15,7 +15,9 @@ Checklist when adding a new skill:
   time such as before or after preparing a card.)
 - Does the skill need any new view animation that needs to be implemented and called?
 - Anything that needs to be saved in the game state (i.e., module `jason`)?
-- Create new blueprints with this skill and add them to the catalog.
+- Create new blueprints with this skill and add them to the catalog. (Use the
+  `fix_skill` variable in `gen_skills`. Generate an amount of blueprints with that skill
+  that is reasonable in the overall catalog, cf `blueprint_stats.ipynb`.)
 """
 from __future__ import annotations
 from typing import List, Optional, Type, Union, TYPE_CHECKING
