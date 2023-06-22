@@ -179,9 +179,9 @@ class FightVnC:
         self.grid.log()
 
         # Activate all cards line by line:
-        for line in [2, 1, 0]:
-            for card in (c for c in self.grid.lines[line] if c is not None):
-                if line == 0:
+        for linei in [2, 1, 0]:
+            for card in (c for c in self.grid.lines[linei] if c):
+                if linei == 0:
                     if not card.prepare():
                         continue  # Do not attack, if not prepared successfully
                 card.attack(self.grid.get_opposing_card(card))
@@ -191,6 +191,15 @@ class FightVnC:
 
         self.damagestate.add_to_history(self.round_num)
         self._check_for_end_of_fight()  # To check for deadlock
+
+        # Call post-round hook:
+        # (Will be called on all cards except the ones in the used deck.)
+        cards = [card for line in reversed(self.grid.lines) for card in line if card]
+        cards += (
+            self.decks.draw.cards + self.decks.hand.cards + self.decks.hamster.cards
+        )
+        for card in cards:
+            card.skills.call("post_round", card)
 
         self.grid.log()
         logging.debug("----- End of round %s -----", self.round_num)
@@ -209,7 +218,7 @@ class FightVnC:
 
         # Initialize all skills:
         for card in self.decks.draw.cards + self.decks.hamster.cards:
-            card.skills.call("pre_fight")
+            card.skills.call("pre_fight", card)
 
         # Draw the decks and show how the first cards get drawn:
         self.redraw_view()
