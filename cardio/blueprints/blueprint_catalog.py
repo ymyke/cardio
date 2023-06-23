@@ -103,7 +103,7 @@ class BlueprintCatalog:
     def add_blueprint(self, blueprint: Blueprint) -> None:
         def skillname_included(name: str) -> bool:
             skillnames = [
-                c.__name__ for c in skills.get_skilltypes(implemented_only=True)
+                c.__name__ for c in skills.get_skilltypes()
             ]
             skillnames.remove("Underdog")  # Because there's nice under* names
             return any(s.lower()[:5] in name.lower() for s in skillnames)

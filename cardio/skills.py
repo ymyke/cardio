@@ -57,7 +57,6 @@ class Skill:
     description: str
     potency: int  # [-10, 10], usually [0, 10]
     forwhom: ForWhom = ForWhom.BOTH
-    under_construction: bool = False
 
     def __post_init__(self) -> None:
         self.pre_fight(None)
@@ -85,9 +84,7 @@ SkillOrSkillType = Union[Skill, SkillType]
 ListOfSkillsOrSkillTypes = List[SkillOrSkillType]
 
 
-def get_skilltypes(implemented_only: bool = True) -> List[SkillType]:
-    if implemented_only:
-        return [s for s in Skill.__subclasses__() if not s.under_construction]
+def get_skilltypes() -> List[SkillType]:
     return Skill.__subclasses__()
 
 

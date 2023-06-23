@@ -132,7 +132,7 @@ def _gen_skills(ignore_levels: int = 0) -> list:
         9: 10,
         10: 5,
     }
-    available_skills = get_skilltypes(implemented_only=True)
+    available_skills = get_skilltypes()
     weights = [potency_to_weight[s.potency] for s in available_skills]
     sum_weights = sum(weights)
     probabilities = [w / sum_weights for w in weights]
