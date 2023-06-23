@@ -447,7 +447,7 @@ class Mixer(Skill):
     description: str = "When a card with Mixer is played, it swaps one random card from the player's hand with another one from the draw deck."
     potency: int = 0
     under_construction: bool = True
-    # FIXME humanonly
+    forwhom: ForWhom = ForWhom.HUMAN
 
 
 @dataclass
@@ -457,7 +457,7 @@ class Hamsterwheel(Skill):
     description: str = "When a card with Hamster Wheel is played, it swaps one random card from the player's hand with another one from the draw deck (same as Mixer). In addition, the player draws a hamster card."
     potency: int = 5
     under_construction: bool = True
-    # FIXME humanonly
+    forwhom: ForWhom = ForWhom.HUMAN
 
 
 # ----- Sanity checks -----
