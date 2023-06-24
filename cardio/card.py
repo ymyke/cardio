@@ -13,8 +13,9 @@ class Card:
 
     MAX_ATTR = 10  # Max value per attribute (power, health, ...)
     MAX_SKILLS = 6  # Max number of skills a card can have
-    # FIXME ^ These are not enforced yet. Should be. Not only in the initializer but
-    # whenever something changes to affect these values.
+    # FIXME ^ These are not enforced yet (only when new cards get generated), but maybe
+    # should be. Not only in the initializer but whenever something changes to affect
+    # these values. Thus, maybe switch to properties and enforce there?
 
     _fc: FightCard
 
