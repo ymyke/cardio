@@ -192,7 +192,6 @@ class FightCard(Card):
         # ----- Early special cases -----
 
         # Will the card die before it can attack due to an unlucky LuckyStrike?
-        # TODO This could be done in the skill in pre_round hook?
         if (
             sk.LuckyStrike in self.skills
             and not self.skills.get(sk.LuckyStrike).is_lucky()  # type: ignore
