@@ -221,12 +221,12 @@ class FightCard(Card):
 
         # ----- Opposing card dies instantly -----
 
-        target_dies_instanly = attacker_touches_target and (
+        target_dies_instantly = attacker_touches_target and (
             sk.InstantDeath in self.skills or sk.LuckyStrike in self.skills
             # Note that at this point LuckyStrike is guaranteed to be lucky (or not on
             # the card in the first place).
         )
-        if target_dies_instanly:
+        if target_dies_instantly:
             target.die()
             logging.debug("%s dies from InstantDeath or LuckyStrike", target.name)
             return
