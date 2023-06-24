@@ -39,10 +39,8 @@ Refer to the documentation with each class or module for details.
   at the start and scrapped at the end of a fight.
 - **Grid:** Where cards are placed during a fight. No grid outside of fights.
 - **Gems:** Are created when the human player inflicts surplus damage on the computer
-  player. Can be used in certain locations (maybe to buy cards, skills, or items?).
+  player. Can be used in certain situations and locations.
 - **Agent:** The human player or computer player.
-  - FIXME Is there still a need for the term agent? Check all occurences.
-  - FIXME Maybe just player and computer? (Currently, it's mostly human vs computer)
 - **Opponent:** In a fight, the opposing card to a card.
 - **Damage:** The damage an agent has suffered. An agent loses 1 life when the damage
   reaches a certain threshold.
@@ -54,6 +52,7 @@ Refer to the documentation with each class or module for details.
   The potency is used to determine the cost of a card/skill in the shop or at the start
   of a run, the probability of a card/skill to be drawn in a lottery, and the
   difficulty/value of a card/skill in a fight.
+
 
 # Cards vs Blueprints vs FightCards
 
@@ -68,8 +67,8 @@ Refer to the documentation with each class or module for details.
   - Not all cards are derived from blueprints, e.g., when two cards get merged in a
     location.
 - Card [1] <-> [1-n] FightCard. -- During a fight and for all cards in the human's deck.
-- Blueprints must never be modified, they are immutable. Blueprints should only modified
-  outside the game by developers of the game.
+- Blueprints must never be modified, they are immutable. Blueprints should only get
+  modified outside the game by developers of the game.
 - Cards can be modified, e.g., in locations such as the upgrade locations. Modifications
   on cards are permanent.
 - FightCards are modified during a fight, e.g., when they take damage. Those
@@ -86,12 +85,11 @@ There are the following broad "buckets" of cards:
 3. Main deck: The ones a player actually starts a run with.
 4. (The ones in different decks during a fight. -- The FightCards.)
 
+
 ## Example run
 
 - I start the run with: ["Church Mouse", "Weasel", "Lynx", "Porcupine"]
 - I visit a location that gives me a new card: Bison/3/5/TRAMPLE
-  - Phil I: This card was selected from bucket 1.
-  - Phil II: This card was randomly generated.
 - I visit a location and boost my Porcupine to Porcupine/1/8/AIRDEFENSE
 - I visit a location and lose my Weasel.
 - I have a fight, which doesn't change my cards.
