@@ -168,15 +168,11 @@ class FightCard(Card):
             logging.debug("%s would attack but has 0 power, so doesn't", self.name)
             return
 
-        # FIXME Log all cases
-        # logging.debug(
-        #     "%s:%s%s attacks %s %s",
-        #     attacking_agent,
-        #     attacker.name,
-        #     "".join(s.symbol for s in attacker.skills),
-        #     target.name,
-        #     "".join(s.symbol for s in target.skills),
-        # )  # FIXME Add some `name_with_skills` or `xname` method to Card?
+        # ----- Log -----
+
+        a_str = f"{attacker_player.upper()[0]}:{self.xname()}"
+        t_str = f"{target_player.upper()[0]}:{target.xname() if target else '-'}"
+        logging.debug("%s attacks %s", a_str, t_str)
 
         # ----- Activate & prepare -----
 

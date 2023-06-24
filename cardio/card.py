@@ -53,11 +53,15 @@ class Card:
             # much of either to use (unless specified algorithmically).)
         )
 
-    def __str__(self) -> str:
+    def xname(self) -> str:
         skillstr = "".join(s.symbol for s in self.skills)
-        s = f"{self.name} {skillstr} {self.power}p {self.health}h\n"
+        skillstr += " " if skillstr else ""
+        return f"{self.name} {skillstr}{self.power}p {self.health}h"
+
+    def __str__(self) -> str:
         coststr = "🔥" * self.costs_fire + "👻" * self.costs_spirits
         hasstr = "🔥" * self.has_fire + "👻" * self.has_spirits
+        s = self.xname() + "\n"
         s += f"costs: {coststr or '-'} has: {hasstr or '-'} "
         s += f"pot: {self.potency('human')}/{self.potency('computer')}"
         return s
