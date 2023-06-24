@@ -254,8 +254,11 @@ class Shield(Skill):
 class Underdog(Skill):
     name: str = "Underdog"
     symbol: str = "🐩"
-    description: str = "A card with Underdog gains additional strength when opposed by a card with higher power."
-    potency: int = 4
+    description: str = "A card with Underdog gains +1 power when opposed by a card with higher power. A card with power 0 will also gain 1 power and start attacking when it has Underdog."
+    potency: int = 5
+    # (QQ: Underdog (and maybe some other skills) could also be implemented by
+    # implementing a power property on FightCard that returns the power after applying
+    # all skill-related modifiers.)
 
 
 @dataclass
