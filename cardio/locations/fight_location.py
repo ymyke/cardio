@@ -22,7 +22,7 @@ class FightView(BaseLocationView, Protocol):
         ...
 
     def _has_human_won(self) -> bool:
-        # FIXME Make this method non-private
+        # TODO Make this method non-private
         ...
 
 

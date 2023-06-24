@@ -150,7 +150,6 @@ def show_move():
 
 def flash_card(screen):
     # Flashing the border:
-    # FIXME Try also w/ different colors and/or stars...
     highlight = True
     for i in range(10):
         xx = render_card_in_grid(screen, None, GridPos(3, 3), highlight=highlight)
@@ -250,21 +249,6 @@ def moving_sprite():
 
 
 class dCard:
-    # FIXME: Could/should this rather be a mixin for the cards? -- Then, a card could
-    # call its own get_attacked or activate methods when necessary.
-
-    # FIXME The card could find out by itself where it is and how to display itself
-    # appropriately. depening on whether it is in a deck (and which one) or in the grid
-    # or...
-    # Same for the grid, which would also be able to display empty slots.
-    # Cards could have animations for when they change from one state/place to another.
-    # Under such circumstances, it would make all the more sense to model decks not as
-    # decks but as states within cards.
-
-    # empty or not?
-    # highlight?
-    # offsets?
-
     def __init__(
         self,
         screen: Screen,
@@ -328,13 +312,3 @@ while get_keycode(screen) != ord("q"):
 
 
 screen.close()
-
-
-# FIXME:
-# - Can I build nice classes for VCard, VDeck, VDashboard, ...? (V = visual?)
-# - How to integrate this new code into the cardio code?
-# - Can I activate cards by moving them towards opponent and back?
-# - Can I encapsulate the code better?
-# - Can I remove health by blinking it first? Or just blink to whole line?
-#       💓💓💓💓💓+7
-# - Mark empty slots simply with + in the edges or so. Use ExtendedBox for that.

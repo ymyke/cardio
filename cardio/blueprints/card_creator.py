@@ -1,10 +1,3 @@
-# QQ: Let's say we generate a larger list of cards with this generator. Then we add a
-# couple of new skills and incorporate new cards with that skill that fit in the
-# collection of existing cards in a statistically sound manner. How to do that? Would
-# have to define the new skills somehow and tweak their probabilities. I.e., make sure
-# the new skill is definitely existent in the card and roll the dice on all the other
-# attributes.
-
 import logging
 from typing import List, Optional, Tuple
 import random

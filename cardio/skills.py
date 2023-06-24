@@ -14,7 +14,9 @@ Checklist when adding a new skill:
     Weakness. 
 - Check for possible interdependencies with other skills and address those in the code
   accordingly.
-- Add tests for skill and all interdependencies.
+- Add tests for skill and all interdependencies. (For more complex skills, consider
+  adding tests that test the class directly rather rather than only via fights, as is
+  the default approach in test_skills.)
 - Does the skill add any kind of state to the card (or other cards or other parts of the
   world) that would need to be set or reset in any of the hooks (e.g., `pre_attack`
   etc.)?
@@ -169,11 +171,11 @@ class SkillSet:
 @dataclass
 class InstantDeath(Skill):
     name: str = "Instant Death"
+    # Alternatives: One-Shot🎯, Killer Instinct, Exterminator, Terminator
     symbol: str = "💀"
     description: str = "A card with Instant Death will instantly kill any card it damages. If the attack strikes the opposing agent directly, the skill has no effect, and the attack will deal damage according to its power. If a card has 0 power, it will not attack, and this skill will have no effect."
     potency: int = 7
-    # QQ: Alternative names: One-Shot🎯, Killer Instinct, Exterminator, Terminator
-    # FIXME What if the attack is blocked, e.g. by a shield? I think they can't be
+    # QQ: What if the attack is blocked, e.g. by a shield? I think they can't be
     # blocked. (Maybe the shield gets destroyed?)
 
 
@@ -212,11 +214,11 @@ class Spines(Skill):
 @dataclass
 class Airdefense(Skill):
     name: str = "Air Defense"
+    # QQ: Maybe REACHHIGH instead of AIRDEFENSE? With an arm symbol? Or
+    # LONGNECK/HEADHIGH/... and the girafe emoji? Or: Sky Shield? ☁️
     symbol: str = "🚀"
     description: str = "A card with Air Defense will block attacks from Soaring cards."
     potency: int = 1
-    # QQ: Maybe REACHHIGH instead of AIRDEFENSE? With an arm symbol? Or
-    # LONGNECK/HEADHIGH/... and the girafe emoji? Or: Sky Shield? ☁️
 
 
 @dataclass
@@ -225,7 +227,6 @@ class Shield(Skill):
     symbol: str = "🔰"  # 🛡️ (doesn't work in asciimatics)
     description: str = (
         "The Shield on a card absorbs 1 (the first) damage the card receives per turn."
-        # (OR: The first x damage per fight. OR: All damage of the first damage dealt.)
     )
     potency: int = 7
     # Keep track of which turn the shield was used in:

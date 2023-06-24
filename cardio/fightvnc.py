@@ -154,7 +154,7 @@ class FightVnC:
         self.redraw_view()
         logging.debug("Human plays %s in %s", pmgr.target_card.name, to_slot)
 
-    def handle_round_of_fight(self) -> None:  # QQ: Should be private?
+    def _handle_round_of_fight(self) -> None:
         logging.debug("----- Start of round %s -----", self.round_num)
         self.stateslogger.log_current_state()
         self.decks.log()
@@ -186,8 +186,8 @@ class FightVnC:
                         continue  # Do not attack, if not prepared successfully
                 card.attack(self.grid.get_opposing_card(card))
             self._check_for_end_of_fight()
-            # QQ: Here, we check end-of-fight conditions after each line. Should this
-            # rather be at the end of the fight? Or after each card?
+            # We check end-of-fight conditions after each line. (Design decision, could
+            # also be at the end of the fight or after each card.)
 
         self.damagestate.add_to_history(self.round_num)
         self._check_for_end_of_fight()  # To check for deadlock
@@ -231,7 +231,7 @@ class FightVnC:
         winner = None
         while True:
             try:
-                self.handle_round_of_fight()
+                self._handle_round_of_fight()
             except EndOfFightException as exc:
                 winner = exc.winner
                 break

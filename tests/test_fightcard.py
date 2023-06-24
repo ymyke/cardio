@@ -156,6 +156,3 @@ def test_heal_damage(common_setup):
     assert fc.health == 2
     fc.heal_damage(1)
     assert fc.health == 2  # Cannot heal above max health
-
-
-# TODO Add tests for prepare and attack?

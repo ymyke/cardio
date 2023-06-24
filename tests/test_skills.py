@@ -133,8 +133,6 @@ def test_fertility():
 
 
 def test_shield():
-    # FIXME Once we have skills that break the shield, add that as a test case.
-
     # With shield:
     # The human card will survive bc the shield absorbs 1 damage in each round.
     hc = Card("Human Card", 2, 4, 1, skills=[skills.Shield])
@@ -299,7 +297,3 @@ def test_weakness():
     do_the_fight([hc], cc)
     assert hc._fc.health == 2
     assert cc._fc.health == 0
-
-
-# TODO Add tests that directly test the more complex classes such as Shield and
-# LuckyStrike. -- Also, add this step to the checklist in skills.py

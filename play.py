@@ -60,9 +60,8 @@ while True:  # Forever start new runs:
         jason.save_all(humanplayer, run)
 
     # Run is over:
-    # FIXME Maybe do some other stuff here, like saying something to the user, showing
-    # run stats, somehow add run stats to player's history, etc.
     mapview.message("Game over! 🥴 For this run. Try another run. 🎮")
+    # FIXME Show run stats & somehow add run stats to player's history
     humanplayer.reset_lives()
     mapview.close()
     # Add deck back into collection:

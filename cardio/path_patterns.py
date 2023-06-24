@@ -1,5 +1,3 @@
-# LIXME: (2-3/3-2 etc. could also be mirrored rather than duplicated.)
-
 from typing import List, NamedTuple
 
 

@@ -8,11 +8,6 @@ if TYPE_CHECKING:
     from . import FightVnC, Grid, GridPos
 
 
-# QQ: What use cases for `vnc` are there in this class? And how could those be untangled
-# further? (E.g., information access (round number), pure view calls, controller calls,
-# things that should be controller calls(deck updates)?, ...?)
-
-
 class FightCard(Card):
     """A card that is currently fighting. It knows about the FightVnC and the grid. And
     it knows the original card itself, which will be left untouched. Thus, `FightCard`s
@@ -222,7 +217,8 @@ class FightCard(Card):
         # ----- Opposing card dies instantly -----
 
         target_dies_instantly = attacker_touches_target and (
-            sk.InstantDeath in self.skills or sk.LuckyStrike in self.skills
+            sk.InstantDeath in self.skills
+            or sk.LuckyStrike in self.skills
             # Note that at this point LuckyStrike is guaranteed to be lucky (or not on
             # the card in the first place).
         )
