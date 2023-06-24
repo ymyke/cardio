@@ -219,7 +219,7 @@ class FightCard(Card):
             sk.InstantDeath in self.skills
             or (
                 sk.LuckyStrike in self.skills
-                and self.skills.get(sk.LuckyStrike).is_lucky()  # type: ignore
+                and self.skills.get(sk.LuckyStrike).is_lucky()  # type: ignore # TODO unnecessary?
             )
         )
         if target_dies_instanly:
@@ -241,6 +241,9 @@ class FightCard(Card):
             attacker_to_lose += 1
 
         if sk.Underdog in self.skills and attacker_power < target.power:
+            # TODO Check at top to make 0-power card still attack (makes skill more
+            # powerful?) // move code to skill // use power property on card to
+            # implement this?
             logging.debug("%s: +1 P (Underdog)", self.name)
             attacker_power += 1
             # cf [1]
