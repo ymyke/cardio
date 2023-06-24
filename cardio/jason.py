@@ -1,3 +1,6 @@
+"""jason -- takes care of saving and loading data, serializing and deserializing
+objects, resetting save files, etc."""
+
 from datetime import datetime
 import json
 from pathlib import Path
