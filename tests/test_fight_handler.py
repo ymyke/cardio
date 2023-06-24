@@ -106,7 +106,7 @@ def test_prepare_but_slot_taken(mocker, tt_setup):
     human, grid, vnc, ff = tt_setup
     grid[0][0] = pc = ff("P", 1, 1, 1)
     grid[1][0] = cc = ff("C", 1, 1, 1)
-    spy = mocker.spy(vnc, "card_prepare")
+    spy = mocker.spy(vnc, "show_card_prepare")
     pc.prepare()
     assert grid[0][0] is pc
     assert grid[1][0] is cc
@@ -116,7 +116,7 @@ def test_prepare_but_slot_taken(mocker, tt_setup):
 def test_prepare_with_success(mocker, tt_setup):
     human, grid, vnc, ff = tt_setup
     grid[0][0] = pc = ff("P", 1, 1, 1)
-    spy = mocker.spy(vnc, "card_prepare")
+    spy = mocker.spy(vnc, "show_card_prepare")
     pc.prepare()
     assert grid[0][0] is None
     assert grid[1][0] is pc

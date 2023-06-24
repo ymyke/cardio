@@ -40,7 +40,7 @@ def test_game_hypo(mocker, tt_setup, slotlist):
     # See also https://hypothesis.works/articles/hypothesis-pytest-fixtures/
     human, grid, vnc, _ = tt_setup
     vnc = FightVnC(grid, None, human)
-    card_activate_spy = mocker.spy(vnc, "card_activate")
+    card_activate_spy = mocker.spy(vnc, "show_card_activate")
 
     before_nof_cards = len([c for c in slotlist if c is not None])
     pos_and_cards = [((i // 4, i % 4), c) for i, c in enumerate(slotlist)]
