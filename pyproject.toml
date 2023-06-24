@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "cardio"
 version = "0.1.0"
-description = ""
+description = "Cardio is an open-source, community-driven, roguelike, deck-building card game written in Python."
 authors = ["ymyke"]
 readme = "README.md"
 license = "GPL-3.0-or-later"
