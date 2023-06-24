@@ -312,7 +312,7 @@ class Weakness(Skill):
     name: str = "Weakness"
     symbol: str = "🤕"
     description: str = "A card with Weakness will deal 1 less damage when it attacks."
-    potency: int = -4
+    potency: int = -2
 
     def modify_damage(self, damage: int) -> int:
         return max(damage - 1, 0)
