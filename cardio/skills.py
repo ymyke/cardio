@@ -67,10 +67,6 @@ class Skill:
     potency: int  # [-10, 10], usually [0, 10]
     forwhom: ForWhom = ForWhom.BOTH
 
-    def __post_init__(self) -> None:
-        self.pre_fight(None)
-        # TODO ^ Not nice. Why not get rid of this and use post_init where necessary?
-
     def pre_fight(self, carrier: FightCard) -> None:
         """Called before the fight starts. Use this to set up a pristine state in skills
         that have state.

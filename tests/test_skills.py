@@ -167,13 +167,11 @@ def test_shield():
     assert vnc.grid[2][0] is None
 
 
-def test_shield_resets_at_start_of_fight(mocker):
-    def fake_post_init(self):
-        self._turns_used = [0, 1, 2]
-
-    post_init_orig = skills.Shield.__post_init__
-    skills.Shield.__post_init__ = fake_post_init
+def test_shield_resets_at_start_of_fight():
     hc = Card("Human Card", 2, 4, 1, skills=[skills.Shield])
+    # With the following setting, the cc should win. But since _turns_used will be reset
+    # to [] at the start of the fight, the hc will win:
+    hc.skills.get(skills.Shield)._turns_used = [0, 1, 2, 3, 4, 5]
     cc = Card("Computer Card", 2, 7, 1)
     vnc = do_the_fight([hc], cc)
     assert hc._fc.health == 1
@@ -181,7 +179,6 @@ def test_shield_resets_at_start_of_fight(mocker):
     assert vnc.grid[1][0] is None
     assert vnc.grid[2][0] is hc._fc
     assert hc._fc.skills.get(skills.Shield)._turns_used == [0, 1, 2]
-    skills.Shield.__post_init__ = post_init_orig
 
 
 def test_shield_deadlock():
