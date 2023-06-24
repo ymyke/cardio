@@ -21,6 +21,7 @@
 - Write a proper README here that introduces the project, plugs Inscryption, and
   explains the different parts of the project: code, issues, discussions, wiki, ...
 - Remove and regenerate Openai key.
+- Recreate all blueprints.
 
 # Architectural considerations
 
