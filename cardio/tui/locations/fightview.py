@@ -93,16 +93,15 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
     def card_lost_health(self, card: FightCard) -> None:
         self.redraw_view()
 
-    # QQ: Should the following all be called something with "show"?
-    def card_getting_attacked(self, target: FightCard, attacker: FightCard) -> None:
+    def show_card_getting_attacked(self, target: FightCard, attacker: FightCard) -> None:
         pos = target.get_grid_pos()
         shake_card(self.screen, target, pos, "h")
 
-    def card_activate(self, card: FightCard) -> None:
+    def show_card_activate(self, card: FightCard) -> None:
         pos = card.get_grid_pos()
         activate_card(self.screen, card, pos)
 
-    def card_prepare(self, card: FightCard) -> None:
+    def show_card_prepare(self, card: FightCard) -> None:
         pos = card.get_grid_pos()
         assert pos.line == 0, "Calling prepare on card that is not in prep line"
         clear_card(self.screen, pos)
@@ -111,7 +110,7 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
             self.screen, card, from_=GridPos(0, pos.slot), to=GridPos(1, pos.slot)
         )
 
-    def card_deactivate(self, pos: GridPos) -> None:
+    def show_card_deactivate(self, pos: GridPos) -> None:
         self.redraw_view()
 
     def fight_ends(self, msg: str) -> None:

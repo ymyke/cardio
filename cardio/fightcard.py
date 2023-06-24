@@ -143,7 +143,7 @@ class FightCard(Card):
             return False
 
         logging.debug("Preparing %s", self.name)
-        self.vnc.card_prepare(self)
+        self.vnc.show_card_prepare(self)
         self.grid.move_card(self, to_pos=to_pos)
         return True
 
@@ -176,7 +176,7 @@ class FightCard(Card):
 
         # ----- Activate & prepare -----
 
-        self.vnc.card_activate(self)
+        self.vnc.show_card_activate(self)
 
         self.skills.call("pre_attack", self)
 
@@ -208,7 +208,7 @@ class FightCard(Card):
         # ----- Otherwise: Attack the opposing card -----
 
         assert target is not None
-        self.vnc.card_getting_attacked(target, self)
+        self.vnc.show_card_getting_attacked(target, self)
 
         # ----- Opposing card dies instantly -----
 
@@ -255,4 +255,4 @@ class FightCard(Card):
 
         self.skills.call("post_attack", self)
 
-        self.vnc.card_deactivate(self)
+        self.vnc.show_card_deactivate(self)

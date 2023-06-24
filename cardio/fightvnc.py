@@ -44,16 +44,16 @@ class FightVnC:
     def card_lost_health(self, card: FightCard) -> None:
         pass
 
-    def card_getting_attacked(self, target: FightCard, attacker: FightCard) -> None:
+    def show_card_getting_attacked(self, target: FightCard, attacker: FightCard) -> None:
         pass
 
-    def card_activate(self, card: FightCard) -> None:
+    def show_card_activate(self, card: FightCard) -> None:
         pass
 
-    def card_prepare(self, card: FightCard) -> None:
+    def show_card_prepare(self, card: FightCard) -> None:
         pass
 
-    def card_deactivate(self, card: FightCard) -> None:
+    def show_card_deactivate(self, card: FightCard) -> None:
         """Note that the card might have died and been removed from the grid before this
         method gets called.
         """
