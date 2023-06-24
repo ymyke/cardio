@@ -21,10 +21,6 @@ class FightView(BaseLocationView, Protocol):
     def handle_fight(self) -> None:
         ...
 
-    def _has_human_won(self) -> bool:
-        # TODO Make this method non-private
-        ...
-
 
 class FightLocation(Location):
     marker = "FFF"
