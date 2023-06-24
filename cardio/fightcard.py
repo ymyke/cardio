@@ -237,7 +237,6 @@ class FightCard(Card):
 
         if sk.Spines in target.skills:
             logging.debug("%s -> %s: 1D (Spines)", target.name, self.name)
-            # attacker.lose_health(1)
             attacker_to_lose += 1
 
         if sk.Underdog in self.skills and attacker_power < target.power:
