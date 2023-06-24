@@ -2,8 +2,13 @@
 name = "cardio"
 version = "0.1.0"
 description = ""
-authors = ["ymyke <ymyke@users.noreply.github.com>"]
+authors = ["ymyke"]
 readme = "README.md"
+license = "GPL-3.0-or-later"
+repository = "https://github.com/ymyke/cardio"
+homepage = "https://github.com/ymyke/cardio"
+documentation = "https://ymyke.github.io/cardio"
+keywords = ["python", "game", "card", "roguelike", "deckbuilding", "asciimatics"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
