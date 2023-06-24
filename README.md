@@ -18,7 +18,7 @@ Cardio is a game that is meant to be played, but also to be modified and extende
 the core, Cardio is a true roguelike experience that is meant to be played again and
 again.
 
-> Therefore: Please contribute! ⭐
+> Therefore: Please contribute! ⭐  
 > All help is much appreciated.  
 > Cardio is a community project.  
 > See [Contributing](#contributing) below. 👈  
