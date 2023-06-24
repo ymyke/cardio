@@ -222,11 +222,9 @@ class FightCard(Card):
         # ----- Opposing card dies instantly -----
 
         target_dies_instanly = attacker_touches_target and (
-            sk.InstantDeath in self.skills
-            or (
-                sk.LuckyStrike in self.skills
-                and self.skills.get(sk.LuckyStrike).is_lucky()  # type: ignore # TODO unnecessary?
-            )
+            sk.InstantDeath in self.skills or sk.LuckyStrike in self.skills
+            # Note that at this point LuckyStrike is guaranteed to be lucky (or not on
+            # the card in the first place).
         )
         if target_dies_instanly:
             target.die()
