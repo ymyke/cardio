@@ -118,7 +118,7 @@ def _gen_skills(ignore_levels: int = 0) -> list:
     assert max(num_skills_weights.keys()) == Card.MAX_SKILLS
     num_skills = pick_from_weights(num_skills_weights, ignore_levels)
 
-    # Which skills:
+    # Which skills: (Negative potency will be mapped to the same scale.)
     potency_to_weight = {
         0: 100,
         1: 90,
@@ -133,7 +133,7 @@ def _gen_skills(ignore_levels: int = 0) -> list:
         10: 5,
     }
     available_skills = get_skilltypes()
-    weights = [potency_to_weight[s.potency] for s in available_skills]
+    weights = [potency_to_weight[abs(s.potency)] for s in available_skills]
     sum_weights = sum(weights)
     probabilities = [w / sum_weights for w in weights]
 
