@@ -17,6 +17,8 @@ Checklist when adding a new skill:
 - Add tests for skill and all interdependencies. (For more complex skills, consider
   adding tests that test the class directly rather rather than only via fights, as is
   the default approach in test_skills.)
+  - Also test the case where the card with the skill has no opposing card but acts
+    against / attacks the opposing agent directly.
 - Does the skill add any kind of state to the card (or other cards or other parts of the
   world) that would need to be set or reset in any of the hooks (e.g., `pre_attack`
   etc.)?

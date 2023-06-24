@@ -168,6 +168,12 @@ class FightCard(Card):
             logging.debug("%s would attack but has 0 power, so doesn't", self.name)
             return
 
+        # ----- Handle weakness -----
+        # (attacker_power is will be the damage dealt to the target at this point.)
+
+        if sk.Weakness in self.skills:
+            attacker_power = self.skills.get(sk.Weakness).modify_damage(attacker_power)  # type: ignore
+
         # ----- Log -----
 
         a_str = f"{attacker_player.upper()[0]}:{self.xname()}"
@@ -237,10 +243,7 @@ class FightCard(Card):
         # ----- Deal damage -----
 
         # Damage to target:
-        damage_to_target = attacker_power
-        if sk.Weakness in self.skills:
-            damage_to_target = self.skills.get(sk.Weakness).modify_damage(damage_to_target)  # type: ignore
-        target_damage_left = target.take_damage(damage_to_target)
+        target_damage_left = target.take_damage(attacker_power)
         if target_damage_left > 0:
             self.vnc.handle_agent_damage(target_player, target_damage_left)
 

@@ -294,3 +294,8 @@ def test_weakness():
     do_the_fight([hc], cc)
     assert hc._fc.health == 2
     assert cc._fc.health == 0
+
+def test_weakness_against_agent():
+    hc = Card("Human Card", 10, 2, 1, skills=[skills.Weakness])
+    vnc = do_the_fight([hc], None)
+    assert vnc.damagestate.diff == -9
