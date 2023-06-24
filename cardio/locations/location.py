@@ -17,7 +17,7 @@ class Location(ABC):
 
     def __init__(self, base_seed: str, rung: int, index: int, paths: List[int]) -> None:
         self.id = f"{self.marker}_{rung}_{index}"
-        self.seed = f"L{rung}_{index}_{base_seed}"  # FIXME Use the id here?
+        self.seed = f"L_{self.id}_{base_seed}"
         self.rung = rung  # Steps from start
         self.index = index  # Index position at current rung
         self.paths = paths  # Paths to next locations
