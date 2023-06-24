@@ -9,6 +9,7 @@
     later rounds of a fight. And that brings overall more and more cards into play as
     the rung increases.
 - Add more locations? -- esp. some where you can get new cards as a human.
+- Revamp Underdog
 
 
 # Todo
@@ -19,7 +20,7 @@
 - Turn all the notes here and in DOMAIN into a Github wiki.
 - Write a proper README here that introduces the project, plugs Inscryption, and
   explains the different parts of the project: code, issues, discussions, wiki, ...
-
+- Remove and regenerate Openai key.
 
 # Architectural considerations
 
