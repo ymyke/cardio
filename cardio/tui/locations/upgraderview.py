@@ -19,5 +19,5 @@ class TUIUpgraderView(TUIBaseMixin):
     def pick(self) -> Card:
         return self.cardpicker.pick()
 
-    def ask(self, card: Card) -> bool:  # FIXME Better call this confirm?
+    def confirm(self, card: Card) -> bool:
         return self.cardpicker.confirm(card)

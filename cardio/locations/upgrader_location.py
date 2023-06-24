@@ -19,7 +19,7 @@ class UpgraderView(BaseLocationView, Protocol):
     def show_upgrade(self, card: Card) -> None:
         ...
 
-    def ask(self, card: Card) -> bool:
+    def confirm(self, card: Card) -> bool:
         ...
 
 
@@ -51,7 +51,7 @@ class UpgraderLocation(Location):
                     break
 
                 _upgrade(card)
-                if not view.ask(card):
+                if not view.confirm(card):
                     break
 
         view.close()

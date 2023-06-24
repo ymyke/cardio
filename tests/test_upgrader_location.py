@@ -21,7 +21,7 @@ class FakeUpgraderView(UpgraderView):
     def show_upgrade(self, card: Card) -> None:
         ...
 
-    def ask(self, card: Card) -> bool:
+    def confirm(self, card: Card) -> bool:
         return True
 
     def close(self) -> None:
@@ -59,7 +59,7 @@ def test_powerupgraderlocation_multi(tt_setup):
     card = Card("X", 1, 1, 1, None)
     human.deck = Deck("main", [card])
     loc = PowerUpgraderMultiLocation("0", 0, 0, [])
-    # Together with the fake view above, which always confirms in the `ask` method, the
-    # following will upgrade the card so often that will get destroyed eventually:
+    # Together with the fake view above, which always confirms in the `confirm` method,
+    # the following will upgrade the card so often that will get destroyed eventually:
     loc.handle(view_class=FakeUpgraderView, humanplayer=human)
     assert human.deck.is_empty()
