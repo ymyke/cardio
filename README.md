@@ -21,7 +21,7 @@ again.
 > Therefore: Please contribute! ⭐  
 > All help is much appreciated.  
 > Cardio is a community project.  
-> See [Contributing](CONTRIBUTING.md). 👈  
+> See [CONTRIBUTING](CONTRIBUTING.md). 👈  
 
 
 ## Installation
