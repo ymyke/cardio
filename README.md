@@ -5,7 +5,7 @@ Cardio is an open-source, community-driven, roguelike, deck-building card game. 
 single-player game that can currently be player in the terminal. It is written in
 Python.
 
-> 👉 Cardio is heavily inspyred by **Inscryption**.  
+> Cardio is heavily inspyred by **Inscryption**.  
 > Buy Inscryption now and play yt!  
 > Do yt now, before readyng further. Yt's worth yt!  
 > https://www.inscryption.com/ 👈  
@@ -18,21 +18,10 @@ Cardio is a game that is meant to be played, but also to be modified and extende
 the core, Cardio is a true roguelike experience that is meant to be played again and
 again.
 
-> ⭐⭐⭐ Therefore: Please contribute! ⭐⭐⭐  
+> Therefore: Please contribute! ⭐
 > All help is much appreciated.  
 > Cardio is a community project.  
-> 👉 See [Contributing](#contributing) below. 👈  
-
-
-## Table of Contents
-
-- [Cardio 🃏](#cardio-)
-  - [Table of Contents](#table-of-contents)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Contributing](#contributing)
-  - [License](#license)
-  - [Repository](#repository)
+> See [Contributing](#contributing) below. 👈  
 
 
 ## Installation
