@@ -31951,5 +31951,4388 @@
         },
         "name": "Spiritreeper",
         "description": "The card has low power and fire, with a high cost of spirits and low health The name relates to its ability to regenerate and its association with spirits, while also suggesting its somewhat creepy nature"
+    },
+    {
+        "_original": {
+            "name": "Arcaphid",
+            "power": 4,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Arcaphid",
+        "description": "short for Arcane Aphid"
+    },
+    {
+        "_original": {
+            "name": "Skylion",
+            "power": 6,
+            "health": 6,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Soaring",
+                "Airdefense"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 5
+        },
+        "name": "Skylion",
+        "description": "This card is tough and powerful, with a high health and power rating that is indicated by its name The \"Sky\" refers to its \"Soaring\" skill and its ability to defend against air attacks, while \"Lion\" reflects its overall fierce and formidable nature"
+    },
+    {
+        "_original": {
+            "name": "Sunspider",
+            "power": 6,
+            "health": 6,
+            "costs_fire": 2,
+            "skills": [
+                "Fertility",
+                "Packrat",
+                "Weakness",
+                "Shield",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 5
+        },
+        "name": "Sunspider",
+        "description": "This card has high stats and skills that suggest a regenerating creature The high spirits attribute lends itself to the idea of a creature that thrives in the sun, hence \"sunspider\""
+    },
+    {
+        "_original": {
+            "name": "Thunderpup",
+            "power": 3,
+            "health": 2,
+            "costs_fire": 3,
+            "skills": [
+                "LuckyStrike",
+                "Weakness",
+                "Shield",
+                "Underdog"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 1
+        },
+        "name": "Thunderpup",
+        "description": "The low fire attribute and high spirits attribute suggest a creature that is energetic and quick, hence \"pup\" The skills fit in well with the idea of a creature that strikes when it has an advantage"
+    },
+    {
+        "_original": {
+            "name": "Scorpionyx",
+            "power": 8,
+            "health": 8,
+            "costs_fire": 0,
+            "skills": [
+                "Shield",
+                "Spines",
+                "Weakness",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 4
+        },
+        "name": "Scorpionyx",
+        "description": "The high stats and skills suggest a tough, defensive creature with a hard exoskeleton The name combines the idea of a scorpion with \"onyx\", a hard, black stone"
+    },
+    {
+        "_original": {
+            "name": "Whirlwing",
+            "power": 0,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "Airdefense",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Whirlwing",
+        "description": "related to the skill \"Airdefense\" and \"Soaring\", which suggests that the animal can fly also related to the higher value of fire consumption, implying it has a relation to fire Slightly weak in power, but strong in health, just like a whirlwind can be an annoyance but difficult to stop once it gains speed"
+    },
+    {
+        "_original": {
+            "name": "Sorcerat",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Soaring",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Sorcerat",
+        "description": "a magical rat, related to the skill \"Weakness\" also related to the high cost of fire consumption, meaning it's not easy to summon Low power and health, but can fly due to the \"Soaring\" skill"
+    },
+    {
+        "_original": {
+            "name": "Scalepup",
+            "power": 1,
+            "health": 4,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 2
+        },
+        "name": "Scalepup",
+        "description": "The pup has a scaly exterior fire attribute and its weak spot is still visible around its face weakness skill while it has decent power and health values  and  making it sturdy yet still easily taken down"
+    },
+    {
+        "_original": {
+            "name": "Stonepanth",
+            "power": 2,
+            "health": 9,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 2
+        },
+        "name": "Stonepanth",
+        "description": "The animal is a panther already existing card name but with stone skin  spirits that gives him a boost in health  His power  is still weak and his cost, while not requiring spirits, is not something he can be played on the first turn, when you only have  fire"
+    },
+    {
+        "_original": {
+            "name": "Toadshade",
+            "power": 2,
+            "health": 4,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness",
+                "Shield"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Toadshade",
+        "description": "A toad with poisonous attributes weakness skill but is only mildly defensive shield skill and has low power  and low health  Its high spirit value  implies its strength comes from its poison, which is why it also only costs  fire to play"
+    },
+    {
+        "_original": {
+            "name": "Dragonsoul",
+            "power": 7,
+            "health": 9,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Soaring",
+                "Packrat",
+                "Shield",
+                "Regenerate",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 8,
+            "has_fire": 6
+        },
+        "name": "Dragonsoul",
+        "description": "strong, tough, spirited, fire attribute"
+    },
+    {
+        "_original": {
+            "name": "Angelhare",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 1
+        },
+        "name": "Angelhare",
+        "description": "small, expensive, has Weakness skill which implies a vulnerability"
+    },
+    {
+        "_original": {
+            "name": "Voidfrog",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Voidfrog",
+        "description": "no elemental cost, has instant death skill which could imply phasing out of existence"
+    },
+    {
+        "_original": {
+            "name": "Batfox",
+            "power": 3,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Batfox",
+        "description": "small, weak, high spirit count, has Weakness skill which implies vulnerability"
+    },
+    {
+        "_original": {
+            "name": "Luckbeetle",
+            "power": 3,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "LuckyStrike",
+                "Weakness",
+                "Fertility"
+            ],
+            "costs_spirits": 8,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Luckbeetle",
+        "description": "high spirit cost, has skills that imply luck and fertility"
+    },
+    {
+        "_original": {
+            "name": "Magmabull",
+            "power": 6,
+            "health": 9,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "Shield",
+                "Weakness",
+                "Spines",
+                "InstantDeath",
+                "Underdog"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 7,
+            "has_fire": 6
+        },
+        "name": "Magmabull",
+        "description": "high powerhealth, fire and spirit cards required to summon, many skills"
+    },
+    {
+        "_original": {
+            "name": "Tailspike",
+            "power": 5,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "Underdog",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 6,
+            "has_fire": 2
+        },
+        "name": "Tailspike",
+        "description": "high power, low health, fire cards required to summon, spines"
+    },
+    {
+        "_original": {
+            "name": "Swampcat",
+            "power": 1,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "Packrat",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Swampcat",
+        "description": "high health, no firespirit costs, packrat"
+    },
+    {
+        "_original": {
+            "name": "Vampiress",
+            "power": 2,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "InstantDeath",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Vampiress",
+        "description": "moderate powerhealth, fire card required to summon, InstantDeath and Weakness skills"
+    },
+    {
+        "_original": {
+            "name": "RegalRhino",
+            "power": 10,
+            "health": 3,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 4
+        },
+        "name": "RegalRhino",
+        "description": "very high power, low health, moderate fire cost, Regenerate and Weakness skills"
+    },
+    {
+        "_original": {
+            "name": "Shadeviper",
+            "power": 3,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Soaring",
+                "InstantDeath",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Shadeviper",
+        "description": "This card has a high power value but a low health value, making it a dynamic and potentially lethal addition to any deck The addition of the InstantDeath skill, in particular, makes it a powerful card The name \"Shadeviper\" reflects its deadly abilities and its ability to navigate hidden paths"
+    },
+    {
+        "_original": {
+            "name": "Moonlion",
+            "power": 5,
+            "health": 5,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "Weakness",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 4
+        },
+        "name": "Moonlion",
+        "description": "With aboveaverage attribute values in power and health, as well as powerful skills like Regenerate and Fertility, Moonlion is a highvalue card and a strong addition to any deck The name \"Moonlion\" reflects its strength and royal presence, while also hinting at the card's link to lunar energies"
+    },
+    {
+        "_original": {
+            "name": "Harehound",
+            "power": 6,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Underdog"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Harehound",
+        "description": "Harehound is a fragile card, with low health and no skills to speak of However, its high power value and the Underdog skill make it a worthy addition to any deck The name \"Harehound\" combines two animal names, reflecting the potentially surprising strength of this small but determined creature"
+    },
+    {
+        "_original": {
+            "name": "Mistsquid",
+            "power": 6,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Mistsquid",
+        "description": "With a high power  and low health , this card has a sinister and fleeting presence Its two spirits point to its evasive moves and the weakness skill it possesses, making it a tricky opponent"
+    },
+    {
+        "_original": {
+            "name": "Celestiga",
+            "power": 9,
+            "health": 8,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Soaring",
+                "Underdog",
+                "InstantDeath",
+                "Fertility",
+                "Airdefense"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 7,
+            "has_fire": 6
+        },
+        "name": "Celestiga",
+        "description": "The high power  and health  suggest a majestic and powerful creature, while the long list of skills such as air defense and fertility inspire an image of something magical and divine The name Celestiga encompasses both these traits, suggesting a wondrous being with the power of the heavens"
+    },
+    {
+        "_original": {
+            "name": "Sunsing",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Sunsing",
+        "description": "The low power and health  and  respectively and the skill weakness suggest a weak and vulnerable creature However, the single fire and spirit point to a creature with some overwhelming magical potential The name Sunsing captures the idea of something small and radiant, with a singsong quality"
+    },
+    {
+        "_original": {
+            "name": "Bristlpelt",
+            "power": 7,
+            "health": 7,
+            "costs_fire": 1,
+            "skills": [
+                "Packrat",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 2
+        },
+        "name": "Bristlpelt",
+        "description": "With packrat and weakness skills, this creature is scrappy and can take a hit, as shown by the high power  and health  The lower cost of fire  and spirits  point to a more common woodland predator The name Bristlepelt captures this idea perfectly, suggesting a fierce and barky predator that's not to be messed with"
+    },
+    {
+        "_original": {
+            "name": "Infernnox",
+            "power": 2,
+            "health": 4,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Shield"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 6,
+            "has_fire": 1
+        },
+        "name": "Infernnox",
+        "description": "related to fire, high powerhealth, with shield and weakness skills"
+    },
+    {
+        "_original": {
+            "name": "Fenraptor",
+            "power": 9,
+            "health": 1,
+            "costs_fire": 3,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Fenraptor",
+        "description": "powerful and expensive, weakness skill"
+    },
+    {
+        "_original": {
+            "name": "Magesaur",
+            "power": 2,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "Shield",
+                "InstantDeath",
+                "LuckyStrike",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 3
+        },
+        "name": "Magesaur",
+        "description": "firesaurus with shield, instant death, weakness, and lucky strike skills"
+    },
+    {
+        "_original": {
+            "name": "Windhawk",
+            "power": 8,
+            "health": 4,
+            "costs_fire": 2,
+            "skills": [
+                "Soaring",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Windhawk",
+        "description": "powerful and airborne with weakness skill"
+    },
+    {
+        "_original": {
+            "name": "Shellmole",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Shellmole",
+        "description": "high health with weakness skill, but low power"
+    },
+    {
+        "_original": {
+            "name": "Windgull",
+            "power": 2,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Packrat",
+                "Weakness",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Windgull",
+        "description": "low fire costs, soaring skill, birdlike attributes"
+    },
+    {
+        "_original": {
+            "name": "Windragon",
+            "power": 5,
+            "health": 10,
+            "costs_fire": 0,
+            "skills": [
+                "InstantDeath",
+                "Shield",
+                "Weakness",
+                "Airdefense",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 5
+        },
+        "name": "Windragon",
+        "description": "powerful, high health, balanced elements, multiple skills related to air"
+    },
+    {
+        "_original": {
+            "name": "Firequill",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Spines",
+                "Weakness",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 3
+        },
+        "name": "Firequill",
+        "description": "The name suggests a creature with quills that are burning with fire Given it's quite weak low power and health, the idea of the firequills is that it's able to inflict damage on other cards and potentially kill them with Soaring skill, but not having much staying power"
+    },
+    {
+        "_original": {
+            "name": "Wingedillo",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Airdefense",
+                "Spines",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Wingedillo",
+        "description": "This card is relatively weak, but comes with three different skills that might protect it or deal damage on air attacks The name suggests this is an armadillo with wings  which is a little peculiar in and of itself The Wingedillo is a small and tactical creature that can indirectly affect flying creatures with its quills and air defense ability"
+    },
+    {
+        "_original": {
+            "name": "BlazeToad",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "BlazeToad",
+        "description": "The combination of higher power and fire cost along with the \"Weakness\" skill suggest a creature that's fiery and explosive, but not the sturdiest The \"toad\" part evokes a creature that's low to the ground thus not flying, yet still packs a punch with their elemental fire attack"
+    },
+    {
+        "_original": {
+            "name": "Celeston",
+            "power": 10,
+            "health": 6,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Shield",
+                "LuckyStrike",
+                "InstantDeath",
+                "Packrat"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 6,
+            "has_fire": 4
+        },
+        "name": "Celeston",
+        "description": "The high spirit cost indicating a magical creature and absurd number of skills imply a being that's truly extraordinary and otherworldly The \"Celest\" part of the name nods to their mystical nature, while the \"ton\" gives the name weight, hearkening back to its impressive stats"
+    },
+    {
+        "_original": {
+            "name": "Shimmerat",
+            "power": 5,
+            "health": 3,
+            "costs_fire": 4,
+            "skills": [
+                "Weakness",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Shimmerat",
+        "description": "The combination of average stats and a packrat skill suggest a creature that's sneakier and more agile than it initially appears \"Shimmer\" implies a shimmeringmiragelike ability that could align with their sneaky \"Weakness\" skill The \"rat\" part of the name points to them being a tricky scavenger"
+    },
+    {
+        "_original": {
+            "name": "Glimmerhare",
+            "power": 8,
+            "health": 4,
+            "costs_fire": 0,
+            "skills": [
+                "Underdog",
+                "Packrat",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 5
+        },
+        "name": "Glimmerhare",
+        "description": "very high power, low health, many spirits, many fire, skills include Underdog and Packrat"
+    },
+    {
+        "_original": {
+            "name": "Pixiestag",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Underdog",
+                "Weakness"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Pixiestag",
+        "description": "Magical and swift, capable of acting quickly and manipulating circumstances in its favor"
+    },
+    {
+        "_original": {
+            "name": "Hydrasaur",
+            "power": 8,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Hydrasaur",
+        "description": "Massive and powerful, able to wreak havoc on the battlefield"
+    },
+    {
+        "_original": {
+            "name": "Sandturtle",
+            "power": 3,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Packrat",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Sandturtle",
+        "description": "Slow moving and sturdy, able to withstand attacks and provide a solid defense"
+    },
+    {
+        "_original": {
+            "name": "Doomwing",
+            "power": 9,
+            "health": 6,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 3
+        },
+        "name": "Doomwing",
+        "description": "related to high power and weakness and instant death skill It's fiery attributes also contribute to the name"
+    },
+    {
+        "_original": {
+            "name": "Spikepup",
+            "power": 3,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Spikepup",
+        "description": "A small animal with spiky fur as a natural defense mechanism, low health to balance the power, and the skills Weakness and Underdog to indicate that it's not a strong fighter on its own, but can perform better against stronger opponents"
+    },
+    {
+        "_original": {
+            "name": "Flamrat",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 3,
+            "skills": [
+                "LuckyStrike",
+                "Regenerate",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 3
+        },
+        "name": "Flamrat",
+        "description": "This card costs a lot of fire mana, has low power but decent health, and the skills Lucky Strike, Regenerate, and Weakness The name combines fire and rat to represent its attributes while also hinting at its ability to regenerate The Lucky Strike skill is associated with gambling, and the weakness, that something can break apart more easily than usual"
+    },
+    {
+        "_original": {
+            "name": "Inferpup",
+            "power": 5,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Inferpup",
+        "description": "relates to its fire element and animallike nature, small but fierce"
+    },
+    {
+        "_original": {
+            "name": "Skysting",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Skysting",
+        "description": "relates to its fire and air elements, low power but agile"
+    },
+    {
+        "_original": {
+            "name": "Thunderoar",
+            "power": 4,
+            "health": 6,
+            "costs_fire": 0,
+            "skills": [
+                "Airdefense",
+                "Shield",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 6,
+            "has_fire": 4
+        },
+        "name": "Thunderoar",
+        "description": "relates to its high power and spirits, emphasis on air and thunder elements"
+    },
+    {
+        "_original": {
+            "name": "Serpentdove",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "InstantDeath",
+                "Soaring",
+                "Fertility",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Serpentdove",
+        "description": "relates to its nonoffensive skills InstantDeath and Fertility, and peaceful nature"
+    },
+    {
+        "_original": {
+            "name": "Infernodonkey",
+            "power": 8,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "InstantDeath",
+                "Shield",
+                "Fertility",
+                "Regenerate",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 6,
+            "has_fire": 5
+        },
+        "name": "Infernodonkey",
+        "description": "relates to the high fire cost, high powerhealth, and instadeath skill"
+    },
+    {
+        "_original": {
+            "name": "Hummingbird",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Hummingbird",
+        "description": "relates to the low powerhealth, low spiritfire, and weakness skill"
+    },
+    {
+        "_original": {
+            "name": "Phoenixlynx",
+            "power": 3,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Underdog",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 3
+        },
+        "name": "Phoenixlynx",
+        "description": "relates to the high fire and underdog skill, medium powerhealth"
+    },
+    {
+        "_original": {
+            "name": "Dustsprite",
+            "power": 0,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Dustsprite",
+        "description": "This card represents a creature that has low power and moderate health and that doesn't require either spirits or fire to play The name \"Dustsprite\" suggests a creature that is small and quick, sneaking in and out of dark corners The weakness skill adds to this creature's ninjalike abilities, allowing it to sneak past stronger enemies despite its lower power"
+    },
+    {
+        "_original": {
+            "name": "Thunderling",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 5,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Thunderling",
+        "description": "This card represents a creature that has moderate power and health and requires a lot of fire to play The name \"Thunderling\" denotes a small but powerful creature, one that can cause a lot of damage if properly harnessed Its skill of \"weakness\" can be seen as its vulnerability to being tamed or harnessed by its player"
+    },
+    {
+        "_original": {
+            "name": "Starbear",
+            "power": 1,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Starbear",
+        "description": "With a high health and no fire cost, the Starbear is resistant and powerful The name Starbear refers to a bear belonging to the stars, an animal honorable and mighty"
+    },
+    {
+        "_original": {
+            "name": "Frostshrew",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 5,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 0
+        },
+        "name": "Frostshrew",
+        "description": "The Frostshrew is a fragile but sneaky card, with a high spirit cost that gives access to a powerful Weakness skill The name reinforces the shrew's cold and frozen spirit, ready to gnaw through enemies' defenses and leave them vulnerable"
+    },
+    {
+        "_original": {
+            "name": "Rocling",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Soaring",
+                "Weakness"
+            ],
+            "costs_spirits": 3,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Rocling",
+        "description": "The Rocling is a bird card, fast, and agile, investing in spirit to be summonable The skills this card has are highflying Soaring and spellcasting Weakness The name is a combination between roc, a giant bird from legends, and ling, which indicates small sizes, for a fierce little bird"
+    },
+    {
+        "_original": {
+            "name": "Bloodtusk",
+            "power": 10,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Bloodtusk",
+        "description": "This card's high power, spirit, and fire cost means it's a highrisk, highreward card Bloodtusk refers both to the card's incredible power and to the razorsharp tusks used to deal deadly blows to its foes"
+    },
+    {
+        "_original": {
+            "name": "Fangreaper",
+            "power": 6,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Fangreaper",
+        "description": "a deadly, powerful creature with a high power and low health, which can also inflict the Weakness skill The name suggests its sharp teeth and its role as a predator"
+    },
+    {
+        "_original": {
+            "name": "Glimmersprite",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 3,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Glimmersprite",
+        "description": "a shiny, evasive creature that doesn't pack much punch but can evade attacks and inflict Weakness The name suggests its fleeting, otherworldly nature"
+    },
+    {
+        "_original": {
+            "name": "Titanox",
+            "power": 10,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Titanox",
+        "description": "a formidable creature with very high power and moderate health, which also inflicts Weakness The name suggests its large size and strength, while the ox ending gives it a reptilian touch"
+    },
+    {
+        "_original": {
+            "name": "Airsquid",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "Airdefense",
+                "Shield",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Airsquid",
+        "description": "The card has low spirit, but with air defense attribute and shield skill, it's protected from air attacks Fertility skill could represent the card's abilities to produce offspring once engaged with another card"
+    },
+    {
+        "_original": {
+            "name": "Jackalynx",
+            "power": 6,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Shield",
+                "Weakness",
+                "LuckyStrike"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Jackalynx",
+        "description": "With high power, low health, and lucky strike skill, suggested fantasy animal is a mix between a jackal and a lynx, cunning and fast, with a deadly blow"
+    },
+    {
+        "_original": {
+            "name": "Fennix",
+            "power": 2,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "LuckyStrike"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Fennix",
+        "description": "A blend of fennec fox and phoenix, with high health and weakness skill, which could represent the bird's regeneration ability, related to fire and fire energy in the game"
+    },
+    {
+        "_original": {
+            "name": "Krakenox",
+            "power": 9,
+            "health": 6,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Krakenox",
+        "description": "With the strongest power and health value, and weakness skill, Krakenox is a fierce opponent, with attributes and skills of both a giant Octopus and a Land Ox"
+    },
+    {
+        "_original": {
+            "name": "Earthtusk",
+            "power": 3,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Earthtusk",
+        "description": "This name relates to the card's overall physical attributes, with high health and moderate power, but low cost, making it similar to a heavily armored creature in a fantastical sense The name also hints at the possibility of a mammothlike appearance, which would fit the card's toughness"
+    },
+    {
+        "_original": {
+            "name": "Shadowmouse",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Shadowmouse",
+        "description": "The card's low stats and Weakness skill suggest something small, quick, and sneaky, like a mouse The \"Shadow\" in the name emphasizes the card's low health and plays up the idea that it's difficult to catch or keep track of"
+    },
+    {
+        "_original": {
+            "name": "Deathcrush",
+            "power": 8,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "InstantDeath",
+                "Weakness",
+                "Shield"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 4
+        },
+        "name": "Deathcrush",
+        "description": "The card's high power and Instant Death skill suggest something menacing and powerful The name sounds fierce and deadly, which actually fits the card's relatively low health  like a creature that's all offense but not much defense"
+    },
+    {
+        "_original": {
+            "name": "Shadowmite",
+            "power": 2,
+            "health": 4,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Underdog",
+                "Packrat",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 6,
+            "has_fire": 2
+        },
+        "name": "Shadowmite",
+        "description": "relates to the card's powerful skill \"InstantDeath\" and low attribute values, while the \"Packrat\" skill relates to the concept of hiding or sneaking around, as shadows do"
+    },
+    {
+        "_original": {
+            "name": "Crystalwolf",
+            "power": 7,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "Shield",
+                "Weakness",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 3
+        },
+        "name": "Crystalwolf",
+        "description": "\"Shield\" and \"Weakness\" or crystal relate to each other, while this card is very powerful and durable, fitting for a wolf"
+    },
+    {
+        "_original": {
+            "name": "Shadekiwi",
+            "power": 2,
+            "health": 6,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Shadekiwi",
+        "description": "a weak creature that blends into the background, just like kiwis, while also having the \"Weakness\" skill"
+    },
+    {
+        "_original": {
+            "name": "Spidersquirrel",
+            "power": 4,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Spidersquirrel",
+        "description": "this card's health is very low, and \"Weakness\" hints at vulnerability Additionally, this combination of creatures fits with the fantastical theme and could provide some fun imagery"
+    },
+    {
+        "_original": {
+            "name": "Packspike",
+            "power": 3,
+            "health": 4,
+            "costs_fire": 1,
+            "skills": [
+                "Packrat",
+                "Spines",
+                "InstantDeath",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Packspike",
+        "description": "this card has skills such as Packrat and Spines, and the name hints at the packrat's tendency to hoard objects and the porcupine's protective quills"
+    },
+    {
+        "_original": {
+            "name": "Dracowisp",
+            "power": 7,
+            "health": 9,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Regenerate",
+                "Airdefense",
+                "Shield"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 4
+        },
+        "name": "Dracowisp",
+        "description": "the card has high spirit and fire attributes, paired with skills like Airdefense and Shield The name combines aspects of dragons firebreathing, fierce and wisps evanescent, magical to reflect the card's balance between offense and defense"
+    },
+    {
+        "_original": {
+            "name": "Pyroshock",
+            "power": 9,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Pyroshock",
+        "description": "the card has high power and low health, with the Weakness skill The name reflects its explosive and powerful nature, while hinting at its vulnerability"
+    },
+    {
+        "_original": {
+            "name": "Skydra",
+            "power": 3,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Airdefense",
+                "Regenerate",
+                "Weakness",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 0
+        },
+        "name": "Skydra",
+        "description": "related to sky and air and having the skill airdefense, which fits well The card is pretty wellbalanced but has a weakness skill and instant death, these rare skills indicating a touch of danger"
+    },
+    {
+        "_original": {
+            "name": "Duskotter",
+            "power": 2,
+            "health": 5,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Duskotter",
+        "description": "related to darkness, fits well with high health but low power attributes and possessing weakness as a skill"
+    },
+    {
+        "_original": {
+            "name": "Redfox",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness",
+                "Airdefense",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Redfox",
+        "description": "low power, quite balanced, it comes at a price, but has packrat as a skill, which denotes cunning and resourcefulness"
+    },
+    {
+        "_original": {
+            "name": "Heliosaur",
+            "power": 6,
+            "health": 9,
+            "costs_fire": 0,
+            "skills": [
+                "LuckyStrike",
+                "Weakness",
+                "Fertility",
+                "Soaring",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 7,
+            "has_fire": 5
+        },
+        "name": "Heliosaur",
+        "description": "with all the fire, luckystrike and fertility skills, the name is quite fitting, emphasizing power and fire The card is quite balanced with a closetomax health stat"
+    },
+    {
+        "_original": {
+            "name": "Sparkshrew",
+            "power": 8,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Packrat",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Sparkshrew",
+        "description": "fast, light, highly spirited, packrat, weak"
+    },
+    {
+        "_original": {
+            "name": "Wispwhale",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Underdog",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Wispwhale",
+        "description": "small, calm, lowcost, skilled with underdog tactics"
+    },
+    {
+        "_original": {
+            "name": "Bubblebug",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Bubblebug",
+        "description": "small, fragile, low powerhealth, low cost, skilled with regeneration"
+    },
+    {
+        "_original": {
+            "name": "Armorowl",
+            "power": 1,
+            "health": 4,
+            "costs_fire": 3,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Armorowl",
+        "description": "This creature has high health and low attack power, which suggests that it can take a lot of damage without dying The weakness skill also adds to this The name Armorowl fits perfectly, as it suggests a creature that is heavily armored and good at defending itself"
+    },
+    {
+        "_original": {
+            "name": "Windgnat",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "Regenerate",
+                "Airdefense"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 3
+        },
+        "name": "Windgnat",
+        "description": "This creature has low health and attack power, but a high fire cost and the skills weakness, regenerate, and airdefense The name Windgnat fits perfectly because it suggests a creature that is small and fragile, but quick and nimble like a gnat The airdefense skill also fits the name well"
+    },
+    {
+        "_original": {
+            "name": "Honeymoth",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Shield",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Honeymoth",
+        "description": "weak but cheap with slight healing and defensive skills, represents a small but useful card"
+    },
+    {
+        "_original": {
+            "name": "Scarabean",
+            "power": 3,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "InstantDeath",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 2
+        },
+        "name": "Scarabean",
+        "description": "high health without fire cost, but with powerful deadly skills"
+    },
+    {
+        "_original": {
+            "name": "Fenniclaw",
+            "power": 5,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Fenniclaw",
+        "description": "low spirits, decent power, and weakens opponent's card on the field"
+    },
+    {
+        "_original": {
+            "name": "Starfang",
+            "power": 6,
+            "health": 8,
+            "costs_fire": 0,
+            "skills": [
+                "Underdog",
+                "Spines",
+                "Soaring",
+                "Shield",
+                "Weakness",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 7,
+            "has_fire": 6
+        },
+        "name": "Starfang",
+        "description": "powerful, high health, very spirited, with defensive and regenerative abilities, as well as spikes for attack"
+    },
+    {
+        "_original": {
+            "name": "Nightglide",
+            "power": 4,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Regenerate",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 3
+        },
+        "name": "Nightglide",
+        "description": "low cost, low power, but decent health and regeneration, with some spikes for defense"
+    },
+    {
+        "_original": {
+            "name": "Stormheart",
+            "power": 5,
+            "health": 7,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "Shield",
+                "Fertility",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 5
+        },
+        "name": "Stormheart",
+        "description": "balanced stats, good spiritfire attributes, with high flying and shield abilities, but also weaknesses that can be exploited"
+    },
+    {
+        "_original": {
+            "name": "Crystalhide",
+            "power": 6,
+            "health": 6,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 2
+        },
+        "name": "Crystalhide",
+        "description": "powerful, but low spiritfire, with regenerative abilities and some weaknesses to counteract its strength"
+    },
+    {
+        "_original": {
+            "name": "Flamepole",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 3,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Flamepole",
+        "description": "A mythical creature that has a fiery pole like structure and is relatively weak, but compensates with good health The weakness skill is added to this card"
+    },
+    {
+        "_original": {
+            "name": "Amphibeak",
+            "power": 5,
+            "health": 10,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness",
+                "Fertility",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 2
+        },
+        "name": "Amphibeak",
+        "description": "A large, strong amphibian bird that can soar through the air and has high power, health, and fire and spirit costs Fertility means this bird can multiply quickly"
+    },
+    {
+        "_original": {
+            "name": "Swiftmoth",
+            "power": 2,
+            "health": 6,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "LuckyStrike",
+                "InstantDeath",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Swiftmoth",
+        "description": "A lucky, but ruthless moth that has weak power and only moderate health, but LuckyStrike means there is a chance to instantly defeat the enemy card Has an instant death skill as well as a soaring ability"
+    },
+    {
+        "_original": {
+            "name": "Flametortoise",
+            "power": 1,
+            "health": 6,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Underdog"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Flametortoise",
+        "description": "A slowmoving, firebased tortoise with low power and high health This underdoglike card is great for soaking up enemy hits with the added underdog skill"
+    },
+    {
+        "_original": {
+            "name": "Galeocentus",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 3,
+            "has_spirits": 1,
+            "has_fire": 3
+        },
+        "name": "Galeocentus",
+        "description": "related to the attribute values of having high spirits and fire, but low cost to play Gale is a reference to wind, and centus is a reference to powerintensity, fitting for a card with a weakness skill"
+    },
+    {
+        "_original": {
+            "name": "Sylphsnake",
+            "power": 0,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "Airdefense"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 1
+        },
+        "name": "Sylphsnake",
+        "description": "emphasis on a low cost to play and air defense skill, while having spirit but only moderate firerelated stats The name sylph relates to windair, fitting for the air defense skill, and snake emphasizes the balanced but vulnerable nature of the card"
+    },
+    {
+        "_original": {
+            "name": "Axoloturtle",
+            "power": 5,
+            "health": 6,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Axoloturtle",
+        "description": "This card has decent firepower and health but a low cost and a weakness skill, making it balanced but vulnerable The name Axolotl relates to regeneration and healing, fitting for the Regenerate skill Turtle emphasizes the animal's high health while also suggesting its slow, steady nature "
+    },
+    {
+        "_original": {
+            "name": "Celestiger",
+            "power": 8,
+            "health": 10,
+            "costs_fire": 0,
+            "skills": [
+                "Packrat",
+                "Regenerate",
+                "Soaring",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 4
+        },
+        "name": "Celestiger",
+        "description": "a powerful and spiritual tigerlike creature that can withstand attacks and regenerate health, but also has weaknesses and can hoard things Packrat"
+    },
+    {
+        "_original": {
+            "name": "Lunarfox",
+            "power": 4,
+            "health": 10,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "Fertility",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 3
+        },
+        "name": "Lunarfox",
+        "description": "a foxlike creature with a focus on lunar power, weak against fire, has fertility power, and can hoard things Packrat"
+    },
+    {
+        "_original": {
+            "name": "Underpig",
+            "power": 3,
+            "health": 4,
+            "costs_fire": 1,
+            "skills": [
+                "Underdog",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Underpig",
+        "description": "a piglike creature that can persevere as an underdog, has a weakness to fire, but can weaken opponents Weakness"
+    },
+    {
+        "_original": {
+            "name": "Firepelt",
+            "power": 2,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 2
+        },
+        "name": "Firepelt",
+        "description": "This name plays on the card's attribute of fire costs and power, as well as its skill of Weakness It's a fantastical animal with a fiery and ferocious reputation"
+    },
+    {
+        "_original": {
+            "name": "Shadowmoth",
+            "power": 3,
+            "health": 4,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 4,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Shadowmoth",
+        "description": "The name plays on the card's cost in spirits, as well as its weakness skill A creature that lurks in the shadows and feeds on the weaknesses of others The name conveys a sense of a flying creature with an eerie presence that can sap the strength of others"
+    },
+    {
+        "_original": {
+            "name": "Bramoths",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Bramoths",
+        "description": "A combination of Bramble and Moth, Bramoths perfectly describe the beast's defense mechanisms and overall aesthetic with the thorny attribute Weakness"
+    },
+    {
+        "_original": {
+            "name": "Ferretfox",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 1
+        },
+        "name": "Ferretfox",
+        "description": "The agility of a Ferret and the cunning of a Fox make them a formidable foe on the field The added Weakness skill keeps their opponent incapacitated"
+    },
+    {
+        "_original": {
+            "name": "Direowl",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 1
+        },
+        "name": "Direowl",
+        "description": "Great vision and legendary hunting ability make these owls top predators of the sky Only tamed by the most experienced trainers, their Weakness ability can help turn the tide of a losing battle"
+    },
+    {
+        "_original": {
+            "name": "Phoenixclaw",
+            "power": 10,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "Soaring",
+                "Underdog",
+                "LuckyStrike",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 5
+        },
+        "name": "Phoenixclaw",
+        "description": "A Phoenix's regenerative powers comingled with the destructive force of a deadly attack equals the illfated Phoenixclaw Their Soaring skill makes them hard to pin down while LuckyStrike adds to the chaos they wreak thanks to their unmatched combination of strength and agility"
+    },
+    {
+        "_original": {
+            "name": "Ironfire",
+            "power": 8,
+            "health": 7,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness",
+                "InstantDeath",
+                "Underdog"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 4
+        },
+        "name": "Ironfire",
+        "description": "The skill InstantDeath hints at the destructive power of this Firebreathing rampager Its high power score and impressive health make it a force to be reckoned with on the battlefield"
+    },
+    {
+        "_original": {
+            "name": "Paladon",
+            "power": 6,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Shield",
+                "Weakness",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 2
+        },
+        "name": "Paladon",
+        "description": "This card's name suggests a knight or warrior creature, which fits with the Shield skill and related abilities, as well as the Packrat skill suggesting this creature is part of a larger pack or army"
+    },
+    {
+        "_original": {
+            "name": "Pyrostyx",
+            "power": 8,
+            "health": 4,
+            "costs_fire": 1,
+            "skills": [
+                "Airdefense",
+                "Packrat",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 5
+        },
+        "name": "Pyrostyx",
+        "description": "Combining elements of \"pyro\" fire and \"styx\" a river in Greek mythology associated with death, this card's name suggests a fiery, deadly creature, which fits with the high amount of fire attribute it possesses, as well as the Packrat skill hinting at a predatory nature"
+    },
+    {
+        "_original": {
+            "name": "Vexar",
+            "power": 6,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "LuckyStrike",
+                "Spines",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 3
+        },
+        "name": "Vexar",
+        "description": "This card's name suggests a creature that is both dangerous and unpredictable, which fits with the LuckyStrike skill as well as the Spines and Weakness skills, masking its true power behind a veiled exterior"
+    },
+    {
+        "_original": {
+            "name": "Mythrhino",
+            "power": 4,
+            "health": 5,
+            "costs_fire": 0,
+            "skills": [
+                "Underdog",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Mythrhino",
+        "description": "The card's high power and health make it a formidable creature, and its ability to weaken enemy cards with the Weakness skill makes it all the more deadly The name suggests a powerful and mythical creature that the opponent would be wise to fear"
+    },
+    {
+        "_original": {
+            "name": "Dormouse",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Dormouse",
+        "description": "This card's relatively weak power and health, as well as its skill that weakens enemy cards, make it seem harmless at first glance However, its low cost and ability to slip past enemy defenses with the Weakness skill makes it a useful card to have in your hand The name brings to mind a small, unassuming creature that can pack a punch when necessary"
+    },
+    {
+        "_original": {
+            "name": "Pixiefly",
+            "power": 3,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 0
+        },
+        "name": "Pixiefly",
+        "description": "The card's moderate power and health, as well as its ability to slightly weaken enemy cards, make it seem like a small but mighty creature The high number of spirits it has reflects its magical nature, and the name suggests a delicate yet powerful creature that can dart around the field"
+    },
+    {
+        "_original": {
+            "name": "Grimraven",
+            "power": 8,
+            "health": 8,
+            "costs_fire": 0,
+            "skills": [
+                "InstantDeath",
+                "Underdog",
+                "Weakness",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 4
+        },
+        "name": "Grimraven",
+        "description": "The card's very high power and health values, as well as its many skills including InstantDeath, make it a lethal weapon on the battlefield Its lack of fire cost is reflected in the name, which suggests a dark and ominous creature that can strike fear into the enemy"
+    },
+    {
+        "_original": {
+            "name": "Featherfox",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "LuckyStrike",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Featherfox",
+        "description": "this card has medium power and health with moderate fire cost, but high spirit cost The skills of Weakness, LuckyStrike and Fertility suggest something that is elusive, agile and unpredictable  like a mythical creature you would have to catch"
+    },
+    {
+        "_original": {
+            "name": "Snowdrake",
+            "power": 2,
+            "health": 4,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Snowdrake",
+        "description": "a card with decent power and health, low cost, and some spirit features Snowdrake is an icy beast with chilling powers or cold endurance A representation of winter and perhaps the more hardy creatures who endure in the cold"
+    },
+    {
+        "_original": {
+            "name": "Willowisp",
+            "power": 1,
+            "health": 6,
+            "costs_fire": 3,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Willowisp",
+        "description": "a creature with high health but low power and medium cost With Weakness as a skill, this mystical creature embodies an ethereal being, flighty, passive, and difficult to pin down, but also suggested by the skill  a creature that can weaken opponents"
+    },
+    {
+        "_original": {
+            "name": "Cactisaur",
+            "power": 1,
+            "health": 4,
+            "costs_fire": 3,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Cactisaur",
+        "description": "A plantlike creature with high health due to its thick, spiky exterior Its weakness skill may decrease its enemies' defenses, making them more vulnerable to its attacks"
+    },
+    {
+        "_original": {
+            "name": "Ratbat",
+            "power": 3,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Packrat",
+                "InstantDeath",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 1
+        },
+        "name": "Ratbat",
+        "description": "A small, nimble creature with a packrat skill that allows it to collect extra resources Its instant death skill is deadly but has limited use, and the weakness skill can leave enemies open for attack"
+    },
+    {
+        "_original": {
+            "name": "Dracofox",
+            "power": 6,
+            "health": 10,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Packrat",
+                "Fertility",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 5
+        },
+        "name": "Dracofox",
+        "description": "A powerful and majestic cross between a dragon and a fox, with a fertility skill that represents its ability to breed and multiply Its high power and health, as well as the regeneration and pack rat skill, make it a formidable opponent Its weakness skill lowers the defenses of its enemies"
+    },
+    {
+        "_original": {
+            "name": "Antleopard",
+            "power": 9,
+            "health": 6,
+            "costs_fire": 3,
+            "skills": [
+                "Packrat",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 2
+        },
+        "name": "Antleopard",
+        "description": " power,  health,  fire,  spirits, packrat, weakness"
+    },
+    {
+        "_original": {
+            "name": "Cloudhare",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Airdefense",
+                "Weakness",
+                "Shield"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Cloudhare",
+        "description": " power,  health,  fire,  spirit, air defense, shield, weakness"
+    },
+    {
+        "_original": {
+            "name": "Firerex",
+            "power": 7,
+            "health": 2,
+            "costs_fire": 3,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Firerex",
+        "description": "With high power, health, and fire costs, Firerex is a fierce and expensive creature The \"rex\" part of the name implies royalty and power, while the \"fire\" part connects to its high fire costs"
+    },
+    {
+        "_original": {
+            "name": "Soularmadillo",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Soularmadillo",
+        "description": "This card has low power, high health, and no fire costs The name Soularmadillo connects to the card's high spirit attribute, implying that it has a strong will and inner strength Additionally, armadillos are known for their tough shell, which relates to the high health attribute"
+    },
+    {
+        "_original": {
+            "name": "Skyterfly",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Underdog",
+                "Soaring",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Skyterfly",
+        "description": "related to a flying creature The card has skills related to weakness and being an underdog, but also has the soaring skill, which I interpret as flying"
+    },
+    {
+        "_original": {
+            "name": "Earthmoose",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Earthmoose",
+        "description": "the card has relatively high health and spirit fire abilities, which relate to toughness and strength The name refers to a strong, durable creature, but with a bit of a humorous twist as moose are not typically associated with strength"
+    },
+    {
+        "_original": {
+            "name": "Sunstag",
+            "power": 9,
+            "health": 1,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Sunstag",
+        "description": "references strength  power with the stag part of the name, and regeneration with the sun part of the name"
+    },
+    {
+        "_original": {
+            "name": "Nightstag",
+            "power": 6,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Nightstag",
+        "description": "a fantastical deerlike creature, whose high power and health make it a worthy opponent The card has no fire costs, referencing the \"night\" part of the name, and it has the \"Weakness\" skill, making it vulnerable to certain attacks"
+    },
+    {
+        "_original": {
+            "name": "Airmane",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Underdog",
+                "Weakness",
+                "Airdefense"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Airmane",
+        "description": "a creature with average power and health, with an added Airdefense skill to fend off airborne attacks The name is derived from the \"Airdefense\" skill and the use of spirits and fire to play the card"
+    },
+    {
+        "_original": {
+            "name": "Soarowl",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Soaring",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Soarowl",
+        "description": "a birdlike creature with the ability to soar through the sky Soaring skill The name references this skill and the use of spirits and fire The card has low attribute values, making it a weaker card on the battlefield"
+    },
+    {
+        "_original": {
+            "name": "Glimmerwolf",
+            "power": 3,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 2,
+            "has_spirits": 4,
+            "has_fire": 2
+        },
+        "name": "Glimmerwolf",
+        "description": "uses spirits, is fast, and also has some weakness"
+    },
+    {
+        "_original": {
+            "name": "Windcrow",
+            "power": 5,
+            "health": 7,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 2
+        },
+        "name": "Windcrow",
+        "description": "low cost, high spirits, relatively high attack and health"
+    },
+    {
+        "_original": {
+            "name": "Skyfinch",
+            "power": 8,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "LuckyStrike",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Skyfinch",
+        "description": "very powerful, very expensive, with a lucky strike and can fly"
+    },
+    {
+        "_original": {
+            "name": "Sandsnail",
+            "power": 6,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Sandsnail",
+        "description": "very low cost, weak, has a weakness skill, and is a slowmoving creature"
+    },
+    {
+        "_original": {
+            "name": "Blastmole",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 2
+        },
+        "name": "Blastmole",
+        "description": "This name fits this card because it has high fire stats, but low health and is weak against other cards The skill 'Weakness' also gives merit to the name, as it implies it is not as powerful as it could be"
+    },
+    {
+        "_original": {
+            "name": "Thunder Lynx",
+            "power": 3,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Soaring",
+                "Shield",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Thunder Lynx",
+        "description": "This name has a lot of character to it, and given the card's stats average to above average power and health, small, costs some fire, it fits well with the card's overall character"
+    },
+    {
+        "_original": {
+            "name": "Blinkray",
+            "power": 5,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Blinkray",
+        "description": "relates to \"weakness\" and possibly \"quickness\" skills, as well as low power and low health, implying that the card is quick but fragile"
+    },
+    {
+        "_original": {
+            "name": "MysticBear",
+            "power": 4,
+            "health": 4,
+            "costs_fire": 4,
+            "skills": [
+                "Regenerate",
+                "Packrat",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "MysticBear",
+        "description": "a powerful but expensive card with Regenerate that can heal itself and Packrat that can draw more cards"
+    },
+    {
+        "_original": {
+            "name": "Draketooth",
+            "power": 9,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 4
+        },
+        "name": "Draketooth",
+        "description": "a card with high fire cost and power, but low health, Weakness, and no Spirits Hence, it's a dragonlike creature with sharp teeth and high attack strength, but not very sturdy"
+    },
+    {
+        "_original": {
+            "name": "Skyurchin",
+            "power": 9,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Spines",
+                "Underdog",
+                "Airdefense"
+            ],
+            "costs_spirits": 6,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Skyurchin",
+        "description": "a highly spirited card with naturerelated skills Spines, Underdog, and Airdefense and the capability of Weakness to counter opponent's strategy Being a mix of a sky creature and a spiny one, it's a visually striking name"
+    },
+    {
+        "_original": {
+            "name": "MysticGuard",
+            "power": 9,
+            "health": 8,
+            "costs_fire": 0,
+            "skills": [
+                "Underdog",
+                "LuckyStrike",
+                "Shield",
+                "InstantDeath",
+                "Packrat",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 7,
+            "has_fire": 6
+        },
+        "name": "MysticGuard",
+        "description": "a very tough and expensive card with multiple skills Underdog, LuckyStrike, Shield, InstantDeath, Packrat, Weakness and high cost of both Fire and Spirits Hence, a Guardianlike creature with mystical powers that can both defend and attack, but requires a lot of investment to deploy"
+    },
+    {
+        "_original": {
+            "name": "Shadowhedge",
+            "power": 2,
+            "health": 4,
+            "costs_fire": 1,
+            "skills": [
+                "InstantDeath",
+                "Underdog",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 1
+        },
+        "name": "Shadowhedge",
+        "description": "a cheap and weak card with InstantDeath, Underdog, and Weakness that can be effective when sneaked in a specific situation, but overall not very powerful Being a mix of a dark and spiky creature, the name fits well the overall appearance and strategy of the card"
+    },
+    {
+        "_original": {
+            "name": "Wraithviper",
+            "power": 3,
+            "health": 4,
+            "costs_fire": 1,
+            "skills": [
+                "InstantDeath",
+                "Fertility",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Wraithviper",
+        "description": "This name suggests a ghostly serpent that is quick to strike and deadly The high power and extra Instant Death skill match the poisonous nature of a viper, and the Fertility and Weakness skills could represent the magic of a wraith"
+    },
+    {
+        "_original": {
+            "name": "Chimpack",
+            "power": 7,
+            "health": 10,
+            "costs_fire": 1,
+            "skills": [
+                "Shield",
+                "Weakness",
+                "Spines",
+                "Packrat",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 7,
+            "has_fire": 5
+        },
+        "name": "Chimpack",
+        "description": "This name combines the words \"chimera\" and \"pack\" to create an animal that is part monster and part cooperative The Shield skill and high health make it difficult to take down, while the Spines and Instant Death skills showcase its dangerous nature Its high spirit count and variable fire and spirit costs suggest a creature with many different abilities"
+    },
+    {
+        "_original": {
+            "name": "Bramblecat",
+            "power": 4,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "InstantDeath",
+                "Spines",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 4
+        },
+        "name": "Bramblecat",
+        "description": "This name suggests an animal that is small and tough, but not invulnerable The Spines and Weakness skills match the tough exterior and limited fighting ability of a cat with brambles growing from its fur The balance of fire and spirit costs and attributes hint at a creature that is wellrounded but not overwhelming"
+    },
+    {
+        "_original": {
+            "name": "Moonswirl",
+            "power": 8,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "LuckyStrike"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 4
+        },
+        "name": "Moonswirl",
+        "description": "name suggests elegance and perhaps unpredictability with its Lucky Strike and Weakness skills"
+    },
+    {
+        "_original": {
+            "name": "Dreamtail",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 2,
+            "has_spirits": 0,
+            "has_fire": 3
+        },
+        "name": "Dreamtail",
+        "description": "name suggests it is from a mythical world with low stats Has a spiritual element, and the name is reminiscent of a fantastical creature"
+    },
+    {
+        "_original": {
+            "name": "Shadowclaw",
+            "power": 3,
+            "health": 9,
+            "costs_fire": 2,
+            "skills": [
+                "Shield",
+                "InstantDeath",
+                "Weakness",
+                "Underdog"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 4
+        },
+        "name": "Shadowclaw",
+        "description": "name sounds sinister and stealthy, which fit its skills Its high health and Shield skill are reminiscent of claws that can protect it well in battle"
+    },
+    {
+        "_original": {
+            "name": "Enchantaur",
+            "power": 3,
+            "health": 6,
+            "costs_fire": 0,
+            "skills": [
+                "Shield",
+                "Airdefense",
+                "Underdog",
+                "LuckyStrike",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Enchantaur",
+        "description": "With high health and defensive skills, this card is reminiscent of enchantresstype creatures The name evokes an image of a graceful woodland creature with the ability to cast spells"
+    },
+    {
+        "_original": {
+            "name": "Feralfox",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "LuckyStrike",
+                "Weakness",
+                "InstantDeath",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Feralfox",
+        "description": "With relatively low health, this card is a quick and agile fighter, and its skills suggest a scrappy underdog The name suggests a cunning and ferocious creature, able to outmaneuver its opponents"
+    },
+    {
+        "_original": {
+            "name": "Mistmole",
+            "power": 3,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Mistmole",
+        "description": "With a spirit attribute and \"Weakness\" skill, this card is elusive and potentially harmful to opponents The name evokes a subterranean creature that is difficult to catch and able to disappear into thin air"
+    },
+    {
+        "_original": {
+            "name": "Flameantler",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 4,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 0
+        },
+        "name": "Flameantler",
+        "description": "This name combines 'flame' and 'antler,' which refers to the high fire cost and power of the card, as well as the weakness skill which lower opposing cards' power, a reference to the antlers being able to weaken and defend against attacks"
+    },
+    {
+        "_original": {
+            "name": "Gryphonheart",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness",
+                "Shield",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 1
+        },
+        "name": "Gryphonheart",
+        "description": "This name combines 'Gryphon,' the animal name, with 'heart,' which refers to the high health of the card The soaring skill is also reflective of a gryphon, which is a fantastical creature known for flying"
+    },
+    {
+        "_original": {
+            "name": "Krakenserpent",
+            "power": 5,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Krakenserpent",
+        "description": "This name combines 'kraken,' a fantastical sea creature, with 'serpent,' which refers to the fact that the card has one more spirit than fire attribute The weakness skill is also reflective of a mythical sea monster that could weaken ships"
+    },
+    {
+        "_original": {
+            "name": "LuckRaptor",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 3,
+            "skills": [
+                "Weakness",
+                "LuckyStrike",
+                "Underdog"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "LuckRaptor",
+        "description": "This card has a balanced power and health, with an interesting mix of skills The name suggests a fast and nimble creature with a bit of luck on its side"
+    },
+    {
+        "_original": {
+            "name": "ShadowTusk",
+            "power": 6,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "InstantDeath",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "ShadowTusk",
+        "description": "With a strong power and health but no spirits, this card needed a name to suggest it is a shadow or dark creature that can impale its enemies"
+    },
+    {
+        "_original": {
+            "name": "FireUnicorn",
+            "power": 7,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "FireUnicorn",
+        "description": "With high power and spirits, this card could have been named something majestic like Lightning or Thunder, but the card already has those names Instead, it is named FireUnicorn to suggest it is a creature with high spirits and a powerful fire attack"
+    },
+    {
+        "_original": {
+            "name": "Bansheep",
+            "power": 7,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Bansheep",
+        "description": "This name suggests that the card is a type of sheep, but with a fantastical twist The high power and low health make it seem like a powerful and daunting creature, perhaps with a haunting scream or shout The Weakness and InstantDeath skills reinforce the idea that this creature is feared and deadly"
+    },
+    {
+        "_original": {
+            "name": "Starfawn",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 3
+        },
+        "name": "Starfawn",
+        "description": "This name draws from the animal kingdom, with the addition of a fantastical quality The card's relatively low cost and balanced stats suggest a small creature, but with a powerful and mystical aura The fact that it requires more fire spirits than regular spirits suggests a fiery or bright nature, which fits well with the \"star\" part of the name"
+    },
+    {
+        "_original": {
+            "name": "Thundercondor",
+            "power": 5,
+            "health": 7,
+            "costs_fire": 4,
+            "skills": [
+                "Weakness",
+                "Fertility",
+                "Soaring",
+                "Underdog",
+                "Airdefense"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 5
+        },
+        "name": "Thundercondor",
+        "description": "The combination of thunder and condor suggests a powerful, airbased creature with a dangerous presence The card's high cost, health, and power, along with its high fire attribute, suggest a creature that is majestic and fierce The skills link to the thunder and air aspect of the name, indicating that this creature is capable of both defense and attack"
+    },
+    {
+        "_original": {
+            "name": "Toxicroach",
+            "power": 3,
+            "health": 6,
+            "costs_fire": 0,
+            "skills": [
+                "Spines",
+                "Weakness",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 2
+        },
+        "name": "Toxicroach",
+        "description": "the name suggests a poisonous insect that might fit well with the abilities of this card, such as spines, weakness and instant death The name also fits the cost of the fire attribute, which is at zero"
+    },
+    {
+        "_original": {
+            "name": "Magmabison",
+            "power": 5,
+            "health": 5,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 3
+        },
+        "name": "Magmabison",
+        "description": "this name suggests a powerful and firerelated animal, while also taking into account the spirit attribute that is the highest for this card"
+    },
+    {
+        "_original": {
+            "name": "Enchantalope",
+            "power": 9,
+            "health": 5,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Soaring",
+                "Fertility",
+                "Shield"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 4
+        },
+        "name": "Enchantalope",
+        "description": "this name plays on the words \"enchant\" and \"antelope\", suggesting a magical animal that could embody the skills of weakness, soaring, fertility, and shield The even split between fire and spirit attributes also suggests that it's a balanced animal"
+    },
+    {
+        "_original": {
+            "name": "Skyechidna",
+            "power": 4,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Spines",
+                "Soaring",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 2
+        },
+        "name": "Skyechidna",
+        "description": "this name suggest an animal that has a mix of skills related to the air and ground, with the skills of soaring and weakness blending well with the spines skill The cost of fire is also not the highest attribute, suggesting some sort of natural balance"
+    },
+    {
+        "_original": {
+            "name": "Glowmoth",
+            "power": 5,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Packrat",
+                "Weakness",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Glowmoth",
+        "description": "This name relates to the card's ability to regenerate and weakness The moth is known for its bioluminescence, but also for its fragility and short lifespan"
+    },
+    {
+        "_original": {
+            "name": "Shadebat",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Shadebat",
+        "description": "This name relates to the card's costsspirits attribute and weakness skill The bat is often associated with darkness and shadows, and its low power and high health suggest it is meant to evade attacks and slowly chip away at the opponent's health"
+    },
+    {
+        "_original": {
+            "name": "Luckshell",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "LuckyStrike"
+            ],
+            "costs_spirits": 3,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Luckshell",
+        "description": "This name relates to the card's costsspirits attribute and lucky strike skill The creature with a hard shell conveys a sense of protection and safety, while the luck aspect suggests it may gain an advantage in battles with a welltimed strike"
+    },
+    {
+        "_original": {
+            "name": "Wolfpup",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Wolfpup",
+        "description": "With its midrange power and health, and abilities to weaken the opponent's cards, the Wolfpup is a small but fierce addition to any deck"
+    },
+    {
+        "_original": {
+            "name": "Fire Hydra",
+            "power": 9,
+            "health": 10,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Fertility",
+                "Spines",
+                "Weakness",
+                "Underdog",
+                "Shield"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 8,
+            "has_fire": 6
+        },
+        "name": "Fire Hydra",
+        "description": "With high power and health, and a large number of skills including regeneration, spines, and shields, the Fire Hydra is a formidable foe, though its relatively high cost and reliance on fire and spirit elements may make it harder to use effectively"
+    },
+    {
+        "_original": {
+            "name": "Thorn Dragon",
+            "power": 3,
+            "health": 7,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 0
+        },
+        "name": "Thorn Dragon",
+        "description": "This card has moderate power and health, and the ability to weaken opponents, making it a useful support creature in combination with other cards, while its high spirit element and lack of fire abilities may make it harder to use in some decks"
+    },
+    {
+        "_original": {
+            "name": "Regalraith",
+            "power": 9,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "Soaring",
+                "Spines",
+                "Weakness",
+                "Regenerate",
+                "Shield",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 6,
+            "has_fire": 6
+        },
+        "name": "Regalraith",
+        "description": "With high stats in both power and health and maxed out in spirit and fire, this card exudes royalty The six different skills also suggest that this creature is a master of many abilities, making Regalraith a fitting name"
+    },
+    {
+        "_original": {
+            "name": "Gravewolf",
+            "power": 6,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Gravewolf",
+        "description": "Despite its moderately high power, its low health combined with fire cost suggest a selfdestructive nature, which is fitting with the name Gravewolf that conjures up images of a fierce creature willing to go down fighting"
+    },
+    {
+        "_original": {
+            "name": "Sicklecat",
+            "power": 2,
+            "health": 4,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Sicklecat",
+        "description": "With the skill Weaken and Fertility, this creature would undoubtedly be a stealthy badass that no one would want to mess with, Its name Sicklecat conjures up images of a nocturnal predator, agile and deadly with its sharp claws"
+    },
+    {
+        "_original": {
+            "name": "Necrowolf",
+            "power": 2,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Weakness",
+                "LuckyStrike"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 2
+        },
+        "name": "Necrowolf",
+        "description": "related to death and weakness skills low health high power middleoftherange cost not very spirited"
+    },
+    {
+        "_original": {
+            "name": "Hedgewisp",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "InstantDeath",
+                "Weakness",
+                "Underdog"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Hedgewisp",
+        "description": "related to regeneration and instant death low stats and fire consumption not much spirit hedge represents weakness and subtlety"
+    },
+    {
+        "_original": {
+            "name": "Titanbeetle",
+            "power": 8,
+            "health": 8,
+            "costs_fire": 0,
+            "skills": [
+                "Fertility",
+                "InstantDeath",
+                "Airdefense",
+                "Shield",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 5
+        },
+        "name": "Titanbeetle",
+        "description": "extremely high stats and spirit low fire consumption related to highly defensive skills like fertility and shield tough exoskeleton implied by beetle"
+    },
+    {
+        "_original": {
+            "name": "Lazylion",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Lazylion",
+        "description": "This card appears quite weak with low power and health, but it has the skill Weakness which can weaken enemies The name relates to its seemingly lazy disposition but with a surprising edge in the form of its skill"
+    },
+    {
+        "_original": {
+            "name": "Skyarmadillo",
+            "power": 1,
+            "health": 6,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness",
+                "Packrat",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Skyarmadillo",
+        "description": "This card has decent health, low power, and the skills Weakness, Packrat, and Soaring, allowing it to be a good support card The name relates to its ability to soar into battle and its resilience due to its armadillolike armor"
+    },
+    {
+        "_original": {
+            "name": "Torllama",
+            "power": 1,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Packrat",
+                "Weakness",
+                "Shield"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Torllama",
+        "description": "short for ToughRolling Llama"
+    },
+    {
+        "_original": {
+            "name": "Moongator",
+            "power": 4,
+            "health": 1,
+            "costs_fire": 2,
+            "skills": [
+                "Packrat",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 1
+        },
+        "name": "Moongator",
+        "description": "With three spirits and a decent power level, this card is quite versatile The name Moongator plays off the alligator theme but relates it to lunar images, making it the perfect name for a card with a calm but threatening appearance with a hint of the mystical"
+    },
+    {
+        "_original": {
+            "name": "PhoenixTusk",
+            "power": 5,
+            "health": 2,
+            "costs_fire": 3,
+            "skills": [
+                "Regenerate",
+                "Weakness",
+                "LuckyStrike",
+                "Shield",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 4
+        },
+        "name": "PhoenixTusk",
+        "description": "An elementally magical card that's expensive but regenerates after damage and can dish damage itself PhoenixTusk refers to a mystical creature that is both fierce and beautiful, hinting at this card's high health and strong attack capability"
+    },
+    {
+        "_original": {
+            "name": "Fertodillo",
+            "power": 9,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "Packrat",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Fertodillo",
+        "description": "relates to the Fertility skill and the high power with low health"
+    },
+    {
+        "_original": {
+            "name": "Wyvernfly",
+            "power": 5,
+            "health": 5,
+            "costs_fire": 0,
+            "skills": [
+                "Packrat",
+                "InstantDeath",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 3
+        },
+        "name": "Wyvernfly",
+        "description": "relates to the high health, Packrat skill, and Soaring skill"
+    },
+    {
+        "_original": {
+            "name": "Healbeast",
+            "power": 10,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Regenerate",
+                "InstantDeath",
+                "LuckyStrike",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 8,
+            "has_fire": 5
+        },
+        "name": "Healbeast",
+        "description": "relates to high health, Regenerate skill, and LuckyStrike skill"
+    },
+    {
+        "_original": {
+            "name": "Dreambird",
+            "power": 5,
+            "health": 10,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Soaring"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Dreambird",
+        "description": "high health, low costspirits, soaring skill"
+    },
+    {
+        "_original": {
+            "name": "Moltenpanther",
+            "power": 10,
+            "health": 6,
+            "costs_fire": 1,
+            "skills": [
+                "Underdog",
+                "Weakness",
+                "Packrat",
+                "Spines",
+                "Airdefense",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 4
+        },
+        "name": "Moltenpanther",
+        "description": "high power, costly, packrat, airdefense, instantdeath skills"
+    },
+    {
+        "_original": {
+            "name": "Wingedshrew",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Airdefense",
+                "Soaring",
+                "Underdog",
+                "Weakness",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Wingedshrew",
+        "description": "airdefense, soaring, underdog, low fire"
+    },
+    {
+        "_original": {
+            "name": "Nimbafowl",
+            "power": 4,
+            "health": 4,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Airdefense"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Nimbafowl",
+        "description": "relates to the Airdefense skill and has low stats but good cost"
+    },
+    {
+        "_original": {
+            "name": "Blazehorn",
+            "power": 2,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Weakness",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 4
+        },
+        "name": "Blazehorn",
+        "description": "related to Fire and Regeneration attributes, small fire attribute and good health"
+    },
+    {
+        "_original": {
+            "name": "Shadowserpent",
+            "power": 1,
+            "health": 6,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Shadowserpent",
+        "description": "related to the Weakness skill and having dark attributes"
+    },
+    {
+        "_original": {
+            "name": "Puppydog",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Underdog",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Puppydog",
+        "description": "relatively weak, but with a lot to prove against enemies"
+    },
+    {
+        "_original": {
+            "name": "Sungazer",
+            "power": 1,
+            "health": 7,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Sungazer",
+        "description": "high health and firepower, but weak against certain attacks"
+    },
+    {
+        "_original": {
+            "name": "Ironbug",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Ironbug",
+        "description": "small but with a hard shell to defend against attacks"
+    },
+    {
+        "_original": {
+            "name": "Breezeguard",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Airdefense",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Breezeguard",
+        "description": "a defensive card with skills optimized for air combat"
+    },
+    {
+        "_original": {
+            "name": "Chimrie",
+            "power": 8,
+            "health": 7,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 2
+        },
+        "name": "Chimrie",
+        "description": "name refers to mythological creature made up of different parts, fitting for a card with high power and health but a mix of fire and other attributes and a weakness skill"
+    },
+    {
+        "_original": {
+            "name": "Fortunhare",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "LuckyStrike",
+                "Weakness",
+                "Airdefense"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Fortunhare",
+        "description": "combines \"fortune\" and \"hare\" to suggest a lucky rabbit with air defense skill and a weakness skill that partially offsets its low power"
+    },
+    {
+        "_original": {
+            "name": "Ratelion",
+            "power": 1,
+            "health": 9,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Underdog",
+                "Packrat"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Ratelion",
+        "description": "meaning \"honey badger,\" referring to a fierce animal with a packrat skill, an underdog skill, and a weakness skill"
+    },
+    {
+        "_original": {
+            "name": "Deathlet",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Deathlet",
+        "description": "sounds like \"Death net\" or \"death trap,\" fitting for a card with skills that can cause instant death and a weakness skill"
+    },
+    {
+        "_original": {
+            "name": "Cindercub",
+            "power": 8,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 1
+        },
+        "name": "Cindercub",
+        "description": "Relating to the card's high power and low health attributes and its fire costs"
+    },
+    {
+        "_original": {
+            "name": "Stormchaser",
+            "power": 8,
+            "health": 6,
+            "costs_fire": 0,
+            "skills": [
+                "Fertility",
+                "InstantDeath",
+                "Airdefense",
+                "Weakness",
+                "Soaring"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 6,
+            "has_fire": 6
+        },
+        "name": "Stormchaser",
+        "description": "Relating to the card's high spirit and fire attributes, as well as its air defense and soaring skills"
+    },
+    {
+        "_original": {
+            "name": "Shellwarden",
+            "power": 8,
+            "health": 6,
+            "costs_fire": 1,
+            "skills": [
+                "Shield",
+                "Weakness",
+                "InstantDeath"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 3
+        },
+        "name": "Shellwarden",
+        "description": "Relating to the card's high power and health attributes and its shield skill that allows it to protect itself and allies"
+    },
+    {
+        "_original": {
+            "name": "Goldenfox",
+            "power": 2,
+            "health": 4,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 0
+        },
+        "name": "Goldenfox",
+        "description": "The card has decent power and great health  goldenfox's name is related to its power and wealth"
+    },
+    {
+        "_original": {
+            "name": "Shattershell",
+            "power": 1,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Shattershell",
+        "description": "The card has low power and health but comes with the 'Weakness' skill \"Shattershell\" reflects the frailty of the creature with its name"
+    },
+    {
+        "_original": {
+            "name": "Celestial Wolf",
+            "power": 2,
+            "health": 9,
+            "costs_fire": 1,
+            "skills": [
+                "InstantDeath",
+                "Shield",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 2
+        },
+        "name": "Celestial Wolf",
+        "description": "A powerful card with high values in both power and health, as well as multiple skills The card also has spirits attribute of , suggesting a celestial or otherworldly quality to the creature Additionally, skills such as InstantDeath and Shield reflect the card's strength and toughness"
+    },
+    {
+        "_original": {
+            "name": "Mystic Dragon",
+            "power": 7,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "InstantDeath",
+                "Weakness",
+                "Airdefense",
+                "Underdog",
+                "Packrat",
+                "Shield"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 7,
+            "has_fire": 6
+        },
+        "name": "Mystic Dragon",
+        "description": "A powerful card with multiple skills, but with a high cost of both spirits and fire The name reflects its power and the mystical quality that the high spirits attribute brings The relatively even split between fire and spirits also suggests a duality between heat and cold, or power and control"
+    },
+    {
+        "_original": {
+            "name": "Flameeel",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 4
+        },
+        "name": "Flameeel",
+        "description": "This card has moderate power and health with a moderate cost of fire The card lacks spirit resources and has the ability to regenerate health but also suffers from a weakness Flameeel is a play on the word flame and eel, with the eel aspect of the name suggesting the ability to regenerate health like the aquatic creature"
+    },
+    {
+        "_original": {
+            "name": "Thundermare",
+            "power": 9,
+            "health": 8,
+            "costs_fire": 0,
+            "skills": [
+                "InstantDeath",
+                "Soaring",
+                "Weakness",
+                "Shield",
+                "Regenerate",
+                "Underdog"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 7,
+            "has_fire": 6
+        },
+        "name": "Thundermare",
+        "description": "This card has high power and health at the cost of no fire resources It has a high spirit requirement with a wide range of skills including Instant death and Underdog The combination of skills makes Thundermare an intimidating presence on the board and the name suggests the creature's power and ability to strike fear in its opponents"
+    },
+    {
+        "_original": {
+            "name": "Fangfox",
+            "power": 5,
+            "health": 5,
+            "costs_fire": 0,
+            "skills": [
+                "InstantDeath",
+                "Packrat",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 6
+        },
+        "name": "Fangfox",
+        "description": "This card has moderate power and health with no cost to fire or spirit resources It has the Packrat skill and the ability to inflict weakness and instant death The name suggests a creature with sharp teeth fangs and foxlike agility and cunning, which relates to the creature's Packrat and Weakness skills"
+    },
+    {
+        "_original": {
+            "name": "Infernoth",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Infernoth",
+        "description": "This card has low power and health but has a high cost to fire resources, with just one spirit resource It can regenerate health but also has the weakness skill The name is a combination of inferno and moth and refers to the creature's fireheavy attributes and lack of resilience"
+    },
+    {
+        "_original": {
+            "name": "Spellwolf",
+            "power": 7,
+            "health": 5,
+            "costs_fire": 0,
+            "skills": [
+                "Packrat",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 2
+        },
+        "name": "Spellwolf",
+        "description": "strong, spirited, fire attributes, packrat and weakness skills"
+    },
+    {
+        "_original": {
+            "name": "Bitterbee",
+            "power": 3,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 3
+        },
+        "name": "Bitterbee",
+        "description": "fire attribute, weakness skill, low cost"
+    },
+    {
+        "_original": {
+            "name": "DireBat",
+            "power": 6,
+            "health": 1,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "DireBat",
+        "description": "strong, fire attribute, expensive, weakness skill"
+    },
+    {
+        "_original": {
+            "name": "Thorned",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Thorned",
+        "description": "fire attribute, low cost, average power and health, weakness skill"
+    },
+    {
+        "_original": {
+            "name": "Grounder",
+            "power": 5,
+            "health": 10,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Underdog"
+            ],
+            "costs_spirits": 2,
+            "has_spirits": 2,
+            "has_fire": 4
+        },
+        "name": "Grounder",
+        "description": "high health and power, but at a cost, a bit expensive"
+    },
+    {
+        "_original": {
+            "name": "Thornbee",
+            "power": 2,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "Spines",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 2
+        },
+        "name": "Thornbee",
+        "description": "moderate power and health, but with spines and weakness as skills"
+    },
+    {
+        "_original": {
+            "name": "Mousy",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 1,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Mousy",
+        "description": "low power and health, but cheap and with weakness as a skill"
+    },
+    {
+        "_original": {
+            "name": "Ferretail",
+            "power": 2,
+            "health": 4,
+            "costs_fire": 3,
+            "skills": [
+                "Fertility",
+                "Weakness",
+                "Airdefense"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Ferretail",
+        "description": "moderate stats, expensive, firefocused with fertility, air defense, and weakness"
+    },
+    {
+        "_original": {
+            "name": "Thornelk",
+            "power": 5,
+            "health": 10,
+            "costs_fire": 1,
+            "skills": [
+                "Spines",
+                "InstantDeath",
+                "Shield",
+                "Weakness",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 4
+        },
+        "name": "Thornelk",
+        "description": "A mix between a thorn and an elk, this creature represents defensiveness and strength, with high health and skills like spines, shield, and weakness It may not be the most powerful of creatures, but it's hard to get past its prickly exterior"
+    },
+    {
+        "_original": {
+            "name": "Luckviper",
+            "power": 10,
+            "health": 3,
+            "costs_fire": 3,
+            "skills": [
+                "Spines",
+                "Airdefense",
+                "Weakness",
+                "LuckyStrike",
+                "Packrat",
+                "Shield"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 2
+        },
+        "name": "Luckviper",
+        "description": "Sleek and fast, the Luckviper is all about taking risks and gambling on its abilities With high power and skills like lucky strike and packrat, it may not always be the strongest, but it has a knack for coming out on top"
+    },
+    {
+        "_original": {
+            "name": "Regrowth",
+            "power": 5,
+            "health": 7,
+            "costs_fire": 1,
+            "skills": [
+                "Underdog",
+                "Weakness",
+                "Regenerate"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Regrowth",
+        "description": "The Regrowth is a creature that represents endurance and resilience, with a focus on recovering from damage and making a comeback With moderate power and health and the skills of underdog and regenerate, this creature can take a lot of hits and keep going"
+    },
+    {
+        "_original": {
+            "name": "Airborn",
+            "power": 9,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "Regenerate",
+                "LuckyStrike",
+                "Airdefense",
+                "InstantDeath",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 5
+        },
+        "name": "Airborn",
+        "description": "As the name suggests, the Airborn creature is all about soaring above the competition With high spirit and fire, as well as skills like air defense and instant death, this creature is elusive and powerful, striking from above"
+    },
+    {
+        "_original": {
+            "name": "FlameSwan",
+            "power": 5,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "FlameSwan",
+        "description": "A balance between power and cost, the FlameSwan has high attack power for its cost The swan is graceful and represents the balance between fire attack power and water cost"
+    },
+    {
+        "_original": {
+            "name": "EmberHedgehog",
+            "power": 9,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 1
+        },
+        "name": "EmberHedgehog",
+        "description": "With high power and average costs, this creature is a fireball on the board Hedgehogs are known for their defensive mechanisms, but the EmberHedgehog is built to attack"
+    },
+    {
+        "_original": {
+            "name": "ThornyRhino",
+            "power": 7,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Weakness",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 2
+        },
+        "name": "ThornyRhino",
+        "description": "Balanced in offense and defense, this creature has high health, high attack power, and regenerates health The rhino is already a powerful creature, but the addition of spines makes it even more dangerous"
+    },
+    {
+        "_original": {
+            "name": "Aircat",
+            "power": 3,
+            "health": 9,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "Airdefense",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 1
+        },
+        "name": "Aircat",
+        "description": "A nimble and elusive card with high health and a weakness skill The name emphasizes the air defense skill, while the \"cat\" suffix relates to the card's agility and stealth"
+    },
+    {
+        "_original": {
+            "name": "Emptooth",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 3,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Emptooth",
+        "description": "A firepowered card with weak attributes all around, except for its fairly high cost The name emphasizes the card's lack of \"spirit\" or special abilities, while the \"tooth\" suffix plays off the card's strength in fire power"
+    },
+    {
+        "_original": {
+            "name": "Packle",
+            "power": 1,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Packrat",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Packle",
+        "description": "A card with low power and health, but high fire and packrat skills The name suggests a small, scrappy creature that is resourceful and able to collect and store valuable items"
+    },
+    {
+        "_original": {
+            "name": "Frostwing",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 2
+        },
+        "name": "Frostwing",
+        "description": "The card has relatively low attributes but it has two fire symbols for cost making it unorthodox and unique The name reflects the \"opposite\" elements, frost being the opposite of fire"
+    },
+    {
+        "_original": {
+            "name": "Whirlowl",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Airdefense",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Whirlowl",
+        "description": "With the card having air defense and weakness as added skills, the name fits as a combination of an owl and air movement "
+    },
+    {
+        "_original": {
+            "name": "Dreamodon",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 6,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Dreamodon",
+        "description": "With high health and no fire cost, this card is likely to stick around for at least one turn, being able to use its skills The relatively high health and charisma make it seem like the creature's size would be as impressive as its trust"
+    },
+    {
+        "_original": {
+            "name": "Battlearmair",
+            "power": 5,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness",
+                "Shield",
+                "InstantDeath",
+                "Underdog",
+                "Regenerate",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 4
+        },
+        "name": "Battlearmair",
+        "description": "With a high power and health, along with a multitude of skills, this card is a real fighter Thus, the word \"battle\" in the suggested name The \"armair\" part of the name is a mixture between \"armor\", hinting at the card's numerous skills, and the suffix \"air\" from various bird names, which connect to the card's high spirits"
+    },
+    {
+        "_original": {
+            "name": "Flaimbex",
+            "power": 6,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Flaimbex",
+        "description": "This card's high power, fire cost, and weakness skill all relate to flames or fiery behavior The \"bex\" part of the name could either come from \"beast\", illustrating its power, or from \"bexa\", a genus of butterflies, connecting to its high spirit stat"
+    },
+    {
+        "_original": {
+            "name": "Shellpup",
+            "power": 2,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 1
+        },
+        "name": "Shellpup",
+        "description": "The high cost of fire and weak power of this card lead it to seem like a scrappy underdog of sorts The low spirits and weak power makes it seem like a small and young creature that needs protection, hence the \"pup\" in its name The \"shell\" part could either suggest that the creature has a hard exoskeleton or that it's timid and protective"
+    },
+    {
+        "_original": {
+            "name": "Nightdrake",
+            "power": 7,
+            "health": 3,
+            "costs_fire": 2,
+            "skills": [
+                "Weakness",
+                "Airdefense",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Nightdrake",
+        "description": "The name suggests a creature that is powerful high power attribute, quick and cunning skill pack includes Weakness but also somewhat fragile low health attribute"
+    },
+    {
+        "_original": {
+            "name": "Celestifox",
+            "power": 7,
+            "health": 8,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "Packrat",
+                "Regenerate",
+                "Airdefense",
+                "Fertility"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 5
+        },
+        "name": "Celestifox",
+        "description": "The name evokes a mythical creature that is both powerful high power and health attributes and can regenerate skill pack includes Regenerate but needs resources costs fire and spirit attributes"
+    },
+    {
+        "_original": {
+            "name": "Ironhorn",
+            "power": 10,
+            "health": 3,
+            "costs_fire": 5,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 0
+        },
+        "name": "Ironhorn",
+        "description": "The name alludes to a creature that is immovable high health attribute, powerful high power attribute but requires a lot of resources high cost in fire attribute and is vulnerable to attack skill pack includes Weakness"
+    },
+    {
+        "_original": {
+            "name": "Firephant",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 2,
+            "skills": [
+                "Shield",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 4
+        },
+        "name": "Firephant",
+        "description": "powerful, expensive, lots of fire, shield, weakness"
+    },
+    {
+        "_original": {
+            "name": "Faeriecat",
+            "power": 2,
+            "health": 2,
+            "costs_fire": 3,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 0
+        },
+        "name": "Faeriecat",
+        "description": "weak but has magic, no fire, weakness"
+    },
+    {
+        "_original": {
+            "name": "Lavaant",
+            "power": 0,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 3
+        },
+        "name": "Lavaant",
+        "description": "relates to the high level of fire on the card and the short name fitting with the small size and low power of the card"
+    },
+    {
+        "_original": {
+            "name": "Spooktoad",
+            "power": 3,
+            "health": 1,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 0
+        },
+        "name": "Spooktoad",
+        "description": "relates to the weakness skill and the lack of fire and spirits, making it a rather weak and spooky creature"
+    },
+    {
+        "_original": {
+            "name": "Voidlion",
+            "power": 5,
+            "health": 7,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "InstantDeath",
+                "Underdog"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 0,
+            "has_fire": 1
+        },
+        "name": "Voidlion",
+        "description": "powerful, expensive, skills to weaken or instant death can make the opponent feel helpless"
+    },
+    {
+        "_original": {
+            "name": "Flingrat",
+            "power": 1,
+            "health": 3,
+            "costs_fire": 1,
+            "skills": [
+                "Weakness",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 1
+        },
+        "name": "Flingrat",
+        "description": "nonpowerful, small cost, good spirit count, skill to grow and hoard items can be strategic"
+    },
+    {
+        "_original": {
+            "name": "Irongriffin",
+            "power": 8,
+            "health": 5,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Weakness",
+                "Soaring",
+                "Packrat"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 2,
+            "has_fire": 3
+        },
+        "name": "Irongriffin",
+        "description": "very powerful, high fire cost, moderate spirit cost, plenty of skills and regenerate makes it maneuverable"
+    },
+    {
+        "_original": {
+            "name": "Whiskermite",
+            "power": 0,
+            "health": 2,
+            "costs_fire": 1,
+            "skills": [
+                "Underdog",
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Whiskermite",
+        "description": "weak and cheap card, but with an underdog skill, can sometimes come in handy when there's no other options"
+    },
+    {
+        "_original": {
+            "name": "Kuraken",
+            "power": 4,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "InstantDeath",
+                "Weakness",
+                "Spines"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 3,
+            "has_fire": 3
+        },
+        "name": "Kuraken",
+        "description": "a combination of the words \"kurage\" jellyfish in Japanese and \"Kraken\" the high health and instant death skill make this card seem like a powerful sea creature"
+    },
+    {
+        "_original": {
+            "name": "Gorgwing",
+            "power": 9,
+            "health": 7,
+            "costs_fire": 0,
+            "skills": [
+                "Airdefense",
+                "Spines",
+                "Weakness",
+                "LuckyStrike"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 6,
+            "has_fire": 5
+        },
+        "name": "Gorgwing",
+        "description": "a combination of \"gorgon\" a mythical creature known for having wings and \"spiky\" the air defense skill and the spines make it seem like this creature can take flight and protect itself simultaneously"
+    },
+    {
+        "_original": {
+            "name": "Aeriphin",
+            "power": 6,
+            "health": 6,
+            "costs_fire": 1,
+            "skills": [
+                "Regenerate",
+                "Soaring",
+                "Weakness",
+                "Fertility",
+                "Underdog"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 4,
+            "has_fire": 4
+        },
+        "name": "Aeriphin",
+        "description": "combination of \"aeros\" Greek for air and \"dolphin,\" relating to the flying or soaring skill"
+    },
+    {
+        "_original": {
+            "name": "Wisp",
+            "power": 2,
+            "health": 1,
+            "costs_fire": 0,
+            "skills": [
+                "Weakness"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 1,
+            "has_fire": 1
+        },
+        "name": "Wisp",
+        "description": "with a barely there power and low health, this shadowy creature has evasive properties It is black or darkly colored to suit the Weakness attribute, and is of the spirit element"
+    },
+    {
+        "_original": {
+            "name": "Hyena",
+            "power": 2,
+            "health": 5,
+            "costs_fire": 0,
+            "skills": [
+                "Underdog",
+                "Weakness",
+                "Airdefense"
+            ],
+            "costs_spirits": 0,
+            "has_spirits": 5,
+            "has_fire": 2
+        },
+        "name": "Hyena",
+        "description": "with mediocre power and high health, this scavenging underdog's skillset makes it a serious contender The card sports a Weakness which could hint towards desperation or personality  hence the Hyena name"
     }
 ]
