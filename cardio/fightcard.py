@@ -184,6 +184,7 @@ class FightCard(Card):
         # ----- Early special cases -----
 
         # Will the card die before it can attack due to an unlucky LuckyStrike?
+        # TODO This could be done in the skill in pre_round hook?
         if (
             sk.LuckyStrike in self.skills
             and not self.skills.get(sk.LuckyStrike).is_lucky()  # type: ignore
@@ -247,7 +248,10 @@ class FightCard(Card):
         # ----- Deal damage -----
 
         # Damage to target:
-        target_damage_left = target.take_damage(attacker_power)
+        damage_to_target = attacker_power
+        if sk.Weakness in self.skills:
+            damage_to_target = self.skills.get(sk.Weakness).modify_damage(damage_to_target)  # type: ignore
+        target_damage_left = target.take_damage(damage_to_target)
         if target_damage_left > 0:
             self.vnc.handle_agent_damage(target_player, target_damage_left)
 

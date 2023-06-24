@@ -271,5 +271,21 @@ def test_used_card_does_not_regenerate():
     assert hc._fc.health == 0  # Died, no regeneration
 
 
+def test_weakness():
+    # With Weakness -- hc dies:
+    hc = Card("Human Card", 2, 2, 1, skills=[skills.Weakness])
+    cc = Card("Computer Card", 2, 2, 1)
+    do_the_fight([hc], cc)
+    assert hc._fc.health == 0
+    assert cc._fc.health == 1
+
+    # Without Weakness -- cc dies:
+    hc = Card("Human Card", 2, 2, 1)
+    cc = Card("Computer Card", 2, 2, 1)
+    do_the_fight([hc], cc)
+    assert hc._fc.health == 2
+    assert cc._fc.health == 0
+
+
 # TODO Add tests that directly test the more complex classes such as Shield and
 # LuckyStrike. -- Also, add this step to the checklist in skills.py

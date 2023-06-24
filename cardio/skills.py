@@ -2,9 +2,16 @@
 
 Checklist when adding a new skill:
 
-- Implement its logic preferrably only using the different hooks available in the
-  `Skill` class. If that is not possible, implement it in `FightCard` (and elsewhere, if
-  necessary, e.g. `FightVnC`).
+- Implement its logic. There are 3 implenetation styles:
+  - Fully self-contained ⭐: The skill is implemented in its own class and only uses
+    hooks from the base class `Skill`. Example: Regenerate. -- This is the preferred
+    style.
+  - Fully dependent: The skill is implemented with specific code in `FightCard` and/or
+    `FightVnC`. The skill class serves only as a container for the skill's basic
+    attributes. Examples: InstantDeath, Fertility, Spines, Soaring, Airdefense.
+  - Hybrid: The skill uses specific code outside its class but also some logic in the
+    class (as well as maybe some state to be tracked). Examples: LuckyStrike, Shield,
+    Weakness. 
 - Check for possible interdependencies with other skills and address those in the code
   accordingly.
 - Add tests for skill and all interdependencies.
@@ -156,9 +163,6 @@ class SkillSet:
         )
 
 
-# FIXME Need more skills in the 1-4 range.
-
-
 # ----- Individual skills -----
 
 
@@ -301,6 +305,17 @@ class Regenerate(Skill):
     def post_round(self, carrier: FightCard) -> None:
         carrier.heal_damage(1)
         logging.debug("%s heals 1D", self.name)
+
+
+@dataclass
+class Weakness(Skill):
+    name: str = "Weakness"
+    symbol: str = "🤕"
+    description: str = "A card with Weakness will deal 1 less damage when it attacks."
+    potency: int = -4
+
+    def modify_damage(self, damage: int) -> int:
+        return max(damage - 1, 0)
 
 
 # ----- Sanity checks -----
