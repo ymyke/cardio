@@ -85,7 +85,6 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
         self.state_widget.show_all()
         self.screen.refresh()
 
-    # FIXME Can streamline many of the following by using card.get_grid_pos() directly
     def card_died(self, card: FightCard, pos: GridPos) -> None:
         burn_card(self.screen, pos)
         show_slot_in_grid(self.screen, pos)
@@ -96,18 +95,15 @@ class TUIFightVnC(TUIBaseMixin, FightVnC):
 
     # QQ: Should the following all be called something with "show"?
     def card_getting_attacked(self, target: FightCard, attacker: FightCard) -> None:
-        pos = self.grid.find_card(target)
-        assert pos is not None
+        pos = target.get_grid_pos()
         shake_card(self.screen, target, pos, "h")
 
     def card_activate(self, card: FightCard) -> None:
-        pos = self.grid.find_card(card)
-        assert pos is not None
+        pos = card.get_grid_pos()
         activate_card(self.screen, card, pos)
 
     def card_prepare(self, card: FightCard) -> None:
-        pos = self.grid.find_card(card)
-        assert pos is not None
+        pos = card.get_grid_pos()
         assert pos.line == 0, "Calling prepare on card that is not in prep line"
         clear_card(self.screen, pos)
         show_slot_in_grid(self.screen, pos)
