@@ -99,5 +99,5 @@ class TUIMapView(TUIBaseMixin):
         return possible_locations[cursor]
 
     def move_to(self, loc: Location) -> None:
-        # FIXME Maybe scroll line-by-line when transitioning from one rung to the next?
+        # QQ: Maybe scroll line-by-line when transitioning from one rung to the next?
         pass
