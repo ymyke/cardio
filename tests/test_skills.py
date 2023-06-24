@@ -208,6 +208,20 @@ def test_underdog():
     assert hc._fc.health == 0
     assert cc._fc.health == 1  # cc wins bc it has more power
 
+    # With Underdog, but 0 power:
+    hc = Card("Human Card", 0, 10, 1, skills=[skills.Underdog])
+    cc = Card("Computer Card", 2, 2, 1)
+    do_the_fight([hc], cc)
+    assert hc._fc.health == 8  # hc will fight and win even though it has 0 power
+    assert cc._fc.health == 0
+
+    # Without Underdog, but 0 power:
+    hc = Card("Human Card", 0, 10, 1)
+    cc = Card("Computer Card", 2, 2, 1)
+    do_the_fight([hc], cc)
+    assert hc._fc.health == 0  # hc will not fight and therefore lose
+    assert cc._fc.health == 2
+
 
 def test_packrat():
     # With Packrat:

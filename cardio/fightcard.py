@@ -159,9 +159,17 @@ class FightCard(Card):
             ("human", "computer") if self.is_human() else ("computer", "human")
         )
 
+        # ----- Set up attacker_power -----
+
+        attacker_power = self.power
+
+        if sk.Underdog in self.skills and target and attacker_power < target.power:
+            logging.debug("%s: +1 P (Underdog)", self.name)
+            attacker_power += 1
+
         # ----- No power? -> Return immediately -----
 
-        if self.power == 0:
+        if attacker_power == 0:
             logging.debug("%s would attack but has 0 power, so doesn't", self.name)
             return
 
@@ -202,10 +210,9 @@ class FightCard(Card):
         attacks_agent_directly = target is None or not attacker_touches_target
 
         if attacks_agent_directly:
-            power = self.power
             if sk.LuckyStrike in self.skills:
-                power = self.skills.get(sk.LuckyStrike).power_up_against_agent(power)  # type: ignore
-            self.vnc.handle_agent_damage(target_player, power)
+                attacker_power = self.skills.get(sk.LuckyStrike).power_up_against_agent(attacker_power)  # type: ignore
+            self.vnc.handle_agent_damage(target_player, attacker_power)
             return
 
         # ----- Otherwise: Attack the opposing card -----
@@ -219,7 +226,7 @@ class FightCard(Card):
             sk.InstantDeath in self.skills
             or (
                 sk.LuckyStrike in self.skills
-                and self.skills.get(sk.LuckyStrike).is_lucky()  # type: ignore
+                and self.skills.get(sk.LuckyStrike).is_lucky()  # type: ignore # TODO unnecessary?
             )
         )
         if target_dies_instanly:
@@ -232,18 +239,11 @@ class FightCard(Card):
         # Note that we collect all power and health loss here and apply it afterwards. This
         # also means that a card can _theoretically_ die here, but will still apply all its
         # damage before dying later.
-        attacker_power = self.power
         attacker_to_lose = 0
 
         if sk.Spines in target.skills:
             logging.debug("%s -> %s: 1D (Spines)", target.name, self.name)
-            # attacker.lose_health(1)
             attacker_to_lose += 1
-
-        if sk.Underdog in self.skills and attacker_power < target.power:
-            logging.debug("%s: +1 P (Underdog)", self.name)
-            attacker_power += 1
-            # cf [1]
 
         # ----- Deal damage -----
 
@@ -267,14 +267,3 @@ class FightCard(Card):
         self.skills.call("post_attack", self)
 
         self.vnc.card_deactivate(self)
-
-    # Notes:
-    #
-    # [1] Underdog:
-    # Note/QQ: The way this is currently implemented, some interdependencies might get
-    # missed with future skills. E.g., if there is a skill that gives a buff if a card has a
-    # certain power, it will not be triggered by Underdog as it is currently implemented. If
-    # we ever have such skills and interdependencies, we might need to implement Underdog an
-    # similar skills with temporary attributes or attribute modifiers in the card. OR: Each
-    # such dependent skill has to check if there are any other skills in play that might
-    # affect it.
