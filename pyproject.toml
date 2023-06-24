@@ -8,7 +8,7 @@ license = "GPL-3.0-or-later"
 repository = "https://github.com/ymyke/cardio"
 homepage = "https://github.com/ymyke/cardio"
 documentation = "https://ymyke.github.io/cardio"
-keywords = ["python", "game", "card", "roguelike", "deckbuilding", "asciimatics"]
+keywords = ["python", "game", "card", "roguelike", "deck-building", "asciimatics"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
