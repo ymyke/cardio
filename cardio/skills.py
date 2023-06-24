@@ -156,9 +156,6 @@ class SkillSet:
         )
 
 
-# FIXME Need more skills in the 1-4 range.
-
-
 # ----- Individual skills -----
 
 
