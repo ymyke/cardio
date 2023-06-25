@@ -23,6 +23,12 @@ again.
 > Cardio is a community project.  
 > See [CONTRIBUTING](CONTRIBUTING.md). 👈  
 
+<p align="center">
+  <img src="screenshot.png" alt="Cardio screenshot" height="300" 
+  style="margin-top: 20px; margin-bottom: 20px;" />
+</p>
+
+
 
 ## Installation
 
