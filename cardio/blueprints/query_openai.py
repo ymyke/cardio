@@ -1,9 +1,10 @@
+import os
 from typing import List, Optional
 import random
 import openai
 
-openai.api_key = "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"
-# FIXME ^ remove and revoke!
+openai.api_key = os.environ.get("OPENAI_API_KEY")
+assert openai.api_key, "Please set the OPENAI_API_KEY environment variable."
 
 query_blueprint = """\
 I'm developing a card game where cards have different attributes and looking to name some new cards.
