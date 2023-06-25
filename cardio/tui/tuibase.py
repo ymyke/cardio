@@ -1,6 +1,8 @@
 import atexit
 from typing import Optional
+import time
 from asciimatics.screen import Screen
+from asciimatics.renderers import FigletText
 from .utils import splash_message, wait_for_any_key
 
 
@@ -27,8 +29,16 @@ class TUIBaseMixin:
     def message(self, msg: str) -> None:
         """Display a message for the user and wait for any key."""
         self.screen.clear_buffer(0, 0, 0)
-        splash_message(self.screen, msg)
-        wait_for_any_key(self.screen)
+        if len(msg) > 10:
+            # Long messages are displayed normally:
+            splash_message(self.screen, msg)
+            wait_for_any_key(self.screen)
+        else:
+            # Short messages are displayed in big letters and without waiting for a key:
+            # (This is mostly a gimmick for the fight location.)
+            figlet = str(FigletText(msg, "doh"))
+            splash_message(self.screen, figlet)
+            time.sleep(0.1)
 
     def error(self, msg: str) -> None:
         """Display a message and then close the view also. `error` is expected to be

@@ -15,6 +15,8 @@ class FightView(BaseLocationView, Protocol):
         grid: Grid,
         humanplayer: HumanPlayer,
         debug: bool = False,
+        *args,
+        **kwargs
     ) -> None:
         ...
 
@@ -55,6 +57,7 @@ class FightLocation(Location):
             grid=self.grid,
             humanplayer=humanplayer,
             debug=False,
+            description="FIGHT!",
         )
         vnc.handle_fight()
         vnc.close()
