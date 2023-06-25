@@ -26,19 +26,46 @@ again.
 
 ## Installation
 
-- Clone the project.
-- `poetry install`
+### With poetry
+
+- Clone the project: `git clone https://github.com/ymyke/cardio.git`
+- `cd cardio`
+- Use python 3.9: `poetry env use <path_to_python3.9>`
+- Install: `poetry install`
+  - `--without dev` to skip dev dependencies
+
+### With pip
+
+- Clone the project: `git clone https://github.com/ymyke/cardio.git`
+- `cd cardio`
+- Optional: Setup virtual environment:
+  - Setup: e.g., `py -3.9 -m venv venv`
+  - Activate: e.g., `. .\venv\Scripts\activate`
+- Install: `pip install -r requirements.txt`
 
 
 ## Usage
 
-`python ./play.py`
+- Activate virtual environment.
+- Make sure to decrease the terminal font size to get a resolution of at least 160x52.
+- `python ./play.py`
 
 Options:
 - `--reset` to reset the game state.
 - `--human-name` to set the name of the human player.
 
-(Cardio uses platformdirs.user_data_path to determine where to store the game state.)
+Cardio will save the current game state automatically after each location and continue
+from there by default when restarted. (Cardio uses `platformdirs.user_data_path` to
+determine where to store the game state.)
+
+
+## Keys during the game
+
+- Arrow keys to navigate, move cursor.
+- `Enter` to select / confirm.
+- `Esc` to cancel / go back.
+- In fights: `C` to continue with next round of fight.
+- `$` to hard quit the game at any time.
 
 
 ## Contributing
