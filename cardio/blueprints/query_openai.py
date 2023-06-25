@@ -2,8 +2,8 @@ from typing import List, Optional
 import random
 import openai
 
-openai.api_key = ""
-assert openai.api_key, "Please set openai.api_key."
+openai.api_key = "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"
+# FIXME ^ remove and revoke!
 
 query_blueprint = """\
 I'm developing a card game where cards have different attributes and looking to name some new cards.
