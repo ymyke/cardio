@@ -14,6 +14,7 @@ class Location(ABC):
     """
 
     marker = "___"
+    description = None
 
     def __init__(self, base_seed: str, rung: int, index: int, paths: List[int]) -> None:
         self.id = f"{self.marker}_{rung}_{index}"

@@ -1,10 +1,13 @@
 import atexit
+from typing import Optional
 from asciimatics.screen import Screen
 from .utils import splash_message, wait_for_any_key
 
 
 class TUIBaseMixin:
-    def __init__(self, debug: bool = False, *args, **kwargs) -> None:
+    def __init__(
+        self, description: Optional[str] = None, debug: bool = False, *args, **kwargs
+    ) -> None:
         super().__init__(*args, **kwargs)
         self.debug = debug
         self.screen = Screen.open(unicode_aware=True)
@@ -15,6 +18,8 @@ class TUIBaseMixin:
                 f"Yours is {self.screen.width}x{self.screen.height}."
             )
         atexit.register(self.close)
+        if description:
+            self.message(description)
 
     def close(self) -> None:
         self.screen.close()

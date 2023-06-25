@@ -7,7 +7,7 @@ from .baseview import BaseLocationView
 
 
 class UpgraderView(BaseLocationView, Protocol):
-    def __init__(self, upgradable_cards: CardList) -> None:
+    def __init__(self, upgradable_cards: CardList, *args, **kwargs) -> None:
         ...
 
     def pick(self) -> Card:
@@ -36,7 +36,7 @@ class UpgraderLocation(Location):
             view.show_upgrade(card)
 
         upgradable_cards = humanplayer.deck.cards
-        view = view_class(upgradable_cards)
+        view = view_class(upgradable_cards, description=self.description)
         card = view.pick()
         if self.upgrade_type == "once":
             _upgrade(card)
@@ -60,21 +60,27 @@ class UpgraderLocation(Location):
 
 class PowerUpgraderLocation(UpgraderLocation):
     marker = "UPU"
+    description = "💪 Upgrade power of a card once."
     which_attribute = "power"
 
 
 class HealthUpgraderLocation(UpgraderLocation):
     marker = "UHU"
+    description = "💓 Upgrade health of a card once."
     which_attribute = "health"
 
 
 class PowerUpgraderMultiLocation(UpgraderLocation):
     marker = "UP*"
+    description = "💪🔄️ Upgrade power of a card multiple times.\n\nBut risk losing it! 💀"
     which_attribute = "power"
     upgrade_type = "multi"
 
 
 class HealthUpgraderMultiLocation(UpgraderLocation):
     marker = "UH*"
+    description = (
+        "💓🔄️ Upgrade health of a card multiple times.\n\nBut risk losing it! 💀"
+    )
     which_attribute = "health"
     upgrade_type = "multi"

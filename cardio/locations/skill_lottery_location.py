@@ -7,7 +7,7 @@ from .baseview import BaseLocationView
 
 
 class SkillLotteryView(BaseLocationView, Protocol):
-    def __init__(self, cards: CardList) -> None:
+    def __init__(self, cards: CardList, *args, **kwargs) -> None:
         ...
 
     def pick(self, activecards: CardList) -> Card:
@@ -29,12 +29,13 @@ class SkillLotteryLocation(Location):
     """
 
     marker = "SL⚀"
+    description = "Add a random skill to a card. 🎲"
 
     def generate(self) -> None:
         super().generate()
 
     def handle(self, view_class: Type[SkillLotteryView], humanplayer: HumanPlayer) -> bool:
-        view = view_class(humanplayer.deck.cards)
+        view = view_class(humanplayer.deck.cards, description=self.description)
         possible_cards = [
             c for c in humanplayer.deck.cards if c.skills.count() < Card.MAX_SKILLS
         ]

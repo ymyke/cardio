@@ -7,7 +7,7 @@ from .baseview import BaseLocationView
 
 
 class SkillTransfererView(BaseLocationView, Protocol):
-    def __init__(self, cards: CardList) -> None:
+    def __init__(self, cards: CardList, *args, **kwargs) -> None:
         ...
 
     def pick_from(self, from_cards: CardList) -> Card:
@@ -51,6 +51,10 @@ class SkillTransfererLocation(Location):
     # selected but before the to_card has been chosen (=escape key functionality)
 
     marker = "S→→"
+    descrption = (
+        "Transfer a (random) skill from one card to another.\n\n"
+        "Origin card will be destroyed if it only has one skill."
+    )
 
     def generate(self) -> None:
         super().generate()
@@ -58,7 +62,7 @@ class SkillTransfererLocation(Location):
     def handle(
         self, view_class: Type[SkillTransfererView], humanplayer: HumanPlayer
     ) -> bool:
-        view = view_class(humanplayer.deck.cards)
+        view = view_class(humanplayer.deck.cards, description=self.description)
 
         # Check error conditions:
         if humanplayer.deck.size() < 2:
@@ -93,7 +97,8 @@ class SkillTransfererLocation(Location):
                 "Please pick a different card to get the skill(s) from."
             )
 
-        # Apply (random) skill to the second card and destroy the first:
+        # Apply (random) skill to the second card and destroy the first card if it was
+        # the last skill remaining:
         which_skill = random.choice(from_card.skills.get_types())
         to_card.skills.add(which_skill)
         view.show_upgrade(to_card)
