@@ -57,6 +57,8 @@ Use the following labels in the code to mark todos:
 - `FIXME`: Todos in general.
 - `QQ`: Questions, low-prio todos, etc.
 
+Look for these to see what needs to be done.
+
 (Consider using vscode's ["todo
 tree"](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree)
 extension to get an overview of all todos in the code.)
