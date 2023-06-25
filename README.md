@@ -65,5 +65,5 @@ As a developer, designer, level designer, etc.:
 
 ## Repository
 
-https://github.com/ymyke/tessa
+https://github.com/ymyke/cardio
 
