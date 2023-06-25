@@ -62,9 +62,8 @@ class PredefinedStrategy(ComputerStrategy):
 
     def cards_to_be_played(self, round_number: int) -> List[GridPosAndCard]:
         cards = self.cards_per_round.get(round_number, [])
-        for pos, _ in cards:
-            if pos.line != 0 and round_number > 0:
-                logging.warning(
-                    "Computer is supposed to only place in prepline in later rounds"
-                )
+        if round_number > 0 and any(pos.line != 0 for pos, _ in cards):
+            logging.warning(
+                "Computer is supposed to only place in prepline in later rounds"
+            )
         return cards
