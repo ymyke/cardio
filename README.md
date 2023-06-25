@@ -2,7 +2,7 @@
 # Cardio 🃏
 
 Cardio is an open-source, community-driven, roguelike, deck-building card game. It is a
-single-player game that can currently be player in the terminal. It is written in
+single-player game that can currently be played in the terminal. It is written in
 Python.
 
 > Cardio is heavily inspyred by **Inscryption**.  
@@ -29,6 +29,14 @@ again.
 </p>
 
 
+## Prerequisites
+
+- Python 3.9
+- Cardio runs in the terminal. It uses asciimatics and should therefore run on many
+  platforms. However, it has only been tested on Windows 10 so far. 
+- Make sure to have a terminal size of at least 160x52. Increase window size and/or
+  decrease font size if necessary.
+
 
 ## Installation
 
@@ -53,7 +61,6 @@ again.
 ## Usage
 
 - Activate virtual environment.
-- Make sure to decrease the terminal font size to get a resolution of at least 160x52.
 - `python ./play.py`
 
 Options:
