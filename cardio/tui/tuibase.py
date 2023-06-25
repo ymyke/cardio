@@ -8,6 +8,12 @@ class TUIBaseMixin:
         super().__init__(*args, **kwargs)
         self.debug = debug
         self.screen = Screen.open(unicode_aware=True)
+        if self.screen.height < 52 or self.screen.width < 160:
+            self.close()
+            raise RuntimeError(
+                "Screen resolution must be at least 160x52 (WxH). "
+                f"Yours is {self.screen.width}x{self.screen.height}."
+            )
         atexit.register(self.close)
 
     def close(self) -> None:

@@ -37,7 +37,7 @@ while True:  # Forever start new runs:
     if not run or not run.is_on:
         run = Run()
 
-    mapview = TUIMapView(run, humanplayer, debug=True)
+    mapview = TUIMapView(run, humanplayer, debug=False)
     if run.current_rung == 0:  # Starting a new run:
         # Pick random cards from collection for the deck:
         while True:
