@@ -60,8 +60,7 @@ class PredefinedStrategy(ComputerStrategy):
         self.cards_per_round: Dict[int, List[GridPosAndCard]] = cards_per_round
 
     def cards_to_be_played(self, round_number: int) -> List[GridPosAndCard]:
-        cards = self.cards_per_round.get(round_number, [])
-        return cards
+        return self.cards_per_round.get(round_number, [])
 
 
 class Round0OnlyStrategy(PredefinedStrategy):
