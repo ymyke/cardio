@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import logging
 from typing import Dict, List
+from ordered_set import OrderedSet
 from . import FightCard, Grid, GridPosAndCard
 
 
@@ -12,20 +13,41 @@ class ComputerStrategy(ABC):
 
     A strategy can take some input parameters (initial deck, current grid, turn number,
     ...) and return which cards will be played to which slots.
+
+    Note that this base strategy implements a waitlist mechanism, see `play_cards`.
     """
 
     def __init__(self, grid: Grid) -> None:
         self.grid = grid
+        self._waitlist: List[GridPosAndCard] = []
 
     @abstractmethod
     def cards_to_be_played(self, round_number: int) -> List[GridPosAndCard]:
         pass
 
     def play_cards(self, round_number: int) -> None:
-        for (line, slot), card in self.cards_to_be_played(round_number):
+        """Play cards to the grid. Will use `cards_to_be_played` to determine which
+        cards to play. Implements the waitlist mechanism that makes sure cards that
+        can't be played yet are played as soon as the respective slot becomes available.
+        """
+        # Using OrderedSet to make sure each card is only added once. (Cards can be
+        # added multiple times if they remain in the waitlist for multiple rounds.)
+        new_waitlist = OrderedSet([])
+        for pos, card in self._waitlist + self.cards_to_be_played(round_number):
+            if round_number > 0 and pos.line != 0:
+                logging.warning(
+                    "Computer is supposed to only place in prepline in later rounds. "
+                    "Ignoring card %s.",
+                    card.name,
+                )
+                continue
             if card and not isinstance(card, FightCard):
                 card = FightCard.from_card(card)
-            self.grid.lines[line][slot] = card
+            if self.grid.get_card(pos):
+                new_waitlist.append(GridPosAndCard(pos, card))
+            else:
+                self.grid.set_card(pos, card)
+        self._waitlist = list(new_waitlist)
 
 
 class Round0OnlyStrategy(ComputerStrategy):
@@ -43,23 +65,18 @@ class Round0OnlyStrategy(ComputerStrategy):
             return self.cards
         return []
 
+    # TODO Simplify by subclassing PredefinedStrategy
+
 
 class PredefinedStrategy(ComputerStrategy):
-    """Simply plays predefined cards in specific rounds of a fight. Does not perform any
-    checks whether the grid is empty or not where a card should be played.
-    """
+    """Simply plays predefined cards in specific rounds of a fight."""
 
     def __init__(
         self, cards_per_round: Dict[int, List[GridPosAndCard]], *args, **kwargs
     ) -> None:
         super().__init__(*args, **kwargs)
-        self.cards_per_round = cards_per_round
-        self._waitlist = []
+        self.cards_per_round: Dict[int, List[GridPosAndCard]] = cards_per_round
 
     def cards_to_be_played(self, round_number: int) -> List[GridPosAndCard]:
         cards = self.cards_per_round.get(round_number, [])
-        if round_number > 0 and any(pos.line != 0 for pos, _ in cards):
-            logging.warning(
-                "Computer is supposed to only place in prepline in later rounds"
-            )
         return cards

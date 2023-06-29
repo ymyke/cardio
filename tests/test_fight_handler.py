@@ -1,4 +1,5 @@
 from cardio import GridPos
+from cardio.grid import GridPosAndCard
 from tests.utils.humanstrategyvnc import HumanStrategyVnC
 from cardio.computer_strategies import Round0OnlyStrategy, PredefinedStrategy
 from cardio.blueprints import thecatalog
@@ -7,6 +8,7 @@ from cardio.blueprints import thecatalog
 def test_fight_with_no_opponent(tt_setup):
     human, grid, vnc, ff = tt_setup
     hc = ff("HC", 1, 10, 1)
+    # TODO Use Round0OnlyStrategy everywhere???
     vnc.computerstrategy = PredefinedStrategy(
         grid=grid,
         cards_per_round={
@@ -143,22 +145,12 @@ def test_prepcard_gets_no_damage(tt_setup):
 
 def test_human_gets_gems(tt_setup):
     human, grid, vnc, ff = tt_setup
-    vnc.computerstrategy = PredefinedStrategy(
+    vnc.computerstrategy = Round0OnlyStrategy(
         grid=grid,
-        cards_per_round={
-            # type: ignore
-            0: [(GridPos(1, 0), ff("Mouse", 1, 1, 1))],
-            1: [(GridPos(2, 1), ff("Cat", 10, 1, 1))],
-        },
+        cards=[GridPosAndCard(GridPos(2, 1), ff("Cat", 10, 1, 1))],
     )
     vnc.handle_fight()
-    assert human.gems == 4
-    # (4 because:
-    # - Round 0: mouse deals 1 agent damage
-    # - Round 1: cat deals 10 agent damage
-    # - This results in a diff of -9
-    # -> computer dies with 9 - 5 overflow damage = 4 gems
-    # Note that mouse and cat are in different slots, so mouse doesn't defend.)
+    assert human.gems == 5
 
 
 def test_humanplayer_deck_gets_set_correctly_after_fight(tt_setup):
