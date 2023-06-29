@@ -82,8 +82,11 @@ class Grid:
         self[to_pos.line][to_pos.slot] = card
         self[from_pos.line][from_pos.slot] = None
 
-    def log(self):
+    def __str__(self) -> str:
+        s = ""
         for line in range(3):
-            logging.debug(
-                "Grid line %s: %s", line, ", ".join([str(c) for c in self.lines[line]])
-            )
+            s += f"Grid line {line}: {', '.join([str(c) for c in self.lines[line]])}"
+        return s
+
+    def log(self):
+        logging.debug(str(self))
