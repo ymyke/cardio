@@ -50,24 +50,6 @@ class ComputerStrategy(ABC):
         self._waitlist = list(new_waitlist)
 
 
-class Round0OnlyStrategy(ComputerStrategy):
-    """Doesn't perform any checks whether there are cards on the grid in the spots where
-    new cards should be placed since this strategy is only concerned with round 0
-    placements.
-    """
-
-    def __init__(self, cards: List[GridPosAndCard], *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-        self.cards = cards
-
-    def cards_to_be_played(self, round_number: int) -> List[GridPosAndCard]:
-        if round_number == 0:
-            return self.cards
-        return []
-
-    # TODO Simplify by subclassing PredefinedStrategy
-
-
 class PredefinedStrategy(ComputerStrategy):
     """Simply plays predefined cards in specific rounds of a fight."""
 
@@ -80,3 +62,11 @@ class PredefinedStrategy(ComputerStrategy):
     def cards_to_be_played(self, round_number: int) -> List[GridPosAndCard]:
         cards = self.cards_per_round.get(round_number, [])
         return cards
+
+
+class Round0OnlyStrategy(PredefinedStrategy):
+    """Plays predefined cards only in round 0 of a fight."""
+
+    def __init__(self, cards: List[GridPosAndCard], *args, **kwargs) -> None:
+        self.cards = cards
+        super().__init__({0: cards}, *args, **kwargs)
