@@ -1,21 +1,15 @@
 from cardio import GridPos
 from cardio.grid import GridPosAndCard
 from tests.utils.humanstrategyvnc import HumanStrategyVnC
-from cardio.computer_strategies import Round0OnlyStrategy, PredefinedStrategy
+from cardio.computer_strategies import Round0OnlyStrategy
 from cardio.blueprints import thecatalog
 
 
 def test_fight_with_no_opponent(tt_setup):
     human, grid, vnc, ff = tt_setup
     hc = ff("HC", 1, 10, 1)
-    # TODO Use Round0OnlyStrategy everywhere???
-    vnc.computerstrategy = PredefinedStrategy(
-        grid=grid,
-        cards_per_round={
-            0: [
-                (GridPos(2, 0), hc),  # type: ignore
-            ],
-        },
+    vnc.computerstrategy = Round0OnlyStrategy(
+        grid=grid, cards=[GridPosAndCard(GridPos(2, 0), hc)]
     )
     vnc.handle_fight()
     assert hc.health == 10
@@ -29,15 +23,9 @@ def test_fight_with_human_power_0(tt_setup):
     human, grid, vnc, ff = tt_setup
     cc = ff("CC", 2, 3, 1)
     hc = ff("HC", 0, 10, 1)
-    vnc.computerstrategy = PredefinedStrategy(
+    vnc.computerstrategy = Round0OnlyStrategy(
         grid=grid,
-        cards_per_round={
-            # type: ignore
-            0: [
-                (GridPos(1, 0), cc),
-                (GridPos(2, 0), hc),
-            ],
-        },
+        cards=[GridPosAndCard(GridPos(1, 0), cc), GridPosAndCard(GridPos(2, 0), hc)],
     )
     vnc.handle_fight()
     assert hc.health == 0
@@ -50,15 +38,12 @@ def test_deadlock_due_to_all_0_power(tt_setup):
     winning.
     """
     human, grid, vnc, ff = tt_setup
-    vnc.computerstrategy = PredefinedStrategy(
+    vnc.computerstrategy = Round0OnlyStrategy(
         grid=grid,
-        cards_per_round={
-            # type: ignore
-            0: [
-                (GridPos(1, 0), ff("CC", 0, 3, 1)),
-                (GridPos(2, 0), ff("HC", 0, 3, 1)),
-            ],
-        },
+        cards=[
+            GridPosAndCard(GridPos(1, 0), ff("CC", 0, 3, 1)),
+            GridPosAndCard(GridPos(2, 0), ff("HC", 0, 3, 1)),
+        ],
     )
     vnc.handle_fight()
     assert vnc.damagestate.who_won() == "computer"
@@ -70,15 +55,12 @@ def test_deadlock_due_to_cards_not_opposing(tt_setup):
     deadlock, leading to the computer winning.
     """
     human, grid, vnc, ff = tt_setup
-    vnc.computerstrategy = PredefinedStrategy(
+    vnc.computerstrategy = Round0OnlyStrategy(
         grid=grid,
-        cards_per_round={
-            # type: ignore
-            0: [
-                (GridPos(1, 0), ff("CC", 1, 0, 1)),
-                (GridPos(2, 1), ff("HC", 1, 0, 1)),
-            ],
-        },
+        cards=[
+            GridPosAndCard(GridPos(1, 0), ff("CC", 1, 0, 1)),
+            GridPosAndCard(GridPos(2, 1), ff("HC", 1, 0, 1)),
+        ],
     )
     vnc.handle_fight()
     assert vnc.damagestate.who_won() == "computer"
@@ -88,15 +70,12 @@ def test_deadlock_due_to_cards_not_opposing(tt_setup):
 def test_prepcard_will_not_attack(mocker, tt_setup):
     human, grid, vnc, ff = tt_setup
     prepcard = ff("P", 1, 1, 1)
-    vnc.computerstrategy = PredefinedStrategy(
+    vnc.computerstrategy = Round0OnlyStrategy(
         grid=grid,
-        cards_per_round={
-            # type: ignore
-            0: [
-                (GridPos(0, 0), prepcard),
-                (GridPos(1, 0), ff("X", 1, 1, 1)),
-            ],
-        },
+        cards=[
+            GridPosAndCard(GridPos(0, 0), prepcard),
+            GridPosAndCard(GridPos(1, 0), ff("X", 1, 1, 1)),
+        ],
     )
     spy = mocker.spy(prepcard, "attack")
     vnc.handle_fight()
@@ -127,16 +106,13 @@ def test_prepare_with_success(mocker, tt_setup):
 
 def test_prepcard_gets_no_damage(tt_setup):
     human, grid, vnc, ff = tt_setup
-    vnc.computerstrategy = PredefinedStrategy(
+    vnc.computerstrategy = Round0OnlyStrategy(
         grid=grid,
-        cards_per_round={
-            # type: ignore
-            0: [
-                (GridPos(0, 0), ff("X", 1, 1, 1)),
-                (GridPos(1, 0), ff("X", 1, 1, 1)),
-                (GridPos(2, 0), ff("X", 10, 1, 1)),
-            ],
-        },
+        cards=[
+            GridPosAndCard(GridPos(0, 0), ff("X", 1, 1, 1)),
+            GridPosAndCard(GridPos(1, 0), ff("X", 1, 1, 1)),
+            GridPosAndCard(GridPos(2, 0), ff("X", 10, 1, 1)),
+        ],
     )
     vnc.handle_fight()
     assert grid[1][0] is None
