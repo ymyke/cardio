@@ -31,35 +31,34 @@ def test_concrete_fight_1(tt_setup):
     vnc.handle_fight()
 
     target_states_log = """\
-
 Starting round 0:
 | -           | -           | -           | -           |
 | -           | -           | -           | -           |
 | -           | -           | -           | -           |
-Hand: Kp1h3 Wp1h1 Lp3h2 Hp0h1
+Hand: Kp1h3 Wp1h1 Lp3h2
 Used:
 Draw: Pp1h2🚀
-Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
+Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 0 damage, 2 lives, 0 gems, 3 spirits
 
 Starting round 1:
 | -           | -           | -           | -           |
 | Dp2h4       | Sp2h10      | -           | -           |
 | Cp1h1       | -           | -           | -           |
-Hand: Kp1h3 Wp1h1 Lp3h2 Hp0h1
+Hand: Kp1h3 Wp1h1 Lp3h2
 Used:
 Draw: Pp1h2🚀
-Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
+Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 2 damage, 2 lives, 0 gems, 3 spirits
 
 Final state:
 | -           | -           | -           | -           |
 | Dp2h3       | Sp2h10      | -           | -           |
 | -           | -           | -           | -           |
-Hand: Kp1h3 Wp1h1 Lp3h2 Hp0h1
+Hand: Kp1h3 Wp1h1 Lp3h2
 Used: Cp1h0
 Draw: Pp1h2🚀
-Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
+Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 5 damage, 2 lives, 0 gems, 4 spirits
 """
     assert equal_logs(vnc.stateslogger.log, target_states_log)
@@ -93,90 +92,90 @@ Starting round 0:
 | -           | -           | -           | -           |
 | -           | -           | -           | -           |
 | -           | -           | -           | -           |
-Hand: Kp1h3 Wp1h1 Lp3h2 Hp0h1
+Hand: Kp1h3 Wp1h1 Lp3h2
 Used:
 Draw: Pp1h2🚀
-Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
+Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 0 damage, 2 lives, 0 gems, 3 spirits
 
 Starting round 1:
 | -           | -           | -           | -           |
 | Hp2h99      | Hp2h100     | Hp2h100     | Hp2h100     |
 | Kp1h1       | -           | -           | -           |
-Hand: Wp1h1 Lp3h2 Hp0h1 Hp0h1
+Hand: Wp1h1 Lp3h2 Hp0h1
 Used:
 Draw: Pp1h2🚀
-Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
+Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 6 damage, 2 lives, 0 gems, 3 spirits
 
 Starting round 2:
 | -           | -           | -           | -           |
 | Hp2h98      | Hp2h99      | Hp2h100     | Hp2h100     |
 | -           | -           | -           | -           |
-Hand: Lp3h2 Hp0h1 Hp0h1 Pp1h2🚀
+Hand: Lp3h2 Hp0h1 Pp1h2🚀
 Used: Kp1h0 Wp1h0
 Draw:
-Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
+Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 12 damage, 2 lives, 0 gems, 5 spirits
 
 Starting round 3:
 | -           | -           | -           | -           |
 | Hp2h95      | Hp2h99      | Hp2h100     | Hp2h100     |
 | -           | -           | -           | -           |
-Hand: Hp0h1 Hp0h1 Pp1h2🚀 Hp0h1
+Hand: Hp0h1 Pp1h2🚀 Hp0h1
 Used: Kp1h0 Wp1h0 Lp3h0
 Draw:
-Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
+Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 18 damage, 2 lives, 0 gems, 6 spirits
 
 Starting round 4:
 | -           | -           | -           | -           |
 | Hp2h95      | Hp2h99      | Hp2h100     | Hp2h100     |
 | -           | -           | -           | -           |
-Hand: Hp0h1 Pp1h2🚀 Hp0h1 Hp0h1
+Hand: Pp1h2🚀 Hp0h1 Hp0h1
 Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0
 Draw:
-Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
+Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 25 damage, 2 lives, 0 gems, 7 spirits
 
 Starting round 5:
 | -           | -           | -           | -           |
-| Hp2h95      | Hp2h99      | Hp2h100     | Hp2h100     |
+| Hp2h94      | Hp2h99      | Hp2h100     | Hp2h100     |
 | -           | -           | -           | -           |
-Hand: Pp1h2🚀 Hp0h1 Hp0h1 Hp0h1
-Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Hp0h0
+Hand: Hp0h1 Hp0h1 Hp0h1
+Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Pp1h0🚀
 Draw:
-Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
-32 damage, 2 lives, 0 gems, 8 spirits
+Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
+31 damage, 2 lives, 0 gems, 8 spirits
 
 Starting round 6:
 | -           | -           | -           | -           |
 | Hp2h94      | Hp2h99      | Hp2h100     | Hp2h100     |
 | -           | -           | -           | -           |
-Hand: Hp0h1 Hp0h1 Hp0h1 Hp0h1
-Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Hp0h0 Pp1h0🚀
+Hand: Hp0h1 Hp0h1 Hp0h1
+Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Pp1h0🚀 Hp0h0
 Draw:
-Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1
+Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1 Hp0h1
 38 damage, 2 lives, 0 gems, 9 spirits
 
 Starting round 7:
 | -           | -           | -           | -           |
 | Hp2h94      | Hp2h99      | Hp2h100     | Hp2h100     |
 | -           | -           | -           | -           |
-Hand: Hp0h1 Hp0h1 Hp0h1 Hp0h1
-Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Hp0h0 Pp1h0🚀 Hp0h0
+Hand: Hp0h1 Hp0h1 Hp0h1
+Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Pp1h0🚀 Hp0h0 Hp0h0
 Draw:
-Hamster: Hp0h1 Hp0h1 Hp0h1
+Hamster: Hp0h1 Hp0h1 Hp0h1 Hp0h1
 45 damage, 2 lives, 0 gems, 10 spirits
 
 Final state:
 | -           | -           | -           | -           |
 | Hp2h94      | Hp2h99      | Hp2h100     | Hp2h100     |
 | -           | -           | -           | -           |
-Hand: Hp0h1 Hp0h1 Hp0h1 Hp0h1
-Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Hp0h0 Pp1h0🚀 Hp0h0 Hp0h0
+Hand: Hp0h1 Hp0h1 Hp0h1
+Used: Kp1h0 Wp1h0 Lp3h0 Hp0h0 Pp1h0🚀 Hp0h0 Hp0h0 Hp0h0
 Draw:
-Hamster: Hp0h1 Hp0h1
+Hamster: Hp0h1 Hp0h1 Hp0h1
 52 damage, 2 lives, 0 gems, 11 spirits
 """
 

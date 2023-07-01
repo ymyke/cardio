@@ -224,7 +224,6 @@ class FightVnC:
         self.redraw_view()
         for _ in range(3):
             self._safe_draw_card_to_deck(self.decks.draw)
-        self._safe_draw_card_to_deck(self.decks.hamster)
 
         # Run the fight:
         self.round_num = 0
