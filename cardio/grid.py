@@ -12,9 +12,10 @@ Positions:
 """
 
 
-from typing import List, Optional, NamedTuple
+from typing import List, Optional, NamedTuple, Union
 import logging
 from cardio.fightcard import FightCard
+from cardio.card import Card
 
 
 class GridPos(NamedTuple):
@@ -24,7 +25,7 @@ class GridPos(NamedTuple):
 
 class GridPosAndCard(NamedTuple):
     pos: GridPos
-    card: FightCard
+    card: Union[FightCard, Card]
 
 
 class Grid:
