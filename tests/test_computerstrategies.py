@@ -1,5 +1,11 @@
 from cardio import GridPos, GridPosAndCard
-from cardio.computer_strategies import PredefinedStrategy, Round0OnlyStrategy
+from cardio.computer_strategies import (
+    PredefinedStrategy,
+    Round0OnlyStrategy,
+    SimpleRungBasedStrategy,
+)
+
+# ----- Waitlist mechanism -----
 
 
 def test_waitlist_cards_get_played(tt_setup):
@@ -114,3 +120,15 @@ def test_round0only_strategy(tt_setup):
     for i in range(1, 100):
         s.play_cards(i)
     assert str(grid) == oldgrid
+
+
+def test_rungbased_strategy(tt_setup):
+    _, grid, _, ff = tt_setup
+    for rung in range(0, 1000, 10):
+        s = SimpleRungBasedStrategy(grid=grid, rung=rung)
+        lengths = [len(s.cards_to_be_played(round)) for round in range(100)]
+        assert lengths[0] <= 2 * grid.width
+        assert all(l <= grid.width for l in lengths[1:])
+        assert sum(lengths) > 0 and sum(lengths) <= s.nofcards
+        s.play_cards(rung)
+
