@@ -4,6 +4,9 @@ from cardio import HumanPlayer
 from cardio.run import Run
 from cardio.tui.mapview import TUIMapView
 from cardio.locations.location_directory import view_directory
+# FIXME For some reason, we need to import blueprints here, otherwise jason will
+# complain about being partially initialized when starting the game:
+import cardio.blueprints
 from cardio import jason
 
 logging.basicConfig(level=logging.DEBUG)
