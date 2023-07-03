@@ -42,7 +42,7 @@ while True:  # Forever start new runs:
         # Pick random cards from collection for the deck:
         while True:
             humanplayer.collection.shuffle()
-            humanplayer.deck.cards = humanplayer.collection.draw_cards(4)
+            humanplayer.deck.cards = humanplayer.collection.draw_cards(6)
             if any(c.power > 0 for c in humanplayer.deck.cards):
                 # Make sure not the entire deck is powerless.
                 break
