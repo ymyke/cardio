@@ -112,7 +112,7 @@ class SimpleRungBasedStrategy(PredefinedStrategy):
             morecards = max(nofcards // 5, 1)
             nofcards += morecards
             max_potency -= 1
-        # TODO Same the other way round?
+        # FIXME Same the other way round?
 
         # Density:
         density = min(max(rung / 150, 1), self.grid.width)
@@ -121,7 +121,7 @@ class SimpleRungBasedStrategy(PredefinedStrategy):
         while random.random() < 0.1 and density < self.grid.width and max_potency > 1:
             density = min(density + 0.5, self.grid.width)
             max_potency -= 1
-        # TODO Same the other way round?
+        # FIXME Same the other way round?
 
         logging.debug(
             "Difficulty settings: %s cards, %s max potency, %s density",
