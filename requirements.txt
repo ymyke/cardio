@@ -338,6 +338,9 @@ multidict==6.0.4 ; python_version >= "3.9" and python_version < "4.0" \
 openai==0.27.8 ; python_version >= "3.9" and python_version < "4.0" \
     --hash=sha256:2483095c7db1eee274cebac79e315a986c4e55207bb4fa7b82d185b3a2ed9536 \
     --hash=sha256:e0a7c2f7da26bdbe5354b03c6d4b82a2f34bd4458c7a17ae1a7092c3e397e03c
+ordered-set==4.1.0 ; python_version >= "3.9" and python_version < "4.0" \
+    --hash=sha256:046e1132c71fcf3330438a539928932caf51ddbc582496833e23de611de14562 \
+    --hash=sha256:694a8e44c87657c59292ede72891eb91d34131f6531463aab3009191c77364a8
 pillow==9.5.0 ; python_version >= "3.9" and python_version < "4.0" \
     --hash=sha256:07999f5834bdc404c442146942a2ecadd1cb6292f5229f4ed3b31e0a108746b1 \
     --hash=sha256:0852ddb76d85f127c135b6dd1f0bb88dbb9ee990d2cd9aa9e28526c93e794fba \
