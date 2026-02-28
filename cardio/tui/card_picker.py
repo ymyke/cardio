@@ -17,6 +17,11 @@ from cardio import Card, CardList
 
 
 class CardPicker:
+    """Card selection UI for upgrader and skill transferer locations.
+    
+    Displays all card info including fire/spirit attributes (Issue #121).
+    """
+
     def __init__(self, screen: Screen, cards: CardList) -> None:
         self.screen = screen
         self.cards = cards
@@ -53,7 +58,10 @@ class CardPicker:
                 state = VisualState.INACTIVE
             else:
                 state = VisualState.NORMAL
-            show_card(self.screen, card, self.dpos_from_cardindex(i), state)
+            # show_all_info=True ensures fire/spirit info displays at any position
+            show_card(
+                self.screen, card, self.dpos_from_cardindex(i), state, show_all_info=True
+            )
         self.screen.refresh()
 
     def pick(
