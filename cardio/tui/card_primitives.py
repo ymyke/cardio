@@ -33,12 +33,21 @@ class VisualState(Enum):
 
 
 def show_card_contents(
-    screen: Screen, card: Card, pos: dPos, inactive: bool = False
+    screen: Screen,
+    card: Card,
+    pos: dPos,
+    inactive: bool = False,
+    show_all_info: bool = False,
 ) -> None:
     """
     On `costs_*` and `has_*`:
     - Show `costs_*` in lower right, only the one that is > 0.
     - Show `has_*` in lower left, only the one that is > 1 (if any).
+
+    Args:
+        show_all_info: When True, always display fire/spirit info regardless of
+            card position. Used in picker contexts (upgrader, skill transferer)
+            where users need complete card information. (Issue #121)
     """
     color = Color.GRAY if inactive else Color.WHITE
     show_text(screen, pos + (2, 1), card.name, color=color)
@@ -49,15 +58,17 @@ def show_card_contents(
     skills = "".join(s.symbol for s in card.skills)
     show_text(screen, pos + (2, 4), skills)
 
-    # Don't show `costs_*` and `has_*` for computer cards:
-    try:
-        if card.get_grid_pos().line in (0, 1):
-            # Cards that are on the grid in computer's lines.
-            return
-    except (AssertionError, AttributeError):
-        if pos.y <= dPos.from_gridpos(GridPos(1, 0)).y:
-            # Cards that are not yet on the grid but being moved on computer's side.
-            return
+    # Don't show `costs_*` and `has_*` for computer cards (based on grid position).
+    # Skip this check when show_all_info=True (e.g., in card picker/upgrader views).
+    if not show_all_info:
+        try:
+            if card.get_grid_pos().line in (0, 1):
+                # Cards that are on the grid in computer's lines.
+                return
+        except (AssertionError, AttributeError):
+            if pos.y <= dPos.from_gridpos(GridPos(1, 0)).y:
+                # Cards that are not yet on the grid but being moved on computer's side.
+                return
 
     # Show `costs_*` in lower right, only the one that is > 0:
     if card.costs_fire > 0:
@@ -92,15 +103,26 @@ def show_card(
     state: VisualState = VisualState.NORMAL,
     xoffset: int = 0,
     yoffset: int = 0,
+    show_all_info: bool = False,
 ) -> None:
     """Draw card. Either at display position or grid position, depending on the type of
     `pos` passed. Draws empty box if `card` is `None`. Uses `state` to determine to
     display all kinds of states a card can be in.
+
+    Args:
+        show_all_info: Pass True to display fire/spirit info regardless of position.
+            Used by CardPicker for upgrader/transferer views. (Issue #121)
     """
     dpos = dPos.cast(pos) + (xoffset, yoffset)
     show_box(screen, dpos, style=state.value.linestyle, color=state.value.color)
     if card:
-        show_card_contents(screen, card, dpos, inactive=state == VisualState.INACTIVE)
+        show_card_contents(
+            screen,
+            card,
+            dpos,
+            inactive=state == VisualState.INACTIVE,
+            show_all_info=show_all_info,
+        )
 
 
 def redraw_card(
