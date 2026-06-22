@@ -16,7 +16,6 @@ ordered-set==4.1.0
 Pillow==9.5.0
 platformdirs==3.8.0
 pyfiglet==0.8.post1
-pywin32==306
 requests==2.31.0
 toml==0.10.2
 tqdm==4.65.0

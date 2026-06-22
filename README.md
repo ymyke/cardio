@@ -33,7 +33,7 @@ again.
 
 - Python 3.9
 - Cardio runs in the terminal. It uses asciimatics and should therefore run on many
-  platforms. However, it has only been tested on Windows 10 so far. 
+  platforms including Windows and macOS. 
 - Make sure to have a terminal size of at least 160x52. Increase window size and/or
   decrease font size if necessary.
 
